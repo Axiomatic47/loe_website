@@ -345,9 +345,9 @@ const getCollectionConfig = (collectionType: string) => {
     return (
       <PageLayout>
         <div className="container mx-auto px-4 py-12">
-          <div className="bg-black/60 backdrop-blur-sm rounded-lg p-8 border border-white/20 text-center">
-            <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-white" />
-            <p className="text-white text-xl">Loading content...</p>
+          <div className="doc-card p-8 text-center">
+            <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-primary" />
+            <p className="text-foreground text-xl">Loading content...</p>
           </div>
         </div>
       </PageLayout>
@@ -359,24 +359,23 @@ const getCollectionConfig = (collectionType: string) => {
     return (
       <PageLayout>
         <div className="container mx-auto px-4 py-12">
-          <div className="bg-black/60 backdrop-blur-sm rounded-lg p-8 border border-white/20">
-            <Alert className="bg-red-900/20 border-red-500/50 mb-6">
-              <AlertCircle className="h-4 w-4" />
-              <AlertDescription className="text-white">
+          <div className="doc-card p-8">
+            <Alert className="bg-destructive/5 border-destructive/30 mb-6">
+              <AlertCircle className="h-4 w-4 text-destructive" />
+              <AlertDescription className="text-foreground">
                 Error loading content: {store.error}
               </AlertDescription>
             </Alert>
             <div className="text-center">
               <Button
                 variant="outline"
-                className="bg-black/50 text-white border-white/20 mr-4"
+                className="mr-4"
                 onClick={() => store.refreshCompositions()}
               >
                 Retry
               </Button>
               <Button
                 variant="outline"
-                className="bg-black/50 text-white border-white/20"
                 onClick={handleBackToCompositions}
               >
                 Back to {collectionConfig.title}
@@ -393,25 +392,17 @@ const getCollectionConfig = (collectionType: string) => {
     return (
       <PageLayout>
         <div className="container mx-auto px-4 py-12">
-          <div className="bg-black/60 backdrop-blur-sm rounded-lg p-8 border border-white/20">
+          <div className="doc-card p-8">
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-2xl mb-4 text-white drop-shadow-lg">Section Not Found</h1>
-              <p className="text-gray-300 mb-6">
+              <h1 className="text-2xl mb-4 font-serif text-foreground">Section Not Found</h1>
+              <p className="text-muted-foreground mb-6">
                 The requested section could not be found in the {collectionConfig.title} collection.
               </p>
               <div className="space-x-4">
-                <Button
-                  variant="outline"
-                  className="bg-black/50 text-white border-white/20"
-                  onClick={handleBackToCompositions}
-                >
+                <Button variant="outline" onClick={handleBackToCompositions}>
                   Back to {collectionConfig.title}
                 </Button>
-                <Button
-                  variant="outline"
-                  className="bg-black/50 text-white border-white/20"
-                  onClick={() => navigate('/')}
-                >
+                <Button variant="outline" onClick={() => navigate('/')}>
                   Home
                 </Button>
               </div>
@@ -459,7 +450,7 @@ const getCollectionConfig = (collectionType: string) => {
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-white hover:bg-white/10 mb-4"
+                className="text-foreground/80 hover:text-foreground hover:bg-card/60 mb-4 -ml-2"
                 onClick={handleBackToCompositions}
               >
                 <ArrowLeft className="h-4 w-4 mr-2" />
@@ -467,34 +458,34 @@ const getCollectionConfig = (collectionType: string) => {
               </Button>
 
               <div className="flex items-center gap-2 mb-1">
-                <CollectionIcon className="h-4 w-4 text-white" />
-                <h2 className="text-lg font-serif text-white drop-shadow-lg">
+                <CollectionIcon className="h-4 w-4 text-primary" />
+                <h2 className="text-lg font-serif text-foreground" style={{ letterSpacing: '-0.018em' }}>
                   {collectionConfig.title}
                 </h2>
               </div>
-              <h3 className="text-sm text-gray-200">{currentComposition.title}</h3>
+              <h3 className="text-sm text-foreground/70">{currentComposition.title}</h3>
             </div>
 
-            <nav className="space-y-2 pb-16">
+            <nav className="space-y-1 pb-16">
               {currentComposition.sections?.map((section, index) => (
                 <button
                   key={index}
                   onClick={() => handleSectionChange(index + 1)}
                   className={cn(
-                    "w-full text-left px-3 py-2 rounded-md text-base transition-colors",
+                    "w-full text-left px-3 py-2 rounded-md transition-colors",
                     index + 1 === parseInt(sectionId)
-                      ? "bg-white/20 text-white font-medium backdrop-blur-md"
-                      : "text-gray-200 hover:bg-white/10 hover:text-white"
+                      ? "bg-card/90 text-primary border-l-2 border-primary -ml-[2px] pl-[10px] shadow-sm"
+                      : "text-foreground hover:bg-card/60"
                   )}
+                  style={{ fontWeight: index + 1 === parseInt(sectionId) ? 580 : 480 }}
                 >
-                  <span className="text-sm text-gray-400 block">
+                  <span className="text-[11px] text-foreground/60 block uppercase tracking-wider" style={{ fontWeight: 600 }}>
                     Section {index + 1}
                   </span>
                   <div className="flex items-center justify-between">
-                    <span className="flex-1">{section.title}</span>
-                    {/* Show image indicator */}
+                    <span className="flex-1 text-sm leading-snug">{section.title}</span>
                     {section.images && section.images.length > 0 && (
-                      <ImageIcon className="w-3 h-3 ml-2 text-gray-400 flex-shrink-0" />
+                      <ImageIcon className="w-3 h-3 ml-2 text-foreground/60 flex-shrink-0" />
                     )}
                   </div>
                 </button>
@@ -504,17 +495,15 @@ const getCollectionConfig = (collectionType: string) => {
         </MobileNavigation>
 
         {/* Main Content */}
-<main className={cn("main-content-area flex-1 overflow-y-auto overflow-x-auto", !isMobile ? "ml-64" : "")}>
-          )}
-        >
+        <main className={cn("main-content-area flex-1 overflow-y-auto overflow-x-auto", !isMobile ? "ml-64" : "")}>
           {/* Standard Content Section */}
             <div className="p-8">
               {/* Pending Filing Disclaimer for Kirchner v. Acosta (Florida) */}
               {compositionId === 'constitutional' && currentComposition?.title?.toLowerCase().includes('acosta') && (
-                <Alert className="mb-6 bg-amber-900/30 border-amber-500/50 backdrop-blur-sm">
-                  <AlertCircle className="h-5 w-5 text-amber-400" />
-                  <AlertDescription className="text-amber-100 ml-2">
-                    <strong className="text-amber-300">Notice:</strong> This case was signed and mailed on Friday, March 13, 2026, and is pending filing in the United States District Court for the Southern District of Florida.
+                <Alert className="mb-6 bg-amber-50 border-amber-300/70">
+                  <AlertCircle className="h-5 w-5 text-amber-700" />
+                  <AlertDescription className="text-amber-900 ml-2">
+                    <strong className="text-amber-800">Notice:</strong> This case was signed and mailed on Friday, March 13, 2026, and is pending filing in the United States District Court for the Southern District of Florida.
                     These documents will be replaced with the officially filed versions upon electronic notification from the Court.
                     Any filing deficiencies, if identified, will be cured immediately upon notification.
                     Plaintiff is committed to this filing and publishes these documents now as placeholders.
@@ -522,7 +511,7 @@ const getCollectionConfig = (collectionType: string) => {
                 </Alert>
               )}
 
-              <div className="mx-auto bg-black/90 backdrop-blur-sm p-8 rounded-lg border border-white/30 shadow-xl">
+              <div className="mx-auto doc-card p-8 md:p-10">
 
               {/* Main Content - PDF or Markdown based on collection type */}
               {hasPDFViewer ? (
@@ -532,16 +521,16 @@ const getCollectionConfig = (collectionType: string) => {
                       pdfUrl={currentSection.pdf_file}
                       title={currentSection.title}
                       description={currentSection.description}
-                      allSections={currentComposition.sections}  // Add this
-                      compositionTitle={currentComposition.title}  // Add this
+                      allSections={currentComposition.sections}
+                      compositionTitle={currentComposition.title}
                       className="w-full"
                     />
 
                   {/* Optional: Show any additional markdown content below PDF */}
                   {currentSection.content_level_1 && (
-                    <div className="mt-8 prose prose-invert prose-xl max-w-none">
-                      <div className="bg-black/60 backdrop-blur-sm border border-white/20 rounded-lg p-6">
-                        <h3 className="text-2xl font-serif text-white mb-4">Document Summary</h3>
+                    <div className="mt-8 prose prose-xl max-w-none">
+                      <div className="panel-soft p-6">
+                        <h3 className="text-2xl font-serif text-foreground mb-4" style={{ letterSpacing: '-0.018em' }}>Document Summary</h3>
                         <ImageEnhancedMarkdownRenderer
                           content={currentSection.content_level_1}
                           images={[]}
@@ -553,12 +542,12 @@ const getCollectionConfig = (collectionType: string) => {
                   )}
                 </div>
               ) : (
-                // Standard Markdown Content (existing code)
+                // Standard Markdown Content
                 <>
                   <div className="mb-8">
                     {/* Content type controls */}
-                    <div className="flex items-center justify-center space-x-4 mb-8 bg-black/50 p-4 rounded-lg border border-white/20 max-w-md mx-auto">
-                      <span className="text-base text-gray-200">View:</span>
+                    <div className="flex items-center justify-center space-x-4 mb-8 panel-soft px-4 py-3 max-w-md mx-auto">
+                      <span className="text-sm text-muted-foreground uppercase tracking-wide">View</span>
                       <Slider
                         value={[literacyLevel]}
                         max={5}
@@ -567,7 +556,7 @@ const getCollectionConfig = (collectionType: string) => {
                         onValueChange={handleLiteracyChange}
                         className="w-32"
                       />
-                      <span className="text-base text-gray-200 min-w-fit">
+                      <span className="text-sm font-medium text-foreground min-w-fit">
                         {collectionConfig.contentMapping[literacyLevel]?.label || 'Content'}
                       </span>
                     </div>
@@ -575,12 +564,12 @@ const getCollectionConfig = (collectionType: string) => {
 
                   {/* Main Content WITHOUT images in markdown */}
                   <div className="relative mb-8">
-                    <div className="prose prose-invert prose-xl max-w-none text-lg leading-relaxed">
+                    <div className="prose prose-xl max-w-none">
                       <ImageEnhancedMarkdownRenderer
                         content={getContentForLevel()}
                         images={[]}
                         showToggle={true}
-                        className="mb-8 text-lg"
+                        className="mb-8"
                       />
                     </div>
                   </div>
@@ -588,17 +577,15 @@ const getCollectionConfig = (collectionType: string) => {
               )}
 
               {/* Section Navigation */}
-              <div className="mt-12 pt-6 border-t border-white/20">
+              <div className="mt-12 pt-6 border-t border-border">
                 <div className="flex justify-between items-center">
                   <Button
                     variant="outline"
                     onClick={() => handleSectionChange(currentSectionNumber - 1)}
                     className={cn(
                       "px-4 py-2 flex items-center space-x-2 rounded-lg",
-                      "bg-black/30 border border-white/20",
-                      "transition-all duration-200",
-                      "text-gray-200 hover:bg-black/50",
-                      currentSectionNumber <= 1 ? "opacity-50 cursor-not-allowed" : "hover:scale-105"
+                      "transition-colors duration-200",
+                      currentSectionNumber <= 1 ? "opacity-40 cursor-not-allowed" : ""
                     )}
                     disabled={currentSectionNumber <= 1}
                   >
@@ -606,10 +593,10 @@ const getCollectionConfig = (collectionType: string) => {
                     <span>Previous</span>
                   </Button>
 
-                  <div className="text-gray-200 text-center">
-                    <span className="text-base">Section {currentSectionNumber} of {totalSections}</span>
+                  <div className="text-muted-foreground text-center">
+                    <span className="text-sm">Section {currentSectionNumber} of {totalSections}</span>
                     {hasImages && (
-                      <div className="text-sm text-gray-400 mt-1">
+                      <div className="text-xs text-muted-foreground/80 mt-1">
                         {mediaItems.length} media {mediaItems.length === 1 ? 'item' : 'items'}
                       </div>
                     )}
@@ -620,10 +607,8 @@ const getCollectionConfig = (collectionType: string) => {
                     onClick={() => handleSectionChange(currentSectionNumber + 1)}
                     className={cn(
                       "px-4 py-2 flex items-center space-x-2 rounded-lg",
-                      "bg-black/30 border border-white/20",
-                      "transition-all duration-200",
-                      "text-gray-200 hover:bg-black/50",
-                      currentSectionNumber >= totalSections ? "opacity-50 cursor-not-allowed" : "hover:scale-105"
+                      "transition-colors duration-200",
+                      currentSectionNumber >= totalSections ? "opacity-40 cursor-not-allowed" : ""
                     )}
                     disabled={currentSectionNumber >= totalSections}
                   >
@@ -676,19 +661,19 @@ const getCollectionConfig = (collectionType: string) => {
 
           {/* Full-Width Media Gallery Section - OUTSIDE constrained content */}
           {hasImages && (
-            <div className="w-full bg-gradient-to-b from-black/20 to-black/40 border-t border-white/10">
+            <div className="w-full bg-secondary/40 border-t border-border">
               <div className="px-4 py-12">
                 {/* Gallery Header */}
                 <div className="max-w-6xl mx-auto mb-8">
                   <div className="text-center mb-6">
-                    <h2 className="text-2xl font-serif text-white mb-2 flex items-center justify-center gap-3">
-                      <Monitor className="w-6 h-6" />
+                    <h2 className="text-2xl font-serif text-foreground mb-2 flex items-center justify-center gap-3" style={{ letterSpacing: '-0.018em' }}>
+                      <Monitor className="w-6 h-6 text-primary" />
                       Documentation & Screenshots
                     </h2>
-                    <p className="text-gray-300 text-lg mb-1">
+                    <p className="text-muted-foreground text-base mb-1">
                       Full-resolution captures from 32-inch development monitor
                     </p>
-                    <div className="flex items-center justify-center gap-4 text-base text-gray-400">
+                    <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground/80">
                       <span className="flex items-center gap-1">
                         <ImageIcon className="w-4 h-4" />
                         {mediaItems.length} {mediaItems.length === 1 ? 'item' : 'items'}
@@ -714,12 +699,12 @@ const getCollectionConfig = (collectionType: string) => {
                 </div>
 
                 {/* Gallery Footer */}
-                <div className="max-w-6xl mx-auto mt-8 pt-6 border-t border-white/10">
-                  <div className="text-center text-base text-gray-400">
+                <div className="max-w-6xl mx-auto mt-8 pt-6 border-t border-border">
+                  <div className="text-center text-sm text-muted-foreground/80">
                     <p className="mb-2">
                       Click any image to view all screenshots in full-screen scrollable gallery
                     </p>
-                    <p className="text-sm">
+                    <p className="text-xs">
                       Images maintain original resolution and aspect ratios from development environment
                     </p>
                   </div>

@@ -38,7 +38,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({
   if (!isMobile) {
     // For desktop: Fixed position sidebar with independent scrolling
     return (
-      <aside className="fixed top-16 left-0 bottom-0 w-64 border-r border-white/10 bg-black/80 backdrop-blur-md z-30">
+      <aside className="fixed top-16 left-0 bottom-0 w-64 border-r border-surface-sidebar-border bg-surface-sidebar z-30">
         <div className="h-full overflow-y-auto sidebar-scroll no-scrollbar">
           {children}
         </div>
@@ -54,7 +54,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({
           3. Remaining space (1fr) */}
 
       {/* Column 1: Vertical Line */}
-      <div className="bg-white/20 pointer-events-none" />
+      <div className="bg-border pointer-events-none" />
 
       {/* Column 2: Button + Navigation */}
       <div className="relative">
@@ -70,11 +70,11 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({
             <div className={cn(
               "flex items-center justify-center",
               "w-7 h-16",
-              "bg-white/30",
+              "bg-secondary text-foreground border border-border border-l-0",
               "rounded-r-md",
-              "-ml-px",
+              "-ml-px shadow-sm",
               "transition-colors duration-200",
-              "hover:bg-white/40"
+              "hover:bg-muted"
             )}>
               {isSidebarOpen ? <X size={16} /> : <Menu size={16} />}
             </div>
@@ -85,8 +85,8 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({
         <div
           className={cn(
             "fixed top-16 left-0 w-64 h-[calc(100vh-4rem)]",
-            "bg-black/80 backdrop-blur-md",
-            "border-r border-white/10",
+            "bg-card",
+            "border-r border-border shadow-sm",
             "transition-transform duration-300",
             "pointer-events-auto",
             isSidebarOpen ? "translate-x-0" : "-translate-x-full"
@@ -101,7 +101,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({
       {/* Column 3: Empty space / Backdrop */}
       {isSidebarOpen && (
         <div
-          className="bg-black/50 pointer-events-auto"
+          className="bg-foreground/20 pointer-events-auto"
           onClick={() => setIsSidebarOpen(false)}
         />
       )}

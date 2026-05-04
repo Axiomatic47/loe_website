@@ -18,6 +18,10 @@ export default {
       }
     },
     extend: {
+      fontFamily: {
+        serif: ['"Source Serif 4"', '"Noto Serif"', 'Georgia', 'serif'],
+        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+      },
       colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -61,6 +65,15 @@ export default {
           'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))'
+        },
+        'surface-sidebar': {
+          DEFAULT: 'hsl(var(--surface-sidebar))',
+          border: 'hsl(var(--surface-sidebar-border))',
+        },
+        'surface-leather': {
+          DEFAULT: 'hsl(var(--surface-leather))',
+          foreground: 'hsl(var(--surface-leather-foreground))',
+          border: 'hsl(var(--surface-leather-border))',
         }
       },
 			borderRadius: {

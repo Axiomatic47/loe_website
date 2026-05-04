@@ -146,30 +146,30 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
       }}
     >
       {/* PDF Header */}
-      <div className="bg-black/60 backdrop-blur-sm border border-white/20 rounded-t-lg p-4 relative">
+      <div className="bg-card border border-border rounded-t-xl p-4 relative">
         {/* Resize Handle - Top Right Corner */}
         <div
           onMouseDown={handleResizeStart}
           className={cn(
-            "absolute -top-2 -right-2 w-8 h-8 bg-blue-500/80 hover:bg-blue-400 rounded-full cursor-nesw-resize",
-            "flex items-center justify-center shadow-lg transition-colors z-10",
-            "border-2 border-white/30",
-            isResizing && "bg-blue-400 scale-110"
+            "absolute -top-2 -right-2 w-8 h-8 bg-primary hover:bg-primary/90 rounded-full cursor-nesw-resize",
+            "flex items-center justify-center shadow-md transition-colors z-10",
+            "border-2 border-card",
+            isResizing && "scale-110"
           )}
           title="Drag to resize viewer"
         >
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-white">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-primary-foreground">
             <path d="M2 14L14 2M6 14L14 6M10 14L14 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
           </svg>
         </div>
 
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-3">
-            <FileText className="w-6 h-6 text-blue-400" />
+            <FileText className="w-6 h-6 text-primary" />
             <div>
-              <h3 className="text-xl font-semibold text-white">{title}</h3>
+              <h3 className="text-xl font-serif font-medium text-foreground" style={{ letterSpacing: '-0.018em' }}>{title}</h3>
               {description && (
-                <p className="text-sm text-gray-300 mt-1">{description}</p>
+                <p className="text-sm text-muted-foreground mt-1">{description}</p>
               )}
             </div>
           </div>
@@ -178,13 +178,13 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
         {/* Controls */}
         <div className="flex items-center gap-2 flex-wrap">
           {/* Zoom Controls */}
-          <div className="flex items-center gap-1 bg-black/40 rounded-lg p-1">
+          <div className="flex items-center gap-1 bg-secondary rounded-lg p-1">
             <Button
               variant="ghost"
               size="sm"
               onClick={handleZoomOut}
               disabled={zoom <= 50}
-              className="text-white hover:bg-white/10"
+              className="text-foreground hover:bg-background"
               title="Zoom Out"
             >
               <ZoomOut className="w-4 h-4" />
@@ -193,7 +193,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
               variant="ghost"
               size="sm"
               onClick={handleResetZoom}
-              className="text-white hover:bg-white/10 min-w-[60px]"
+              className="text-foreground hover:bg-background min-w-[60px]"
               title="Reset Zoom"
             >
               {zoom}%
@@ -203,7 +203,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
               size="sm"
               onClick={handleZoomIn}
               disabled={zoom >= 200}
-              className="text-white hover:bg-white/10"
+              className="text-foreground hover:bg-background"
               title="Zoom In"
             >
               <ZoomIn className="w-4 h-4" />
@@ -215,7 +215,6 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
             variant="outline"
             size="sm"
             onClick={handleDownload}
-            className="bg-black/40 text-white border-white/20 hover:bg-white/10"
           >
             <Download className="w-4 h-4 mr-2" />
             Download
@@ -224,7 +223,6 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
             variant="outline"
             size="sm"
             onClick={handleOpenNewTab}
-            className="bg-black/40 text-white border-white/20 hover:bg-white/10"
           >
             <ExternalLink className="w-4 h-4 mr-2" />
             Open in New Tab
@@ -241,37 +239,27 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
       </div>
 
       {/* PDF Viewer */}
-      <div className="relative bg-black/40 border-x border-b border-white/20 rounded-b-lg">
+      <div className="relative bg-secondary border-x border-b border-border rounded-b-xl">
         {/* Loading State */}
         {loading && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/60 backdrop-blur-sm z-10">
+          <div className="absolute inset-0 flex items-center justify-center bg-card/80 backdrop-blur-sm z-10">
             <div className="text-center">
-              <div className="animate-spin h-12 w-12 border-4 border-blue-400 border-t-transparent rounded-full mx-auto mb-4"></div>
-              <p className="text-white text-lg">Loading PDF...</p>
+              <div className="animate-spin h-10 w-10 border-2 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
+              <p className="text-foreground text-base">Loading PDF…</p>
             </div>
           </div>
         )}
 
         {/* Error State */}
         {error && (
-          <Alert className="m-4 bg-red-900/20 border-red-500/30">
-            <AlertDescription className="text-red-200">
+          <Alert className="m-4 bg-destructive/5 border-destructive/30">
+            <AlertDescription className="text-foreground">
               {error}
               <div className="mt-4 flex gap-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={handleDownload}
-                  className="bg-black/40 text-white border-white/20"
-                >
+                <Button variant="outline" size="sm" onClick={handleDownload}>
                   Try Downloading Instead
                 </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={handleOpenNewTab}
-                  className="bg-black/40 text-white border-white/20"
-                >
+                <Button variant="outline" size="sm" onClick={handleOpenNewTab}>
                   Open in Browser
                 </Button>
               </div>
@@ -283,34 +271,32 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
         <div className="relative" style={{ height: 'calc(100vh - 300px)', minHeight: '600px' }}>
           <iframe
             src={initialLoad ? `${pdfUrl}#page=1&zoom=${zoom}` : `${pdfUrl}#zoom=${zoom}`}
-            className="w-full h-full rounded-b-lg"
+            className="w-full h-full rounded-b-xl"
             title={title}
             onLoad={handleLoad}
             onError={handleError}
             style={{
               border: 'none',
-              background: '#1a1a1a'
+              background: '#f5f3ed'
             }}
           />
           {!initialLoad && loading && (
-            <div className="absolute bottom-4 right-4 bg-black/80 text-white px-4 py-2 rounded-lg text-sm">
-              Loading full document...
+            <div className="absolute bottom-4 right-4 bg-foreground/90 text-background px-4 py-2 rounded-lg text-sm">
+              Loading full document…
             </div>
           )}
         </div>
       </div>
 
       {/* PDF Footer Info */}
-      <div className="mt-4 p-4 bg-black/40 backdrop-blur-sm border border-white/20 rounded-lg">
-        <div className="flex items-center gap-4 text-sm text-gray-300">
+      <div className="mt-4 p-3 bg-secondary/60 border border-border rounded-lg">
+        <div className="flex items-center gap-3 text-sm text-muted-foreground">
           <div className="flex items-center gap-2">
-            <FileText className="w-4 h-4 text-blue-400" />
+            <FileText className="w-4 h-4 text-primary" />
             <span>PDF Document</span>
           </div>
-          <div className="text-gray-400">•</div>
-          <div>
-            Click and drag to pan • Scroll to navigate pages
-          </div>
+          <div className="text-muted-foreground/50">•</div>
+          <div>Click and drag to pan • Scroll to navigate pages</div>
         </div>
       </div>
     </div>

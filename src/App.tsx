@@ -5,6 +5,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
+import { ThemeProvider } from "next-themes";
 import { useEffect, useState } from 'react';
 import Index from "./pages/Index";
 import CompositionsPage from "./pages/CompositionsPage";
@@ -338,6 +339,7 @@ const KirchnerAcostaDocRedirect = () => {
 const App = () => {
   return (
     <ErrorBoundary>
+      <ThemeProvider attribute="class" defaultTheme="light" enableSystem storageKey="loe-theme">
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
           <Toaster />
@@ -475,6 +477,7 @@ const App = () => {
             </IdentityHandler>
         </TooltipProvider>
       </QueryClientProvider>
+      </ThemeProvider>
     </ErrorBoundary>
   );
 };

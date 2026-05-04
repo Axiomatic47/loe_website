@@ -132,30 +132,12 @@ export const PageLayout = ({ children, className = '' }: PageLayoutProps) => {
     };
   }, []);
 
-  // FIXED: Calculate opacity to prevent content from becoming invisible
-  const opacity = Math.max(0.15, Math.min(0.6, 0.45 - (Math.abs(pullDistance) / (MAX_PULL_DISTANCE * 0.8))));
-
   return (
     <>
-      {/* Fixed background */}
+      {/* Warm cream surface — Claude-aesthetic preview */}
       <div
-        className="fixed inset-0 w-full h-full"
-        style={{
-          backgroundImage: 'url("/balance-scales.jpg")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          zIndex: -2,
-        }}
-      />
-
-      {/* FIXED: Better opacity control to prevent content invisibility */}
-      <div
-        className="fixed inset-0 w-full h-full bg-black/60 transition-opacity duration-300"
-        style={{
-          opacity: opacity,
-          zIndex: -1,
-        }}
+        className="fixed inset-0 w-full h-full bg-background"
+        style={{ zIndex: -2 }}
       />
 
       {/* Fixed header with pull distance prop */}
