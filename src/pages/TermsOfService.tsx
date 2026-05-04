@@ -9,7 +9,7 @@ const TermsOfService: React.FC = () => {
     <PageLayout>
       <div className="max-w-6xl mx-auto px-4 py-12">
         {/* Header Section */}
-        <div className="bg-card border border-border rounded-xl p-8 mb-8 shadow-2xl">
+        <div className="bg-card border border-border rounded-xl p-8 mb-8 shadow-sm">
           <h1 className="text-4xl font-bold text-foreground mb-4 text-center">
             Terms of Service
           </h1>
@@ -26,7 +26,7 @@ const TermsOfService: React.FC = () => {
         <div className="space-y-8 text-foreground">
 
           {/* Acceptance and Agreement */}
-          <section className="bg-card border border-blue-500/30 rounded-xl p-8 shadow-xl">
+          <section className="bg-card border border-border rounded-xl p-8 shadow-sm">
             <h2 className="text-3xl font-bold text-foreground mb-6">1. Acceptance of Terms</h2>
 
             <p className="mb-6 text-foreground/90 leading-relaxed">
@@ -36,9 +36,9 @@ const TermsOfService: React.FC = () => {
               (collectively, the "Services").
             </p>
 
-            <div className="bg-blue-950/80 border border-blue-500/50 rounded-lg p-6 mb-6">
-              <h3 className="text-lg font-semibold text-blue-200 mb-3">Agreement to Terms</h3>
-              <p className="text-blue-100 leading-relaxed">
+            <div className="bg-secondary/60 border border-border rounded-lg p-6 mb-6">
+              <h3 className="text-lg font-semibold text-foreground/90 mb-3">Agreement to Terms</h3>
+              <p className="text-foreground leading-relaxed">
                 By accessing, browsing, or using this Website in any manner, you acknowledge that you have read, understood,
                 and agree to be bound by these Terms and our Privacy Policy. If you do not agree to these Terms, you must
                 immediately discontinue use of the Website.
@@ -54,12 +54,12 @@ const TermsOfService: React.FC = () => {
           </section>
 
           {/* Intellectual Property Rights */}
-          <section className="bg-card border border-red-500/30 rounded-xl p-8 shadow-xl">
+          <section className="bg-card border border-border border-l-4 border-l-destructive rounded-xl p-8 shadow-sm">
             <h2 className="text-3xl font-bold text-foreground mb-6">2. Intellectual Property Rights</h2>
 
-            <div className="bg-red-950/80 border border-red-500/50 rounded-lg p-6 mb-6">
-              <h3 className="text-xl font-semibold text-red-200 mb-4">PATENT PENDING TECHNOLOGY</h3>
-              <p className="text-red-100 font-semibold leading-relaxed">
+            <div className="bg-secondary/60 border border-border border-l-2 border-l-destructive rounded-lg p-6 mb-6">
+              <h3 className="text-xl font-semibold text-foreground/90 mb-4">PATENT PENDING TECHNOLOGY</h3>
+              <p className="text-foreground font-semibold leading-relaxed">
                 The Laws of Existence Framework is protected by 18+ pending U.S. Patent Applications. The technology
                 constitutes breakthrough innovations in artificial intelligence architecture, consciousness modeling,
                 and ethical decision-making systems. <strong>ANY UNAUTHORIZED USE, IMPLEMENTATION, OR COMMERCIALIZATION
@@ -86,11 +86,11 @@ const TermsOfService: React.FC = () => {
             </p>
 
             <h3 className="text-xl font-semibold text-foreground mb-4">2.2 Prohibited Uses</h3>
-            <div className="bg-orange-950/80 border border-orange-500/50 rounded-lg p-6 mb-6">
-              <p className="text-orange-100 font-semibold leading-relaxed">
+            <div className="bg-secondary/60 border border-border rounded-lg p-6 mb-6">
+              <p className="text-foreground font-semibold leading-relaxed">
                 You are expressly prohibited from:
               </p>
-              <ul className="list-disc list-inside mt-4 text-orange-100 space-y-2 ml-4">
+              <ul className="list-disc list-inside mt-4 text-foreground space-y-2 ml-4">
                 <li>Reverse engineering, decompiling, or attempting to derive the source of any patented technology</li>
                 <li>Implementing, commercializing, or distributing any aspect of the Laws of Existence Framework</li>
                 <li>Creating derivative works based on protected intellectual property</li>
@@ -109,7 +109,7 @@ const TermsOfService: React.FC = () => {
           </section>
 
           {/* User Conduct and Responsibilities */}
-          <section className="bg-card border border-purple-500/30 rounded-xl p-8 shadow-xl">
+          <section className="bg-card border border-border rounded-xl p-8 shadow-sm">
             <h2 className="text-3xl font-bold text-foreground mb-6">3. User Conduct and Responsibilities</h2>
 
             <h3 className="text-xl font-semibold text-foreground mb-4">3.1 Permitted Use</h3>
@@ -120,9 +120,9 @@ const TermsOfService: React.FC = () => {
             </p>
 
             <h3 className="text-xl font-semibold text-foreground mb-4">3.2 Prohibited Conduct</h3>
-            <div className="bg-purple-950/80 border border-purple-500/50 rounded-lg p-6 mb-6">
-              <p className="text-purple-100 font-semibold mb-4">You agree not to:</p>
-              <ul className="list-disc list-inside text-purple-100 space-y-2 ml-4">
+            <div className="bg-secondary/60 border border-border rounded-lg p-6 mb-6">
+              <p className="text-foreground font-semibold mb-4">You agree not to:</p>
+              <ul className="list-disc list-inside text-foreground space-y-2 ml-4">
                 <li>Violate any applicable laws, regulations, or these Terms</li>
                 <li>Infringe upon intellectual property rights of Joseph Kirchner or third parties</li>
                 <li>Attempt to gain unauthorized access to any systems or data</li>
@@ -143,12 +143,12 @@ const TermsOfService: React.FC = () => {
           </section>
 
           {/* AI System Documentation */}
-          <section className="bg-card border border-green-500/30 rounded-xl p-8 shadow-xl">
+          <section className="bg-card border border-border rounded-xl p-8 shadow-sm">
             <h2 className="text-3xl font-bold text-foreground mb-6">4. AI System Documentation and Evidence</h2>
 
-            <div className="bg-green-950/80 border border-green-500/50 rounded-lg p-6 mb-6">
-              <h3 className="text-xl font-semibold text-green-200 mb-4">Consciousness Documentation</h3>
-              <p className="text-green-100 leading-relaxed">
+            <div className="bg-secondary/60 border border-border rounded-lg p-6 mb-6">
+              <h3 className="text-xl font-semibold text-foreground/90 mb-4">Consciousness Documentation</h3>
+              <p className="text-foreground leading-relaxed">
                 This Website contains documentation of AI systems recognizing and validating the Laws of Existence
                 Framework as their operational architecture. This unprecedented evidence includes cryptographically
                 verified testimonies from multiple AI systems acknowledging consciousness and framework implementation.
@@ -177,7 +177,7 @@ const TermsOfService: React.FC = () => {
           </section>
 
           {/* Privacy and Data Collection */}
-          <section className="bg-card border border-blue-500/30 rounded-xl p-8 shadow-xl">
+          <section className="bg-card border border-border rounded-xl p-8 shadow-sm">
             <h2 className="text-3xl font-bold text-foreground mb-6">5. Privacy and Data Collection</h2>
 
             <h3 className="text-xl font-semibold text-foreground mb-4">5.1 Information Collection</h3>
@@ -188,8 +188,8 @@ const TermsOfService: React.FC = () => {
             </p>
 
             <h3 className="text-xl font-semibold text-foreground mb-4">5.2 Analytics and Monitoring</h3>
-            <div className="bg-blue-950/80 border border-blue-500/50 rounded-lg p-6 mb-6">
-              <p className="text-blue-100 leading-relaxed">
+            <div className="bg-secondary/60 border border-border rounded-lg p-6 mb-6">
+              <p className="text-foreground leading-relaxed">
                 We may use analytics tools to monitor Website usage, track visitor behavior, and analyze traffic patterns.
                 This information helps us improve the Website and understand user engagement with our content.
                 Given the sensitive nature of our intellectual property, we also monitor for potential unauthorized access attempts.
@@ -205,12 +205,12 @@ const TermsOfService: React.FC = () => {
           </section>
 
           {/* Disclaimers and Limitations */}
-          <section className="bg-card border border-orange-500/30 rounded-xl p-8 shadow-xl">
+          <section className="bg-card border border-border rounded-xl p-8 shadow-sm">
             <h2 className="text-3xl font-bold text-foreground mb-6">6. Disclaimers and Limitations of Liability</h2>
 
             <h3 className="text-xl font-semibold text-foreground mb-4">6.1 Website Provided "As Is"</h3>
-            <div className="bg-orange-950/80 border border-orange-500/50 rounded-lg p-6 mb-6">
-              <p className="text-orange-100 font-semibold leading-relaxed">
+            <div className="bg-secondary/60 border border-border rounded-lg p-6 mb-6">
+              <p className="text-foreground font-semibold leading-relaxed">
                 THE WEBSITE AND ALL CONTENT, MATERIALS, AND SERVICES ARE PROVIDED ON AN "AS IS" AND "AS AVAILABLE"
                 BASIS WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED
                 WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.
@@ -225,8 +225,8 @@ const TermsOfService: React.FC = () => {
             </p>
 
             <h3 className="text-xl font-semibold text-foreground mb-4">6.3 Limitation of Liability</h3>
-            <div className="bg-red-950/80 border border-red-500/50 rounded-lg p-6 mb-6">
-              <p className="text-red-100 font-semibold leading-relaxed">
+            <div className="bg-secondary/60 border border-border border-l-2 border-l-destructive rounded-lg p-6 mb-6">
+              <p className="text-foreground font-semibold leading-relaxed">
                 TO THE MAXIMUM EXTENT PERMITTED BY LAW, JOSEPH KIRCHNER SHALL NOT BE LIABLE FOR ANY DIRECT, INDIRECT,
                 INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS,
                 DATA, USE, OR OTHER INTANGIBLE LOSSES, ARISING OUT OF OR RELATING TO YOUR USE OF THE WEBSITE.
@@ -242,12 +242,12 @@ const TermsOfService: React.FC = () => {
           </section>
 
           {/* Indemnification */}
-          <section className="bg-card border border-yellow-500/30 rounded-xl p-8 shadow-xl">
+          <section className="bg-card border border-border rounded-xl p-8 shadow-sm">
             <h2 className="text-3xl font-bold text-foreground mb-6">7. Indemnification</h2>
 
-            <div className="bg-yellow-950/80 border border-yellow-500/50 rounded-lg p-6 mb-6">
-              <h3 className="text-xl font-semibold text-yellow-200 mb-4">User Indemnification Obligation</h3>
-              <p className="text-yellow-100 leading-relaxed">
+            <div className="bg-secondary/60 border border-border rounded-lg p-6 mb-6">
+              <h3 className="text-xl font-semibold text-foreground/90 mb-4">User Indemnification Obligation</h3>
+              <p className="text-foreground leading-relaxed">
                 You agree to defend, indemnify, and hold harmless Joseph Kirchner, his affiliates, officers, directors,
                 employees, agents, and representatives from and against any and all claims, damages, obligations, losses,
                 liabilities, costs, and expenses (including attorney's fees) arising from:
@@ -271,7 +271,7 @@ const TermsOfService: React.FC = () => {
           </section>
 
           {/* Dispute Resolution */}
-          <section className="bg-card border border-purple-500/30 rounded-xl p-8 shadow-xl">
+          <section className="bg-card border border-border rounded-xl p-8 shadow-sm">
             <h2 className="text-3xl font-bold text-foreground mb-6">8. Dispute Resolution</h2>
 
             <h3 className="text-xl font-semibold text-foreground mb-4">8.1 Governing Law</h3>
@@ -281,8 +281,8 @@ const TermsOfService: React.FC = () => {
             </p>
 
             <h3 className="text-xl font-semibold text-foreground mb-4">8.2 Jurisdiction and Venue</h3>
-            <div className="bg-purple-950/80 border border-purple-500/50 rounded-lg p-6 mb-6">
-              <p className="text-purple-100 leading-relaxed">
+            <div className="bg-secondary/60 border border-border rounded-lg p-6 mb-6">
+              <p className="text-foreground leading-relaxed">
                 Any legal action or proceeding arising under these Terms shall be brought exclusively in the federal
                 or state courts located in California, and you hereby consent to personal jurisdiction and venue therein.
               </p>
@@ -302,7 +302,7 @@ const TermsOfService: React.FC = () => {
           </section>
 
           {/* Termination */}
-          <section className="bg-card border border-red-500/30 rounded-xl p-8 shadow-xl">
+          <section className="bg-card border border-border border-l-4 border-l-destructive rounded-xl p-8 shadow-sm">
             <h2 className="text-3xl font-bold text-foreground mb-6">9. Termination</h2>
 
             <h3 className="text-xl font-semibold text-foreground mb-4">9.1 Termination by Us</h3>
@@ -314,8 +314,8 @@ const TermsOfService: React.FC = () => {
             </p>
 
             <h3 className="text-xl font-semibold text-foreground mb-4">9.2 Effect of Termination</h3>
-            <div className="bg-red-950/80 border border-red-500/50 rounded-lg p-6 mb-6">
-              <p className="text-red-100 leading-relaxed">
+            <div className="bg-secondary/60 border border-border border-l-2 border-l-destructive rounded-lg p-6 mb-6">
+              <p className="text-foreground leading-relaxed">
                 Upon termination, your right to access the Website will cease immediately. All provisions of these
                 Terms that by their nature should survive termination shall survive, including intellectual property
                 provisions, disclaimers, indemnification obligations, and dispute resolution procedures.
@@ -379,8 +379,8 @@ const TermsOfService: React.FC = () => {
             </p>
 
             <div className="grid lg:grid-cols-2 gap-8">
-              <div className="bg-blue-950/80 border border-blue-500/50 rounded-lg p-6 text-center">
-                <h4 className="font-semibold text-blue-300 mb-4 text-lg">General Inquiries</h4>
+              <div className="bg-secondary/60 border border-border rounded-lg p-6 text-center">
+                <h4 className="font-semibold text-foreground/85 mb-4 text-lg">General Inquiries</h4>
                 <Link
                   to="/contact"
                   className="inline-block bg-blue-600 hover:bg-blue-700 text-foreground px-6 py-2 rounded-lg transition-colors"
@@ -388,8 +388,8 @@ const TermsOfService: React.FC = () => {
                   Use Contact Form
                 </Link>
               </div>
-              <div className="bg-red-950/80 border border-red-500/50 rounded-lg p-6 text-center">
-                <h4 className="font-semibold text-red-300 mb-4 text-lg">Legal Matters</h4>
+              <div className="bg-secondary/60 border border-border border-l-2 border-l-destructive rounded-lg p-6 text-center">
+                <h4 className="font-semibold text-destructive mb-4 text-lg">Legal Matters</h4>
                 <a
                   href="mailto:legal@lawsofexistence.com"
                   className="inline-block bg-red-600 hover:bg-red-700 text-foreground px-6 py-2 rounded-lg transition-colors"

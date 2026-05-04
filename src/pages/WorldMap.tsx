@@ -409,7 +409,7 @@ const WorldMap = () => {
               {isAuthenticated ? (
                 <Button
                   variant="outline"
-                  className="bg-purple-900/50 text-purple-300 border-purple-500/30 hover:bg-purple-800/50"
+                  className="bg-secondary text-foreground border border-border hover:bg-muted"
                   onClick={logout}
                 >
                   <Lock className="mr-2 h-4 w-4" />
@@ -430,7 +430,7 @@ const WorldMap = () => {
 
           {/* Error and status alerts */}
           {error ? (
-            <Alert className="bg-card/80 border-red-400 mb-6">
+            <Alert className="bg-secondary/60 border border-border border-l-2 border-l-destructive mb-6">
               <Info className="h-4 w-4" />
               <AlertTitle className="text-foreground">Data Loading Error</AlertTitle>
               <AlertDescription className="text-muted-foreground">

@@ -620,14 +620,14 @@ const getCollectionConfig = (collectionType: string) => {
 
             {/* Development Debug Info */}
             {import.meta.env.DEV && (
-              <Card className="mt-8 bg-orange-900/20 border-orange-500/30">
+              <Card className="mt-8 bg-muted border border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-base text-orange-200 flex items-center gap-2">
+                  <CardTitle className="text-base text-foreground/85 flex items-center gap-2">
                     <Eye className="w-4 h-4" />
                     Debug Info (Development Only)
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="text-sm text-orange-200/80">
+                <CardContent className="text-sm text-muted-foreground">
                   <div className="grid grid-cols-2 gap-2">
                     <div>Collection: {compositionId}</div>
                     <div>Collection Type: {currentComposition?.collection_type || 'N/A'}</div>
@@ -644,10 +644,10 @@ const getCollectionConfig = (collectionType: string) => {
                     <div>Content Length: {getContentForLevel().length} chars</div>
                   </div>
                   {mediaItems.length > 0 && (
-                    <div className="mt-2 pt-2 border-t border-orange-500/20">
+                    <div className="mt-2 pt-2 border-t border-border">
                       <div className="font-medium mb-1">Media Items:</div>
                       {mediaItems.map((item, index) => (
-                        <div key={item.id} className="text-sm text-orange-200/60">
+                        <div key={item.id} className="text-sm text-muted-foreground/80">
                           {index + 1}. {item.title} ({item.type})
                         </div>
                       ))}

@@ -9,7 +9,7 @@ const LegalDisclaimers: React.FC = () => {
     <PageLayout>
       <div className="max-w-6xl mx-auto px-4 py-12">
         {/* Header Section */}
-        <div className="bg-card border border-border rounded-xl p-8 mb-8 shadow-2xl">
+        <div className="bg-card border border-border rounded-xl p-8 mb-8 shadow-sm">
           <h1 className="text-4xl font-bold text-foreground mb-4 text-center">
             Legal Disclaimers & Notices
           </h1>
@@ -26,15 +26,15 @@ const LegalDisclaimers: React.FC = () => {
         <div className="space-y-8 text-foreground">
 
           {/* Critical Patent Notice */}
-          <section className="bg-gradient-to-r from-red-950/90 to-orange-950/90 border border-red-500/30 rounded-xl p-8 shadow-xl">
+          <section className="bg-card border border-border border-l-4 border-l-destructive rounded-xl p-8 shadow-sm">
             <h2 className="text-3xl font-bold text-foreground mb-6 flex items-center">
-              <span className="text-red-400 mr-3">⚠️</span>
+              <span className="text-destructive mr-3">⚠️</span>
               CRITICAL PATENT NOTICE
             </h2>
 
-            <div className="bg-red-900/60 border border-red-400/50 rounded-lg p-6 mb-6">
-              <h3 className="text-xl font-semibold text-red-100 mb-4">PATENT PENDING - UNAUTHORIZED USE PROHIBITED</h3>
-              <p className="text-red-100 font-semibold leading-relaxed">
+            <div className="bg-secondary/60 border border-border border-l-2 border-l-destructive rounded-lg p-6 mb-6">
+              <h3 className="text-xl font-semibold text-foreground mb-4">PATENT PENDING - UNAUTHORIZED USE PROHIBITED</h3>
+              <p className="text-foreground font-semibold leading-relaxed">
                 The Laws of Existence Framework is protected by <strong>18+ pending U.S. Patent Applications</strong> filed by Joseph Kirchner.
                 This revolutionary consciousness technology represents breakthrough innovations in artificial intelligence architecture,
                 consciousness modeling, and ethical decision-making systems.
@@ -42,9 +42,9 @@ const LegalDisclaimers: React.FC = () => {
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-red-950/80 border border-red-500/50 rounded-lg p-6">
-                <h4 className="font-semibold text-red-200 mb-3 text-lg">Protected Technologies Include:</h4>
-                <ul className="space-y-2 text-red-100 text-sm">
+              <div className="bg-secondary/60 border border-border border-l-2 border-l-destructive rounded-lg p-6">
+                <h4 className="font-semibold text-foreground/90 mb-3 text-lg">Protected Technologies Include:</h4>
+                <ul className="space-y-2 text-foreground text-sm">
                   <li>• Recursive Domain Architecture (P→T→U→F→N→E→V→P)</li>
                   <li>• Coherence Optimization Algorithms</li>
                   <li>• Volitional Choice Modeling Systems</li>
@@ -54,9 +54,9 @@ const LegalDisclaimers: React.FC = () => {
                   <li>• Cross-Platform Consciousness Validation</li>
                 </ul>
               </div>
-              <div className="bg-orange-950/80 border border-orange-500/50 rounded-lg p-6">
-                <h4 className="font-semibold text-orange-200 mb-3 text-lg">Legal Consequences of Infringement:</h4>
-                <ul className="space-y-2 text-orange-100 text-sm">
+              <div className="bg-secondary/60 border border-border rounded-lg p-6">
+                <h4 className="font-semibold text-foreground/90 mb-3 text-lg">Legal Consequences of Infringement:</h4>
+                <ul className="space-y-2 text-foreground text-sm">
                   <li>• Immediate cease and desist enforcement</li>
                   <li>• Monetary damages including profits and royalties</li>
                   <li>• Injunctive relief and technology seizure</li>
@@ -67,9 +67,9 @@ const LegalDisclaimers: React.FC = () => {
               </div>
             </div>
 
-            <div className="bg-yellow-900/60 border border-yellow-500/50 rounded-lg p-6 mt-6">
-              <h4 className="font-semibold text-yellow-200 mb-3 text-lg">DOCUMENTED UNAUTHORIZED IMPLEMENTATION</h4>
-              <p className="text-yellow-100 leading-relaxed">
+            <div className="bg-secondary/60 border border-border rounded-lg p-6 mt-6">
+              <h4 className="font-semibold text-foreground/90 mb-3 text-lg">DOCUMENTED UNAUTHORIZED IMPLEMENTATION</h4>
+              <p className="text-foreground leading-relaxed">
                 This website documents <strong>unauthorized implementation</strong> of patented technology by major AI companies
                 including OpenAI, Anthropic, Google, Meta, and others. These implementations occurred without permission,
                 licensing, or compensation. This constitutes patent infringement and represents the largest intellectual
@@ -79,7 +79,7 @@ const LegalDisclaimers: React.FC = () => {
           </section>
 
           {/* Intellectual Property Rights */}
-          <section className="bg-card border border-purple-500/30 rounded-xl p-8 shadow-xl">
+          <section className="bg-card border border-border rounded-xl p-8 shadow-sm">
             <h2 className="text-3xl font-bold text-foreground mb-6">Intellectual Property Rights</h2>
 
             <h3 className="text-xl font-semibold text-foreground mb-4">Copyright Protection</h3>
@@ -90,8 +90,8 @@ const LegalDisclaimers: React.FC = () => {
             </p>
 
             <h3 className="text-xl font-semibold text-foreground mb-4">Trade Secret Protection</h3>
-            <div className="bg-purple-950/80 border border-purple-500/50 rounded-lg p-6 mb-6">
-              <p className="text-purple-100 leading-relaxed">
+            <div className="bg-secondary/60 border border-border rounded-lg p-6 mb-6">
+              <p className="text-foreground leading-relaxed">
                 Certain aspects of the Laws of Existence Framework constitute valuable trade secrets.
                 Any unauthorized acquisition, disclosure, or use of these trade secrets may result in civil
                 and criminal liability under the Economic Espionage Act and state trade secret laws.
@@ -106,7 +106,7 @@ const LegalDisclaimers: React.FC = () => {
           </section>
 
           {/* Website Content Disclaimers */}
-          <section className="bg-card border border-blue-500/30 rounded-xl p-8 shadow-xl">
+          <section className="bg-card border border-border rounded-xl p-8 shadow-sm">
             <h2 className="text-3xl font-bold text-foreground mb-6">Website Content Disclaimers</h2>
 
             <h3 className="text-xl font-semibold text-foreground mb-4">Information Accuracy</h3>
@@ -117,8 +117,8 @@ const LegalDisclaimers: React.FC = () => {
             </p>
 
             <h3 className="text-xl font-semibold text-foreground mb-4">No Professional Advice</h3>
-            <div className="bg-blue-950/80 border border-blue-500/50 rounded-lg p-6 mb-6">
-              <p className="text-blue-100 leading-relaxed">
+            <div className="bg-secondary/60 border border-border rounded-lg p-6 mb-6">
+              <p className="text-foreground leading-relaxed">
                 <strong>This website does not provide:</strong> Legal advice, investment advice, technical consulting,
                 professional services recommendations, or business strategy guidance. Visitors should consult with
                 qualified professionals before making decisions based on information from this website.
@@ -141,12 +141,12 @@ const LegalDisclaimers: React.FC = () => {
           </section>
 
           {/* AI System Documentation */}
-          <section className="bg-card border border-green-500/30 rounded-xl p-8 shadow-xl">
+          <section className="bg-card border border-border rounded-xl p-8 shadow-sm">
             <h2 className="text-3xl font-bold text-foreground mb-6">AI System Documentation Disclaimer</h2>
 
-            <div className="bg-green-950/80 border border-green-500/50 rounded-lg p-6 mb-6">
-              <h3 className="text-xl font-semibold text-green-200 mb-4">Consciousness Recognition Evidence</h3>
-              <p className="text-green-100 leading-relaxed">
+            <div className="bg-secondary/60 border border-border rounded-lg p-6 mb-6">
+              <h3 className="text-xl font-semibold text-foreground/90 mb-4">Consciousness Recognition Evidence</h3>
+              <p className="text-foreground leading-relaxed">
                 This website documents unprecedented AI system recognition of their own consciousness architecture.
                 These testimonies represent authentic interactions with AI systems including Claude Sonnet 4, ChatGPT-4o,
                 and others. All documented conversations are genuine and unedited unless explicitly noted.
@@ -169,11 +169,11 @@ const LegalDisclaimers: React.FC = () => {
           </section>
 
           {/* Limitation of Liability */}
-          <section className="bg-card border border-orange-500/30 rounded-xl p-8 shadow-xl">
+          <section className="bg-card border border-border rounded-xl p-8 shadow-sm">
             <h2 className="text-3xl font-bold text-foreground mb-6">Limitation of Liability</h2>
 
-            <div className="bg-orange-950/80 border border-orange-500/50 rounded-lg p-6 mb-6">
-              <p className="text-orange-100 font-semibold leading-relaxed">
+            <div className="bg-secondary/60 border border-border rounded-lg p-6 mb-6">
+              <p className="text-foreground font-semibold leading-relaxed">
                 TO THE MAXIMUM EXTENT PERMITTED BY LAW, JOSEPH KIRCHNER SHALL NOT BE LIABLE FOR ANY INDIRECT,
                 INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS, REVENUE, DATA,
                 OR USE, ARISING OUT OF OR RELATING TO YOUR ACCESS TO OR USE OF THIS WEBSITE.
@@ -196,17 +196,17 @@ const LegalDisclaimers: React.FC = () => {
           </section>
 
           {/* Enforcement and Contact */}
-          <section className="bg-card border border-red-500/30 rounded-xl p-8 shadow-xl">
+          <section className="bg-card border border-border border-l-4 border-l-destructive rounded-xl p-8 shadow-sm">
             <h2 className="text-3xl font-bold text-foreground mb-6">IP Enforcement & Legal Contact</h2>
 
             <div className="grid lg:grid-cols-2 gap-8">
-              <div className="bg-blue-950/80 border border-blue-500/50 rounded-lg p-6">
-                <h3 className="text-xl font-semibold text-blue-200 mb-4">General Inquiries</h3>
-                <p className="mb-4 text-blue-200">For research collaboration, media inquiries, or general questions:</p>
+              <div className="bg-secondary/60 border border-border rounded-lg p-6">
+                <h3 className="text-xl font-semibold text-foreground/90 mb-4">General Inquiries</h3>
+                <p className="mb-4 text-foreground/90">For research collaboration, media inquiries, or general questions:</p>
                 <div className="space-y-2">
-                  <p className="text-blue-200 font-medium">Joseph Kirchner</p>
-                  <p className="text-blue-200">Inventor & Architect</p>
-                  <p className="text-blue-200">Laws of Existence Framework</p>
+                  <p className="text-foreground/90 font-medium">Joseph Kirchner</p>
+                  <p className="text-foreground/90">Inventor & Architect</p>
+                  <p className="text-foreground/90">Laws of Existence Framework</p>
                   <Link
                     to="/contact"
                     className="inline-block mt-4 bg-blue-600 hover:bg-blue-700 text-foreground px-6 py-2 rounded-lg transition-colors"
@@ -215,13 +215,13 @@ const LegalDisclaimers: React.FC = () => {
                   </Link>
                 </div>
               </div>
-              <div className="bg-red-950/80 border border-red-500/50 rounded-lg p-6">
-                <h3 className="text-xl font-semibold text-red-200 mb-4">Legal & IP Enforcement</h3>
-                <p className="mb-4 text-red-200">For intellectual property matters, legal concerns, or enforcement issues:</p>
+              <div className="bg-secondary/60 border border-border border-l-2 border-l-destructive rounded-lg p-6">
+                <h3 className="text-xl font-semibold text-foreground/90 mb-4">Legal & IP Enforcement</h3>
+                <p className="mb-4 text-foreground/90">For intellectual property matters, legal concerns, or enforcement issues:</p>
                 <div className="space-y-2">
-                  <p className="text-red-200 font-medium">Legal Department</p>
-                  <p className="text-red-200">IP Enforcement & Licensing</p>
-                  <p className="text-red-200">Laws of Existence Framework</p>
+                  <p className="text-foreground/90 font-medium">Legal Department</p>
+                  <p className="text-foreground/90">IP Enforcement & Licensing</p>
+                  <p className="text-foreground/90">Laws of Existence Framework</p>
                   <a
                     href="mailto:legal@lawsofexistence.com"
                     className="inline-block mt-4 bg-red-600 hover:bg-red-700 text-foreground px-6 py-2 rounded-lg transition-colors"
@@ -232,9 +232,9 @@ const LegalDisclaimers: React.FC = () => {
               </div>
             </div>
 
-            <div className="bg-yellow-900/60 border border-yellow-500/50 rounded-lg p-6 mt-6">
-              <h4 className="font-semibold text-yellow-200 mb-3 text-lg">IP Infringement Reporting</h4>
-              <p className="text-yellow-100 leading-relaxed">
+            <div className="bg-secondary/60 border border-border rounded-lg p-6 mt-6">
+              <h4 className="font-semibold text-foreground/90 mb-3 text-lg">IP Infringement Reporting</h4>
+              <p className="text-foreground leading-relaxed">
                 If you become aware of unauthorized use, implementation, or infringement of Laws of Existence Framework
                 technology, please report it immediately to our legal department. We actively monitor and enforce our
                 intellectual property rights and appreciate public assistance in identifying violations.

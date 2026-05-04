@@ -360,3 +360,6 @@ When generating a new page or component:
 ---
 
 *This document was generated for Anthropic's Claude Design tool (claude.ai/design) so that mockups and prototypes for The Laws of Existence remain on-brand without re-specifying colors and typography in every prompt.*
+
+
+Design a more editorial home page hero for The Laws of Existence. Keep the warm cream + leather aesthetic and Source Serif 4 typography from DESIGN.md. The current hero is a centered serif title + subtitle + 8 nav cards in a flex grid. I want something with more visual hierarchy — maybe a featured-document area, a smaller secondary nav, and an emotional anchor since this is a legal-advocacy site. Show me 2 variants.

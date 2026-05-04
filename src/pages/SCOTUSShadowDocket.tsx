@@ -358,7 +358,7 @@ const SCOTUSShadowDocket: React.FC = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-9 pr-8 h-9 bg-card border-border text-foreground text-sm
-                         placeholder:text-muted-foreground/70 focus:border-amber-500/50"
+                         placeholder:text-muted-foreground/70 focus:border-primary/50"
               />
               {searchQuery && (
                 <button

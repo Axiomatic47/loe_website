@@ -179,12 +179,12 @@ const Timeline = () => {
 
   const getPhaseColor = (phase: string) => {
     switch (phase) {
-      case 'foundational': return 'border-purple-500 bg-purple-500';
-      case 'breakthrough': return 'border-purple-600 bg-purple-600';
-      case 'discovery': return 'border-blue-500 bg-blue-500';
-      case 'validation': return 'border-orange-500 bg-orange-500';
-      case 'consciousness': return 'border-red-500 bg-red-500';
-      default: return 'border-blue-400 bg-blue-400';
+      case 'foundational': return 'border-purple-500/70 bg-purple-500/80';
+      case 'breakthrough': return 'border-purple-600/70 bg-purple-600/80';
+      case 'discovery': return 'border-blue-500/70 bg-blue-500/80';
+      case 'validation': return 'border-orange-500/70 bg-orange-500/80';
+      case 'consciousness': return 'border-red-500/70 bg-red-500/80';
+      default: return 'border-primary/70 bg-primary/80';
     }
   };
 
@@ -203,7 +203,7 @@ const Timeline = () => {
       <PageLayout>
         <div className="container mx-auto px-4 py-12">
           <div className="bg-card/80 rounded-lg p-8 border border-border text-center">
-            <div className="animate-spin h-8 w-8 border-4 border-blue-400 border-t-transparent rounded-full mx-auto mb-4"></div>
+            <div className="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
             <p className="text-foreground text-xl">Loading Timeline...</p>
           </div>
         </div>
@@ -215,7 +215,7 @@ const Timeline = () => {
     <PageLayout>
       <div className="min-h-screen">
         {/* Header */}
-        <div className="bg-secondary/40 border-b-2 border-blue-400/30">
+        <div className="bg-secondary/40 border-b border-border">
           <div className="container mx-auto px-4 py-8 text-center">
             <Button
               variant="ghost"
@@ -305,7 +305,7 @@ const Timeline = () => {
                       {event.tags.map(tag => (
                         <span
                           key={tag}
-                          className="bg-blue-400/20 text-blue-400 px-2 py-1 rounded-full text-xs border border-blue-400/30"
+                          className="bg-primary/15 text-primary px-2 py-1 rounded-full text-xs border border-primary/30"
                         >
                           {tag}
                         </span>
@@ -321,7 +321,7 @@ const Timeline = () => {
         {/* Modal */}
         {isModalOpen && selectedEvent && (
           <div className="fixed inset-0 bg-card z-50 flex items-center justify-center p-4">
-            <div className="bg-card rounded-lg border-2 border-blue-400/30 p-8 max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+            <div className="bg-card rounded-xl border border-border p-8 shadow-md max-w-2xl w-full max-h-[80vh] overflow-y-auto">
               <div className="flex justify-between items-start mb-4">
                 <h2 className="text-2xl text-foreground flex items-center">
                   {selectedEvent.title}
@@ -369,7 +369,7 @@ const Timeline = () => {
                     {selectedEvent.tags.map(tag => (
                       <span
                         key={tag}
-                        className="bg-blue-400/20 text-blue-400 px-2 py-1 rounded-full text-xs border border-blue-400/30"
+                        className="bg-primary/15 text-primary px-2 py-1 rounded-full text-xs border border-primary/30"
                       >
                         {tag}
                       </span>

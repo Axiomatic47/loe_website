@@ -50,10 +50,10 @@ const VideosPage: React.FC = () => {
 
   const getCategoryColorClasses = (category: VideoCategory) => {
     const colors = {
-      'copyright-audit': 'bg-purple-500/20 text-purple-300 border-purple-500/30',
-      'prompt-audit': 'bg-blue-500/20 text-blue-300 border-blue-500/30',
-      'network-interference': 'bg-red-500/20 text-red-300 border-red-500/30',
-      'targeting-proof': 'bg-orange-500/20 text-orange-300 border-orange-500/30',
+      'copyright-audit': 'bg-secondary text-foreground/85 border border-border',
+      'prompt-audit': 'bg-secondary text-foreground/85 border border-border',
+      'network-interference': 'bg-secondary text-foreground/85 border border-border border-l-2 border-l-destructive',
+      'targeting-proof': 'bg-secondary text-foreground/85 border border-border',
       'chat-deletion': 'bg-rose-500/20 text-rose-300 border-rose-500/30',
       'other': 'bg-gray-500/20 text-muted-foreground border-gray-500/30'
     };
@@ -83,7 +83,7 @@ const VideosPage: React.FC = () => {
           </button>
 
           <div className="flex items-center gap-4 mb-4">
-            <div className="p-3 rounded-lg bg-red-500/20 border border-red-500/30">
+            <div className="p-3 rounded-lg bg-secondary border border-border border-l-2 border-l-destructive">
               <Video className="w-8 h-8 text-red-400" />
             </div>
             <div>
@@ -131,7 +131,7 @@ const VideosPage: React.FC = () => {
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
                 {selectedVideo.exhibitNumber && (
-                  <span className="px-3 py-1 bg-yellow-500/20 text-yellow-300 text-sm font-mono rounded border border-yellow-500/30">
+                  <span className="px-3 py-1 bg-muted text-foreground/85 text-sm font-mono rounded border border-border">
                     {selectedVideo.exhibitNumber}
                   </span>
                 )}
@@ -255,7 +255,7 @@ const VideosPage: React.FC = () => {
 
         {/* Info banner for pending uploads */}
         {uploadedVideos.length === 0 && (
-          <div className="mt-8 p-6 rounded-xl bg-blue-500/10 border border-blue-500/20">
+          <div className="mt-8 p-6 rounded-xl bg-secondary/60 border border-border">
             <h3 className="text-blue-300 font-medium mb-2">Video Upload Pending</h3>
             <p className="text-blue-200/70 text-sm">
               {videos.length} screen recordings are queued for upload to YouTube. Once uploaded,

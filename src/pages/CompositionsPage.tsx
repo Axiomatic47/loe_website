@@ -270,7 +270,7 @@ const CompositionsPage: React.FC = () => {
 
           {/* Error State */}
           {error && !loading && (
-            <Alert className="mb-6 bg-red-900/20 border-red-500/50">
+            <Alert className="mb-6 bg-secondary/60 border border-border border-l-2 border-l-destructive">
               <AlertCircle className="h-4 w-4" />
               <AlertDescription className="text-foreground">
                 <div className="mb-2">Error: {error}</div>
@@ -278,7 +278,7 @@ const CompositionsPage: React.FC = () => {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="bg-red-900/30 border-red-500/50 text-foreground hover:bg-red-900/50"
+                    className="border-destructive/40 text-destructive hover:bg-destructive/10"
                     onClick={() => refreshCompositions()}
                   >
                     <RefreshCw className="h-4 w-4 mr-2" />
@@ -287,7 +287,7 @@ const CompositionsPage: React.FC = () => {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="bg-red-900/30 border-red-500/50 text-foreground hover:bg-red-900/50"
+                    className="border-destructive/40 text-destructive hover:bg-destructive/10"
                     onClick={handleForceRefresh}
                   >
                     Force Refresh
@@ -342,7 +342,7 @@ const CompositionsPage: React.FC = () => {
                         key={`${composition.id}-${index}`}
                         className="bg-card rounded-xl p-6 border border-border
                                  cursor-pointer transition-all duration-300
-                                 hover:bg-card hover:scale-[1.02] hover:border-purple-500/30
+                                 hover:bg-card hover:scale-[1.01] hover:border-primary/30
                                  hover:shadow-lg hover:shadow-purple-500/10
                                  group"
                         onClick={() => handleCompositionClick(index)}
@@ -353,7 +353,7 @@ const CompositionsPage: React.FC = () => {
                             <div className="p-2 rounded-lg bg-purple-500/20 group-hover:bg-purple-500/30 transition-colors">
                               <Music className="h-5 w-5 text-purple-400" />
                             </div>
-                            <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 text-xs">
+                            <Badge className="bg-primary/15 text-primary border border-primary/30 text-xs">
                               {publishers.length} {publishers.length === 1 ? 'Publisher' : 'Publishers'}
                             </Badge>
                           </div>
@@ -377,7 +377,7 @@ const CompositionsPage: React.FC = () => {
                               key={pIndex}
                               variant="outline"
                               className="bg-card/80 text-muted-foreground border-border text-xs
-                                       group-hover:border-purple-500/30 group-hover:text-purple-200 transition-colors"
+                                       group-hover:border-primary/40 group-hover:text-primary transition-colors"
                             >
                               <FileText className="h-3 w-3 mr-1" />
                               {publisher}
@@ -409,7 +409,7 @@ const CompositionsPage: React.FC = () => {
                         key={`${composition.id}-${index}`}
                         className="bg-card rounded-xl p-6 border border-border
                                  cursor-pointer transition-all duration-300
-                                 hover:bg-card hover:border-amber-500/30
+                                 hover:bg-card hover:border-primary/30
                                  hover:shadow-lg hover:shadow-amber-500/10
                                  group"
                         onClick={() => handleCompositionClick(index)}
@@ -426,7 +426,7 @@ const CompositionsPage: React.FC = () => {
                               <h3 className="text-xl font-semibold text-foreground group-hover:text-amber-200 transition-colors">
                                 {composition.title}
                               </h3>
-                              <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/30 text-xs flex-shrink-0">
+                              <Badge className="bg-primary/10 text-primary border border-primary/30 text-xs flex-shrink-0">
                                 {sectionCount} {sectionCount === 1 ? 'Document' : 'Documents'}
                               </Badge>
                             </div>
@@ -485,8 +485,8 @@ const CompositionsPage: React.FC = () => {
                         bg: 'bg-blue-500/20',
                         bgHover: 'group-hover:bg-blue-500/30',
                         icon: 'text-blue-400',
-                        badge: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
-                        border: 'hover:border-blue-500/30',
+                        badge: 'bg-secondary text-foreground/85 border border-border',
+                        border: 'hover:border-primary/30',
                         shadow: 'hover:shadow-blue-500/10',
                         text: 'text-blue-400 group-hover:text-blue-300',
                         title: 'group-hover:text-blue-200'
@@ -495,8 +495,8 @@ const CompositionsPage: React.FC = () => {
                         bg: 'bg-emerald-500/20',
                         bgHover: 'group-hover:bg-emerald-500/30',
                         icon: 'text-emerald-400',
-                        badge: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
-                        border: 'hover:border-emerald-500/30',
+                        badge: 'bg-primary/10 text-primary border border-primary/30',
+                        border: 'hover:border-primary/30',
                         shadow: 'hover:shadow-emerald-500/10',
                         text: 'text-emerald-400 group-hover:text-emerald-300',
                         title: 'group-hover:text-emerald-200'

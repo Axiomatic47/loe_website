@@ -173,12 +173,12 @@ const PayPalDonationButton = ({
 
   if (error) {
     return (
-      <div className="bg-red-900/50 border border-red-500/50 rounded-lg p-4 text-center">
-        <p className="text-red-200 text-sm">{error}</p>
+      <div className="bg-secondary/60 border border-border border-l-2 border-l-destructive rounded-lg p-4 text-center">
+        <p className="text-destructive text-sm">{error}</p>
         <Button
           variant="outline"
           size="sm"
-          className="mt-2 text-red-200 border-red-500/50"
+          className="mt-2 text-destructive border-destructive/50"
           onClick={() => window.location.reload()}
         >
           Retry
@@ -196,7 +196,7 @@ const PayPalDonationButton = ({
 
       {isLoading && (
         <div className="text-center py-4">
-          <div className="animate-spin h-6 w-6 border-2 border-blue-400 border-t-transparent rounded-full mx-auto mb-2"></div>
+          <div className="animate-spin h-6 w-6 border-2 border-primary border-t-transparent rounded-full mx-auto mb-2"></div>
           <p className="text-muted-foreground/80 text-sm">Loading PayPal...</p>
         </div>
       )}
@@ -316,7 +316,7 @@ const CustomAmountDonation = () => {
             type="number"
             placeholder="Enter amount"
             className="flex-1 px-4 py-2 bg-card border border-border rounded text-foreground
-                       placeholder-gray-400 focus:outline-none focus:border-blue-400"
+                       placeholder-muted-foreground/70 focus:outline-none focus:border-primary"
             value={customAmount}
             onChange={(e) => setCustomAmount(e.target.value)}
             min="1"
@@ -338,14 +338,14 @@ const CustomAmountDonation = () => {
           </div>
 
           {error && (
-            <div className="bg-red-900/50 border border-red-500/50 rounded-lg p-4 mb-4 text-center">
-              <p className="text-red-200 text-sm">{error}</p>
+            <div className="bg-secondary/60 border border-border border-l-2 border-l-destructive rounded-lg p-4 mb-4 text-center">
+              <p className="text-destructive text-sm">{error}</p>
             </div>
           )}
 
           {isLoading && (
             <div className="text-center py-4">
-              <div className="animate-spin h-6 w-6 border-2 border-blue-400 border-t-transparent rounded-full mx-auto mb-2"></div>
+              <div className="animate-spin h-6 w-6 border-2 border-primary border-t-transparent rounded-full mx-auto mb-2"></div>
               <p className="text-muted-foreground/80 text-sm">Loading PayPal...</p>
             </div>
           )}
@@ -422,7 +422,7 @@ const Donate = () => {
               <p className="text-muted-foreground mb-6">{paypalError}</p>
               <p className="text-muted-foreground/80">
                 You can still support us by contacting{" "}
-                <a href="mailto:joseph@lawsofexistence.com" className="text-blue-400 hover:text-blue-300">
+                <a href="mailto:joseph@lawsofexistence.com" className="text-primary hover:text-primary/80">
                   joseph@lawsofexistence.com
                 </a>
               </p>
@@ -459,7 +459,7 @@ const Donate = () => {
 
             {!paypalLoaded ? (
               <div className="text-center py-12">
-                <div className="animate-spin h-8 w-8 border-4 border-blue-400 border-t-transparent rounded-full mx-auto mb-4"></div>
+                <div className="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
                 <p className="text-muted-foreground">Loading donation system...</p>
               </div>
             ) : (
@@ -557,7 +557,7 @@ const Donate = () => {
               </p>
               <p className="mt-2">
                 For questions about donations or corporate partnerships, please contact{" "}
-                <a href="mailto:joseph@lawsofexistence.com" className="text-blue-400 hover:text-blue-300 underline">
+                <a href="mailto:joseph@lawsofexistence.com" className="text-primary hover:text-primary/80 underline">
                   joseph@lawsofexistence.com
                 </a>
               </p>

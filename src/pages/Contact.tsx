@@ -70,7 +70,7 @@ const InquiryTypeCard = ({
       "relative p-4 rounded-lg border-2 cursor-pointer transition-all duration-300",
       "hover:scale-105 hover:shadow-lg",
       selected
-        ? "border-blue-400 bg-blue-400/10 shadow-blue-400/20 shadow-lg"
+        ? "border-primary bg-primary/10 shadow-md"
         : "border-border bg-secondary/40 hover:border-border"
     )}
     onClick={() => onSelect(value)}
@@ -92,7 +92,7 @@ const InquiryTypeCard = ({
         <p className="text-sm text-muted-foreground/80 mt-1">{description}</p>
       </div>
       {selected && (
-        <CheckCircle className="w-5 h-5 text-blue-400" />
+        <CheckCircle className="w-5 h-5 text-primary" />
       )}
     </div>
   </div>
@@ -280,7 +280,7 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="bg-card border-border text-foreground placeholder:text-muted-foreground/70 focus:border-blue-400 focus:ring-blue-400/20"
+                      className="bg-card border-border text-foreground placeholder:text-muted-foreground/70 focus:border-primary focus:ring-primary/20"
                       placeholder="Your name"
                     />
                   </div>
@@ -294,7 +294,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="bg-card border-border text-foreground placeholder:text-muted-foreground/70 focus:border-blue-400 focus:ring-blue-400/20"
+                      className="bg-card border-border text-foreground placeholder:text-muted-foreground/70 focus:border-primary focus:ring-primary/20"
                       placeholder="your.email@example.com"
                     />
                   </div>
@@ -328,7 +328,7 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     required
-                    className="bg-card border-border text-foreground h-40 placeholder:text-muted-foreground/70 focus:border-blue-400 focus:ring-blue-400/20"
+                    className="bg-card border-border text-foreground h-40 placeholder:text-muted-foreground/70 focus:border-primary focus:ring-primary/20"
                     placeholder="How can we help you?"
                   />
                 </div>
@@ -342,14 +342,14 @@ const Contact = () => {
                         handleCheckboxChange("consent", checked as boolean)
                       }
                       name="consent"
-                      className="mt-1 border-border data-[state=checked]:bg-blue-400 data-[state=checked]:border-blue-400"
+                      className="mt-1 border-border data-[state=checked]:bg-primary data-[state=checked]:border-primary"
                     />
                     <Label htmlFor="consent" className="text-muted-foreground text-sm cursor-pointer leading-relaxed">
                       I agree to the processing of my personal data in accordance with the{" "}
                       <button
                         type="button"
                         onClick={() => navigate("/privacy-policy")}
-                        className="text-blue-400 underline hover:text-blue-300 transition-colors"
+                        className="text-primary underline hover:text-primary/80 transition-colors"
                       >
                         Privacy Policy
                       </button>
@@ -364,7 +364,7 @@ const Contact = () => {
                         handleCheckboxChange("newsletter", checked as boolean)
                       }
                       name="newsletter"
-                      className="mt-1 border-border data-[state=checked]:bg-blue-400 data-[state=checked]:border-blue-400"
+                      className="mt-1 border-border data-[state=checked]:bg-primary data-[state=checked]:border-primary"
                     />
                     <Label htmlFor="newsletter" className="text-muted-foreground text-sm cursor-pointer leading-relaxed">
                       Subscribe to our newsletter to receive updates on our research and events
