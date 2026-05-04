@@ -65,21 +65,21 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
               }}
             />
             {/* Overlay */}
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
+            <div className="absolute inset-0 bg-card/80 group-hover:bg-card/60 transition-colors" />
 
             {/* Play button */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="w-20 h-20 rounded-full bg-red-600 group-hover:bg-red-500
                             flex items-center justify-center transition-all
                             group-hover:scale-110 shadow-lg">
-                <Play className="w-10 h-10 text-white ml-1" fill="white" />
+                <Play className="w-10 h-10 text-foreground ml-1" fill="white" />
               </div>
             </div>
 
             {/* Title overlay */}
             {title && (
               <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
-                <h3 className="text-white font-medium text-lg line-clamp-1">{title}</h3>
+                <h3 className="text-foreground font-medium text-lg line-clamp-1">{title}</h3>
               </div>
             )}
           </div>
@@ -102,17 +102,17 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
       {showInfo && (title || description) && (
         <div className="mt-4">
           {title && !isLoaded && (
-            <h3 className="text-white text-xl font-semibold mb-2">{title}</h3>
+            <h3 className="text-foreground text-xl font-semibold mb-2">{title}</h3>
           )}
           {description && (
-            <p className="text-gray-400 text-sm leading-relaxed">{description}</p>
+            <p className="text-muted-foreground/80 text-sm leading-relaxed">{description}</p>
           )}
 
           {/* Actions */}
           <div className="flex items-center gap-4 mt-3">
             <button
               onClick={openInYouTube}
-              className="text-gray-400 hover:text-white text-sm flex items-center gap-1 transition-colors"
+              className="text-muted-foreground/80 hover:text-foreground text-sm flex items-center gap-1 transition-colors"
             >
               <ExternalLink className="w-4 h-4" />
               Open in YouTube

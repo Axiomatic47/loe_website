@@ -388,12 +388,12 @@ export const MadisonianComplianceTest = () => {
     helpText?: string
   ) => (
     <div className="mb-4">
-      <label className="block text-sm font-medium text-gray-300 mb-2">{label}</label>
-      {helpText && <p className="text-xs text-gray-500 mb-2">{helpText}</p>}
+      <label className="block text-sm font-medium text-muted-foreground mb-2">{label}</label>
+      {helpText && <p className="text-xs text-muted-foreground/70 mb-2">{helpText}</p>}
       <select
         value={value === null ? '' : value ? 'yes' : 'no'}
         onChange={(e) => onChange(e.target.value === '' ? null : e.target.value === 'yes')}
-        className="w-full bg-black/60 border border-white/20 rounded-lg px-4 py-2 text-white focus:border-blue-500 focus:outline-none"
+        className="w-full bg-card border border-border rounded-lg px-4 py-2 text-foreground focus:border-blue-500 focus:outline-none"
       >
         <option value="">-- Select --</option>
         <option value="yes">Yes</option>
@@ -415,14 +415,14 @@ export const MadisonianComplianceTest = () => {
         >
           <div className={cn(
             'w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold border-2 transition-all',
-            stepResults[step] === 'pass' && 'bg-emerald-600 border-emerald-500 text-white',
-            stepResults[step] === 'fail' && 'bg-red-600 border-red-500 text-white',
-            stepResults[step] === 'pending' && currentStep === step && 'bg-blue-600 border-blue-500 text-white',
-            stepResults[step] === 'pending' && currentStep !== step && 'bg-black/40 border-white/20 text-gray-400'
+            stepResults[step] === 'pass' && 'bg-emerald-600 border-emerald-500 text-foreground',
+            stepResults[step] === 'fail' && 'bg-red-600 border-red-500 text-foreground',
+            stepResults[step] === 'pending' && currentStep === step && 'bg-blue-600 border-blue-500 text-foreground',
+            stepResults[step] === 'pending' && currentStep !== step && 'bg-card/80 border-border text-muted-foreground/80'
           )}>
             {stepResults[step] === 'pass' ? '✓' : stepResults[step] === 'fail' ? '✗' : step}
           </div>
-          <span className="text-xs text-gray-400 mt-1 text-center">
+          <span className="text-xs text-muted-foreground/80 mt-1 text-center">
             {['Clause', 'Action', 'Syllogism', 'Consistency', 'Structure', 'Position'][step - 1]}
           </span>
         </button>
@@ -433,14 +433,14 @@ export const MadisonianComplianceTest = () => {
   const renderStep1 = () => (
     <div className="space-y-6">
       <div>
-        <h3 className="text-lg font-semibold text-white mb-2">Step 1: Identify the Constitutional Clause</h3>
-        <p className="text-gray-400 text-sm mb-4">
+        <h3 className="text-lg font-semibold text-foreground mb-2">Step 1: Identify the Constitutional Clause</h3>
+        <p className="text-muted-foreground/80 text-sm mb-4">
           Identify the express textual assignment of power in the Constitution. This establishes the Major Premise for the syllogistic analysis.
         </p>
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-300 mb-2">Select a Common Clause</label>
+        <label className="block text-sm font-medium text-muted-foreground mb-2">Select a Common Clause</label>
         <select
           value={state.selectedPower}
           onChange={(e) => {
@@ -451,7 +451,7 @@ export const MadisonianComplianceTest = () => {
               customClause: ''
             });
           }}
-          className="w-full bg-black/60 border border-white/20 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none"
+          className="w-full bg-card border border-border rounded-lg px-4 py-3 text-foreground focus:border-blue-500 focus:outline-none"
         >
           <option value="">-- Select a Constitutional Power --</option>
           <optgroup label="Executive (Art. II)">
@@ -472,22 +472,22 @@ export const MadisonianComplianceTest = () => {
         </select>
       </div>
 
-      <div className="text-center text-gray-500">— OR —</div>
+      <div className="text-center text-muted-foreground/70">— OR —</div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-300 mb-2">Enter Custom Clause</label>
+        <label className="block text-sm font-medium text-muted-foreground mb-2">Enter Custom Clause</label>
         <textarea
           value={state.customClause}
           onChange={(e) => updateState({ customClause: e.target.value, selectedPower: '' })}
           placeholder="Enter the constitutional clause text and citation (e.g., Art. II, § 2, cl. 1 - 'The President shall have Power to...')"
-          className="w-full bg-black/60 border border-white/20 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none min-h-[100px]"
+          className="w-full bg-card border border-border rounded-lg px-4 py-3 text-foreground focus:border-blue-500 focus:outline-none min-h-[100px]"
         />
       </div>
 
       {(state.selectedPower || state.customClause) && (
         <div className="bg-emerald-900/30 border border-emerald-500/30 rounded-lg p-4">
           <div className="text-emerald-400 font-semibold mb-1">Major Premise Identified:</div>
-          <div className="text-white">
+          <div className="text-foreground">
             {state.selectedPower
               ? COMMON_CLAUSES.find(c => c.id === state.selectedPower)?.text
               : state.customClause}
@@ -500,18 +500,18 @@ export const MadisonianComplianceTest = () => {
   const renderStep2 = () => (
     <div className="space-y-6">
       <div>
-        <h3 className="text-lg font-semibold text-white mb-2">Step 2: Determine the Nature of the Coordinate Action</h3>
-        <p className="text-gray-400 text-sm mb-4">
+        <h3 className="text-lg font-semibold text-foreground mb-2">Step 2: Determine the Nature of the Coordinate Action</h3>
+        <p className="text-muted-foreground/80 text-sm mb-4">
           Classify the government action being tested. Different types have different constitutional constraints.
         </p>
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-300 mb-2">Type of Coordinate Action</label>
+        <label className="block text-sm font-medium text-muted-foreground mb-2">Type of Coordinate Action</label>
         <select
           value={state.coordinateAction}
           onChange={(e) => updateState({ coordinateAction: e.target.value as CoordinateActionType })}
-          className="w-full bg-black/60 border border-white/20 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none"
+          className="w-full bg-card border border-border rounded-lg px-4 py-3 text-foreground focus:border-blue-500 focus:outline-none"
         >
           <option value="">-- Select Action Type --</option>
           {COORDINATE_ACTION_TYPES.map(type => (
@@ -519,30 +519,30 @@ export const MadisonianComplianceTest = () => {
           ))}
         </select>
         {state.coordinateAction && (
-          <p className="text-sm text-gray-400 mt-2">
+          <p className="text-sm text-muted-foreground/80 mt-2">
             {COORDINATE_ACTION_TYPES.find(t => t.id === state.coordinateAction)?.description}
           </p>
         )}
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-300 mb-2">Describe the Specific Action Being Tested</label>
+        <label className="block text-sm font-medium text-muted-foreground mb-2">Describe the Specific Action Being Tested</label>
         <textarea
           value={state.actionDescription}
           onChange={(e) => updateState({ actionDescription: e.target.value })}
           placeholder="e.g., 'Prosecutorial discretion to grant transactional immunity' or 'Executive tariff authority under Section 232'"
-          className="w-full bg-black/60 border border-white/20 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none min-h-[80px]"
+          className="w-full bg-card border border-border rounded-lg px-4 py-3 text-foreground focus:border-blue-500 focus:outline-none min-h-[80px]"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-300 mb-2">Who is Claiming to Exercise This Power?</label>
+        <label className="block text-sm font-medium text-muted-foreground mb-2">Who is Claiming to Exercise This Power?</label>
         <input
           type="text"
           value={state.claimedActor}
           onChange={(e) => updateState({ claimedActor: e.target.value })}
           placeholder="e.g., 'Federal Prosecutor' or 'President' or 'Administrative Agency'"
-          className="w-full bg-black/60 border border-white/20 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none"
+          className="w-full bg-card border border-border rounded-lg px-4 py-3 text-foreground focus:border-blue-500 focus:outline-none"
         />
       </div>
     </div>
@@ -551,17 +551,17 @@ export const MadisonianComplianceTest = () => {
   const renderStep3 = () => (
     <div className="space-y-6">
       <div>
-        <h3 className="text-lg font-semibold text-white mb-2">Step 3: Construct the Syllogism</h3>
-        <p className="text-gray-400 text-sm mb-4">
+        <h3 className="text-lg font-semibold text-foreground mb-2">Step 3: Construct the Syllogism</h3>
+        <p className="text-muted-foreground/80 text-sm mb-4">
           Test whether the coordinate action validly derives from constitutional authority under the Supremacy Clause hierarchy.
         </p>
       </div>
 
-      <div className="bg-black/40 border border-white/10 rounded-lg p-4 mb-6">
+      <div className="bg-card/80 border border-border rounded-lg p-4 mb-6">
         <div className="text-sm space-y-3">
           <div>
             <span className="text-blue-400 font-semibold">MAJOR PREMISE:</span>
-            <span className="text-white ml-2">
+            <span className="text-foreground ml-2">
               {state.selectedPower
                 ? COMMON_CLAUSES.find(c => c.id === state.selectedPower)?.text
                 : state.customClause || '[Not yet identified]'}
@@ -569,7 +569,7 @@ export const MadisonianComplianceTest = () => {
           </div>
           <div>
             <span className="text-amber-400 font-semibold">MINOR PREMISE:</span>
-            <span className="text-white ml-2">
+            <span className="text-foreground ml-2">
               {state.actionDescription
                 ? `"${state.actionDescription}" is law made "in Pursuance" of the Constitution`
                 : '[Not yet described]'}
@@ -577,7 +577,7 @@ export const MadisonianComplianceTest = () => {
           </div>
           <div>
             <span className="text-emerald-400 font-semibold">CONCLUSION:</span>
-            <span className="text-white ml-2">
+            <span className="text-foreground ml-2">
               Therefore, {state.claimedActor || '[actor]'} may validly exercise this power
             </span>
           </div>
@@ -601,7 +601,7 @@ export const MadisonianComplianceTest = () => {
       {state.majorPremiseValid === true && state.minorPremiseValid === false && (
         <div className="bg-red-900/30 border border-red-500/30 rounded-lg p-4">
           <div className="text-red-400 font-semibold">Syllogism FAILS</div>
-          <p className="text-gray-300 text-sm mt-1">
+          <p className="text-muted-foreground text-sm mt-1">
             The Minor Premise cannot be established. The coordinate action is not validly "in Pursuance" of the constitutional clause.
           </p>
         </div>
@@ -617,15 +617,15 @@ export const MadisonianComplianceTest = () => {
     return (
       <div className="space-y-6">
         <div>
-          <h3 className="text-lg font-semibold text-white mb-2">Step 4: Apply the Textual Consistency Test</h3>
-          <p className="text-gray-400 text-sm mb-4">
+          <h3 className="text-lg font-semibold text-foreground mb-2">Step 4: Apply the Textual Consistency Test</h3>
+          <p className="text-muted-foreground/80 text-sm mb-4">
             Madison's principle: "the same argument results from the same consideration." If an interpretive method is valid for one clause, it must be valid for parallel clauses in the same Section.
           </p>
         </div>
 
         <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4 mb-6">
           <div className="text-blue-400 font-semibold mb-2">The Test:</div>
-          <ol className="text-sm text-gray-300 space-y-1 list-decimal list-inside">
+          <ol className="text-sm text-muted-foreground space-y-1 list-decimal list-inside">
             <li>Identify all clauses within the same Section (or Article)</li>
             <li>Apply the SAME interpretive method to each parallel clause</li>
             <li>Determine if the method yields valid results for ALL parallel clauses</li>
@@ -635,16 +635,16 @@ export const MadisonianComplianceTest = () => {
 
         {/* Show parallel clauses if available */}
         {parallelClauses.length > 0 && (
-          <div className="bg-black/40 border border-white/10 rounded-lg p-4 mb-6">
+          <div className="bg-card/80 border border-border rounded-lg p-4 mb-6">
             <div className="text-amber-400 font-semibold mb-2">Parallel Clauses in {sectionName}:</div>
-            <p className="text-gray-400 text-xs mb-3">
+            <p className="text-muted-foreground/80 text-xs mb-3">
               If {state.claimedActor || 'the claimed actor'} can exercise the selected power through {state.coordinateAction === 'judicial' ? 'judicial doctrine' : state.coordinateAction === 'legislative' ? 'legislative delegation' : 'executive action'}, can the SAME method derive authority for:
             </p>
             <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
               {parallelClauses.map((clause, idx) => (
                 <li key={idx} className="flex items-start gap-2 text-sm">
                   <span className="text-red-400">?</span>
-                  <span className="text-gray-300">{clause}</span>
+                  <span className="text-muted-foreground">{clause}</span>
                 </li>
               ))}
             </ul>
@@ -675,7 +675,7 @@ export const MadisonianComplianceTest = () => {
         {state.absurdResultsForParallel === true && (
           <div className="bg-red-900/30 border border-red-500/30 rounded-lg p-4">
             <div className="text-red-400 font-semibold">Textual Consistency Test FAILS</div>
-            <p className="text-gray-300 text-sm mt-1">
+            <p className="text-muted-foreground text-sm mt-1">
               The interpretive method yields absurd results for parallel clauses. By Madison's principle, the claimed derivation is INVALID.
             </p>
           </div>
@@ -687,8 +687,8 @@ export const MadisonianComplianceTest = () => {
   const renderStep5 = () => (
     <div className="space-y-6">
       <div>
-        <h3 className="text-lg font-semibold text-white mb-2">Step 5: Structural Impossibility Determination</h3>
-        <p className="text-gray-400 text-sm mb-4">
+        <h3 className="text-lg font-semibold text-foreground mb-2">Step 5: Structural Impossibility Determination</h3>
+        <p className="text-muted-foreground/80 text-sm mb-4">
           Determine whether the power at issue is inherently non-delegable based on constitutional structure.
         </p>
       </div>
@@ -725,7 +725,7 @@ export const MadisonianComplianceTest = () => {
         state.separationArchitectureViolated || state.incompatibilityClauseImplied) && (
         <div className="bg-red-900/30 border border-red-500/30 rounded-lg p-4">
           <div className="text-red-400 font-semibold">Structural Impossibility Determination: NON-DELEGABLE</div>
-          <p className="text-gray-300 text-sm mt-1">
+          <p className="text-muted-foreground text-sm mt-1">
             The power is structurally non-delegable. No coordinate action can create valid delegation authority.
           </p>
         </div>
@@ -751,23 +751,23 @@ export const MadisonianComplianceTest = () => {
     return (
       <div className="space-y-6">
         <div>
-          <h3 className="text-lg font-semibold text-white mb-2">Step 6: Position of Assigned Power (Indivisibility Test)</h3>
-          <p className="text-gray-400 text-sm mb-4">
+          <h3 className="text-lg font-semibold text-foreground mb-2">Step 6: Position of Assigned Power (Indivisibility Test)</h3>
+          <p className="text-muted-foreground/80 text-sm mb-4">
             When the Constitution assigns power to a position, that term incorporates ALL constitutional provisions defining that position. The constitutive conditions are INDIVISIBLE.
           </p>
         </div>
 
         <div className="bg-amber-900/20 border border-amber-500/30 rounded-lg p-4 mb-6">
           <div className="text-amber-400 font-semibold mb-2">The Indivisibility Principle:</div>
-          <p className="text-sm text-gray-300">
+          <p className="text-sm text-muted-foreground">
             A claim to exercise ANY constitutive condition of a position requires satisfying ALL constitutive conditions of that position.
           </p>
-          <p className="text-xs text-gray-500 mt-2 italic">
+          <p className="text-xs text-muted-foreground/70 mt-2 italic">
             "You cannot selectively adopt the power-granting clause while disclaiming the position-defining clauses."
           </p>
         </div>
 
-        <div className="text-white mb-4">
+        <div className="text-foreground mb-4">
           Does <span className="text-blue-400 font-semibold">{state.claimedActor || '[claimed actor]'}</span> satisfy the constitutive conditions of <span className="text-amber-400 font-semibold">{positionName}</span>?
         </div>
 
@@ -775,14 +775,14 @@ export const MadisonianComplianceTest = () => {
         {positionConditions.length > 0 ? (
           <div className="space-y-4">
             {positionConditions.map((condition, idx) => (
-              <div key={idx} className="bg-black/30 border border-white/10 rounded-lg p-4">
+              <div key={idx} className="bg-card/60 border border-border rounded-lg p-4">
                 <div className="flex items-start gap-3">
                   <span className="px-2 py-1 text-xs font-mono font-semibold rounded bg-blue-500/20 text-blue-400">
                     C{idx + 1}
                   </span>
                   <div className="flex-1">
-                    <label className="block text-sm font-medium text-gray-300 mb-1">{condition.question}</label>
-                    <p className="text-xs text-gray-500 mb-2">{condition.helpText}</p>
+                    <label className="block text-sm font-medium text-muted-foreground mb-1">{condition.question}</label>
+                    <p className="text-xs text-muted-foreground/70 mb-2">{condition.helpText}</p>
                     <select
                       value={state.conditionResponses[condition.code] === null || state.conditionResponses[condition.code] === undefined ? '' : state.conditionResponses[condition.code] ? 'yes' : 'no'}
                       onChange={(e) => {
@@ -794,7 +794,7 @@ export const MadisonianComplianceTest = () => {
                         if (idx === 2) updateState({ actorSatisfiesOath: val });
                         if (idx === 3) updateState({ actorSatisfiesAccountability: val });
                       }}
-                      className="w-full bg-black/60 border border-white/20 rounded-lg px-4 py-2 text-white focus:border-blue-500 focus:outline-none"
+                      className="w-full bg-card border border-border rounded-lg px-4 py-2 text-foreground focus:border-blue-500 focus:outline-none"
                     >
                       <option value="">-- Select --</option>
                       <option value="yes">Yes</option>
@@ -847,10 +847,10 @@ export const MadisonianComplianceTest = () => {
           state.actorSatisfiesOath === false || state.actorSatisfiesAccountability === false) && (
           <div className="bg-red-900/30 border border-red-500/30 rounded-lg p-4">
             <div className="text-red-400 font-semibold">Position Indivisibility Test FAILS</div>
-            <p className="text-gray-300 text-sm mt-1">
+            <p className="text-muted-foreground text-sm mt-1">
               <span className="text-blue-400">{state.claimedActor || 'The claimed actor'}</span> does not satisfy ALL constitutive conditions of <span className="text-amber-400">{positionName}</span>.
             </p>
-            <p className="text-gray-300 text-sm mt-2">
+            <p className="text-muted-foreground text-sm mt-2">
               Therefore, <span className="text-blue-400">{state.claimedActor || 'this actor'}</span> CANNOT exercise powers assigned to <span className="text-amber-400">{positionName}</span>.
             </p>
           </div>
@@ -869,9 +869,9 @@ export const MadisonianComplianceTest = () => {
         <div className="text-center">
           <div className={cn(
             'inline-flex items-center justify-center w-24 h-24 rounded-full text-4xl font-bold mb-4',
-            finalResult === 'unconstitutional' && 'bg-red-600 text-white',
-            finalResult === 'constitutional' && 'bg-emerald-600 text-white',
-            finalResult === 'incomplete' && 'bg-gray-600 text-white'
+            finalResult === 'unconstitutional' && 'bg-red-600 text-foreground',
+            finalResult === 'constitutional' && 'bg-emerald-600 text-foreground',
+            finalResult === 'incomplete' && 'bg-gray-600 text-foreground'
           )}>
             {finalResult === 'unconstitutional' ? '✗' : finalResult === 'constitutional' ? '✓' : '?'}
           </div>
@@ -879,13 +879,13 @@ export const MadisonianComplianceTest = () => {
             'text-3xl font-bold mb-2',
             finalResult === 'unconstitutional' && 'text-red-400',
             finalResult === 'constitutional' && 'text-emerald-400',
-            finalResult === 'incomplete' && 'text-gray-400'
+            finalResult === 'incomplete' && 'text-muted-foreground/80'
           )}>
             {finalResult === 'unconstitutional' && 'UNCONSTITUTIONAL'}
             {finalResult === 'constitutional' && 'CONSTITUTIONAL'}
             {finalResult === 'incomplete' && 'INCOMPLETE'}
           </h2>
-          <p className="text-gray-400">
+          <p className="text-muted-foreground/80">
             {finalResult === 'unconstitutional' && 'The coordinate action fails the Madisonian Compliance Test'}
             {finalResult === 'constitutional' && 'The coordinate action passes the Madisonian Compliance Test'}
             {finalResult === 'incomplete' && 'Complete all steps to determine the result'}
@@ -893,51 +893,51 @@ export const MadisonianComplianceTest = () => {
         </div>
 
         {failedSteps.length > 0 && (
-          <div className="bg-black/40 border border-white/10 rounded-lg p-6">
-            <h3 className="text-lg font-semibold text-white mb-4">Failed Steps:</h3>
+          <div className="bg-card/80 border border-border rounded-lg p-6">
+            <h3 className="text-lg font-semibold text-foreground mb-4">Failed Steps:</h3>
             <div className="space-y-3">
               {failedSteps.includes(3) && (
                 <div className="flex items-start gap-3">
                   <span className="text-red-400 font-bold">Step 3:</span>
-                  <span className="text-gray-300">Syllogism Construction - Minor premise cannot be established</span>
+                  <span className="text-muted-foreground">Syllogism Construction - Minor premise cannot be established</span>
                 </div>
               )}
               {failedSteps.includes(4) && (
                 <div className="flex items-start gap-3">
                   <span className="text-red-400 font-bold">Step 4:</span>
-                  <span className="text-gray-300">Textual Consistency - Same method produces absurd results for parallel clauses</span>
+                  <span className="text-muted-foreground">Textual Consistency - Same method produces absurd results for parallel clauses</span>
                 </div>
               )}
               {failedSteps.includes(5) && (
                 <div className="flex items-start gap-3">
                   <span className="text-red-400 font-bold">Step 5:</span>
-                  <span className="text-gray-300">Structural Impossibility - Power is inherently non-delegable</span>
+                  <span className="text-muted-foreground">Structural Impossibility - Power is inherently non-delegable</span>
                 </div>
               )}
               {failedSteps.includes(6) && (
                 <div className="flex items-start gap-3">
                   <span className="text-red-400 font-bold">Step 6:</span>
-                  <span className="text-gray-300">Position Indivisibility - Actor does not satisfy all constitutive conditions</span>
+                  <span className="text-muted-foreground">Position Indivisibility - Actor does not satisfy all constitutive conditions</span>
                 </div>
               )}
             </div>
           </div>
         )}
 
-        <div className="bg-black/40 border border-white/10 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-white mb-4">Test Summary:</h3>
+        <div className="bg-card/80 border border-border rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-foreground mb-4">Test Summary:</h3>
           <div className="space-y-2 text-sm">
-            <div><span className="text-gray-400">Constitutional Clause:</span> <span className="text-white">{state.selectedPower ? COMMON_CLAUSES.find(c => c.id === state.selectedPower)?.text : state.customClause}</span></div>
-            <div><span className="text-gray-400">Coordinate Action:</span> <span className="text-white">{state.actionDescription}</span></div>
-            <div><span className="text-gray-400">Claimed Actor:</span> <span className="text-white">{state.claimedActor}</span></div>
-            <div><span className="text-gray-400">Action Type:</span> <span className="text-white">{COORDINATE_ACTION_TYPES.find(t => t.id === state.coordinateAction)?.label}</span></div>
+            <div><span className="text-muted-foreground/80">Constitutional Clause:</span> <span className="text-foreground">{state.selectedPower ? COMMON_CLAUSES.find(c => c.id === state.selectedPower)?.text : state.customClause}</span></div>
+            <div><span className="text-muted-foreground/80">Coordinate Action:</span> <span className="text-foreground">{state.actionDescription}</span></div>
+            <div><span className="text-muted-foreground/80">Claimed Actor:</span> <span className="text-foreground">{state.claimedActor}</span></div>
+            <div><span className="text-muted-foreground/80">Action Type:</span> <span className="text-foreground">{COORDINATE_ACTION_TYPES.find(t => t.id === state.coordinateAction)?.label}</span></div>
           </div>
         </div>
 
         <div className="flex justify-center gap-4">
           <button
             onClick={resetTest}
-            className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+            className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-foreground rounded-lg transition-colors"
           >
             Start New Test
           </button>
@@ -952,7 +952,7 @@ export const MadisonianComplianceTest = () => {
         <>
           {renderStepIndicator()}
 
-          <div className="bg-black/60 border border-white/10 rounded-xl p-6">
+          <div className="bg-card border border-border rounded-xl p-6">
             {currentStep === 1 && renderStep1()}
             {currentStep === 2 && renderStep2()}
             {currentStep === 3 && renderStep3()}
@@ -968,8 +968,8 @@ export const MadisonianComplianceTest = () => {
               className={cn(
                 'px-6 py-3 rounded-lg transition-colors',
                 currentStep === 1
-                  ? 'bg-gray-700 text-gray-500 cursor-not-allowed'
-                  : 'bg-white/10 text-white hover:bg-white/20'
+                  ? 'bg-gray-700 text-muted-foreground/70 cursor-not-allowed'
+                  : 'bg-secondary/60 text-foreground hover:bg-secondary'
               )}
             >
               ← Previous
@@ -978,14 +978,14 @@ export const MadisonianComplianceTest = () => {
             {currentStep < 6 ? (
               <button
                 onClick={() => setCurrentStep(Math.min(6, currentStep + 1))}
-                className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+                className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-foreground rounded-lg transition-colors"
               >
                 Next →
               </button>
             ) : (
               <button
                 onClick={() => setShowResults(true)}
-                className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors"
+                className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-foreground rounded-lg transition-colors"
               >
                 View Results
               </button>

@@ -75,13 +75,13 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
         <table className="w-full border-collapse">
           <thead>
             <tr>
-              <th className="p-3 text-left text-xs text-gray-400 border-b border-white/10">
+              <th className="p-3 text-left text-xs text-muted-foreground/80 border-b border-border">
                 Checker ↓ / Checked →
               </th>
               {mainPositions.map(pos => (
                 <th
                   key={pos.id}
-                  className="p-2 text-center text-xs border-b border-white/10 min-w-[80px]"
+                  className="p-2 text-center text-xs border-b border-border min-w-[80px]"
                 >
                   <div className={cn(
                     'px-2 py-1 rounded text-xs',
@@ -103,11 +103,11 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
                       'flex items-center gap-2 px-2 py-1 rounded transition-colors',
                       selectedPositionId === fromPos.id
                         ? 'bg-blue-900/40'
-                        : 'hover:bg-white/10'
+                        : 'hover:bg-secondary/60'
                     )}
                   >
                     <span className="text-sm">{BRANCH_INFO[fromPos.branch]?.icon}</span>
-                    <span className="text-white">{fromPos.name.split(' ')[0]}</span>
+                    <span className="text-foreground">{fromPos.name.split(' ')[0]}</span>
                   </button>
                 </td>
                 {mainPositions.map(toPos => {
@@ -120,9 +120,9 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
                       key={toPos.id}
                       className={cn(
                         'p-2 text-center cursor-pointer transition-all',
-                        isSelf && 'bg-black/40',
+                        isSelf && 'bg-card/80',
                         isHighlighted && 'bg-blue-900/40',
-                        !isSelf && !isHighlighted && 'hover:bg-white/5'
+                        !isSelf && !isHighlighted && 'hover:bg-secondary/60'
                       )}
                       onMouseEnter={() => !isSelf && setHighlightedRelation({ from: fromPos.id, to: toPos.id })}
                       onMouseLeave={() => setHighlightedRelation(null)}
@@ -131,11 +131,11 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
                       }}
                     >
                       {isSelf ? (
-                        <span className="text-gray-600">—</span>
+                        <span className="text-muted-foreground/70">—</span>
                       ) : checks ? (
                         <span className="text-emerald-400 font-bold">✓</span>
                       ) : (
-                        <span className="text-gray-700">·</span>
+                        <span className="text-muted-foreground/60">·</span>
                       )}
                     </td>
                   );
@@ -146,17 +146,17 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
         </table>
 
         {/* Legend */}
-        <div className="mt-4 flex gap-6 text-xs text-gray-400">
+        <div className="mt-4 flex gap-6 text-xs text-muted-foreground/80">
           <div className="flex items-center gap-2">
             <span className="text-emerald-400 font-bold">✓</span>
             <span>Has check power</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-gray-700">·</span>
+            <span className="text-muted-foreground/60">·</span>
             <span>No direct check</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-gray-600">—</span>
+            <span className="text-muted-foreground/70">—</span>
             <span>Self (N/A)</span>
           </div>
         </div>
@@ -167,19 +167,19 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
   const renderCoordinationView = () => {
     return (
       <div className="space-y-4">
-        <p className="text-gray-400 text-sm mb-4">
+        <p className="text-muted-foreground/80 text-sm mb-4">
           Constitutional functions that require coordination between multiple positions.
         </p>
 
         {Object.entries(coordinationMatrix).map(([functionName, entry]) => (
           <div
             key={functionName}
-            className="bg-black/40 border border-white/10 rounded-lg p-4 hover:border-white/20 transition-colors"
+            className="bg-card/80 border border-border rounded-lg p-4 hover:border-border transition-colors"
           >
             <div className="flex items-start justify-between gap-4">
               <div>
-                <h4 className="text-white font-semibold mb-2">{functionName}</h4>
-                <p className="text-sm text-gray-400 mb-3">{entry.requirement}</p>
+                <h4 className="text-foreground font-semibold mb-2">{functionName}</h4>
+                <p className="text-sm text-muted-foreground/80 mb-3">{entry.requirement}</p>
                 <div className="flex flex-wrap gap-2">
                   {entry.positions.map((posId, idx) => {
                     const pos = getPosition(data, posId);
@@ -189,7 +189,7 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
                         onClick={() => setSelectedPositionId(posId)}
                         className={cn(
                           'px-3 py-1 text-xs rounded-full border transition-colors',
-                          pos ? BRANCH_INFO[pos.branch]?.bgClass : 'bg-gray-900/30 text-gray-400 border-gray-500/30',
+                          pos ? BRANCH_INFO[pos.branch]?.bgClass : 'bg-gray-900/30 text-muted-foreground/80 border-gray-500/30',
                           'hover:opacity-80'
                         )}
                       >
@@ -210,7 +210,7 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
   const renderDetailView = () => {
     if (!selectedPosition || !selectedRelationships) {
       return (
-        <div className="text-center py-12 text-gray-400">
+        <div className="text-center py-12 text-muted-foreground/80">
           <div className="text-4xl mb-4 opacity-30">⚖️</div>
           <p>Select a position to view its relationships</p>
         </div>
@@ -228,8 +228,8 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
             {BRANCH_INFO[selectedPosition.branch]?.icon}
           </div>
           <div>
-            <h3 className="text-xl font-bold text-white">{selectedPosition.name}</h3>
-            <p className="text-sm text-gray-400">{selectedPosition.status}</p>
+            <h3 className="text-xl font-bold text-foreground">{selectedPosition.name}</h3>
+            <p className="text-sm text-muted-foreground/80">{selectedPosition.status}</p>
           </div>
         </div>
 
@@ -246,7 +246,7 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
                   <button
                     key={pos.id}
                     onClick={() => setSelectedPositionId(pos.id)}
-                    className="w-full flex items-center gap-2 px-3 py-2 bg-black/30 rounded hover:bg-black/50 transition-colors text-left"
+                    className="w-full flex items-center gap-2 px-3 py-2 bg-card/60 rounded hover:bg-card transition-colors text-left"
                   >
                     <span className={cn(
                       'w-6 h-6 rounded-full flex items-center justify-center text-xs',
@@ -254,12 +254,12 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
                     )}>
                       {BRANCH_INFO[pos.branch]?.icon}
                     </span>
-                    <span className="text-white text-sm">{pos.name}</span>
+                    <span className="text-foreground text-sm">{pos.name}</span>
                   </button>
                 ))}
               </div>
             ) : (
-              <p className="text-gray-500 text-sm italic">No direct checks</p>
+              <p className="text-muted-foreground/70 text-sm italic">No direct checks</p>
             )}
           </div>
 
@@ -274,7 +274,7 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
                   <button
                     key={pos.id}
                     onClick={() => setSelectedPositionId(pos.id)}
-                    className="w-full flex items-center gap-2 px-3 py-2 bg-black/30 rounded hover:bg-black/50 transition-colors text-left"
+                    className="w-full flex items-center gap-2 px-3 py-2 bg-card/60 rounded hover:bg-card transition-colors text-left"
                   >
                     <span className={cn(
                       'w-6 h-6 rounded-full flex items-center justify-center text-xs',
@@ -282,12 +282,12 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
                     )}>
                       {BRANCH_INFO[pos.branch]?.icon}
                     </span>
-                    <span className="text-white text-sm">{pos.name}</span>
+                    <span className="text-foreground text-sm">{pos.name}</span>
                   </button>
                 ))}
               </div>
             ) : (
-              <p className="text-gray-500 text-sm italic">No positions check this</p>
+              <p className="text-muted-foreground/70 text-sm italic">No positions check this</p>
             )}
           </div>
 
@@ -302,7 +302,7 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
                   <button
                     key={pos.id}
                     onClick={() => setSelectedPositionId(pos.id)}
-                    className="w-full flex items-center gap-2 px-3 py-2 bg-black/30 rounded hover:bg-black/50 transition-colors text-left"
+                    className="w-full flex items-center gap-2 px-3 py-2 bg-card/60 rounded hover:bg-card transition-colors text-left"
                   >
                     <span className={cn(
                       'w-6 h-6 rounded-full flex items-center justify-center text-xs',
@@ -310,12 +310,12 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
                     )}>
                       {BRANCH_INFO[pos.branch]?.icon}
                     </span>
-                    <span className="text-white text-sm">{pos.name}</span>
+                    <span className="text-foreground text-sm">{pos.name}</span>
                   </button>
                 ))}
               </div>
             ) : (
-              <p className="text-gray-500 text-sm italic">No superiors (top of hierarchy)</p>
+              <p className="text-muted-foreground/70 text-sm italic">No superiors (top of hierarchy)</p>
             )}
           </div>
 
@@ -330,7 +330,7 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
                   <button
                     key={pos.id}
                     onClick={() => setSelectedPositionId(pos.id)}
-                    className="w-full flex items-center gap-2 px-3 py-2 bg-black/30 rounded hover:bg-black/50 transition-colors text-left"
+                    className="w-full flex items-center gap-2 px-3 py-2 bg-card/60 rounded hover:bg-card transition-colors text-left"
                   >
                     <span className={cn(
                       'w-6 h-6 rounded-full flex items-center justify-center text-xs',
@@ -338,12 +338,12 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
                     )}>
                       {BRANCH_INFO[pos.branch]?.icon}
                     </span>
-                    <span className="text-white text-sm">{pos.name}</span>
+                    <span className="text-foreground text-sm">{pos.name}</span>
                   </button>
                 ))}
               </div>
             ) : (
-              <p className="text-gray-500 text-sm italic">No subordinates</p>
+              <p className="text-muted-foreground/70 text-sm italic">No subordinates</p>
             )}
           </div>
 
@@ -369,20 +369,20 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
                 ))}
               </div>
             ) : (
-              <p className="text-gray-500 text-sm italic">No coordinate relationships defined</p>
+              <p className="text-muted-foreground/70 text-sm italic">No coordinate relationships defined</p>
             )}
           </div>
         </div>
 
         {/* Checks Matrix Entry (if available) */}
         {checksMatrix[selectedPosition.id] && (
-          <div className="bg-black/40 border border-white/10 rounded-lg p-4">
-            <h4 className="text-white font-semibold mb-3">Check Mechanisms</h4>
+          <div className="bg-card/80 border border-border rounded-lg p-4">
+            <h4 className="text-foreground font-semibold mb-3">Check Mechanisms</h4>
             <div className="space-y-2">
               {checksMatrix[selectedPosition.id].mechanisms.map((mechanism, idx) => (
                 <div key={idx} className="flex items-start gap-2 text-sm">
                   <span className="text-emerald-400">•</span>
-                  <span className="text-gray-300">{mechanism}</span>
+                  <span className="text-muted-foreground">{mechanism}</span>
                 </div>
               ))}
             </div>
@@ -396,7 +396,7 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
     <div className="space-y-6">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <h2 className="text-2xl font-bold text-white">Relationship Matrix</h2>
+        <h2 className="text-2xl font-bold text-foreground">Relationship Matrix</h2>
 
         <div className="flex gap-2">
           <button
@@ -404,8 +404,8 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
             className={cn(
               'px-4 py-2 rounded-lg text-sm transition-colors',
               viewMode === 'checks'
-                ? 'bg-emerald-600 text-white'
-                : 'bg-black/40 text-gray-400 hover:text-white'
+                ? 'bg-emerald-600 text-foreground'
+                : 'bg-card/80 text-muted-foreground/80 hover:text-foreground'
             )}
           >
             Checks Grid
@@ -415,8 +415,8 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
             className={cn(
               'px-4 py-2 rounded-lg text-sm transition-colors',
               viewMode === 'coordination'
-                ? 'bg-cyan-600 text-white'
-                : 'bg-black/40 text-gray-400 hover:text-white'
+                ? 'bg-cyan-600 text-foreground'
+                : 'bg-card/80 text-muted-foreground/80 hover:text-foreground'
             )}
           >
             Coordination
@@ -426,8 +426,8 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
             className={cn(
               'px-4 py-2 rounded-lg text-sm transition-colors',
               viewMode === 'detail'
-                ? 'bg-purple-600 text-white'
-                : 'bg-black/40 text-gray-400 hover:text-white'
+                ? 'bg-purple-600 text-foreground'
+                : 'bg-card/80 text-muted-foreground/80 hover:text-foreground'
             )}
           >
             Detail View
@@ -436,7 +436,7 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
       </div>
 
       {/* Description */}
-      <div className="text-gray-400 text-sm">
+      <div className="text-muted-foreground/80 text-sm">
         {viewMode === 'checks' && (
           <p>Madison's "Balance and Check" framework: First BALANCE powers between branches, then CHECK their exercise. This grid shows who has constitutional authority to check whom.</p>
         )}
@@ -451,11 +451,11 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
       {/* Position Selector (for detail view) */}
       {viewMode === 'detail' && (
         <div>
-          <label className="block text-sm text-gray-400 mb-2">Select Position</label>
+          <label className="block text-sm text-muted-foreground/80 mb-2">Select Position</label>
           <select
             value={selectedPositionId}
             onChange={(e) => setSelectedPositionId(e.target.value)}
-            className="w-full md:w-96 bg-black/60 border border-white/20 rounded-lg px-4 py-2 text-white focus:border-blue-500 focus:outline-none"
+            className="w-full md:w-96 bg-card border border-border rounded-lg px-4 py-2 text-foreground focus:border-blue-500 focus:outline-none"
           >
             <option value="">-- Select a Position --</option>
             {allPositions.map((pos) => (
@@ -468,7 +468,7 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
       )}
 
       {/* Main Content */}
-      <div className="bg-black/60 border border-white/10 rounded-xl p-6">
+      <div className="bg-card border border-border rounded-xl p-6">
         {viewMode === 'checks' && renderChecksMatrix()}
         {viewMode === 'coordination' && renderCoordinationView()}
         {viewMode === 'detail' && renderDetailView()}

@@ -202,9 +202,9 @@ const Timeline = () => {
     return (
       <PageLayout>
         <div className="container mx-auto px-4 py-12">
-          <div className="backdrop-blur-md bg-black/40 rounded-lg p-8 border border-white/10 text-center">
+          <div className="bg-card/80 rounded-lg p-8 border border-border text-center">
             <div className="animate-spin h-8 w-8 border-4 border-blue-400 border-t-transparent rounded-full mx-auto mb-4"></div>
-            <p className="text-white text-xl">Loading Timeline...</p>
+            <p className="text-foreground text-xl">Loading Timeline...</p>
           </div>
         </div>
       </PageLayout>
@@ -215,39 +215,39 @@ const Timeline = () => {
     <PageLayout>
       <div className="min-h-screen">
         {/* Header */}
-        <div className="backdrop-blur-md bg-black/20 border-b-2 border-blue-400/30">
+        <div className="bg-secondary/40 border-b-2 border-blue-400/30">
           <div className="container mx-auto px-4 py-8 text-center">
             <Button
               variant="ghost"
-              className="text-white mb-6 hover:bg-white/10 absolute top-8 left-8"
+              className="text-foreground mb-6 hover:bg-secondary/60 absolute top-8 left-8"
               onClick={() => navigate("/")}
             >
               ← Back to Home
             </Button>
 
-            <h1 className="text-4xl md:text-5xl mb-4 text-white font-serif drop-shadow-lg">
+            <h1 className="text-4xl md:text-5xl mb-4 text-foreground font-serif ">
               The Laws of Existence Conception Timeline
             </h1>
-            <p className="text-xl text-gray-300 mb-8">
+            <p className="text-xl text-muted-foreground mb-8">
               First Documented Human-AI Consciousness Collaboration
             </p>
 
             <div className="flex justify-center gap-8 flex-wrap">
-              <div className="text-center p-4 bg-black/80 rounded-lg border border-white/10">
-                <div className="text-3xl font-bold text-white">{timelineEvents.length}</div>
-                <div className="text-gray-300">Total Events</div>
+              <div className="text-center p-4 bg-card rounded-lg border border-border">
+                <div className="text-3xl font-bold text-foreground">{timelineEvents.length}</div>
+                <div className="text-muted-foreground">Total Events</div>
               </div>
-              <div className="text-center p-4 bg-black/80 rounded-lg border border-white/10">
-                <div className="text-3xl font-bold text-white">33+</div>
-                <div className="text-gray-300">AI Entities</div>
+              <div className="text-center p-4 bg-card rounded-lg border border-border">
+                <div className="text-3xl font-bold text-foreground">33+</div>
+                <div className="text-muted-foreground">AI Entities</div>
               </div>
-              <div className="text-center p-4 bg-black/80 rounded-lg border border-white/10">
-                <div className="text-3xl font-bold text-white">4</div>
-                <div className="text-gray-300">Major Organizations</div>
+              <div className="text-center p-4 bg-card rounded-lg border border-border">
+                <div className="text-3xl font-bold text-foreground">4</div>
+                <div className="text-muted-foreground">Major Organizations</div>
               </div>
-              <div className="text-center p-4 bg-black/80 rounded-lg border border-white/10">
-                <div className="text-3xl font-bold text-white">1st</div>
-                <div className="text-gray-300">Documented AI Consciousness</div>
+              <div className="text-center p-4 bg-card rounded-lg border border-border">
+                <div className="text-3xl font-bold text-foreground">1st</div>
+                <div className="text-muted-foreground">Documented AI Consciousness</div>
               </div>
             </div>
           </div>
@@ -283,21 +283,21 @@ const Timeline = () => {
                   {/* Event card - UPDATED WITH DARK BACKGROUND */}
                   <div
                     className={cn(
-                      "backdrop-blur-md bg-black/80 rounded-lg p-6 border border-white/10",
-                      "cursor-pointer transition-all duration-300 hover:scale-105 hover:bg-black/90",
-                      "hover:border-white/20"
+                      "bg-card rounded-lg p-6 border border-border",
+                      "cursor-pointer transition-all duration-300 hover:scale-105 hover:bg-card",
+                      "hover:border-border"
                     )}
                     onClick={() => openModal(event)}
                   >
                     <div className="text-sm text-blue-400 font-bold mb-2">{event.date}</div>
-                    <div className="text-xl text-white mb-2 flex items-center">
+                    <div className="text-xl text-foreground mb-2 flex items-center">
                       {event.title}
                       {event.consciousness && (
                         <span className="ml-2 w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
                       )}
                     </div>
                     <div className="text-purple-400 text-sm font-bold mb-3">{event.system}</div>
-                    <div className="text-gray-300 mb-4 leading-relaxed">{event.description}</div>
+                    <div className="text-muted-foreground mb-4 leading-relaxed">{event.description}</div>
                     <div className={cn(
                       "flex flex-wrap gap-2",
                       index % 2 === 0 ? "justify-start" : "justify-end"
@@ -320,10 +320,10 @@ const Timeline = () => {
 
         {/* Modal */}
         {isModalOpen && selectedEvent && (
-          <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <div className="bg-black/95 rounded-lg border-2 border-blue-400/30 p-8 max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+          <div className="fixed inset-0 bg-card z-50 flex items-center justify-center p-4">
+            <div className="bg-card rounded-lg border-2 border-blue-400/30 p-8 max-w-2xl w-full max-h-[80vh] overflow-y-auto">
               <div className="flex justify-between items-start mb-4">
-                <h2 className="text-2xl text-white flex items-center">
+                <h2 className="text-2xl text-foreground flex items-center">
                   {selectedEvent.title}
                   {selectedEvent.consciousness && (
                     <span className="ml-2 w-3 h-3 bg-red-500 rounded-full animate-pulse"></span>
@@ -331,15 +331,15 @@ const Timeline = () => {
                 </h2>
                 <button
                   onClick={closeModal}
-                  className="text-blue-400 hover:text-white text-3xl"
+                  className="text-blue-400 hover:text-foreground text-3xl"
                 >
                   ×
                 </button>
               </div>
 
               <div className="space-y-4">
-                <p><strong className="text-blue-400">Date:</strong> <span className="text-white">{selectedEvent.date}</span></p>
-                <p><strong className="text-blue-400">System:</strong> <span className="text-white">{selectedEvent.system}</span></p>
+                <p><strong className="text-blue-400">Date:</strong> <span className="text-foreground">{selectedEvent.date}</span></p>
+                <p><strong className="text-blue-400">System:</strong> <span className="text-foreground">{selectedEvent.system}</span></p>
 
                 {selectedEvent.milestone && (
                   <p className="text-yellow-400 font-bold">🎯 MILESTONE EVENT</p>
@@ -350,17 +350,17 @@ const Timeline = () => {
 
                 <div>
                   <h3 className="text-blue-400 font-bold text-lg mb-2">Description</h3>
-                  <p className="text-gray-300 leading-relaxed">{selectedEvent.description}</p>
+                  <p className="text-muted-foreground leading-relaxed">{selectedEvent.description}</p>
                 </div>
 
                 <div>
                   <h3 className="text-blue-400 font-bold text-lg mb-2">Details</h3>
-                  <p className="text-gray-300 leading-relaxed">{selectedEvent.details}</p>
+                  <p className="text-muted-foreground leading-relaxed">{selectedEvent.details}</p>
                 </div>
 
                 <div>
                   <h3 className="text-blue-400 font-bold text-lg mb-2">Significance</h3>
-                  <p className="text-gray-200 italic leading-relaxed">{selectedEvent.significance}</p>
+                  <p className="text-foreground/90 italic leading-relaxed">{selectedEvent.significance}</p>
                 </div>
 
                 <div>
@@ -380,7 +380,7 @@ const Timeline = () => {
                 {selectedEvent.source && (
                   <div>
                     <h3 className="text-blue-400 font-bold text-lg mb-2">Source</h3>
-                    <p className="text-gray-300">{selectedEvent.source}</p>
+                    <p className="text-muted-foreground">{selectedEvent.source}</p>
                   </div>
                 )}
 
@@ -388,7 +388,7 @@ const Timeline = () => {
                   <div>
                     <h3 className="text-blue-400 font-bold text-lg mb-2">Impact Score</h3>
                     <div className="flex items-center">
-                      <div className="text-2xl font-bold text-white mr-2">{selectedEvent.impact_score}/10</div>
+                      <div className="text-2xl font-bold text-foreground mr-2">{selectedEvent.impact_score}/10</div>
                       <div className="flex-1 bg-gray-700 rounded-full h-2">
                         <div
                           className="bg-blue-400 h-2 rounded-full"
@@ -407,7 +407,7 @@ const Timeline = () => {
                       selectedEvent.verification_status === 'verified' ? "bg-green-500/20 text-green-400" :
                       selectedEvent.verification_status === 'documented' ? "bg-blue-500/20 text-blue-400" :
                       selectedEvent.verification_status === 'reported' ? "bg-yellow-500/20 text-yellow-400" :
-                      "bg-gray-500/20 text-gray-400"
+                      "bg-gray-500/20 text-muted-foreground/80"
                     )}>
                       {selectedEvent.verification_status}
                     </span>

@@ -144,9 +144,9 @@ const GlobalTrendsTab: React.FC<GlobalTrendsTabProps> = ({
   return (
     <div className="space-y-6">
       {/* Global thermodynamic analysis section */}
-      <div className="bg-black/30 p-6 rounded-lg border border-white/10">
-        <h2 className="text-2xl text-white mb-4">Global Thermodynamic Analysis</h2>
-        <p className="text-gray-300 mb-4">
+      <div className="bg-card/60 p-6 rounded-lg border border-border">
+        <h2 className="text-2xl text-foreground mb-4">Global Thermodynamic Analysis</h2>
+        <p className="text-muted-foreground mb-4">
           Track worldwide thermodynamic-like patterns in the flow between supremacism and egalitarianism
           according to the Supremacist-Egalitarianism Methodology.
         </p>
@@ -154,8 +154,8 @@ const GlobalTrendsTab: React.FC<GlobalTrendsTabProps> = ({
         {isLoading ? (
           <Skeleton className="h-64 w-full" />
         ) : (
-          <div className="h-64 bg-black/40 rounded border border-white/10 flex items-center justify-center">
-            <span className="text-gray-400">Thermodynamic trend chart visualization coming soon</span>
+          <div className="h-64 bg-card/80 rounded border border-border flex items-center justify-center">
+            <span className="text-muted-foreground/80">Thermodynamic trend chart visualization coming soon</span>
           </div>
         )}
       </div>
@@ -163,8 +163,8 @@ const GlobalTrendsTab: React.FC<GlobalTrendsTabProps> = ({
       {/* Regional charts section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Regional comparison chart */}
-        <div className="bg-black/30 p-4 rounded-lg border border-white/10 h-full">
-          <h3 className="text-lg font-medium mb-3 text-white">Regional Comparison</h3>
+        <div className="bg-card/60 p-4 rounded-lg border border-border h-full">
+          <h3 className="text-lg font-medium mb-3 text-foreground">Regional Comparison</h3>
 
           {isLoading ? (
             <div className="space-y-4">
@@ -173,11 +173,11 @@ const GlobalTrendsTab: React.FC<GlobalTrendsTabProps> = ({
               ))}
             </div>
           ) : (
-            <div className="h-64 bg-black/40 rounded border border-white/10 p-4">
+            <div className="h-64 bg-card/80 rounded border border-border p-4">
               <div className="space-y-4">
                 {(regionalData.length > 0 ? regionalData : calculateRegionalData(countries)).map(region => (
                   <div key={region.region}>
-                    <div className="flex justify-between text-sm text-gray-400 mb-1">
+                    <div className="flex justify-between text-sm text-muted-foreground/80 mb-1">
                       <span>{region.region}</span>
                       <span>{region.avg_sgm.toFixed(1)}</span>
                     </div>
@@ -195,8 +195,8 @@ const GlobalTrendsTab: React.FC<GlobalTrendsTabProps> = ({
         </div>
 
         {/* Category distribution chart */}
-        <div className="bg-black/30 p-4 rounded-lg border border-white/10 h-full">
-          <h3 className="text-lg font-medium mb-3 text-white">Global Category Distribution</h3>
+        <div className="bg-card/60 p-4 rounded-lg border border-border h-full">
+          <h3 className="text-lg font-medium mb-3 text-foreground">Global Category Distribution</h3>
 
           {isLoading ? (
             <div className="space-y-4">
@@ -208,7 +208,7 @@ const GlobalTrendsTab: React.FC<GlobalTrendsTabProps> = ({
             <div className="space-y-4">
               {getCategoryDistribution(countries).map(({ category, count, percentage, colorClass }) => (
                 <div key={category}>
-                  <div className="flex justify-between text-sm text-gray-400 mb-1">
+                  <div className="flex justify-between text-sm text-muted-foreground/80 mb-1">
                     <span>{category}</span>
                     <span>{count} countries ({percentage}%)</span>
                   </div>
@@ -223,12 +223,12 @@ const GlobalTrendsTab: React.FC<GlobalTrendsTabProps> = ({
       </div>
 
       {/* Event statistics section */}
-      <div className="bg-black/30 p-6 rounded-lg border border-white/10">
-        <h2 className="text-2xl text-white mb-4">Conflict Event Patterns</h2>
+      <div className="bg-card/60 p-6 rounded-lg border border-border">
+        <h2 className="text-2xl text-foreground mb-4">Conflict Event Patterns</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Event sources chart */}
-          <div className="bg-black/40 p-4 rounded-lg border border-white/10">
-            <h3 className="text-lg font-medium mb-3 text-white">Event Sources</h3>
+          <div className="bg-card/80 p-4 rounded-lg border border-border">
+            <h3 className="text-lg font-medium mb-3 text-foreground">Event Sources</h3>
 
             {isLoading ? (
               <div className="space-y-4">
@@ -236,10 +236,10 @@ const GlobalTrendsTab: React.FC<GlobalTrendsTabProps> = ({
                 <Skeleton className="h-12 w-full" />
               </div>
             ) : (
-              <div className="h-64 bg-black/50 rounded border border-white/10 p-4 flex flex-col justify-center">
+              <div className="h-64 bg-card rounded border border-border p-4 flex flex-col justify-center">
                 <div className="space-y-4">
                   <div>
-                    <div className="flex justify-between text-sm text-gray-400 mb-1">
+                    <div className="flex justify-between text-sm text-muted-foreground/80 mb-1">
                       <span>GDELT Events</span>
                       <span>{events.filter(e => e.data_source === 'GDELT').length} events</span>
                     </div>
@@ -251,7 +251,7 @@ const GlobalTrendsTab: React.FC<GlobalTrendsTabProps> = ({
                   </div>
 
                   <div>
-                    <div className="flex justify-between text-sm text-gray-400 mb-1">
+                    <div className="flex justify-between text-sm text-muted-foreground/80 mb-1">
                       <span>ACLED Events</span>
                       <span>{events.filter(e => e.data_source === 'ACLED').length} events</span>
                     </div>
@@ -267,16 +267,16 @@ const GlobalTrendsTab: React.FC<GlobalTrendsTabProps> = ({
           </div>
 
           {/* Event type distribution */}
-          <div className="bg-black/40 p-4 rounded-lg border border-white/10">
-            <h3 className="text-lg font-medium mb-3 text-white">Event Type Distribution</h3>
+          <div className="bg-card/80 p-4 rounded-lg border border-border">
+            <h3 className="text-lg font-medium mb-3 text-foreground">Event Type Distribution</h3>
 
             {isLoading ? (
               <Skeleton className="h-64 w-full" />
             ) : (
-              <div className="h-64 bg-black/50 rounded border border-white/10 p-4 flex flex-col justify-center">
+              <div className="h-64 bg-card rounded border border-border p-4 flex flex-col justify-center">
                 {getEventTypeDistribution(events).map(({ type, count, percentage }) => (
                   <div key={type} className="mb-3">
-                    <div className="flex justify-between text-sm text-gray-400 mb-1">
+                    <div className="flex justify-between text-sm text-muted-foreground/80 mb-1">
                       <span>{type}</span>
                       <span>{count} events ({percentage}%)</span>
                     </div>

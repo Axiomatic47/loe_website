@@ -43,8 +43,8 @@ const BlurPanel = ({
     <div
       className={cn(
         "relative rounded-lg p-8 sm:p-12",
-        "backdrop-blur-md bg-black/80",
-        "border border-white/10",
+        "bg-card",
+        "border border-border",
         "shadow-xl",
         className
       )}
@@ -322,7 +322,7 @@ const WorldMap = () => {
         <BlurPanel>
           <Button
             variant="ghost"
-            className="text-white mb-8 hover:bg-white/10"
+            className="text-foreground mb-8 hover:bg-secondary/60"
             onClick={() => navigate("/")}
           >
             ← Back to Home
@@ -331,15 +331,15 @@ const WorldMap = () => {
           {/* Header section with title and action buttons */}
           <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
             <div>
-              <h1 className="text-4xl font-serif text-white drop-shadow-lg">Global Conflict & Supremacism Map</h1>
-              <p className="text-gray-300 mt-2">Explore the relationship between conflict events and supremacist governance</p>
+              <h1 className="text-4xl font-serif text-foreground">Global Conflict & Supremacism Map</h1>
+              <p className="text-muted-foreground mt-2">Explore the relationship between conflict events and supremacist governance</p>
             </div>
 
             <div className="flex flex-wrap gap-3 justify-center">
               {/* Main data refresh button */}
               <Button
                 variant="outline"
-                className="bg-black/50 text-white border-white/20"
+                className="bg-card text-foreground border-border"
                 onClick={loadAllData}
                 disabled={isLoading || isGdeltAnalysisRunning || isAcledFetchRunning}
               >
@@ -359,7 +359,7 @@ const WorldMap = () => {
               {/* GDELT Analysis Button */}
               <Button
                 variant="outline"
-                className="bg-black/50 text-white border-white/20"
+                className="bg-card text-foreground border-border"
                 onClick={startGdeltAnalysis}
                 disabled={isLoading || isGdeltAnalysisRunning || isAcledFetchRunning}
               >
@@ -379,7 +379,7 @@ const WorldMap = () => {
               {/* ACLED Fetch Button */}
               <Button
                 variant="outline"
-                className="bg-black/50 text-white border-white/20"
+                className="bg-card text-foreground border-border"
                 onClick={startAcledFetch}
                 disabled={isLoading || isGdeltAnalysisRunning || isAcledFetchRunning}
               >
@@ -399,7 +399,7 @@ const WorldMap = () => {
               {/* Methodology document button */}
               <Button
                 variant="outline"
-                className="bg-black/50 text-white border-white/20"
+                className="bg-card text-foreground border-border"
               >
                 <FileText className="mr-2 h-4 w-4" />
                 Methodology
@@ -418,7 +418,7 @@ const WorldMap = () => {
               ) : (
                 <Button
                   variant="outline"
-                  className="bg-black/50 text-white border-white/20"
+                  className="bg-card text-foreground border-border"
                   onClick={login}
                 >
                   <LogIn className="mr-2 h-4 w-4" />
@@ -430,20 +430,20 @@ const WorldMap = () => {
 
           {/* Error and status alerts */}
           {error ? (
-            <Alert className="bg-black/40 border-red-400 mb-6">
+            <Alert className="bg-card/80 border-red-400 mb-6">
               <Info className="h-4 w-4" />
-              <AlertTitle className="text-white">Data Loading Error</AlertTitle>
-              <AlertDescription className="text-gray-300">
+              <AlertTitle className="text-foreground">Data Loading Error</AlertTitle>
+              <AlertDescription className="text-muted-foreground">
                 {error}
               </AlertDescription>
             </Alert>
           ) : (
             <>
               {lastUpdated && (
-                <Alert className="bg-black/40 border-white/20 mb-6">
+                <Alert className="bg-card/80 border-border mb-6">
                   <Info className="h-4 w-4" />
-                  <AlertTitle className="text-white">Data Status</AlertTitle>
-                  <AlertDescription className="text-gray-300">
+                  <AlertTitle className="text-foreground">Data Status</AlertTitle>
+                  <AlertDescription className="text-muted-foreground">
                     Data was last refreshed on {lastUpdated.toLocaleDateString()} at {lastUpdated.toLocaleTimeString()}.
                     {countries.length > 0 && events.length > 0 && (
                       <> Showing {countries.length} countries and {events.length} conflict events.</>
@@ -456,14 +456,14 @@ const WorldMap = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                 <div className="flex items-center space-x-2">
                   <Switch id="show-countries" checked={showCountries} onCheckedChange={setShowCountries} />
-                  <Label htmlFor="show-countries" className="text-white flex items-center">
+                  <Label htmlFor="show-countries" className="text-foreground flex items-center">
                     Show Countries
                     <Badge className="ml-2 bg-blue-500" variant="outline">{countries.length}</Badge>
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Switch id="show-ucdp" checked={showUCDP} onCheckedChange={setShowUCDP} />
-                  <Label htmlFor="show-ucdp" className="text-white flex items-center">
+                  <Label htmlFor="show-ucdp" className="text-foreground flex items-center">
                     Show UCDP Events
                     <Badge className="ml-2 bg-purple-500" variant="outline">
                       {events.filter(e => e.data_source === 'UCDP').length}
@@ -472,7 +472,7 @@ const WorldMap = () => {
                 </div>
                 <div className="flex items-center space-x-2">
                   <Switch id="show-gdelt" checked={showGDELT} onCheckedChange={setShowGDELT} />
-                  <Label htmlFor="show-gdelt" className="text-white flex items-center">
+                  <Label htmlFor="show-gdelt" className="text-foreground flex items-center">
                     Show GDELT Events
                     <Badge className="ml-2 bg-orange-500" variant="outline">
                       {events.filter(e => e.data_source === 'GDELT').length}
@@ -481,7 +481,7 @@ const WorldMap = () => {
                 </div>
                 <div className="flex items-center space-x-2">
                   <Switch id="show-acled" checked={showACLED} onCheckedChange={setShowACLED} />
-                  <Label htmlFor="show-acled" className="text-white flex items-center">
+                  <Label htmlFor="show-acled" className="text-foreground flex items-center">
                     Show ACLED Events
                     <Badge className="ml-2 bg-red-500" variant="outline">
                       {events.filter(e => e.data_source === 'ACLED').length}
@@ -492,7 +492,7 @@ const WorldMap = () => {
 
               {/* Main content tabs */}
               <Tabs defaultValue="map" className="w-full">
-                <TabsList className="w-full bg-black/40 border border-white/10 mb-6">
+                <TabsList className="w-full bg-card/80 border border-border mb-6">
                   <TabsTrigger value="map" className="flex-1">World Map</TabsTrigger>
                   {isAuthenticated && (
                     <TabsTrigger value="simulation" className="flex-1">Simulation</TabsTrigger>
@@ -529,15 +529,15 @@ const WorldMap = () => {
                       isLoading={isLoading}
                     />
                   ) : (
-                    <div className="bg-black/30 p-12 rounded-lg border border-white/10 text-center">
-                      <Lock className="h-16 w-16 text-gray-500 mx-auto mb-4" />
-                      <h3 className="text-2xl font-serif text-white mb-2">Authentication Required</h3>
-                      <p className="text-gray-400 mb-6 max-w-md mx-auto">
+                    <div className="bg-card/60 p-12 rounded-lg border border-border text-center">
+                      <Lock className="h-16 w-16 text-muted-foreground/70 mx-auto mb-4" />
+                      <h3 className="text-2xl font-serif text-foreground mb-2">Authentication Required</h3>
+                      <p className="text-muted-foreground/80 mb-6 max-w-md mx-auto">
                         The Simulation feature requires authentication. Please log in to access the coherence projection simulator.
                       </p>
                       <Button
                         onClick={login}
-                        className="bg-purple-600 hover:bg-purple-700 text-white"
+                        className="bg-purple-600 hover:bg-purple-700 text-foreground"
                       >
                         <LogIn className="h-4 w-4 mr-2" />
                         Log In to Access

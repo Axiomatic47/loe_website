@@ -17,8 +17,8 @@ const BlurPanel = ({
     <div
       className={cn(
         "relative rounded-lg p-8 sm:p-12",
-        "backdrop-blur-md bg-black/80",
-        "border border-white/10",
+        "bg-card",
+        "border border-border",
         "shadow-xl",
         className
       )}
@@ -29,9 +29,9 @@ const BlurPanel = ({
 };
 
 const PartnerSection = ({ title, description }: { title: string; description: string }) => (
-  <div className="p-6 rounded-lg bg-black/50 border border-white/20 h-full">
-    <h2 className="text-2xl mb-4 text-white drop-shadow">{title}</h2>
-    <p className="text-gray-300">
+  <div className="p-6 rounded-lg bg-card border border-border h-full">
+    <h2 className="text-2xl mb-4 text-foreground">{title}</h2>
+    <p className="text-muted-foreground">
       {description}
     </p>
   </div>
@@ -46,13 +46,13 @@ const Partners = () => {
         <BlurPanel>
           <Button
             variant="ghost"
-            className="text-white mb-8 hover:bg-white/10"
+            className="text-foreground mb-8 hover:bg-secondary/60"
             onClick={() => navigate("/")}
           >
             ← Back to Home
           </Button>
 
-          <h1 className="text-4xl font-serif mb-8 text-white drop-shadow-lg">Our Partners</h1>
+          <h1 className="text-4xl font-serif mb-8 text-foreground">Our Partners</h1>
 
           <div className="max-w-5xl mx-auto">
             <div className="grid md:grid-cols-2 gap-8">

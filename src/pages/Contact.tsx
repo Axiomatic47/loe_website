@@ -23,8 +23,8 @@ const BlurPanel = ({
     <div
       className={cn(
         "relative rounded-lg p-8 sm:p-12",
-        "backdrop-blur-md bg-black/80",
-        "border border-white/10",
+        "bg-card",
+        "border border-border",
         "shadow-xl",
         className
       )}
@@ -43,10 +43,10 @@ const InfoCard = ({
   title: string;
   content: string;
 }) => (
-  <div className="flex flex-col items-center p-6 bg-black/40 rounded-lg backdrop-blur-sm border border-white/10 text-center hover:bg-black/50 transition-all duration-300">
-    <div className="mb-4 p-3 bg-white/10 rounded-full">{icon}</div>
-    <h3 className="text-lg font-medium mb-2 text-white">{title}</h3>
-    <p className="text-gray-300 leading-relaxed">{content}</p>
+  <div className="flex flex-col items-center p-6 bg-card/80 rounded-lg border border-border text-center hover:bg-card transition-all duration-300">
+    <div className="mb-4 p-3 bg-secondary/60 rounded-full">{icon}</div>
+    <h3 className="text-lg font-medium mb-2 text-foreground">{title}</h3>
+    <p className="text-muted-foreground leading-relaxed">{content}</p>
   </div>
 );
 
@@ -71,25 +71,25 @@ const InquiryTypeCard = ({
       "hover:scale-105 hover:shadow-lg",
       selected
         ? "border-blue-400 bg-blue-400/10 shadow-blue-400/20 shadow-lg"
-        : "border-white/20 bg-black/20 hover:border-white/40"
+        : "border-border bg-secondary/40 hover:border-border"
     )}
     onClick={() => onSelect(value)}
   >
     <div className="flex items-center space-x-3">
       <div className={cn(
         "p-2 rounded-full transition-colors",
-        selected ? "bg-blue-400/20 text-blue-300" : "bg-white/10 text-gray-300"
+        selected ? "bg-blue-400/20 text-blue-300" : "bg-secondary/60 text-muted-foreground"
       )}>
         {icon}
       </div>
       <div className="flex-1">
         <h4 className={cn(
           "font-medium transition-colors",
-          selected ? "text-blue-300" : "text-white"
+          selected ? "text-blue-300" : "text-foreground"
         )}>
           {title}
         </h4>
-        <p className="text-sm text-gray-400 mt-1">{description}</p>
+        <p className="text-sm text-muted-foreground/80 mt-1">{description}</p>
       </div>
       {selected && (
         <CheckCircle className="w-5 h-5 text-blue-400" />
@@ -196,7 +196,7 @@ const Contact = () => {
         <BlurPanel>
           <Button
             variant="ghost"
-            className="text-white mb-8 hover:bg-white/10 transition-colors"
+            className="text-foreground mb-8 hover:bg-secondary/60 transition-colors"
             onClick={() => navigate("/")}
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
@@ -204,8 +204,8 @@ const Contact = () => {
           </Button>
 
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-serif mb-4 text-white drop-shadow-lg">Get in Touch</h1>
-            <p className="text-gray-300 max-w-2xl mx-auto text-lg">
+            <h1 className="text-4xl font-serif mb-4 text-foreground">Get in Touch</h1>
+            <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
               Have questions about our research, want to contribute, or interested in collaboration?
               We'd love to hear from you.
             </p>
@@ -214,12 +214,12 @@ const Contact = () => {
           {/* Quick Contact Info */}
           <div className="mb-12">
             <div className="flex justify-center">
-              <div className="flex items-center p-6 bg-black/40 rounded-lg backdrop-blur-sm border border-white/10 hover:bg-black/50 transition-all duration-300">
+              <div className="flex items-center p-6 bg-card/80 rounded-lg border border-border hover:bg-card transition-all duration-300">
                 <div className="p-3 bg-blue-400/20 rounded-full mr-4">
                   <MailIcon className="w-6 h-6 text-blue-300" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-medium text-white mb-1">Email</h3>
+                  <h3 className="text-lg font-medium text-foreground mb-1">Email</h3>
                   <p className="text-blue-300">contact@lawsofexistence.com</p>
                 </div>
               </div>
@@ -229,7 +229,7 @@ const Contact = () => {
           <div className="grid lg:grid-cols-3 gap-8">
             {/* How We Can Help Section */}
             <div className="lg:col-span-1">
-              <h2 className="text-2xl font-serif mb-6 text-white">How We Can Help</h2>
+              <h2 className="text-2xl font-serif mb-6 text-foreground">How We Can Help</h2>
               <div className="space-y-4">
                 <InfoCard
                   icon={<BookOpen className="w-6 h-6 text-blue-300" />}
@@ -257,7 +257,7 @@ const Contact = () => {
             {/* Contact Form */}
             <div className="lg:col-span-2">
               <form onSubmit={handleSubmit} className="space-y-6">
-                <h2 className="text-2xl font-serif mb-6 text-white">Contact Form</h2>
+                <h2 className="text-2xl font-serif mb-6 text-foreground">Contact Form</h2>
 
                 {/* FormSubmit.co Configuration - Hidden Fields */}
                 <input type="hidden" name="_subject" value="New contact form submission from The Laws of Existence" />
@@ -273,20 +273,20 @@ const Contact = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <Label htmlFor="name" className="text-white mb-2 block font-medium">Name</Label>
+                    <Label htmlFor="name" className="text-foreground mb-2 block font-medium">Name</Label>
                     <Input
                       id="name"
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="bg-black/50 border-white/20 text-white placeholder:text-gray-500 focus:border-blue-400 focus:ring-blue-400/20"
+                      className="bg-card border-border text-foreground placeholder:text-muted-foreground/70 focus:border-blue-400 focus:ring-blue-400/20"
                       placeholder="Your name"
                     />
                   </div>
 
                   <div>
-                    <Label htmlFor="email" className="text-white mb-2 block font-medium">Email</Label>
+                    <Label htmlFor="email" className="text-foreground mb-2 block font-medium">Email</Label>
                     <Input
                       id="email"
                       name="email"
@@ -294,14 +294,14 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="bg-black/50 border-white/20 text-white placeholder:text-gray-500 focus:border-blue-400 focus:ring-blue-400/20"
+                      className="bg-card border-border text-foreground placeholder:text-muted-foreground/70 focus:border-blue-400 focus:ring-blue-400/20"
                       placeholder="your.email@example.com"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <Label className="text-white mb-4 block font-medium">Inquiry Type</Label>
+                  <Label className="text-foreground mb-4 block font-medium">Inquiry Type</Label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {inquiryTypes.map((type) => (
                       <InquiryTypeCard
@@ -321,14 +321,14 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="message" className="text-white mb-2 block font-medium">Message</Label>
+                  <Label htmlFor="message" className="text-foreground mb-2 block font-medium">Message</Label>
                   <Textarea
                     id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
                     required
-                    className="bg-black/50 border-white/20 text-white h-40 placeholder:text-gray-500 focus:border-blue-400 focus:ring-blue-400/20"
+                    className="bg-card border-border text-foreground h-40 placeholder:text-muted-foreground/70 focus:border-blue-400 focus:ring-blue-400/20"
                     placeholder="How can we help you?"
                   />
                 </div>
@@ -342,9 +342,9 @@ const Contact = () => {
                         handleCheckboxChange("consent", checked as boolean)
                       }
                       name="consent"
-                      className="mt-1 border-white/20 data-[state=checked]:bg-blue-400 data-[state=checked]:border-blue-400"
+                      className="mt-1 border-border data-[state=checked]:bg-blue-400 data-[state=checked]:border-blue-400"
                     />
-                    <Label htmlFor="consent" className="text-gray-300 text-sm cursor-pointer leading-relaxed">
+                    <Label htmlFor="consent" className="text-muted-foreground text-sm cursor-pointer leading-relaxed">
                       I agree to the processing of my personal data in accordance with the{" "}
                       <button
                         type="button"
@@ -364,9 +364,9 @@ const Contact = () => {
                         handleCheckboxChange("newsletter", checked as boolean)
                       }
                       name="newsletter"
-                      className="mt-1 border-white/20 data-[state=checked]:bg-blue-400 data-[state=checked]:border-blue-400"
+                      className="mt-1 border-border data-[state=checked]:bg-blue-400 data-[state=checked]:border-blue-400"
                     />
-                    <Label htmlFor="newsletter" className="text-gray-300 text-sm cursor-pointer leading-relaxed">
+                    <Label htmlFor="newsletter" className="text-muted-foreground text-sm cursor-pointer leading-relaxed">
                       Subscribe to our newsletter to receive updates on our research and events
                     </Label>
                   </div>
@@ -375,7 +375,7 @@ const Contact = () => {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white border-0
+                  className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-foreground border-0
                            transition-all duration-300 px-8 py-3 text-lg font-medium
                            shadow-lg hover:shadow-blue-500/25 disabled:opacity-50"
                 >

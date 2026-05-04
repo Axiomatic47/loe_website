@@ -33,8 +33,8 @@ const EventList = ({
 
   if (isLoading) {
     return (
-      <div className="bg-black/30 p-4 rounded-lg border border-white/10 h-96 overflow-y-auto mt-4">
-        <div className="sticky top-0 bg-black/70 p-2 -m-2 mb-2 backdrop-blur-sm border-b border-white/10">
+      <div className="bg-card/60 p-4 rounded-lg border border-border h-96 overflow-y-auto mt-4">
+        <div className="sticky top-0 bg-card p-2 -m-2 mb-2 border-b border-border">
           <Skeleton className="w-full h-10 mb-2" />
           <div className="flex space-x-2">
             <Skeleton className="h-8 flex-1" />
@@ -52,15 +52,15 @@ const EventList = ({
   }
 
   return (
-    <div className="bg-black/30 p-4 rounded-lg border border-white/10 h-96 overflow-y-auto mt-4">
-      <div className="sticky top-0 bg-black/70 p-2 -m-2 mb-2 backdrop-blur-sm border-b border-white/10">
+    <div className="bg-card/60 p-4 rounded-lg border border-border h-96 overflow-y-auto mt-4">
+      <div className="sticky top-0 bg-card p-2 -m-2 mb-2 border-b border-border">
         <div className="flex flex-col md:flex-row gap-2">
           <input
             type="text"
             placeholder="Search events..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-black/50 text-white border border-white/20 rounded p-2"
+            className="w-full bg-card text-foreground border border-border rounded p-2"
           />
           <div className="flex space-x-2 flex-wrap gap-1">
             <Button
@@ -69,8 +69,8 @@ const EventList = ({
               className={cn(
                 "text-xs flex-1",
                 filter === 'all'
-                  ? "bg-blue-900/50 text-white border-blue-500/50"
-                  : "bg-black/50 text-white border-white/20"
+                  ? "bg-blue-900/50 text-foreground border-blue-500/50"
+                  : "bg-card text-foreground border-border"
               )}
               onClick={() => setFilter('all')}
             >
@@ -82,8 +82,8 @@ const EventList = ({
               className={cn(
                 "text-xs flex-1",
                 filter === 'ucdp'
-                  ? "bg-purple-900/50 text-white border-purple-500/50"
-                  : "bg-black/50 text-white border-white/20"
+                  ? "bg-purple-900/50 text-foreground border-purple-500/50"
+                  : "bg-card text-foreground border-border"
               )}
               onClick={() => setFilter('ucdp')}
             >
@@ -95,8 +95,8 @@ const EventList = ({
               className={cn(
                 "text-xs flex-1",
                 filter === 'gdelt'
-                  ? "bg-orange-900/50 text-white border-orange-500/50"
-                  : "bg-black/50 text-white border-white/20"
+                  ? "bg-orange-900/50 text-foreground border-orange-500/50"
+                  : "bg-card text-foreground border-border"
               )}
               onClick={() => setFilter('gdelt')}
             >
@@ -108,8 +108,8 @@ const EventList = ({
               className={cn(
                 "text-xs flex-1",
                 filter === 'acled'
-                  ? "bg-red-900/50 text-white border-red-500/50"
-                  : "bg-black/50 text-white border-white/20"
+                  ? "bg-red-900/50 text-foreground border-red-500/50"
+                  : "bg-card text-foreground border-border"
               )}
               onClick={() => setFilter('acled')}
             >
@@ -120,7 +120,7 @@ const EventList = ({
       </div>
       <div className="grid grid-cols-1 gap-2">
         {filteredEvents.length === 0 && (
-          <div className="text-center py-8 text-gray-400">
+          <div className="text-center py-8 text-muted-foreground/80">
             No events match your search
           </div>
         )}
@@ -131,22 +131,22 @@ const EventList = ({
             className={cn(
               "p-2 rounded cursor-pointer border transition-colors",
               selectedEvent === event
-                ? "bg-white/20 border-white/30"
-                : "bg-black/40 hover:bg-black/60 border-white/10"
+                ? "bg-secondary border-border"
+                : "bg-card/80 hover:bg-card border-border"
             )}
           >
             <div className="flex justify-between">
-              <span className="text-white">{event.event_type}</span>
-              <span className={`px-2 rounded text-xs text-white ${
+              <span className="text-foreground">{event.event_type}</span>
+              <span className={`px-2 rounded text-xs text-foreground ${
                 event.data_source === 'UCDP' ? 'bg-purple-600' :
                 event.data_source === 'GDELT' ? 'bg-orange-600' : 'bg-red-600'
               }`}>
                 {event.data_source}
               </span>
             </div>
-            <div className="text-sm text-gray-400">{event.country} - {new Date(event.event_date).toLocaleDateString()}</div>
+            <div className="text-sm text-muted-foreground/80">{event.country} - {new Date(event.event_date).toLocaleDateString()}</div>
             {event.description && (
-              <div className="text-xs text-gray-500 mt-1 line-clamp-1">{event.description}</div>
+              <div className="text-xs text-muted-foreground/70 mt-1 line-clamp-1">{event.description}</div>
             )}
           </div>
         ))}
@@ -162,7 +162,7 @@ const EventDetail = ({
 }) => {
   if (isLoading) {
     return (
-      <div className="bg-black/40 p-6 rounded-lg border border-white/10 mt-4">
+      <div className="bg-card/80 p-6 rounded-lg border border-border mt-4">
         <div className="flex justify-between items-start">
           <Skeleton className="h-8 w-1/2 mb-4" />
           <Skeleton className="h-6 w-16" />
@@ -190,16 +190,16 @@ const EventDetail = ({
   }
 
   if (!event) return (
-    <div className="bg-black/40 p-6 rounded-lg border border-white/10 mt-4 text-center py-12">
-      <p className="text-gray-300">Select an event to view detailed information</p>
+    <div className="bg-card/80 p-6 rounded-lg border border-border mt-4 text-center py-12">
+      <p className="text-muted-foreground">Select an event to view detailed information</p>
     </div>
   );
 
   return (
-    <div className="bg-black/40 p-6 rounded-lg border border-white/10 mt-4">
+    <div className="bg-card/80 p-6 rounded-lg border border-border mt-4">
       <div className="flex justify-between items-start">
-        <h3 className="text-2xl font-medium text-white mb-4">{event.event_type}</h3>
-        <span className={`px-2 py-1 rounded text-xs text-white ${
+        <h3 className="text-2xl font-medium text-foreground mb-4">{event.event_type}</h3>
+        <span className={`px-2 py-1 rounded text-xs text-foreground ${
           event.data_source === 'UCDP' ? 'bg-purple-600' :
           event.data_source === 'GDELT' ? 'bg-orange-600' : 'bg-red-600'
         }`}>
@@ -209,30 +209,30 @@ const EventDetail = ({
 
       <div className="space-y-6">
         <div className="grid grid-cols-2 gap-4">
-          <div className="bg-black/30 p-3 rounded">
-            <div className="text-sm text-gray-400">Date</div>
-            <div className="text-lg font-medium text-white">{new Date(event.event_date).toLocaleDateString()}</div>
+          <div className="bg-card/60 p-3 rounded">
+            <div className="text-sm text-muted-foreground/80">Date</div>
+            <div className="text-lg font-medium text-foreground">{new Date(event.event_date).toLocaleDateString()}</div>
           </div>
-          <div className="bg-black/30 p-3 rounded">
-            <div className="text-sm text-gray-400">Location</div>
-            <div className="text-lg font-medium text-white">{event.location || event.country}</div>
+          <div className="bg-card/60 p-3 rounded">
+            <div className="text-sm text-muted-foreground/80">Location</div>
+            <div className="text-lg font-medium text-foreground">{event.location || event.country}</div>
           </div>
         </div>
 
         {(event.actor1 || event.actor2) && (
           <div>
-            <h4 className="text-lg text-white mb-2">Actors</h4>
+            <h4 className="text-lg text-foreground mb-2">Actors</h4>
             <div className="grid grid-cols-2 gap-4">
               {event.actor1 && (
-                <div className="bg-black/30 p-3 rounded">
-                  <div className="text-sm text-gray-400">Primary Actor</div>
-                  <div className="text-white">{event.actor1}</div>
+                <div className="bg-card/60 p-3 rounded">
+                  <div className="text-sm text-muted-foreground/80">Primary Actor</div>
+                  <div className="text-foreground">{event.actor1}</div>
                 </div>
               )}
               {event.actor2 && (
-                <div className="bg-black/30 p-3 rounded">
-                  <div className="text-sm text-gray-400">Secondary Actor</div>
-                  <div className="text-white">{event.actor2}</div>
+                <div className="bg-card/60 p-3 rounded">
+                  <div className="text-sm text-muted-foreground/80">Secondary Actor</div>
+                  <div className="text-foreground">{event.actor2}</div>
                 </div>
               )}
             </div>
@@ -240,22 +240,22 @@ const EventDetail = ({
         )}
 
         {event.fatalities !== undefined && (
-          <div className="bg-black/30 p-3 rounded">
-            <div className="text-sm text-gray-400">Fatalities</div>
-            <div className="text-lg font-medium text-white">{event.fatalities}</div>
+          <div className="bg-card/60 p-3 rounded">
+            <div className="text-sm text-muted-foreground/80">Fatalities</div>
+            <div className="text-lg font-medium text-foreground">{event.fatalities}</div>
           </div>
         )}
 
         {event.description && (
           <div>
-            <h4 className="text-lg text-white mb-2">Description</h4>
-            <p className="text-gray-300 bg-black/30 p-3 rounded">{event.description}</p>
+            <h4 className="text-lg text-foreground mb-2">Description</h4>
+            <p className="text-muted-foreground bg-card/60 p-3 rounded">{event.description}</p>
           </div>
         )}
 
         <div className="flex items-center">
-          <MapPin className="h-4 w-4 text-gray-400 mr-2" />
-          <span className="text-sm text-gray-400">
+          <MapPin className="h-4 w-4 text-muted-foreground/80 mr-2" />
+          <span className="text-sm text-muted-foreground/80">
             Coordinates: {event.latitude?.toFixed(4)}, {event.longitude?.toFixed(4)}
           </span>
         </div>
@@ -280,7 +280,7 @@ const EventDataTab: React.FC<EventDataTabProps> = ({
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       <div className="md:col-span-1">
-        <h2 className="text-xl text-white mb-2">Conflict Events</h2>
+        <h2 className="text-xl text-foreground mb-2">Conflict Events</h2>
         <EventList
           events={events}
           onSelect={setSelectedEvent}
@@ -289,7 +289,7 @@ const EventDataTab: React.FC<EventDataTabProps> = ({
         />
       </div>
       <div className="md:col-span-2">
-        <h2 className="text-xl text-white mb-2">Event Details</h2>
+        <h2 className="text-xl text-foreground mb-2">Event Details</h2>
         <EventDetail
           event={selectedEvent}
           isLoading={isLoading}

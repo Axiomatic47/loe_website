@@ -17,8 +17,8 @@ const BlurPanel = ({
     <div
       className={cn(
         "relative rounded-lg p-8 sm:p-12",
-        "backdrop-blur-md bg-black/80",
-        "border border-white/10",
+        "bg-card",
+        "border border-border",
         "shadow-xl",
         className
       )}
@@ -188,16 +188,16 @@ const PayPalDonationButton = ({
   }
 
   return (
-    <div className="bg-black/30 border border-white/20 rounded-lg p-4">
+    <div className="bg-card/60 border border-border rounded-lg p-4">
       <div className="text-center mb-4">
-        <div className="text-2xl font-bold text-white">${amount}</div>
-        <div className="text-sm text-gray-400">One-time donation</div>
+        <div className="text-2xl font-bold text-foreground">${amount}</div>
+        <div className="text-sm text-muted-foreground/80">One-time donation</div>
       </div>
 
       {isLoading && (
         <div className="text-center py-4">
           <div className="animate-spin h-6 w-6 border-2 border-blue-400 border-t-transparent rounded-full mx-auto mb-2"></div>
-          <p className="text-gray-400 text-sm">Loading PayPal...</p>
+          <p className="text-muted-foreground/80 text-sm">Loading PayPal...</p>
         </div>
       )}
 
@@ -307,15 +307,15 @@ const CustomAmountDonation = () => {
   }, [showPayPal, customAmount]);
 
   return (
-    <div className="bg-black/50 p-6 rounded-lg border border-white/20">
-      <h3 className="text-xl mb-4 text-white">Custom Amount</h3>
+    <div className="bg-card p-6 rounded-lg border border-border">
+      <h3 className="text-xl mb-4 text-foreground">Custom Amount</h3>
 
       {!showPayPal ? (
         <div className="flex gap-4">
           <input
             type="number"
             placeholder="Enter amount"
-            className="flex-1 px-4 py-2 bg-black/50 border border-white/20 rounded text-white
+            className="flex-1 px-4 py-2 bg-card border border-border rounded text-foreground
                        placeholder-gray-400 focus:outline-none focus:border-blue-400"
             value={customAmount}
             onChange={(e) => setCustomAmount(e.target.value)}
@@ -325,7 +325,7 @@ const CustomAmountDonation = () => {
           />
           <Button
             onClick={handleShowPayPal}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-6"
+            className="bg-blue-600 hover:bg-blue-700 text-foreground px-6"
           >
             Continue
           </Button>
@@ -333,8 +333,8 @@ const CustomAmountDonation = () => {
       ) : (
         <div>
           <div className="text-center mb-4">
-            <div className="text-2xl font-bold text-white">${customAmount}</div>
-            <div className="text-sm text-gray-400">Custom donation amount</div>
+            <div className="text-2xl font-bold text-foreground">${customAmount}</div>
+            <div className="text-sm text-muted-foreground/80">Custom donation amount</div>
           </div>
 
           {error && (
@@ -346,7 +346,7 @@ const CustomAmountDonation = () => {
           {isLoading && (
             <div className="text-center py-4">
               <div className="animate-spin h-6 w-6 border-2 border-blue-400 border-t-transparent rounded-full mx-auto mb-2"></div>
-              <p className="text-gray-400 text-sm">Loading PayPal...</p>
+              <p className="text-muted-foreground/80 text-sm">Loading PayPal...</p>
             </div>
           )}
 
@@ -354,7 +354,7 @@ const CustomAmountDonation = () => {
 
           <Button
             variant="outline"
-            className="w-full mt-4 text-gray-300 border-white/20"
+            className="w-full mt-4 text-muted-foreground border-border"
             onClick={() => {
               setShowPayPal(false);
               setIsLoading(false);
@@ -418,9 +418,9 @@ const Donate = () => {
         <div className="container mx-auto px-4 py-12 flex-grow">
           <BlurPanel>
             <div className="text-center">
-              <h1 className="text-3xl font-serif mb-6 text-white">Donation System Unavailable</h1>
-              <p className="text-gray-300 mb-6">{paypalError}</p>
-              <p className="text-gray-400">
+              <h1 className="text-3xl font-serif mb-6 text-foreground">Donation System Unavailable</h1>
+              <p className="text-muted-foreground mb-6">{paypalError}</p>
+              <p className="text-muted-foreground/80">
                 You can still support us by contacting{" "}
                 <a href="mailto:joseph@lawsofexistence.com" className="text-blue-400 hover:text-blue-300">
                   joseph@lawsofexistence.com
@@ -439,17 +439,17 @@ const Donate = () => {
         <BlurPanel>
           <Button
             variant="ghost"
-            className="text-white mb-8 hover:bg-white/10"
+            className="text-foreground mb-8 hover:bg-secondary/60"
             onClick={() => navigate("/")}
           >
             ← Back to Home
           </Button>
 
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-serif mb-6 text-white drop-shadow-lg">
+            <h1 className="text-4xl font-serif mb-6 text-foreground">
               Support the Laws of Existence Framework
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Help us share the unified mathematical framework for consciousness, ethics, and reality with the world.
               Your support enables continued research, development, and open access to this transformative work.
             </p>
@@ -460,13 +460,13 @@ const Donate = () => {
             {!paypalLoaded ? (
               <div className="text-center py-12">
                 <div className="animate-spin h-8 w-8 border-4 border-blue-400 border-t-transparent rounded-full mx-auto mb-4"></div>
-                <p className="text-gray-300">Loading donation system...</p>
+                <p className="text-muted-foreground">Loading donation system...</p>
               </div>
             ) : (
               <>
                 {/* Donation amounts */}
                 <div>
-                  <h2 className="text-2xl font-serif mb-6 text-white text-center">Choose an Amount</h2>
+                  <h2 className="text-2xl font-serif mb-6 text-foreground text-center">Choose an Amount</h2>
                   <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
                     <PayPalDonationButton
                       amount="25"
@@ -497,27 +497,27 @@ const Donate = () => {
             )}
 
             {/* Impact description */}
-            <div className="bg-black/50 p-8 rounded-lg border border-white/20">
-              <h2 className="text-2xl font-serif mb-6 text-white text-center">Your Impact</h2>
+            <div className="bg-card p-8 rounded-lg border border-border">
+              <h2 className="text-2xl font-serif mb-6 text-foreground text-center">Your Impact</h2>
               <div className="grid md:grid-cols-3 gap-6 text-center">
                 <div>
                   <div className="text-3xl mb-2">🧠</div>
-                  <h3 className="text-lg font-semibold text-white mb-2">Research & Development</h3>
-                  <p className="text-gray-300 text-sm">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">Research & Development</h3>
+                  <p className="text-muted-foreground text-sm">
                     Supporting continued research into consciousness, AI alignment, and the mathematical foundations of ethics.
                   </p>
                 </div>
                 <div>
                   <div className="text-3xl mb-2">📚</div>
-                  <h3 className="text-lg font-semibold text-white mb-2">Open Access</h3>
-                  <p className="text-gray-300 text-sm">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">Open Access</h3>
+                  <p className="text-muted-foreground text-sm">
                     Keeping the framework freely available to researchers, developers, and anyone seeking to understand consciousness.
                   </p>
                 </div>
                 <div>
                   <div className="text-3xl mb-2">🌍</div>
-                  <h3 className="text-lg font-semibold text-white mb-2">Global Implementation</h3>
-                  <p className="text-gray-300 text-sm">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">Global Implementation</h3>
+                  <p className="text-muted-foreground text-sm">
                     Enabling implementation of the framework in AI systems worldwide for better alignment and consciousness recognition.
                   </p>
                 </div>
@@ -525,9 +525,9 @@ const Donate = () => {
             </div>
 
             {/* Alternative support methods */}
-            <div className="bg-black/50 p-8 rounded-lg border border-white/20">
-              <h2 className="text-2xl font-serif mb-6 text-white text-center">Other Ways to Support</h2>
-              <div className="space-y-4 text-gray-300">
+            <div className="bg-card p-8 rounded-lg border border-border">
+              <h2 className="text-2xl font-serif mb-6 text-foreground text-center">Other Ways to Support</h2>
+              <div className="space-y-4 text-muted-foreground">
                 <div className="flex items-center space-x-4">
                   <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
                   <p><strong>Share the Framework:</strong> Help spread awareness by sharing our work with researchers, developers, and institutions.</p>
@@ -548,7 +548,7 @@ const Donate = () => {
             </div>
 
             {/* Security and transparency */}
-            <div className="text-center text-sm text-gray-400 border-t border-white/10 pt-6">
+            <div className="text-center text-sm text-muted-foreground/80 border-t border-border pt-6">
               <p>
                 🔒 All donations are processed securely through PayPal. Your financial information is never stored on our servers.
               </p>

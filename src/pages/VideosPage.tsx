@@ -55,7 +55,7 @@ const VideosPage: React.FC = () => {
       'network-interference': 'bg-red-500/20 text-red-300 border-red-500/30',
       'targeting-proof': 'bg-orange-500/20 text-orange-300 border-orange-500/30',
       'chat-deletion': 'bg-rose-500/20 text-rose-300 border-rose-500/30',
-      'other': 'bg-gray-500/20 text-gray-300 border-gray-500/30'
+      'other': 'bg-gray-500/20 text-muted-foreground border-gray-500/30'
     };
     return colors[category] || colors['other'];
   };
@@ -72,11 +72,11 @@ const VideosPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-black">
       {/* Header */}
-      <div className="bg-gradient-to-b from-gray-900 to-black border-b border-white/10">
+      <div className="bg-gradient-to-b from-gray-900 to-black border-b border-border">
         <div className="max-w-7xl mx-auto px-4 py-8">
           <button
             onClick={() => navigate('/')}
-            className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors mb-6"
+            className="flex items-center gap-2 text-muted-foreground/80 hover:text-foreground transition-colors mb-6"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Home
@@ -87,8 +87,8 @@ const VideosPage: React.FC = () => {
               <Video className="w-8 h-8 text-red-400" />
             </div>
             <div>
-              <h1 className="text-3xl font-serif text-white">Video Evidence</h1>
-              <p className="text-gray-400">Screen recordings documenting AI system behavior and targeting</p>
+              <h1 className="text-3xl font-serif text-foreground">Video Evidence</h1>
+              <p className="text-muted-foreground/80">Screen recordings documenting AI system behavior and targeting</p>
             </div>
           </div>
 
@@ -99,7 +99,7 @@ const VideosPage: React.FC = () => {
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                 selectedCategory === 'all'
                   ? 'bg-white text-black'
-                  : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                  : 'bg-secondary/60 text-muted-foreground hover:bg-secondary'
               }`}
             >
               All Videos ({categoryCounts['all'] || 0})
@@ -127,7 +127,7 @@ const VideosPage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Selected video player */}
         {selectedVideo && (
-          <div className="mb-12 bg-gray-900/50 rounded-xl p-6 border border-white/10">
+          <div className="mb-12 bg-gray-900/50 rounded-xl p-6 border border-border">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
                 {selectedVideo.exhibitNumber && (
@@ -141,7 +141,7 @@ const VideosPage: React.FC = () => {
               </div>
               <button
                 onClick={() => setSelectedVideo(null)}
-                className="text-gray-400 hover:text-white transition-colors text-sm"
+                className="text-muted-foreground/80 hover:text-foreground transition-colors text-sm"
               >
                 Close Player
               </button>
@@ -158,9 +158,9 @@ const VideosPage: React.FC = () => {
         {/* Video grid */}
         {filteredVideos.length === 0 ? (
           <div className="text-center py-16">
-            <Video className="w-16 h-16 text-gray-600 mx-auto mb-4" />
-            <h2 className="text-xl text-gray-400 mb-2">No Videos Available Yet</h2>
-            <p className="text-gray-500 max-w-md mx-auto">
+            <Video className="w-16 h-16 text-muted-foreground/70 mx-auto mb-4" />
+            <h2 className="text-xl text-muted-foreground/80 mb-2">No Videos Available Yet</h2>
+            <p className="text-muted-foreground/70 max-w-md mx-auto">
               Video evidence will be displayed here once YouTube video IDs are added to the system.
               Screen recordings are being processed for upload.
             </p>
@@ -169,8 +169,8 @@ const VideosPage: React.FC = () => {
           <>
             {/* Category description */}
             {selectedCategory !== 'all' && (
-              <div className="mb-8 p-4 rounded-lg bg-gray-900/50 border border-white/10">
-                <p className="text-gray-300">{categoryDescriptions[selectedCategory]}</p>
+              <div className="mb-8 p-4 rounded-lg bg-gray-900/50 border border-border">
+                <p className="text-muted-foreground">{categoryDescriptions[selectedCategory]}</p>
               </div>
             )}
 
@@ -178,7 +178,7 @@ const VideosPage: React.FC = () => {
               {filteredVideos.map((video) => (
                 <div
                   key={video.id}
-                  className="bg-gray-900/50 rounded-xl overflow-hidden border border-white/10 hover:border-white/20 transition-all group cursor-pointer"
+                  className="bg-gray-900/50 rounded-xl overflow-hidden border border-border hover:border-border transition-all group cursor-pointer"
                   onClick={() => setSelectedVideo(video)}
                 >
                   {/* Thumbnail */}
@@ -193,11 +193,11 @@ const VideosPage: React.FC = () => {
                     />
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="w-14 h-14 rounded-full bg-red-600/90 group-hover:bg-red-500 flex items-center justify-center transition-all group-hover:scale-110">
-                        <Play className="w-7 h-7 text-white ml-1" fill="white" />
+                        <Play className="w-7 h-7 text-foreground ml-1" fill="white" />
                       </div>
                     </div>
                     {video.duration && (
-                      <div className="absolute bottom-2 right-2 px-2 py-1 bg-black/80 rounded text-xs text-white flex items-center gap-1">
+                      <div className="absolute bottom-2 right-2 px-2 py-1 bg-card rounded text-xs text-foreground flex items-center gap-1">
                         <Clock className="w-3 h-3" />
                         {video.duration}
                       </div>
@@ -207,7 +207,7 @@ const VideosPage: React.FC = () => {
                   {/* Info */}
                   <div className="p-4">
                     <div className="flex items-start justify-between gap-2 mb-2">
-                      <h3 className="text-white font-medium line-clamp-2 group-hover:text-red-300 transition-colors">
+                      <h3 className="text-foreground font-medium line-clamp-2 group-hover:text-red-300 transition-colors">
                         {video.title}
                       </h3>
                       {video.exhibitNumber && (
@@ -217,7 +217,7 @@ const VideosPage: React.FC = () => {
                       )}
                     </div>
 
-                    <p className="text-gray-400 text-sm line-clamp-2 mb-3">
+                    <p className="text-muted-foreground/80 text-sm line-clamp-2 mb-3">
                       {video.description}
                     </p>
 
@@ -225,7 +225,7 @@ const VideosPage: React.FC = () => {
                       <span className={`px-2 py-1 text-xs rounded border ${getCategoryColorClasses(video.category)}`}>
                         {categoryLabels[video.category]}
                       </span>
-                      <span className="text-gray-500 text-xs flex items-center gap-1">
+                      <span className="text-muted-foreground/70 text-xs flex items-center gap-1">
                         <Calendar className="w-3 h-3" />
                         {formatDate(video.date)}
                       </span>
@@ -235,12 +235,12 @@ const VideosPage: React.FC = () => {
                     {video.tags.length > 0 && (
                       <div className="mt-3 flex flex-wrap gap-1">
                         {video.tags.slice(0, 3).map((tag, idx) => (
-                          <span key={idx} className="px-2 py-0.5 bg-white/5 text-gray-500 text-xs rounded">
+                          <span key={idx} className="px-2 py-0.5 bg-secondary/40 text-muted-foreground/70 text-xs rounded">
                             {tag}
                           </span>
                         ))}
                         {video.tags.length > 3 && (
-                          <span className="px-2 py-0.5 text-gray-600 text-xs">
+                          <span className="px-2 py-0.5 text-muted-foreground/70 text-xs">
                             +{video.tags.length - 3}
                           </span>
                         )}

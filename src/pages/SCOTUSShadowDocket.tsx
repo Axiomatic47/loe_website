@@ -310,26 +310,26 @@ const SCOTUSShadowDocket: React.FC = () => {
         {/* Sidebar */}
         <div
           className={cn(
-            "flex flex-col border-r border-white/10 bg-black/40 backdrop-blur-md transition-all duration-300",
+            "flex flex-col border-r border-border bg-card/80 transition-all duration-300",
             sidebarCollapsed ? "w-0 overflow-hidden" : "w-80 min-w-80"
           )}
         >
           {/* Sidebar Header */}
-          <div className="p-4 border-b border-white/10">
+          <div className="p-4 border-b border-border">
             <div className="flex items-center gap-2 mb-3">
               <Scale className="h-6 w-6 text-amber-400" />
-              <h1 className="text-lg font-semibold text-white">Shadow Docket</h1>
+              <h1 className="text-lg font-semibold text-foreground">Shadow Docket</h1>
             </div>
 
             {/* View Mode Toggle */}
-            <div className="flex gap-1 mb-3 p-1 bg-black/30 rounded-lg">
+            <div className="flex gap-1 mb-3 p-1 bg-card/60 rounded-lg">
               <button
                 onClick={() => setViewMode('caselaw')}
                 className={cn(
                   "flex-1 flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-all",
                   viewMode === 'caselaw'
                     ? "bg-amber-500/30 text-amber-200 shadow-sm"
-                    : "text-gray-400 hover:text-white hover:bg-white/5"
+                    : "text-muted-foreground/80 hover:text-foreground hover:bg-secondary/40"
                 )}
               >
                 <Gavel className="h-3.5 w-3.5" />
@@ -341,7 +341,7 @@ const SCOTUSShadowDocket: React.FC = () => {
                   "flex-1 flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-all",
                   viewMode === 'analysis'
                     ? "bg-blue-500/30 text-blue-200 shadow-sm"
-                    : "text-gray-400 hover:text-white hover:bg-white/5"
+                    : "text-muted-foreground/80 hover:text-foreground hover:bg-secondary/40"
                 )}
               >
                 <BookOpen className="h-3.5 w-3.5" />
@@ -351,19 +351,19 @@ const SCOTUSShadowDocket: React.FC = () => {
 
             {/* Search */}
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/80" />
               <Input
                 type="text"
                 placeholder={viewMode === 'caselaw' ? "Search cases..." : "Search analysis..."}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-9 pr-8 h-9 bg-black/50 border-white/20 text-white text-sm
-                         placeholder:text-gray-500 focus:border-amber-500/50"
+                className="pl-9 pr-8 h-9 bg-card border-border text-foreground text-sm
+                         placeholder:text-muted-foreground/70 focus:border-amber-500/50"
               />
               {searchQuery && (
                 <button
                   onClick={clearSearch}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground/80 hover:text-foreground"
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -371,7 +371,7 @@ const SCOTUSShadowDocket: React.FC = () => {
             </div>
 
             {searchQuery && (
-              <p className="text-xs text-gray-400 mt-2">
+              <p className="text-xs text-muted-foreground/80 mt-2">
                 {viewMode === 'caselaw'
                   ? `${totalMatchingCases} ${totalMatchingCases === 1 ? 'case' : 'cases'} found`
                   : `${totalMatchingAnalysis} ${totalMatchingAnalysis === 1 ? 'file' : 'files'} found`
@@ -403,7 +403,7 @@ const SCOTUSShadowDocket: React.FC = () => {
                       {/* Decade Header */}
                       <button
                         onClick={() => toggleDecade(decade.decade)}
-                        className="w-full flex items-center gap-2 px-2 py-1.5 rounded hover:bg-white/5
+                        className="w-full flex items-center gap-2 px-2 py-1.5 rounded hover:bg-secondary/40
                                  text-left transition-colors"
                       >
                         {expandedDecades.has(decade.decade) ? (
@@ -411,8 +411,8 @@ const SCOTUSShadowDocket: React.FC = () => {
                         ) : (
                           <ChevronRight className="h-4 w-4 text-amber-400 flex-shrink-0" />
                         )}
-                        <span className="text-white font-medium text-sm">{decade.decade}</span>
-                        <Badge className="ml-auto bg-white/10 text-gray-400 text-xs px-1.5 py-0">
+                        <span className="text-foreground font-medium text-sm">{decade.decade}</span>
+                        <Badge className="ml-auto bg-secondary/60 text-muted-foreground/80 text-xs px-1.5 py-0">
                           {decade.cases.length}
                         </Badge>
                       </button>
@@ -427,23 +427,23 @@ const SCOTUSShadowDocket: React.FC = () => {
                                 onClick={() => toggleCase(caseData.id)}
                                 className={cn(
                                   "w-full flex items-center gap-2 px-2 py-1.5 rounded text-left transition-colors",
-                                  selectedCase?.id === caseData.id ? "bg-amber-500/20" : "hover:bg-white/5"
+                                  selectedCase?.id === caseData.id ? "bg-amber-500/20" : "hover:bg-secondary/40"
                                 )}
                               >
                                 {expandedCases.has(caseData.id) ? (
                                   <FolderOpen className="h-4 w-4 text-amber-400 flex-shrink-0" />
                                 ) : (
-                                  <Folder className="h-4 w-4 text-gray-400 flex-shrink-0" />
+                                  <Folder className="h-4 w-4 text-muted-foreground/80 flex-shrink-0" />
                                 )}
                                 <div className="min-w-0 flex-1">
-                                  <p className="text-gray-200 text-sm truncate">{caseData.caseName}</p>
-                                  <p className="text-gray-500 text-xs">{caseData.date}</p>
+                                  <p className="text-foreground/90 text-sm truncate">{caseData.caseName}</p>
+                                  <p className="text-muted-foreground/70 text-xs">{caseData.date}</p>
                                 </div>
                               </button>
 
                               {/* Files in Case */}
                               {expandedCases.has(caseData.id) && (
-                                <div className="ml-6 border-l border-white/10 pl-2 my-1">
+                                <div className="ml-6 border-l border-border pl-2 my-1">
                                   {caseData.files.map((file) => (
                                     <button
                                       key={file.name}
@@ -452,7 +452,7 @@ const SCOTUSShadowDocket: React.FC = () => {
                                         "w-full flex items-center gap-2 px-2 py-1 rounded text-left transition-colors",
                                         selectedFile?.path === file.path
                                           ? "bg-amber-500/30 text-amber-200"
-                                          : "hover:bg-white/5 text-gray-300"
+                                          : "hover:bg-secondary/40 text-muted-foreground"
                                       )}
                                     >
                                       <FileText className="h-3 w-3 text-red-400 flex-shrink-0" />
@@ -469,7 +469,7 @@ const SCOTUSShadowDocket: React.FC = () => {
                   ))}
 
                   {filteredDecades.length === 0 && searchQuery && (
-                    <div className="text-center py-8 text-gray-400 text-sm">
+                    <div className="text-center py-8 text-muted-foreground/80 text-sm">
                       No cases found
                     </div>
                   )}
@@ -484,7 +484,7 @@ const SCOTUSShadowDocket: React.FC = () => {
                       {/* Category Header */}
                       <button
                         onClick={() => toggleCategory(category.name)}
-                        className="w-full flex items-center gap-2 px-2 py-1.5 rounded hover:bg-white/5
+                        className="w-full flex items-center gap-2 px-2 py-1.5 rounded hover:bg-secondary/40
                                  text-left transition-colors"
                       >
                         {expandedCategories.has(category.name) ? (
@@ -492,8 +492,8 @@ const SCOTUSShadowDocket: React.FC = () => {
                         ) : (
                           <ChevronRight className="h-4 w-4 text-blue-400 flex-shrink-0" />
                         )}
-                        <span className="text-white font-medium text-sm">{category.name}</span>
-                        <Badge className="ml-auto bg-white/10 text-gray-400 text-xs px-1.5 py-0">
+                        <span className="text-foreground font-medium text-sm">{category.name}</span>
+                        <Badge className="ml-auto bg-secondary/60 text-muted-foreground/80 text-xs px-1.5 py-0">
                           {category.files.length}
                         </Badge>
                       </button>
@@ -509,7 +509,7 @@ const SCOTUSShadowDocket: React.FC = () => {
                                 "w-full flex items-center gap-2 px-2 py-1.5 rounded text-left transition-colors",
                                 selectedAnalysisFile?.path === file.path
                                   ? "bg-blue-500/30 text-blue-200"
-                                  : "hover:bg-white/5 text-gray-300"
+                                  : "hover:bg-secondary/40 text-muted-foreground"
                               )}
                             >
                               <FileText className="h-4 w-4 text-red-400 flex-shrink-0" />
@@ -522,7 +522,7 @@ const SCOTUSShadowDocket: React.FC = () => {
                   ))}
 
                   {filteredCategories.length === 0 && searchQuery && (
-                    <div className="text-center py-8 text-gray-400 text-sm">
+                    <div className="text-center py-8 text-muted-foreground/80 text-sm">
                       No analysis files found
                     </div>
                   )}
@@ -532,12 +532,12 @@ const SCOTUSShadowDocket: React.FC = () => {
           </ScrollArea>
 
           {/* Sidebar Footer */}
-          <div className="p-3 border-t border-white/10">
+          <div className="p-3 border-t border-border">
             <Button
               variant="ghost"
               size="sm"
               onClick={handleBackClick}
-              className="w-full text-gray-400 hover:text-white hover:bg-white/5"
+              className="w-full text-muted-foreground/80 hover:text-foreground hover:bg-secondary/40"
             >
               <Home className="h-4 w-4 mr-2" />
               Back to Home
@@ -548,14 +548,14 @@ const SCOTUSShadowDocket: React.FC = () => {
         {/* Toggle Sidebar Button */}
         <button
           onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/60 hover:bg-black/80
-                   border border-white/10 rounded-r-lg p-1.5 transition-all"
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-card hover:bg-card
+                   border border-border rounded-r-lg p-1.5 transition-all"
           style={{ left: sidebarCollapsed ? 0 : '320px' }}
         >
           {sidebarCollapsed ? (
-            <PanelLeft className="h-4 w-4 text-gray-400" />
+            <PanelLeft className="h-4 w-4 text-muted-foreground/80" />
           ) : (
-            <PanelLeftClose className="h-4 w-4 text-gray-400" />
+            <PanelLeftClose className="h-4 w-4 text-muted-foreground/80" />
           )}
         </button>
 
@@ -564,19 +564,19 @@ const SCOTUSShadowDocket: React.FC = () => {
           {currentFile ? (
             <>
               {/* PDF Header */}
-              <div className="flex items-center justify-between px-6 py-3 bg-black/40 border-b border-white/10">
+              <div className="flex items-center justify-between px-6 py-3 bg-card/80 border-b border-border">
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2">
                     <FileText className={cn(
                       "h-5 w-5 flex-shrink-0",
                       selectedAnalysisFile ? "text-blue-400" : "text-amber-400"
                     )} />
-                    <h2 className="text-white font-medium truncate">{currentFile.displayName}</h2>
-                    <Badge className="bg-white/10 text-gray-400 text-xs flex-shrink-0">
+                    <h2 className="text-foreground font-medium truncate">{currentFile.displayName}</h2>
+                    <Badge className="bg-secondary/60 text-muted-foreground/80 text-xs flex-shrink-0">
                       {formatFileSize(currentFile.size)}
                     </Badge>
                   </div>
-                  <p className="text-gray-400 text-sm mt-0.5 truncate">
+                  <p className="text-muted-foreground/80 text-sm mt-0.5 truncate">
                     {selectedCase
                       ? `${selectedCase.caseName} (${selectedCase.docketNumber})`
                       : selectedAnalysisFile?.category || 'Analysis Document'
@@ -586,23 +586,23 @@ const SCOTUSShadowDocket: React.FC = () => {
 
                 <div className="flex items-center gap-2 ml-4">
                   {/* Zoom Controls */}
-                  <div className="flex items-center gap-1 bg-black/40 rounded-lg p-1">
+                  <div className="flex items-center gap-1 bg-card/80 rounded-lg p-1">
                     <Button
                       variant="ghost"
                       size="sm"
                       onClick={() => setZoom(prev => Math.max(prev - 25, 50))}
                       disabled={zoom <= 50}
-                      className="h-7 w-7 p-0 text-white hover:bg-white/10"
+                      className="h-7 w-7 p-0 text-foreground hover:bg-secondary/60"
                     >
                       <ZoomOut className="w-4 h-4" />
                     </Button>
-                    <span className="text-white text-sm min-w-[50px] text-center">{zoom}%</span>
+                    <span className="text-foreground text-sm min-w-[50px] text-center">{zoom}%</span>
                     <Button
                       variant="ghost"
                       size="sm"
                       onClick={() => setZoom(prev => Math.min(prev + 25, 200))}
                       disabled={zoom >= 200}
-                      className="h-7 w-7 p-0 text-white hover:bg-white/10"
+                      className="h-7 w-7 p-0 text-foreground hover:bg-secondary/60"
                     >
                       <ZoomIn className="w-4 h-4" />
                     </Button>
@@ -612,7 +612,7 @@ const SCOTUSShadowDocket: React.FC = () => {
                     variant="outline"
                     size="sm"
                     onClick={handleDownload}
-                    className="bg-black/40 text-white border-white/20 hover:bg-white/10"
+                    className="bg-card/80 text-foreground border-border hover:bg-secondary/60"
                   >
                     <Download className="w-4 h-4 mr-1" />
                     Download
@@ -621,7 +621,7 @@ const SCOTUSShadowDocket: React.FC = () => {
                     variant="outline"
                     size="sm"
                     onClick={handleOpenNewTab}
-                    className="bg-black/40 text-white border-white/20 hover:bg-white/10"
+                    className="bg-card/80 text-foreground border-border hover:bg-secondary/60"
                   >
                     <ExternalLink className="w-4 h-4 mr-1" />
                     New Tab
@@ -630,7 +630,7 @@ const SCOTUSShadowDocket: React.FC = () => {
                     variant="ghost"
                     size="sm"
                     onClick={clearSelection}
-                    className="text-gray-400 hover:text-white hover:bg-white/10"
+                    className="text-muted-foreground/80 hover:text-foreground hover:bg-secondary/60"
                   >
                     <X className="w-4 h-4" />
                   </Button>
@@ -638,15 +638,15 @@ const SCOTUSShadowDocket: React.FC = () => {
               </div>
 
               {/* PDF Viewer */}
-              <div className="flex-1 relative bg-black/20">
+              <div className="flex-1 relative bg-secondary/40">
                 {pdfLoading && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/60 z-10">
+                  <div className="absolute inset-0 flex items-center justify-center bg-card z-10">
                     <div className="text-center">
                       <Loader2 className={cn(
                         "h-8 w-8 animate-spin mx-auto mb-2",
                         selectedAnalysisFile ? "text-blue-400" : "text-amber-400"
                       )} />
-                      <p className="text-white">Loading PDF...</p>
+                      <p className="text-foreground">Loading PDF...</p>
                     </div>
                   </div>
                 )}
@@ -662,25 +662,25 @@ const SCOTUSShadowDocket: React.FC = () => {
             </>
           ) : (
             /* Welcome Screen */
-            <div className="flex-1 flex items-center justify-center bg-black/20">
+            <div className="flex-1 flex items-center justify-center bg-secondary/40">
               <div className="text-center max-w-lg px-8">
                 <Scale className="h-16 w-16 text-amber-400/50 mx-auto mb-6" />
-                <h2 className="text-2xl font-serif text-white mb-4">
+                <h2 className="text-2xl font-serif text-foreground mb-4">
                   SCOTUS Shadow Docket Analysis
                 </h2>
-                <p className="text-gray-400 mb-6">
+                <p className="text-muted-foreground/80 mb-6">
                   A comprehensive archive of Supreme Court emergency docket cases from 1952 to present.
                   Select a case from the sidebar to view documents.
                 </p>
                 {index && (
                   <div className="flex justify-center gap-4 flex-wrap">
-                    <Badge variant="outline" className="bg-black/50 text-gray-300 border-white/20">
+                    <Badge variant="outline" className="bg-card text-muted-foreground border-border">
                       {index.totalCases} Cases
                     </Badge>
-                    <Badge variant="outline" className="bg-black/50 text-gray-300 border-white/20">
+                    <Badge variant="outline" className="bg-card text-muted-foreground border-border">
                       {index.totalFiles} Documents
                     </Badge>
-                    <Badge variant="outline" className="bg-black/50 text-gray-300 border-white/20">
+                    <Badge variant="outline" className="bg-card text-muted-foreground border-border">
                       {index.decades.length} Decades
                     </Badge>
                   </div>

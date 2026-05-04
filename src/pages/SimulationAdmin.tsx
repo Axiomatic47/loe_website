@@ -219,7 +219,7 @@ const SimulationAdmin: React.FC = () => {
         <div className="container mx-auto px-4 py-12 flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
             <div className="animate-spin h-8 w-8 border-4 border-purple-400 border-t-transparent rounded-full mx-auto mb-4" />
-            <p className="text-gray-400">Checking authentication...</p>
+            <p className="text-muted-foreground/80">Checking authentication...</p>
           </div>
         </div>
       </PageLayout>
@@ -230,10 +230,10 @@ const SimulationAdmin: React.FC = () => {
     return (
       <PageLayout>
         <div className="container mx-auto px-4 py-12">
-          <div className="max-w-md mx-auto bg-black/80 backdrop-blur-md rounded-lg p-8 border border-white/10 text-center">
-            <Lock className="h-16 w-16 text-gray-500 mx-auto mb-4" />
-            <h1 className="text-2xl font-serif text-white mb-2">Admin Access Required</h1>
-            <p className="text-gray-400 mb-6">
+          <div className="max-w-md mx-auto bg-card rounded-lg p-8 border border-border text-center">
+            <Lock className="h-16 w-16 text-muted-foreground/70 mx-auto mb-4" />
+            <h1 className="text-2xl font-serif text-foreground mb-2">Admin Access Required</h1>
+            <p className="text-muted-foreground/80 mb-6">
               Please log in to access the Simulation Admin dashboard.
             </p>
             <Button onClick={login} className="bg-purple-600 hover:bg-purple-700">
@@ -249,11 +249,11 @@ const SimulationAdmin: React.FC = () => {
     <PageLayout>
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
-        <div className="bg-black/80 backdrop-blur-md rounded-lg p-6 border border-white/10 mb-6">
+        <div className="bg-card rounded-lg p-6 border border-border mb-6">
           <div className="flex items-center justify-between mb-4">
             <Button
               variant="ghost"
-              className="text-gray-400 hover:text-white"
+              className="text-muted-foreground/80 hover:text-foreground"
               onClick={() => navigate('/')}
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
@@ -279,9 +279,9 @@ const SimulationAdmin: React.FC = () => {
               </div>
 
               {/* Auto-refresh toggle */}
-              <div className="flex items-center gap-2 px-3 py-1.5 bg-black/40 rounded-full border border-white/10">
-                <Clock className="h-4 w-4 text-gray-400" />
-                <span className="text-sm text-gray-400">Auto</span>
+              <div className="flex items-center gap-2 px-3 py-1.5 bg-card/80 rounded-full border border-border">
+                <Clock className="h-4 w-4 text-muted-foreground/80" />
+                <span className="text-sm text-muted-foreground/80">Auto</span>
                 <Switch
                   checked={autoRefresh}
                   onCheckedChange={setAutoRefresh}
@@ -297,7 +297,7 @@ const SimulationAdmin: React.FC = () => {
                 size="sm"
                 onClick={() => { loadData(); checkHealth(); }}
                 disabled={isLoading}
-                className="bg-black/50 text-white border-white/20"
+                className="bg-card text-foreground border-border"
               >
                 <RefreshCw className={cn("h-4 w-4 mr-2", isLoading && "animate-spin")} />
                 Refresh
@@ -309,14 +309,14 @@ const SimulationAdmin: React.FC = () => {
             <div className="flex items-center gap-3">
               <Database className="h-8 w-8 text-purple-400" />
               <div>
-                <h1 className="text-3xl font-serif text-white">Simulation Admin</h1>
-                <p className="text-gray-400">View and analyze historical simulation data</p>
+                <h1 className="text-3xl font-serif text-foreground">Simulation Admin</h1>
+                <p className="text-muted-foreground/80">View and analyze historical simulation data</p>
               </div>
             </div>
 
             {/* Last refresh timestamp */}
             {lastRefresh && (
-              <div className="text-xs text-gray-500">
+              <div className="text-xs text-muted-foreground/70">
                 Last updated: {lastRefresh.toLocaleTimeString()}
                 {autoRefresh && (
                   <span className="ml-2 text-purple-400">
@@ -379,7 +379,7 @@ const SimulationAdmin: React.FC = () => {
 
         {/* Main Content Tabs */}
         <Tabs defaultValue="status" className="w-full">
-          <TabsList className="w-full bg-black/40 border border-white/10 mb-6">
+          <TabsList className="w-full bg-card/80 border border-border mb-6">
             <TabsTrigger value="status" className="flex-1">
               <Server className="h-4 w-4 mr-2" />
               Status
@@ -402,15 +402,15 @@ const SimulationAdmin: React.FC = () => {
           <TabsContent value="status">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {/* API Server Status */}
-              <div className="bg-black/60 rounded-lg p-6 border border-white/10">
+              <div className="bg-card rounded-lg p-6 border border-border">
                 <div className="flex items-center gap-2 mb-4">
                   <Server className="h-5 w-5 text-purple-400" />
-                  <h3 className="text-lg font-medium text-white">API Server</h3>
+                  <h3 className="text-lg font-medium text-foreground">API Server</h3>
                 </div>
 
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-400">Status</span>
+                    <span className="text-muted-foreground/80">Status</span>
                     <Badge className={cn(
                       apiStatus?.healthy
                         ? "bg-green-900/50 text-green-400 border-green-500/30"
@@ -421,28 +421,28 @@ const SimulationAdmin: React.FC = () => {
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-400">Version</span>
-                    <span className="text-white">{apiStatus?.version || 'Unknown'}</span>
+                    <span className="text-muted-foreground/80">Version</span>
+                    <span className="text-foreground">{apiStatus?.version || 'Unknown'}</span>
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-400">Message</span>
-                    <span className="text-white text-sm">{apiStatus?.message || '-'}</span>
+                    <span className="text-muted-foreground/80">Message</span>
+                    <span className="text-foreground text-sm">{apiStatus?.message || '-'}</span>
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-400">Last Check</span>
-                    <span className="text-white text-sm">
+                    <span className="text-muted-foreground/80">Last Check</span>
+                    <span className="text-foreground text-sm">
                       {apiStatus?.lastChecked?.toLocaleTimeString() || '-'}
                     </span>
                   </div>
 
-                  <div className="pt-3 border-t border-white/10">
+                  <div className="pt-3 border-t border-border">
                     <Button
                       variant="outline"
                       size="sm"
                       onClick={checkHealth}
-                      className="w-full bg-black/40 text-white border-white/20"
+                      className="w-full bg-card/80 text-foreground border-border"
                     >
                       <Zap className="h-4 w-4 mr-2" />
                       Test Connection
@@ -452,44 +452,44 @@ const SimulationAdmin: React.FC = () => {
               </div>
 
               {/* Data Summary */}
-              <div className="bg-black/60 rounded-lg p-6 border border-white/10">
+              <div className="bg-card rounded-lg p-6 border border-border">
                 <div className="flex items-center gap-2 mb-4">
                   <Database className="h-5 w-5 text-purple-400" />
-                  <h3 className="text-lg font-medium text-white">Data Summary</h3>
+                  <h3 className="text-lg font-medium text-foreground">Data Summary</h3>
                 </div>
 
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-400">Total Runs</span>
-                    <span className="text-white text-xl font-bold">
+                    <span className="text-muted-foreground/80">Total Runs</span>
+                    <span className="text-foreground text-xl font-bold">
                       {outputsSummary?.total_runs || 0}
                     </span>
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-400">Data-Driven</span>
-                    <span className="text-white">
+                    <span className="text-muted-foreground/80">Data-Driven</span>
+                    <span className="text-foreground">
                       {outputsSummary?.data_driven?.length || 0} simulations
                     </span>
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-400">Mass Batches</span>
-                    <span className="text-white">
+                    <span className="text-muted-foreground/80">Mass Batches</span>
+                    <span className="text-foreground">
                       {outputsSummary?.mass_simulations?.length || 0} batches
                     </span>
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-400">Countries Exported</span>
-                    <span className="text-white">
+                    <span className="text-muted-foreground/80">Countries Exported</span>
+                    <span className="text-foreground">
                       {outputsSummary?.website_export?.length || 0} countries
                     </span>
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-400">Local Countries</span>
-                    <span className="text-white">
+                    <span className="text-muted-foreground/80">Local Countries</span>
+                    <span className="text-foreground">
                       {countrySimulations.length} loaded
                     </span>
                   </div>
@@ -497,10 +497,10 @@ const SimulationAdmin: React.FC = () => {
               </div>
 
               {/* Recent Activity */}
-              <div className="bg-black/60 rounded-lg p-6 border border-white/10">
+              <div className="bg-card rounded-lg p-6 border border-border">
                 <div className="flex items-center gap-2 mb-4">
                   <Activity className="h-5 w-5 text-purple-400" />
-                  <h3 className="text-lg font-medium text-white">Recent Activity</h3>
+                  <h3 className="text-lg font-medium text-foreground">Recent Activity</h3>
                 </div>
 
                 {outputsSummary?.data_driven && outputsSummary.data_driven.length > 0 ? (
@@ -508,14 +508,14 @@ const SimulationAdmin: React.FC = () => {
                     {outputsSummary.data_driven.slice(0, 8).map((run, index) => (
                       <div
                         key={run.id || index}
-                        className="flex items-center justify-between p-2 bg-black/40 rounded-lg"
+                        className="flex items-center justify-between p-2 bg-card/80 rounded-lg"
                       >
                         <div className="flex items-center gap-2">
-                          <Globe className="h-4 w-4 text-gray-400" />
-                          <span className="text-white text-sm">{run.country_name}</span>
+                          <Globe className="h-4 w-4 text-muted-foreground/80" />
+                          <span className="text-foreground text-sm">{run.country_name}</span>
                         </div>
                         <div className="text-right">
-                          <div className="text-xs text-gray-400">
+                          <div className="text-xs text-muted-foreground/80">
                             {new Date(run.timestamp).toLocaleDateString()}
                           </div>
                           <div className="text-sm" style={{ color: getRiskColor(run.final_coherence > 0.5 ? 'low' : run.final_coherence > 0.35 ? 'moderate' : 'high') }}>
@@ -526,7 +526,7 @@ const SimulationAdmin: React.FC = () => {
                     ))}
                   </div>
                 ) : (
-                  <div className="text-center text-gray-500 py-8">
+                  <div className="text-center text-muted-foreground/70 py-8">
                     No recent runs available
                   </div>
                 )}
@@ -535,28 +535,28 @@ const SimulationAdmin: React.FC = () => {
 
             {/* Recent Runs List */}
             {recentRuns.length > 0 && (
-              <div className="mt-6 bg-black/60 rounded-lg p-6 border border-white/10">
+              <div className="mt-6 bg-card rounded-lg p-6 border border-border">
                 <div className="flex items-center gap-2 mb-4">
                   <Play className="h-5 w-5 text-purple-400" />
-                  <h3 className="text-lg font-medium text-white">Recent Simulation Runs</h3>
+                  <h3 className="text-lg font-medium text-foreground">Recent Simulation Runs</h3>
                 </div>
 
                 <div className="overflow-x-auto">
                   <table className="w-full">
                     <thead>
-                      <tr className="border-b border-white/10">
-                        <th className="text-left py-2 px-3 text-sm text-gray-400">ID</th>
-                        <th className="text-left py-2 px-3 text-sm text-gray-400">Type</th>
-                        <th className="text-left py-2 px-3 text-sm text-gray-400">Country</th>
-                        <th className="text-left py-2 px-3 text-sm text-gray-400">Status</th>
-                        <th className="text-left py-2 px-3 text-sm text-gray-400">Coherence</th>
-                        <th className="text-left py-2 px-3 text-sm text-gray-400">Timestamp</th>
+                      <tr className="border-b border-border">
+                        <th className="text-left py-2 px-3 text-sm text-muted-foreground/80">ID</th>
+                        <th className="text-left py-2 px-3 text-sm text-muted-foreground/80">Type</th>
+                        <th className="text-left py-2 px-3 text-sm text-muted-foreground/80">Country</th>
+                        <th className="text-left py-2 px-3 text-sm text-muted-foreground/80">Status</th>
+                        <th className="text-left py-2 px-3 text-sm text-muted-foreground/80">Coherence</th>
+                        <th className="text-left py-2 px-3 text-sm text-muted-foreground/80">Timestamp</th>
                       </tr>
                     </thead>
                     <tbody>
                       {recentRuns.slice(0, 10).map((run, index) => (
-                        <tr key={run.id || index} className="border-b border-white/5 hover:bg-white/5">
-                          <td className="py-2 px-3 text-sm text-gray-300 font-mono">
+                        <tr key={run.id || index} className="border-b border-border hover:bg-secondary/40">
+                          <td className="py-2 px-3 text-sm text-muted-foreground font-mono">
                             {run.id?.slice(0, 12) || '-'}...
                           </td>
                           <td className="py-2 px-3">
@@ -564,7 +564,7 @@ const SimulationAdmin: React.FC = () => {
                               {run.type || run.run_type || 'unknown'}
                             </Badge>
                           </td>
-                          <td className="py-2 px-3 text-sm text-white">
+                          <td className="py-2 px-3 text-sm text-foreground">
                             {run.country_name || run.country_code || '-'}
                           </td>
                           <td className="py-2 px-3">
@@ -589,7 +589,7 @@ const SimulationAdmin: React.FC = () => {
                                 : '-'}
                             </span>
                           </td>
-                          <td className="py-2 px-3 text-sm text-gray-400">
+                          <td className="py-2 px-3 text-sm text-muted-foreground/80">
                             {run.timestamp
                               ? new Date(run.timestamp).toLocaleString()
                               : '-'}
@@ -607,8 +607,8 @@ const SimulationAdmin: React.FC = () => {
           <TabsContent value="overview">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Risk Distribution */}
-              <div className="bg-black/60 rounded-lg p-6 border border-white/10">
-                <h3 className="text-lg font-medium text-white mb-4">Risk Level Distribution</h3>
+              <div className="bg-card rounded-lg p-6 border border-border">
+                <h3 className="text-lg font-medium text-foreground mb-4">Risk Level Distribution</h3>
                 {isLoading ? (
                   <Skeleton className="h-64" />
                 ) : (
@@ -637,8 +637,8 @@ const SimulationAdmin: React.FC = () => {
               </div>
 
               {/* Trend Distribution */}
-              <div className="bg-black/60 rounded-lg p-6 border border-white/10">
-                <h3 className="text-lg font-medium text-white mb-4">Coherence Trends</h3>
+              <div className="bg-card rounded-lg p-6 border border-border">
+                <h3 className="text-lg font-medium text-foreground mb-4">Coherence Trends</h3>
                 {isLoading ? (
                   <Skeleton className="h-64" />
                 ) : (
@@ -666,8 +666,8 @@ const SimulationAdmin: React.FC = () => {
               </div>
 
               {/* Governance Distribution */}
-              <div className="bg-black/60 rounded-lg p-6 border border-white/10">
-                <h3 className="text-lg font-medium text-white mb-4">By Governance Category</h3>
+              <div className="bg-card rounded-lg p-6 border border-border">
+                <h3 className="text-lg font-medium text-foreground mb-4">By Governance Category</h3>
                 {isLoading ? (
                   <Skeleton className="h-64" />
                 ) : (
@@ -691,8 +691,8 @@ const SimulationAdmin: React.FC = () => {
               </div>
 
               {/* Suppression vs Coherence Scatter */}
-              <div className="bg-black/60 rounded-lg p-6 border border-white/10">
-                <h3 className="text-lg font-medium text-white mb-4">Suppression vs Final Coherence</h3>
+              <div className="bg-card rounded-lg p-6 border border-border">
+                <h3 className="text-lg font-medium text-foreground mb-4">Suppression vs Final Coherence</h3>
                 {isLoading ? (
                   <Skeleton className="h-64" />
                 ) : (
@@ -741,8 +741,8 @@ const SimulationAdmin: React.FC = () => {
           <TabsContent value="countries">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {/* Country List */}
-              <div className="lg:col-span-1 bg-black/60 rounded-lg p-4 border border-white/10 max-h-[600px] overflow-y-auto">
-                <h3 className="text-lg font-medium text-white mb-4 sticky top-0 bg-black/60 py-2">
+              <div className="lg:col-span-1 bg-card rounded-lg p-4 border border-border max-h-[600px] overflow-y-auto">
+                <h3 className="text-lg font-medium text-foreground mb-4 sticky top-0 bg-card py-2">
                   Countries ({countrySimulations.length})
                 </h3>
                 {isLoading ? (
@@ -763,22 +763,22 @@ const SimulationAdmin: React.FC = () => {
                             "w-full text-left p-3 rounded-lg border transition-colors",
                             selectedCountry?.country_code === country.country_code
                               ? "bg-purple-900/50 border-purple-500/50"
-                              : "bg-black/40 border-white/10 hover:border-white/30"
+                              : "bg-card/80 border-border hover:border-border"
                           )}
                         >
                           <div className="flex items-center justify-between">
-                            <span className="text-white font-medium">
+                            <span className="text-foreground font-medium">
                               {country.country_code} - {country.country_name}
                             </span>
                             <Badge
                               style={{ backgroundColor: getRiskColor(country.simulation.risk_level) }}
-                              className="text-white text-xs"
+                              className="text-foreground text-xs"
                             >
                               {country.simulation.risk_level}
                             </Badge>
                           </div>
                           <div className="flex items-center justify-between mt-1 text-sm">
-                            <span className="text-gray-400">
+                            <span className="text-muted-foreground/80">
                               Coherence: {(country.simulation.final_coherence * 100).toFixed(1)}%
                             </span>
                             <span className={cn(
@@ -795,11 +795,11 @@ const SimulationAdmin: React.FC = () => {
               </div>
 
               {/* Country Detail */}
-              <div className="lg:col-span-2 bg-black/60 rounded-lg p-6 border border-white/10">
+              <div className="lg:col-span-2 bg-card rounded-lg p-6 border border-border">
                 {selectedCountry ? (
                   <CountryDetail country={selectedCountry} />
                 ) : (
-                  <div className="flex items-center justify-center h-64 text-gray-500">
+                  <div className="flex items-center justify-center h-64 text-muted-foreground/70">
                     Select a country to view details
                   </div>
                 )}
@@ -809,8 +809,8 @@ const SimulationAdmin: React.FC = () => {
 
           {/* Analysis Tab */}
           <TabsContent value="analysis">
-            <div className="bg-black/60 rounded-lg p-6 border border-white/10">
-              <h3 className="text-lg font-medium text-white mb-4">Lowest Coherence Countries</h3>
+            <div className="bg-card rounded-lg p-6 border border-border">
+              <h3 className="text-lg font-medium text-foreground mb-4">Lowest Coherence Countries</h3>
               {isLoading ? (
                 <Skeleton className="h-96" />
               ) : (
@@ -863,9 +863,9 @@ const StatCard: React.FC<{
   return (
     <div className={cn(
       "rounded-lg p-4 border",
-      color ? colorClasses[color] : "bg-black/60 border-white/10 text-white"
+      color ? colorClasses[color] : "bg-card border-border text-foreground"
     )}>
-      <div className="flex items-center gap-2 mb-2 text-gray-400">
+      <div className="flex items-center gap-2 mb-2 text-muted-foreground/80">
         {icon}
         <span className="text-xs">{label}</span>
       </div>
@@ -880,32 +880,32 @@ const CountryDetail: React.FC<{ country: CountrySimulation }> = ({ country }) =>
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-serif text-white">{country.country_name}</h2>
-          <p className="text-gray-400">{country.governance_category}</p>
+          <h2 className="text-2xl font-serif text-foreground">{country.country_name}</h2>
+          <p className="text-muted-foreground/80">{country.governance_category}</p>
         </div>
         <Badge
           style={{ backgroundColor: getRiskColor(country.simulation.risk_level) }}
-          className="text-white text-lg px-3 py-1"
+          className="text-foreground text-lg px-3 py-1"
         >
           {country.simulation.risk_level.toUpperCase()}
         </Badge>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-black/40 rounded-lg p-3">
-          <div className="text-xs text-gray-500">Initial Coherence</div>
-          <div className="text-xl text-white">
+        <div className="bg-card/80 rounded-lg p-3">
+          <div className="text-xs text-muted-foreground/70">Initial Coherence</div>
+          <div className="text-xl text-foreground">
             {(country.simulation.initial_coherence * 100).toFixed(1)}%
           </div>
         </div>
-        <div className="bg-black/40 rounded-lg p-3">
-          <div className="text-xs text-gray-500">Final Coherence</div>
+        <div className="bg-card/80 rounded-lg p-3">
+          <div className="text-xs text-muted-foreground/70">Final Coherence</div>
           <div className="text-xl" style={{ color: getRiskColor(country.simulation.risk_level) }}>
             {(country.simulation.final_coherence * 100).toFixed(1)}%
           </div>
         </div>
-        <div className="bg-black/40 rounded-lg p-3">
-          <div className="text-xs text-gray-500">Change</div>
+        <div className="bg-card/80 rounded-lg p-3">
+          <div className="text-xs text-muted-foreground/70">Change</div>
           <div className={cn(
             "text-xl",
             country.simulation.coherence_change > 0 ? "text-green-400" : "text-red-400"
@@ -914,9 +914,9 @@ const CountryDetail: React.FC<{ country: CountrySimulation }> = ({ country }) =>
             {(country.simulation.coherence_change * 100).toFixed(1)}%
           </div>
         </div>
-        <div className="bg-black/40 rounded-lg p-3">
-          <div className="text-xs text-gray-500">Trend</div>
-          <div className="text-xl text-white capitalize flex items-center gap-1">
+        <div className="bg-card/80 rounded-lg p-3">
+          <div className="text-xs text-muted-foreground/70">Trend</div>
+          <div className="text-xl text-foreground capitalize flex items-center gap-1">
             {country.simulation.trend === 'improving' && <TrendingUp className="h-4 w-4 text-green-400" />}
             {country.simulation.trend === 'declining' && <TrendingDown className="h-4 w-4 text-red-400" />}
             {country.simulation.trend}
@@ -924,8 +924,8 @@ const CountryDetail: React.FC<{ country: CountrySimulation }> = ({ country }) =>
         </div>
       </div>
 
-      <div className="border-t border-white/10 pt-4">
-        <h4 className="text-sm font-medium text-gray-400 mb-3">Simulation Parameters</h4>
+      <div className="border-t border-border pt-4">
+        <h4 className="text-sm font-medium text-muted-foreground/80 mb-3">Simulation Parameters</h4>
         <div className="grid grid-cols-2 gap-4">
           <ParameterBar label="Suppression" value={country.parameters.suppression_level} />
           <ParameterBar label="Fear Factor" value={country.parameters.fear_factor} />
@@ -935,8 +935,8 @@ const CountryDetail: React.FC<{ country: CountrySimulation }> = ({ country }) =>
       </div>
 
       {country.simulation.coherence_history && (
-        <div className="border-t border-white/10 pt-4">
-          <h4 className="text-sm font-medium text-gray-400 mb-3">Coherence History</h4>
+        <div className="border-t border-border pt-4">
+          <h4 className="text-sm font-medium text-muted-foreground/80 mb-3">Coherence History</h4>
           <div className="h-48">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart
@@ -976,10 +976,10 @@ const ParameterBar: React.FC<{ label: string; value: number }> = ({ label, value
   return (
     <div>
       <div className="flex justify-between text-sm mb-1">
-        <span className="text-gray-400">{label}</span>
-        <span className="text-white">{percentage.toFixed(0)}%</span>
+        <span className="text-muted-foreground/80">{label}</span>
+        <span className="text-foreground">{percentage.toFixed(0)}%</span>
       </div>
-      <div className="h-2 bg-black/60 rounded-full overflow-hidden">
+      <div className="h-2 bg-card rounded-full overflow-hidden">
         <div
           className="h-full rounded-full transition-all"
           style={{ width: `${percentage}%`, backgroundColor: color }}

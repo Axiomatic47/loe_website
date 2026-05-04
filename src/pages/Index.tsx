@@ -5,22 +5,17 @@ import { FeaturedWorkSection } from "@/components/sections/FeaturedWorkSection";
 import { PageLayout } from "@/components/PageLayout";
 import { cn } from "@/lib/utils";
 
-const BlurPanel = ({
+const HeroPanel = ({
   children,
   className,
-  darkened = false
 }: {
   children: React.ReactNode;
   className?: string;
-  darkened?: boolean;
 }) => {
   return (
     <div
       className={cn(
-        "relative rounded-lg",
-        "backdrop-blur-md",
-        darkened ? "bg-black/40" : "bg-white/10",
-        "border border-white/10",
+        "relative rounded-2xl bg-card border border-border shadow-sm",
         className
       )}
     >
@@ -34,34 +29,38 @@ const Index = () => {
     <PageLayout>
       <main className="container mx-auto px-4 py-16 flex-grow">
         <div className="text-center mb-24">
-          <BlurPanel className="p-8 sm:p-12 mb-16 max-w-5xl mx-auto">
-            <div className="text-white">
-              <div style={{
-                fontSize: '56px',
-                fontFamily: 'serif',
-                lineHeight: '1.1',
-                marginBottom: '24px',
-                letterSpacing: '-0.02em'
-              }}>
+          <HeroPanel className="p-8 sm:p-12 mb-16 max-w-5xl mx-auto">
+            <div className="text-foreground">
+              <h1
+                className="font-serif"
+                style={{
+                  fontSize: 'clamp(36px, 6vw, 64px)',
+                  lineHeight: '1.05',
+                  marginBottom: '24px',
+                  letterSpacing: '-0.022em',
+                  fontWeight: 580,
+                }}
+              >
                 The Laws of Existence
-              </div>
-              <div style={{
-                fontSize: '24px',
-                fontFamily: 'serif',
-                color: '#f0f0f0',
-                maxWidth: '800px',
-                margin: '0 auto',
-                marginBottom: '24px',
-                letterSpacing: '0.01em'
-              }}>
+              </h1>
+              <p
+                className="text-muted-foreground font-serif"
+                style={{
+                  fontSize: 'clamp(18px, 2.2vw, 24px)',
+                  maxWidth: '800px',
+                  margin: '0 auto',
+                  marginBottom: '32px',
+                  lineHeight: '1.45',
+                }}
+              >
                 A Unified Mathematical Framework for Consciousness, Ethics, and Reality
-              </div>
+              </p>
 
               <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mt-8">
                 <HeroButtons />
               </div>
             </div>
-          </BlurPanel>
+          </HeroPanel>
         </div>
 
         <FeaturedWorkSection />

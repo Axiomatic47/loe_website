@@ -39,9 +39,9 @@ const SimpleImage: React.FC<{
   if (imageError) {
     return (
       <div className="bg-gray-800/50 border border-gray-600 rounded-lg p-4 text-center">
-        <AlertCircle className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-        <p className="text-gray-400 text-sm">Image not found</p>
-        <p className="text-gray-500 text-xs">{src}</p>
+        <AlertCircle className="w-8 h-8 text-muted-foreground/80 mx-auto mb-2" />
+        <p className="text-muted-foreground/80 text-sm">Image not found</p>
+        <p className="text-muted-foreground/70 text-xs">{src}</p>
       </div>
     );
   }
@@ -63,7 +63,7 @@ const SimpleImage: React.FC<{
         loading="lazy"
       />
       {caption && (
-        <p className="text-center text-gray-400 text-sm mt-2 italic">{caption}</p>
+        <p className="text-center text-muted-foreground/80 text-sm mt-2 italic">{caption}</p>
       )}
     </div>
   );
@@ -79,12 +79,12 @@ const ImageModal: React.FC<{
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-card">
       <div className="relative max-w-[90vw] max-h-[90vh]">
         <Button
           variant="outline"
           size="icon"
-          className="absolute -top-12 right-0 bg-black/50 text-white border-white/20"
+          className="absolute -top-12 right-0 bg-card text-foreground border-border"
           onClick={onClose}
         >
           <X className="h-4 w-4" />
@@ -161,30 +161,30 @@ const MathJaxMarkdownRenderer: React.FC<MathJaxMarkdownProps> = ({
       );
 
       if (hasBlockElement) {
-        return <div className="mb-4 leading-relaxed text-gray-100 drop-shadow" {...props}>{children}</div>;
+        return <div className="mb-4 leading-relaxed text-foreground" {...props}>{children}</div>;
       }
 
-      return <p className="mb-4 leading-relaxed text-gray-100 drop-shadow" {...props}>{children}</p>;
+      return <p className="mb-4 leading-relaxed text-foreground" {...props}>{children}</p>;
     },
 
     // Headings
     h1: ({ node, children, ...props }: any) => (
-      <h1 className="text-4xl font-serif mb-6 text-white drop-shadow-lg" {...props}>
+      <h1 className="text-4xl font-serif mb-6 text-foreground" {...props}>
         {children}
       </h1>
     ),
     h2: ({ node, children, ...props }: any) => (
-      <h2 className="text-3xl font-serif mb-5 text-white drop-shadow" {...props}>
+      <h2 className="text-3xl font-serif mb-5 text-foreground" {...props}>
         {children}
       </h2>
     ),
     h3: ({ node, children, ...props }: any) => (
-      <h3 className="text-2xl font-serif mb-4 text-white drop-shadow" {...props}>
+      <h3 className="text-2xl font-serif mb-4 text-foreground" {...props}>
         {children}
       </h3>
     ),
     h4: ({ node, children, ...props }: any) => (
-      <h4 className="text-xl font-serif mb-3 text-white drop-shadow" {...props}>
+      <h4 className="text-xl font-serif mb-3 text-foreground" {...props}>
         {children}
       </h4>
     ),
@@ -193,7 +193,7 @@ const MathJaxMarkdownRenderer: React.FC<MathJaxMarkdownProps> = ({
     a: ({ node, children, href, ...props }: any) => (
       <a
         href={href}
-        className="text-blue-400 hover:text-blue-300 underline decoration-blue-400/50 hover:decoration-blue-300"
+        className="text-primary hover:text-primary/80 underline decoration-1 underline-offset-2"
         target={href?.startsWith('http') ? '_blank' : undefined}
         rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}
         {...props}
@@ -204,32 +204,32 @@ const MathJaxMarkdownRenderer: React.FC<MathJaxMarkdownProps> = ({
 
     // Text formatting
     strong: ({ node, children, ...props }: any) => (
-      <strong className="font-bold text-white" {...props}>{children}</strong>
+      <strong className="font-bold text-foreground" {...props}>{children}</strong>
     ),
     em: ({ node, children, ...props }: any) => (
-      <em className="italic text-gray-200" {...props}>{children}</em>
+      <em className="italic text-foreground/90" {...props}>{children}</em>
     ),
 
     // Lists
     ul: ({ node, children, ...props }: any) => (
-      <ul className="list-disc list-inside mb-4 space-y-2 text-gray-200" {...props}>
+      <ul className="list-disc list-inside mb-4 space-y-2 text-foreground/90" {...props}>
         {children}
       </ul>
     ),
     ol: ({ node, children, ...props }: any) => (
-      <ol className="list-decimal list-inside mb-4 space-y-2 text-gray-200" {...props}>
+      <ol className="list-decimal list-inside mb-4 space-y-2 text-foreground/90" {...props}>
         {children}
       </ol>
     ),
     li: ({ node, children, ...props }: any) => (
-      <li className="text-gray-200" {...props}>{children}</li>
+      <li className="text-foreground/90" {...props}>{children}</li>
     ),
 
     // Code - FIXED: don't wrap in divs that go inside paragraphs
     code: ({ node, inline, className, children, ...props }: any) => {
       if (inline) {
         return (
-          <code className="bg-gray-800 text-blue-300 px-2 py-1 rounded font-mono text-sm" {...props}>
+          <code className="bg-muted text-foreground px-2 py-1 rounded font-mono text-sm" {...props}>
             {children}
           </code>
         );
@@ -237,7 +237,7 @@ const MathJaxMarkdownRenderer: React.FC<MathJaxMarkdownProps> = ({
 
       // For block code, return a fragment to avoid DOM nesting issues
       return (
-        <pre className="bg-gray-800 text-gray-200 p-4 rounded-lg overflow-x-auto mb-4 font-mono text-sm" {...props}>
+        <pre className="bg-gray-800 text-foreground/90 p-4 rounded-lg overflow-x-auto mb-4 font-mono text-sm" {...props}>
           <code>{children}</code>
         </pre>
       );
@@ -245,7 +245,7 @@ const MathJaxMarkdownRenderer: React.FC<MathJaxMarkdownProps> = ({
 
     // Pre element
     pre: ({ node, children, ...props }: any) => (
-      <pre className="bg-gray-800 text-gray-200 p-4 rounded-lg overflow-x-auto mb-4 font-mono text-sm" {...props}>
+      <pre className="bg-gray-800 text-foreground/90 p-4 rounded-lg overflow-x-auto mb-4 font-mono text-sm" {...props}>
         {children}
       </pre>
     ),
@@ -259,12 +259,12 @@ const MathJaxMarkdownRenderer: React.FC<MathJaxMarkdownProps> = ({
       </div>
     ),
     th: ({ node, children, ...props }: any) => (
-      <th className="border border-gray-600 bg-gray-800 px-4 py-2 text-left text-white font-semibold" {...props}>
+      <th className="border border-gray-600 bg-gray-800 px-4 py-2 text-left text-foreground font-semibold" {...props}>
         {children}
       </th>
     ),
     td: ({ node, children, ...props }: any) => (
-      <td className="border border-gray-600 px-4 py-2 text-gray-200" {...props}>
+      <td className="border border-gray-600 px-4 py-2 text-foreground/90" {...props}>
         {children}
       </td>
     ),
@@ -283,7 +283,7 @@ const MathJaxMarkdownRenderer: React.FC<MathJaxMarkdownProps> = ({
 
     // Blockquotes
     blockquote: ({ node, children, ...props }: any) => (
-      <blockquote className="border-l-4 border-blue-400 pl-4 italic text-gray-300 mb-4" {...props}>
+      <blockquote className="border-l-4 border-blue-400 pl-4 italic text-muted-foreground mb-4" {...props}>
         {children}
       </blockquote>
     ),
@@ -303,7 +303,7 @@ const MathJaxMarkdownRenderer: React.FC<MathJaxMarkdownProps> = ({
               variant="outline"
               size="sm"
               onClick={() => setViewMode(viewMode === 'rendered' ? 'raw' : 'rendered')}
-              className="bg-black/30 border-white/20 text-white hover:bg-black/50"
+              className="bg-card/60 border-border text-foreground hover:bg-card"
             >
               {viewMode === 'rendered' ? <Code className="w-4 h-4 mr-2" /> : <Eye className="w-4 h-4 mr-2" />}
               {viewMode === 'rendered' ? 'View Raw' : 'View Rendered'}
@@ -312,7 +312,7 @@ const MathJaxMarkdownRenderer: React.FC<MathJaxMarkdownProps> = ({
               variant="outline"
               size="sm"
               onClick={handleCopyRaw}
-              className="bg-black/30 border-white/20 text-white hover:bg-black/50"
+              className="bg-card/60 border-border text-foreground hover:bg-card"
             >
               {copySuccess ? <Check className="w-4 h-4 mr-2" /> : <Copy className="w-4 h-4 mr-2" />}
               {copySuccess ? 'Copied!' : 'Copy Raw'}
@@ -323,7 +323,7 @@ const MathJaxMarkdownRenderer: React.FC<MathJaxMarkdownProps> = ({
         {viewMode === 'rendered' ? (
           <div
             ref={containerRef}
-            className="prose prose-invert prose-lg max-w-none"
+            className="prose prose-lg max-w-none"
           >
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
@@ -334,7 +334,7 @@ const MathJaxMarkdownRenderer: React.FC<MathJaxMarkdownProps> = ({
             </ReactMarkdown>
           </div>
         ) : (
-          <pre className="bg-gray-800 text-gray-200 p-4 rounded-lg overflow-x-auto whitespace-pre-wrap">
+          <pre className="bg-gray-800 text-foreground/90 p-4 rounded-lg overflow-x-auto whitespace-pre-wrap">
             {content}
           </pre>
         )}

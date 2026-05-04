@@ -114,37 +114,37 @@ const WorldMapTab: React.FC<WorldMapTabProps> = ({
 
       {/* Legend and explanation */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-        <div className="bg-black/30 p-4 rounded-lg border border-white/10">
-          <h3 className="text-lg font-medium mb-2 text-white">Supremacism-Egalitarianism Spectrum</h3>
+        <div className="bg-card/60 p-4 rounded-lg border border-border">
+          <h3 className="text-lg font-medium mb-2 text-foreground">Supremacism-Egalitarianism Spectrum</h3>
           <div className="mb-4">
             <div className="h-6 w-full rounded-md"
                   style={{background: 'linear-gradient(to right, #3b82f6, #22c55e, #eab308, #f97316, #ef4444)'}}></div>
-            <div className="flex justify-between mt-1 text-xs text-gray-300">
+            <div className="flex justify-between mt-1 text-xs text-muted-foreground">
               <span>0 (Strong Egalitarianism)</span>
               <span>5 (Neutral)</span>
               <span>10 (Strong Supremacism)</span>
             </div>
           </div>
-          <p className="text-sm text-gray-300 mt-2">
+          <p className="text-sm text-muted-foreground mt-2">
             This visualization demonstrates how supremacist and egalitarian forces behave analogously to
             thermodynamic principles, with surges and flows between regions.
           </p>
         </div>
 
-        <div className="bg-black/30 p-4 rounded-lg border border-white/10">
-          <h3 className="text-lg font-medium mb-2 text-white">Data Sources</h3>
+        <div className="bg-card/60 p-4 rounded-lg border border-border">
+          <h3 className="text-lg font-medium mb-2 text-foreground">Data Sources</h3>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <h4 className="text-sm font-medium text-gray-300 mb-1">Countries</h4>
-              <ul className="text-gray-400 text-xs space-y-1">
+              <h4 className="text-sm font-medium text-muted-foreground mb-1">Countries</h4>
+              <ul className="text-muted-foreground/80 text-xs space-y-1">
                 <li>• GDELT BigQuery Event Data</li>
                 <li>• Goldstein Scale Analysis</li>
                 <li>• 12 Months Historical Data</li>
               </ul>
             </div>
             <div>
-              <h4 className="text-sm font-medium text-gray-300 mb-1">Events</h4>
-              <ul className="text-gray-400 text-xs space-y-1">
+              <h4 className="text-sm font-medium text-muted-foreground mb-1">Events</h4>
+              <ul className="text-muted-foreground/80 text-xs space-y-1">
                 <li>• UCDP GED Conflict Data (purple)</li>
                 <li>• GDELT Conflict Events (orange)</li>
                 <li>• ACLED Armed Conflict Data (red)</li>
@@ -152,7 +152,7 @@ const WorldMapTab: React.FC<WorldMapTabProps> = ({
             </div>
           </div>
           {timelineData && (
-            <p className="text-xs text-gray-500 mt-3">
+            <p className="text-xs text-muted-foreground/70 mt-3">
               Timeline: {timelineData.months[0]} to {timelineData.months[timelineData.months.length - 1]}
             </p>
           )}
@@ -161,12 +161,12 @@ const WorldMapTab: React.FC<WorldMapTabProps> = ({
 
       {/* Simulation Results Summary */}
       {simulationData && simulationData.results.length > 0 && (
-        <div className="bg-black/30 p-4 rounded-lg border border-white/10 mt-4">
-          <h3 className="text-lg font-medium mb-3 text-white flex items-center gap-2">
+        <div className="bg-card/60 p-4 rounded-lg border border-border mt-4">
+          <h3 className="text-lg font-medium mb-3 text-foreground flex items-center gap-2">
             <Activity className="h-5 w-5 text-purple-400" />
             Laws of Existence Simulation Results
           </h3>
-          <p className="text-sm text-gray-300 mb-4">
+          <p className="text-sm text-muted-foreground mb-4">
             Real-world conflict data processed through the recursive simulation framework.
             Shows how supremacist governance affects primordial coherence.
           </p>
@@ -178,13 +178,13 @@ const WorldMapTab: React.FC<WorldMapTabProps> = ({
               .map((result) => (
                 <div
                   key={result.country_code}
-                  className="bg-black/40 p-3 rounded-lg border border-white/5 hover:border-white/20 transition-colors"
+                  className="bg-card/80 p-3 rounded-lg border border-white/5 hover:border-border transition-colors"
                 >
-                  <div className="text-sm font-medium text-white truncate" title={result.country_code}>
+                  <div className="text-sm font-medium text-foreground truncate" title={result.country_code}>
                     {result.country_code}
                   </div>
                   <div className="flex items-center justify-between mt-1">
-                    <span className="text-xs text-gray-400">Coherence:</span>
+                    <span className="text-xs text-muted-foreground/80">Coherence:</span>
                     <span
                       className="text-sm font-bold"
                       style={{ color: getRiskLevelColor(result.simulation.risk_level) }}
@@ -193,7 +193,7 @@ const WorldMapTab: React.FC<WorldMapTabProps> = ({
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-gray-400">Risk:</span>
+                    <span className="text-xs text-muted-foreground/80">Risk:</span>
                     <span
                       className="text-xs font-medium uppercase"
                       style={{ color: getRiskLevelColor(result.simulation.risk_level) }}
@@ -201,14 +201,14 @@ const WorldMapTab: React.FC<WorldMapTabProps> = ({
                       {result.simulation.risk_level}
                     </span>
                   </div>
-                  <div className="text-xs text-gray-500 mt-1">
+                  <div className="text-xs text-muted-foreground/70 mt-1">
                     {result.source_data.event_count.toLocaleString()} events
                   </div>
                 </div>
               ))}
           </div>
 
-          <div className="mt-4 flex items-center justify-between text-xs text-gray-500">
+          <div className="mt-4 flex items-center justify-between text-xs text-muted-foreground/70">
             <span>
               Showing top 10 most affected countries of {simulationData.total_countries} simulated
             </span>
@@ -220,43 +220,43 @@ const WorldMapTab: React.FC<WorldMapTabProps> = ({
       )}
 
       {/* SGM Calculation Methodology */}
-      <div className="bg-black/30 p-4 rounded-lg border border-white/10 mt-4">
-        <h3 className="text-lg font-medium mb-3 text-white">How SGM Scores Are Calculated</h3>
-        <p className="text-sm text-gray-300 mb-4">
+      <div className="bg-card/60 p-4 rounded-lg border border-border mt-4">
+        <h3 className="text-lg font-medium mb-3 text-foreground">How SGM Scores Are Calculated</h3>
+        <p className="text-sm text-muted-foreground mb-4">
           The Supremacism Governance Model (SGM) score is derived from GDELT's global event database.
           Click any country on the map to see its detailed metrics for the selected month.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
-          <div className="bg-black/40 p-3 rounded-lg">
-            <h4 className="text-white font-medium mb-1">Goldstein Scale</h4>
-            <p className="text-gray-400">
+          <div className="bg-card/80 p-3 rounded-lg">
+            <h4 className="text-foreground font-medium mb-1">Goldstein Scale</h4>
+            <p className="text-muted-foreground/80">
               Ranges from -10 (extreme conflict) to +10 (extreme cooperation).
               Negative values indicate conflict-dominant events.
             </p>
           </div>
-          <div className="bg-black/40 p-3 rounded-lg">
-            <h4 className="text-white font-medium mb-1">Conflict Ratio</h4>
-            <p className="text-gray-400">
+          <div className="bg-card/80 p-3 rounded-lg">
+            <h4 className="text-foreground font-medium mb-1">Conflict Ratio</h4>
+            <p className="text-muted-foreground/80">
               Percentage of events classified as conflict (QuadClass 3 or 4).
               Higher ratios indicate more adversarial conditions.
             </p>
           </div>
-          <div className="bg-black/40 p-3 rounded-lg">
-            <h4 className="text-white font-medium mb-1">Violence Events</h4>
-            <p className="text-gray-400">
+          <div className="bg-card/80 p-3 rounded-lg">
+            <h4 className="text-foreground font-medium mb-1">Violence Events</h4>
+            <p className="text-muted-foreground/80">
               Events coded as assault, fight, or use of military force (CAMEO codes 18, 19, 20).
               Direct indicators of physical conflict.
             </p>
           </div>
-          <div className="bg-black/40 p-3 rounded-lg">
-            <h4 className="text-white font-medium mb-1">Protest Events</h4>
-            <p className="text-gray-400">
+          <div className="bg-card/80 p-3 rounded-lg">
+            <h4 className="text-foreground font-medium mb-1">Protest Events</h4>
+            <p className="text-muted-foreground/80">
               Events coded as protests or demonstrations (CAMEO code 14).
               Indicates social tension and citizen mobilization.
             </p>
           </div>
         </div>
-        <p className="text-xs text-gray-500 mt-3">
+        <p className="text-xs text-muted-foreground/70 mt-3">
           SGM = (Goldstein Factor × 3.0) + (Conflict Ratio × 2.5) + (Violence Factor × 2.0) + (Protest Factor × 1.5) - (Cooperation Offset)
         </p>
       </div>

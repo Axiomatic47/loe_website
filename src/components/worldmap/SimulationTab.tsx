@@ -725,7 +725,7 @@ const SimulationTab: React.FC<SimulationTabProps> = ({
     return (
       <div className="space-y-2">
         <div className="flex justify-between items-center">
-          <Label className="text-sm text-gray-300">{label}</Label>
+          <Label className="text-sm text-muted-foreground">{label}</Label>
           <span className={cn("text-sm font-mono font-bold", getColor())}>
             {displayValue}
           </span>
@@ -743,7 +743,7 @@ const SimulationTab: React.FC<SimulationTabProps> = ({
           }}
           className="cursor-pointer"
         />
-        <p className="text-xs text-gray-500">{description}</p>
+        <p className="text-xs text-muted-foreground/70">{description}</p>
       </div>
     );
   };
@@ -751,14 +751,14 @@ const SimulationTab: React.FC<SimulationTabProps> = ({
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-black/30 p-6 rounded-lg border border-white/10">
+      <div className="bg-card/60 p-6 rounded-lg border border-border">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="text-2xl text-white flex items-center gap-2">
+            <h2 className="text-2xl text-foreground flex items-center gap-2">
               <Activity className="h-6 w-6 text-purple-400" />
               Coherence Projection Simulator
             </h2>
-            <p className="text-gray-400 mt-1">
+            <p className="text-muted-foreground/80 mt-1">
               Project how governance parameters affect primordial coherence over time
             </p>
           </div>
@@ -766,7 +766,7 @@ const SimulationTab: React.FC<SimulationTabProps> = ({
             variant="outline"
             size="sm"
             onClick={resetParams}
-            className="bg-black/50 text-white border-white/20"
+            className="bg-card text-foreground border-border"
           >
             <RefreshCw className="h-4 w-4 mr-2" />
             Reset
@@ -784,7 +784,7 @@ const SimulationTab: React.FC<SimulationTabProps> = ({
             {fullSimResults ? "Full Simulation" : "Preview Mode"}
           </div>
           {!fullSimResults && (
-            <span className="text-gray-500">
+            <span className="text-muted-foreground/70">
               Adjust parameters for instant preview, then run full simulation for accurate results
             </span>
           )}
@@ -802,10 +802,10 @@ const SimulationTab: React.FC<SimulationTabProps> = ({
                  simulationMode === 'entity_baseline' ? '🌍 Entity Baseline Trajectory' :
                  '⚙️ Custom Parameters'}
               </div>
-              <div className="text-xs text-gray-400">
+              <div className="text-xs text-muted-foreground/80">
                 {simulationMode === 'entity_scenario' && loadedEntity && selectedScenario && (
                   <>
-                    <span className="text-white font-medium">{loadedEntity.country_name}</span>
+                    <span className="text-foreground font-medium">{loadedEntity.country_name}</span>
                     {' baseline '}
                     <span className="text-purple-400">modified by</span>
                     {' '}
@@ -823,9 +823,9 @@ const SimulationTab: React.FC<SimulationTabProps> = ({
                 )}
                 {simulationMode === 'entity_baseline' && loadedEntity && (
                   <>
-                    Projecting <span className="text-white font-medium">{loadedEntity.country_name}</span>'s real-world parameters
+                    Projecting <span className="text-foreground font-medium">{loadedEntity.country_name}</span>'s real-world parameters
                     {' → '}
-                    <span className="text-gray-500">Select a scenario to apply modifiers</span>
+                    <span className="text-muted-foreground/70">Select a scenario to apply modifiers</span>
                   </>
                 )}
               </div>
@@ -833,8 +833,8 @@ const SimulationTab: React.FC<SimulationTabProps> = ({
           )}
 
           {/* Entity (Country) selector */}
-          <div className="bg-black/30 p-4 rounded-lg border border-white/10">
-            <h3 className="text-lg font-medium mb-3 text-white flex items-center gap-2">
+          <div className="bg-card/60 p-4 rounded-lg border border-border">
+            <h3 className="text-lg font-medium mb-3 text-foreground flex items-center gap-2">
               🌍 Select Entity (Country)
             </h3>
 
@@ -844,7 +844,7 @@ const SimulationTab: React.FC<SimulationTabProps> = ({
               <select
                 value={selectedCountry || ''}
                 onChange={(e) => setSelectedCountry(e.target.value || null)}
-                className="w-full bg-black/50 text-white border border-white/20 rounded px-3 py-2"
+                className="w-full bg-card text-foreground border border-border rounded px-3 py-2"
               >
                 <option value="">No Entity (Custom)</option>
                 {countries
@@ -860,34 +860,34 @@ const SimulationTab: React.FC<SimulationTabProps> = ({
 
             {/* Entity Context - show real data when entity loaded */}
             {loadedEntity && (
-              <div className="mt-3 p-3 bg-black/40 rounded border border-white/5">
-                <div className="text-sm text-white font-medium mb-2">{loadedEntity.country_name}</div>
+              <div className="mt-3 p-3 bg-card/80 rounded border border-white/5">
+                <div className="text-sm text-foreground font-medium mb-2">{loadedEntity.country_name}</div>
                 <div className="grid grid-cols-2 gap-2 text-xs">
                   <div>
-                    <span className="text-gray-500">Governance:</span>
-                    <span className="text-gray-300 ml-1">{loadedEntity.category}</span>
+                    <span className="text-muted-foreground/70">Governance:</span>
+                    <span className="text-muted-foreground ml-1">{loadedEntity.category}</span>
                   </div>
                   <div>
-                    <span className="text-gray-500">Coherence:</span>
+                    <span className="text-muted-foreground/70">Coherence:</span>
                     <span className="text-purple-400 ml-1">{(loadedEntity.metrics.sim_coherence * 100).toFixed(1)}%</span>
                   </div>
                   <div>
-                    <span className="text-gray-500">Events:</span>
+                    <span className="text-muted-foreground/70">Events:</span>
                     <span className="text-orange-400 ml-1">{loadedEntity.metrics.event_count.toLocaleString()}</span>
                   </div>
                   <div>
-                    <span className="text-gray-500">Fatalities:</span>
+                    <span className="text-muted-foreground/70">Fatalities:</span>
                     <span className="text-red-400 ml-1">{loadedEntity.metrics.fatalities.toLocaleString()}</span>
                   </div>
                 </div>
-                <div className="text-xs text-gray-500 mt-2">
+                <div className="text-xs text-muted-foreground/70 mt-2">
                   STI: {loadedEntity.metrics.sti.toFixed(1)} | SGM: {loadedEntity.metrics.sgm.toFixed(1)}
                 </div>
               </div>
             )}
 
             {!selectedCountry && (
-              <p className="text-xs text-gray-500 mt-2">
+              <p className="text-xs text-muted-foreground/70 mt-2">
                 Select a country to use its real conflict data as starting point
               </p>
             )}
@@ -895,12 +895,12 @@ const SimulationTab: React.FC<SimulationTabProps> = ({
 
           {/* Scenario selector */}
           <div className={cn(
-            "bg-black/30 p-4 rounded-lg border",
-            loadedEntity ? "border-white/10" : "border-yellow-500/30"
+            "bg-card/60 p-4 rounded-lg border",
+            loadedEntity ? "border-border" : "border-yellow-500/30"
           )}>
-            <h3 className="text-lg font-medium mb-3 text-white flex items-center gap-2">
+            <h3 className="text-lg font-medium mb-3 text-foreground flex items-center gap-2">
               <Zap className="h-5 w-5 text-purple-400" />
-              Apply Scenario {loadedEntity && <span className="text-xs text-gray-500 font-normal">(to {loadedEntity.country_code})</span>}
+              Apply Scenario {loadedEntity && <span className="text-xs text-muted-foreground/70 font-normal">(to {loadedEntity.country_code})</span>}
             </h3>
 
             {scenariosLoading ? (
@@ -911,8 +911,8 @@ const SimulationTab: React.FC<SimulationTabProps> = ({
                 onChange={(e) => setSelectedScenario(e.target.value || null)}
                 disabled={!loadedEntity}
                 className={cn(
-                  "w-full bg-black/50 text-white border rounded px-3 py-2",
-                  loadedEntity ? "border-white/20" : "border-yellow-500/30 opacity-50 cursor-not-allowed"
+                  "w-full bg-card text-foreground border rounded px-3 py-2",
+                  loadedEntity ? "border-border" : "border-yellow-500/30 opacity-50 cursor-not-allowed"
                 )}
               >
                 <option value="">{loadedEntity ? 'Entity Baseline (No Scenario)' : 'Select entity first'}</option>
@@ -935,8 +935,8 @@ const SimulationTab: React.FC<SimulationTabProps> = ({
                 if (scenario) {
                   return (
                     <div className="mt-3 space-y-2">
-                      <p className="text-xs text-gray-400">{scenario.description}</p>
-                      <div className="bg-black/40 p-2 rounded text-xs space-y-1">
+                      <p className="text-xs text-muted-foreground/80">{scenario.description}</p>
+                      <div className="bg-card/80 p-2 rounded text-xs space-y-1">
                         <div className="text-purple-400 font-medium mb-1">Modifiers Applied:</div>
                         {Object.entries(scenario.modifiers).map(([param, mod]) => {
                           const baseValue = param === 'suppression_level' ? loadedEntity.metrics.sim_suppression :
@@ -954,16 +954,16 @@ const SimulationTab: React.FC<SimulationTabProps> = ({
                           const modSymbol = mod.type === 'multiply' ? '×' : mod.type === 'set' ? '→' : '';
 
                           return (
-                            <div key={param} className="flex justify-between text-gray-300">
-                              <span className="text-gray-500">{param.replace(/_/g, ' ')}:</span>
+                            <div key={param} className="flex justify-between text-muted-foreground">
+                              <span className="text-muted-foreground/70">{param.replace(/_/g, ' ')}:</span>
                               <span>
-                                <span className="text-gray-400">{baseValue.toFixed(2)}</span>
+                                <span className="text-muted-foreground/80">{baseValue.toFixed(2)}</span>
                                 <span className="text-purple-400 mx-1">
                                   {mod.type === 'delta' && `${modSign}${modValue.toFixed(2)}`}
                                   {mod.type === 'multiply' && `${modSymbol}${modValue.toFixed(2)}`}
                                   {mod.type === 'set' && `${modSymbol}${modValue.toFixed(2)}`}
                                 </span>
-                                <span className="text-white">{clampedResult.toFixed(2)}</span>
+                                <span className="text-foreground">{clampedResult.toFixed(2)}</span>
                               </span>
                             </div>
                           );
@@ -983,14 +983,14 @@ const SimulationTab: React.FC<SimulationTabProps> = ({
             )}
 
             {loadedEntity && !selectedScenario && (
-              <p className="text-xs text-gray-500 mt-2">
+              <p className="text-xs text-muted-foreground/70 mt-2">
                 Using {loadedEntity.country_name}'s baseline parameters. Select a scenario to explore "what if" trajectories.
               </p>
             )}
           </div>
 
           {/* Auto-correlate toggle */}
-          <div className="bg-black/30 p-4 rounded-lg border border-white/10">
+          <div className="bg-card/60 p-4 rounded-lg border border-border">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <button
@@ -1007,10 +1007,10 @@ const SimulationTab: React.FC<SimulationTabProps> = ({
                     )}
                   />
                 </button>
-                <Label className="text-sm text-gray-300">🔗 Auto-correlate</Label>
+                <Label className="text-sm text-muted-foreground">🔗 Auto-correlate</Label>
               </div>
             </div>
-            <p className="text-xs text-gray-500 mt-2">
+            <p className="text-xs text-muted-foreground/70 mt-2">
               {autoCorrelate
                 ? "Parameters auto-adjust based on mathematical model equations"
                 : "Manual mode - parameters are independent (for isolated tests)"}
@@ -1018,8 +1018,8 @@ const SimulationTab: React.FC<SimulationTabProps> = ({
           </div>
 
           {/* Parameter sliders */}
-          <div className="bg-black/30 p-4 rounded-lg border border-white/10 space-y-6">
-            <h3 className="text-lg font-medium text-white">Stress Factors</h3>
+          <div className="bg-card/60 p-4 rounded-lg border border-border space-y-6">
+            <h3 className="text-lg font-medium text-foreground">Stress Factors</h3>
 
             <ParameterSlider
               label="Suppression Level"
@@ -1042,8 +1042,8 @@ const SimulationTab: React.FC<SimulationTabProps> = ({
               description="Prevalence of in-group superiority beliefs"
             />
 
-            <div className="pt-4 border-t border-white/10">
-              <h3 className="text-lg font-medium text-white mb-4">Resources & Bias</h3>
+            <div className="pt-4 border-t border-border">
+              <h3 className="text-lg font-medium text-foreground mb-4">Resources & Bias</h3>
 
               <ParameterSlider
                 label="Resource Availability"
@@ -1064,7 +1064,7 @@ const SimulationTab: React.FC<SimulationTabProps> = ({
               </div>
             </div>
 
-            <div className="pt-4 border-t border-white/10">
+            <div className="pt-4 border-t border-border">
               <ParameterSlider
                 label="Initial Coherence"
                 value={params.initial_coherence}
@@ -1076,8 +1076,8 @@ const SimulationTab: React.FC<SimulationTabProps> = ({
           </div>
 
           {/* Timesteps selector */}
-          <div className="bg-black/30 p-4 rounded-lg border border-white/10">
-            <h3 className="text-lg font-medium mb-3 text-white">Projection Length</h3>
+          <div className="bg-card/60 p-4 rounded-lg border border-border">
+            <h3 className="text-lg font-medium mb-3 text-foreground">Projection Length</h3>
             <div className="flex gap-2">
               {[100, 250, 500, 1000].map(t => (
                 <button
@@ -1089,15 +1089,15 @@ const SimulationTab: React.FC<SimulationTabProps> = ({
                   className={cn(
                     "flex-1 px-3 py-2 rounded text-sm transition-colors",
                     timesteps === t
-                      ? "bg-purple-600 text-white"
-                      : "bg-black/50 text-gray-400 border border-white/10 hover:border-white/30"
+                      ? "bg-purple-600 text-foreground"
+                      : "bg-card text-muted-foreground/80 border border-border hover:border-border"
                   )}
                 >
                   {t}
                 </button>
               ))}
             </div>
-            <p className="text-xs text-gray-500 mt-2">
+            <p className="text-xs text-muted-foreground/70 mt-2">
               Number of simulation timesteps to project
             </p>
           </div>
@@ -1106,7 +1106,7 @@ const SimulationTab: React.FC<SimulationTabProps> = ({
           <Button
             onClick={runFullSimulation}
             disabled={isRunningFullSim}
-            className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+            className="w-full bg-purple-600 hover:bg-purple-700 text-foreground"
             size="lg"
           >
             {isRunningFullSim ? (
@@ -1135,8 +1135,8 @@ const SimulationTab: React.FC<SimulationTabProps> = ({
         {/* Right column - Chart and results */}
         <div className="lg:col-span-2 space-y-6">
           {/* Coherence chart */}
-          <div className="bg-black/30 p-4 rounded-lg border border-white/10">
-            <h3 className="text-lg font-medium mb-4 text-white">Coherence Projection</h3>
+          <div className="bg-card/60 p-4 rounded-lg border border-border">
+            <h3 className="text-lg font-medium mb-4 text-foreground">Coherence Projection</h3>
 
             <div className="h-80">
               <ResponsiveContainer width="100%" height="100%">
@@ -1195,19 +1195,19 @@ const SimulationTab: React.FC<SimulationTabProps> = ({
             <div className="flex items-center justify-center gap-4 mt-4 text-xs">
               <div className="flex items-center gap-1">
                 <div className="w-3 h-0.5 bg-green-500"></div>
-                <span className="text-gray-400">Low (70%+)</span>
+                <span className="text-muted-foreground/80">Low (70%+)</span>
               </div>
               <div className="flex items-center gap-1">
                 <div className="w-3 h-0.5 bg-yellow-500"></div>
-                <span className="text-gray-400">Moderate (50%+)</span>
+                <span className="text-muted-foreground/80">Moderate (50%+)</span>
               </div>
               <div className="flex items-center gap-1">
                 <div className="w-3 h-0.5 bg-orange-500"></div>
-                <span className="text-gray-400">Elevated (35%+)</span>
+                <span className="text-muted-foreground/80">Elevated (35%+)</span>
               </div>
               <div className="flex items-center gap-1">
                 <div className="w-3 h-0.5 bg-red-500"></div>
-                <span className="text-gray-400">High/Critical</span>
+                <span className="text-muted-foreground/80">High/Critical</span>
               </div>
             </div>
           </div>
@@ -1215,27 +1215,27 @@ const SimulationTab: React.FC<SimulationTabProps> = ({
           {/* Results summary */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {/* Initial coherence */}
-            <div className="bg-black/30 p-4 rounded-lg border border-white/10">
-              <div className="text-xs text-gray-500 mb-1">Initial Coherence</div>
+            <div className="bg-card/60 p-4 rounded-lg border border-border">
+              <div className="text-xs text-muted-foreground/70 mb-1">Initial Coherence</div>
               <div className="text-2xl font-bold" style={{ color: getCoherenceColor(params.initial_coherence) }}>
                 {(params.initial_coherence * 100).toFixed(1)}%
               </div>
             </div>
 
             {/* Final coherence */}
-            <div className="bg-black/30 p-4 rounded-lg border border-white/10">
-              <div className="text-xs text-gray-500 mb-1">Projected Coherence</div>
+            <div className="bg-card/60 p-4 rounded-lg border border-border">
+              <div className="text-xs text-muted-foreground/70 mb-1">Projected Coherence</div>
               <div className="text-2xl font-bold" style={{ color: getCoherenceColor(finalCoherence) }}>
                 {(finalCoherence * 100).toFixed(1)}%
               </div>
             </div>
 
             {/* Change */}
-            <div className="bg-black/30 p-4 rounded-lg border border-white/10">
-              <div className="text-xs text-gray-500 mb-1">Change</div>
+            <div className="bg-card/60 p-4 rounded-lg border border-border">
+              <div className="text-xs text-muted-foreground/70 mb-1">Change</div>
               <div className={cn(
                 "text-2xl font-bold flex items-center gap-1",
-                coherenceChange > 0 ? "text-green-400" : coherenceChange < 0 ? "text-red-400" : "text-gray-400"
+                coherenceChange > 0 ? "text-green-400" : coherenceChange < 0 ? "text-red-400" : "text-muted-foreground/80"
               )}>
                 {coherenceChange > 0 ? <TrendingUp className="h-5 w-5" /> :
                  coherenceChange < 0 ? <TrendingDown className="h-5 w-5" /> :
@@ -1245,8 +1245,8 @@ const SimulationTab: React.FC<SimulationTabProps> = ({
             </div>
 
             {/* Risk level */}
-            <div className="bg-black/30 p-4 rounded-lg border border-white/10">
-              <div className="text-xs text-gray-500 mb-1">Risk Level</div>
+            <div className="bg-card/60 p-4 rounded-lg border border-border">
+              <div className="text-xs text-muted-foreground/70 mb-1">Risk Level</div>
               <div
                 className="text-2xl font-bold uppercase"
                 style={{ color: getRiskLevelColor(finalRiskLevel) }}
@@ -1257,9 +1257,9 @@ const SimulationTab: React.FC<SimulationTabProps> = ({
           </div>
 
           {/* Interpretation */}
-          <div className="bg-black/30 p-4 rounded-lg border border-white/10">
-            <h3 className="text-lg font-medium mb-3 text-white">Interpretation</h3>
-            <div className="text-gray-300 space-y-2">
+          <div className="bg-card/60 p-4 rounded-lg border border-border">
+            <h3 className="text-lg font-medium mb-3 text-foreground">Interpretation</h3>
+            <div className="text-muted-foreground space-y-2">
               {coherenceChange < -0.2 ? (
                 <p>
                   <span className="text-red-400 font-medium">Significant decline projected.</span> The combination of
@@ -1293,7 +1293,7 @@ const SimulationTab: React.FC<SimulationTabProps> = ({
                 </p>
               )}
 
-              <p className="text-sm text-gray-500 mt-4">
+              <p className="text-sm text-muted-foreground/70 mt-4">
                 {fullSimResults
                   ? "Results from full Laws of Existence simulation framework."
                   : "Preview approximation. Run full simulation for accurate projections."}

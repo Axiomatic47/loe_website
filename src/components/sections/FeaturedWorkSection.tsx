@@ -7,7 +7,7 @@ import ImageEnhancedMarkdownRenderer from "@/components/ImageEnhancedMarkdownRen
 import PDFViewer from "@/components/PDFViewer";
 import { cn } from "@/lib/utils";
 
-const BlurPanel = ({
+const FeaturedPanel = ({
   children,
   className
 }: {
@@ -17,10 +17,7 @@ const BlurPanel = ({
   return (
     <div
       className={cn(
-        "relative rounded-lg p-8 sm:p-12",
-        "backdrop-blur-md bg-black/80",
-        "border border-white/10",
-        "shadow-xl",
+        "relative rounded-2xl p-8 sm:p-12 bg-card border border-border shadow-sm",
         className
       )}
     >
@@ -163,17 +160,20 @@ export const FeaturedWorkSection = () => {
   };
 
   return (
-    <div className="space-y-32">
+    <div className="space-y-24">
       {sortedSections.map((section, index) => (
         <section key={index} className="max-w-4xl mx-auto">
-          <BlurPanel>
-            <h2 className="text-4xl font-serif mb-8 text-white drop-shadow-lg text-center">
+          <FeaturedPanel>
+            <h2
+              className="text-4xl font-serif mb-8 text-foreground text-center"
+              style={{ letterSpacing: '-0.022em', fontWeight: 580 }}
+            >
               {section.title}
             </h2>
 
             {/* Show debug info in development */}
             {import.meta.env.DEV && (
-              <div className="mb-6 text-center text-sm text-gray-400">
+              <div className="mb-6 text-center text-sm text-muted-foreground/80">
                 Featured via: {section.featuredSource} | Collection: {section.collection}
                 {section.pdf_file && ' | Type: PDF'}
               </div>
@@ -181,7 +181,6 @@ export const FeaturedWorkSection = () => {
 
             {/* Render PDF or Markdown content based on what's available */}
             {section.pdf_file ? (
-              // PDF content for constitutional challenges
               <div className="mb-8">
                 <PDFViewer
                   pdfUrl={section.pdf_file}
@@ -190,11 +189,10 @@ export const FeaturedWorkSection = () => {
                   className="w-full"
                 />
 
-                {/* Optional: Show any additional markdown summary below PDF */}
                 {section.content_level_1 && (
-                  <div className="mt-8 prose prose-invert prose-lg max-w-none">
-                    <div className="bg-black/60 backdrop-blur-sm border border-white/20 rounded-lg p-6">
-                      <h3 className="text-2xl font-serif text-white mb-4">Document Summary</h3>
+                  <div className="mt-8 prose prose-lg max-w-none">
+                    <div className="panel-soft p-6">
+                      <h3 className="text-2xl font-serif text-foreground mb-4" style={{ letterSpacing: '-0.018em' }}>Document Summary</h3>
                       <ImageEnhancedMarkdownRenderer
                         content={section.content_level_1}
                         images={[]}
@@ -206,8 +204,7 @@ export const FeaturedWorkSection = () => {
                 )}
               </div>
             ) : (
-              // Markdown content for other collections
-              <div className="prose prose-invert prose-lg max-w-none">
+              <div className="prose prose-lg max-w-none">
                 <ImageEnhancedMarkdownRenderer
                   content={section.content_level_3}
                   images={section.images || []}
@@ -220,15 +217,15 @@ export const FeaturedWorkSection = () => {
             <div className="mt-8 text-center">
               <button
                 onClick={() => handleReadMore(section)}
-                className="text-blue-300 hover:text-blue-200 underline drop-shadow"
+                className="text-primary hover:text-primary/80 underline underline-offset-2 decoration-1 font-medium"
               >
                 Read more in {getCollectionDisplayName(section.collection)}
               </button>
             </div>
-          </BlurPanel>
+          </FeaturedPanel>
 
           {index < sortedSections.length - 1 && (
-            <hr className="border-t border-white/10 my-16" />
+            <hr className="border-t border-border my-16" />
           )}
         </section>
       ))}

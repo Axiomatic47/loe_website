@@ -27,9 +27,9 @@ const BlurPanel: React.FC<BlurPanelProps> = ({
     <div
       className={cn(
         "relative rounded-lg",
-        "backdrop-blur-md",
-        darkened ? "bg-black/40" : "bg-white/10",
-        "border border-white/10",
+        
+        darkened ? "bg-card/80" : "bg-secondary/60",
+        "border border-border",
         className
       )}
     >
@@ -167,7 +167,7 @@ const CompositionsPage: React.FC = () => {
             <Button
               variant="ghost"
               onClick={handleBackClick}
-              className="text-white hover:bg-white/10"
+              className="text-foreground hover:bg-secondary/60"
             >
               ← Back to Home
             </Button>
@@ -177,7 +177,7 @@ const CompositionsPage: React.FC = () => {
                 variant="ghost"
                 size="sm"
                 onClick={toggleDebugMode}
-                className="text-gray-400 hover:text-white hover:bg-white/10"
+                className="text-muted-foreground/80 hover:text-foreground hover:bg-secondary/60"
               >
                 {showDebug ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 Debug
@@ -186,19 +186,19 @@ const CompositionsPage: React.FC = () => {
           </div>
 
           <div className="text-center mb-12">
-            <h1 className="text-4xl sm:text-5xl font-serif mb-6 text-white drop-shadow-lg">
+            <h1 className="text-4xl sm:text-5xl font-serif mb-6 text-foreground">
               {collectionTitle}
             </h1>
 
             <div className="flex justify-center gap-2 mb-4">
-              <Badge variant="outline" className="bg-black/50 text-white border-white/20">
+              <Badge variant="outline" className="bg-card text-foreground border-border">
                 Collection: {compositionId}
               </Badge>
-              <Badge variant="outline" className="bg-black/50 text-white border-white/20">
+              <Badge variant="outline" className="bg-card text-foreground border-border">
                 Items: {compositions.length}
               </Badge>
               {lastRefresh && (
-                <Badge variant="outline" className="bg-black/50 text-white border-white/20">
+                <Badge variant="outline" className="bg-card text-foreground border-border">
                   Updated: {lastRefresh.toLocaleTimeString()}
                 </Badge>
               )}
@@ -207,25 +207,25 @@ const CompositionsPage: React.FC = () => {
 
           {/* Debug Information */}
           {showDebug && (
-            <div className="mb-8 p-4 bg-black/40 rounded border border-white/20 text-left">
+            <div className="mb-8 p-4 bg-card/80 rounded border border-border text-left">
               <div className="flex items-center gap-2 mb-4">
                 <Bug className="h-4 w-4 text-blue-400" />
-                <h3 className="text-white font-medium">Debug Information</h3>
+                <h3 className="text-foreground font-medium">Debug Information</h3>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-300">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-muted-foreground">
                 <div>
-                  <h4 className="text-white mb-2">Store State</h4>
+                  <h4 className="text-foreground mb-2">Store State</h4>
                   <div className="space-y-1">
                     <p>Initialized: <span className={initialized ? 'text-green-400' : 'text-red-400'}>{initialized ? 'Yes' : 'No'}</span></p>
-                    <p>Loading: <span className={loading ? 'text-yellow-400' : 'text-gray-400'}>{loading ? 'Yes' : 'No'}</span></p>
+                    <p>Loading: <span className={loading ? 'text-yellow-400' : 'text-muted-foreground/80'}>{loading ? 'Yes' : 'No'}</span></p>
                     <p>Error: <span className={error ? 'text-red-400' : 'text-green-400'}>{error || 'None'}</span></p>
                     <p>Last refresh: {lastRefresh?.toLocaleString() || 'Never'}</p>
                   </div>
                 </div>
 
                 <div>
-                  <h4 className="text-white mb-2">Collection Counts</h4>
+                  <h4 className="text-foreground mb-2">Collection Counts</h4>
                   <div className="space-y-1">
                     <p>Manuscript: <span className="text-blue-400">{manuscript.length}</span></p>
                     <p>Data: <span className="text-green-400">{data.length}</span></p>
@@ -240,7 +240,7 @@ const CompositionsPage: React.FC = () => {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="bg-black/50 text-white border-white/20"
+                  className="bg-card text-foreground border-border"
                   onClick={handleForceRefresh}
                   disabled={loading}
                 >
@@ -250,7 +250,7 @@ const CompositionsPage: React.FC = () => {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="bg-black/50 text-white border-white/20"
+                  className="bg-card text-foreground border-border"
                   onClick={() => window.open('/admin', '_blank')}
                 >
                   Open Admin Panel
@@ -262,9 +262,9 @@ const CompositionsPage: React.FC = () => {
           {/* Loading State */}
           {loading && (
             <div className="text-center py-12">
-              <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-white" />
-              <p className="text-white text-xl">Loading compositions...</p>
-              <p className="text-gray-400 text-sm mt-2">Collection: {compositionId}</p>
+              <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-foreground" />
+              <p className="text-foreground text-xl">Loading compositions...</p>
+              <p className="text-muted-foreground/80 text-sm mt-2">Collection: {compositionId}</p>
             </div>
           )}
 
@@ -272,13 +272,13 @@ const CompositionsPage: React.FC = () => {
           {error && !loading && (
             <Alert className="mb-6 bg-red-900/20 border-red-500/50">
               <AlertCircle className="h-4 w-4" />
-              <AlertDescription className="text-white">
+              <AlertDescription className="text-foreground">
                 <div className="mb-2">Error: {error}</div>
                 <div className="flex gap-2 mt-4">
                   <Button
                     variant="outline"
                     size="sm"
-                    className="bg-red-900/30 border-red-500/50 text-white hover:bg-red-900/50"
+                    className="bg-red-900/30 border-red-500/50 text-foreground hover:bg-red-900/50"
                     onClick={() => refreshCompositions()}
                   >
                     <RefreshCw className="h-4 w-4 mr-2" />
@@ -287,7 +287,7 @@ const CompositionsPage: React.FC = () => {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="bg-red-900/30 border-red-500/50 text-white hover:bg-red-900/50"
+                    className="bg-red-900/30 border-red-500/50 text-foreground hover:bg-red-900/50"
                     onClick={handleForceRefresh}
                   >
                     Force Refresh
@@ -302,14 +302,14 @@ const CompositionsPage: React.FC = () => {
             <>
               {compositions.length === 0 ? (
                 <div className="text-center py-12">
-                  <h2 className="text-2xl text-white mb-4">No Compositions Found</h2>
-                  <p className="text-gray-400 mb-6">
+                  <h2 className="text-2xl text-foreground mb-4">No Compositions Found</h2>
+                  <p className="text-muted-foreground/80 mb-6">
                     No {collectionTitle.toLowerCase()} compositions have been created yet.
                   </p>
                   <div className="space-x-4">
                     <Button
                       variant="outline"
-                      className="bg-black/50 text-white border-white/20"
+                      className="bg-card text-foreground border-border"
                       onClick={handleForceRefresh}
                       disabled={loading}
                     >
@@ -318,7 +318,7 @@ const CompositionsPage: React.FC = () => {
                     </Button>
                     <Button
                       variant="outline"
-                      className="bg-black/50 text-white border-white/20"
+                      className="bg-card text-foreground border-border"
                       onClick={() => window.open('/admin', '_blank')}
                     >
                       Create Content
@@ -340,9 +340,9 @@ const CompositionsPage: React.FC = () => {
                     return (
                       <div
                         key={`${composition.id}-${index}`}
-                        className="backdrop-blur-md bg-black/70 rounded-xl p-6 border border-white/10
+                        className="bg-card rounded-xl p-6 border border-border
                                  cursor-pointer transition-all duration-300
-                                 hover:bg-black/80 hover:scale-[1.02] hover:border-purple-500/30
+                                 hover:bg-card hover:scale-[1.02] hover:border-purple-500/30
                                  hover:shadow-lg hover:shadow-purple-500/10
                                  group"
                         onClick={() => handleCompositionClick(index)}
@@ -357,17 +357,17 @@ const CompositionsPage: React.FC = () => {
                               {publishers.length} {publishers.length === 1 ? 'Publisher' : 'Publishers'}
                             </Badge>
                           </div>
-                          <Send className="h-4 w-4 text-gray-500 group-hover:text-purple-400 transition-colors" />
+                          <Send className="h-4 w-4 text-muted-foreground/70 group-hover:text-purple-400 transition-colors" />
                         </div>
 
                         {/* Song Title */}
-                        <h3 className="text-xl font-semibold text-white mb-1 group-hover:text-purple-200 transition-colors">
+                        <h3 className="text-xl font-semibold text-foreground mb-1 group-hover:text-purple-200 transition-colors">
                           {songName}
                         </h3>
 
                         {/* Artist Name */}
                         {artistName && (
-                          <p className="text-gray-400 text-sm mb-4">{artistName}</p>
+                          <p className="text-muted-foreground/80 text-sm mb-4">{artistName}</p>
                         )}
 
                         {/* Publisher Badges */}
@@ -376,7 +376,7 @@ const CompositionsPage: React.FC = () => {
                             <Badge
                               key={pIndex}
                               variant="outline"
-                              className="bg-black/40 text-gray-300 border-white/10 text-xs
+                              className="bg-card/80 text-muted-foreground border-border text-xs
                                        group-hover:border-purple-500/30 group-hover:text-purple-200 transition-colors"
                             >
                               <FileText className="h-3 w-3 mr-1" />
@@ -386,7 +386,7 @@ const CompositionsPage: React.FC = () => {
                         </div>
 
                         {/* View Button */}
-                        <div className="mt-5 pt-4 border-t border-white/10">
+                        <div className="mt-5 pt-4 border-t border-border">
                           <span className="text-purple-400 group-hover:text-purple-300 text-sm font-medium inline-flex items-center">
                             View Notifications
                             <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
@@ -407,9 +407,9 @@ const CompositionsPage: React.FC = () => {
                     return (
                       <div
                         key={`${composition.id}-${index}`}
-                        className="backdrop-blur-md bg-black/70 rounded-xl p-6 border border-white/10
+                        className="bg-card rounded-xl p-6 border border-border
                                  cursor-pointer transition-all duration-300
-                                 hover:bg-black/80 hover:border-amber-500/30
+                                 hover:bg-card hover:border-amber-500/30
                                  hover:shadow-lg hover:shadow-amber-500/10
                                  group"
                         onClick={() => handleCompositionClick(index)}
@@ -423,7 +423,7 @@ const CompositionsPage: React.FC = () => {
                           {/* Content */}
                           <div className="flex-1 min-w-0">
                             <div className="flex items-start justify-between gap-4 mb-2">
-                              <h3 className="text-xl font-semibold text-white group-hover:text-amber-200 transition-colors">
+                              <h3 className="text-xl font-semibold text-foreground group-hover:text-amber-200 transition-colors">
                                 {composition.title}
                               </h3>
                               <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/30 text-xs flex-shrink-0">
@@ -433,9 +433,9 @@ const CompositionsPage: React.FC = () => {
 
                             {/* Description or section list preview */}
                             {description ? (
-                              <p className="text-gray-400 text-sm line-clamp-2 mb-4">{description}</p>
+                              <p className="text-muted-foreground/80 text-sm line-clamp-2 mb-4">{description}</p>
                             ) : sectionCount > 0 ? (
-                              <p className="text-gray-400 text-sm mb-4">
+                              <p className="text-muted-foreground/80 text-sm mb-4">
                                 Includes: {composition.sections?.slice(0, 3).map(s => s.title).join(', ')}
                                 {sectionCount > 3 ? ` and ${sectionCount - 3} more...` : ''}
                               </p>
@@ -504,12 +504,12 @@ const CompositionsPage: React.FC = () => {
                       gray: {
                         bg: 'bg-gray-500/20',
                         bgHover: 'group-hover:bg-gray-500/30',
-                        icon: 'text-gray-400',
-                        badge: 'bg-gray-500/20 text-gray-300 border-gray-500/30',
+                        icon: 'text-muted-foreground/80',
+                        badge: 'bg-gray-500/20 text-muted-foreground border-gray-500/30',
                         border: 'hover:border-gray-500/30',
                         shadow: 'hover:shadow-gray-500/10',
-                        text: 'text-gray-400 group-hover:text-gray-300',
-                        title: 'group-hover:text-gray-200'
+                        text: 'text-muted-foreground/80 group-hover:text-muted-foreground',
+                        title: 'group-hover:text-foreground/90'
                       }
                     };
                     const colors = colorClasses[style.color as keyof typeof colorClasses];
@@ -518,9 +518,9 @@ const CompositionsPage: React.FC = () => {
                       <div
                         key={`${composition.id}-${index}`}
                         className={cn(
-                          "backdrop-blur-md bg-black/70 rounded-xl p-6 border border-white/10",
+                          "bg-card rounded-xl p-6 border border-border",
                           "cursor-pointer transition-all duration-300",
-                          "hover:bg-black/80 hover:shadow-lg",
+                          "hover:bg-card hover:shadow-lg",
                           colors.border,
                           colors.shadow,
                           "group"
@@ -533,7 +533,7 @@ const CompositionsPage: React.FC = () => {
                             <IconComponent className={cn("h-5 w-5", colors.icon)} />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <h3 className={cn("text-lg font-semibold text-white transition-colors line-clamp-2", colors.title)}>
+                            <h3 className={cn("text-lg font-semibold text-foreground transition-colors line-clamp-2", colors.title)}>
                               {composition.title}
                             </h3>
                           </div>
@@ -544,31 +544,31 @@ const CompositionsPage: React.FC = () => {
 
                         {/* Preview content */}
                         {previewContent ? (
-                          <p className="text-gray-400 text-sm line-clamp-3 mb-4 leading-relaxed">
+                          <p className="text-muted-foreground/80 text-sm line-clamp-3 mb-4 leading-relaxed">
                             {previewContent.replace(/[#*_`]/g, '').trim()}...
                           </p>
                         ) : sectionCount > 0 ? (
                           <div className="mb-4">
-                            <p className="text-gray-500 text-sm mb-2">Sections:</p>
+                            <p className="text-muted-foreground/70 text-sm mb-2">Sections:</p>
                             <div className="flex flex-wrap gap-1">
                               {composition.sections?.slice(0, 4).map((s, i) => (
-                                <Badge key={i} variant="outline" className="bg-black/40 text-gray-400 border-white/10 text-xs">
+                                <Badge key={i} variant="outline" className="bg-card/80 text-muted-foreground/80 border-border text-xs">
                                   {s.title.length > 25 ? s.title.substring(0, 25) + '...' : s.title}
                                 </Badge>
                               ))}
                               {sectionCount > 4 && (
-                                <Badge variant="outline" className="bg-black/40 text-gray-500 border-white/10 text-xs">
+                                <Badge variant="outline" className="bg-card/80 text-muted-foreground/70 border-border text-xs">
                                   +{sectionCount - 4} more
                                 </Badge>
                               )}
                             </div>
                           </div>
                         ) : (
-                          <p className="text-gray-500 text-sm mb-4 italic">No content yet</p>
+                          <p className="text-muted-foreground/70 text-sm mb-4 italic">No content yet</p>
                         )}
 
                         {/* Footer */}
-                        <div className="pt-4 border-t border-white/10">
+                        <div className="pt-4 border-t border-border">
                           <span className={cn("text-sm font-medium inline-flex items-center", colors.text)}>
                             {style.label === 'Research' ? 'Read Research' :
                              style.label === 'Evidence' ? 'View Evidence' : 'View Content'}

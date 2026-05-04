@@ -36,7 +36,7 @@ export const IdentityDebug = () => {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 bg-black/90 text-white p-4 rounded-lg border border-white/20 max-w-md text-xs font-mono">
+    <div className="fixed bottom-4 right-4 bg-black/90 text-foreground p-4 rounded-lg border border-border max-w-md text-xs font-mono">
       <h3 className="font-bold mb-2">Identity Debug</h3>
       <div className="space-y-1">
         <div>URL: {debugInfo.fullUrl}</div>
@@ -51,7 +51,7 @@ export const IdentityDebug = () => {
       {(debugInfo.hasInviteToken || debugInfo.hasConfirmationToken) && (
         <button
           onClick={() => window.netlifyIdentity?.open?.()}
-          className="mt-2 px-2 py-1 bg-blue-600 rounded text-white"
+          className="mt-2 px-2 py-1 bg-blue-600 rounded text-foreground"
         >
           Open Identity Modal
         </button>

@@ -9,27 +9,27 @@ const PrivacyPolicy: React.FC = () => {
     <PageLayout>
       <div className="max-w-6xl mx-auto px-4 py-12">
         {/* Header Section */}
-        <div className="bg-black/85 backdrop-blur-sm border border-white/20 rounded-xl p-8 mb-8 shadow-2xl">
-          <h1 className="text-4xl font-bold text-white mb-4 text-center">
+        <div className="bg-card border border-border rounded-xl p-8 mb-8 shadow-2xl">
+          <h1 className="text-4xl font-bold text-foreground mb-4 text-center">
             Privacy Policy
           </h1>
-          <p className="text-gray-200 text-lg text-center max-w-4xl mx-auto">
+          <p className="text-foreground/90 text-lg text-center max-w-4xl mx-auto">
             How we collect, use, protect, and share your information when you visit the Laws of Existence Framework website
           </p>
           <div className="text-center mt-6">
-            <span className="bg-black/60 text-gray-200 px-4 py-2 rounded-lg text-sm border border-white/10">
+            <span className="bg-card text-foreground/90 px-4 py-2 rounded-lg text-sm border border-border">
               Last Updated: July 13, 2025 | Effective Date: July 13, 2025
             </span>
           </div>
         </div>
 
-        <div className="space-y-8 text-gray-100">
+        <div className="space-y-8 text-foreground">
 
           {/* Introduction */}
-          <section className="bg-black/85 backdrop-blur-sm border border-blue-500/30 rounded-xl p-8 shadow-xl">
-            <h2 className="text-3xl font-bold text-white mb-6">1. Introduction</h2>
+          <section className="bg-card border border-blue-500/30 rounded-xl p-8 shadow-xl">
+            <h2 className="text-3xl font-bold text-foreground mb-6">1. Introduction</h2>
 
-            <p className="mb-6 text-gray-200 leading-relaxed">
+            <p className="mb-6 text-foreground/90 leading-relaxed">
               Joseph Kirchner ("we," "our," "us," or "Company") respects your privacy and is committed to protecting
               your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your
               information when you visit our website lawsofexistence.com (the "Website") and use our services (the "Services").
@@ -45,18 +45,18 @@ const PrivacyPolicy: React.FC = () => {
               </p>
             </div>
 
-            <h3 className="text-xl font-semibold text-white mb-4">Scope of This Policy</h3>
-            <p className="mb-4 text-gray-200 leading-relaxed">
+            <h3 className="text-xl font-semibold text-foreground mb-4">Scope of This Policy</h3>
+            <p className="mb-4 text-foreground/90 leading-relaxed">
               This Privacy Policy applies to information collected through our Website and does not apply to information
               collected offline or through third-party websites that may be linked to or from our Website.
             </p>
           </section>
 
           {/* Information We Collect */}
-          <section className="bg-black/85 backdrop-blur-sm border border-purple-500/30 rounded-xl p-8 shadow-xl">
-            <h2 className="text-3xl font-bold text-white mb-6">2. Information We Collect</h2>
+          <section className="bg-card border border-purple-500/30 rounded-xl p-8 shadow-xl">
+            <h2 className="text-3xl font-bold text-foreground mb-6">2. Information We Collect</h2>
 
-            <h3 className="text-xl font-semibold text-white mb-4">2.1 Information You Provide Directly</h3>
+            <h3 className="text-xl font-semibold text-foreground mb-4">2.1 Information You Provide Directly</h3>
             <div className="bg-purple-950/80 border border-purple-500/50 rounded-lg p-6 mb-6">
               <h4 className="font-semibold text-purple-200 mb-3">Contact Information</h4>
               <p className="text-purple-100 leading-relaxed">
@@ -71,14 +71,14 @@ const PrivacyPolicy: React.FC = () => {
               </ul>
             </div>
 
-            <h4 className="font-semibold text-white mb-3">Research and Collaboration Inquiries</h4>
-            <p className="mb-6 text-gray-200 leading-relaxed">
+            <h4 className="font-semibold text-foreground mb-3">Research and Collaboration Inquiries</h4>
+            <p className="mb-6 text-foreground/90 leading-relaxed">
               For research collaboration, licensing inquiries, or academic partnerships, we may collect additional
               information including research interests, institutional credentials, and project details to evaluate
               potential collaborations.
             </p>
 
-            <h3 className="text-xl font-semibold text-white mb-4">2.2 Automatically Collected Information</h3>
+            <h3 className="text-xl font-semibold text-foreground mb-4">2.2 Automatically Collected Information</h3>
             <div className="grid md:grid-cols-2 gap-6 mb-6">
               <div className="bg-green-950/80 border border-green-500/50 rounded-lg p-6">
                 <h4 className="font-semibold text-green-200 mb-3">Technical Information</h4>
@@ -104,8 +104,8 @@ const PrivacyPolicy: React.FC = () => {
               </div>
             </div>
 
-            <h3 className="text-xl font-semibold text-white mb-4">2.3 Cookies and Tracking Technologies</h3>
-            <p className="mb-6 text-gray-200 leading-relaxed">
+            <h3 className="text-xl font-semibold text-foreground mb-4">2.3 Cookies and Tracking Technologies</h3>
+            <p className="mb-6 text-foreground/90 leading-relaxed">
               We use cookies, web beacons, and similar tracking technologies to enhance your experience, analyze website
               usage, and improve our services. These technologies help us understand user preferences, monitor website
               performance, and detect potential security issues.
@@ -121,8 +121,8 @@ const PrivacyPolicy: React.FC = () => {
               </ul>
             </div>
 
-            <h3 className="text-xl font-semibold text-white mb-4">2.4 Security Monitoring</h3>
-            <p className="mb-4 text-gray-200 leading-relaxed">
+            <h3 className="text-xl font-semibold text-foreground mb-4">2.4 Security Monitoring</h3>
+            <p className="mb-4 text-foreground/90 leading-relaxed">
               Given the valuable nature of our intellectual property, we implement enhanced security monitoring that may
               collect additional technical information to protect against unauthorized access, reverse engineering attempts,
               or other security threats.
@@ -130,10 +130,10 @@ const PrivacyPolicy: React.FC = () => {
           </section>
 
           {/* How We Use Information */}
-          <section className="bg-black/85 backdrop-blur-sm border border-green-500/30 rounded-xl p-8 shadow-xl">
-            <h2 className="text-3xl font-bold text-white mb-6">3. How We Use Your Information</h2>
+          <section className="bg-card border border-green-500/30 rounded-xl p-8 shadow-xl">
+            <h2 className="text-3xl font-bold text-foreground mb-6">3. How We Use Your Information</h2>
 
-            <h3 className="text-xl font-semibold text-white mb-4">3.1 Primary Uses</h3>
+            <h3 className="text-xl font-semibold text-foreground mb-4">3.1 Primary Uses</h3>
             <div className="bg-green-950/80 border border-green-500/50 rounded-lg p-6 mb-6">
               <p className="text-green-100 leading-relaxed mb-4">
                 We use collected information for the following legitimate business purposes:
@@ -148,15 +148,15 @@ const PrivacyPolicy: React.FC = () => {
               </ul>
             </div>
 
-            <h3 className="text-xl font-semibold text-white mb-4">3.2 Intellectual Property Protection</h3>
-            <p className="mb-6 text-gray-200 leading-relaxed">
+            <h3 className="text-xl font-semibold text-foreground mb-4">3.2 Intellectual Property Protection</h3>
+            <p className="mb-6 text-foreground/90 leading-relaxed">
               We may use collected information to protect our intellectual property rights, detect unauthorized use
               of our technology, monitor for potential infringement, and support legal enforcement actions. This
               includes analyzing access patterns, identifying suspicious activity, and maintaining evidence for
               legal proceedings.
             </p>
 
-            <h3 className="text-xl font-semibold text-white mb-4">3.3 Research and Development</h3>
+            <h3 className="text-xl font-semibold text-foreground mb-4">3.3 Research and Development</h3>
             <div className="bg-blue-950/80 border border-blue-500/50 rounded-lg p-6 mb-6">
               <p className="text-blue-100 leading-relaxed">
                 We may use aggregated, anonymized data to understand how users interact with our research content,
@@ -165,8 +165,8 @@ const PrivacyPolicy: React.FC = () => {
               </p>
             </div>
 
-            <h3 className="text-xl font-semibold text-white mb-4">3.4 Security and Fraud Prevention</h3>
-            <p className="mb-4 text-gray-200 leading-relaxed">
+            <h3 className="text-xl font-semibold text-foreground mb-4">3.4 Security and Fraud Prevention</h3>
+            <p className="mb-4 text-foreground/90 leading-relaxed">
               We use information to detect, prevent, and respond to fraud, security breaches, and other harmful activities.
               This includes monitoring for automated access attempts, identifying potential threats, and implementing
               protective measures for our systems and users.
@@ -174,8 +174,8 @@ const PrivacyPolicy: React.FC = () => {
           </section>
 
           {/* Information Sharing and Disclosure */}
-          <section className="bg-black/85 backdrop-blur-sm border border-red-500/30 rounded-xl p-8 shadow-xl">
-            <h2 className="text-3xl font-bold text-white mb-6">4. Information Sharing and Disclosure</h2>
+          <section className="bg-card border border-red-500/30 rounded-xl p-8 shadow-xl">
+            <h2 className="text-3xl font-bold text-foreground mb-6">4. Information Sharing and Disclosure</h2>
 
             <div className="bg-red-950/80 border border-red-500/50 rounded-lg p-6 mb-6">
               <h3 className="text-xl font-semibold text-red-200 mb-4">Our Commitment: No Commercial Sale</h3>
@@ -185,8 +185,8 @@ const PrivacyPolicy: React.FC = () => {
               </p>
             </div>
 
-            <h3 className="text-xl font-semibold text-white mb-4">4.1 Limited Sharing Circumstances</h3>
-            <p className="mb-6 text-gray-200 leading-relaxed">
+            <h3 className="text-xl font-semibold text-foreground mb-4">4.1 Limited Sharing Circumstances</h3>
+            <p className="mb-6 text-foreground/90 leading-relaxed">
               We may share your information only in the following limited circumstances:
             </p>
 
@@ -208,14 +208,14 @@ const PrivacyPolicy: React.FC = () => {
               </div>
             </div>
 
-            <h3 className="text-xl font-semibold text-white mb-4">4.2 Academic and Research Collaboration</h3>
-            <p className="mb-6 text-gray-200 leading-relaxed">
+            <h3 className="text-xl font-semibold text-foreground mb-4">4.2 Academic and Research Collaboration</h3>
+            <p className="mb-6 text-foreground/90 leading-relaxed">
               For legitimate research collaborations, we may share aggregated, anonymized data with academic institutions
               or research partners. Such sharing requires formal agreements and is limited to advancing consciousness
               research and scientific understanding.
             </p>
 
-            <h3 className="text-xl font-semibold text-white mb-4">4.3 Business Transfers</h3>
+            <h3 className="text-xl font-semibold text-foreground mb-4">4.3 Business Transfers</h3>
             <div className="bg-yellow-950/80 border border-yellow-500/50 rounded-lg p-6 mb-6">
               <p className="text-yellow-100 leading-relaxed">
                 In the event of a merger, acquisition, or sale of assets, your information may be transferred as part
@@ -223,16 +223,16 @@ const PrivacyPolicy: React.FC = () => {
               </p>
             </div>
 
-            <h3 className="text-xl font-semibold text-white mb-4">4.4 Consent-Based Sharing</h3>
-            <p className="mb-4 text-gray-200 leading-relaxed">
+            <h3 className="text-xl font-semibold text-foreground mb-4">4.4 Consent-Based Sharing</h3>
+            <p className="mb-4 text-foreground/90 leading-relaxed">
               We may share your information with your explicit consent for specific purposes, such as featuring your
               research or testimonials (with your permission) or collaborating on joint research projects.
             </p>
           </section>
 
           {/* Data Security */}
-          <section className="bg-black/85 backdrop-blur-sm border border-blue-500/30 rounded-xl p-8 shadow-xl">
-            <h2 className="text-3xl font-bold text-white mb-6">5. Data Security</h2>
+          <section className="bg-card border border-blue-500/30 rounded-xl p-8 shadow-xl">
+            <h2 className="text-3xl font-bold text-foreground mb-6">5. Data Security</h2>
 
             <div className="bg-blue-950/80 border border-blue-500/50 rounded-lg p-6 mb-6">
               <h3 className="text-xl font-semibold text-blue-200 mb-4">Enhanced Security Measures</h3>
@@ -243,7 +243,7 @@ const PrivacyPolicy: React.FC = () => {
               </p>
             </div>
 
-            <h3 className="text-xl font-semibold text-white mb-4">5.1 Technical Safeguards</h3>
+            <h3 className="text-xl font-semibold text-foreground mb-4">5.1 Technical Safeguards</h3>
             <div className="grid md:grid-cols-2 gap-6 mb-6">
               <div className="bg-green-950/80 border border-green-500/50 rounded-lg p-6">
                 <h4 className="font-semibold text-green-200 mb-3">Encryption and Protection</h4>
@@ -267,14 +267,14 @@ const PrivacyPolicy: React.FC = () => {
               </div>
             </div>
 
-            <h3 className="text-xl font-semibold text-white mb-4">5.2 Organizational Safeguards</h3>
-            <p className="mb-6 text-gray-200 leading-relaxed">
+            <h3 className="text-xl font-semibold text-foreground mb-4">5.2 Organizational Safeguards</h3>
+            <p className="mb-6 text-foreground/90 leading-relaxed">
               We maintain strict internal policies regarding data access, handling, and protection. Staff and contractors
               with access to personal information are bound by confidentiality agreements and receive regular training
               on privacy and security best practices.
             </p>
 
-            <h3 className="text-xl font-semibold text-white mb-4">5.3 Data Breach Response</h3>
+            <h3 className="text-xl font-semibold text-foreground mb-4">5.3 Data Breach Response</h3>
             <div className="bg-orange-950/80 border border-orange-500/50 rounded-lg p-6 mb-6">
               <p className="text-orange-100 leading-relaxed">
                 In the unlikely event of a data breach, we have established incident response procedures to quickly
@@ -283,8 +283,8 @@ const PrivacyPolicy: React.FC = () => {
               </p>
             </div>
 
-            <h3 className="text-xl font-semibold text-white mb-4">5.4 Limitations of Security</h3>
-            <p className="mb-4 text-gray-200 leading-relaxed">
+            <h3 className="text-xl font-semibold text-foreground mb-4">5.4 Limitations of Security</h3>
+            <p className="mb-4 text-foreground/90 leading-relaxed">
               While we implement robust security measures, no system is completely secure. We cannot guarantee absolute
               security of information transmitted over the internet or stored electronically. Users are responsible for
               protecting their own devices and access credentials.
@@ -292,10 +292,10 @@ const PrivacyPolicy: React.FC = () => {
           </section>
 
           {/* Data Retention */}
-          <section className="bg-black/85 backdrop-blur-sm border border-yellow-500/30 rounded-xl p-8 shadow-xl">
-            <h2 className="text-3xl font-bold text-white mb-6">6. Data Retention</h2>
+          <section className="bg-card border border-yellow-500/30 rounded-xl p-8 shadow-xl">
+            <h2 className="text-3xl font-bold text-foreground mb-6">6. Data Retention</h2>
 
-            <h3 className="text-xl font-semibold text-white mb-4">6.1 Retention Periods</h3>
+            <h3 className="text-xl font-semibold text-foreground mb-4">6.1 Retention Periods</h3>
             <div className="bg-yellow-950/80 border border-yellow-500/50 rounded-lg p-6 mb-6">
               <p className="text-yellow-100 leading-relaxed mb-4">
                 We retain personal information for different periods depending on the type of information and purpose:
@@ -309,25 +309,25 @@ const PrivacyPolicy: React.FC = () => {
               </ul>
             </div>
 
-            <h3 className="text-xl font-semibold text-white mb-4">6.2 Secure Deletion</h3>
-            <p className="mb-6 text-gray-200 leading-relaxed">
+            <h3 className="text-xl font-semibold text-foreground mb-4">6.2 Secure Deletion</h3>
+            <p className="mb-6 text-foreground/90 leading-relaxed">
               When personal information is no longer needed, we securely delete or anonymize it using industry-standard
               data destruction methods. This includes secure overwriting of electronic files and physical destruction
               of any paper records.
             </p>
 
-            <h3 className="text-xl font-semibold text-white mb-4">6.3 Legal and Regulatory Requirements</h3>
-            <p className="mb-4 text-gray-200 leading-relaxed">
+            <h3 className="text-xl font-semibold text-foreground mb-4">6.3 Legal and Regulatory Requirements</h3>
+            <p className="mb-4 text-foreground/90 leading-relaxed">
               Some information may be retained longer if required by law, for regulatory compliance, or for legitimate
               business purposes such as intellectual property enforcement or ongoing legal proceedings.
             </p>
           </section>
 
           {/* Your Rights and Choices */}
-          <section className="bg-black/85 backdrop-blur-sm border border-green-500/30 rounded-xl p-8 shadow-xl">
-            <h2 className="text-3xl font-bold text-white mb-6">7. Your Rights and Choices</h2>
+          <section className="bg-card border border-green-500/30 rounded-xl p-8 shadow-xl">
+            <h2 className="text-3xl font-bold text-foreground mb-6">7. Your Rights and Choices</h2>
 
-            <h3 className="text-xl font-semibold text-white mb-4">7.1 Access and Control</h3>
+            <h3 className="text-xl font-semibold text-foreground mb-4">7.1 Access and Control</h3>
             <div className="bg-green-950/80 border border-green-500/50 rounded-lg p-6 mb-6">
               <p className="text-green-100 leading-relaxed mb-4">
                 You have several rights regarding your personal information:
@@ -342,21 +342,21 @@ const PrivacyPolicy: React.FC = () => {
               </ul>
             </div>
 
-            <h3 className="text-xl font-semibold text-white mb-4">7.2 Cookie Control</h3>
-            <p className="mb-6 text-gray-200 leading-relaxed">
+            <h3 className="text-xl font-semibold text-foreground mb-4">7.2 Cookie Control</h3>
+            <p className="mb-6 text-foreground/90 leading-relaxed">
               Most web browsers allow you to control cookies through their settings. You can choose to block or delete
               cookies, though this may affect Website functionality. You can also opt out of certain analytics tracking
               through browser settings or privacy tools.
             </p>
 
-            <h3 className="text-xl font-semibold text-white mb-4">7.3 Communication Preferences</h3>
-            <p className="mb-6 text-gray-200 leading-relaxed">
+            <h3 className="text-xl font-semibold text-foreground mb-4">7.3 Communication Preferences</h3>
+            <p className="mb-6 text-foreground/90 leading-relaxed">
               You can opt out of promotional communications at any time by contacting us or using unsubscribe mechanisms
               in our communications. Note that we may still send essential communications related to your use of our services
               or important updates to our policies.
             </p>
 
-            <h3 className="text-xl font-semibold text-white mb-4">7.4 Exercising Your Rights</h3>
+            <h3 className="text-xl font-semibold text-foreground mb-4">7.4 Exercising Your Rights</h3>
             <div className="bg-blue-950/80 border border-blue-500/50 rounded-lg p-6 mb-6">
               <p className="text-blue-100 leading-relaxed">
                 To exercise any of these rights, please contact us using the information provided in Section 11.
@@ -365,25 +365,25 @@ const PrivacyPolicy: React.FC = () => {
               </p>
             </div>
 
-            <h3 className="text-xl font-semibold text-white mb-4">7.5 Limitations</h3>
-            <p className="mb-4 text-gray-200 leading-relaxed">
+            <h3 className="text-xl font-semibold text-foreground mb-4">7.5 Limitations</h3>
+            <p className="mb-4 text-foreground/90 leading-relaxed">
               Some rights may be limited by legal requirements, ongoing investigations, or legitimate business needs
               such as intellectual property protection. We will explain any limitations when responding to your requests.
             </p>
           </section>
 
           {/* International Users */}
-          <section className="bg-black/85 backdrop-blur-sm border border-purple-500/30 rounded-xl p-8 shadow-xl">
-            <h2 className="text-3xl font-bold text-white mb-6">8. International Users</h2>
+          <section className="bg-card border border-purple-500/30 rounded-xl p-8 shadow-xl">
+            <h2 className="text-3xl font-bold text-foreground mb-6">8. International Users</h2>
 
-            <h3 className="text-xl font-semibold text-white mb-4">8.1 Data Transfers</h3>
-            <p className="mb-6 text-gray-200 leading-relaxed">
+            <h3 className="text-xl font-semibold text-foreground mb-4">8.1 Data Transfers</h3>
+            <p className="mb-6 text-foreground/90 leading-relaxed">
               Our Website is hosted and operated in the United States. If you access our Website from outside the U.S.,
               your information may be transferred to, stored in, and processed in the United States. By using our Website,
               you consent to such transfers.
             </p>
 
-            <h3 className="text-xl font-semibold text-white mb-4">8.2 European Union Users</h3>
+            <h3 className="text-xl font-semibold text-foreground mb-4">8.2 European Union Users</h3>
             <div className="bg-purple-950/80 border border-purple-500/50 rounded-lg p-6 mb-6">
               <p className="text-purple-100 leading-relaxed">
                 If you are located in the European Union, you have additional rights under the General Data Protection
@@ -392,16 +392,16 @@ const PrivacyPolicy: React.FC = () => {
               </p>
             </div>
 
-            <h3 className="text-xl font-semibold text-white mb-4">8.3 Other Jurisdictions</h3>
-            <p className="mb-4 text-gray-200 leading-relaxed">
+            <h3 className="text-xl font-semibold text-foreground mb-4">8.3 Other Jurisdictions</h3>
+            <p className="mb-4 text-foreground/90 leading-relaxed">
               Users from other jurisdictions may have additional rights under local privacy laws. We will comply with
               applicable privacy laws and honor valid requests for information access, correction, or deletion.
             </p>
           </section>
 
           {/* Children's Privacy */}
-          <section className="bg-black/85 backdrop-blur-sm border border-orange-500/30 rounded-xl p-8 shadow-xl">
-            <h2 className="text-3xl font-bold text-white mb-6">9. Children's Privacy</h2>
+          <section className="bg-card border border-orange-500/30 rounded-xl p-8 shadow-xl">
+            <h2 className="text-3xl font-bold text-foreground mb-6">9. Children's Privacy</h2>
 
             <div className="bg-orange-950/80 border border-orange-500/50 rounded-lg p-6 mb-6">
               <h3 className="text-xl font-semibold text-orange-200 mb-4">Age Restrictions</h3>
@@ -412,8 +412,8 @@ const PrivacyPolicy: React.FC = () => {
               </p>
             </div>
 
-            <h3 className="text-xl font-semibold text-white mb-4">Parental Notification</h3>
-            <p className="mb-4 text-gray-200 leading-relaxed">
+            <h3 className="text-xl font-semibold text-foreground mb-4">Parental Notification</h3>
+            <p className="mb-4 text-foreground/90 leading-relaxed">
               If you are a parent or guardian and believe your child has provided us with personal information,
               please contact us immediately. We will work with you to address the situation and delete any
               inappropriate information.
@@ -421,11 +421,11 @@ const PrivacyPolicy: React.FC = () => {
           </section>
 
           {/* Changes to Privacy Policy */}
-          <section className="bg-black/85 backdrop-blur-sm border border-blue-500/30 rounded-xl p-8 shadow-xl">
-            <h2 className="text-3xl font-bold text-white mb-6">10. Changes to This Privacy Policy</h2>
+          <section className="bg-card border border-blue-500/30 rounded-xl p-8 shadow-xl">
+            <h2 className="text-3xl font-bold text-foreground mb-6">10. Changes to This Privacy Policy</h2>
 
-            <h3 className="text-xl font-semibold text-white mb-4">Policy Updates</h3>
-            <p className="mb-6 text-gray-200 leading-relaxed">
+            <h3 className="text-xl font-semibold text-foreground mb-4">Policy Updates</h3>
+            <p className="mb-6 text-foreground/90 leading-relaxed">
               We may update this Privacy Policy periodically to reflect changes in our practices, technology, legal
               requirements, or other factors. We will post the updated Privacy Policy on this page and update the
               "Last Updated" date at the top of the policy.
@@ -440,18 +440,18 @@ const PrivacyPolicy: React.FC = () => {
               </p>
             </div>
 
-            <h3 className="text-xl font-semibold text-white mb-4">Review Recommendations</h3>
-            <p className="mb-4 text-gray-200 leading-relaxed">
+            <h3 className="text-xl font-semibold text-foreground mb-4">Review Recommendations</h3>
+            <p className="mb-4 text-foreground/90 leading-relaxed">
               We encourage you to review this Privacy Policy regularly to stay informed about how we protect your
               information and your privacy rights.
             </p>
           </section>
 
           {/* Contact Information */}
-          <section className="bg-black/85 backdrop-blur-sm border border-white/20 rounded-xl p-8 shadow-xl">
-            <h2 className="text-3xl font-bold text-white mb-6">11. Contact Information</h2>
+          <section className="bg-card border border-border rounded-xl p-8 shadow-xl">
+            <h2 className="text-3xl font-bold text-foreground mb-6">11. Contact Information</h2>
 
-            <p className="mb-6 text-gray-200 leading-relaxed">
+            <p className="mb-6 text-foreground/90 leading-relaxed">
               If you have any questions, concerns, or requests regarding this Privacy Policy or our privacy practices,
               please contact us using the following methods:
             </p>
@@ -462,7 +462,7 @@ const PrivacyPolicy: React.FC = () => {
                 <p className="mb-4 text-blue-200">For general questions about our privacy practices or data handling:</p>
                 <Link
                   to="/contact"
-                  className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors"
+                  className="inline-block bg-blue-600 hover:bg-blue-700 text-foreground px-6 py-2 rounded-lg transition-colors"
                 >
                   Use Contact Form
                 </Link>
@@ -472,7 +472,7 @@ const PrivacyPolicy: React.FC = () => {
                 <p className="mb-4 text-green-200">For requests to access, correct, or delete your personal information:</p>
                 <a
                   href="mailto:privacy@lawsofexistence.com"
-                  className="inline-block bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg transition-colors"
+                  className="inline-block bg-green-600 hover:bg-green-700 text-foreground px-6 py-2 rounded-lg transition-colors"
                 >
                   privacy@lawsofexistence.com
                 </a>
@@ -480,8 +480,8 @@ const PrivacyPolicy: React.FC = () => {
             </div>
 
             <div className="bg-gray-900/80 border border-gray-500/50 rounded-lg p-6">
-              <h4 className="font-semibold text-gray-200 mb-3">Response Timeframes</h4>
-              <p className="text-gray-300 leading-relaxed">
+              <h4 className="font-semibold text-foreground/90 mb-3">Response Timeframes</h4>
+              <p className="text-muted-foreground leading-relaxed">
                 We strive to respond to all privacy inquiries within 30 days. For complex requests or those requiring
                 identity verification, response times may be longer. We will keep you informed of our progress and
                 any delays.
@@ -490,24 +490,24 @@ const PrivacyPolicy: React.FC = () => {
           </section>
 
           {/* Quick Navigation */}
-          <section className="bg-black/80 backdrop-blur-sm border border-white/20 rounded-xl p-8 shadow-xl">
-            <h3 className="text-xl font-semibold text-white mb-6 text-center">Related Legal Documents</h3>
+          <section className="bg-card border border-border rounded-xl p-8 shadow-xl">
+            <h3 className="text-xl font-semibold text-foreground mb-6 text-center">Related Legal Documents</h3>
             <div className="flex justify-center space-x-8 flex-wrap gap-4">
               <Link
                 to="/legal-disclaimers"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors font-medium"
+                className="bg-blue-600 hover:bg-blue-700 text-foreground px-6 py-3 rounded-lg transition-colors font-medium"
               >
                 Legal Disclaimers
               </Link>
               <Link
                 to="/terms-of-service"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors font-medium"
+                className="bg-blue-600 hover:bg-blue-700 text-foreground px-6 py-3 rounded-lg transition-colors font-medium"
               >
                 Terms of Service
               </Link>
               <Link
                 to="/contact"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors font-medium"
+                className="bg-blue-600 hover:bg-blue-700 text-foreground px-6 py-3 rounded-lg transition-colors font-medium"
               >
                 Contact Us
               </Link>

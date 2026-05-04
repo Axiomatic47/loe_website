@@ -89,7 +89,7 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
     <div className="space-y-8">
       {/* Three-Tier Framework */}
       <div>
-        <h3 className="text-xl font-bold text-white mb-4">Three-Tier PSV Framework</h3>
+        <h3 className="text-xl font-bold text-foreground mb-4">Three-Tier PSV Framework</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {Object.entries(psvFramework.tiers).map(([tierId, tier]) => {
             const tierInfo = PSV_TIER_INFO[tierId as keyof typeof PSV_TIER_INFO];
@@ -107,13 +107,13 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
                   </span>
                   <h4 className="text-lg font-semibold">{tier.name}</h4>
                 </div>
-                <p className="text-sm text-gray-300 mb-3">{tier.definition}</p>
+                <p className="text-sm text-muted-foreground mb-3">{tier.definition}</p>
                 {tier.types && (
                   <div className="mt-3">
-                    <div className="text-xs text-gray-400 mb-2">Types:</div>
+                    <div className="text-xs text-muted-foreground/80 mb-2">Types:</div>
                     <div className="flex flex-wrap gap-1">
                       {tier.types.map((type, idx) => (
-                        <span key={idx} className="px-2 py-0.5 text-xs bg-black/30 rounded">
+                        <span key={idx} className="px-2 py-0.5 text-xs bg-card/60 rounded">
                           {type}
                         </span>
                       ))}
@@ -122,11 +122,11 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
                 )}
                 {tier.examples && (
                   <div className="mt-3">
-                    <div className="text-xs text-gray-400 mb-2">Examples:</div>
-                    <ul className="text-xs text-gray-300 space-y-1">
+                    <div className="text-xs text-muted-foreground/80 mb-2">Examples:</div>
+                    <ul className="text-xs text-muted-foreground space-y-1">
                       {tier.examples.slice(0, 3).map((ex, idx) => (
                         <li key={idx} className="flex items-start gap-1">
-                          <span className="text-gray-500">•</span>
+                          <span className="text-muted-foreground/70">•</span>
                           <span>{ex}</span>
                         </li>
                       ))}
@@ -141,7 +141,7 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
 
       {/* PSV Status Types */}
       <div>
-        <h3 className="text-xl font-bold text-white mb-4">PSV Status Types</h3>
+        <h3 className="text-xl font-bold text-foreground mb-4">PSV Status Types</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {Object.entries(PSV_STATUS_INFO).map(([status, info]) => (
             <button
@@ -165,35 +165,35 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
 
       {/* Statistics */}
       <div>
-        <h3 className="text-xl font-bold text-white mb-4">System Statistics</h3>
+        <h3 className="text-xl font-bold text-foreground mb-4">System Statistics</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="bg-red-900/20 border border-red-500/30 rounded-lg p-4 text-center">
             <div className="text-3xl font-bold text-red-400">{psvStats.usurpation}</div>
-            <div className="text-sm text-gray-400">Usurpation Risks</div>
+            <div className="text-sm text-muted-foreground/80">Usurpation Risks</div>
           </div>
           <div className="bg-orange-900/20 border border-orange-500/30 rounded-lg p-4 text-center">
             <div className="text-3xl font-bold text-orange-400">{psvStats.abdication}</div>
-            <div className="text-sm text-gray-400">Abdication Risks</div>
+            <div className="text-sm text-muted-foreground/80">Abdication Risks</div>
           </div>
           <div className="bg-amber-900/20 border border-amber-500/30 rounded-lg p-4 text-center">
             <div className="text-3xl font-bold text-amber-400">{psvStats.both}</div>
-            <div className="text-sm text-gray-400">Both U/A Risks</div>
+            <div className="text-sm text-muted-foreground/80">Both U/A Risks</div>
           </div>
           <div className="bg-emerald-900/20 border border-emerald-500/30 rounded-lg p-4 text-center">
             <div className="text-3xl font-bold text-emerald-400">{psvStats.irrefutable}</div>
-            <div className="text-sm text-gray-400">Irrefutable</div>
+            <div className="text-sm text-muted-foreground/80">Irrefutable</div>
           </div>
         </div>
-        <div className="mt-4 text-center text-gray-400 text-sm">
+        <div className="mt-4 text-center text-muted-foreground/80 text-sm">
           {psvStats.positionsWithRisk} of {psvStats.totalPositions} positions have vulnerability risks
         </div>
       </div>
 
       {/* PSV Interaction Diagram */}
-      <div className="bg-black/40 border border-white/10 rounded-xl p-6">
-        <h3 className="text-lg font-bold text-white mb-4">PSV Ecosystem Interaction</h3>
+      <div className="bg-card/80 border border-border rounded-xl p-6">
+        <h3 className="text-lg font-bold text-foreground mb-4">PSV Ecosystem Interaction</h3>
         <div className="relative">
-          <pre className="text-xs text-gray-300 font-mono overflow-x-auto">
+          <pre className="text-xs text-muted-foreground font-mono overflow-x-auto">
 {`                    ┌─────────────────────────────────────┐
                     │         CONSTITUTIONAL TEXT          │
                     │    (Enumerated Assigned Powers)      │
@@ -246,8 +246,8 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
           className={cn(
             'px-4 py-2 rounded-lg text-sm transition-colors',
             filterStatus === ''
-              ? 'bg-white/20 text-white'
-              : 'bg-black/40 text-gray-400 hover:text-white'
+              ? 'bg-secondary text-foreground'
+              : 'bg-card/80 text-muted-foreground/80 hover:text-foreground'
           )}
         >
           All
@@ -260,7 +260,7 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
               'px-4 py-2 rounded-lg text-sm transition-colors',
               filterStatus === status
                 ? info.bgClass
-                : 'bg-black/40 text-gray-400 hover:text-white'
+                : 'bg-card/80 text-muted-foreground/80 hover:text-foreground'
             )}
           >
             {status} - {info.name}
@@ -278,12 +278,12 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
             <div
               key={pos.id}
               className={cn(
-                'bg-black/40 border rounded-lg p-4 cursor-pointer transition-all',
+                'bg-card/80 border rounded-lg p-4 cursor-pointer transition-all',
                 selectedPositionId === pos.id
                   ? 'border-blue-500/50 bg-blue-900/20'
                   : hasRisk
                     ? 'border-amber-500/30 hover:border-amber-500/50'
-                    : 'border-white/10 hover:border-white/30'
+                    : 'border-border hover:border-border'
               )}
               onClick={() => setSelectedPositionId(pos.id === selectedPositionId ? '' : pos.id)}
             >
@@ -296,8 +296,8 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
                     {BRANCH_INFO[pos.branch]?.icon}
                   </span>
                   <div>
-                    <h4 className="text-white font-semibold">{pos.name}</h4>
-                    <p className="text-xs text-gray-500">{pos.status}</p>
+                    <h4 className="text-foreground font-semibold">{pos.name}</h4>
+                    <p className="text-xs text-muted-foreground/70">{pos.status}</p>
                   </div>
                 </div>
 
@@ -328,7 +328,7 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
 
               {/* Expanded Details */}
               {selectedPositionId === pos.id && pos.powers && (
-                <div className="mt-4 pt-4 border-t border-white/10 space-y-3">
+                <div className="mt-4 pt-4 border-t border-border space-y-3">
                   {pos.powers.map((power, idx) => (
                     <div
                       key={idx}
@@ -341,9 +341,9 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
                         {power.psv_status}
                       </span>
                       <div>
-                        <div className="text-white">{power.text}</div>
+                        <div className="text-foreground">{power.text}</div>
                         {power.citation && (
-                          <div className="text-gray-500 text-xs mt-1">{power.citation}</div>
+                          <div className="text-muted-foreground/70 text-xs mt-1">{power.citation}</div>
                         )}
                         {power.notes && (
                           <div className="text-amber-400/80 text-xs mt-1 italic">{power.notes}</div>
@@ -357,12 +357,12 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
                     <div className="mt-4 p-3 bg-red-900/20 border border-red-500/30 rounded-lg">
                       <div className="text-red-400 text-xs font-semibold mb-2">PSV VULNERABILITIES</div>
                       {pos.psv_vulnerabilities.usurpation_risk && (
-                        <div className="text-sm text-gray-300 mb-1">
+                        <div className="text-sm text-muted-foreground mb-1">
                           <span className="text-red-400">Usurpation:</span> {pos.psv_vulnerabilities.usurpation_risk}
                         </div>
                       )}
                       {pos.psv_vulnerabilities.abdication_risk && (
-                        <div className="text-sm text-gray-300">
+                        <div className="text-sm text-muted-foreground">
                           <span className="text-orange-400">Abdication:</span> {pos.psv_vulnerabilities.abdication_risk}
                         </div>
                       )}
@@ -379,7 +379,7 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
 
   const renderCompound = () => (
     <div className="space-y-6">
-      <div className="text-gray-400 text-sm mb-4">
+      <div className="text-muted-foreground/80 text-sm mb-4">
         Compound PSVs are doctrines that simultaneously exhibit Primary, Enabling, AND Shielding characteristics.
         They represent the most severe form of constitutional vulnerability.
       </div>
@@ -389,11 +389,11 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
           {compoundPSVs.map((psv, idx) => (
             <div
               key={idx}
-              className="bg-gradient-to-r from-red-900/20 via-amber-900/20 to-purple-900/20 border border-white/20 rounded-xl p-6"
+              className="bg-gradient-to-r from-red-900/20 via-amber-900/20 to-purple-900/20 border border-border rounded-xl p-6"
             >
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-3xl">⚡</span>
-                <h3 className="text-xl font-bold text-white">{psv.name}</h3>
+                <h3 className="text-xl font-bold text-foreground">{psv.name}</h3>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -419,31 +419,31 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
           ))}
         </div>
       ) : (
-        <div className="text-center py-12 text-gray-400">
+        <div className="text-center py-12 text-muted-foreground/80">
           <div className="text-4xl mb-4 opacity-30">⚡</div>
           <p>No compound PSVs defined in the database</p>
         </div>
       )}
 
       {/* Example Analysis */}
-      <div className="bg-black/40 border border-white/10 rounded-xl p-6">
-        <h3 className="text-lg font-bold text-white mb-4">Example: Qualified Immunity as Compound PSV</h3>
+      <div className="bg-card/80 border border-border rounded-xl p-6">
+        <h3 className="text-lg font-bold text-foreground mb-4">Example: Qualified Immunity as Compound PSV</h3>
         <div className="space-y-4 text-sm">
           <div className="flex items-start gap-3">
             <span className="px-2 py-1 text-xs rounded bg-red-500/20 text-red-400 shrink-0">PRIMARY</span>
-            <div className="text-gray-300">
+            <div className="text-muted-foreground">
               Shields officials who violate constitutional rights from personal liability, enabling the original violation to persist without remedy.
             </div>
           </div>
           <div className="flex items-start gap-3">
             <span className="px-2 py-1 text-xs rounded bg-amber-500/20 text-amber-400 shrink-0">ENABLING</span>
-            <div className="text-gray-300">
+            <div className="text-muted-foreground">
               By eliminating consequences, creates institutional tolerance for rights violations and disincentivizes constitutional compliance.
             </div>
           </div>
           <div className="flex items-start gap-3">
             <span className="px-2 py-1 text-xs rounded bg-purple-500/20 text-purple-400 shrink-0">SHIELDING</span>
-            <div className="text-gray-300">
+            <div className="text-muted-foreground">
               Prevents victims from obtaining damages for constitutional violations, blocking the Article III remedy pathway.
             </div>
           </div>
@@ -454,17 +454,17 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
 
   const renderAnalysis = () => (
     <div className="space-y-6">
-      <div className="text-gray-400 text-sm mb-4">
+      <div className="text-muted-foreground/80 text-sm mb-4">
         Analyze a specific position's PSV exposure and constitutional vulnerabilities.
       </div>
 
       {/* Position Selector */}
       <div>
-        <label className="block text-sm text-gray-400 mb-2">Select Position to Analyze</label>
+        <label className="block text-sm text-muted-foreground/80 mb-2">Select Position to Analyze</label>
         <select
           value={selectedPositionId}
           onChange={(e) => setSelectedPositionId(e.target.value)}
-          className="w-full md:w-96 bg-black/60 border border-white/20 rounded-lg px-4 py-2 text-white focus:border-blue-500 focus:outline-none"
+          className="w-full md:w-96 bg-card border border-border rounded-lg px-4 py-2 text-foreground focus:border-blue-500 focus:outline-none"
         >
           <option value="">-- Select a Position --</option>
           {allPositions.map((pos) => (
@@ -478,7 +478,7 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
       {selectedPosition ? (
         <div className="space-y-6">
           {/* Position Summary */}
-          <div className="bg-black/40 border border-white/10 rounded-xl p-6">
+          <div className="bg-card/80 border border-border rounded-xl p-6">
             <div className="flex items-center gap-4 mb-4">
               <span className={cn(
                 'w-16 h-16 rounded-full flex items-center justify-center text-2xl',
@@ -487,8 +487,8 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
                 {BRANCH_INFO[selectedPosition.branch]?.icon}
               </span>
               <div>
-                <h3 className="text-xl font-bold text-white">{selectedPosition.name}</h3>
-                <p className="text-gray-400">{selectedPosition.status}</p>
+                <h3 className="text-xl font-bold text-foreground">{selectedPosition.name}</h3>
+                <p className="text-muted-foreground/80">{selectedPosition.status}</p>
               </div>
             </div>
 
@@ -500,39 +500,39 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
                   <>
                     <div className={cn(
                       'p-3 rounded-lg text-center',
-                      counts.usurpation > 0 ? 'bg-red-900/30 border border-red-500/30' : 'bg-black/30 border border-white/10'
+                      counts.usurpation > 0 ? 'bg-red-900/30 border border-red-500/30' : 'bg-card/60 border border-border'
                     )}>
-                      <div className={cn('text-2xl font-bold', counts.usurpation > 0 ? 'text-red-400' : 'text-gray-500')}>
+                      <div className={cn('text-2xl font-bold', counts.usurpation > 0 ? 'text-red-400' : 'text-muted-foreground/70')}>
                         {counts.usurpation}
                       </div>
-                      <div className="text-xs text-gray-400">Usurpation</div>
+                      <div className="text-xs text-muted-foreground/80">Usurpation</div>
                     </div>
                     <div className={cn(
                       'p-3 rounded-lg text-center',
-                      counts.abdication > 0 ? 'bg-orange-900/30 border border-orange-500/30' : 'bg-black/30 border border-white/10'
+                      counts.abdication > 0 ? 'bg-orange-900/30 border border-orange-500/30' : 'bg-card/60 border border-border'
                     )}>
-                      <div className={cn('text-2xl font-bold', counts.abdication > 0 ? 'text-orange-400' : 'text-gray-500')}>
+                      <div className={cn('text-2xl font-bold', counts.abdication > 0 ? 'text-orange-400' : 'text-muted-foreground/70')}>
                         {counts.abdication}
                       </div>
-                      <div className="text-xs text-gray-400">Abdication</div>
+                      <div className="text-xs text-muted-foreground/80">Abdication</div>
                     </div>
                     <div className={cn(
                       'p-3 rounded-lg text-center',
-                      counts.both > 0 ? 'bg-amber-900/30 border border-amber-500/30' : 'bg-black/30 border border-white/10'
+                      counts.both > 0 ? 'bg-amber-900/30 border border-amber-500/30' : 'bg-card/60 border border-border'
                     )}>
-                      <div className={cn('text-2xl font-bold', counts.both > 0 ? 'text-amber-400' : 'text-gray-500')}>
+                      <div className={cn('text-2xl font-bold', counts.both > 0 ? 'text-amber-400' : 'text-muted-foreground/70')}>
                         {counts.both}
                       </div>
-                      <div className="text-xs text-gray-400">Both U/A</div>
+                      <div className="text-xs text-muted-foreground/80">Both U/A</div>
                     </div>
                     <div className={cn(
                       'p-3 rounded-lg text-center',
-                      counts.irrefutable > 0 ? 'bg-emerald-900/30 border border-emerald-500/30' : 'bg-black/30 border border-white/10'
+                      counts.irrefutable > 0 ? 'bg-emerald-900/30 border border-emerald-500/30' : 'bg-card/60 border border-border'
                     )}>
-                      <div className={cn('text-2xl font-bold', counts.irrefutable > 0 ? 'text-emerald-400' : 'text-gray-500')}>
+                      <div className={cn('text-2xl font-bold', counts.irrefutable > 0 ? 'text-emerald-400' : 'text-muted-foreground/70')}>
                         {counts.irrefutable}
                       </div>
-                      <div className="text-xs text-gray-400">Irrefutable</div>
+                      <div className="text-xs text-muted-foreground/80">Irrefutable</div>
                     </div>
                   </>
                 );
@@ -542,8 +542,8 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
 
           {/* Powers with PSV Analysis */}
           {selectedPosition.powers && selectedPosition.powers.length > 0 && (
-            <div className="bg-black/40 border border-white/10 rounded-xl p-6">
-              <h4 className="text-lg font-semibold text-white mb-4">Powers & PSV Status</h4>
+            <div className="bg-card/80 border border-border rounded-xl p-6">
+              <h4 className="text-lg font-semibold text-foreground mb-4">Powers & PSV Status</h4>
               <div className="space-y-3">
                 {selectedPosition.powers.map((power, idx) => (
                   <div
@@ -561,9 +561,9 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
                         {power.psv_status}
                       </span>
                       <div>
-                        <div className="text-white font-medium">{power.text}</div>
+                        <div className="text-foreground font-medium">{power.text}</div>
                         {power.citation && (
-                          <div className="text-gray-500 text-sm mt-1">{power.citation}</div>
+                          <div className="text-muted-foreground/70 text-sm mt-1">{power.citation}</div>
                         )}
                         {power.notes && (
                           <div className="text-amber-400/80 text-sm mt-2 italic bg-amber-900/20 px-2 py-1 rounded">
@@ -586,21 +586,21 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
               {selectedPosition.psv_vulnerabilities.usurpation_risk && (
                 <div className="mb-4">
                   <div className="text-red-400 text-sm font-semibold mb-1">Usurpation Risk</div>
-                  <p className="text-gray-300 text-sm">{selectedPosition.psv_vulnerabilities.usurpation_risk}</p>
+                  <p className="text-muted-foreground text-sm">{selectedPosition.psv_vulnerabilities.usurpation_risk}</p>
                 </div>
               )}
 
               {selectedPosition.psv_vulnerabilities.abdication_risk && (
                 <div className="mb-4">
                   <div className="text-orange-400 text-sm font-semibold mb-1">Abdication Risk</div>
-                  <p className="text-gray-300 text-sm">{selectedPosition.psv_vulnerabilities.abdication_risk}</p>
+                  <p className="text-muted-foreground text-sm">{selectedPosition.psv_vulnerabilities.abdication_risk}</p>
                 </div>
               )}
 
               {selectedPosition.psv_vulnerabilities.historical_usurpations && (
                 <div className="mb-4">
                   <div className="text-red-400 text-sm font-semibold mb-1">Historical Usurpations</div>
-                  <ul className="text-gray-300 text-sm space-y-1">
+                  <ul className="text-muted-foreground text-sm space-y-1">
                     {selectedPosition.psv_vulnerabilities.historical_usurpations.map((item, idx) => (
                       <li key={idx} className="flex items-start gap-2">
                         <span className="text-red-400">•</span>
@@ -620,7 +620,7 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
                         <span className="px-2 py-0.5 bg-amber-900/30 text-amber-400 rounded text-xs shrink-0">
                           Step {step}
                         </span>
-                        <span className="text-gray-300">{failure}</span>
+                        <span className="text-muted-foreground">{failure}</span>
                       </div>
                     ))}
                   </div>
@@ -630,7 +630,7 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
           )}
         </div>
       ) : (
-        <div className="text-center py-12 text-gray-400">
+        <div className="text-center py-12 text-muted-foreground/80">
           <div className="text-4xl mb-4 opacity-30">📊</div>
           <p>Select a position to view its PSV analysis</p>
         </div>
@@ -642,7 +642,7 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <h2 className="text-2xl font-bold text-white">PSV Ecosystem</h2>
+        <h2 className="text-2xl font-bold text-foreground">PSV Ecosystem</h2>
 
         <div className="flex flex-wrap gap-2">
           <button
@@ -650,8 +650,8 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
             className={cn(
               'px-4 py-2 rounded-lg text-sm transition-colors',
               viewMode === 'overview'
-                ? 'bg-blue-600 text-white'
-                : 'bg-black/40 text-gray-400 hover:text-white'
+                ? 'bg-blue-600 text-foreground'
+                : 'bg-card/80 text-muted-foreground/80 hover:text-foreground'
             )}
           >
             Overview
@@ -661,8 +661,8 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
             className={cn(
               'px-4 py-2 rounded-lg text-sm transition-colors',
               viewMode === 'positions'
-                ? 'bg-amber-600 text-white'
-                : 'bg-black/40 text-gray-400 hover:text-white'
+                ? 'bg-amber-600 text-foreground'
+                : 'bg-card/80 text-muted-foreground/80 hover:text-foreground'
             )}
           >
             By Position
@@ -672,8 +672,8 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
             className={cn(
               'px-4 py-2 rounded-lg text-sm transition-colors',
               viewMode === 'compound'
-                ? 'bg-purple-600 text-white'
-                : 'bg-black/40 text-gray-400 hover:text-white'
+                ? 'bg-purple-600 text-foreground'
+                : 'bg-card/80 text-muted-foreground/80 hover:text-foreground'
             )}
           >
             Compound PSVs
@@ -683,8 +683,8 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
             className={cn(
               'px-4 py-2 rounded-lg text-sm transition-colors',
               viewMode === 'analysis'
-                ? 'bg-red-600 text-white'
-                : 'bg-black/40 text-gray-400 hover:text-white'
+                ? 'bg-red-600 text-foreground'
+                : 'bg-card/80 text-muted-foreground/80 hover:text-foreground'
             )}
           >
             Analysis
@@ -693,7 +693,7 @@ export const PSVEcosystem: React.FC<PSVEcosystemProps> = ({ data }) => {
       </div>
 
       {/* Main Content */}
-      <div className="bg-black/60 border border-white/10 rounded-xl p-6">
+      <div className="bg-card border border-border rounded-xl p-6">
         {viewMode === 'overview' && renderOverview()}
         {viewMode === 'positions' && renderPositions()}
         {viewMode === 'compound' && renderCompound()}

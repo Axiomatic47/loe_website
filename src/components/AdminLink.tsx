@@ -24,7 +24,7 @@ const AdminLink: React.FC = () => {
       <Button
         variant="outline"
         size="icon"
-        className="bg-black/60 text-white border border-white/20 rounded-full h-12 w-12 backdrop-blur-sm hover:bg-black/80"
+        className="bg-card text-foreground border border-border rounded-full h-12 w-12 hover:bg-card"
         onClick={() => window.location.href = '/admin'}
         title="Admin Panel"
       >

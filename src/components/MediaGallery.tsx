@@ -114,10 +114,10 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({
   if (items.length === 0) {
     return (
       <div className={cn(
-        "text-center py-8 px-4 bg-black/20 rounded-lg border border-white/20",
+        "text-center py-8 px-4 bg-secondary/40 rounded-lg border border-border",
         className
       )}>
-        <p className="text-gray-300">No media items to display</p>
+        <p className="text-muted-foreground">No media items to display</p>
       </div>
     );
   }
@@ -136,7 +136,7 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({
           return (
             <div
               key={item.id}
-              className="relative group cursor-pointer overflow-hidden rounded-lg border border-white/20 hover:border-white/40 transition-all duration-200 bg-black/20 hover:bg-black/30"
+              className="relative group cursor-pointer overflow-hidden rounded-lg border border-border hover:border-border transition-all duration-200 bg-secondary/40 hover:bg-card/60"
               onClick={() => openModal(item)}
             >
               {!hasError ? (
@@ -152,26 +152,26 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({
                   }}
                 />
               ) : (
-                <div className="flex items-center justify-center h-48 text-gray-400">
+                <div className="flex items-center justify-center h-48 text-muted-foreground/80">
                   <div className="text-center">
                     <div className="text-sm">Image unavailable</div>
                     <div className="text-xs">{item.title}</div>
-                    <div className="text-xs text-gray-500 mt-1">{item.src}</div>
+                    <div className="text-xs text-muted-foreground/70 mt-1">{item.src}</div>
                   </div>
                 </div>
               )}
 
               {/* Overlay with controls */}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-200 flex items-center justify-center opacity-0 group-hover:opacity-100">
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-card/80 transition-colors duration-200 flex items-center justify-center opacity-0 group-hover:opacity-100">
                 <div className="flex items-center space-x-3">
-                  <div className="bg-black/60 backdrop-blur-sm rounded-full p-3">
-                    <Maximize2 className="w-8 h-8 text-white drop-shadow-lg" />
+                  <div className="bg-card rounded-full p-3">
+                    <Maximize2 className="w-8 h-8 text-foreground" />
                   </div>
                   {allowDownload && (
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="bg-black/60 backdrop-blur-sm text-white hover:bg-black/80"
+                      className="bg-card text-foreground hover:bg-card"
                       onClick={(e) => {
                         e.stopPropagation();
                         downloadImage(item.src, item.title);
@@ -185,9 +185,9 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({
 
               {/* Caption overlay */}
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                <p className="text-white text-base font-medium">{item.title}</p>
+                <p className="text-foreground text-base font-medium">{item.title}</p>
                 {item.description && (
-                  <p className="text-gray-300 text-sm mt-1">{item.description}</p>
+                  <p className="text-muted-foreground text-sm mt-1">{item.description}</p>
                 )}
               </div>
             </div>
@@ -196,19 +196,19 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({
       </div>
 
       {/* Stats */}
-      <div className="mt-6 text-center text-sm text-gray-400">
+      <div className="mt-6 text-center text-sm text-muted-foreground/80">
         Showing {items.length} {items.length === 1 ? 'item' : 'items'}
       </div>
 
       {/* Full-Screen Scrollable Gallery Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 bg-black/95">
           {/* Header */}
-          <div className="absolute top-0 left-0 right-0 z-10 bg-black/80 backdrop-blur-sm border-b border-white/20 p-4">
+          <div className="absolute top-0 left-0 right-0 z-10 bg-card border-b border-border p-4">
             <div className="flex items-center justify-between max-w-7xl mx-auto">
               <div className="flex-1 min-w-0">
-                <h3 className="text-white font-medium text-lg">Documentation Gallery</h3>
-                <p className="text-gray-300 text-sm mt-1">
+                <h3 className="text-foreground font-medium text-lg">Documentation Gallery</h3>
+                <p className="text-muted-foreground text-sm mt-1">
                   {items.length} {items.length === 1 ? 'image' : 'images'} - Scroll to view all
                 </p>
               </div>
@@ -224,7 +224,7 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({
                         downloadImage(items[0].src, `${items[0].title}_gallery`);
                       }
                     }}
-                    className="text-white hover:bg-white/10"
+                    className="text-foreground hover:bg-secondary/60"
                     title="Download first image"
                   >
                     <Download className="w-4 h-4" />
@@ -234,7 +234,7 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({
                   variant="ghost"
                   size="sm"
                   onClick={closeModal}
-                  className="text-white hover:bg-white/10"
+                  className="text-foreground hover:bg-secondary/60"
                   title="Close gallery"
                 >
                   <X className="w-5 h-5" />
@@ -253,11 +253,11 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({
                   <div key={item.id} className="relative">
                     {/* Image title */}
                     <div className="mb-4 text-center">
-                      <h4 className="text-white font-medium text-lg">{item.title}</h4>
+                      <h4 className="text-foreground font-medium text-lg">{item.title}</h4>
                       {item.description && (
-                        <p className="text-gray-300 text-sm mt-1">{item.description}</p>
+                        <p className="text-muted-foreground text-sm mt-1">{item.description}</p>
                       )}
-                      <div className="text-gray-400 text-xs mt-1">
+                      <div className="text-muted-foreground/80 text-xs mt-1">
                         Image {index + 1} of {items.length}
                       </div>
                     </div>
@@ -276,8 +276,8 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({
                         }}
                       />
                     ) : (
-                      <div className="flex items-center justify-center h-64 bg-black/40 rounded-lg border border-white/20">
-                        <div className="text-center text-gray-400">
+                      <div className="flex items-center justify-center h-64 bg-card/80 rounded-lg border border-border">
+                        <div className="text-center text-muted-foreground/80">
                           <div className="text-sm">Image unavailable</div>
                           <div className="text-xs mt-1">{item.src}</div>
                         </div>
@@ -291,7 +291,7 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({
                           variant="ghost"
                           size="sm"
                           onClick={() => downloadImage(item.src, item.title)}
-                          className="bg-black/60 backdrop-blur-sm text-white hover:bg-black/80"
+                          className="bg-card text-foreground hover:bg-card"
                           title={`Download ${item.title}`}
                         >
                           <Download className="w-4 h-4" />
@@ -305,7 +305,7 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({
           </div>
 
           {/* Instructions */}
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-gray-400 text-sm bg-black/60 backdrop-blur-sm px-3 py-1 rounded-full">
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-muted-foreground/80 text-sm bg-card px-3 py-1 rounded-full">
             Scroll to view all images • Press ESC to close
           </div>
         </div>

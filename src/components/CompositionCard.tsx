@@ -25,14 +25,14 @@ const CompositionCard = ({
 
   return (
     <Card
-      className="bg-[#1A1F2C] text-white border-none mb-6 cursor-pointer transition-all hover:bg-[#252A37]"
+      className="bg-[#1A1F2C] text-foreground border-none mb-6 cursor-pointer transition-all hover:bg-[#252A37]"
       onClick={handleClick}
     >
       <CardHeader>
         <CardTitle className="text-2xl font-serif">{title}</CardTitle>
       </CardHeader>
       <CardContent>
-        <p className="text-gray-300 text-lg">
+        <p className="text-muted-foreground text-lg">
           {firstSectionTitle}
         </p>
       </CardContent>

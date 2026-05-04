@@ -83,7 +83,7 @@ const PatentNoticeBanner: React.FC<PatentNoticeBannerProps> = ({
             </h3>
 
             <div className="grid md:grid-cols-2 gap-4 mb-4">
-              <div className="bg-black/20 rounded p-3">
+              <div className="bg-secondary/40 rounded p-3">
                 <h4 className="text-red-300 font-semibold mb-2">Patent Portfolio Status</h4>
                 <ul className="text-red-200 text-sm space-y-1">
                   <li>• <strong>18+ Provisional Applications Filed</strong></li>
@@ -92,7 +92,7 @@ const PatentNoticeBanner: React.FC<PatentNoticeBannerProps> = ({
                   <li>• Core Architecture & Implementation Patents</li>
                 </ul>
               </div>
-              <div className="bg-black/20 rounded p-3">
+              <div className="bg-secondary/40 rounded p-3">
                 <h4 className="text-orange-300 font-semibold mb-2">Legal Warning</h4>
                 <ul className="text-orange-200 text-sm space-y-1">
                   <li>• Unauthorized Implementation Prohibited</li>

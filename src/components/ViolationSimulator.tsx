@@ -139,23 +139,23 @@ export function ViolationSimulator() {
     <div className="space-y-6">
       {/* Header */}
       <div className="text-center mb-6">
-        <h2 className="text-2xl font-bold text-white mb-2">Violation Simulator</h2>
-        <p className="text-gray-400 text-sm">
+        <h2 className="text-2xl font-bold text-foreground mb-2">Violation Simulator</h2>
+        <p className="text-muted-foreground/80 text-sm">
           Select a constitutional power and an actor to test for usurpation
         </p>
       </div>
 
       {/* Step 1: Select Power */}
-      <div className="bg-black/60 border border-blue-500/30 rounded-lg p-4">
+      <div className="bg-card border border-blue-500/30 rounded-lg p-4">
         <div className="flex items-center gap-2 mb-3">
-          <span className="bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">STEP 1</span>
+          <span className="bg-blue-600 text-foreground text-xs font-bold px-2 py-1 rounded">STEP 1</span>
           <span className="text-blue-400 font-semibold">Select Constitutional Power (EAP)</span>
         </div>
 
         <select
           value={selectedProvision?.id || ''}
           onChange={handleProvisionChange}
-          className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none"
+          className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-foreground focus:border-blue-500 focus:outline-none"
         >
           <option value="">Select a power...</option>
           {Object.entries(groupedEAPs).map(([article, eapList]) => (
@@ -171,8 +171,8 @@ export function ViolationSimulator() {
 
         {selectedProvision && (
           <div className="mt-4 p-3 bg-gray-900/50 rounded-lg border border-gray-700">
-            <div className="text-xs text-gray-500 mb-1">{selectedProvision.article} {selectedProvision.section ? `§${selectedProvision.section}` : ''}</div>
-            <div className="text-white text-sm italic">"{selectedProvision.text}"</div>
+            <div className="text-xs text-muted-foreground/70 mb-1">{selectedProvision.article} {selectedProvision.section ? `§${selectedProvision.section}` : ''}</div>
+            <div className="text-foreground text-sm italic">"{selectedProvision.text}"</div>
             <div className="mt-2 flex flex-wrap gap-2">
               <span className="text-xs px-2 py-1 bg-emerald-900/50 text-emerald-400 rounded">
                 Assigned to: {selectedProvision.assignedTo.join(', ')}
@@ -182,7 +182,7 @@ export function ViolationSimulator() {
                 selectedProvision.psv === 'A' ? 'bg-yellow-900/50 text-yellow-400' :
                 selectedProvision.psv === 'U/A' ? 'bg-orange-900/50 text-orange-400' :
                 selectedProvision.psv === 'IRR' ? 'bg-green-900/50 text-green-400' :
-                'bg-gray-700 text-gray-400'
+                'bg-gray-700 text-muted-foreground/80'
               }`}>
                 PSV: {selectedProvision.psv || 'N/A'}
               </span>
@@ -192,16 +192,16 @@ export function ViolationSimulator() {
       </div>
 
       {/* Step 2: Select Actor */}
-      <div className="bg-black/60 border border-purple-500/30 rounded-lg p-4">
+      <div className="bg-card border border-purple-500/30 rounded-lg p-4">
         <div className="flex items-center gap-2 mb-3">
-          <span className="bg-purple-600 text-white text-xs font-bold px-2 py-1 rounded">STEP 2</span>
+          <span className="bg-purple-600 text-foreground text-xs font-bold px-2 py-1 rounded">STEP 2</span>
           <span className="text-purple-400 font-semibold">Who is Exercising This Power?</span>
         </div>
 
         <select
           value={selectedActor}
           onChange={handleActorChange}
-          className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-purple-500 focus:outline-none"
+          className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-foreground focus:border-purple-500 focus:outline-none"
           disabled={!selectedProvision}
         >
           <option value="">Select Actor...</option>
@@ -221,7 +221,7 @@ export function ViolationSimulator() {
           <div className="mt-4">
             <button
               onClick={runTest}
-              className="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold rounded-lg transition-all"
+              className="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-foreground font-bold rounded-lg transition-all"
             >
               Run Madisonian Test
             </button>
@@ -237,7 +237,7 @@ export function ViolationSimulator() {
           'bg-green-950/50 border-green-500/50'
         }`}>
           <div className="flex items-center gap-2 mb-4">
-            <span className={`text-white text-xs font-bold px-2 py-1 rounded ${
+            <span className={`text-foreground text-xs font-bold px-2 py-1 rounded ${
               result.violationType === 'IRREFUTABLE' ? 'bg-green-600' :
               result.isViolation ? 'bg-red-600' : 'bg-green-600'
             }`}>RESULT</span>
@@ -258,26 +258,26 @@ export function ViolationSimulator() {
           ) : result.isViolation ? (
             <div className="space-y-4">
               {/* Syllogism */}
-              <div className="bg-black/40 rounded-lg p-3">
-                <div className="text-xs text-gray-500 mb-2">MADISONIAN SYLLOGISM</div>
+              <div className="bg-card/80 rounded-lg p-3">
+                <div className="text-xs text-muted-foreground/70 mb-2">MADISONIAN SYLLOGISM</div>
                 <div className="space-y-2 text-sm">
                   <div className="text-blue-400">
-                    <span className="text-gray-500">Major Premise:</span> The Constitution assigns this power to <span className="font-bold">{result.assignedPAEP.join(' / ')}</span>
+                    <span className="text-muted-foreground/70">Major Premise:</span> The Constitution assigns this power to <span className="font-bold">{result.assignedPAEP.join(' / ')}</span>
                   </div>
                   <div className="text-purple-400">
-                    <span className="text-gray-500">Minor Premise:</span> <span className="font-bold">{result.actor}</span> is exercising this power
+                    <span className="text-muted-foreground/70">Minor Premise:</span> <span className="font-bold">{result.actor}</span> is exercising this power
                   </div>
                   <div className="text-red-400 font-bold">
-                    <span className="text-gray-500">Conclusion:</span> {result.actor} ≠ {result.assignedPAEP.join('/')} → USURPATION
+                    <span className="text-muted-foreground/70">Conclusion:</span> {result.actor} ≠ {result.assignedPAEP.join('/')} → USURPATION
                   </div>
                 </div>
               </div>
 
               {/* Conditions Check */}
-              <div className="bg-black/40 rounded-lg p-3">
-                <div className="text-xs text-gray-500 mb-2">POSITION INDIVISIBILITY CHECK</div>
+              <div className="bg-card/80 rounded-lg p-3">
+                <div className="text-xs text-muted-foreground/70 mb-2">POSITION INDIVISIBILITY CHECK</div>
                 <div className="text-red-400 text-sm mb-2">
-                  {result.actor} satisfies <span className="font-bold text-white">{result.conditionsMet}/{result.totalConditions}</span> constitutive conditions of {result.assignedPAEP[0]}
+                  {result.actor} satisfies <span className="font-bold text-foreground">{result.conditionsMet}/{result.totalConditions}</span> constitutive conditions of {result.assignedPAEP[0]}
                 </div>
                 {result.conditions.length > 0 && (
                   <div className="space-y-1">
@@ -286,7 +286,7 @@ export function ViolationSimulator() {
                         <span className={cond.met ? 'text-green-400' : 'text-red-400'}>
                           {cond.met ? '✓' : '✗'}
                         </span>
-                        <span className="text-gray-400">{cond.text.substring(0, 60)}...</span>
+                        <span className="text-muted-foreground/80">{cond.text.substring(0, 60)}...</span>
                       </div>
                     ))}
                   </div>
@@ -296,7 +296,7 @@ export function ViolationSimulator() {
               {/* People's Right Subtracted */}
               <div className="bg-red-900/30 rounded-lg p-3 border border-red-500/30">
                 <div className="text-xs text-red-400 mb-1 font-semibold">PEOPLE'S RIGHT SUBTRACTED</div>
-                <div className="text-white text-sm">{result.peoplesRightSubtracted}</div>
+                <div className="text-foreground text-sm">{result.peoplesRightSubtracted}</div>
               </div>
             </div>
           ) : (
@@ -309,8 +309,8 @@ export function ViolationSimulator() {
       )}
 
       {/* Quick Examples */}
-      <div className="bg-black/40 border border-gray-700 rounded-lg p-4">
-        <div className="text-xs text-gray-500 mb-3">QUICK EXAMPLES</div>
+      <div className="bg-card/80 border border-gray-700 rounded-lg p-4">
+        <div className="text-xs text-muted-foreground/70 mb-3">QUICK EXAMPLES</div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
           <button
             onClick={() => {

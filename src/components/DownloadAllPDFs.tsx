@@ -109,7 +109,7 @@ export default function DownloadAllPDFs({ sections, compositionTitle }: Download
     <Button
       onClick={downloadAllPDFs}
       disabled={downloading || pdfSections.length === 0}
-      className="bg-blue-600 hover:bg-blue-700 text-white"
+      className="bg-blue-600 hover:bg-blue-700 text-foreground"
       size="lg"
     >
       {downloading ? (
