@@ -1,0 +1,23 @@
+{
+  "country_code": "LA",
+  "country_name": "Laos",
+  "latitude": 18.427986909090908,
+  "longitude": 102.72356168181818,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 52.26702207400491,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.47732977925995085,
+    "sim_ideology": 0.35,
+    "fatalities": 15,
+    "event_count": 22
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:11.106734"
+}

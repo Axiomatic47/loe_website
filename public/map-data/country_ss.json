@@ -1,0 +1,23 @@
+{
+  "country_code": "SS",
+  "country_name": "South Sudan",
+  "latitude": 6.748881128463476,
+  "longitude": 30.6045863350126,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 56.20103869369251,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.4379896130630749,
+    "sim_ideology": 0.35,
+    "fatalities": 6241,
+    "event_count": 397
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:11.471395"
+}

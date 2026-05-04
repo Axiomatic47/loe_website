@@ -1,0 +1,23 @@
+{
+  "country_code": "CA",
+  "country_name": "Canada",
+  "latitude": 47.57699089247312,
+  "longitude": -90.59528281720429,
+  "category": "Non-Supremacist Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 51.46349161000985,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.48536508389990146,
+    "sim_ideology": 0.35,
+    "fatalities": 365,
+    "event_count": 93
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:10.602994"
+}

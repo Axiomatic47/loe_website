@@ -1,0 +1,23 @@
+{
+  "country_code": "NL",
+  "country_name": "Netherlands",
+  "latitude": 52.17741569672131,
+  "longitude": 4.982275663934426,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 46.300524613712234,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.5369947538628776,
+    "sim_ideology": 0.35,
+    "fatalities": 35,
+    "event_count": 122
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:11.247075"
+}

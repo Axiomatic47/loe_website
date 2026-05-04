@@ -1,0 +1,23 @@
+{
+  "country_code": "DE",
+  "country_name": "Germany",
+  "latitude": 51.42247859186536,
+  "longitude": 10.373994388499298,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 52.64301560162827,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.4735698439837173,
+    "sim_ideology": 0.35,
+    "fatalities": 84,
+    "event_count": 713
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:10.742999"
+}

@@ -1,0 +1,23 @@
+{
+  "country_code": "CN",
+  "country_name": "China",
+  "latitude": 36.41891,
+  "longitude": 97.75270484937238,
+  "category": "Structural Supremacism",
+  "description": "",
+  "metrics": {
+    "sgm": 7.5,
+    "gscs": 7.5,
+    "srsD": 7.5,
+    "srsI": 7.5,
+    "sti": 53.451278717726304,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.4654872128227369,
+    "sim_ideology": 0.35,
+    "fatalities": 719,
+    "event_count": 239
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:10.688156"
+}

@@ -1,0 +1,23 @@
+{
+  "country_code": "AU",
+  "country_name": "Australia",
+  "latitude": -33.790533361904764,
+  "longitude": 145.21835474285714,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 52.6390885361466,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.473609114638534,
+    "sim_ideology": 0.35,
+    "fatalities": 23,
+    "event_count": 105
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:10.474038"
+}

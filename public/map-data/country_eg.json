@@ -1,0 +1,23 @@
+{
+  "country_code": "EG",
+  "country_name": "Egypt",
+  "latitude": 30.264782055805245,
+  "longitude": 32.74900562097378,
+  "category": "Soft Supremacism",
+  "description": "",
+  "metrics": {
+    "sgm": 5.5,
+    "gscs": 5.5,
+    "srsD": 5.5,
+    "srsI": 5.5,
+    "sti": 49.42271148147172,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.5057728851852827,
+    "sim_ideology": 0.35,
+    "fatalities": 4740,
+    "event_count": 2670
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:10.786212"
+}

@@ -1,0 +1,23 @@
+{
+  "country_code": "SN",
+  "country_name": "Senegal",
+  "latitude": 12.87955173809524,
+  "longitude": -16.248613857142857,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 49.53341966845058,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.5046658033154943,
+    "sim_ideology": 0.35,
+    "fatalities": 206,
+    "event_count": 84
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:11.449778"
+}

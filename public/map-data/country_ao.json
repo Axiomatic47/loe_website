@@ -1,0 +1,23 @@
+{
+  "country_code": "AO",
+  "country_name": "Angola",
+  "latitude": -9.592260266129031,
+  "longitude": 14.67921612298387,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 54.131203657803574,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.4586879634219642,
+    "sim_ideology": 0.35,
+    "fatalities": 2186,
+    "event_count": 496
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:10.442173"
+}

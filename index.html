@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Laws of Existence - A Unified Mathematical Framework</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="A unified mathematical framework for consciousness, ethics, and reality by Joseph Kirchner" />
+    <meta name="keywords" content="consciousness, mathematical framework, ethics, philosophy, unified theory, AI alignment" />
+    <meta name="author" content="Joseph Kirchner" />
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="The Laws of Existence" />
+    <meta property="og:description" content="A unified mathematical framework for consciousness, ethics, and reality" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://lawsofexistence.com" />
+    <meta property="og:image" content="/og-image.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- MathJax Configuration -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']],
+          processEscapes: true,
+          processEnvironments: true,
+          tags: 'ams',
+          packages: { '[+]': ['ams', 'newcommand', 'configmacros'] },
+          macros: {
+            // Laws of Existence specific macros - ONLY custom ones
+            LoE: '\\mathfrak{L}',
+            Coh: '\\text{Coh}',
+            // Custom operators for the framework
+            PhiP: '\\Phi_P',
+            PhiT: '\\Phi_T',
+            PhiU: '\\Phi_U',
+            PhiF: '\\Phi_F',
+            PhiN: '\\Phi_N',
+            // Recursive operator
+            RecOp: '\\mathcal{R}',
+            // Phase space
+            PS: '\\mathcal{PS}',
+            // Attractor structure
+            Att: '\\mathcal{A}',
+            // Basin of attraction
+            Basin: '\\mathcal{B}',
+            // Evolution function
+            Evol: '\\mathcal{F}',
+            // Existence threshold
+            ExistThresh: '\\tau_{\\text{exist}}',
+            // Valence function
+            Val: '\\text{Val}',
+            // Choice mapping
+            Choice: '\\text{Choice}',
+            // Correspondence function
+            Corresponds: '\\text{Corresponds}'
+          }
+        },
+        options: {
+          ignoreHtmlClass: 'tex2jax_ignore',
+          processHtmlClass: 'tex2jax_process'
+        },
+        startup: {
+          typeset: false // React will handle typesetting
+        },
+        svg: {
+          fontCache: 'global'
+        }
+      };
+    </script>
+
+    <!-- Load MathJax -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Plausible Analytics - Privacy-focused, GDPR compliant with enhanced features -->
+    <script defer data-domain="lawsofexistence.com" src="https://plausible.io/js/script.file-downloads.hash.outbound-links.pageview-props.tagged-events.js"></script>
+    <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+
+    <!-- Formal Logic and Math Styles -->
+    <style>
+      /* Mathematical expression styling */
+      .math-display {
+        margin: 1.5em 0;
+        text-align: center;
+        overflow-x: auto;
+      }
+
+      .math-inline {
+        margin: 0 0.2em;
+      }
+
+      /* Formal logic expressions */
+      .logic-expression {
+        font-family: 'Noto Serif', serif !important;
+        background: rgba(20, 30, 50, 0.7) !important;
+        border-left: 3px solid #3b82f6 !important;
+        border-radius: 8px !important;
+        padding: 1em 1.5em !important;
+        margin: 1.5em 0 !important;
+        color: white !important;
+        overflow-x: auto;
+      }
+
+      .logic-expression.inline {
+        display: inline-block !important;
+        padding: 0.2em 0.5em !important;
+        margin: 0 0.3em !important;
+        background: rgba(20, 30, 50, 0.6) !important;
+        border: 1px solid rgba(59, 130, 246, 0.5) !important;
+        border-radius: 4px !important;
+      }
+
+      /* MathJax styling improvements */
+      .MathJax {
+        font-size: 1.1em !important;
+      }
+
+      .MathJax_Display {
+        margin: 1.5em 0 !important;
+      }
+
+      /* Responsive mathematical content */
+      @media (max-width: 768px) {
+        .logic-expression {
+          font-size: 0.9em;
+          padding: 0.8em 1em;
+          overflow-x: auto;
+        }
+
+        .MathJax {
+          font-size: 1em !important;
+        }
+      }
+
+      /* Loading state for math */
+      .math-loading {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        padding: 0.5em;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%, 100% { opacity: 0.5; }
+        50% { opacity: 1; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Netlify Identity Widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script type="module">
+      // Initialize Netlify Identity - login handling is done in React (App.tsx)
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.init();
+      }
+    </script>
+  </body>
+</html>

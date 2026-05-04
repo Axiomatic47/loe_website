@@ -1,0 +1,23 @@
+{
+  "country_code": "BY",
+  "country_name": "Belarus",
+  "latitude": 53.90416666666667,
+  "longitude": 27.677778,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 53.72437911938979,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.4627562088061021,
+    "sim_ideology": 0.35,
+    "fatalities": 14,
+    "event_count": 12
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:10.591900"
+}

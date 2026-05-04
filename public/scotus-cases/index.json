@@ -1,0 +1,3997 @@
+{
+  "generatedAt": "2026-02-20T22:17:13.357Z",
+  "totalCases": 133,
+  "totalFiles": 434,
+  "decades": [
+    {
+      "decade": "2020s",
+      "startYear": 2020,
+      "endYear": 2029,
+      "cases": [
+        {
+          "id": "2026-01_25A810_Mirabelli_v_Bonta",
+          "date": "2026-01",
+          "year": 2026,
+          "docketNumber": "25A810",
+          "caseName": "Mirabelli v Bonta",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2026-01_25A810_Mirabelli_v_Bonta_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2026-01_25A810_Mirabelli_v_Bonta/2026-01_25A810_Mirabelli_v_Bonta_app.pdf",
+              "size": 382554
+            },
+            {
+              "name": "Case Docs.pdf",
+              "displayName": "Case Docs",
+              "path": "/scotus-cases/2026-01_25A810_Mirabelli_v_Bonta/Case Docs.pdf",
+              "size": 2551458
+            }
+          ]
+        },
+        {
+          "id": "2026-01_25A839_Tangipa_v_Newsom",
+          "date": "2026-01",
+          "year": 2026,
+          "docketNumber": "25A839",
+          "caseName": "Tangipa v Newsom",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2026-01_25A839_Tangipa_v_Newsom_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2026-01_25A839_Tangipa_v_Newsom/2026-01_25A839_Tangipa_v_Newsom_app.pdf",
+              "size": 405250
+            }
+          ]
+        },
+        {
+          "id": "2025-12_25A662_Margolin_v_NAIJ",
+          "date": "2025-12",
+          "year": 2025,
+          "docketNumber": "25A662",
+          "caseName": "Margolin v NAIJ",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-12_25A662_Margolin_v_NAIJ_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-12_25A662_Margolin_v_NAIJ/2025-12_25A662_Margolin_v_NAIJ_app.pdf",
+              "size": 255320
+            }
+          ]
+        },
+        {
+          "id": "2025-11_25A608_Abbott_v_LULAC",
+          "date": "2025-11",
+          "year": 2025,
+          "docketNumber": "25A608",
+          "caseName": "Abbott v LULAC",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-11_25A608_Abbott_v_LULAC_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-11_25A608_Abbott_v_LULAC/2025-11_25A608_Abbott_v_LULAC_app.pdf",
+              "size": 364845
+            }
+          ]
+        },
+        {
+          "id": "2025-11_25A561_Chamber_of_Commerce_v_Sanchez",
+          "date": "2025-11",
+          "year": 2025,
+          "docketNumber": "25A561",
+          "caseName": "Chamber of Commerce v Sanchez",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-11_25A561_Chamber_of_Commerce_v_Sanchez_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-11_25A561_Chamber_of_Commerce_v_Sanchez/2025-11_25A561_Chamber_of_Commerce_v_Sanchez_app.pdf",
+              "size": 253521
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2025-11_25A561_Chamber_of_Commerce_v_Sanchez/Lower_Court_Orders_Opinions.pdf",
+              "size": 67216331
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-11_25A561_Chamber_of_Commerce_v_Sanchez/Proof_of_Service.pdf",
+              "size": 61098
+            }
+          ]
+        },
+        {
+          "id": "2025-11_25A539_Rollins_v_RI_Churches",
+          "date": "2025-11",
+          "year": 2025,
+          "docketNumber": "25A539",
+          "caseName": "Rollins v RI Churches",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-11_25A539_Rollins_v_RI_Churches_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-11_25A539_Rollins_v_RI_Churches/2025-11_25A539_Rollins_v_RI_Churches_app.pdf",
+              "size": 602514
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2025-11_25A539_Rollins_v_RI_Churches/Lower_Court_Orders_Opinions.pdf",
+              "size": 792406
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2025-11_25A539_Rollins_v_RI_Churches/Other.pdf",
+              "size": 3019451
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-11_25A539_Rollins_v_RI_Churches/Proof_of_Service.pdf",
+              "size": 127605
+            }
+          ]
+        },
+        {
+          "id": "2025-10_25A478_Blanche_v_Perlmutter",
+          "date": "2025-10",
+          "year": 2025,
+          "docketNumber": "25A478",
+          "caseName": "Blanche v Perlmutter",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-10_25A478_Blanche_v_Perlmutter_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-10_25A478_Blanche_v_Perlmutter/2025-10_25A478_Blanche_v_Perlmutter_app.pdf",
+              "size": 303989
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2025-10_25A478_Blanche_v_Perlmutter/Main_Document.pdf",
+              "size": 891158
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-10_25A478_Blanche_v_Perlmutter/Proof_of_Service.pdf",
+              "size": 151991
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2025-10_25A478_Blanche_v_Perlmutter/Reply.pdf",
+              "size": 212671
+            }
+          ]
+        },
+        {
+          "id": "2025-10_25A376_Castro_v_Guevara",
+          "date": "2025-10",
+          "year": 2025,
+          "docketNumber": "25A376",
+          "caseName": "Castro v Guevara",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-10_25A376_Castro_v_Guevara_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-10_25A376_Castro_v_Guevara/2025-10_25A376_Castro_v_Guevara_app.pdf",
+              "size": 347127
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2025-10_25A376_Castro_v_Guevara/Main_Document.pdf",
+              "size": 1234683
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-10_25A376_Castro_v_Guevara/Proof_of_Service.pdf",
+              "size": 136998
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2025-10_25A376_Castro_v_Guevara/Reply.pdf",
+              "size": 263557
+            }
+          ]
+        },
+        {
+          "id": "2025-10_25A515_Duran_v_US",
+          "date": "2025-10",
+          "year": 2025,
+          "docketNumber": "25A515",
+          "caseName": "Duran v US",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-10_25A515_Duran_v_US_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-10_25A515_Duran_v_US/2025-10_25A515_Duran_v_US_app.pdf",
+              "size": 1082319
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2025-10_25A515_Duran_v_US/Main_Document.pdf",
+              "size": 3162549
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-10_25A515_Duran_v_US/Proof_of_Service.pdf",
+              "size": 125739
+            }
+          ]
+        },
+        {
+          "id": "2025-10_25A402_Hess_v_Oakland_County",
+          "date": "2025-10",
+          "year": 2025,
+          "docketNumber": "25A402",
+          "caseName": "Hess v Oakland County",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-10_25A402_Hess_v_Oakland_County_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-10_25A402_Hess_v_Oakland_County/2025-10_25A402_Hess_v_Oakland_County_app.pdf",
+              "size": 293394
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2025-10_25A402_Hess_v_Oakland_County/Main_Document.pdf",
+              "size": 994315
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-10_25A402_Hess_v_Oakland_County/Proof_of_Service.pdf",
+              "size": 139959
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2025-10_25A402_Hess_v_Oakland_County/Reply.pdf",
+              "size": 220923
+            }
+          ]
+        },
+        {
+          "id": "2025-10_25A476_Murray_Enterprises_v_NYC",
+          "date": "2025-10",
+          "year": 2025,
+          "docketNumber": "25A476",
+          "caseName": "Murray Enterprises v NYC",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-10_25A476_Murray_Enterprises_v_NYC_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-10_25A476_Murray_Enterprises_v_NYC/2025-10_25A476_Murray_Enterprises_v_NYC_app.pdf",
+              "size": 335873
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2025-10_25A476_Murray_Enterprises_v_NYC/Main_Document.pdf",
+              "size": 1725010
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-10_25A476_Murray_Enterprises_v_NYC/Proof_of_Service.pdf",
+              "size": 124911
+            }
+          ]
+        },
+        {
+          "id": "2025-10_25A443_Trump_v_Illinois_National_Guard",
+          "date": "2025-10",
+          "year": 2025,
+          "docketNumber": "25A443",
+          "caseName": "Trump v Illinois",
+          "shortDescription": "National Guard",
+          "files": [
+            {
+              "name": "2025-10_25A443_Trump_v_Illinois_National_Guard_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-10_25A443_Trump_v_Illinois_National_Guard/2025-10_25A443_Trump_v_Illinois_National_Guard_app.pdf",
+              "size": 371777
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2025-10_25A443_Trump_v_Illinois_National_Guard/Lower_Court_Orders_Opinions.pdf",
+              "size": 1375908
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2025-10_25A443_Trump_v_Illinois_National_Guard/Other.pdf",
+              "size": 142662
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-10_25A443_Trump_v_Illinois_National_Guard/Proof_of_Service.pdf",
+              "size": 113223
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2025-10_25A443_Trump_v_Illinois_National_Guard/Reply.pdf",
+              "size": 219791
+            }
+          ]
+        },
+        {
+          "id": "2025-09_25A354_Google_v_Epic_Games",
+          "date": "2025-09",
+          "year": 2025,
+          "docketNumber": "25A354",
+          "caseName": "Google v Epic Games",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-09_25A354_Google_v_Epic_Games_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-09_25A354_Google_v_Epic_Games/2025-09_25A354_Google_v_Epic_Games_app.pdf",
+              "size": 230471
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2025-09_25A354_Google_v_Epic_Games/Lower_Court_Orders_Opinions.pdf",
+              "size": 2231212
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-09_25A354_Google_v_Epic_Games/Proof_of_Service.pdf",
+              "size": 49535
+            }
+          ]
+        },
+        {
+          "id": "2025-09_25A276_Martinez_Guardado_v_Kobayashi",
+          "date": "2025-09",
+          "year": 2025,
+          "docketNumber": "25A276",
+          "caseName": "Martinez Guardado v Kobayashi",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-09_25A276_Martinez_Guardado_v_Kobayashi_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-09_25A276_Martinez_Guardado_v_Kobayashi/2025-09_25A276_Martinez_Guardado_v_Kobayashi_app.pdf",
+              "size": 604199
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2025-09_25A276_Martinez_Guardado_v_Kobayashi/Lower_Court_Orders_Opinions.pdf",
+              "size": 748053
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2025-09_25A276_Martinez_Guardado_v_Kobayashi/Main_Document.pdf",
+              "size": 5238391
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-09_25A276_Martinez_Guardado_v_Kobayashi/Proof_of_Service.pdf",
+              "size": 117694
+            }
+          ]
+        },
+        {
+          "id": "2025-09_25A287_NJ_Transit_v_Colt",
+          "date": "2025-09",
+          "year": 2025,
+          "docketNumber": "25A287",
+          "caseName": "NJ Transit v Colt",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-09_25A287_NJ_Transit_v_Colt_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-09_25A287_NJ_Transit_v_Colt/2025-09_25A287_NJ_Transit_v_Colt_app.pdf",
+              "size": 204522
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2025-09_25A287_NJ_Transit_v_Colt/Lower_Court_Orders_Opinions.pdf",
+              "size": 5646235
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-09_25A287_NJ_Transit_v_Colt/Proof_of_Service.pdf",
+              "size": 152321
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2025-09_25A287_NJ_Transit_v_Colt/Reply.pdf",
+              "size": 127604
+            }
+          ]
+        },
+        {
+          "id": "2025-09_25A326_Noem_v_National_TPS_Alliance",
+          "date": "2025-09",
+          "year": 2025,
+          "docketNumber": "25A326",
+          "caseName": "Noem v National TPS Alliance",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-09_25A326_Noem_v_National_TPS_Alliance_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-09_25A326_Noem_v_National_TPS_Alliance/2025-09_25A326_Noem_v_National_TPS_Alliance_app.pdf",
+              "size": 305633
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2025-09_25A326_Noem_v_National_TPS_Alliance/Lower_Court_Orders_Opinions.pdf",
+              "size": 1877231
+            },
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2025-09_25A326_Noem_v_National_TPS_Alliance/Opinion.pdf",
+              "size": 62599
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2025-09_25A326_Noem_v_National_TPS_Alliance/Other.pdf",
+              "size": 90407
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-09_25A326_Noem_v_National_TPS_Alliance/Proof_of_Service.pdf",
+              "size": 158965
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2025-09_25A326_Noem_v_National_TPS_Alliance/Reply.pdf",
+              "size": 226651
+            }
+          ]
+        },
+        {
+          "id": "2025-09_25A269_State_Dept_v_AIDS_Vaccine_Coalition",
+          "date": "2025-09",
+          "year": 2025,
+          "docketNumber": "25A269",
+          "caseName": "State Dept v AIDS",
+          "shortDescription": "Vaccine Coalition",
+          "files": [
+            {
+              "name": "25A269_State_Dept_v_AIDS_Vaccine_Coalition_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-09_25A269_State_Dept_v_AIDS_Vaccine_Coalition/25A269_State_Dept_v_AIDS_Vaccine_Coalition_app.pdf",
+              "size": 315383
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2025-09_25A269_State_Dept_v_AIDS_Vaccine_Coalition/Lower_Court_Orders_Opinions.pdf",
+              "size": 3055783
+            },
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2025-09_25A269_State_Dept_v_AIDS_Vaccine_Coalition/Opinion.pdf",
+              "size": 78152
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-09_25A269_State_Dept_v_AIDS_Vaccine_Coalition/Proof_of_Service.pdf",
+              "size": 157950
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2025-09_25A269_State_Dept_v_AIDS_Vaccine_Coalition/Reply.pdf",
+              "size": 431134
+            }
+          ]
+        },
+        {
+          "id": "2025-09_25A312_Trump_v_Cook_Federal_Reserve",
+          "date": "2025-09",
+          "year": 2025,
+          "docketNumber": "25A312",
+          "caseName": "Trump v Cook",
+          "shortDescription": "Federal Reserve",
+          "files": [
+            {
+              "name": "2025-09_25A312_Trump_v_Cook_Federal_Reserve_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-09_25A312_Trump_v_Cook_Federal_Reserve/2025-09_25A312_Trump_v_Cook_Federal_Reserve_app.pdf",
+              "size": 330038
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2025-09_25A312_Trump_v_Cook_Federal_Reserve/Lower_Court_Orders_Opinions.pdf",
+              "size": 910272
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2025-09_25A312_Trump_v_Cook_Federal_Reserve/Other.pdf",
+              "size": 59961
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-09_25A312_Trump_v_Cook_Federal_Reserve/Proof_of_Service.pdf",
+              "size": 109026
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2025-09_25A312_Trump_v_Cook_Federal_Reserve/Reply.pdf",
+              "size": 265093
+            }
+          ]
+        },
+        {
+          "id": "2025-09_25A319_Trump_v_Orr_Passport",
+          "date": "2025-09",
+          "year": 2025,
+          "docketNumber": "25A319",
+          "caseName": "Trump v Orr",
+          "shortDescription": "Passport",
+          "files": [
+            {
+              "name": "2025-09_25A319_Trump_v_Orr_Passport_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-09_25A319_Trump_v_Orr_Passport/2025-09_25A319_Trump_v_Orr_Passport_app.pdf",
+              "size": 442839
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2025-09_25A319_Trump_v_Orr_Passport/Lower_Court_Orders_Opinions.pdf",
+              "size": 6555746
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-09_25A319_Trump_v_Orr_Passport/Proof_of_Service.pdf",
+              "size": 105121
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2025-09_25A319_Trump_v_Orr_Passport/Reply.pdf",
+              "size": 156809
+            }
+          ]
+        },
+        {
+          "id": "2025-09_25A264_Trump_v_Slaughter",
+          "date": "2025-09",
+          "year": 2025,
+          "docketNumber": "25A264",
+          "caseName": "Trump v Slaughter",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-09_25A264_Trump_v_Slaughter_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-09_25A264_Trump_v_Slaughter/2025-09_25A264_Trump_v_Slaughter_app.pdf",
+              "size": 306369
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2025-09_25A264_Trump_v_Slaughter/Lower_Court_Orders_Opinions.pdf",
+              "size": 926812
+            },
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2025-09_25A264_Trump_v_Slaughter/Opinion.pdf",
+              "size": 54120
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-09_25A264_Trump_v_Slaughter/Proof_of_Service.pdf",
+              "size": 109246
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2025-09_25A264_Trump_v_Slaughter/Reply.pdf",
+              "size": 206597
+            }
+          ]
+        },
+        {
+          "id": "2025-09_25A322_We_the_Patriots_v_Ventura_USD",
+          "date": "2025-09",
+          "year": 2025,
+          "docketNumber": "25A322",
+          "caseName": "We the Patriots v Ventura USD",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-09_25A322_We_the_Patriots_v_Ventura_USD_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-09_25A322_We_the_Patriots_v_Ventura_USD/2025-09_25A322_We_the_Patriots_v_Ventura_USD_app.pdf",
+              "size": 338044
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2025-09_25A322_We_the_Patriots_v_Ventura_USD/Lower_Court_Orders_Opinions.pdf",
+              "size": 35506305
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-09_25A322_We_the_Patriots_v_Ventura_USD/Proof_of_Service.pdf",
+              "size": 1252811
+            }
+          ]
+        },
+        {
+          "id": "2025-08_25A231_Avon_Capital_v_Universitas",
+          "date": "2025-08",
+          "year": 2025,
+          "docketNumber": "25A231",
+          "caseName": "Avon Capital v Universitas",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-08_25A231_Avon_Capital_v_Universitas_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-08_25A231_Avon_Capital_v_Universitas/2025-08_25A231_Avon_Capital_v_Universitas_app.pdf",
+              "size": 237016
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-08_25A231_Avon_Capital_v_Universitas/Proof_of_Service.pdf",
+              "size": 118552
+            }
+          ]
+        },
+        {
+          "id": "2025-08_25A169_Noem_v_Perdomo",
+          "date": "2025-08",
+          "year": 2025,
+          "docketNumber": "25A169",
+          "caseName": "Noem v Perdomo",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-08_25A169_Noem_v_Perdomo_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-08_25A169_Noem_v_Perdomo/2025-08_25A169_Noem_v_Perdomo_app.pdf",
+              "size": 304961
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2025-08_25A169_Noem_v_Perdomo/Main_Document.pdf",
+              "size": 10986132
+            },
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2025-08_25A169_Noem_v_Perdomo/Opinion.pdf",
+              "size": 179094
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-08_25A169_Noem_v_Perdomo/Proof_of_Service.pdf",
+              "size": 113236
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2025-08_25A169_Noem_v_Perdomo/Reply.pdf",
+              "size": 182098
+            }
+          ]
+        },
+        {
+          "id": "2025-08_25A234_South_Carolina_v_Doe",
+          "date": "2025-08",
+          "year": 2025,
+          "docketNumber": "25A234",
+          "caseName": "South Carolina v Doe",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-08_25A234_South_Carolina_v_Doe_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-08_25A234_South_Carolina_v_Doe/2025-08_25A234_South_Carolina_v_Doe_app.pdf",
+              "size": 665472
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2025-08_25A234_South_Carolina_v_Doe/Main_Document.pdf",
+              "size": 82995551
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2025-08_25A234_South_Carolina_v_Doe/Other.pdf",
+              "size": 250921
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-08_25A234_South_Carolina_v_Doe/Proof_of_Service.pdf",
+              "size": 74909
+            }
+          ]
+        },
+        {
+          "id": "2025-08_25A227_Trump_v_Global_Health_Council",
+          "date": "2025-08",
+          "year": 2025,
+          "docketNumber": "25A227",
+          "caseName": "Trump v Global Health Council",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "25A227_Trump_v_Global_Health_Council_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-08_25A227_Trump_v_Global_Health_Council/25A227_Trump_v_Global_Health_Council_app.pdf",
+              "size": 346817
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2025-08_25A227_Trump_v_Global_Health_Council/Lower_Court_Orders_Opinions.pdf",
+              "size": 2692521
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-08_25A227_Trump_v_Global_Health_Council/Proof_of_Service.pdf",
+              "size": 129359
+            }
+          ]
+        },
+        {
+          "id": "2025-07_25A97_NetChoice_v_Fitch",
+          "date": "2025-07",
+          "year": 2025,
+          "docketNumber": "25A97",
+          "caseName": "NetChoice v Fitch",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-07_25A97_NetChoice_v_Fitch_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-07_25A97_NetChoice_v_Fitch/2025-07_25A97_NetChoice_v_Fitch_app.pdf",
+              "size": 597145
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2025-07_25A97_NetChoice_v_Fitch/Main_Document.pdf",
+              "size": 18497867
+            },
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2025-07_25A97_NetChoice_v_Fitch/Opinion.pdf",
+              "size": 72071
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-07_25A97_NetChoice_v_Fitch/Proof_of_Service.pdf",
+              "size": 156534
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2025-07_25A97_NetChoice_v_Fitch/Reply.pdf",
+              "size": 200614
+            }
+          ]
+        },
+        {
+          "id": "2025-07_25A103_NIH_v_Am_Public_Health_Assn",
+          "date": "2025-07",
+          "year": 2025,
+          "docketNumber": "25A103",
+          "caseName": "NIH v Am Public Health Assn",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "25A103_NIH_v_Am_Public_Health_Assn_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-07_25A103_NIH_v_Am_Public_Health_Assn/25A103_NIH_v_Am_Public_Health_Assn_app.pdf",
+              "size": 381029
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2025-07_25A103_NIH_v_Am_Public_Health_Assn/Lower_Court_Orders_Opinions.pdf",
+              "size": 15019675
+            },
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2025-07_25A103_NIH_v_Am_Public_Health_Assn/Opinion.pdf",
+              "size": 203552
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-07_25A103_NIH_v_Am_Public_Health_Assn/Proof_of_Service.pdf",
+              "size": 160532
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2025-07_25A103_NIH_v_Am_Public_Health_Assn/Reply.pdf",
+              "size": 406220
+            }
+          ]
+        },
+        {
+          "id": "2025-07_25A11_Trump_v_Boyle_DOE",
+          "date": "2025-07",
+          "year": 2025,
+          "docketNumber": "25A11",
+          "caseName": "Trump v Boyle DOE",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "25A11_Trump_v_Boyle_DOE_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-07_25A11_Trump_v_Boyle_DOE/25A11_Trump_v_Boyle_DOE_app.pdf",
+              "size": 258276
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2025-07_25A11_Trump_v_Boyle_DOE/Lower_Court_Orders_Opinions.pdf",
+              "size": 770864
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2025-07_25A11_Trump_v_Boyle_DOE/Main_Document.pdf",
+              "size": 258276
+            },
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2025-07_25A11_Trump_v_Boyle_DOE/Opinion.pdf",
+              "size": 68790
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-07_25A11_Trump_v_Boyle_DOE/Proof_of_Service.pdf",
+              "size": 106775
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2025-07_25A11_Trump_v_Boyle_DOE/Reply.pdf",
+              "size": 208253
+            }
+          ]
+        },
+        {
+          "id": "2025-07_25A62_Turtle_Mountain_v_Howe",
+          "date": "2025-07",
+          "year": 2025,
+          "docketNumber": "25A62",
+          "caseName": "Turtle Mountain v Howe",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-07_25A62_Turtle_Mountain_v_Howe_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-07_25A62_Turtle_Mountain_v_Howe/2025-07_25A62_Turtle_Mountain_v_Howe_app.pdf",
+              "size": 464085
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2025-07_25A62_Turtle_Mountain_v_Howe/Lower_Court_Orders_Opinions.pdf",
+              "size": 3937194
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-07_25A62_Turtle_Mountain_v_Howe/Proof_of_Service.pdf",
+              "size": 106636
+            }
+          ]
+        },
+        {
+          "id": "2025-06_24A1285_Doe_John_v_Seattle_PD",
+          "date": "2025-06",
+          "year": 2025,
+          "docketNumber": "24A1285",
+          "caseName": "Doe John v Seattle PD",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-06_24A1285_Doe_John_v_Seattle_PD_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-06_24A1285_Doe_John_v_Seattle_PD/2025-06_24A1285_Doe_John_v_Seattle_PD_app.pdf",
+              "size": 472019
+            },
+            {
+              "name": "Case Docs.pdf",
+              "displayName": "Case Docs",
+              "path": "/scotus-cases/2025-06_24A1285_Doe_John_v_Seattle_PD/Case Docs.pdf",
+              "size": 784733
+            }
+          ]
+        },
+        {
+          "id": "2025-06_24-1287_Learning_Resources_v_Trump_Tariffs",
+          "date": "2025-06",
+          "year": 2025,
+          "docketNumber": "24-1287",
+          "caseName": "Learning Resources v Trump Tariffs",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-06_24-1287_Learning_Resources_v_Trump_Tariffs_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-06_24-1287_Learning_Resources_v_Trump_Tariffs/2025-06_24-1287_Learning_Resources_v_Trump_Tariffs_app.pdf",
+              "size": 123694
+            },
+            {
+              "name": "Appendix.pdf",
+              "displayName": "Appendix",
+              "path": "/scotus-cases/2025-06_24-1287_Learning_Resources_v_Trump_Tariffs/Appendix.pdf",
+              "size": 455670
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2025-06_24-1287_Learning_Resources_v_Trump_Tariffs/Other.pdf",
+              "size": 328910
+            },
+            {
+              "name": "Petition.pdf",
+              "displayName": "Petition",
+              "path": "/scotus-cases/2025-06_24-1287_Learning_Resources_v_Trump_Tariffs/Petition.pdf",
+              "size": 262205
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-06_24-1287_Learning_Resources_v_Trump_Tariffs/Proof_of_Service.pdf",
+              "size": 95897
+            }
+          ]
+        },
+        {
+          "id": "2025-06_24A1203_McMahon_v_New_York",
+          "date": "2025-06",
+          "year": 2025,
+          "docketNumber": "24A1203",
+          "caseName": "McMahon v New York",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-06_24A1203_McMahon_v_New_York_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-06_24A1203_McMahon_v_New_York/2025-06_24A1203_McMahon_v_New_York_app.pdf",
+              "size": 398791
+            },
+            {
+              "name": "Case Docs.pdf",
+              "displayName": "Case Docs",
+              "path": "/scotus-cases/2025-06_24A1203_McMahon_v_New_York/Case Docs.pdf",
+              "size": 1361149
+            }
+          ]
+        },
+        {
+          "id": "2025-06_24A1174_Trump_v_AFGE_Layoffs",
+          "date": "2025-06",
+          "year": 2025,
+          "docketNumber": "24A1174",
+          "caseName": "Trump v AFGE",
+          "shortDescription": "Layoffs",
+          "files": [
+            {
+              "name": "24A1174_Trump_v_AFGE_Layoffs_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-06_24A1174_Trump_v_AFGE_Layoffs/24A1174_Trump_v_AFGE_Layoffs_app.pdf",
+              "size": 1024103
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2025-06_24A1174_Trump_v_AFGE_Layoffs/Main_Document.pdf",
+              "size": 1677996
+            },
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2025-06_24A1174_Trump_v_AFGE_Layoffs/Opinion.pdf",
+              "size": 112585
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-06_24A1174_Trump_v_AFGE_Layoffs/Proof_of_Service.pdf",
+              "size": 145558
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2025-06_24A1174_Trump_v_AFGE_Layoffs/Reply.pdf",
+              "size": 179018
+            }
+          ]
+        },
+        {
+          "id": "2025-06_24A1269_Uthmeier_v_Florida_Immigrant",
+          "date": "2025-06",
+          "year": 2025,
+          "docketNumber": "24A1269",
+          "caseName": "Uthmeier v Florida Immigrant",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-06_24A1269_Uthmeier_v_Florida_Immigrant_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-06_24A1269_Uthmeier_v_Florida_Immigrant/2025-06_24A1269_Uthmeier_v_Florida_Immigrant_app.pdf",
+              "size": 325756
+            }
+          ]
+        },
+        {
+          "id": "2025-05_24A1153_DHS_v_DVD",
+          "date": "2025-05",
+          "year": 2025,
+          "docketNumber": "24A1153",
+          "caseName": "DHS v DVD",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-05_24A1153_DHS_v_DVD_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-05_24A1153_DHS_v_DVD/2025-05_24A1153_DHS_v_DVD_app.pdf",
+              "size": 401029
+            },
+            {
+              "name": "Case Docs.pdf",
+              "displayName": "Case Docs",
+              "path": "/scotus-cases/2025-05_24A1153_DHS_v_DVD/Case Docs.pdf",
+              "size": 3103671
+            }
+          ]
+        },
+        {
+          "id": "2025-05_24A1122_DOGE_v_CREW",
+          "date": "2025-05",
+          "year": 2025,
+          "docketNumber": "24A1122",
+          "caseName": "DOGE v CREW",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-05_24A1122_DOGE_v_CREW_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-05_24A1122_DOGE_v_CREW/2025-05_24A1122_DOGE_v_CREW_app.pdf",
+              "size": 360645
+            }
+          ]
+        },
+        {
+          "id": "2025-05_24A1154_Highland_Capital_v_NexPoint",
+          "date": "2025-05",
+          "year": 2025,
+          "docketNumber": "24A1154",
+          "caseName": "Highland Capital v NexPoint",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-05_24A1154_Highland_Capital_v_NexPoint_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-05_24A1154_Highland_Capital_v_NexPoint/2025-05_24A1154_Highland_Capital_v_NexPoint_app.pdf",
+              "size": 414705
+            }
+          ]
+        },
+        {
+          "id": "2025-05_24A1051_Libby_v_Fecteau",
+          "date": "2025-05",
+          "year": 2025,
+          "docketNumber": "24A1051",
+          "caseName": "Libby v Fecteau",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-05_24A1051_Libby_v_Fecteau_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-05_24A1051_Libby_v_Fecteau/2025-05_24A1051_Libby_v_Fecteau_app.pdf",
+              "size": 322059
+            }
+          ]
+        },
+        {
+          "id": "2025-05_24A1059_Noem_v_National_TPS_Alliance",
+          "date": "2025-05",
+          "year": 2025,
+          "docketNumber": "24A1059",
+          "caseName": "Noem v National TPS Alliance",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-05_24A1059_Noem_v_National_TPS_Alliance_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-05_24A1059_Noem_v_National_TPS_Alliance/2025-05_24A1059_Noem_v_National_TPS_Alliance_app.pdf",
+              "size": 366320
+            },
+            {
+              "name": "Case Docs.pdf",
+              "displayName": "Case Docs",
+              "path": "/scotus-cases/2025-05_24A1059_Noem_v_National_TPS_Alliance/Case Docs.pdf",
+              "size": 1381968
+            }
+          ]
+        },
+        {
+          "id": "2025-05_24A1079_Noem_v_Svitlana_Doe",
+          "date": "2025-05",
+          "year": 2025,
+          "docketNumber": "24A1079",
+          "caseName": "Noem v Svitlana Doe",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-05_24A1079_Noem_v_Svitlana_Doe_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-05_24A1079_Noem_v_Svitlana_Doe/2025-05_24A1079_Noem_v_Svitlana_Doe_app.pdf",
+              "size": 1371104
+            },
+            {
+              "name": "Case Docs.pdf",
+              "displayName": "Case Docs",
+              "path": "/scotus-cases/2025-05_24A1079_Noem_v_Svitlana_Doe/Case Docs.pdf",
+              "size": 1371104
+            }
+          ]
+        },
+        {
+          "id": "2025-05_24A1063_SSA_v_AFSCME",
+          "date": "2025-05",
+          "year": 2025,
+          "docketNumber": "24A1063",
+          "caseName": "SSA v AFSCME",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-05_24A1063_SSA_v_AFSCME_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-05_24A1063_SSA_v_AFSCME/2025-05_24A1063_SSA_v_AFSCME_app.pdf",
+              "size": 391386
+            },
+            {
+              "name": "Case Docs.pdf",
+              "displayName": "Case Docs",
+              "path": "/scotus-cases/2025-05_24A1063_SSA_v_AFSCME/Case Docs.pdf",
+              "size": 1538691
+            }
+          ]
+        },
+        {
+          "id": "2025-05_24A1106_Trump_v_AFGE",
+          "date": "2025-05",
+          "year": 2025,
+          "docketNumber": "24A1106",
+          "caseName": "Trump v AFGE",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-05_24A1106_Trump_v_AFGE_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-05_24A1106_Trump_v_AFGE/2025-05_24A1106_Trump_v_AFGE_app.pdf",
+              "size": 1019346
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2025-05_24A1106_Trump_v_AFGE/Main_Document.pdf",
+              "size": 1342683
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-05_24A1106_Trump_v_AFGE/Proof_of_Service.pdf",
+              "size": 145185
+            }
+          ]
+        },
+        {
+          "id": "2025-04_24A1007_AARP_v_Trump_Alien_Enemies",
+          "date": "2025-04",
+          "year": 2025,
+          "docketNumber": "24A1007",
+          "caseName": "AARP v Trump",
+          "shortDescription": "Alien Enemies",
+          "files": [
+            {
+              "name": "2025-04_24A1007_AARP_v_Trump_Alien_Enemies_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-04_24A1007_AARP_v_Trump_Alien_Enemies/2025-04_24A1007_AARP_v_Trump_Alien_Enemies_app.pdf",
+              "size": 335995
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2025-04_24A1007_AARP_v_Trump_Alien_Enemies/Lower_Court_Orders_Opinions.pdf",
+              "size": 10834310
+            },
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2025-04_24A1007_AARP_v_Trump_Alien_Enemies/Opinion.pdf",
+              "size": 70034
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2025-04_24A1007_AARP_v_Trump_Alien_Enemies/Other.pdf",
+              "size": 68540
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-04_24A1007_AARP_v_Trump_Alien_Enemies/Proof_of_Service.pdf",
+              "size": 94952
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2025-04_24A1007_AARP_v_Trump_Alien_Enemies/Reply.pdf",
+              "size": 227051
+            }
+          ]
+        },
+        {
+          "id": "2025-04_24A1031_Cherwitz_v_US",
+          "date": "2025-04",
+          "year": 2025,
+          "docketNumber": "24A1031",
+          "caseName": "Cherwitz v US",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-04_24A1031_Cherwitz_v_US_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-04_24A1031_Cherwitz_v_US/2025-04_24A1031_Cherwitz_v_US_app.pdf",
+              "size": 282102
+            },
+            {
+              "name": "Case Docs.pdf",
+              "displayName": "Case Docs",
+              "path": "/scotus-cases/2025-04_24A1031_Cherwitz_v_US/Case Docs.pdf",
+              "size": 755748
+            }
+          ]
+        },
+        {
+          "id": "2025-04_24A989_Espinoza_v_Bondi",
+          "date": "2025-04",
+          "year": 2025,
+          "docketNumber": "24A989",
+          "caseName": "Espinoza v Bondi",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "24A989_Espinoza_v_Bondi_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-04_24A989_Espinoza_v_Bondi/24A989_Espinoza_v_Bondi_app.pdf",
+              "size": 511638
+            }
+          ]
+        },
+        {
+          "id": "2025-04_24A949_Noem_v_Abrego_Garcia",
+          "date": "2025-04",
+          "year": 2025,
+          "docketNumber": "24A949",
+          "caseName": "Noem v Abrego Garcia",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-04_24A949_Noem_v_Abrego_Garcia_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-04_24A949_Noem_v_Abrego_Garcia/2025-04_24A949_Noem_v_Abrego_Garcia_app.pdf",
+              "size": 291868
+            },
+            {
+              "name": "Case Docs.pdf",
+              "displayName": "Case Docs",
+              "path": "/scotus-cases/2025-04_24A949_Noem_v_Abrego_Garcia/Case Docs.pdf",
+              "size": 8286288
+            }
+          ]
+        },
+        {
+          "id": "2025-04_24A966_Trump_v_Wilcox",
+          "date": "2025-04",
+          "year": 2025,
+          "docketNumber": "24A966",
+          "caseName": "Trump v Wilcox",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-04_24A966_Trump_v_Wilcox.pdf",
+              "displayName": "2025-04 24A966 Trump v Wilcox",
+              "path": "/scotus-cases/2025-04_24A966_Trump_v_Wilcox/2025-04_24A966_Trump_v_Wilcox.pdf",
+              "size": 419196
+            },
+            {
+              "name": "24A966_Trump_v_Wilcox_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-04_24A966_Trump_v_Wilcox/24A966_Trump_v_Wilcox_app.pdf",
+              "size": 2801135
+            },
+            {
+              "name": "Case Docs.pdf",
+              "displayName": "Case Docs",
+              "path": "/scotus-cases/2025-04_24A966_Trump_v_Wilcox/Case Docs.pdf",
+              "size": 2801135
+            }
+          ]
+        },
+        {
+          "id": "2025-04_24A1030_US_v_Shilling",
+          "date": "2025-04",
+          "year": 2025,
+          "docketNumber": "24A1030",
+          "caseName": "US v Shilling",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-04_24A1030_US_v_Shilling_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-04_24A1030_US_v_Shilling/2025-04_24A1030_US_v_Shilling_app.pdf",
+              "size": 576714
+            },
+            {
+              "name": "Case Docs.pdf",
+              "displayName": "Case Docs",
+              "path": "/scotus-cases/2025-04_24A1030_US_v_Shilling/Case Docs.pdf",
+              "size": 17047859
+            }
+          ]
+        },
+        {
+          "id": "2025-03_24A910_DOE_v_California",
+          "date": "2025-03",
+          "year": 2025,
+          "docketNumber": "24A910",
+          "caseName": "DOE v California",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-03_24A910_DOE_v_California_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-03_24A910_DOE_v_California/2025-03_24A910_DOE_v_California_app.pdf",
+              "size": 257992
+            },
+            {
+              "name": "Case Docs.pdf",
+              "displayName": "Case Docs",
+              "path": "/scotus-cases/2025-03_24A910_DOE_v_California/Case Docs.pdf",
+              "size": 1088593
+            }
+          ]
+        },
+        {
+          "id": "2025-03_24A904_OPM_v_AFGE",
+          "date": "2025-03",
+          "year": 2025,
+          "docketNumber": "24A904",
+          "caseName": "OPM v AFGE",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-03_24A904_OPM_v_AFGE_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-03_24A904_OPM_v_AFGE/2025-03_24A904_OPM_v_AFGE_app.pdf",
+              "size": 377367
+            },
+            {
+              "name": "case docs.pdf",
+              "displayName": "case docs",
+              "path": "/scotus-cases/2025-03_24A904_OPM_v_AFGE/case docs.pdf",
+              "size": 10115789
+            }
+          ]
+        },
+        {
+          "id": "2025-03_24A921_Principle_Homecare_v_McDonald",
+          "date": "2025-03",
+          "year": 2025,
+          "docketNumber": "24A921",
+          "caseName": "Principle Homecare v McDonald",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-03_24A921_Principle_Homecare_v_McDonald_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-03_24A921_Principle_Homecare_v_McDonald/2025-03_24A921_Principle_Homecare_v_McDonald_app.pdf",
+              "size": 294560
+            }
+          ]
+        },
+        {
+          "id": "2025-03_24A931_Trump_v_JGG_Alien_Enemies",
+          "date": "2025-03",
+          "year": 2025,
+          "docketNumber": "24A931",
+          "caseName": "Trump v JGG",
+          "shortDescription": "Alien Enemies",
+          "files": [
+            {
+              "name": "2025-03_24A931_Trump_v_JGG_Alien_Enemies_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-03_24A931_Trump_v_JGG_Alien_Enemies/2025-03_24A931_Trump_v_JGG_Alien_Enemies_app.pdf",
+              "size": 402184
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2025-03_24A931_Trump_v_JGG_Alien_Enemies/Main_Document.pdf",
+              "size": 8419072
+            },
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2025-03_24A931_Trump_v_JGG_Alien_Enemies/Opinion.pdf",
+              "size": 154007
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-03_24A931_Trump_v_JGG_Alien_Enemies/Proof_of_Service.pdf",
+              "size": 114759
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2025-03_24A931_Trump_v_JGG_Alien_Enemies/Reply.pdf",
+              "size": 222539
+            }
+          ]
+        },
+        {
+          "id": "2025-02_24A808_Alpine_Securities_v_FINRA",
+          "date": "2025-02",
+          "year": 2025,
+          "docketNumber": "24A808",
+          "caseName": "Alpine Securities v FINRA",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-02_24A808_Alpine_Securities_v_FINRA_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-02_24A808_Alpine_Securities_v_FINRA/2025-02_24A808_Alpine_Securities_v_FINRA_app.pdf",
+              "size": 435170
+            }
+          ]
+        },
+        {
+          "id": "2025-02_24A790_Bessent_v_Dellinger",
+          "date": "2025-02",
+          "year": 2025,
+          "docketNumber": "24A790",
+          "caseName": "Bessent v Dellinger",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-02_24A790_Bessent_v_Dellinger_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-02_24A790_Bessent_v_Dellinger/2025-02_24A790_Bessent_v_Dellinger_app.pdf",
+              "size": 305222
+            }
+          ]
+        },
+        {
+          "id": "2025-02_24A852_Rana_v_Engleman",
+          "date": "2025-02",
+          "year": 2025,
+          "docketNumber": "24A852",
+          "caseName": "Rana v Engleman",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2025-02_24A852_Rana_v_Engleman_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-02_24A852_Rana_v_Engleman/2025-02_24A852_Rana_v_Engleman_app.pdf",
+              "size": 476399
+            }
+          ]
+        },
+        {
+          "id": "2025-02_24A831_State_Dept_v_AIDS_Vaccine_1",
+          "date": "2025-02",
+          "year": 2025,
+          "docketNumber": "24A831",
+          "caseName": "State Dept v AIDS",
+          "shortDescription": "Vaccine 1",
+          "files": [
+            {
+              "name": "2025-02_24A831_State_Dept_v_AIDS_Vaccine_1_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-02_24A831_State_Dept_v_AIDS_Vaccine_1/2025-02_24A831_State_Dept_v_AIDS_Vaccine_1_app.pdf",
+              "size": 2597999
+            }
+          ]
+        },
+        {
+          "id": "2025-02_24A884_Trump_v_CASA_Birthright_Citizenship",
+          "date": "2025-02",
+          "year": 2025,
+          "docketNumber": "24A884",
+          "caseName": "Trump v CASA",
+          "shortDescription": "Birthright Citizenship",
+          "files": [
+            {
+              "name": "2025-02_24A884_Trump_v_CASA_Birthright_Citizenship_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-02_24A884_Trump_v_CASA_Birthright_Citizenship/2025-02_24A884_Trump_v_CASA_Birthright_Citizenship_app.pdf",
+              "size": 408209
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2025-02_24A884_Trump_v_CASA_Birthright_Citizenship/Main_Document.pdf",
+              "size": 3164477
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-02_24A884_Trump_v_CASA_Birthright_Citizenship/Proof_of_Service.pdf",
+              "size": 121044
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2025-02_24A884_Trump_v_CASA_Birthright_Citizenship/Reply.pdf",
+              "size": 229843
+            },
+            {
+              "name": "opinion.pdf",
+              "displayName": "opinion",
+              "path": "/scotus-cases/2025-02_24A884_Trump_v_CASA_Birthright_Citizenship/opinion.pdf",
+              "size": 649993
+            }
+          ]
+        },
+        {
+          "id": "2025-02_24A886_Trump_v_New_Jersey_Birthright_Citizenship",
+          "date": "2025-02",
+          "year": 2025,
+          "docketNumber": "24A886",
+          "caseName": "Trump v New Jersey",
+          "shortDescription": "Birthright Citizenship",
+          "files": [
+            {
+              "name": "2025-02_24A886_Trump_v_New_Jersey_Birthright_Citizenship_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-02_24A886_Trump_v_New_Jersey_Birthright_Citizenship/2025-02_24A886_Trump_v_New_Jersey_Birthright_Citizenship_app.pdf",
+              "size": 407919
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2025-02_24A886_Trump_v_New_Jersey_Birthright_Citizenship/Main_Document.pdf",
+              "size": 3069003
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-02_24A886_Trump_v_New_Jersey_Birthright_Citizenship/Proof_of_Service.pdf",
+              "size": 123549
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2025-02_24A886_Trump_v_New_Jersey_Birthright_Citizenship/Reply.pdf",
+              "size": 229881
+            },
+            {
+              "name": "opinion.pdf",
+              "displayName": "opinion",
+              "path": "/scotus-cases/2025-02_24A886_Trump_v_New_Jersey_Birthright_Citizenship/opinion.pdf",
+              "size": 560552
+            }
+          ]
+        },
+        {
+          "id": "2025-02_24A885_Trump_v_Washington_Birthright_Citizenship",
+          "date": "2025-02",
+          "year": 2025,
+          "docketNumber": "24A885",
+          "caseName": "Trump v Washington",
+          "shortDescription": "Birthright Citizenship",
+          "files": [
+            {
+              "name": "2025-02_24A885_Trump_v_Washington_Birthright_Citizenship_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2025-02_24A885_Trump_v_Washington_Birthright_Citizenship/2025-02_24A885_Trump_v_Washington_Birthright_Citizenship_app.pdf",
+              "size": 410266
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2025-02_24A885_Trump_v_Washington_Birthright_Citizenship/Main_Document.pdf",
+              "size": 3069788
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2025-02_24A885_Trump_v_Washington_Birthright_Citizenship/Proof_of_Service.pdf",
+              "size": 112841
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2025-02_24A885_Trump_v_Washington_Birthright_Citizenship/Reply.pdf",
+              "size": 229830
+            },
+            {
+              "name": "opinion.pdf",
+              "displayName": "opinion",
+              "path": "/scotus-cases/2025-02_24A885_Trump_v_Washington_Birthright_Citizenship/opinion.pdf",
+              "size": 560552
+            }
+          ]
+        },
+        {
+          "id": "2024-12_24A666_Trump_v_New_York_Hush_Money",
+          "date": "2024-12",
+          "year": 2024,
+          "docketNumber": "24A666",
+          "caseName": "Trump v New York",
+          "shortDescription": "Hush Money",
+          "files": [
+            {
+              "name": "2024-12_24A666_Trump_v_New_York_Hush_Money_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2024-12_24A666_Trump_v_New_York_Hush_Money/2024-12_24A666_Trump_v_New_York_Hush_Money_app.pdf",
+              "size": 97724
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2024-12_24A666_Trump_v_New_York_Hush_Money/Lower_Court_Orders_Opinions.pdf",
+              "size": 19028266
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2024-12_24A666_Trump_v_New_York_Hush_Money/Main_Document.pdf",
+              "size": 379362
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2024-12_24A666_Trump_v_New_York_Hush_Money/Reply.pdf",
+              "size": 175211
+            }
+          ]
+        },
+        {
+          "id": "2024-10_24A348_YAPP_USA_v_NLRB",
+          "date": "2024-10",
+          "year": 2024,
+          "docketNumber": "24A348",
+          "caseName": "YAPP USA v NLRB",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2024-10_24A348_YAPP_USA_v_NLRB_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2024-10_24A348_YAPP_USA_v_NLRB/2024-10_24A348_YAPP_USA_v_NLRB_app.pdf",
+              "size": 356986
+            }
+          ]
+        },
+        {
+          "id": "2024-02_23A763_Labrador_v_Poe",
+          "date": "2024-02",
+          "year": 2024,
+          "docketNumber": "23A763",
+          "caseName": "Labrador v Poe",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2024-02_23A763_Labrador_v_Poe_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2024-02_23A763_Labrador_v_Poe/2024-02_23A763_Labrador_v_Poe_app.pdf",
+              "size": 249673
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2024-02_23A763_Labrador_v_Poe/Lower_Court_Orders_Opinions.pdf",
+              "size": 709231
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2024-02_23A763_Labrador_v_Poe/Other.pdf",
+              "size": 6131554
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2024-02_23A763_Labrador_v_Poe/Proof_of_Service.pdf",
+              "size": 76702
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2024-02_23A763_Labrador_v_Poe/Reply.pdf",
+              "size": 182002
+            }
+          ]
+        },
+        {
+          "id": "2024-02_23A745_Trump_v_United_States_Immunity",
+          "date": "2024-02",
+          "year": 2024,
+          "docketNumber": "23A745",
+          "caseName": "Trump v United States Immunity",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2024-02_23A745_Trump_v_United_States_Immunity_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2024-02_23A745_Trump_v_United_States_Immunity/2024-02_23A745_Trump_v_United_States_Immunity_app.pdf",
+              "size": 556893
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2024-02_23A745_Trump_v_United_States_Immunity/Main_Document.pdf",
+              "size": 1097118
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2024-02_23A745_Trump_v_United_States_Immunity/Proof_of_Service.pdf",
+              "size": 82894
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2024-02_23A745_Trump_v_United_States_Immunity/Reply.pdf",
+              "size": 218609
+            }
+          ]
+        },
+        {
+          "id": "2022-12_22A544_Arizona_v_Mayorkas_Title_42",
+          "date": "2022-12",
+          "year": 2022,
+          "docketNumber": "22A544",
+          "caseName": "Arizona v Mayorkas",
+          "shortDescription": "Title 42",
+          "files": [
+            {
+              "name": "2022-12_22A544_Arizona_v_Mayorkas_Title_42_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2022-12_22A544_Arizona_v_Mayorkas_Title_42/2022-12_22A544_Arizona_v_Mayorkas_Title_42_app.pdf",
+              "size": 514849
+            },
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2022-12_22A544_Arizona_v_Mayorkas_Title_42/Opinion.pdf",
+              "size": 47502
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2022-12_22A544_Arizona_v_Mayorkas_Title_42/Other.pdf",
+              "size": 6486848
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2022-12_22A544_Arizona_v_Mayorkas_Title_42/Proof_of_Service.pdf",
+              "size": 340709
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2022-12_22A544_Arizona_v_Mayorkas_Title_42/Reply.pdf",
+              "size": 313785
+            }
+          ]
+        },
+        {
+          "id": "2022-11_22A444_Biden_v_Nebraska_Student_Loan",
+          "date": "2022-11",
+          "year": 2022,
+          "docketNumber": "22A444",
+          "caseName": "Biden v Nebraska Student Loan",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2022-11_22A444_Biden_v_Nebraska_Student_Loan_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2022-11_22A444_Biden_v_Nebraska_Student_Loan/2022-11_22A444_Biden_v_Nebraska_Student_Loan_app.pdf",
+              "size": 208430
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2022-11_22A444_Biden_v_Nebraska_Student_Loan/Lower_Court_Orders_Opinions.pdf",
+              "size": 2890562
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2022-11_22A444_Biden_v_Nebraska_Student_Loan/Other.pdf",
+              "size": 259366
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2022-11_22A444_Biden_v_Nebraska_Student_Loan/Proof_of_Service.pdf",
+              "size": 114593
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2022-11_22A444_Biden_v_Nebraska_Student_Loan/Reply.pdf",
+              "size": 144569
+            }
+          ]
+        },
+        {
+          "id": "2022-07_22A17_United_States_v_Texas_Immigration",
+          "date": "2022-07",
+          "year": 2022,
+          "docketNumber": "22A17",
+          "caseName": "United States v Texas",
+          "shortDescription": "Immigration",
+          "files": [
+            {
+              "name": "2022-07_22A17_United_States_v_Texas_Immigration_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2022-07_22A17_United_States_v_Texas_Immigration/2022-07_22A17_United_States_v_Texas_Immigration_app.pdf",
+              "size": 616131
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2022-07_22A17_United_States_v_Texas_Immigration/Lower_Court_Orders_Opinions.pdf",
+              "size": 8082491
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2022-07_22A17_United_States_v_Texas_Immigration/Proof_of_Service.pdf",
+              "size": 113536
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2022-07_22A17_United_States_v_Texas_Immigration/Reply.pdf",
+              "size": 564834
+            }
+          ]
+        },
+        {
+          "id": "2022-03_21A477_Austin_v_Navy_SEALs_Vaccine",
+          "date": "2022-03",
+          "year": 2022,
+          "docketNumber": "21A477",
+          "caseName": "Austin v Navy SEALs",
+          "shortDescription": "Vaccine",
+          "files": [
+            {
+              "name": "2022-03_21A477_Austin_v_Navy_SEALs_Vaccine_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2022-03_21A477_Austin_v_Navy_SEALs_Vaccine/2022-03_21A477_Austin_v_Navy_SEALs_Vaccine_app.pdf",
+              "size": 620834
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2022-03_21A477_Austin_v_Navy_SEALs_Vaccine/Lower_Court_Orders_Opinions.pdf",
+              "size": 10114032
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2022-03_21A477_Austin_v_Navy_SEALs_Vaccine/Proof_of_Service.pdf",
+              "size": 152430
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2022-03_21A477_Austin_v_Navy_SEALs_Vaccine/Reply.pdf",
+              "size": 519436
+            },
+            {
+              "name": "opinion.pdf",
+              "displayName": "opinion",
+              "path": "/scotus-cases/2022-03_21A477_Austin_v_Navy_SEALs_Vaccine/opinion.pdf",
+              "size": 109182
+            }
+          ]
+        },
+        {
+          "id": "2022-02_21A375_Merrill_v_Milligan_Alabama_Redistricting",
+          "date": "2022-02",
+          "year": 2022,
+          "docketNumber": "21A375",
+          "caseName": "Merrill v Milligan Alabama",
+          "shortDescription": "Redistricting",
+          "files": [
+            {
+              "name": "2022-02_21A375_Merrill_v_Milligan_Alabama_Redistricting_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2022-02_21A375_Merrill_v_Milligan_Alabama_Redistricting/2022-02_21A375_Merrill_v_Milligan_Alabama_Redistricting_app.pdf",
+              "size": 449435
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2022-02_21A375_Merrill_v_Milligan_Alabama_Redistricting/Lower_Court_Orders_Opinions.pdf",
+              "size": 3635955
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2022-02_21A375_Merrill_v_Milligan_Alabama_Redistricting/Other.pdf",
+              "size": 76359
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2022-02_21A375_Merrill_v_Milligan_Alabama_Redistricting/Proof_of_Service.pdf",
+              "size": 65828
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2022-02_21A375_Merrill_v_Milligan_Alabama_Redistricting/Reply.pdf",
+              "size": 202444
+            },
+            {
+              "name": "opinion.pdf",
+              "displayName": "opinion",
+              "path": "/scotus-cases/2022-02_21A375_Merrill_v_Milligan_Alabama_Redistricting/opinion.pdf",
+              "size": 192676
+            }
+          ]
+        },
+        {
+          "id": "2021-12_21A240_Biden_v_Missouri_CMS",
+          "date": "2021-12",
+          "year": 2021,
+          "docketNumber": "21A240",
+          "caseName": "Biden v Missouri CMS",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2021-12_21A240_Biden_v_Missouri_CMS_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2021-12_21A240_Biden_v_Missouri_CMS/2021-12_21A240_Biden_v_Missouri_CMS_app.pdf",
+              "size": 196912
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2021-12_21A240_Biden_v_Missouri_CMS/Lower_Court_Orders_Opinions.pdf",
+              "size": 2924270
+            },
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2021-12_21A240_Biden_v_Missouri_CMS/Opinion.pdf",
+              "size": 139065
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2021-12_21A240_Biden_v_Missouri_CMS/Other.pdf",
+              "size": 102534
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2021-12_21A240_Biden_v_Missouri_CMS/Proof_of_Service.pdf",
+              "size": 115584
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2021-12_21A240_Biden_v_Missouri_CMS/Reply.pdf",
+              "size": 588448
+            }
+          ]
+        },
+        {
+          "id": "2021-12_21A244_NFIB_v_OSHA_Vaccine_Mandate",
+          "date": "2021-12",
+          "year": 2021,
+          "docketNumber": "21A244",
+          "caseName": "NFIB v OSHA",
+          "shortDescription": "Vaccine Mandate",
+          "files": [
+            {
+              "name": "2021-12_21A244_NFIB_v_OSHA_Vaccine_Mandate_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2021-12_21A244_NFIB_v_OSHA_Vaccine_Mandate/2021-12_21A244_NFIB_v_OSHA_Vaccine_Mandate_app.pdf",
+              "size": 259420
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2021-12_21A244_NFIB_v_OSHA_Vaccine_Mandate/Lower_Court_Orders_Opinions.pdf",
+              "size": 3206461
+            },
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2021-12_21A244_NFIB_v_OSHA_Vaccine_Mandate/Opinion.pdf",
+              "size": 173604
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2021-12_21A244_NFIB_v_OSHA_Vaccine_Mandate/Other.pdf",
+              "size": 5860251
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2021-12_21A244_NFIB_v_OSHA_Vaccine_Mandate/Proof_of_Service.pdf",
+              "size": 82248
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2021-12_21A244_NFIB_v_OSHA_Vaccine_Mandate/Reply.pdf",
+              "size": 1451464
+            }
+          ]
+        },
+        {
+          "id": "2021-12_21A247_Ohio_v_OSHA_Vaccine_Mandate",
+          "date": "2021-12",
+          "year": 2021,
+          "docketNumber": "21A247",
+          "caseName": "Ohio v OSHA",
+          "shortDescription": "Vaccine Mandate",
+          "files": [
+            {
+              "name": "2021-12_21A247_Ohio_v_OSHA_Vaccine_Mandate_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2021-12_21A247_Ohio_v_OSHA_Vaccine_Mandate/2021-12_21A247_Ohio_v_OSHA_Vaccine_Mandate_app.pdf",
+              "size": 661254
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2021-12_21A247_Ohio_v_OSHA_Vaccine_Mandate/Lower_Court_Orders_Opinions.pdf",
+              "size": 1051619
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2021-12_21A247_Ohio_v_OSHA_Vaccine_Mandate/Other.pdf",
+              "size": 136566
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2021-12_21A247_Ohio_v_OSHA_Vaccine_Mandate/Proof_of_Service.pdf",
+              "size": 134237
+            }
+          ]
+        },
+        {
+          "id": "2021-10_21A90_Does_v_Mills_Maine_Vaccine",
+          "date": "2021-10",
+          "year": 2021,
+          "docketNumber": "21A90",
+          "caseName": "Does v Mills Maine",
+          "shortDescription": "Vaccine",
+          "files": [
+            {
+              "name": "2021-10_21A83_Alabama_Assn_Realtors_v_HHS_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2021-10_21A90_Does_v_Mills_Maine_Vaccine/2021-10_21A83_Alabama_Assn_Realtors_v_HHS_app.pdf",
+              "size": 297399
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2021-10_21A90_Does_v_Mills_Maine_Vaccine/Other.pdf",
+              "size": 1266058
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2021-10_21A90_Does_v_Mills_Maine_Vaccine/Proof_of_Service.pdf",
+              "size": 84614
+            }
+          ]
+        },
+        {
+          "id": "2021-10_21A85_United_States_v_Texas_SB8",
+          "date": "2021-10",
+          "year": 2021,
+          "docketNumber": "21A85",
+          "caseName": "United States v Texas SB8",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2021-10_21A85_United_States_v_Texas_SB8_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2021-10_21A85_United_States_v_Texas_SB8/2021-10_21A85_United_States_v_Texas_SB8_app.pdf",
+              "size": 185980
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2021-10_21A85_United_States_v_Texas_SB8/Other.pdf",
+              "size": 1553224
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2021-10_21A85_United_States_v_Texas_SB8/Proof_of_Service.pdf",
+              "size": 125171
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2021-10_21A85_United_States_v_Texas_SB8/Reply.pdf",
+              "size": 143420
+            },
+            {
+              "name": "opinion.pdf",
+              "displayName": "opinion",
+              "path": "/scotus-cases/2021-10_21A85_United_States_v_Texas_SB8/opinion.pdf",
+              "size": 119355
+            }
+          ]
+        },
+        {
+          "id": "2021-08_21A21_Texas_v_Biden_MPP_Stay",
+          "date": "2021-08",
+          "year": 2021,
+          "docketNumber": "21A21",
+          "caseName": "Texas v Biden MPP",
+          "shortDescription": "Stay",
+          "files": [
+            {
+              "name": "2021-08_21A21_Texas_v_Biden_MPP_Stay_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2021-08_21A21_Texas_v_Biden_MPP_Stay/2021-08_21A21_Texas_v_Biden_MPP_Stay_app.pdf",
+              "size": 625903
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2021-08_21A21_Texas_v_Biden_MPP_Stay/Lower_Court_Orders_Opinions.pdf",
+              "size": 3378231
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2021-08_21A21_Texas_v_Biden_MPP_Stay/Other.pdf",
+              "size": 64709
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2021-08_21A21_Texas_v_Biden_MPP_Stay/Proof_of_Service.pdf",
+              "size": 106088
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2021-08_21A21_Texas_v_Biden_MPP_Stay/Reply.pdf",
+              "size": 84559
+            }
+          ]
+        },
+        {
+          "id": "2021-08_21A24_Whole_Womans_Health_v_Jackson",
+          "date": "2021-08",
+          "year": 2021,
+          "docketNumber": "21A24",
+          "caseName": "Whole Womans Health v Jackson",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2021-08_21A24_Whole_Womans_Health_v_Jackson_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2021-08_21A24_Whole_Womans_Health_v_Jackson/2021-08_21A24_Whole_Womans_Health_v_Jackson_app.pdf",
+              "size": 330982
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2021-08_21A24_Whole_Womans_Health_v_Jackson/Main_Document.pdf",
+              "size": 86929470
+            },
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2021-08_21A24_Whole_Womans_Health_v_Jackson/Opinion.pdf",
+              "size": 107229
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2021-08_21A24_Whole_Womans_Health_v_Jackson/Proof_of_Service.pdf",
+              "size": 149600
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2021-08_21A24_Whole_Womans_Health_v_Jackson/Reply.pdf",
+              "size": 173459
+            }
+          ]
+        },
+        {
+          "id": "2021-03_20A151_Tandon_v_Newsom",
+          "date": "2021-03",
+          "year": 2021,
+          "docketNumber": "20A151",
+          "caseName": "Tandon v Newsom",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2021-03_20A151_Tandon_v_Newsom_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2021-03_20A151_Tandon_v_Newsom/2021-03_20A151_Tandon_v_Newsom_app.pdf",
+              "size": 591735
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2021-03_20A151_Tandon_v_Newsom/Main_Document.pdf",
+              "size": 4322405
+            },
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2021-03_20A151_Tandon_v_Newsom/Opinion.pdf",
+              "size": 126202
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2021-03_20A151_Tandon_v_Newsom/Other.pdf",
+              "size": 99903
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2021-03_20A151_Tandon_v_Newsom/Proof_of_Service.pdf",
+              "size": 104714
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2021-03_20A151_Tandon_v_Newsom/Reply.pdf",
+              "size": 201917
+            }
+          ]
+        },
+        {
+          "id": "2021-02_20A138_Gateway_City_Church_v_Newsom",
+          "date": "2021-02",
+          "year": 2021,
+          "docketNumber": "20A138",
+          "caseName": "Gateway City Church v Newsom",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2021-02_20A138_Gateway_City_Church_v_Newsom_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2021-02_20A138_Gateway_City_Church_v_Newsom/2021-02_20A138_Gateway_City_Church_v_Newsom_app.pdf",
+              "size": 780444
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2021-02_20A138_Gateway_City_Church_v_Newsom/Main_Document.pdf",
+              "size": 2301422
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2021-02_20A138_Gateway_City_Church_v_Newsom/Other.pdf",
+              "size": 118282
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2021-02_20A138_Gateway_City_Church_v_Newsom/Proof_of_Service.pdf",
+              "size": 95015
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2021-02_20A138_Gateway_City_Church_v_Newsom/Reply.pdf",
+              "size": 212859
+            }
+          ]
+        },
+        {
+          "id": "2021-01_20A96_FDA_v_ACOG_Abortion_Pill",
+          "date": "2021-01",
+          "year": 2021,
+          "docketNumber": "20A96",
+          "caseName": "FDA v ACOG",
+          "shortDescription": "Abortion Pill",
+          "files": [
+            {
+              "name": "2021-01_20A96_FDA_v_ACOG_Abortion_Pill_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2021-01_20A96_FDA_v_ACOG_Abortion_Pill/2021-01_20A96_FDA_v_ACOG_Abortion_Pill_app.pdf",
+              "size": 9918954
+            },
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2021-01_20A96_FDA_v_ACOG_Abortion_Pill/Opinion.pdf",
+              "size": 119391
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2021-01_20A96_FDA_v_ACOG_Abortion_Pill/Other.pdf",
+              "size": 6043745
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2021-01_20A96_FDA_v_ACOG_Abortion_Pill/Proof_of_Service.pdf",
+              "size": 327281
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2021-01_20A96_FDA_v_ACOG_Abortion_Pill/Reply.pdf",
+              "size": 515874
+            }
+          ]
+        },
+        {
+          "id": "2021-01_20A128_South_Bay_Pentecostal_v_Newsom_II",
+          "date": "2021-01",
+          "year": 2021,
+          "docketNumber": "20A128",
+          "caseName": "South Bay Pentecostal v Newsom II",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2021-01_20A128_South_Bay_Pentecostal_v_Newsom_II_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2021-01_20A128_South_Bay_Pentecostal_v_Newsom_II/2021-01_20A128_South_Bay_Pentecostal_v_Newsom_II_app.pdf",
+              "size": 249740
+            },
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2021-01_20A128_South_Bay_Pentecostal_v_Newsom_II/Opinion.pdf",
+              "size": 105327
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2021-01_20A128_South_Bay_Pentecostal_v_Newsom_II/Other.pdf",
+              "size": 5019366
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2021-01_20A128_South_Bay_Pentecostal_v_Newsom_II/Proof_of_Service.pdf",
+              "size": 127101
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2021-01_20A128_South_Bay_Pentecostal_v_Newsom_II/Reply.pdf",
+              "size": 139725
+            }
+          ]
+        },
+        {
+          "id": "2020-12_20A134_Gish_v_Newsom",
+          "date": "2020-12",
+          "year": 2020,
+          "docketNumber": "20A134",
+          "caseName": "Gish v Newsom",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2020-12_20A134_Gish_v_Newsom_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2020-12_20A134_Gish_v_Newsom/2020-12_20A134_Gish_v_Newsom_app.pdf",
+              "size": 462346
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2020-12_20A134_Gish_v_Newsom/Lower_Court_Orders_Opinions.pdf",
+              "size": 547227
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2020-12_20A134_Gish_v_Newsom/Proof_of_Service.pdf",
+              "size": 97773
+            }
+          ]
+        },
+        {
+          "id": "2020-12_20A98_Kelly_v_Pennsylvania",
+          "date": "2020-12",
+          "year": 2020,
+          "docketNumber": "20A98",
+          "caseName": "Kelly v Pennsylvania",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2020-12_20A98_Kelly_v_Pennsylvania_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2020-12_20A98_Kelly_v_Pennsylvania/2020-12_20A98_Kelly_v_Pennsylvania_app.pdf",
+              "size": 326829
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2020-12_20A98_Kelly_v_Pennsylvania/Other.pdf",
+              "size": 10069134
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2020-12_20A98_Kelly_v_Pennsylvania/Proof_of_Service.pdf",
+              "size": 61705
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2020-12_20A98_Kelly_v_Pennsylvania/Reply.pdf",
+              "size": 15718441
+            }
+          ]
+        },
+        {
+          "id": "2020-11_20A87_Diocese_Brooklyn_v_Cuomo",
+          "date": "2020-11",
+          "year": 2020,
+          "docketNumber": "20A87",
+          "caseName": "Diocese Brooklyn v Cuomo",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2020-11_20A87_Diocese_Brooklyn_v_Cuomo_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2020-11_20A87_Diocese_Brooklyn_v_Cuomo/2020-11_20A87_Diocese_Brooklyn_v_Cuomo_app.pdf",
+              "size": 266875
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2020-11_20A87_Diocese_Brooklyn_v_Cuomo/Lower_Court_Orders_Opinions.pdf",
+              "size": 20372960
+            },
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2020-11_20A87_Diocese_Brooklyn_v_Cuomo/Opinion.pdf",
+              "size": 235901
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2020-11_20A87_Diocese_Brooklyn_v_Cuomo/Other.pdf",
+              "size": 95847
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2020-11_20A87_Diocese_Brooklyn_v_Cuomo/Proof_of_Service.pdf",
+              "size": 135319
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2020-11_20A87_Diocese_Brooklyn_v_Cuomo/Reply.pdf",
+              "size": 1119080
+            }
+          ]
+        },
+        {
+          "id": "2020-11_20A125_Harvest_Rock_Church_v_Newsom",
+          "date": "2020-11",
+          "year": 2020,
+          "docketNumber": "20A125",
+          "caseName": "Harvest Rock Church v Newsom",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2020-11_20A125_Harvest_Rock_Church_v_Newsom_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2020-11_20A125_Harvest_Rock_Church_v_Newsom/2020-11_20A125_Harvest_Rock_Church_v_Newsom_app.pdf",
+              "size": 556361
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2020-11_20A125_Harvest_Rock_Church_v_Newsom/Lower_Court_Orders_Opinions.pdf",
+              "size": 1204212
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2020-11_20A125_Harvest_Rock_Church_v_Newsom/Proof_of_Service.pdf",
+              "size": 159402
+            }
+          ]
+        },
+        {
+          "id": "2020-11_20A105_High_Plains_Harvest_Church_v_Polis",
+          "date": "2020-11",
+          "year": 2020,
+          "docketNumber": "20A105",
+          "caseName": "High Plains Harvest Church v Polis",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2020-11_20A105_High_Plains_Harvest_Church_v_Polis_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2020-11_20A105_High_Plains_Harvest_Church_v_Polis/2020-11_20A105_High_Plains_Harvest_Church_v_Polis_app.pdf",
+              "size": 358581
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2020-11_20A105_High_Plains_Harvest_Church_v_Polis/Proof_of_Service.pdf",
+              "size": 137054
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2020-11_20A105_High_Plains_Harvest_Church_v_Polis/Reply.pdf",
+              "size": 236743
+            },
+            {
+              "name": "opinion.pdf",
+              "displayName": "opinion",
+              "path": "/scotus-cases/2020-11_20A105_High_Plains_Harvest_Church_v_Polis/opinion.pdf",
+              "size": 78037
+            }
+          ]
+        },
+        {
+          "id": "2020-11_20A136_Robinson_v_Murphy_NJ",
+          "date": "2020-11",
+          "year": 2020,
+          "docketNumber": "20A136",
+          "caseName": "Robinson v Murphy NJ",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2020-11_20A136_Robinson_v_Murphy_NJ_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2020-11_20A136_Robinson_v_Murphy_NJ/2020-11_20A136_Robinson_v_Murphy_NJ_app.pdf",
+              "size": 395884
+            },
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2020-11_20A136_Robinson_v_Murphy_NJ/Opinion.pdf",
+              "size": 139649
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2020-11_20A136_Robinson_v_Murphy_NJ/Other.pdf",
+              "size": 14945110
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2020-11_20A136_Robinson_v_Murphy_NJ/Proof_of_Service.pdf",
+              "size": 73307
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2020-11_20A136_Robinson_v_Murphy_NJ/Reply.pdf",
+              "size": 297803
+            }
+          ]
+        },
+        {
+          "id": "2020-11_20A84_Toth_v_Chapman_PA_Election",
+          "date": "2020-11",
+          "year": 2020,
+          "docketNumber": "20A84",
+          "caseName": "Toth v Chapman PA",
+          "shortDescription": "Election",
+          "files": [
+            {
+              "name": "2020-11_20A84_Toth_v_Chapman_PA_Election_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2020-11_20A84_Toth_v_Chapman_PA_Election/2020-11_20A84_Toth_v_Chapman_PA_Election_app.pdf",
+              "size": 102840
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2020-11_20A84_Toth_v_Chapman_PA_Election/Lower_Court_Orders_Opinions.pdf",
+              "size": 2498922
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2020-11_20A84_Toth_v_Chapman_PA_Election/Other.pdf",
+              "size": 129849
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2020-11_20A84_Toth_v_Chapman_PA_Election/Proof_of_Service.pdf",
+              "size": 3804240
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2020-11_20A84_Toth_v_Chapman_PA_Election/Reply.pdf",
+              "size": 69906
+            }
+          ]
+        },
+        {
+          "id": "2020-10_20A71_Andino_v_Middleton_SC_Election",
+          "date": "2020-10",
+          "year": 2020,
+          "docketNumber": "20A71",
+          "caseName": "Andino v Middleton SC",
+          "shortDescription": "Election",
+          "files": [
+            {
+              "name": "2020-10_20A71_Andino_v_Middleton_SC_Election_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2020-10_20A71_Andino_v_Middleton_SC_Election/2020-10_20A71_Andino_v_Middleton_SC_Election_app.pdf",
+              "size": 225002
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2020-10_20A71_Andino_v_Middleton_SC_Election/Other.pdf",
+              "size": 3689932
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2020-10_20A71_Andino_v_Middleton_SC_Election/Proof_of_Service.pdf",
+              "size": 54947
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2020-10_20A71_Andino_v_Middleton_SC_Election/Reply.pdf",
+              "size": 449419
+            }
+          ]
+        },
+        {
+          "id": "2020-10_20A66_Moore_v_Circosta_NC_Absentee",
+          "date": "2020-10",
+          "year": 2020,
+          "docketNumber": "20A66",
+          "caseName": "Moore v Circosta NC Absentee",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2020-10_20A66_Moore_v_Circosta_NC_Absentee_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2020-10_20A66_Moore_v_Circosta_NC_Absentee/2020-10_20A66_Moore_v_Circosta_NC_Absentee_app.pdf",
+              "size": 461314
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2020-10_20A66_Moore_v_Circosta_NC_Absentee/Main_Document.pdf",
+              "size": 1451737
+            },
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2020-10_20A66_Moore_v_Circosta_NC_Absentee/Opinion.pdf",
+              "size": 270121
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2020-10_20A66_Moore_v_Circosta_NC_Absentee/Other.pdf",
+              "size": 65085
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2020-10_20A66_Moore_v_Circosta_NC_Absentee/Proof_of_Service.pdf",
+              "size": 1212882
+            }
+          ]
+        },
+        {
+          "id": "2020-10_20A72_Republican_Party_PA_v_Boockvar",
+          "date": "2020-10",
+          "year": 2020,
+          "docketNumber": "20A72",
+          "caseName": "Republican Party PA v Boockvar",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2020-10_20A72_Republican_Party_PA_v_Boockvar_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2020-10_20A72_Republican_Party_PA_v_Boockvar/2020-10_20A72_Republican_Party_PA_v_Boockvar_app.pdf",
+              "size": 245595
+            },
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2020-10_20A72_Republican_Party_PA_v_Boockvar/Opinion.pdf",
+              "size": 97590
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2020-10_20A72_Republican_Party_PA_v_Boockvar/Other.pdf",
+              "size": 50417266
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2020-10_20A72_Republican_Party_PA_v_Boockvar/Proof_of_Service.pdf",
+              "size": 86857
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2020-10_20A72_Republican_Party_PA_v_Boockvar/Reply.pdf",
+              "size": 260315
+            }
+          ]
+        },
+        {
+          "id": "2020-10_20A67_Scarnati_v_Boockvar_PA_Election",
+          "date": "2020-10",
+          "year": 2020,
+          "docketNumber": "20A67",
+          "caseName": "Scarnati v Boockvar PA",
+          "shortDescription": "Election",
+          "files": [
+            {
+              "name": "2020-10_20A67_Scarnati_v_Boockvar_PA_Election_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2020-10_20A67_Scarnati_v_Boockvar_PA_Election/2020-10_20A67_Scarnati_v_Boockvar_PA_Election_app.pdf",
+              "size": 554970
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2020-10_20A67_Scarnati_v_Boockvar_PA_Election/Lower_Court_Orders_Opinions.pdf",
+              "size": 1757795
+            },
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2020-10_20A67_Scarnati_v_Boockvar_PA_Election/Opinion.pdf",
+              "size": 74899
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2020-10_20A67_Scarnati_v_Boockvar_PA_Election/Other.pdf",
+              "size": 1450374
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2020-10_20A67_Scarnati_v_Boockvar_PA_Election/Proof_of_Service.pdf",
+              "size": 245948
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2020-10_20A67_Scarnati_v_Boockvar_PA_Election/Reply.pdf",
+              "size": 204488
+            }
+          ]
+        },
+        {
+          "id": "2020-10_20A63_Trump_v_Vance_II_Tax_Returns",
+          "date": "2020-10",
+          "year": 2020,
+          "docketNumber": "20A63",
+          "caseName": "Trump v Vance II",
+          "shortDescription": "Tax Returns",
+          "files": [
+            {
+              "name": "20A63_Trump_v_Vance_II_Tax_Returns_App.pdf",
+              "displayName": "20A63 Trump v Vance II Tax Returns App",
+              "path": "/scotus-cases/2020-10_20A63_Trump_v_Vance_II_Tax_Returns/20A63_Trump_v_Vance_II_Tax_Returns_App.pdf",
+              "size": 397356
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2020-10_20A63_Trump_v_Vance_II_Tax_Returns/Lower_Court_Orders_Opinions.pdf",
+              "size": 2272369
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2020-10_20A63_Trump_v_Vance_II_Tax_Returns/Main_Document.pdf",
+              "size": 397356
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2020-10_20A63_Trump_v_Vance_II_Tax_Returns/Proof_of_Service.pdf",
+              "size": 94622
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2020-10_20A63_Trump_v_Vance_II_Tax_Returns/Reply.pdf",
+              "size": 180982
+            }
+          ]
+        },
+        {
+          "id": "2020-08_20A34_FDA_v_ACOG_Mifeprex",
+          "date": "2020-08",
+          "year": 2020,
+          "docketNumber": "20A34",
+          "caseName": "FDA v ACOG Mifeprex",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2020-08_20A34_South_Bay_Pentecostal_v_Newsom-app.pdf",
+              "displayName": "2020-08 20A34 South Bay Pentecostal v Newsom-app",
+              "path": "/scotus-cases/2020-08_20A34_FDA_v_ACOG_Mifeprex/2020-08_20A34_South_Bay_Pentecostal_v_Newsom-app.pdf",
+              "size": 114712
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2020-08_20A34_FDA_v_ACOG_Mifeprex/Lower_Court_Orders_Opinions.pdf",
+              "size": 1219660
+            },
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2020-08_20A34_FDA_v_ACOG_Mifeprex/Opinion.pdf",
+              "size": 102605
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2020-08_20A34_FDA_v_ACOG_Mifeprex/Other.pdf",
+              "size": 301060
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2020-08_20A34_FDA_v_ACOG_Mifeprex/Proof_of_Service.pdf",
+              "size": 125553
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2020-08_20A34_FDA_v_ACOG_Mifeprex/Reply.pdf",
+              "size": 84167
+            }
+          ]
+        },
+        {
+          "id": "2020-07_20A90_Calvary_Chapel_v_Sisolak",
+          "date": "2020-07",
+          "year": 2020,
+          "docketNumber": "20A90",
+          "caseName": "Calvary Chapel v Sisolak",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "20A90_Calvary_Chapel_v_Sisolak_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2020-07_20A90_Calvary_Chapel_v_Sisolak/20A90_Calvary_Chapel_v_Sisolak_app.pdf",
+              "size": 384181
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2020-07_20A90_Calvary_Chapel_v_Sisolak/Main_Document.pdf",
+              "size": 384181
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2020-07_20A90_Calvary_Chapel_v_Sisolak/Other.pdf",
+              "size": 11318175
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2020-07_20A90_Calvary_Chapel_v_Sisolak/Proof_of_Service.pdf",
+              "size": 59931
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2020-07_20A90_Calvary_Chapel_v_Sisolak/Reply.pdf",
+              "size": 187125
+            }
+          ]
+        },
+        {
+          "id": "2020-07_20A65_Raysor_v_DeSantis_Florida_Felon_Voting",
+          "date": "2020-07",
+          "year": 2020,
+          "docketNumber": "20A65",
+          "caseName": "Raysor v DeSantis Florida Felon",
+          "shortDescription": "Voting",
+          "files": [
+            {
+              "name": "2020-07_20A65_Raysor_v_DeSantis_Florida_Felon_Voting_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2020-07_20A65_Raysor_v_DeSantis_Florida_Felon_Voting/2020-07_20A65_Raysor_v_DeSantis_Florida_Felon_Voting_app.pdf",
+              "size": 545026
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2020-07_20A65_Raysor_v_DeSantis_Florida_Felon_Voting/Main_Document.pdf",
+              "size": 2410328
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2020-07_20A65_Raysor_v_DeSantis_Florida_Felon_Voting/Other.pdf",
+              "size": 65085
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2020-07_20A65_Raysor_v_DeSantis_Florida_Felon_Voting/Proof_of_Service.pdf",
+              "size": 143204
+            }
+          ]
+        },
+        {
+          "id": "2020-04_19A1016_RNC_v_DNC_Wisconsin_Election",
+          "date": "2020-04",
+          "year": 2020,
+          "docketNumber": "19A1016",
+          "caseName": "RNC v DNC Wisconsin",
+          "shortDescription": "Election",
+          "files": [
+            {
+              "name": "2020-04_19A1016_Wolf_v_Cook_County_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2020-04_19A1016_RNC_v_DNC_Wisconsin_Election/2020-04_19A1016_Wolf_v_Cook_County_app.pdf",
+              "size": 705804
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2020-04_19A1016_RNC_v_DNC_Wisconsin_Election/Main_Document.pdf",
+              "size": 1102535
+            },
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2020-04_19A1016_RNC_v_DNC_Wisconsin_Election/Opinion.pdf",
+              "size": 142951
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2020-04_19A1016_RNC_v_DNC_Wisconsin_Election/Proof_of_Service.pdf",
+              "size": 218651
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2020-04_19A1016_RNC_v_DNC_Wisconsin_Election/Reply.pdf",
+              "size": 82339
+            }
+          ]
+        },
+        {
+          "id": "2020-04_19A1054_RNC_v_DNC_Wisconsin_Election",
+          "date": "2020-04",
+          "year": 2020,
+          "docketNumber": "19A1054",
+          "caseName": "RNC v DNC Wisconsin",
+          "shortDescription": "Election",
+          "files": [
+            {
+              "name": "2020-04_19A1054_RNC_v_DNC_Wisconsin_Election_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2020-04_19A1054_RNC_v_DNC_Wisconsin_Election/2020-04_19A1054_RNC_v_DNC_Wisconsin_Election_app.pdf",
+              "size": 2658682
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2020-04_19A1054_RNC_v_DNC_Wisconsin_Election/Other.pdf",
+              "size": 20105492
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2020-04_19A1054_RNC_v_DNC_Wisconsin_Election/Proof_of_Service.pdf",
+              "size": 560242
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2020-04_19A1054_RNC_v_DNC_Wisconsin_Election/Reply.pdf",
+              "size": 3492722
+            }
+          ]
+        },
+        {
+          "id": "2020-01_19A785_DHS_v_New_York",
+          "date": "2020-01",
+          "year": 2020,
+          "docketNumber": "19A785",
+          "caseName": "DHS v New York",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2020-01_19A785_DHS_v_New_York_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2020-01_19A785_DHS_v_New_York/2020-01_19A785_DHS_v_New_York_app.pdf",
+              "size": 1724982
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2020-01_19A785_DHS_v_New_York/Lower_Court_Orders_Opinions.pdf",
+              "size": 4064977
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2020-01_19A785_DHS_v_New_York/Other.pdf",
+              "size": 1674300
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2020-01_19A785_DHS_v_New_York/Proof_of_Service.pdf",
+              "size": 1370746
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2020-01_19A785_DHS_v_New_York/Reply.pdf",
+              "size": 520733
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "decade": "2010s",
+      "startYear": 2010,
+      "endYear": 2019,
+      "cases": [
+        {
+          "id": "2019-11_19A640_Trump_v_Deutsche_Bank_Subpoenas",
+          "date": "2019-11",
+          "year": 2019,
+          "docketNumber": "19A640",
+          "caseName": "Trump v Deutsche",
+          "shortDescription": "Bank Subpoenas",
+          "files": [
+            {
+              "name": "2019-11_19A640_Trump_v_Deutsche_Bank_Subpoenas_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2019-11_19A640_Trump_v_Deutsche_Bank_Subpoenas/2019-11_19A640_Trump_v_Deutsche_Bank_Subpoenas_app.pdf",
+              "size": 252558
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2019-11_19A640_Trump_v_Deutsche_Bank_Subpoenas/Main_Document.pdf",
+              "size": 1857784
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2019-11_19A640_Trump_v_Deutsche_Bank_Subpoenas/Proof_of_Service.pdf",
+              "size": 532976
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2019-11_19A640_Trump_v_Deutsche_Bank_Subpoenas/Reply.pdf",
+              "size": 223642
+            }
+          ]
+        },
+        {
+          "id": "2019-11_19A545_Trump_v_Mazars_Subpoenas",
+          "date": "2019-11",
+          "year": 2019,
+          "docketNumber": "19A545",
+          "caseName": "Trump v Mazars",
+          "shortDescription": "Subpoenas",
+          "files": [
+            {
+              "name": "19A545_Trump_v_Mazars_Subpoenas_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2019-11_19A545_Trump_v_Mazars_Subpoenas/19A545_Trump_v_Mazars_Subpoenas_app.pdf",
+              "size": 2526874
+            },
+            {
+              "name": "2019-11_19A545_Trump_v_Mazars_Subpoenas.pdf",
+              "displayName": "2019-11 19A545 Trump v Mazars Subpoenas",
+              "path": "/scotus-cases/2019-11_19A545_Trump_v_Mazars_Subpoenas/2019-11_19A545_Trump_v_Mazars_Subpoenas.pdf",
+              "size": 289570
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2019-11_19A545_Trump_v_Mazars_Subpoenas/Main_Document.pdf",
+              "size": 2526874
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2019-11_19A545_Trump_v_Mazars_Subpoenas/Proof_of_Service.pdf",
+              "size": 241039
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2019-11_19A545_Trump_v_Mazars_Subpoenas/Reply.pdf",
+              "size": 177750
+            }
+          ]
+        },
+        {
+          "id": "2019-07_19A60_Trump_v_Sierra_Club_Border_Wall",
+          "date": "2019-07",
+          "year": 2019,
+          "docketNumber": "19A60",
+          "caseName": "Trump v Sierra Club",
+          "shortDescription": "Border Wall",
+          "files": [
+            {
+              "name": "2019-07_19A60_Trump_v_Sierra_Club_Border_Wall_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2019-07_19A60_Trump_v_Sierra_Club_Border_Wall/2019-07_19A60_Trump_v_Sierra_Club_Border_Wall_app.pdf",
+              "size": 578025
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2019-07_19A60_Trump_v_Sierra_Club_Border_Wall/Lower_Court_Orders_Opinions.pdf",
+              "size": 2801540
+            },
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2019-07_19A60_Trump_v_Sierra_Club_Border_Wall/Opinion.pdf",
+              "size": 85322
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2019-07_19A60_Trump_v_Sierra_Club_Border_Wall/Other.pdf",
+              "size": 1036699
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2019-07_19A60_Trump_v_Sierra_Club_Border_Wall/Proof_of_Service.pdf",
+              "size": 99068
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2019-07_19A60_Trump_v_Sierra_Club_Border_Wall/Reply.pdf",
+              "size": 132391
+            }
+          ]
+        },
+        {
+          "id": "2018-12_18A615_Trump_v_East_Bay_Sanctuary_Asylum",
+          "date": "2018-12",
+          "year": 2018,
+          "docketNumber": "18A615",
+          "caseName": "Trump v East Bay Sanctuary",
+          "shortDescription": "Asylum",
+          "files": [
+            {
+              "name": "2018-12_18A615_Trump_v_East_Bay_Sanctuary_Asylum_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2018-12_18A615_Trump_v_East_Bay_Sanctuary_Asylum/2018-12_18A615_Trump_v_East_Bay_Sanctuary_Asylum_app.pdf",
+              "size": 576736
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2018-12_18A615_Trump_v_East_Bay_Sanctuary_Asylum/Lower_Court_Orders_Opinions.pdf",
+              "size": 5437201
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2018-12_18A615_Trump_v_East_Bay_Sanctuary_Asylum/Proof_of_Service.pdf",
+              "size": 59349
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2018-12_18A615_Trump_v_East_Bay_Sanctuary_Asylum/Reply.pdf",
+              "size": 485762
+            }
+          ]
+        },
+        {
+          "id": "2018-12_18A625_Trump_v_Karnoski_Transgender_Military",
+          "date": "2018-12",
+          "year": 2018,
+          "docketNumber": "18A625",
+          "caseName": "Trump v Karnoski",
+          "shortDescription": "Transgender Military",
+          "files": [
+            {
+              "name": "2018-12_18A625_Trump_v_Karnoski_Transgender_Military_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2018-12_18A625_Trump_v_Karnoski_Transgender_Military/2018-12_18A625_Trump_v_Karnoski_Transgender_Military_app.pdf",
+              "size": 708197
+            }
+          ]
+        },
+        {
+          "id": "2018-10_18A455_In_Re_Dept_Commerce_Census",
+          "date": "2018-10",
+          "year": 2018,
+          "docketNumber": "18A455",
+          "caseName": "In Re Dept Commerce Census",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "2018-10_18A455_In_Re_Dept_Commerce_Census_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2018-10_18A455_In_Re_Dept_Commerce_Census/2018-10_18A455_In_Re_Dept_Commerce_Census_app.pdf",
+              "size": 86147
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2018-10_18A455_In_Re_Dept_Commerce_Census/Main_Document.pdf",
+              "size": 344755
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2018-10_18A455_In_Re_Dept_Commerce_Census/Proof_of_Service.pdf",
+              "size": 123888
+            }
+          ]
+        },
+        {
+          "id": "2018-01_17A790_North_Carolina_v_Covington_Redistricting",
+          "date": "2018-01",
+          "year": 2018,
+          "docketNumber": "17A790",
+          "caseName": "North Carolina v Covington",
+          "shortDescription": "Redistricting",
+          "files": [
+            {
+              "name": "2018-01_17A790_North_Carolina_v_Covington_Redistricting_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2018-01_17A790_North_Carolina_v_Covington_Redistricting/2018-01_17A790_North_Carolina_v_Covington_Redistricting_app.pdf",
+              "size": 229284
+            },
+            {
+              "name": "Lower_Court_Orders_Opinions.pdf",
+              "displayName": "Lower Court Orders & Opinions",
+              "path": "/scotus-cases/2018-01_17A790_North_Carolina_v_Covington_Redistricting/Lower_Court_Orders_Opinions.pdf",
+              "size": 626132
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2018-01_17A790_North_Carolina_v_Covington_Redistricting/Proof_of_Service.pdf",
+              "size": 58544
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2018-01_17A790_North_Carolina_v_Covington_Redistricting/Reply.pdf",
+              "size": 172600
+            }
+          ]
+        },
+        {
+          "id": "2017-11_17A550_Trump_v_Hawaii_Travel_Ban_3",
+          "date": "2017-11",
+          "year": 2017,
+          "docketNumber": "17A550",
+          "caseName": "Trump v Hawaii",
+          "shortDescription": "Travel Ban 3",
+          "files": [
+            {
+              "name": "2017-11_17A550_Trump_v_Hawaii_Travel_Ban_3_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2017-11_17A550_Trump_v_Hawaii_Travel_Ban_3/2017-11_17A550_Trump_v_Hawaii_Travel_Ban_3_app.pdf",
+              "size": 168739
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2017-11_17A550_Trump_v_Hawaii_Travel_Ban_3/Main_Document.pdf",
+              "size": 7042744
+            },
+            {
+              "name": "Other.pdf",
+              "displayName": "Other Documents",
+              "path": "/scotus-cases/2017-11_17A550_Trump_v_Hawaii_Travel_Ban_3/Other.pdf",
+              "size": 80506
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2017-11_17A550_Trump_v_Hawaii_Travel_Ban_3/Proof_of_Service.pdf",
+              "size": 39336
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2017-11_17A550_Trump_v_Hawaii_Travel_Ban_3/Reply.pdf",
+              "size": 38434
+            }
+          ]
+        },
+        {
+          "id": "2017-11_17A560_Trump_v_IRAP_Travel_Ban_2",
+          "date": "2017-11",
+          "year": 2017,
+          "docketNumber": "17A560",
+          "caseName": "Trump v IRAP",
+          "shortDescription": "Travel Ban 2",
+          "files": [
+            {
+              "name": "2017-11_17A560_Trump_v_IRAP_Travel_Ban_2_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2017-11_17A560_Trump_v_IRAP_Travel_Ban_2/2017-11_17A560_Trump_v_IRAP_Travel_Ban_2_app.pdf",
+              "size": 182936
+            },
+            {
+              "name": "Main_Document.pdf",
+              "displayName": "Main Document",
+              "path": "/scotus-cases/2017-11_17A560_Trump_v_IRAP_Travel_Ban_2/Main_Document.pdf",
+              "size": 7426490
+            },
+            {
+              "name": "Proof_of_Service.pdf",
+              "displayName": "Proof of Service",
+              "path": "/scotus-cases/2017-11_17A560_Trump_v_IRAP_Travel_Ban_2/Proof_of_Service.pdf",
+              "size": 70664
+            },
+            {
+              "name": "Reply.pdf",
+              "displayName": "Reply Brief",
+              "path": "/scotus-cases/2017-11_17A560_Trump_v_IRAP_Travel_Ban_2/Reply.pdf",
+              "size": 44930
+            }
+          ]
+        },
+        {
+          "id": "2017-06_16A1190_Trump_v_IRAP_Travel_Ban_1",
+          "date": "2017-06",
+          "year": 2017,
+          "docketNumber": "16A1190",
+          "caseName": "Trump v IRAP",
+          "shortDescription": "Travel Ban 1",
+          "files": [
+            {
+              "name": "16A1190_Stay_Application.pdf",
+              "displayName": "16A1190 Stay Application",
+              "path": "/scotus-cases/2017-06_16A1190_Trump_v_IRAP_Travel_Ban_1/16A1190_Stay_Application.pdf",
+              "size": 106087
+            },
+            {
+              "name": "2017-06_16A1190_Trump_v_IRAP_Travel_Ban_1.pdf",
+              "displayName": "2017-06 16A1190 Trump v IRAP Travel Ban 1",
+              "path": "/scotus-cases/2017-06_16A1190_Trump_v_IRAP_Travel_Ban_1/2017-06_16A1190_Trump_v_IRAP_Travel_Ban_1.pdf",
+              "size": 1581249
+            },
+            {
+              "name": "Opposition.pdf",
+              "displayName": "Opposition",
+              "path": "/scotus-cases/2017-06_16A1190_Trump_v_IRAP_Travel_Ban_1/Opposition.pdf",
+              "size": 268437
+            }
+          ]
+        },
+        {
+          "id": "2014-06_13A1284_Wheaton_College_v_Burwell_Contraceptive",
+          "date": "2014-06",
+          "year": 2014,
+          "docketNumber": "13A1284",
+          "caseName": "Wheaton College v Burwell",
+          "shortDescription": "Contraceptive",
+          "files": [
+            {
+              "name": "13A1284_OSG_Opposition_Brief.pdf",
+              "displayName": "13A1284 OSG Opposition Brief",
+              "path": "/scotus-cases/2014-06_13A1284_Wheaton_College_v_Burwell_Contraceptive/13A1284_OSG_Opposition_Brief.pdf",
+              "size": 129927
+            },
+            {
+              "name": "13A1284_Wheaton_Reply_Brief.pdf",
+              "displayName": "13A1284 Wheaton Reply Brief",
+              "path": "/scotus-cases/2014-06_13A1284_Wheaton_College_v_Burwell_Contraceptive/13A1284_Wheaton_Reply_Brief.pdf",
+              "size": 189542
+            },
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2014-06_13A1284_Wheaton_College_v_Burwell_Contraceptive/Opinion.pdf",
+              "size": 1027
+            }
+          ]
+        },
+        {
+          "id": "2013-12_13A691_Little_Sisters_v_Sebelius_Contraceptive",
+          "date": "2013-12",
+          "year": 2013,
+          "docketNumber": "13A691",
+          "caseName": "Little Sisters v Sebelius",
+          "shortDescription": "Contraceptive",
+          "files": [
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2013-12_13A691_Little_Sisters_v_Sebelius_Contraceptive/Opinion.pdf",
+              "size": 1027
+            }
+          ]
+        },
+        {
+          "id": "2012-12_12A644_Hobby_Lobby_v_Sebelius_Contraceptive",
+          "date": "2012-12",
+          "year": 2012,
+          "docketNumber": "12A644",
+          "caseName": "Hobby Lobby v Sebelius",
+          "shortDescription": "Contraceptive",
+          "files": [
+            {
+              "name": "12A644_Hobby_Lobby_v_Sebelius_order.pdf",
+              "displayName": "12A644 Hobby Lobby v Sebelius order",
+              "path": "/scotus-cases/2012-12_12A644_Hobby_Lobby_v_Sebelius_Contraceptive/12A644_Hobby_Lobby_v_Sebelius_order.pdf",
+              "size": 66083
+            },
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2012-12_12A644_Hobby_Lobby_v_Sebelius_Contraceptive/Opinion.pdf",
+              "size": 1027
+            }
+          ]
+        },
+        {
+          "id": "2010-01_09A648_Hollingsworth_v_Perry_Prop8_Broadcast",
+          "date": "2010-01",
+          "year": 2010,
+          "docketNumber": "09A648",
+          "caseName": "Hollingsworth v Perry Prop8 Broadcast",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "09A648_Hollingsworth_v_Perry_opinion.pdf",
+              "displayName": "09A648 Hollingsworth v Perry opinion",
+              "path": "/scotus-cases/2010-01_09A648_Hollingsworth_v_Perry_Prop8_Broadcast/09A648_Hollingsworth_v_Perry_opinion.pdf",
+              "size": 1027
+            },
+            {
+              "name": "09A648_Hollingsworth_v_Perry_order.pdf",
+              "displayName": "09A648 Hollingsworth v Perry order",
+              "path": "/scotus-cases/2010-01_09A648_Hollingsworth_v_Perry_Prop8_Broadcast/09A648_Hollingsworth_v_Perry_order.pdf",
+              "size": 191354
+            },
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2010-01_09A648_Hollingsworth_v_Perry_Prop8_Broadcast/Opinion.pdf",
+              "size": 191354
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "decade": "2000s",
+      "startYear": 2000,
+      "endYear": 2009,
+      "cases": [
+        {
+          "id": "2000-12_00-949_Bush_v_Gore_Election_2000",
+          "date": "2000-12",
+          "year": 2000,
+          "docketNumber": "00-949",
+          "caseName": "Bush v Gore",
+          "shortDescription": "Election 2000",
+          "files": [
+            {
+              "name": "00-949_Bush_v_Gore_app.pdf",
+              "displayName": "Application",
+              "path": "/scotus-cases/2000-12_00-949_Bush_v_Gore_Election_2000/00-949_Bush_v_Gore_app.pdf",
+              "size": 133990
+            },
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/2000-12_00-949_Bush_v_Gore_Election_2000/Opinion.pdf",
+              "size": 1993583
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "decade": "1990s",
+      "startYear": 1990,
+      "endYear": 1999,
+      "cases": [
+        {
+          "id": "1998-07_98A53_Rubin_v_United_States_Secret_Service",
+          "date": "1998-07",
+          "year": 1998,
+          "docketNumber": "98A53",
+          "caseName": "Rubin v United States Secret Service",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "USReports_524_US_1301.pdf",
+              "displayName": "USReports 524 US 1301",
+              "path": "/scotus-cases/1998-07_98A53_Rubin_v_United_States_Secret_Service/USReports_524_US_1301.pdf",
+              "size": 61400
+            }
+          ]
+        },
+        {
+          "id": "1994-02_A669_CBS_Inc_v_Davis_Prior_Restraint",
+          "date": "1994-02",
+          "year": 1994,
+          "docketNumber": "A669",
+          "caseName": "CBS Inc v Davis Prior Restraint",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "USReports_510_US_1315.pdf",
+              "displayName": "USReports 510 US 1315",
+              "path": "/scotus-cases/1994-02_A669_CBS_Inc_v_Davis_Prior_Restraint/USReports_510_US_1315.pdf",
+              "size": 128991
+            }
+          ]
+        },
+        {
+          "id": "1993-11_93A426_INS_v_Legalization_Assistance_Immigration",
+          "date": "1993-11",
+          "year": 1993,
+          "docketNumber": "93A426",
+          "caseName": "INS v Legalization Assistance",
+          "shortDescription": "Immigration",
+          "files": [
+            {
+              "name": "USReports_510_US_1301.pdf",
+              "displayName": "USReports 510 US 1301",
+              "path": "/scotus-cases/1993-11_93A426_INS_v_Legalization_Assistance_Immigration/USReports_510_US_1301.pdf",
+              "size": 188963
+            }
+          ]
+        },
+        {
+          "id": "1993-04_A798_Turner_Broadcasting_v_FCC_Cable",
+          "date": "1993-04",
+          "year": 1993,
+          "docketNumber": "A798",
+          "caseName": "Turner Broadcasting v FCC Cable",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "507_US_1301_In_Chambers_Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/1993-04_A798_Turner_Broadcasting_v_FCC_Cable/507_US_1301_In_Chambers_Opinion.pdf",
+              "size": 117283
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "decade": "1980s",
+      "startYear": 1980,
+      "endYear": 1989,
+      "cases": [
+        {
+          "id": "1988-05_88A898_Lucas_v_Townsend_Voting_Rights",
+          "date": "1988-05",
+          "year": 1988,
+          "docketNumber": "88A898",
+          "caseName": "Lucas v Townsend",
+          "shortDescription": "Voting Rights",
+          "files": [
+            {
+              "name": "USReports_486_US_1301.pdf",
+              "displayName": "USReports 486 US 1301",
+              "path": "/scotus-cases/1988-05_88A898_Lucas_v_Townsend_Voting_Rights/USReports_486_US_1301.pdf",
+              "size": 146278
+            }
+          ]
+        },
+        {
+          "id": "1986-12_86A480_Ohio_Citizens_v_NRC_Nuclear_Plant",
+          "date": "1986-12",
+          "year": 1986,
+          "docketNumber": "86A480",
+          "caseName": "Ohio Citizens v NRC",
+          "shortDescription": "Nuclear Plant",
+          "files": [
+            {
+              "name": "479_US_1312_Scalia_In_Chambers.pdf",
+              "displayName": "479 US 1312 Scalia In Chambers",
+              "path": "/scotus-cases/1986-12_86A480_Ohio_Citizens_v_NRC_Nuclear_Plant/479_US_1312_Scalia_In_Chambers.pdf",
+              "size": 78876
+            }
+          ]
+        },
+        {
+          "id": "1983-07_83A1066_Ruckelshaus_v_Monsanto_EPA_Pesticide",
+          "date": "1983-07",
+          "year": 1983,
+          "docketNumber": "83A1066",
+          "caseName": "Ruckelshaus v Monsanto EPA Pesticide",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "463_US_1315_In_Chambers_Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/1983-07_83A1066_Ruckelshaus_v_Monsanto_EPA_Pesticide/463_US_1315_In_Chambers_Opinion.pdf",
+              "size": 135850
+            }
+          ]
+        },
+        {
+          "id": "1982-02_82A783_Karcher_v_Daggett_NJ_Redistricting",
+          "date": "1982-02",
+          "year": 1982,
+          "docketNumber": "82A783",
+          "caseName": "Karcher v Daggett NJ",
+          "shortDescription": "Redistricting",
+          "files": [
+            {
+              "name": "USReports_455_US_1303.pdf",
+              "displayName": "USReports 455 US 1303",
+              "path": "/scotus-cases/1982-02_82A783_Karcher_v_Daggett_NJ_Redistricting/USReports_455_US_1303.pdf",
+              "size": 147339
+            }
+          ]
+        },
+        {
+          "id": "1980-11_A384_OConnor_v_Board_of_Education_Title_IX",
+          "date": "1980-11",
+          "year": 1980,
+          "docketNumber": "A384",
+          "caseName": "OConnor v Board of Education",
+          "shortDescription": "Title IX",
+          "files": [
+            {
+              "name": "USReports_449_US_1301.pdf",
+              "displayName": "USReports 449 US 1301",
+              "path": "/scotus-cases/1980-11_A384_OConnor_v_Board_of_Education_Title_IX/USReports_449_US_1301.pdf",
+              "size": 238078
+            }
+          ]
+        },
+        {
+          "id": "1980-07_A70_Rostker_v_Goldberg_Draft_Registration",
+          "date": "1980-07",
+          "year": 1980,
+          "docketNumber": "A70",
+          "caseName": "Rostker v Goldberg",
+          "shortDescription": "Draft Registration",
+          "files": [
+            {
+              "name": "USReports_448_US_1306.pdf",
+              "displayName": "USReports 448 US 1306",
+              "path": "/scotus-cases/1980-07_A70_Rostker_v_Goldberg_Draft_Registration/USReports_448_US_1306.pdf",
+              "size": 192587
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "decade": "1970s",
+      "startYear": 1970,
+      "endYear": 1979,
+      "cases": [
+        {
+          "id": "1978-07_78A38_NY_Times_v_Jascalevich_Reporter_Privilege",
+          "date": "1978-07",
+          "year": 1978,
+          "docketNumber": "78A38",
+          "caseName": "NY Times v Jascalevich",
+          "shortDescription": "Reporter Privilege",
+          "files": [
+            {
+              "name": "439_US_1301_White_In_Chambers.pdf",
+              "displayName": "439 US 1301 White In Chambers",
+              "path": "/scotus-cases/1978-07_78A38_NY_Times_v_Jascalevich_Reporter_Privilege/439_US_1301_White_In_Chambers.pdf",
+              "size": 81708
+            },
+            {
+              "name": "439_US_1304_Marshall_In_Chambers.pdf",
+              "displayName": "439 US 1304 Marshall In Chambers",
+              "path": "/scotus-cases/1978-07_78A38_NY_Times_v_Jascalevich_Reporter_Privilege/439_US_1304_Marshall_In_Chambers.pdf",
+              "size": 99106
+            },
+            {
+              "name": "439_US_1331_Marshall_Second.pdf",
+              "displayName": "439 US 1331 Marshall Second",
+              "path": "/scotus-cases/1978-07_78A38_NY_Times_v_Jascalevich_Reporter_Privilege/439_US_1331_Marshall_Second.pdf",
+              "size": 222360
+            }
+          ]
+        },
+        {
+          "id": "1977-06_77A162_National_Socialist_Party_v_Skokie",
+          "date": "1977-06",
+          "year": 1977,
+          "docketNumber": "77A162",
+          "caseName": "National Socialist Party v Skokie",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "432_US_43_Per_Curiam.pdf",
+              "displayName": "432 US 43 Per Curiam",
+              "path": "/scotus-cases/1977-06_77A162_National_Socialist_Party_v_Skokie/432_US_43_Per_Curiam.pdf",
+              "size": 114271
+            }
+          ]
+        },
+        {
+          "id": "1975-11_A426_Nebraska_Press_Assn_v_Stuart_Gag_Order",
+          "date": "1975-11",
+          "year": 1975,
+          "docketNumber": "A426",
+          "caseName": "Nebraska Press Assn v Stuart",
+          "shortDescription": "Gag Order",
+          "files": [
+            {
+              "name": "USReports_423_US_1319.pdf",
+              "displayName": "USReports 423 US 1319",
+              "path": "/scotus-cases/1975-11_A426_Nebraska_Press_Assn_v_Stuart_Gag_Order/USReports_423_US_1319.pdf",
+              "size": 217596
+            }
+          ]
+        },
+        {
+          "id": "1974-07_73-1766_United_States_v_Nixon_Watergate",
+          "date": "1974-07",
+          "year": 1974,
+          "docketNumber": "73-1766",
+          "caseName": "United States v Nixon Watergate",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/1974-07_73-1766_United_States_v_Nixon_Watergate/Opinion.pdf",
+              "size": 1092681
+            }
+          ]
+        },
+        {
+          "id": "1973-08_73A150_Holtzman_v_Schlesinger_Cambodia_Bombing",
+          "date": "1973-08",
+          "year": 1973,
+          "docketNumber": "73A150",
+          "caseName": "Holtzman v Schlesinger Cambodia Bombing",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "414_US_1304_Marshall_In_Chambers.pdf",
+              "displayName": "414 US 1304 Marshall In Chambers",
+              "path": "/scotus-cases/1973-08_73A150_Holtzman_v_Schlesinger_Cambodia_Bombing/414_US_1304_Marshall_In_Chambers.pdf",
+              "size": 411448
+            },
+            {
+              "name": "414_US_1316_Douglas_In_Chambers.pdf",
+              "displayName": "414 US 1316 Douglas In Chambers",
+              "path": "/scotus-cases/1973-08_73A150_Holtzman_v_Schlesinger_Cambodia_Bombing/414_US_1316_Douglas_In_Chambers.pdf",
+              "size": 157561
+            },
+            {
+              "name": "414_US_1321_Marshall_Reinstates_Stay.pdf",
+              "displayName": "414 US 1321 Marshall Reinstates Stay",
+              "path": "/scotus-cases/1973-08_73A150_Holtzman_v_Schlesinger_Cambodia_Bombing/414_US_1321_Marshall_Reinstates_Stay.pdf",
+              "size": 190822
+            }
+          ]
+        },
+        {
+          "id": "1972-10_72A378_Communist_Party_Indiana_v_Whitcomb",
+          "date": "1972-10",
+          "year": 1972,
+          "docketNumber": "72A378",
+          "caseName": "Communist Party Indiana v Whitcomb",
+          "shortDescription": "",
+          "files": [
+            {
+              "name": "USReports_409_US_1235.pdf",
+              "displayName": "USReports 409 US 1235",
+              "path": "/scotus-cases/1972-10_72A378_Communist_Party_Indiana_v_Whitcomb/USReports_409_US_1235.pdf",
+              "size": 30818
+            }
+          ]
+        },
+        {
+          "id": "1972-03_72A795_Graves_v_Barnes_Texas_Redistricting",
+          "date": "1972-03",
+          "year": 1972,
+          "docketNumber": "72A795",
+          "caseName": "Graves v Barnes Texas",
+          "shortDescription": "Redistricting",
+          "files": [
+            {
+              "name": "USReports_405_US_1201.pdf",
+              "displayName": "USReports 405 US 1201",
+              "path": "/scotus-cases/1972-03_72A795_Graves_v_Barnes_Texas_Redistricting/USReports_405_US_1201.pdf",
+              "size": 123306
+            }
+          ]
+        },
+        {
+          "id": "1971-06_NY_Times_v_United_States_Pentagon_Papers",
+          "date": "1971-06",
+          "year": 1971,
+          "docketNumber": "NY",
+          "caseName": "Times v United States",
+          "shortDescription": "Pentagon Papers",
+          "files": [
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/1971-06_NY_Times_v_United_States_Pentagon_Papers/Opinion.pdf",
+              "size": 1480178
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "decade": "1960s",
+      "startYear": 1960,
+      "endYear": 1969,
+      "cases": [
+        {
+          "id": "1968-09_89SCt1_Williams_v_Rhodes_Ohio_Ballot_Access",
+          "date": "1968-09",
+          "year": 1968,
+          "docketNumber": "89SCt1",
+          "caseName": "Williams v Rhodes Ohio",
+          "shortDescription": "Ballot Access",
+          "files": [
+            {
+              "name": "USReports_393_US_23.pdf",
+              "displayName": "USReports 393 US 23",
+              "path": "/scotus-cases/1968-09_89SCt1_Williams_v_Rhodes_Ohio_Ballot_Access/USReports_393_US_23.pdf",
+              "size": 1482606
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "decade": "1950s",
+      "startYear": 1950,
+      "endYear": 1959,
+      "cases": [
+        {
+          "id": "1953-06_Rosenberg_v_United_States_Execution_Stay",
+          "date": "1953-06",
+          "year": 1953,
+          "docketNumber": "Rosenberg",
+          "caseName": "v United States",
+          "shortDescription": "Execution Stay",
+          "files": [
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/1953-06_Rosenberg_v_United_States_Execution_Stay/Opinion.pdf",
+              "size": 1561774
+            }
+          ]
+        },
+        {
+          "id": "1952-06_Youngstown_v_Sawyer_Steel_Seizure",
+          "date": "1952-06",
+          "year": 1952,
+          "docketNumber": "Youngstown",
+          "caseName": "v Sawyer",
+          "shortDescription": "Steel Seizure",
+          "files": [
+            {
+              "name": "Opinion.pdf",
+              "displayName": "Opinion",
+              "path": "/scotus-cases/1952-06_Youngstown_v_Sawyer_Steel_Seizure/Opinion.pdf",
+              "size": 4343807
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

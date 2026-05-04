@@ -1,0 +1,23 @@
+{
+  "country_code": "UZ",
+  "country_name": "Uzbekistan",
+  "latitude": 41.144898857142856,
+  "longitude": 69.7937519047619,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 54.81138733384903,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.4518861266615098,
+    "sim_ideology": 0.35,
+    "fatalities": 68,
+    "event_count": 21
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:11.631569"
+}

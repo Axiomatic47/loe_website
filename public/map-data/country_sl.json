@@ -1,0 +1,23 @@
+{
+  "country_code": "SL",
+  "country_name": "Sierra Leone",
+  "latitude": 8.431452205128206,
+  "longitude": -11.990933333333334,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 50.634074805396764,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.4936592519460323,
+    "sim_ideology": 0.35,
+    "fatalities": 641,
+    "event_count": 78
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:11.439160"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "evt_c17c7c5d",
+  "title": "Simulation: gdelt_driven_UA_20251216",
+  "date": "2025-12-16",
+  "phase": "validation",
+  "description": "Laws of Existence simulation completed. Final coherence: 100.0%. Country: UA.",
+  "significance": 5,
+  "verified": true,
+  "sources": [
+    "outputs/simulations/simulation/20251216_152640/data/simulation_config.json"
+  ],
+  "related_simulations": [],
+  "metadata": {}
+}

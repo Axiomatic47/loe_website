@@ -1,0 +1,23 @@
+{
+  "country_code": "UA",
+  "country_name": "Ukraine",
+  "latitude": 48.410913788029504,
+  "longitude": 36.429551065161505,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 62.09444423836599,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.37905555761634013,
+    "sim_ideology": 0.35,
+    "fatalities": 297540,
+    "event_count": 35788
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:11.589251"
+}

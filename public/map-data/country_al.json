@@ -1,0 +1,23 @@
+{
+  "country_code": "AL",
+  "country_name": "Albania",
+  "latitude": 41.11419349333333,
+  "longitude": 19.82705868,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 53.46605126652537,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.46533948733474634,
+    "sim_ideology": 0.35,
+    "fatalities": 42,
+    "event_count": 75
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:10.420868"
+}

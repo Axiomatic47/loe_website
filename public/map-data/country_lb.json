@@ -1,0 +1,23 @@
+{
+  "country_code": "LB",
+  "country_name": "Lebanon",
+  "latitude": 33.66464352791438,
+  "longitude": 35.57777691061614,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 58.306009902141874,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.4169399009785812,
+    "sim_ideology": 0.35,
+    "fatalities": 8493,
+    "event_count": 3457
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:11.117560"
+}

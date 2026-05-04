@@ -1,0 +1,23 @@
+{
+  "country_code": "LK",
+  "country_name": "Sri Lanka",
+  "latitude": 7.975613561737258,
+  "longitude": 80.68619324694903,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 62.01163560234954,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.3798836439765046,
+    "sim_ideology": 0.35,
+    "fatalities": 13843,
+    "event_count": 2786
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:11.128241"
+}

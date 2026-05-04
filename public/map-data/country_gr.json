@@ -1,0 +1,23 @@
+{
+  "country_code": "GR",
+  "country_name": "Greece",
+  "latitude": 38.19618664867043,
+  "longitude": 23.730725871071716,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 55.81768980261943,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.44182310197380575,
+    "sim_ideology": 0.35,
+    "fatalities": 308,
+    "event_count": 1241
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:10.870792"
+}

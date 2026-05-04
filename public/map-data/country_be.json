@@ -1,0 +1,23 @@
+{
+  "country_code": "BE",
+  "country_name": "Belgium",
+  "latitude": 50.84464253793104,
+  "longitude": 4.395049151724138,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 53.42634964379718,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.46573650356202817,
+    "sim_ideology": 0.35,
+    "fatalities": 78,
+    "event_count": 145
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:10.517016"
+}

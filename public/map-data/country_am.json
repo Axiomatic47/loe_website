@@ -1,0 +1,23 @@
+{
+  "country_code": "AM",
+  "country_name": "Armenia",
+  "latitude": 40.30984569565217,
+  "longitude": 44.55410760869565,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 48.19101335429696,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.5180898664570304,
+    "sim_ideology": 0.35,
+    "fatalities": 29,
+    "event_count": 23
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:10.431333"
+}

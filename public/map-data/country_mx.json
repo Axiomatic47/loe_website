@@ -1,0 +1,23 @@
+{
+  "country_code": "MX",
+  "country_name": "Mexico",
+  "latitude": 24.080964192120277,
+  "longitude": -104.9066317058474,
+  "category": "Soft Supremacism",
+  "description": "",
+  "metrics": {
+    "sgm": 5.5,
+    "gscs": 5.5,
+    "srsD": 5.5,
+    "srsI": 5.5,
+    "sti": 56.78063569975962,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.4321936430024038,
+    "sim_ideology": 0.35,
+    "fatalities": 67415,
+    "event_count": 16828
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:11.193115"
+}

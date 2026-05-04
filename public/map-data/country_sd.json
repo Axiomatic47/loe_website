@@ -1,0 +1,23 @@
+{
+  "country_code": "SD",
+  "country_name": "Sudan",
+  "latitude": 13.3264772417154,
+  "longitude": 28.065608526315792,
+  "category": "Structural Supremacism",
+  "description": "",
+  "metrics": {
+    "sgm": 7.5,
+    "gscs": 7.5,
+    "srsD": 7.5,
+    "srsI": 7.5,
+    "sti": 63.30075772372792,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.36699242276272076,
+    "sim_ideology": 0.35,
+    "fatalities": 32831,
+    "event_count": 2565
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:11.418140"
+}

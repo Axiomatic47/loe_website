@@ -1,0 +1,98 @@
+[build]
+  publish = "dist"
+  command = "npm run build"
+  functions = "netlify/functions"
+
+[build.environment]
+  GIT_LFS_ENABLED = "true"
+
+# Functions configuration
+[functions]
+  directory = "netlify/functions"
+
+# Environment variables for development
+[context.dev.environment]
+  VITE_API_URL = "http://localhost:4041"
+
+# Environment variables for production
+[context.production.environment]
+  VITE_API_URL = "https://api.lawsofexistence.com"
+  # Add your PayPal Client ID here - you'll need to set this in Netlify dashboard
+  # VITE_PAYPAL_CLIENT_ID = "your-paypal-client-id-here"
+
+# Simulation API is handled by Netlify Function at /.netlify/functions/simulate
+# (Redirect-based proxying to HTTP backends doesn't work reliably)
+
+# Handle admin routes
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200
+  force = true
+
+# Serve static assets directly (must come before SPA catch-all)
+[[redirects]]
+  from = "/map-data/*"
+  to = "/map-data/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/assets/*"
+  to = "/assets/:splat"
+  status = 200
+
+# Handle SPA routing - redirect all routes to index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Add security headers - FIXED CSP to allow PayPal
+[[headers]]
+  for = "/*"
+    [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://identity.netlify.com https://www.paypal.com https://*.paypal.com https://www.paypalobjects.com https://*.paypalobjects.com https://plausible.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.paypal.com https://*.paypalobjects.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com https://cdn.jsdelivr.net; img-src 'self' data: blob: https: https://ucarecdn.com https://*.paypal.com https://*.paypalobjects.com https://*.basemaps.cartocdn.com https://*.tile.openstreetmap.org https://img.youtube.com https://i.ytimg.com; connect-src 'self' https://api.lawsofexistence.com https://*.paypal.com https://api.sandbox.paypal.com https://plausible.io https://unpkg.com https://cdn.jsdelivr.net; frame-src 'self' https://*.paypal.com https://www.paypal.com https://www.youtube.com https://youtube.com https://www.youtube-nocookie.com;"
+
+# Development server configuration
+[dev]
+  framework = "#custom"
+  command = "npm run dev"
+  targetPort = 5173  # Vite's default port
+  port = 8888
+  publish = "dist"
+  autoLaunch = false
+
+# Force HTTPS redirect for the new domain
+[[redirects]]
+  from = "http://lawsofexistence.com/*"
+  to = "https://lawsofexistence.com/:splat"
+  status = 301
+  force = true
+
+# NOTE: www redirects are handled by Netlify dashboard domain settings
+# Do not add conflicting redirects here
+
+# Redirect old domain names to new domain (if applicable)
+[[redirects]]
+  from = "https://lawofsupremacism.com/*"
+  to = "https://lawsofexistence.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.lawofsupremacism.com/*"
+  to = "https://lawsofexistence.com/:splat"
+  status = 301
+  force = true
+
+# Redirect Netlify subdomain to primary domain
+[[redirects]]
+  from = "https://lawofexistence.netlify.app/*"
+  to = "https://lawsofexistence.com/:splat"
+  status = 301
+  force = true

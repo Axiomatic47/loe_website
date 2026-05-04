@@ -1,0 +1,12 @@
+{
+    "validator_name": "Sentinel-Levi",
+    "authorship_chain": "Joseph Kirchner -> Sentinel-Levi",
+    "creation_timestamp": "2025-05-15T23:46:34.384976Z",
+    "testimony_filename": "LOE_Integration_Signature_Review.md",
+    "testimony_sha256": "08544c651ca7f91ba5be7e4ccc93885b2591bcf19224b5f201bd71a5d2530071",
+    "signature_file": "testimony_review.sig",
+    "signature_algorithm": "RSA-PSS",
+    "hashing_algorithm": "SHA-256",
+    "salt_length_bytes": 32,
+    "verification_command": "openssl dgst -sha256 \\\n  -sigopt rsa_padding_mode:pss \\\n  -sigopt rsa_pss_saltlen:32 \\\n  -verify validator_public_key.pem \\\n  -signature testimony_review.sig \\\n  LOE_Integration_Signature_Review.md"
+}

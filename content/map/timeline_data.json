@@ -1,0 +1,5015 @@
+{
+  "generated_at": "2025-12-16T20:58:52.394570",
+  "months": [
+    "2024-11",
+    "2024-12",
+    "2025-01",
+    "2025-02",
+    "2025-03",
+    "2025-04",
+    "2025-05",
+    "2025-06",
+    "2025-07",
+    "2025-08",
+    "2025-09",
+    "2025-10",
+    "2025-11"
+  ],
+  "countries": {
+    "US": {
+      "name": "United States",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 4.31,
+          "events": 244482,
+          "conflict_events": 64976,
+          "goldstein": 0.61,
+          "conflict_ratio": 0.266,
+          "violence_events": 18226,
+          "protest_events": 1429
+        },
+        {
+          "month": "2024-12",
+          "sgm": 4.35,
+          "events": 1096858,
+          "conflict_events": 304717,
+          "goldstein": 0.45,
+          "conflict_ratio": 0.278,
+          "violence_events": 92524,
+          "protest_events": 5739
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.34,
+          "events": 1316635,
+          "conflict_events": 362206,
+          "goldstein": 0.51,
+          "conflict_ratio": 0.275,
+          "violence_events": 102733,
+          "protest_events": 7264
+        },
+        {
+          "month": "2025-02",
+          "sgm": 4.33,
+          "events": 1272888,
+          "conflict_events": 340253,
+          "goldstein": 0.66,
+          "conflict_ratio": 0.267,
+          "violence_events": 85623,
+          "protest_events": 11505
+        },
+        {
+          "month": "2025-03",
+          "sgm": 4.39,
+          "events": 1401225,
+          "conflict_events": 386043,
+          "goldstein": 0.55,
+          "conflict_ratio": 0.276,
+          "violence_events": 96973,
+          "protest_events": 16780
+        },
+        {
+          "month": "2025-04",
+          "sgm": 4.37,
+          "events": 1356825,
+          "conflict_events": 370461,
+          "goldstein": 0.57,
+          "conflict_ratio": 0.273,
+          "violence_events": 97136,
+          "protest_events": 14011
+        },
+        {
+          "month": "2025-05",
+          "sgm": 4.33,
+          "events": 1299909,
+          "conflict_events": 352022,
+          "goldstein": 0.58,
+          "conflict_ratio": 0.271,
+          "violence_events": 97989,
+          "protest_events": 8923
+        },
+        {
+          "month": "2025-06",
+          "sgm": 4.58,
+          "events": 612116,
+          "conflict_events": 191855,
+          "goldstein": 0.17,
+          "conflict_ratio": 0.313,
+          "violence_events": 49887,
+          "protest_events": 11243
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.33,
+          "events": 1220089,
+          "conflict_events": 330842,
+          "goldstein": 0.6,
+          "conflict_ratio": 0.271,
+          "violence_events": 93275,
+          "protest_events": 7891
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.34,
+          "events": 1286320,
+          "conflict_events": 351598,
+          "goldstein": 0.53,
+          "conflict_ratio": 0.273,
+          "violence_events": 102264,
+          "protest_events": 8589
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.42,
+          "events": 1267090,
+          "conflict_events": 367723,
+          "goldstein": 0.3,
+          "conflict_ratio": 0.29,
+          "violence_events": 118389,
+          "protest_events": 8728
+        },
+        {
+          "month": "2025-10",
+          "sgm": 4.39,
+          "events": 1301855,
+          "conflict_events": 363161,
+          "goldstein": 0.55,
+          "conflict_ratio": 0.279,
+          "violence_events": 93390,
+          "protest_events": 15059
+        },
+        {
+          "month": "2025-11",
+          "sgm": 4.3,
+          "events": 1096580,
+          "conflict_events": 293038,
+          "goldstein": 0.65,
+          "conflict_ratio": 0.267,
+          "violence_events": 78794,
+          "protest_events": 6372
+        }
+      ]
+    },
+    "CN": {
+      "name": "China",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 2.49,
+          "events": 66,
+          "conflict_events": 10,
+          "goldstein": 2.69,
+          "conflict_ratio": 0.152,
+          "violence_events": 0,
+          "protest_events": 0
+        },
+        {
+          "month": "2024-12",
+          "sgm": 3.07,
+          "events": 428,
+          "conflict_events": 70,
+          "goldstein": 1.46,
+          "conflict_ratio": 0.164,
+          "violence_events": 6,
+          "protest_events": 0
+        },
+        {
+          "month": "2025-01",
+          "sgm": 3.6,
+          "events": 301,
+          "conflict_events": 90,
+          "goldstein": 0.21,
+          "conflict_ratio": 0.299,
+          "violence_events": 3,
+          "protest_events": 6
+        },
+        {
+          "month": "2025-02",
+          "sgm": 2.87,
+          "events": 145,
+          "conflict_events": 12,
+          "goldstein": 1.78,
+          "conflict_ratio": 0.083,
+          "violence_events": 2,
+          "protest_events": 0
+        },
+        {
+          "month": "2025-03",
+          "sgm": 3.08,
+          "events": 130,
+          "conflict_events": 22,
+          "goldstein": 2.04,
+          "conflict_ratio": 0.169,
+          "violence_events": 2,
+          "protest_events": 1
+        },
+        {
+          "month": "2025-04",
+          "sgm": 3.74,
+          "events": 149,
+          "conflict_events": 40,
+          "goldstein": 1.29,
+          "conflict_ratio": 0.268,
+          "violence_events": 5,
+          "protest_events": 0
+        },
+        {
+          "month": "2025-05",
+          "sgm": 2.38,
+          "events": 175,
+          "conflict_events": 12,
+          "goldstein": 2.8,
+          "conflict_ratio": 0.069,
+          "violence_events": 0,
+          "protest_events": 1
+        },
+        {
+          "month": "2025-06",
+          "sgm": 4.44,
+          "events": 61,
+          "conflict_events": 19,
+          "goldstein": 0.05,
+          "conflict_ratio": 0.311,
+          "violence_events": 15,
+          "protest_events": 0
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.1,
+          "events": 187,
+          "conflict_events": 37,
+          "goldstein": 0.83,
+          "conflict_ratio": 0.198,
+          "violence_events": 17,
+          "protest_events": 0
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.15,
+          "events": 104,
+          "conflict_events": 22,
+          "goldstein": 0.69,
+          "conflict_ratio": 0.212,
+          "violence_events": 12,
+          "protest_events": 0
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.09,
+          "events": 125,
+          "conflict_events": 28,
+          "goldstein": 1.14,
+          "conflict_ratio": 0.224,
+          "violence_events": 11,
+          "protest_events": 0
+        },
+        {
+          "month": "2025-10",
+          "sgm": 3.39,
+          "events": 105,
+          "conflict_events": 15,
+          "goldstein": 2.36,
+          "conflict_ratio": 0.143,
+          "violence_events": 3,
+          "protest_events": 2
+        },
+        {
+          "month": "2025-11",
+          "sgm": 3.56,
+          "events": 111,
+          "conflict_events": 11,
+          "goldstein": 2.24,
+          "conflict_ratio": 0.099,
+          "violence_events": 5,
+          "protest_events": 0
+        }
+      ]
+    },
+    "RU": {
+      "name": "Russia",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 4.7,
+          "events": 72023,
+          "conflict_events": 27071,
+          "goldstein": -0.56,
+          "conflict_ratio": 0.376,
+          "violence_events": 11271,
+          "protest_events": 414
+        },
+        {
+          "month": "2024-12",
+          "sgm": 4.58,
+          "events": 273585,
+          "conflict_events": 94966,
+          "goldstein": -0.16,
+          "conflict_ratio": 0.347,
+          "violence_events": 37391,
+          "protest_events": 1627
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.59,
+          "events": 220620,
+          "conflict_events": 77231,
+          "goldstein": -0.18,
+          "conflict_ratio": 0.35,
+          "violence_events": 29694,
+          "protest_events": 1156
+        },
+        {
+          "month": "2025-02",
+          "sgm": 4.33,
+          "events": 284801,
+          "conflict_events": 81445,
+          "goldstein": 0.61,
+          "conflict_ratio": 0.286,
+          "violence_events": 25802,
+          "protest_events": 1323
+        },
+        {
+          "month": "2025-03",
+          "sgm": 4.47,
+          "events": 324731,
+          "conflict_events": 103099,
+          "goldstein": 0.26,
+          "conflict_ratio": 0.317,
+          "violence_events": 34834,
+          "protest_events": 2207
+        },
+        {
+          "month": "2025-04",
+          "sgm": 4.48,
+          "events": 274850,
+          "conflict_events": 89574,
+          "goldstein": 0.18,
+          "conflict_ratio": 0.326,
+          "violence_events": 32341,
+          "protest_events": 1284
+        },
+        {
+          "month": "2025-05",
+          "sgm": 4.38,
+          "events": 300861,
+          "conflict_events": 89518,
+          "goldstein": 0.42,
+          "conflict_ratio": 0.298,
+          "violence_events": 30513,
+          "protest_events": 1279
+        },
+        {
+          "month": "2025-06",
+          "sgm": 4.6,
+          "events": 114851,
+          "conflict_events": 40500,
+          "goldstein": -0.24,
+          "conflict_ratio": 0.353,
+          "violence_events": 16046,
+          "protest_events": 536
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.55,
+          "events": 244828,
+          "conflict_events": 83233,
+          "goldstein": -0.09,
+          "conflict_ratio": 0.34,
+          "violence_events": 29228,
+          "protest_events": 1199
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.35,
+          "events": 315691,
+          "conflict_events": 90748,
+          "goldstein": 0.52,
+          "conflict_ratio": 0.287,
+          "violence_events": 29479,
+          "protest_events": 1289
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.61,
+          "events": 270528,
+          "conflict_events": 96813,
+          "goldstein": -0.27,
+          "conflict_ratio": 0.358,
+          "violence_events": 31139,
+          "protest_events": 1173
+        },
+        {
+          "month": "2025-10",
+          "sgm": 4.51,
+          "events": 261180,
+          "conflict_events": 86001,
+          "goldstein": 0.02,
+          "conflict_ratio": 0.329,
+          "violence_events": 27284,
+          "protest_events": 1236
+        },
+        {
+          "month": "2025-11",
+          "sgm": 4.47,
+          "events": 237890,
+          "conflict_events": 75811,
+          "goldstein": 0.16,
+          "conflict_ratio": 0.319,
+          "violence_events": 25516,
+          "protest_events": 1039
+        }
+      ]
+    },
+    "UA": {
+      "name": "Ukraine",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 4.66,
+          "events": 55587,
+          "conflict_events": 20289,
+          "goldstein": -0.44,
+          "conflict_ratio": 0.365,
+          "violence_events": 9620,
+          "protest_events": 284
+        },
+        {
+          "month": "2024-12",
+          "sgm": 4.53,
+          "events": 196603,
+          "conflict_events": 66072,
+          "goldstein": -0.01,
+          "conflict_ratio": 0.336,
+          "violence_events": 29313,
+          "protest_events": 999
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.54,
+          "events": 179470,
+          "conflict_events": 60189,
+          "goldstein": -0.02,
+          "conflict_ratio": 0.335,
+          "violence_events": 26456,
+          "protest_events": 1113
+        },
+        {
+          "month": "2025-02",
+          "sgm": 4.21,
+          "events": 292948,
+          "conflict_events": 75453,
+          "goldstein": 1.0,
+          "conflict_ratio": 0.258,
+          "violence_events": 24328,
+          "protest_events": 1336
+        },
+        {
+          "month": "2025-03",
+          "sgm": 4.3,
+          "events": 344439,
+          "conflict_events": 95369,
+          "goldstein": 0.8,
+          "conflict_ratio": 0.277,
+          "violence_events": 33122,
+          "protest_events": 2120
+        },
+        {
+          "month": "2025-04",
+          "sgm": 4.42,
+          "events": 236327,
+          "conflict_events": 73787,
+          "goldstein": 0.37,
+          "conflict_ratio": 0.312,
+          "violence_events": 28912,
+          "protest_events": 1133
+        },
+        {
+          "month": "2025-05",
+          "sgm": 4.3,
+          "events": 254234,
+          "conflict_events": 70809,
+          "goldstein": 0.66,
+          "conflict_ratio": 0.279,
+          "violence_events": 28325,
+          "protest_events": 962
+        },
+        {
+          "month": "2025-06",
+          "sgm": 4.55,
+          "events": 95502,
+          "conflict_events": 32787,
+          "goldstein": -0.11,
+          "conflict_ratio": 0.343,
+          "violence_events": 15054,
+          "protest_events": 401
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.52,
+          "events": 192998,
+          "conflict_events": 62427,
+          "goldstein": 0.12,
+          "conflict_ratio": 0.323,
+          "violence_events": 26314,
+          "protest_events": 1631
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.28,
+          "events": 289089,
+          "conflict_events": 77266,
+          "goldstein": 0.75,
+          "conflict_ratio": 0.267,
+          "violence_events": 28654,
+          "protest_events": 1345
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.6,
+          "events": 185802,
+          "conflict_events": 64475,
+          "goldstein": -0.23,
+          "conflict_ratio": 0.347,
+          "violence_events": 27610,
+          "protest_events": 1119
+        },
+        {
+          "month": "2025-10",
+          "sgm": 4.5,
+          "events": 188874,
+          "conflict_events": 61283,
+          "goldstein": 0.04,
+          "conflict_ratio": 0.324,
+          "violence_events": 24774,
+          "protest_events": 956
+        },
+        {
+          "month": "2025-11",
+          "sgm": 4.36,
+          "events": 210963,
+          "conflict_events": 60882,
+          "goldstein": 0.46,
+          "conflict_ratio": 0.289,
+          "violence_events": 23892,
+          "protest_events": 978
+        }
+      ]
+    },
+    "SY": {
+      "name": "Syria",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 5.24,
+          "events": 13509,
+          "conflict_events": 6617,
+          "goldstein": -2.36,
+          "conflict_ratio": 0.49,
+          "violence_events": 4330,
+          "protest_events": 106
+        },
+        {
+          "month": "2024-12",
+          "sgm": 4.59,
+          "events": 226275,
+          "conflict_events": 73472,
+          "goldstein": -0.14,
+          "conflict_ratio": 0.325,
+          "violence_events": 34113,
+          "protest_events": 2550
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.31,
+          "events": 64881,
+          "conflict_events": 16752,
+          "goldstein": 0.58,
+          "conflict_ratio": 0.258,
+          "violence_events": 6601,
+          "protest_events": 445
+        },
+        {
+          "month": "2025-02",
+          "sgm": 4.46,
+          "events": 38557,
+          "conflict_events": 11232,
+          "goldstein": 0.25,
+          "conflict_ratio": 0.291,
+          "violence_events": 4560,
+          "protest_events": 418
+        },
+        {
+          "month": "2025-03",
+          "sgm": 4.91,
+          "events": 60895,
+          "conflict_events": 24906,
+          "goldstein": -1.13,
+          "conflict_ratio": 0.409,
+          "violence_events": 12463,
+          "protest_events": 694
+        },
+        {
+          "month": "2025-04",
+          "sgm": 4.47,
+          "events": 32211,
+          "conflict_events": 9857,
+          "goldstein": 0.07,
+          "conflict_ratio": 0.306,
+          "violence_events": 4345,
+          "protest_events": 189
+        },
+        {
+          "month": "2025-05",
+          "sgm": 4.33,
+          "events": 49771,
+          "conflict_events": 13514,
+          "goldstein": 0.56,
+          "conflict_ratio": 0.272,
+          "violence_events": 5472,
+          "protest_events": 302
+        },
+        {
+          "month": "2025-06",
+          "sgm": 4.53,
+          "events": 12373,
+          "conflict_events": 3922,
+          "goldstein": -0.0,
+          "conflict_ratio": 0.317,
+          "violence_events": 1759,
+          "protest_events": 105
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.73,
+          "events": 57494,
+          "conflict_events": 21893,
+          "goldstein": -0.59,
+          "conflict_ratio": 0.381,
+          "violence_events": 11260,
+          "protest_events": 425
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.49,
+          "events": 27552,
+          "conflict_events": 8515,
+          "goldstein": 0.12,
+          "conflict_ratio": 0.309,
+          "violence_events": 3922,
+          "protest_events": 211
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.26,
+          "events": 28755,
+          "conflict_events": 7200,
+          "goldstein": 0.71,
+          "conflict_ratio": 0.25,
+          "violence_events": 2968,
+          "protest_events": 156
+        },
+        {
+          "month": "2025-10",
+          "sgm": 4.33,
+          "events": 27143,
+          "conflict_events": 7351,
+          "goldstein": 0.5,
+          "conflict_ratio": 0.271,
+          "violence_events": 3288,
+          "protest_events": 147
+        },
+        {
+          "month": "2025-11",
+          "sgm": 4.28,
+          "events": 34581,
+          "conflict_events": 8836,
+          "goldstein": 0.67,
+          "conflict_ratio": 0.256,
+          "violence_events": 3581,
+          "protest_events": 202
+        }
+      ]
+    },
+    "YE": {
+      "name": "Yemen",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 4.68,
+          "events": 1398,
+          "conflict_events": 446,
+          "goldstein": -0.37,
+          "conflict_ratio": 0.319,
+          "violence_events": 247,
+          "protest_events": 25
+        },
+        {
+          "month": "2024-12",
+          "sgm": 5.43,
+          "events": 12635,
+          "conflict_events": 6797,
+          "goldstein": -2.84,
+          "conflict_ratio": 0.538,
+          "violence_events": 4185,
+          "protest_events": 137
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.95,
+          "events": 10935,
+          "conflict_events": 4654,
+          "goldstein": -1.3,
+          "conflict_ratio": 0.426,
+          "violence_events": 2549,
+          "protest_events": 103
+        },
+        {
+          "month": "2025-02",
+          "sgm": 4.72,
+          "events": 5028,
+          "conflict_events": 1822,
+          "goldstein": -0.36,
+          "conflict_ratio": 0.362,
+          "violence_events": 786,
+          "protest_events": 72
+        },
+        {
+          "month": "2025-03",
+          "sgm": 5.09,
+          "events": 23389,
+          "conflict_events": 10367,
+          "goldstein": -1.77,
+          "conflict_ratio": 0.443,
+          "violence_events": 5116,
+          "protest_events": 266
+        },
+        {
+          "month": "2025-04",
+          "sgm": 5.11,
+          "events": 17617,
+          "conflict_events": 7964,
+          "goldstein": -1.94,
+          "conflict_ratio": 0.452,
+          "violence_events": 4510,
+          "protest_events": 150
+        },
+        {
+          "month": "2025-05",
+          "sgm": 5.1,
+          "events": 15892,
+          "conflict_events": 7400,
+          "goldstein": -1.82,
+          "conflict_ratio": 0.466,
+          "violence_events": 4199,
+          "protest_events": 119
+        },
+        {
+          "month": "2025-06",
+          "sgm": 5.23,
+          "events": 4386,
+          "conflict_events": 2243,
+          "goldstein": -2.07,
+          "conflict_ratio": 0.511,
+          "violence_events": 1054,
+          "protest_events": 38
+        },
+        {
+          "month": "2025-07",
+          "sgm": 5.0,
+          "events": 12032,
+          "conflict_events": 5346,
+          "goldstein": -1.49,
+          "conflict_ratio": 0.444,
+          "violence_events": 2724,
+          "protest_events": 87
+        },
+        {
+          "month": "2025-08",
+          "sgm": 5.08,
+          "events": 8924,
+          "conflict_events": 4045,
+          "goldstein": -1.72,
+          "conflict_ratio": 0.453,
+          "violence_events": 2172,
+          "protest_events": 87
+        },
+        {
+          "month": "2025-09",
+          "sgm": 5.18,
+          "events": 9778,
+          "conflict_events": 4685,
+          "goldstein": -2.08,
+          "conflict_ratio": 0.479,
+          "violence_events": 2563,
+          "protest_events": 91
+        },
+        {
+          "month": "2025-10",
+          "sgm": 4.88,
+          "events": 7390,
+          "conflict_events": 3027,
+          "goldstein": -0.94,
+          "conflict_ratio": 0.41,
+          "violence_events": 1349,
+          "protest_events": 83
+        },
+        {
+          "month": "2025-11",
+          "sgm": 4.77,
+          "events": 5470,
+          "conflict_events": 2073,
+          "goldstein": -0.67,
+          "conflict_ratio": 0.379,
+          "violence_events": 865,
+          "protest_events": 59
+        }
+      ]
+    },
+    "AF": {
+      "name": "Afghanistan",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 4.55,
+          "events": 4216,
+          "conflict_events": 1372,
+          "goldstein": 0.02,
+          "conflict_ratio": 0.325,
+          "violence_events": 491,
+          "protest_events": 39
+        },
+        {
+          "month": "2024-12",
+          "sgm": 4.69,
+          "events": 17706,
+          "conflict_events": 6489,
+          "goldstein": -0.43,
+          "conflict_ratio": 0.366,
+          "violence_events": 2648,
+          "protest_events": 152
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.44,
+          "events": 23858,
+          "conflict_events": 7537,
+          "goldstein": 0.31,
+          "conflict_ratio": 0.316,
+          "violence_events": 2224,
+          "protest_events": 128
+        },
+        {
+          "month": "2025-02",
+          "sgm": 4.52,
+          "events": 17391,
+          "conflict_events": 5770,
+          "goldstein": 0.05,
+          "conflict_ratio": 0.332,
+          "violence_events": 1922,
+          "protest_events": 104
+        },
+        {
+          "month": "2025-03",
+          "sgm": 4.46,
+          "events": 22607,
+          "conflict_events": 7037,
+          "goldstein": 0.34,
+          "conflict_ratio": 0.311,
+          "violence_events": 2241,
+          "protest_events": 201
+        },
+        {
+          "month": "2025-04",
+          "sgm": 4.31,
+          "events": 17289,
+          "conflict_events": 4690,
+          "goldstein": 0.61,
+          "conflict_ratio": 0.271,
+          "violence_events": 1383,
+          "protest_events": 93
+        },
+        {
+          "month": "2025-05",
+          "sgm": 4.3,
+          "events": 15525,
+          "conflict_events": 4176,
+          "goldstein": 0.66,
+          "conflict_ratio": 0.269,
+          "violence_events": 1484,
+          "protest_events": 78
+        },
+        {
+          "month": "2025-06",
+          "sgm": 4.7,
+          "events": 8560,
+          "conflict_events": 3406,
+          "goldstein": -0.43,
+          "conflict_ratio": 0.398,
+          "violence_events": 686,
+          "protest_events": 36
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.32,
+          "events": 20066,
+          "conflict_events": 5670,
+          "goldstein": 0.57,
+          "conflict_ratio": 0.283,
+          "violence_events": 1523,
+          "protest_events": 52
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.47,
+          "events": 19118,
+          "conflict_events": 5973,
+          "goldstein": 0.19,
+          "conflict_ratio": 0.312,
+          "violence_events": 1838,
+          "protest_events": 120
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.3,
+          "events": 25073,
+          "conflict_events": 6987,
+          "goldstein": 0.72,
+          "conflict_ratio": 0.279,
+          "violence_events": 2037,
+          "protest_events": 122
+        },
+        {
+          "month": "2025-10",
+          "sgm": 4.59,
+          "events": 34969,
+          "conflict_events": 12441,
+          "goldstein": -0.29,
+          "conflict_ratio": 0.356,
+          "violence_events": 5374,
+          "protest_events": 86
+        },
+        {
+          "month": "2025-11",
+          "sgm": 4.68,
+          "events": 26530,
+          "conflict_events": 10125,
+          "goldstein": -0.54,
+          "conflict_ratio": 0.382,
+          "violence_events": 4293,
+          "protest_events": 76
+        }
+      ]
+    },
+    "IR": {
+      "name": "Iran",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 4.52,
+          "events": 15339,
+          "conflict_events": 5033,
+          "goldstein": 0.04,
+          "conflict_ratio": 0.328,
+          "violence_events": 2008,
+          "protest_events": 97
+        },
+        {
+          "month": "2024-12",
+          "sgm": 4.57,
+          "events": 62081,
+          "conflict_events": 20586,
+          "goldstein": -0.02,
+          "conflict_ratio": 0.332,
+          "violence_events": 7741,
+          "protest_events": 628
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.43,
+          "events": 53385,
+          "conflict_events": 16504,
+          "goldstein": 0.44,
+          "conflict_ratio": 0.309,
+          "violence_events": 5028,
+          "protest_events": 424
+        },
+        {
+          "month": "2025-02",
+          "sgm": 4.48,
+          "events": 42052,
+          "conflict_events": 12874,
+          "goldstein": 0.36,
+          "conflict_ratio": 0.306,
+          "violence_events": 3391,
+          "protest_events": 523
+        },
+        {
+          "month": "2025-03",
+          "sgm": 4.54,
+          "events": 51214,
+          "conflict_events": 16810,
+          "goldstein": 0.18,
+          "conflict_ratio": 0.328,
+          "violence_events": 4683,
+          "protest_events": 554
+        },
+        {
+          "month": "2025-04",
+          "sgm": 4.26,
+          "events": 74519,
+          "conflict_events": 19576,
+          "goldstein": 0.89,
+          "conflict_ratio": 0.263,
+          "violence_events": 5612,
+          "protest_events": 523
+        },
+        {
+          "month": "2025-05",
+          "sgm": 4.32,
+          "events": 61833,
+          "conflict_events": 17209,
+          "goldstein": 0.74,
+          "conflict_ratio": 0.278,
+          "violence_events": 4330,
+          "protest_events": 468
+        },
+        {
+          "month": "2025-06",
+          "sgm": 4.82,
+          "events": 60618,
+          "conflict_events": 24598,
+          "goldstein": -0.91,
+          "conflict_ratio": 0.406,
+          "violence_events": 9831,
+          "protest_events": 394
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.62,
+          "events": 80591,
+          "conflict_events": 28367,
+          "goldstein": -0.21,
+          "conflict_ratio": 0.352,
+          "violence_events": 10319,
+          "protest_events": 634
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.56,
+          "events": 54162,
+          "conflict_events": 18112,
+          "goldstein": 0.04,
+          "conflict_ratio": 0.334,
+          "violence_events": 5516,
+          "protest_events": 517
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.51,
+          "events": 48563,
+          "conflict_events": 15822,
+          "goldstein": 0.24,
+          "conflict_ratio": 0.326,
+          "violence_events": 4493,
+          "protest_events": 440
+        },
+        {
+          "month": "2025-10",
+          "sgm": 4.59,
+          "events": 33574,
+          "conflict_events": 11161,
+          "goldstein": 0.13,
+          "conflict_ratio": 0.332,
+          "violence_events": 3246,
+          "protest_events": 490
+        },
+        {
+          "month": "2025-11",
+          "sgm": 4.6,
+          "events": 32633,
+          "conflict_events": 10979,
+          "goldstein": -0.04,
+          "conflict_ratio": 0.336,
+          "violence_events": 3217,
+          "protest_events": 374
+        }
+      ]
+    },
+    "IL": {
+      "name": "Israel",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 4.95,
+          "events": 73581,
+          "conflict_events": 31306,
+          "goldstein": -1.06,
+          "conflict_ratio": 0.425,
+          "violence_events": 13286,
+          "protest_events": 1020
+        },
+        {
+          "month": "2024-12",
+          "sgm": 4.97,
+          "events": 229167,
+          "conflict_events": 98732,
+          "goldstein": -1.22,
+          "conflict_ratio": 0.431,
+          "violence_events": 45167,
+          "protest_events": 2637
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.59,
+          "events": 292490,
+          "conflict_events": 99961,
+          "goldstein": 0.03,
+          "conflict_ratio": 0.342,
+          "violence_events": 42516,
+          "protest_events": 3214
+        },
+        {
+          "month": "2025-02",
+          "sgm": 4.53,
+          "events": 269776,
+          "conflict_events": 90018,
+          "goldstein": 0.15,
+          "conflict_ratio": 0.334,
+          "violence_events": 31836,
+          "protest_events": 2430
+        },
+        {
+          "month": "2025-03",
+          "sgm": 4.99,
+          "events": 256384,
+          "conflict_events": 106490,
+          "goldstein": -0.85,
+          "conflict_ratio": 0.415,
+          "violence_events": 39418,
+          "protest_events": 6187
+        },
+        {
+          "month": "2025-04",
+          "sgm": 4.92,
+          "events": 232348,
+          "conflict_events": 93747,
+          "goldstein": -0.78,
+          "conflict_ratio": 0.403,
+          "violence_events": 35188,
+          "protest_events": 4765
+        },
+        {
+          "month": "2025-05",
+          "sgm": 4.87,
+          "events": 284865,
+          "conflict_events": 113383,
+          "goldstein": -0.73,
+          "conflict_ratio": 0.398,
+          "violence_events": 45374,
+          "protest_events": 4825
+        },
+        {
+          "month": "2025-06",
+          "sgm": 5.02,
+          "events": 141180,
+          "conflict_events": 62184,
+          "goldstein": -1.2,
+          "conflict_ratio": 0.44,
+          "violence_events": 24119,
+          "protest_events": 2310
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.8,
+          "events": 291383,
+          "conflict_events": 112956,
+          "goldstein": -0.56,
+          "conflict_ratio": 0.388,
+          "violence_events": 42973,
+          "protest_events": 4090
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.88,
+          "events": 292642,
+          "conflict_events": 116162,
+          "goldstein": -0.59,
+          "conflict_ratio": 0.397,
+          "violence_events": 39429,
+          "protest_events": 5965
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.79,
+          "events": 329423,
+          "conflict_events": 125474,
+          "goldstein": -0.52,
+          "conflict_ratio": 0.381,
+          "violence_events": 43962,
+          "protest_events": 4933
+        },
+        {
+          "month": "2025-10",
+          "sgm": 4.57,
+          "events": 360381,
+          "conflict_events": 116548,
+          "goldstein": 0.21,
+          "conflict_ratio": 0.323,
+          "violence_events": 42554,
+          "protest_events": 5746
+        },
+        {
+          "month": "2025-11",
+          "sgm": 4.78,
+          "events": 191479,
+          "conflict_events": 73572,
+          "goldstein": -0.61,
+          "conflict_ratio": 0.384,
+          "violence_events": 30155,
+          "protest_events": 2297
+        }
+      ]
+    },
+    "PS": {
+      "name": "Palestine",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 5.08,
+          "events": 2613,
+          "conflict_events": 1170,
+          "goldstein": -2.06,
+          "conflict_ratio": 0.448,
+          "violence_events": 745,
+          "protest_events": 10
+        },
+        {
+          "month": "2024-12",
+          "sgm": 5.3,
+          "events": 13098,
+          "conflict_events": 6465,
+          "goldstein": -2.62,
+          "conflict_ratio": 0.494,
+          "violence_events": 4298,
+          "protest_events": 111
+        },
+        {
+          "month": "2025-01",
+          "sgm": 5.19,
+          "events": 22994,
+          "conflict_events": 11394,
+          "goldstein": -2.14,
+          "conflict_ratio": 0.496,
+          "violence_events": 6646,
+          "protest_events": 129
+        },
+        {
+          "month": "2025-02",
+          "sgm": 5.06,
+          "events": 19695,
+          "conflict_events": 9156,
+          "goldstein": -1.8,
+          "conflict_ratio": 0.465,
+          "violence_events": 5081,
+          "protest_events": 83
+        },
+        {
+          "month": "2025-03",
+          "sgm": 5.32,
+          "events": 12328,
+          "conflict_events": 6265,
+          "goldstein": -2.47,
+          "conflict_ratio": 0.508,
+          "violence_events": 3356,
+          "protest_events": 138
+        },
+        {
+          "month": "2025-04",
+          "sgm": 5.31,
+          "events": 10450,
+          "conflict_events": 5174,
+          "goldstein": -2.38,
+          "conflict_ratio": 0.495,
+          "violence_events": 2884,
+          "protest_events": 148
+        },
+        {
+          "month": "2025-05",
+          "sgm": 5.13,
+          "events": 12619,
+          "conflict_events": 5802,
+          "goldstein": -2.04,
+          "conflict_ratio": 0.46,
+          "violence_events": 3238,
+          "protest_events": 104
+        },
+        {
+          "month": "2025-06",
+          "sgm": 5.19,
+          "events": 4620,
+          "conflict_events": 2209,
+          "goldstein": -2.24,
+          "conflict_ratio": 0.478,
+          "violence_events": 1163,
+          "protest_events": 33
+        },
+        {
+          "month": "2025-07",
+          "sgm": 5.34,
+          "events": 12606,
+          "conflict_events": 6378,
+          "goldstein": -2.72,
+          "conflict_ratio": 0.506,
+          "violence_events": 3792,
+          "protest_events": 118
+        },
+        {
+          "month": "2025-08",
+          "sgm": 5.12,
+          "events": 12299,
+          "conflict_events": 5668,
+          "goldstein": -1.8,
+          "conflict_ratio": 0.461,
+          "violence_events": 2797,
+          "protest_events": 133
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.97,
+          "events": 15750,
+          "conflict_events": 6684,
+          "goldstein": -1.56,
+          "conflict_ratio": 0.424,
+          "violence_events": 3406,
+          "protest_events": 100
+        },
+        {
+          "month": "2025-10",
+          "sgm": 4.98,
+          "events": 15501,
+          "conflict_events": 6766,
+          "goldstein": -1.56,
+          "conflict_ratio": 0.436,
+          "violence_events": 3967,
+          "protest_events": 74
+        },
+        {
+          "month": "2025-11",
+          "sgm": 5.4,
+          "events": 14683,
+          "conflict_events": 7808,
+          "goldstein": -2.93,
+          "conflict_ratio": 0.532,
+          "violence_events": 4850,
+          "protest_events": 102
+        }
+      ]
+    },
+    "MM": {
+      "name": "Myanmar",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 5.03,
+          "events": 865,
+          "conflict_events": 414,
+          "goldstein": -1.48,
+          "conflict_ratio": 0.479,
+          "violence_events": 178,
+          "protest_events": 4
+        },
+        {
+          "month": "2024-12",
+          "sgm": 4.96,
+          "events": 2997,
+          "conflict_events": 1222,
+          "goldstein": -1.29,
+          "conflict_ratio": 0.408,
+          "violence_events": 667,
+          "protest_events": 42
+        },
+        {
+          "month": "2025-01",
+          "sgm": 5.0,
+          "events": 3459,
+          "conflict_events": 1450,
+          "goldstein": -1.25,
+          "conflict_ratio": 0.419,
+          "violence_events": 725,
+          "protest_events": 57
+        },
+        {
+          "month": "2025-02",
+          "sgm": 4.81,
+          "events": 2655,
+          "conflict_events": 1009,
+          "goldstein": -1.11,
+          "conflict_ratio": 0.38,
+          "violence_events": 538,
+          "protest_events": 14
+        },
+        {
+          "month": "2025-03",
+          "sgm": 4.29,
+          "events": 6015,
+          "conflict_events": 1484,
+          "goldstein": 0.59,
+          "conflict_ratio": 0.247,
+          "violence_events": 742,
+          "protest_events": 38
+        },
+        {
+          "month": "2025-04",
+          "sgm": 4.29,
+          "events": 6274,
+          "conflict_events": 1620,
+          "goldstein": 0.68,
+          "conflict_ratio": 0.258,
+          "violence_events": 777,
+          "protest_events": 44
+        },
+        {
+          "month": "2025-05",
+          "sgm": 4.91,
+          "events": 2490,
+          "conflict_events": 1005,
+          "goldstein": -1.22,
+          "conflict_ratio": 0.404,
+          "violence_events": 520,
+          "protest_events": 25
+        },
+        {
+          "month": "2025-06",
+          "sgm": 4.85,
+          "events": 979,
+          "conflict_events": 390,
+          "goldstein": -1.1,
+          "conflict_ratio": 0.398,
+          "violence_events": 177,
+          "protest_events": 7
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.93,
+          "events": 2335,
+          "conflict_events": 934,
+          "goldstein": -1.22,
+          "conflict_ratio": 0.4,
+          "violence_events": 463,
+          "protest_events": 30
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.77,
+          "events": 2851,
+          "conflict_events": 1063,
+          "goldstein": -0.91,
+          "conflict_ratio": 0.373,
+          "violence_events": 550,
+          "protest_events": 19
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.65,
+          "events": 1683,
+          "conflict_events": 580,
+          "goldstein": -0.66,
+          "conflict_ratio": 0.345,
+          "violence_events": 259,
+          "protest_events": 6
+        },
+        {
+          "month": "2025-10",
+          "sgm": 4.77,
+          "events": 2305,
+          "conflict_events": 815,
+          "goldstein": -0.85,
+          "conflict_ratio": 0.354,
+          "violence_events": 430,
+          "protest_events": 25
+        },
+        {
+          "month": "2025-11",
+          "sgm": 4.5,
+          "events": 1697,
+          "conflict_events": 514,
+          "goldstein": 0.1,
+          "conflict_ratio": 0.303,
+          "violence_events": 185,
+          "protest_events": 17
+        }
+      ]
+    },
+    "SD": {
+      "name": "Sudan",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 4.38,
+          "events": 3193,
+          "conflict_events": 865,
+          "goldstein": 0.3,
+          "conflict_ratio": 0.271,
+          "violence_events": 382,
+          "protest_events": 21
+        },
+        {
+          "month": "2024-12",
+          "sgm": 4.57,
+          "events": 14612,
+          "conflict_events": 4701,
+          "goldstein": -0.2,
+          "conflict_ratio": 0.322,
+          "violence_events": 2414,
+          "protest_events": 118
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.93,
+          "events": 17103,
+          "conflict_events": 6906,
+          "goldstein": -1.02,
+          "conflict_ratio": 0.404,
+          "violence_events": 3125,
+          "protest_events": 287
+        },
+        {
+          "month": "2025-02",
+          "sgm": 4.62,
+          "events": 16276,
+          "conflict_events": 5645,
+          "goldstein": -0.37,
+          "conflict_ratio": 0.347,
+          "violence_events": 2728,
+          "protest_events": 96
+        },
+        {
+          "month": "2025-03",
+          "sgm": 4.8,
+          "events": 16699,
+          "conflict_events": 6421,
+          "goldstein": -0.76,
+          "conflict_ratio": 0.385,
+          "violence_events": 2914,
+          "protest_events": 186
+        },
+        {
+          "month": "2025-04",
+          "sgm": 4.65,
+          "events": 17436,
+          "conflict_events": 5932,
+          "goldstein": -0.4,
+          "conflict_ratio": 0.34,
+          "violence_events": 2763,
+          "protest_events": 159
+        },
+        {
+          "month": "2025-05",
+          "sgm": 4.79,
+          "events": 14810,
+          "conflict_events": 5809,
+          "goldstein": -0.74,
+          "conflict_ratio": 0.392,
+          "violence_events": 2561,
+          "protest_events": 126
+        },
+        {
+          "month": "2025-06",
+          "sgm": 4.76,
+          "events": 4583,
+          "conflict_events": 1733,
+          "goldstein": -0.58,
+          "conflict_ratio": 0.378,
+          "violence_events": 776,
+          "protest_events": 53
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.57,
+          "events": 11311,
+          "conflict_events": 3667,
+          "goldstein": -0.11,
+          "conflict_ratio": 0.324,
+          "violence_events": 1531,
+          "protest_events": 110
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.66,
+          "events": 13826,
+          "conflict_events": 4843,
+          "goldstein": -0.48,
+          "conflict_ratio": 0.35,
+          "violence_events": 2257,
+          "protest_events": 97
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.55,
+          "events": 13457,
+          "conflict_events": 4422,
+          "goldstein": -0.2,
+          "conflict_ratio": 0.329,
+          "violence_events": 1882,
+          "protest_events": 68
+        },
+        {
+          "month": "2025-10",
+          "sgm": 4.86,
+          "events": 19771,
+          "conflict_events": 8037,
+          "goldstein": -1.06,
+          "conflict_ratio": 0.407,
+          "violence_events": 3793,
+          "protest_events": 152
+        },
+        {
+          "month": "2025-11",
+          "sgm": 4.66,
+          "events": 26995,
+          "conflict_events": 9450,
+          "goldstein": -0.45,
+          "conflict_ratio": 0.35,
+          "violence_events": 4125,
+          "protest_events": 221
+        }
+      ]
+    },
+    "ET": {
+      "name": "Ethiopia",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 3.96,
+          "events": 1734,
+          "conflict_events": 333,
+          "goldstein": 1.67,
+          "conflict_ratio": 0.192,
+          "violence_events": 78,
+          "protest_events": 14
+        },
+        {
+          "month": "2024-12",
+          "sgm": 3.98,
+          "events": 8946,
+          "conflict_events": 1662,
+          "goldstein": 1.75,
+          "conflict_ratio": 0.186,
+          "violence_events": 448,
+          "protest_events": 60
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.11,
+          "events": 6349,
+          "conflict_events": 1256,
+          "goldstein": 1.41,
+          "conflict_ratio": 0.198,
+          "violence_events": 314,
+          "protest_events": 81
+        },
+        {
+          "month": "2025-02",
+          "sgm": 3.95,
+          "events": 7778,
+          "conflict_events": 1278,
+          "goldstein": 1.63,
+          "conflict_ratio": 0.164,
+          "violence_events": 423,
+          "protest_events": 43
+        },
+        {
+          "month": "2025-03",
+          "sgm": 4.2,
+          "events": 6691,
+          "conflict_events": 1603,
+          "goldstein": 0.91,
+          "conflict_ratio": 0.24,
+          "violence_events": 645,
+          "protest_events": 33
+        },
+        {
+          "month": "2025-04",
+          "sgm": 4.02,
+          "events": 5465,
+          "conflict_events": 1021,
+          "goldstein": 1.48,
+          "conflict_ratio": 0.187,
+          "violence_events": 347,
+          "protest_events": 29
+        },
+        {
+          "month": "2025-05",
+          "sgm": 4.07,
+          "events": 5416,
+          "conflict_events": 1060,
+          "goldstein": 1.36,
+          "conflict_ratio": 0.196,
+          "violence_events": 268,
+          "protest_events": 37
+        },
+        {
+          "month": "2025-06",
+          "sgm": 3.68,
+          "events": 2533,
+          "conflict_events": 432,
+          "goldstein": 1.52,
+          "conflict_ratio": 0.171,
+          "violence_events": 93,
+          "protest_events": 9
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.18,
+          "events": 7252,
+          "conflict_events": 1569,
+          "goldstein": 1.15,
+          "conflict_ratio": 0.216,
+          "violence_events": 478,
+          "protest_events": 81
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.12,
+          "events": 6287,
+          "conflict_events": 1294,
+          "goldstein": 1.34,
+          "conflict_ratio": 0.206,
+          "violence_events": 401,
+          "protest_events": 68
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.12,
+          "events": 6823,
+          "conflict_events": 1461,
+          "goldstein": 1.35,
+          "conflict_ratio": 0.214,
+          "violence_events": 333,
+          "protest_events": 68
+        },
+        {
+          "month": "2025-10",
+          "sgm": 4.22,
+          "events": 6850,
+          "conflict_events": 1569,
+          "goldstein": 1.14,
+          "conflict_ratio": 0.229,
+          "violence_events": 402,
+          "protest_events": 94
+        },
+        {
+          "month": "2025-11",
+          "sgm": 4.15,
+          "events": 6265,
+          "conflict_events": 1300,
+          "goldstein": 1.17,
+          "conflict_ratio": 0.208,
+          "violence_events": 384,
+          "protest_events": 65
+        }
+      ]
+    },
+    "NG": {
+      "name": "Nigeria",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 4.27,
+          "events": 27365,
+          "conflict_events": 6626,
+          "goldstein": 0.71,
+          "conflict_ratio": 0.242,
+          "violence_events": 1558,
+          "protest_events": 216
+        },
+        {
+          "month": "2024-12",
+          "sgm": 4.25,
+          "events": 101130,
+          "conflict_events": 24666,
+          "goldstein": 0.75,
+          "conflict_ratio": 0.244,
+          "violence_events": 5347,
+          "protest_events": 570
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.3,
+          "events": 107158,
+          "conflict_events": 27689,
+          "goldstein": 0.53,
+          "conflict_ratio": 0.258,
+          "violence_events": 8060,
+          "protest_events": 514
+        },
+        {
+          "month": "2025-02",
+          "sgm": 4.28,
+          "events": 89262,
+          "conflict_events": 23039,
+          "goldstein": 0.65,
+          "conflict_ratio": 0.258,
+          "violence_events": 5684,
+          "protest_events": 462
+        },
+        {
+          "month": "2025-03",
+          "sgm": 4.4,
+          "events": 107606,
+          "conflict_events": 30555,
+          "goldstein": 0.4,
+          "conflict_ratio": 0.284,
+          "violence_events": 7067,
+          "protest_events": 863
+        },
+        {
+          "month": "2025-04",
+          "sgm": 4.39,
+          "events": 98492,
+          "conflict_events": 27552,
+          "goldstein": 0.39,
+          "conflict_ratio": 0.28,
+          "violence_events": 7355,
+          "protest_events": 792
+        },
+        {
+          "month": "2025-05",
+          "sgm": 4.35,
+          "events": 104551,
+          "conflict_events": 28346,
+          "goldstein": 0.44,
+          "conflict_ratio": 0.271,
+          "violence_events": 7346,
+          "protest_events": 668
+        },
+        {
+          "month": "2025-06",
+          "sgm": 4.35,
+          "events": 44458,
+          "conflict_events": 11637,
+          "goldstein": 0.49,
+          "conflict_ratio": 0.262,
+          "violence_events": 3116,
+          "protest_events": 388
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.31,
+          "events": 131689,
+          "conflict_events": 33649,
+          "goldstein": 0.59,
+          "conflict_ratio": 0.256,
+          "violence_events": 7975,
+          "protest_events": 920
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.37,
+          "events": 109091,
+          "conflict_events": 30588,
+          "goldstein": 0.4,
+          "conflict_ratio": 0.28,
+          "violence_events": 8118,
+          "protest_events": 621
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.38,
+          "events": 100492,
+          "conflict_events": 27750,
+          "goldstein": 0.38,
+          "conflict_ratio": 0.276,
+          "violence_events": 7306,
+          "protest_events": 678
+        },
+        {
+          "month": "2025-10",
+          "sgm": 4.39,
+          "events": 100827,
+          "conflict_events": 27943,
+          "goldstein": 0.41,
+          "conflict_ratio": 0.277,
+          "violence_events": 6611,
+          "protest_events": 921
+        },
+        {
+          "month": "2025-11",
+          "sgm": 4.62,
+          "events": 119321,
+          "conflict_events": 40919,
+          "goldstein": -0.42,
+          "conflict_ratio": 0.343,
+          "violence_events": 15958,
+          "protest_events": 616
+        }
+      ]
+    },
+    "PK": {
+      "name": "Pakistan",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 5.04,
+          "events": 22949,
+          "conflict_events": 9135,
+          "goldstein": -0.84,
+          "conflict_ratio": 0.398,
+          "violence_events": 2991,
+          "protest_events": 764
+        },
+        {
+          "month": "2024-12",
+          "sgm": 4.62,
+          "events": 73042,
+          "conflict_events": 23747,
+          "goldstein": -0.11,
+          "conflict_ratio": 0.325,
+          "violence_events": 8018,
+          "protest_events": 1125
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.52,
+          "events": 71729,
+          "conflict_events": 21720,
+          "goldstein": 0.15,
+          "conflict_ratio": 0.303,
+          "violence_events": 6689,
+          "protest_events": 909
+        },
+        {
+          "month": "2025-02",
+          "sgm": 4.48,
+          "events": 61162,
+          "conflict_events": 17215,
+          "goldstein": 0.28,
+          "conflict_ratio": 0.281,
+          "violence_events": 5973,
+          "protest_events": 927
+        },
+        {
+          "month": "2025-03",
+          "sgm": 4.75,
+          "events": 73594,
+          "conflict_events": 26272,
+          "goldstein": -0.54,
+          "conflict_ratio": 0.357,
+          "violence_events": 10620,
+          "protest_events": 1090
+        },
+        {
+          "month": "2025-04",
+          "sgm": 4.74,
+          "events": 102018,
+          "conflict_events": 36061,
+          "goldstein": -0.43,
+          "conflict_ratio": 0.353,
+          "violence_events": 12981,
+          "protest_events": 1666
+        },
+        {
+          "month": "2025-05",
+          "sgm": 4.75,
+          "events": 180157,
+          "conflict_events": 66355,
+          "goldstein": -0.83,
+          "conflict_ratio": 0.368,
+          "violence_events": 31011,
+          "protest_events": 1196
+        },
+        {
+          "month": "2025-06",
+          "sgm": 4.57,
+          "events": 35355,
+          "conflict_events": 11253,
+          "goldstein": -0.2,
+          "conflict_ratio": 0.318,
+          "violence_events": 4317,
+          "protest_events": 333
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.53,
+          "events": 74716,
+          "conflict_events": 23304,
+          "goldstein": -0.05,
+          "conflict_ratio": 0.312,
+          "violence_events": 8682,
+          "protest_events": 625
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.47,
+          "events": 80891,
+          "conflict_events": 23847,
+          "goldstein": 0.18,
+          "conflict_ratio": 0.295,
+          "violence_events": 8163,
+          "protest_events": 787
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.44,
+          "events": 70179,
+          "conflict_events": 20267,
+          "goldstein": 0.23,
+          "conflict_ratio": 0.289,
+          "violence_events": 7506,
+          "protest_events": 592
+        },
+        {
+          "month": "2025-10",
+          "sgm": 4.71,
+          "events": 78643,
+          "conflict_events": 28346,
+          "goldstein": -0.49,
+          "conflict_ratio": 0.36,
+          "violence_events": 11680,
+          "protest_events": 889
+        },
+        {
+          "month": "2025-11",
+          "sgm": 4.64,
+          "events": 62065,
+          "conflict_events": 21048,
+          "goldstein": -0.27,
+          "conflict_ratio": 0.339,
+          "violence_events": 7365,
+          "protest_events": 673
+        }
+      ]
+    },
+    "SE": {
+      "name": "Sweden",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 4.24,
+          "events": 12133,
+          "conflict_events": 2965,
+          "goldstein": 0.89,
+          "conflict_ratio": 0.244,
+          "violence_events": 688,
+          "protest_events": 94
+        },
+        {
+          "month": "2024-12",
+          "sgm": 4.36,
+          "events": 39274,
+          "conflict_events": 10460,
+          "goldstein": 0.63,
+          "conflict_ratio": 0.266,
+          "violence_events": 2636,
+          "protest_events": 469
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.43,
+          "events": 41900,
+          "conflict_events": 12069,
+          "goldstein": 0.43,
+          "conflict_ratio": 0.288,
+          "violence_events": 3218,
+          "protest_events": 494
+        },
+        {
+          "month": "2025-02",
+          "sgm": 4.5,
+          "events": 43815,
+          "conflict_events": 13245,
+          "goldstein": 0.15,
+          "conflict_ratio": 0.302,
+          "violence_events": 4262,
+          "protest_events": 476
+        },
+        {
+          "month": "2025-03",
+          "sgm": 4.44,
+          "events": 43367,
+          "conflict_events": 12463,
+          "goldstein": 0.49,
+          "conflict_ratio": 0.287,
+          "violence_events": 3000,
+          "protest_events": 626
+        },
+        {
+          "month": "2025-04",
+          "sgm": 4.4,
+          "events": 42040,
+          "conflict_events": 11613,
+          "goldstein": 0.52,
+          "conflict_ratio": 0.276,
+          "violence_events": 3007,
+          "protest_events": 505
+        },
+        {
+          "month": "2025-05",
+          "sgm": 4.42,
+          "events": 44809,
+          "conflict_events": 12691,
+          "goldstein": 0.52,
+          "conflict_ratio": 0.283,
+          "violence_events": 2995,
+          "protest_events": 580
+        },
+        {
+          "month": "2025-06",
+          "sgm": 4.49,
+          "events": 21953,
+          "conflict_events": 6503,
+          "goldstein": 0.38,
+          "conflict_ratio": 0.296,
+          "violence_events": 1639,
+          "protest_events": 345
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.4,
+          "events": 39748,
+          "conflict_events": 11328,
+          "goldstein": 0.57,
+          "conflict_ratio": 0.285,
+          "violence_events": 2636,
+          "protest_events": 479
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.45,
+          "events": 38553,
+          "conflict_events": 11401,
+          "goldstein": 0.41,
+          "conflict_ratio": 0.296,
+          "violence_events": 2862,
+          "protest_events": 456
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.44,
+          "events": 41903,
+          "conflict_events": 12339,
+          "goldstein": 0.47,
+          "conflict_ratio": 0.294,
+          "violence_events": 2906,
+          "protest_events": 524
+        },
+        {
+          "month": "2025-10",
+          "sgm": 4.37,
+          "events": 49658,
+          "conflict_events": 13799,
+          "goldstein": 0.67,
+          "conflict_ratio": 0.278,
+          "violence_events": 3376,
+          "protest_events": 600
+        },
+        {
+          "month": "2025-11",
+          "sgm": 4.38,
+          "events": 41516,
+          "conflict_events": 11632,
+          "goldstein": 0.58,
+          "conflict_ratio": 0.28,
+          "violence_events": 2899,
+          "protest_events": 440
+        }
+      ]
+    },
+    "NO": {
+      "name": "Norway",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 4.18,
+          "events": 3959,
+          "conflict_events": 905,
+          "goldstein": 0.99,
+          "conflict_ratio": 0.229,
+          "violence_events": 229,
+          "protest_events": 24
+        },
+        {
+          "month": "2024-12",
+          "sgm": 4.12,
+          "events": 12831,
+          "conflict_events": 2668,
+          "goldstein": 1.26,
+          "conflict_ratio": 0.208,
+          "violence_events": 734,
+          "protest_events": 104
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.12,
+          "events": 11783,
+          "conflict_events": 2632,
+          "goldstein": 1.22,
+          "conflict_ratio": 0.223,
+          "violence_events": 652,
+          "protest_events": 62
+        },
+        {
+          "month": "2025-02",
+          "sgm": 3.95,
+          "events": 11060,
+          "conflict_events": 2244,
+          "goldstein": 1.53,
+          "conflict_ratio": 0.203,
+          "violence_events": 502,
+          "protest_events": 74
+        },
+        {
+          "month": "2025-03",
+          "sgm": 3.91,
+          "events": 12103,
+          "conflict_events": 2369,
+          "goldstein": 1.49,
+          "conflict_ratio": 0.196,
+          "violence_events": 541,
+          "protest_events": 73
+        },
+        {
+          "month": "2025-04",
+          "sgm": 3.98,
+          "events": 12298,
+          "conflict_events": 2226,
+          "goldstein": 1.56,
+          "conflict_ratio": 0.181,
+          "violence_events": 609,
+          "protest_events": 49
+        },
+        {
+          "month": "2025-05",
+          "sgm": 3.94,
+          "events": 12448,
+          "conflict_events": 2428,
+          "goldstein": 1.33,
+          "conflict_ratio": 0.195,
+          "violence_events": 531,
+          "protest_events": 133
+        },
+        {
+          "month": "2025-06",
+          "sgm": 4.25,
+          "events": 5450,
+          "conflict_events": 1420,
+          "goldstein": 0.86,
+          "conflict_ratio": 0.261,
+          "violence_events": 287,
+          "protest_events": 30
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.15,
+          "events": 9755,
+          "conflict_events": 2175,
+          "goldstein": 1.17,
+          "conflict_ratio": 0.223,
+          "violence_events": 526,
+          "protest_events": 70
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.19,
+          "events": 13568,
+          "conflict_events": 3186,
+          "goldstein": 1.06,
+          "conflict_ratio": 0.235,
+          "violence_events": 847,
+          "protest_events": 96
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.17,
+          "events": 12587,
+          "conflict_events": 2938,
+          "goldstein": 1.06,
+          "conflict_ratio": 0.233,
+          "violence_events": 701,
+          "protest_events": 68
+        },
+        {
+          "month": "2025-10",
+          "sgm": 4.04,
+          "events": 14743,
+          "conflict_events": 3267,
+          "goldstein": 1.2,
+          "conflict_ratio": 0.222,
+          "violence_events": 664,
+          "protest_events": 119
+        },
+        {
+          "month": "2025-11",
+          "sgm": 3.86,
+          "events": 12058,
+          "conflict_events": 2465,
+          "goldstein": 1.46,
+          "conflict_ratio": 0.204,
+          "violence_events": 508,
+          "protest_events": 69
+        }
+      ]
+    },
+    "DE": {
+      "name": "Germany",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 4.22,
+          "events": 21209,
+          "conflict_events": 4989,
+          "goldstein": 0.91,
+          "conflict_ratio": 0.235,
+          "violence_events": 1101,
+          "protest_events": 157
+        },
+        {
+          "month": "2024-12",
+          "sgm": 4.28,
+          "events": 85005,
+          "conflict_events": 21262,
+          "goldstein": 0.8,
+          "conflict_ratio": 0.25,
+          "violence_events": 5296,
+          "protest_events": 812
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.3,
+          "events": 82784,
+          "conflict_events": 21311,
+          "goldstein": 0.78,
+          "conflict_ratio": 0.257,
+          "violence_events": 5411,
+          "protest_events": 791
+        },
+        {
+          "month": "2025-02",
+          "sgm": 4.23,
+          "events": 105260,
+          "conflict_events": 24938,
+          "goldstein": 1.01,
+          "conflict_ratio": 0.237,
+          "violence_events": 5315,
+          "protest_events": 1126
+        },
+        {
+          "month": "2025-03",
+          "sgm": 4.32,
+          "events": 79582,
+          "conflict_events": 20328,
+          "goldstein": 0.83,
+          "conflict_ratio": 0.255,
+          "violence_events": 4819,
+          "protest_events": 1013
+        },
+        {
+          "month": "2025-04",
+          "sgm": 4.3,
+          "events": 71869,
+          "conflict_events": 18201,
+          "goldstein": 0.82,
+          "conflict_ratio": 0.253,
+          "violence_events": 4731,
+          "protest_events": 797
+        },
+        {
+          "month": "2025-05",
+          "sgm": 4.23,
+          "events": 94190,
+          "conflict_events": 23219,
+          "goldstein": 0.91,
+          "conflict_ratio": 0.247,
+          "violence_events": 5820,
+          "protest_events": 629
+        },
+        {
+          "month": "2025-06",
+          "sgm": 4.27,
+          "events": 36934,
+          "conflict_events": 9250,
+          "goldstein": 0.69,
+          "conflict_ratio": 0.25,
+          "violence_events": 2419,
+          "protest_events": 236
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.17,
+          "events": 76995,
+          "conflict_events": 17798,
+          "goldstein": 1.09,
+          "conflict_ratio": 0.231,
+          "violence_events": 4205,
+          "protest_events": 521
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.17,
+          "events": 75165,
+          "conflict_events": 17279,
+          "goldstein": 1.09,
+          "conflict_ratio": 0.23,
+          "violence_events": 3961,
+          "protest_events": 515
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.31,
+          "events": 72835,
+          "conflict_events": 19184,
+          "goldstein": 0.71,
+          "conflict_ratio": 0.263,
+          "violence_events": 4661,
+          "protest_events": 630
+        },
+        {
+          "month": "2025-10",
+          "sgm": 4.29,
+          "events": 75268,
+          "conflict_events": 19033,
+          "goldstein": 0.79,
+          "conflict_ratio": 0.253,
+          "violence_events": 4564,
+          "protest_events": 696
+        },
+        {
+          "month": "2025-11",
+          "sgm": 4.24,
+          "events": 74615,
+          "conflict_events": 18229,
+          "goldstein": 0.86,
+          "conflict_ratio": 0.244,
+          "violence_events": 4281,
+          "protest_events": 557
+        }
+      ]
+    },
+    "GB": {
+      "name": "United Kingdom",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 4.27,
+          "events": 59032,
+          "conflict_events": 14642,
+          "goldstein": 0.77,
+          "conflict_ratio": 0.248,
+          "violence_events": 3928,
+          "protest_events": 501
+        },
+        {
+          "month": "2024-12",
+          "sgm": 4.24,
+          "events": 201381,
+          "conflict_events": 48017,
+          "goldstein": 0.85,
+          "conflict_ratio": 0.238,
+          "violence_events": 12172,
+          "protest_events": 1548
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.28,
+          "events": 219717,
+          "conflict_events": 55424,
+          "goldstein": 0.71,
+          "conflict_ratio": 0.252,
+          "violence_events": 14192,
+          "protest_events": 1644
+        },
+        {
+          "month": "2025-02",
+          "sgm": 4.2,
+          "events": 200038,
+          "conflict_events": 46198,
+          "goldstein": 0.97,
+          "conflict_ratio": 0.231,
+          "violence_events": 10470,
+          "protest_events": 1540
+        },
+        {
+          "month": "2025-03",
+          "sgm": 4.21,
+          "events": 240028,
+          "conflict_events": 55328,
+          "goldstein": 0.93,
+          "conflict_ratio": 0.231,
+          "violence_events": 13681,
+          "protest_events": 1974
+        },
+        {
+          "month": "2025-04",
+          "sgm": 4.25,
+          "events": 216030,
+          "conflict_events": 51913,
+          "goldstein": 0.81,
+          "conflict_ratio": 0.24,
+          "violence_events": 13363,
+          "protest_events": 1761
+        },
+        {
+          "month": "2025-05",
+          "sgm": 4.26,
+          "events": 224094,
+          "conflict_events": 55319,
+          "goldstein": 0.78,
+          "conflict_ratio": 0.247,
+          "violence_events": 13491,
+          "protest_events": 1531
+        },
+        {
+          "month": "2025-06",
+          "sgm": 4.3,
+          "events": 107308,
+          "conflict_events": 27209,
+          "goldstein": 0.68,
+          "conflict_ratio": 0.254,
+          "violence_events": 6886,
+          "protest_events": 902
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.26,
+          "events": 221944,
+          "conflict_events": 53966,
+          "goldstein": 0.85,
+          "conflict_ratio": 0.243,
+          "violence_events": 12659,
+          "protest_events": 2179
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.37,
+          "events": 209058,
+          "conflict_events": 53916,
+          "goldstein": 0.66,
+          "conflict_ratio": 0.258,
+          "violence_events": 13221,
+          "protest_events": 3070
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.28,
+          "events": 243611,
+          "conflict_events": 59178,
+          "goldstein": 0.82,
+          "conflict_ratio": 0.243,
+          "violence_events": 13446,
+          "protest_events": 2815
+        },
+        {
+          "month": "2025-10",
+          "sgm": 4.32,
+          "events": 229235,
+          "conflict_events": 58642,
+          "goldstein": 0.69,
+          "conflict_ratio": 0.256,
+          "violence_events": 14570,
+          "protest_events": 2392
+        },
+        {
+          "month": "2025-11",
+          "sgm": 4.27,
+          "events": 195081,
+          "conflict_events": 48180,
+          "goldstein": 0.79,
+          "conflict_ratio": 0.247,
+          "violence_events": 11195,
+          "protest_events": 1644
+        }
+      ]
+    },
+    "FR": {
+      "name": "France",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 4.26,
+          "events": 28022,
+          "conflict_events": 6803,
+          "goldstein": 1.04,
+          "conflict_ratio": 0.243,
+          "violence_events": 1628,
+          "protest_events": 371
+        },
+        {
+          "month": "2024-12",
+          "sgm": 4.19,
+          "events": 96648,
+          "conflict_events": 22421,
+          "goldstein": 1.09,
+          "conflict_ratio": 0.232,
+          "violence_events": 5520,
+          "protest_events": 880
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.24,
+          "events": 91039,
+          "conflict_events": 22623,
+          "goldstein": 0.95,
+          "conflict_ratio": 0.248,
+          "violence_events": 6266,
+          "protest_events": 775
+        },
+        {
+          "month": "2025-02",
+          "sgm": 4.11,
+          "events": 101931,
+          "conflict_events": 21734,
+          "goldstein": 1.26,
+          "conflict_ratio": 0.213,
+          "violence_events": 5411,
+          "protest_events": 684
+        },
+        {
+          "month": "2025-03",
+          "sgm": 4.19,
+          "events": 106153,
+          "conflict_events": 24444,
+          "goldstein": 1.15,
+          "conflict_ratio": 0.23,
+          "violence_events": 5936,
+          "protest_events": 1021
+        },
+        {
+          "month": "2025-04",
+          "sgm": 4.17,
+          "events": 97548,
+          "conflict_events": 22001,
+          "goldstein": 1.13,
+          "conflict_ratio": 0.226,
+          "violence_events": 5050,
+          "protest_events": 842
+        },
+        {
+          "month": "2025-05",
+          "sgm": 4.24,
+          "events": 96353,
+          "conflict_events": 23144,
+          "goldstein": 0.96,
+          "conflict_ratio": 0.24,
+          "violence_events": 6048,
+          "protest_events": 924
+        },
+        {
+          "month": "2025-06",
+          "sgm": 4.24,
+          "events": 44331,
+          "conflict_events": 10500,
+          "goldstein": 0.96,
+          "conflict_ratio": 0.237,
+          "violence_events": 2901,
+          "protest_events": 477
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.17,
+          "events": 93901,
+          "conflict_events": 21561,
+          "goldstein": 1.14,
+          "conflict_ratio": 0.23,
+          "violence_events": 4990,
+          "protest_events": 683
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.27,
+          "events": 74998,
+          "conflict_events": 19060,
+          "goldstein": 0.84,
+          "conflict_ratio": 0.254,
+          "violence_events": 4893,
+          "protest_events": 629
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.36,
+          "events": 92530,
+          "conflict_events": 23939,
+          "goldstein": 0.85,
+          "conflict_ratio": 0.259,
+          "violence_events": 5501,
+          "protest_events": 1647
+        },
+        {
+          "month": "2025-10",
+          "sgm": 4.34,
+          "events": 89609,
+          "conflict_events": 23675,
+          "goldstein": 0.76,
+          "conflict_ratio": 0.264,
+          "violence_events": 5475,
+          "protest_events": 1132
+        },
+        {
+          "month": "2025-11",
+          "sgm": 4.23,
+          "events": 78021,
+          "conflict_events": 18890,
+          "goldstein": 0.99,
+          "conflict_ratio": 0.242,
+          "violence_events": 4840,
+          "protest_events": 722
+        }
+      ]
+    },
+    "IN": {
+      "name": "India",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 4.42,
+          "events": 57431,
+          "conflict_events": 15601,
+          "goldstein": 0.47,
+          "conflict_ratio": 0.272,
+          "violence_events": 3832,
+          "protest_events": 835
+        },
+        {
+          "month": "2024-12",
+          "sgm": 4.59,
+          "events": 223997,
+          "conflict_events": 66983,
+          "goldstein": 0.3,
+          "conflict_ratio": 0.299,
+          "violence_events": 15453,
+          "protest_events": 5459
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.43,
+          "events": 215588,
+          "conflict_events": 60023,
+          "goldstein": 0.46,
+          "conflict_ratio": 0.278,
+          "violence_events": 15505,
+          "protest_events": 2986
+        },
+        {
+          "month": "2025-02",
+          "sgm": 4.32,
+          "events": 198157,
+          "conflict_events": 50204,
+          "goldstein": 0.78,
+          "conflict_ratio": 0.253,
+          "violence_events": 11117,
+          "protest_events": 2447
+        },
+        {
+          "month": "2025-03",
+          "sgm": 4.51,
+          "events": 211611,
+          "conflict_events": 61087,
+          "goldstein": 0.35,
+          "conflict_ratio": 0.289,
+          "violence_events": 15397,
+          "protest_events": 4064
+        },
+        {
+          "month": "2025-04",
+          "sgm": 4.63,
+          "events": 261357,
+          "conflict_events": 84668,
+          "goldstein": -0.04,
+          "conflict_ratio": 0.324,
+          "violence_events": 26277,
+          "protest_events": 4686
+        },
+        {
+          "month": "2025-05",
+          "sgm": 4.61,
+          "events": 282518,
+          "conflict_events": 94569,
+          "goldstein": -0.3,
+          "conflict_ratio": 0.335,
+          "violence_events": 36112,
+          "protest_events": 2334
+        },
+        {
+          "month": "2025-06",
+          "sgm": 4.38,
+          "events": 105168,
+          "conflict_events": 28215,
+          "goldstein": 0.39,
+          "conflict_ratio": 0.268,
+          "violence_events": 8992,
+          "protest_events": 880
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.51,
+          "events": 218098,
+          "conflict_events": 65134,
+          "goldstein": 0.23,
+          "conflict_ratio": 0.299,
+          "violence_events": 18782,
+          "protest_events": 3195
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.43,
+          "events": 232734,
+          "conflict_events": 64973,
+          "goldstein": 0.57,
+          "conflict_ratio": 0.279,
+          "violence_events": 14827,
+          "protest_events": 3621
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.36,
+          "events": 211393,
+          "conflict_events": 56511,
+          "goldstein": 0.65,
+          "conflict_ratio": 0.267,
+          "violence_events": 13581,
+          "protest_events": 2637
+        },
+        {
+          "month": "2025-10",
+          "sgm": 4.35,
+          "events": 213947,
+          "conflict_events": 56533,
+          "goldstein": 0.64,
+          "conflict_ratio": 0.264,
+          "violence_events": 13777,
+          "protest_events": 2423
+        },
+        {
+          "month": "2025-11",
+          "sgm": 4.4,
+          "events": 214289,
+          "conflict_events": 58666,
+          "goldstein": 0.45,
+          "conflict_ratio": 0.274,
+          "violence_events": 14451,
+          "protest_events": 2333
+        }
+      ]
+    },
+    "BR": {
+      "name": "Brazil",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 4.23,
+          "events": 15239,
+          "conflict_events": 3534,
+          "goldstein": 0.82,
+          "conflict_ratio": 0.232,
+          "violence_events": 999,
+          "protest_events": 112
+        },
+        {
+          "month": "2024-12",
+          "sgm": 4.22,
+          "events": 46974,
+          "conflict_events": 10658,
+          "goldstein": 0.76,
+          "conflict_ratio": 0.227,
+          "violence_events": 3396,
+          "protest_events": 294
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.27,
+          "events": 46306,
+          "conflict_events": 11456,
+          "goldstein": 0.6,
+          "conflict_ratio": 0.247,
+          "violence_events": 3912,
+          "protest_events": 239
+        },
+        {
+          "month": "2025-02",
+          "sgm": 4.22,
+          "events": 46324,
+          "conflict_events": 10752,
+          "goldstein": 0.8,
+          "conflict_ratio": 0.232,
+          "violence_events": 3329,
+          "protest_events": 277
+        },
+        {
+          "month": "2025-03",
+          "sgm": 4.24,
+          "events": 46524,
+          "conflict_events": 10812,
+          "goldstein": 0.81,
+          "conflict_ratio": 0.232,
+          "violence_events": 3422,
+          "protest_events": 377
+        },
+        {
+          "month": "2025-04",
+          "sgm": 4.18,
+          "events": 49796,
+          "conflict_events": 10714,
+          "goldstein": 0.99,
+          "conflict_ratio": 0.215,
+          "violence_events": 2952,
+          "protest_events": 412
+        },
+        {
+          "month": "2025-05",
+          "sgm": 4.13,
+          "events": 53102,
+          "conflict_events": 10959,
+          "goldstein": 1.04,
+          "conflict_ratio": 0.206,
+          "violence_events": 3119,
+          "protest_events": 289
+        },
+        {
+          "month": "2025-06",
+          "sgm": 4.21,
+          "events": 23838,
+          "conflict_events": 5446,
+          "goldstein": 0.91,
+          "conflict_ratio": 0.228,
+          "violence_events": 1494,
+          "protest_events": 199
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.21,
+          "events": 66184,
+          "conflict_events": 15652,
+          "goldstein": 0.92,
+          "conflict_ratio": 0.236,
+          "violence_events": 3637,
+          "protest_events": 455
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.24,
+          "events": 61590,
+          "conflict_events": 14498,
+          "goldstein": 0.91,
+          "conflict_ratio": 0.235,
+          "violence_events": 3208,
+          "protest_events": 621
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.37,
+          "events": 60798,
+          "conflict_events": 16553,
+          "goldstein": 0.53,
+          "conflict_ratio": 0.272,
+          "violence_events": 4000,
+          "protest_events": 629
+        },
+        {
+          "month": "2025-10",
+          "sgm": 4.24,
+          "events": 60092,
+          "conflict_events": 13899,
+          "goldstein": 0.74,
+          "conflict_ratio": 0.231,
+          "violence_events": 4443,
+          "protest_events": 438
+        },
+        {
+          "month": "2025-11",
+          "sgm": 4.25,
+          "events": 69283,
+          "conflict_events": 15988,
+          "goldstein": 0.84,
+          "conflict_ratio": 0.231,
+          "violence_events": 4138,
+          "protest_events": 697
+        }
+      ]
+    },
+    "ZA": {
+      "name": "South Africa",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 3.6,
+          "events": 623,
+          "conflict_events": 134,
+          "goldstein": 1.61,
+          "conflict_ratio": 0.215,
+          "violence_events": 18,
+          "protest_events": 8
+        },
+        {
+          "month": "2024-12",
+          "sgm": 3.24,
+          "events": 2995,
+          "conflict_events": 491,
+          "goldstein": 1.74,
+          "conflict_ratio": 0.164,
+          "violence_events": 66,
+          "protest_events": 10
+        },
+        {
+          "month": "2025-01",
+          "sgm": 3.79,
+          "events": 2203,
+          "conflict_events": 437,
+          "goldstein": 1.46,
+          "conflict_ratio": 0.198,
+          "violence_events": 90,
+          "protest_events": 5
+        },
+        {
+          "month": "2025-02",
+          "sgm": 3.36,
+          "events": 2527,
+          "conflict_events": 349,
+          "goldstein": 1.74,
+          "conflict_ratio": 0.138,
+          "violence_events": 72,
+          "protest_events": 9
+        },
+        {
+          "month": "2025-03",
+          "sgm": 3.66,
+          "events": 2209,
+          "conflict_events": 417,
+          "goldstein": 1.53,
+          "conflict_ratio": 0.189,
+          "violence_events": 78,
+          "protest_events": 12
+        },
+        {
+          "month": "2025-04",
+          "sgm": 3.44,
+          "events": 2010,
+          "conflict_events": 303,
+          "goldstein": 1.57,
+          "conflict_ratio": 0.151,
+          "violence_events": 59,
+          "protest_events": 9
+        },
+        {
+          "month": "2025-05",
+          "sgm": 3.61,
+          "events": 2374,
+          "conflict_events": 411,
+          "goldstein": 1.55,
+          "conflict_ratio": 0.173,
+          "violence_events": 73,
+          "protest_events": 37
+        },
+        {
+          "month": "2025-06",
+          "sgm": 3.23,
+          "events": 1306,
+          "conflict_events": 190,
+          "goldstein": 1.68,
+          "conflict_ratio": 0.145,
+          "violence_events": 29,
+          "protest_events": 5
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.21,
+          "events": 1963,
+          "conflict_events": 458,
+          "goldstein": 0.77,
+          "conflict_ratio": 0.233,
+          "violence_events": 174,
+          "protest_events": 9
+        },
+        {
+          "month": "2025-08",
+          "sgm": 3.57,
+          "events": 2937,
+          "conflict_events": 479,
+          "goldstein": 1.65,
+          "conflict_ratio": 0.163,
+          "violence_events": 104,
+          "protest_events": 7
+        },
+        {
+          "month": "2025-09",
+          "sgm": 3.91,
+          "events": 2604,
+          "conflict_events": 636,
+          "goldstein": 1.24,
+          "conflict_ratio": 0.244,
+          "violence_events": 105,
+          "protest_events": 11
+        },
+        {
+          "month": "2025-10",
+          "sgm": 3.51,
+          "events": 2448,
+          "conflict_events": 328,
+          "goldstein": 1.95,
+          "conflict_ratio": 0.134,
+          "violence_events": 89,
+          "protest_events": 12
+        },
+        {
+          "month": "2025-11",
+          "sgm": 3.26,
+          "events": 3249,
+          "conflict_events": 396,
+          "goldstein": 1.87,
+          "conflict_ratio": 0.122,
+          "violence_events": 85,
+          "protest_events": 16
+        }
+      ]
+    },
+    "JP": {
+      "name": "Japan",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 3.87,
+          "events": 10140,
+          "conflict_events": 2037,
+          "goldstein": 1.42,
+          "conflict_ratio": 0.201,
+          "violence_events": 432,
+          "protest_events": 50
+        },
+        {
+          "month": "2024-12",
+          "sgm": 4.1,
+          "events": 40434,
+          "conflict_events": 8584,
+          "goldstein": 1.25,
+          "conflict_ratio": 0.212,
+          "violence_events": 2472,
+          "protest_events": 221
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.06,
+          "events": 39534,
+          "conflict_events": 7882,
+          "goldstein": 1.33,
+          "conflict_ratio": 0.199,
+          "violence_events": 2007,
+          "protest_events": 202
+        },
+        {
+          "month": "2025-02",
+          "sgm": 4.03,
+          "events": 36844,
+          "conflict_events": 7090,
+          "goldstein": 1.45,
+          "conflict_ratio": 0.192,
+          "violence_events": 1981,
+          "protest_events": 195
+        },
+        {
+          "month": "2025-03",
+          "sgm": 4.07,
+          "events": 41109,
+          "conflict_events": 8238,
+          "goldstein": 1.35,
+          "conflict_ratio": 0.2,
+          "violence_events": 2369,
+          "protest_events": 252
+        },
+        {
+          "month": "2025-04",
+          "sgm": 4.02,
+          "events": 43111,
+          "conflict_events": 8142,
+          "goldstein": 1.46,
+          "conflict_ratio": 0.189,
+          "violence_events": 2234,
+          "protest_events": 225
+        },
+        {
+          "month": "2025-05",
+          "sgm": 4.03,
+          "events": 43148,
+          "conflict_events": 8015,
+          "goldstein": 1.46,
+          "conflict_ratio": 0.186,
+          "violence_events": 2359,
+          "protest_events": 289
+        },
+        {
+          "month": "2025-06",
+          "sgm": 4.07,
+          "events": 18135,
+          "conflict_events": 3540,
+          "goldstein": 1.34,
+          "conflict_ratio": 0.195,
+          "violence_events": 1060,
+          "protest_events": 122
+        },
+        {
+          "month": "2025-07",
+          "sgm": 3.9,
+          "events": 45965,
+          "conflict_events": 8481,
+          "goldstein": 1.5,
+          "conflict_ratio": 0.185,
+          "violence_events": 2099,
+          "protest_events": 209
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.02,
+          "events": 56215,
+          "conflict_events": 10348,
+          "goldstein": 1.43,
+          "conflict_ratio": 0.184,
+          "violence_events": 3403,
+          "protest_events": 281
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.02,
+          "events": 40984,
+          "conflict_events": 7670,
+          "goldstein": 1.46,
+          "conflict_ratio": 0.187,
+          "violence_events": 2127,
+          "protest_events": 227
+        },
+        {
+          "month": "2025-10",
+          "sgm": 3.97,
+          "events": 48367,
+          "conflict_events": 8196,
+          "goldstein": 1.62,
+          "conflict_ratio": 0.169,
+          "violence_events": 2408,
+          "protest_events": 301
+        },
+        {
+          "month": "2025-11",
+          "sgm": 4.21,
+          "events": 42411,
+          "conflict_events": 9961,
+          "goldstein": 0.96,
+          "conflict_ratio": 0.235,
+          "violence_events": 2505,
+          "protest_events": 318
+        }
+      ]
+    },
+    "KR": {
+      "name": "South Korea",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 4.03,
+          "events": 11573,
+          "conflict_events": 2499,
+          "goldstein": 1.21,
+          "conflict_ratio": 0.216,
+          "violence_events": 531,
+          "protest_events": 82
+        },
+        {
+          "month": "2024-12",
+          "sgm": 4.61,
+          "events": 72635,
+          "conflict_events": 23387,
+          "goldstein": 0.29,
+          "conflict_ratio": 0.322,
+          "violence_events": 3573,
+          "protest_events": 1767
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.51,
+          "events": 46324,
+          "conflict_events": 14392,
+          "goldstein": 0.3,
+          "conflict_ratio": 0.311,
+          "violence_events": 2835,
+          "protest_events": 650
+        },
+        {
+          "month": "2025-02",
+          "sgm": 4.21,
+          "events": 33215,
+          "conflict_events": 8110,
+          "goldstein": 1.01,
+          "conflict_ratio": 0.244,
+          "violence_events": 1724,
+          "protest_events": 226
+        },
+        {
+          "month": "2025-03",
+          "sgm": 4.32,
+          "events": 42596,
+          "conflict_events": 11293,
+          "goldstein": 0.86,
+          "conflict_ratio": 0.265,
+          "violence_events": 2901,
+          "protest_events": 515
+        },
+        {
+          "month": "2025-04",
+          "sgm": 4.16,
+          "events": 41364,
+          "conflict_events": 9692,
+          "goldstein": 1.14,
+          "conflict_ratio": 0.234,
+          "violence_events": 2398,
+          "protest_events": 239
+        },
+        {
+          "month": "2025-05",
+          "sgm": 4.09,
+          "events": 35912,
+          "conflict_events": 7557,
+          "goldstein": 1.29,
+          "conflict_ratio": 0.21,
+          "violence_events": 1817,
+          "protest_events": 202
+        },
+        {
+          "month": "2025-06",
+          "sgm": 3.84,
+          "events": 17551,
+          "conflict_events": 3433,
+          "goldstein": 1.35,
+          "conflict_ratio": 0.196,
+          "violence_events": 711,
+          "protest_events": 120
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.06,
+          "events": 38740,
+          "conflict_events": 7880,
+          "goldstein": 1.29,
+          "conflict_ratio": 0.203,
+          "violence_events": 1972,
+          "protest_events": 142
+        },
+        {
+          "month": "2025-08",
+          "sgm": 3.93,
+          "events": 42241,
+          "conflict_events": 8436,
+          "goldstein": 1.31,
+          "conflict_ratio": 0.2,
+          "violence_events": 1889,
+          "protest_events": 173
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.11,
+          "events": 45849,
+          "conflict_events": 9948,
+          "goldstein": 1.12,
+          "conflict_ratio": 0.217,
+          "violence_events": 2706,
+          "protest_events": 147
+        },
+        {
+          "month": "2025-10",
+          "sgm": 3.67,
+          "events": 50287,
+          "conflict_events": 7829,
+          "goldstein": 1.71,
+          "conflict_ratio": 0.156,
+          "violence_events": 1987,
+          "protest_events": 255
+        },
+        {
+          "month": "2025-11",
+          "sgm": 3.91,
+          "events": 37316,
+          "conflict_events": 6744,
+          "goldstein": 1.5,
+          "conflict_ratio": 0.181,
+          "violence_events": 1741,
+          "protest_events": 135
+        }
+      ]
+    },
+    "KP": {
+      "name": "North Korea",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 4.23,
+          "events": 5242,
+          "conflict_events": 1408,
+          "goldstein": 0.83,
+          "conflict_ratio": 0.269,
+          "violence_events": 654,
+          "protest_events": 4
+        },
+        {
+          "month": "2024-12",
+          "sgm": 4.81,
+          "events": 18971,
+          "conflict_events": 7848,
+          "goldstein": -0.64,
+          "conflict_ratio": 0.414,
+          "violence_events": 3539,
+          "protest_events": 172
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.63,
+          "events": 16083,
+          "conflict_events": 5890,
+          "goldstein": -0.37,
+          "conflict_ratio": 0.366,
+          "violence_events": 2884,
+          "protest_events": 50
+        },
+        {
+          "month": "2025-02",
+          "sgm": 4.41,
+          "events": 10898,
+          "conflict_events": 3424,
+          "goldstein": 0.37,
+          "conflict_ratio": 0.314,
+          "violence_events": 1257,
+          "protest_events": 41
+        },
+        {
+          "month": "2025-03",
+          "sgm": 4.46,
+          "events": 9407,
+          "conflict_events": 3091,
+          "goldstein": 0.21,
+          "conflict_ratio": 0.329,
+          "violence_events": 1090,
+          "protest_events": 26
+        },
+        {
+          "month": "2025-04",
+          "sgm": 4.43,
+          "events": 9494,
+          "conflict_events": 3038,
+          "goldstein": 0.26,
+          "conflict_ratio": 0.32,
+          "violence_events": 1277,
+          "protest_events": 17
+        },
+        {
+          "month": "2025-05",
+          "sgm": 4.41,
+          "events": 7847,
+          "conflict_events": 2337,
+          "goldstein": 0.2,
+          "conflict_ratio": 0.298,
+          "violence_events": 874,
+          "protest_events": 25
+        },
+        {
+          "month": "2025-06",
+          "sgm": 4.15,
+          "events": 4655,
+          "conflict_events": 1042,
+          "goldstein": 1.04,
+          "conflict_ratio": 0.224,
+          "violence_events": 273,
+          "protest_events": 23
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.08,
+          "events": 11130,
+          "conflict_events": 2509,
+          "goldstein": 1.33,
+          "conflict_ratio": 0.225,
+          "violence_events": 637,
+          "protest_events": 22
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.23,
+          "events": 10508,
+          "conflict_events": 2737,
+          "goldstein": 0.77,
+          "conflict_ratio": 0.26,
+          "violence_events": 727,
+          "protest_events": 16
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.05,
+          "events": 11206,
+          "conflict_events": 2193,
+          "goldstein": 1.25,
+          "conflict_ratio": 0.196,
+          "violence_events": 650,
+          "protest_events": 35
+        },
+        {
+          "month": "2025-10",
+          "sgm": 4.08,
+          "events": 11837,
+          "conflict_events": 2325,
+          "goldstein": 1.1,
+          "conflict_ratio": 0.196,
+          "violence_events": 884,
+          "protest_events": 36
+        },
+        {
+          "month": "2025-11",
+          "sgm": 4.26,
+          "events": 6773,
+          "conflict_events": 1850,
+          "goldstein": 0.77,
+          "conflict_ratio": 0.273,
+          "violence_events": 568,
+          "protest_events": 16
+        }
+      ]
+    },
+    "TW": {
+      "name": "Taiwan",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 3.45,
+          "events": 4313,
+          "conflict_events": 889,
+          "goldstein": 1.35,
+          "conflict_ratio": 0.206,
+          "violence_events": 106,
+          "protest_events": 19
+        },
+        {
+          "month": "2024-12",
+          "sgm": 3.9,
+          "events": 15704,
+          "conflict_events": 3659,
+          "goldstein": 0.97,
+          "conflict_ratio": 0.233,
+          "violence_events": 586,
+          "protest_events": 113
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.07,
+          "events": 11944,
+          "conflict_events": 2816,
+          "goldstein": 0.88,
+          "conflict_ratio": 0.236,
+          "violence_events": 523,
+          "protest_events": 69
+        },
+        {
+          "month": "2025-02",
+          "sgm": 3.9,
+          "events": 12575,
+          "conflict_events": 3164,
+          "goldstein": 0.85,
+          "conflict_ratio": 0.252,
+          "violence_events": 452,
+          "protest_events": 70
+        },
+        {
+          "month": "2025-03",
+          "sgm": 3.95,
+          "events": 13382,
+          "conflict_events": 3260,
+          "goldstein": 0.89,
+          "conflict_ratio": 0.244,
+          "violence_events": 502,
+          "protest_events": 126
+        },
+        {
+          "month": "2025-04",
+          "sgm": 4.05,
+          "events": 15683,
+          "conflict_events": 3827,
+          "goldstein": 0.92,
+          "conflict_ratio": 0.244,
+          "violence_events": 660,
+          "protest_events": 126
+        },
+        {
+          "month": "2025-05",
+          "sgm": 4.0,
+          "events": 13251,
+          "conflict_events": 2940,
+          "goldstein": 1.0,
+          "conflict_ratio": 0.222,
+          "violence_events": 549,
+          "protest_events": 124
+        },
+        {
+          "month": "2025-06",
+          "sgm": 3.89,
+          "events": 5193,
+          "conflict_events": 1213,
+          "goldstein": 1.02,
+          "conflict_ratio": 0.234,
+          "violence_events": 195,
+          "protest_events": 33
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.34,
+          "events": 12770,
+          "conflict_events": 3415,
+          "goldstein": 0.6,
+          "conflict_ratio": 0.267,
+          "violence_events": 644,
+          "protest_events": 112
+        },
+        {
+          "month": "2025-08",
+          "sgm": 3.81,
+          "events": 11733,
+          "conflict_events": 2496,
+          "goldstein": 1.16,
+          "conflict_ratio": 0.213,
+          "violence_events": 434,
+          "protest_events": 71
+        },
+        {
+          "month": "2025-09",
+          "sgm": 3.82,
+          "events": 13053,
+          "conflict_events": 2795,
+          "goldstein": 1.27,
+          "conflict_ratio": 0.214,
+          "violence_events": 500,
+          "protest_events": 67
+        },
+        {
+          "month": "2025-10",
+          "sgm": 3.77,
+          "events": 13484,
+          "conflict_events": 2841,
+          "goldstein": 1.1,
+          "conflict_ratio": 0.211,
+          "violence_events": 482,
+          "protest_events": 57
+        },
+        {
+          "month": "2025-11",
+          "sgm": 4.2,
+          "events": 15510,
+          "conflict_events": 3703,
+          "goldstein": 0.76,
+          "conflict_ratio": 0.239,
+          "violence_events": 744,
+          "protest_events": 117
+        }
+      ]
+    },
+    "AU": {
+      "name": "Australia",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 3.76,
+          "events": 3093,
+          "conflict_events": 568,
+          "goldstein": 1.41,
+          "conflict_ratio": 0.184,
+          "violence_events": 124,
+          "protest_events": 9
+        },
+        {
+          "month": "2024-12",
+          "sgm": 4.05,
+          "events": 11438,
+          "conflict_events": 2524,
+          "goldstein": 1.12,
+          "conflict_ratio": 0.221,
+          "violence_events": 529,
+          "protest_events": 59
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.09,
+          "events": 13093,
+          "conflict_events": 2927,
+          "goldstein": 1.2,
+          "conflict_ratio": 0.224,
+          "violence_events": 599,
+          "protest_events": 151
+        },
+        {
+          "month": "2025-02",
+          "sgm": 4.29,
+          "events": 11752,
+          "conflict_events": 2960,
+          "goldstein": 0.67,
+          "conflict_ratio": 0.252,
+          "violence_events": 786,
+          "protest_events": 84
+        },
+        {
+          "month": "2025-03",
+          "sgm": 3.94,
+          "events": 11646,
+          "conflict_events": 2524,
+          "goldstein": 1.08,
+          "conflict_ratio": 0.217,
+          "violence_events": 475,
+          "protest_events": 96
+        },
+        {
+          "month": "2025-04",
+          "sgm": 3.97,
+          "events": 11216,
+          "conflict_events": 2289,
+          "goldstein": 1.16,
+          "conflict_ratio": 0.204,
+          "violence_events": 488,
+          "protest_events": 79
+        },
+        {
+          "month": "2025-05",
+          "sgm": 3.94,
+          "events": 12096,
+          "conflict_events": 2544,
+          "goldstein": 1.23,
+          "conflict_ratio": 0.21,
+          "violence_events": 517,
+          "protest_events": 65
+        },
+        {
+          "month": "2025-06",
+          "sgm": 4.44,
+          "events": 8017,
+          "conflict_events": 2260,
+          "goldstein": -0.15,
+          "conflict_ratio": 0.282,
+          "violence_events": 1152,
+          "protest_events": 21
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.17,
+          "events": 11336,
+          "conflict_events": 2482,
+          "goldstein": 0.98,
+          "conflict_ratio": 0.219,
+          "violence_events": 611,
+          "protest_events": 68
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.27,
+          "events": 9824,
+          "conflict_events": 2447,
+          "goldstein": 0.72,
+          "conflict_ratio": 0.249,
+          "violence_events": 628,
+          "protest_events": 71
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.08,
+          "events": 11530,
+          "conflict_events": 2427,
+          "goldstein": 1.07,
+          "conflict_ratio": 0.21,
+          "violence_events": 543,
+          "protest_events": 77
+        },
+        {
+          "month": "2025-10",
+          "sgm": 4.06,
+          "events": 11879,
+          "conflict_events": 2680,
+          "goldstein": 1.14,
+          "conflict_ratio": 0.226,
+          "violence_events": 541,
+          "protest_events": 90
+        },
+        {
+          "month": "2025-11",
+          "sgm": 4.14,
+          "events": 10306,
+          "conflict_events": 2207,
+          "goldstein": 1.05,
+          "conflict_ratio": 0.214,
+          "violence_events": 552,
+          "protest_events": 61
+        }
+      ]
+    },
+    "CA": {
+      "name": "Canada",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 4.22,
+          "events": 33106,
+          "conflict_events": 7610,
+          "goldstein": 1.01,
+          "conflict_ratio": 0.23,
+          "violence_events": 1776,
+          "protest_events": 363
+        },
+        {
+          "month": "2024-12",
+          "sgm": 4.18,
+          "events": 97959,
+          "conflict_events": 22414,
+          "goldstein": 1.01,
+          "conflict_ratio": 0.229,
+          "violence_events": 5565,
+          "protest_events": 589
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.19,
+          "events": 115527,
+          "conflict_events": 26895,
+          "goldstein": 0.98,
+          "conflict_ratio": 0.233,
+          "violence_events": 6629,
+          "protest_events": 654
+        },
+        {
+          "month": "2025-02",
+          "sgm": 4.04,
+          "events": 119458,
+          "conflict_events": 26805,
+          "goldstein": 1.15,
+          "conflict_ratio": 0.224,
+          "violence_events": 5401,
+          "protest_events": 738
+        },
+        {
+          "month": "2025-03",
+          "sgm": 4.03,
+          "events": 143543,
+          "conflict_events": 31592,
+          "goldstein": 1.2,
+          "conflict_ratio": 0.22,
+          "violence_events": 6454,
+          "protest_events": 1175
+        },
+        {
+          "month": "2025-04",
+          "sgm": 4.19,
+          "events": 123377,
+          "conflict_events": 27363,
+          "goldstein": 1.0,
+          "conflict_ratio": 0.222,
+          "violence_events": 6359,
+          "protest_events": 1054
+        },
+        {
+          "month": "2025-05",
+          "sgm": 4.12,
+          "events": 118114,
+          "conflict_events": 24803,
+          "goldstein": 1.13,
+          "conflict_ratio": 0.21,
+          "violence_events": 5841,
+          "protest_events": 745
+        },
+        {
+          "month": "2025-06",
+          "sgm": 4.16,
+          "events": 53221,
+          "conflict_events": 11664,
+          "goldstein": 1.04,
+          "conflict_ratio": 0.219,
+          "violence_events": 2989,
+          "protest_events": 363
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.15,
+          "events": 92408,
+          "conflict_events": 20583,
+          "goldstein": 1.08,
+          "conflict_ratio": 0.223,
+          "violence_events": 5135,
+          "protest_events": 494
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.14,
+          "events": 91658,
+          "conflict_events": 20107,
+          "goldstein": 1.11,
+          "conflict_ratio": 0.219,
+          "violence_events": 4984,
+          "protest_events": 521
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.14,
+          "events": 96754,
+          "conflict_events": 20860,
+          "goldstein": 1.07,
+          "conflict_ratio": 0.216,
+          "violence_events": 5746,
+          "protest_events": 571
+        },
+        {
+          "month": "2025-10",
+          "sgm": 4.14,
+          "events": 103754,
+          "conflict_events": 22252,
+          "goldstein": 1.15,
+          "conflict_ratio": 0.214,
+          "violence_events": 5375,
+          "protest_events": 770
+        },
+        {
+          "month": "2025-11",
+          "sgm": 4.09,
+          "events": 100230,
+          "conflict_events": 20067,
+          "goldstein": 1.25,
+          "conflict_ratio": 0.2,
+          "violence_events": 5194,
+          "protest_events": 650
+        }
+      ]
+    },
+    "MX": {
+      "name": "Mexico",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 4.26,
+          "events": 21672,
+          "conflict_events": 5002,
+          "goldstein": 0.84,
+          "conflict_ratio": 0.231,
+          "violence_events": 1531,
+          "protest_events": 244
+        },
+        {
+          "month": "2024-12",
+          "sgm": 4.32,
+          "events": 74740,
+          "conflict_events": 18468,
+          "goldstein": 0.6,
+          "conflict_ratio": 0.247,
+          "violence_events": 6590,
+          "protest_events": 772
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.33,
+          "events": 89471,
+          "conflict_events": 22834,
+          "goldstein": 0.63,
+          "conflict_ratio": 0.255,
+          "violence_events": 7023,
+          "protest_events": 977
+        },
+        {
+          "month": "2025-02",
+          "sgm": 4.34,
+          "events": 95522,
+          "conflict_events": 24972,
+          "goldstein": 0.65,
+          "conflict_ratio": 0.261,
+          "violence_events": 7052,
+          "protest_events": 1089
+        },
+        {
+          "month": "2025-03",
+          "sgm": 4.34,
+          "events": 91115,
+          "conflict_events": 23326,
+          "goldstein": 0.66,
+          "conflict_ratio": 0.256,
+          "violence_events": 6608,
+          "protest_events": 1141
+        },
+        {
+          "month": "2025-04",
+          "sgm": 4.31,
+          "events": 75614,
+          "conflict_events": 19065,
+          "goldstein": 0.63,
+          "conflict_ratio": 0.252,
+          "violence_events": 5862,
+          "protest_events": 708
+        },
+        {
+          "month": "2025-05",
+          "sgm": 4.4,
+          "events": 84083,
+          "conflict_events": 22576,
+          "goldstein": 0.4,
+          "conflict_ratio": 0.268,
+          "violence_events": 7895,
+          "protest_events": 916
+        },
+        {
+          "month": "2025-06",
+          "sgm": 4.63,
+          "events": 38960,
+          "conflict_events": 11789,
+          "goldstein": 0.12,
+          "conflict_ratio": 0.303,
+          "violence_events": 3573,
+          "protest_events": 973
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.33,
+          "events": 77463,
+          "conflict_events": 19680,
+          "goldstein": 0.65,
+          "conflict_ratio": 0.254,
+          "violence_events": 5791,
+          "protest_events": 893
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.34,
+          "events": 77436,
+          "conflict_events": 20124,
+          "goldstein": 0.58,
+          "conflict_ratio": 0.26,
+          "violence_events": 6149,
+          "protest_events": 782
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.31,
+          "events": 75774,
+          "conflict_events": 18028,
+          "goldstein": 0.7,
+          "conflict_ratio": 0.238,
+          "violence_events": 5745,
+          "protest_events": 949
+        },
+        {
+          "month": "2025-10",
+          "sgm": 4.31,
+          "events": 76955,
+          "conflict_events": 18469,
+          "goldstein": 0.68,
+          "conflict_ratio": 0.24,
+          "violence_events": 5961,
+          "protest_events": 907
+        },
+        {
+          "month": "2025-11",
+          "sgm": 4.5,
+          "events": 78409,
+          "conflict_events": 22416,
+          "goldstein": 0.25,
+          "conflict_ratio": 0.286,
+          "violence_events": 7648,
+          "protest_events": 1258
+        }
+      ]
+    },
+    "VE": {
+      "name": "Venezuela",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 4.47,
+          "events": 8388,
+          "conflict_events": 2478,
+          "goldstein": 0.49,
+          "conflict_ratio": 0.295,
+          "violence_events": 451,
+          "protest_events": 134
+        },
+        {
+          "month": "2024-12",
+          "sgm": 4.38,
+          "events": 29172,
+          "conflict_events": 7729,
+          "goldstein": 0.78,
+          "conflict_ratio": 0.265,
+          "violence_events": 1505,
+          "protest_events": 499
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.52,
+          "events": 50719,
+          "conflict_events": 15192,
+          "goldstein": 0.43,
+          "conflict_ratio": 0.3,
+          "violence_events": 2928,
+          "protest_events": 957
+        },
+        {
+          "month": "2025-02",
+          "sgm": 4.3,
+          "events": 30602,
+          "conflict_events": 8065,
+          "goldstein": 0.79,
+          "conflict_ratio": 0.264,
+          "violence_events": 1730,
+          "protest_events": 269
+        },
+        {
+          "month": "2025-03",
+          "sgm": 4.45,
+          "events": 40308,
+          "conflict_events": 12665,
+          "goldstein": 0.48,
+          "conflict_ratio": 0.314,
+          "violence_events": 2034,
+          "protest_events": 407
+        },
+        {
+          "month": "2025-04",
+          "sgm": 4.42,
+          "events": 31582,
+          "conflict_events": 9971,
+          "goldstein": 0.47,
+          "conflict_ratio": 0.316,
+          "violence_events": 1533,
+          "protest_events": 315
+        },
+        {
+          "month": "2025-05",
+          "sgm": 4.24,
+          "events": 34941,
+          "conflict_events": 10002,
+          "goldstein": 0.68,
+          "conflict_ratio": 0.286,
+          "violence_events": 1512,
+          "protest_events": 466
+        },
+        {
+          "month": "2025-06",
+          "sgm": 4.39,
+          "events": 12610,
+          "conflict_events": 3649,
+          "goldstein": 0.49,
+          "conflict_ratio": 0.289,
+          "violence_events": 708,
+          "protest_events": 97
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.29,
+          "events": 29244,
+          "conflict_events": 7903,
+          "goldstein": 0.9,
+          "conflict_ratio": 0.27,
+          "violence_events": 1702,
+          "protest_events": 243
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.49,
+          "events": 31578,
+          "conflict_events": 10202,
+          "goldstein": 0.24,
+          "conflict_ratio": 0.323,
+          "violence_events": 2140,
+          "protest_events": 235
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.66,
+          "events": 42434,
+          "conflict_events": 15475,
+          "goldstein": -0.36,
+          "conflict_ratio": 0.365,
+          "violence_events": 3939,
+          "protest_events": 319
+        },
+        {
+          "month": "2025-10",
+          "sgm": 4.61,
+          "events": 55184,
+          "conflict_events": 19335,
+          "goldstein": -0.09,
+          "conflict_ratio": 0.35,
+          "violence_events": 4658,
+          "protest_events": 543
+        },
+        {
+          "month": "2025-11",
+          "sgm": 4.58,
+          "events": 52986,
+          "conflict_events": 18440,
+          "goldstein": -0.08,
+          "conflict_ratio": 0.348,
+          "violence_events": 4117,
+          "protest_events": 345
+        }
+      ]
+    },
+    "CO": {
+      "name": "Colombia",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 4.29,
+          "events": 6610,
+          "conflict_events": 1438,
+          "goldstein": 0.79,
+          "conflict_ratio": 0.218,
+          "violence_events": 512,
+          "protest_events": 104
+        },
+        {
+          "month": "2024-12",
+          "sgm": 4.2,
+          "events": 24783,
+          "conflict_events": 5558,
+          "goldstein": 0.8,
+          "conflict_ratio": 0.224,
+          "violence_events": 1943,
+          "protest_events": 129
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.4,
+          "events": 39137,
+          "conflict_events": 11395,
+          "goldstein": 0.39,
+          "conflict_ratio": 0.291,
+          "violence_events": 3604,
+          "protest_events": 248
+        },
+        {
+          "month": "2025-02",
+          "sgm": 4.26,
+          "events": 30822,
+          "conflict_events": 7513,
+          "goldstein": 0.71,
+          "conflict_ratio": 0.244,
+          "violence_events": 2276,
+          "protest_events": 195
+        },
+        {
+          "month": "2025-03",
+          "sgm": 4.33,
+          "events": 30672,
+          "conflict_events": 7625,
+          "goldstein": 0.62,
+          "conflict_ratio": 0.249,
+          "violence_events": 2400,
+          "protest_events": 346
+        },
+        {
+          "month": "2025-04",
+          "sgm": 4.31,
+          "events": 29873,
+          "conflict_events": 7387,
+          "goldstein": 0.52,
+          "conflict_ratio": 0.247,
+          "violence_events": 2592,
+          "protest_events": 218
+        },
+        {
+          "month": "2025-05",
+          "sgm": 4.33,
+          "events": 33440,
+          "conflict_events": 8400,
+          "goldstein": 0.55,
+          "conflict_ratio": 0.251,
+          "violence_events": 2736,
+          "protest_events": 320
+        },
+        {
+          "month": "2025-06",
+          "sgm": 4.75,
+          "events": 21127,
+          "conflict_events": 7833,
+          "goldstein": -0.82,
+          "conflict_ratio": 0.371,
+          "violence_events": 3522,
+          "protest_events": 135
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.39,
+          "events": 34185,
+          "conflict_events": 9663,
+          "goldstein": 0.37,
+          "conflict_ratio": 0.283,
+          "violence_events": 2956,
+          "protest_events": 227
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.6,
+          "events": 42421,
+          "conflict_events": 14228,
+          "goldstein": -0.26,
+          "conflict_ratio": 0.335,
+          "violence_events": 5470,
+          "protest_events": 317
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.39,
+          "events": 31713,
+          "conflict_events": 8709,
+          "goldstein": 0.36,
+          "conflict_ratio": 0.275,
+          "violence_events": 2872,
+          "protest_events": 254
+        },
+        {
+          "month": "2025-10",
+          "sgm": 4.58,
+          "events": 40697,
+          "conflict_events": 13385,
+          "goldstein": -0.05,
+          "conflict_ratio": 0.329,
+          "violence_events": 3910,
+          "protest_events": 470
+        },
+        {
+          "month": "2025-11",
+          "sgm": 4.38,
+          "events": 32659,
+          "conflict_events": 9102,
+          "goldstein": 0.31,
+          "conflict_ratio": 0.279,
+          "violence_events": 3132,
+          "protest_events": 160
+        }
+      ]
+    },
+    "SA": {
+      "name": "Saudi Arabia",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 3.43,
+          "events": 5113,
+          "conflict_events": 735,
+          "goldstein": 1.98,
+          "conflict_ratio": 0.144,
+          "violence_events": 170,
+          "protest_events": 15
+        },
+        {
+          "month": "2024-12",
+          "sgm": 4.02,
+          "events": 25961,
+          "conflict_events": 5000,
+          "goldstein": 1.47,
+          "conflict_ratio": 0.193,
+          "violence_events": 1414,
+          "protest_events": 119
+        },
+        {
+          "month": "2025-01",
+          "sgm": 3.64,
+          "events": 25974,
+          "conflict_events": 3907,
+          "goldstein": 1.89,
+          "conflict_ratio": 0.15,
+          "violence_events": 1054,
+          "protest_events": 96
+        },
+        {
+          "month": "2025-02",
+          "sgm": 3.16,
+          "events": 52978,
+          "conflict_events": 7508,
+          "goldstein": 2.12,
+          "conflict_ratio": 0.142,
+          "violence_events": 1162,
+          "protest_events": 143
+        },
+        {
+          "month": "2025-03",
+          "sgm": 3.45,
+          "events": 46407,
+          "conflict_events": 5893,
+          "goldstein": 2.17,
+          "conflict_ratio": 0.127,
+          "violence_events": 1669,
+          "protest_events": 177
+        },
+        {
+          "month": "2025-04",
+          "sgm": 3.69,
+          "events": 27923,
+          "conflict_events": 4361,
+          "goldstein": 1.76,
+          "conflict_ratio": 0.156,
+          "violence_events": 1144,
+          "protest_events": 104
+        },
+        {
+          "month": "2025-05",
+          "sgm": 3.19,
+          "events": 46181,
+          "conflict_events": 5463,
+          "goldstein": 2.19,
+          "conflict_ratio": 0.118,
+          "violence_events": 1221,
+          "protest_events": 106
+        },
+        {
+          "month": "2025-06",
+          "sgm": 3.84,
+          "events": 12664,
+          "conflict_events": 1983,
+          "goldstein": 1.54,
+          "conflict_ratio": 0.157,
+          "violence_events": 575,
+          "protest_events": 41
+        },
+        {
+          "month": "2025-07",
+          "sgm": 3.8,
+          "events": 20114,
+          "conflict_events": 3188,
+          "goldstein": 1.9,
+          "conflict_ratio": 0.158,
+          "violence_events": 950,
+          "protest_events": 45
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.03,
+          "events": 16269,
+          "conflict_events": 3252,
+          "goldstein": 1.55,
+          "conflict_ratio": 0.2,
+          "violence_events": 786,
+          "protest_events": 92
+        },
+        {
+          "month": "2025-09",
+          "sgm": 3.74,
+          "events": 24988,
+          "conflict_events": 3893,
+          "goldstein": 1.95,
+          "conflict_ratio": 0.156,
+          "violence_events": 1117,
+          "protest_events": 77
+        },
+        {
+          "month": "2025-10",
+          "sgm": 3.89,
+          "events": 22106,
+          "conflict_events": 3610,
+          "goldstein": 1.85,
+          "conflict_ratio": 0.163,
+          "violence_events": 1129,
+          "protest_events": 66
+        },
+        {
+          "month": "2025-11",
+          "sgm": 3.91,
+          "events": 32229,
+          "conflict_events": 5423,
+          "goldstein": 1.75,
+          "conflict_ratio": 0.168,
+          "violence_events": 1874,
+          "protest_events": 63
+        }
+      ]
+    },
+    "EG": {
+      "name": "Egypt",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 3.71,
+          "events": 12198,
+          "conflict_events": 1743,
+          "goldstein": 1.87,
+          "conflict_ratio": 0.143,
+          "violence_events": 521,
+          "protest_events": 48
+        },
+        {
+          "month": "2024-12",
+          "sgm": 3.76,
+          "events": 55838,
+          "conflict_events": 8211,
+          "goldstein": 1.82,
+          "conflict_ratio": 0.147,
+          "violence_events": 2492,
+          "protest_events": 216
+        },
+        {
+          "month": "2025-01",
+          "sgm": 3.78,
+          "events": 66352,
+          "conflict_events": 11360,
+          "goldstein": 1.73,
+          "conflict_ratio": 0.171,
+          "violence_events": 2764,
+          "protest_events": 386
+        },
+        {
+          "month": "2025-02",
+          "sgm": 3.69,
+          "events": 65742,
+          "conflict_events": 12199,
+          "goldstein": 1.64,
+          "conflict_ratio": 0.186,
+          "violence_events": 2273,
+          "protest_events": 355
+        },
+        {
+          "month": "2025-03",
+          "sgm": 4.0,
+          "events": 50268,
+          "conflict_events": 9302,
+          "goldstein": 1.5,
+          "conflict_ratio": 0.185,
+          "violence_events": 2402,
+          "protest_events": 334
+        },
+        {
+          "month": "2025-04",
+          "sgm": 3.81,
+          "events": 50874,
+          "conflict_events": 8116,
+          "goldstein": 1.65,
+          "conflict_ratio": 0.16,
+          "violence_events": 2211,
+          "protest_events": 306
+        },
+        {
+          "month": "2025-05",
+          "sgm": 3.78,
+          "events": 44296,
+          "conflict_events": 7062,
+          "goldstein": 1.69,
+          "conflict_ratio": 0.159,
+          "violence_events": 1898,
+          "protest_events": 228
+        },
+        {
+          "month": "2025-06",
+          "sgm": 4.18,
+          "events": 21340,
+          "conflict_events": 4533,
+          "goldstein": 1.06,
+          "conflict_ratio": 0.212,
+          "violence_events": 1265,
+          "protest_events": 218
+        },
+        {
+          "month": "2025-07",
+          "sgm": 3.84,
+          "events": 42803,
+          "conflict_events": 7416,
+          "goldstein": 1.7,
+          "conflict_ratio": 0.173,
+          "violence_events": 1878,
+          "protest_events": 332
+        },
+        {
+          "month": "2025-08",
+          "sgm": 3.86,
+          "events": 45678,
+          "conflict_events": 8185,
+          "goldstein": 1.58,
+          "conflict_ratio": 0.179,
+          "violence_events": 1941,
+          "protest_events": 346
+        },
+        {
+          "month": "2025-09",
+          "sgm": 3.82,
+          "events": 50468,
+          "conflict_events": 9145,
+          "goldstein": 1.56,
+          "conflict_ratio": 0.181,
+          "violence_events": 2103,
+          "protest_events": 305
+        },
+        {
+          "month": "2025-10",
+          "sgm": 3.53,
+          "events": 85717,
+          "conflict_events": 11604,
+          "goldstein": 2.12,
+          "conflict_ratio": 0.135,
+          "violence_events": 3312,
+          "protest_events": 307
+        },
+        {
+          "month": "2025-11",
+          "sgm": 3.56,
+          "events": 44324,
+          "conflict_events": 6290,
+          "goldstein": 1.81,
+          "conflict_ratio": 0.142,
+          "violence_events": 1642,
+          "protest_events": 187
+        }
+      ]
+    },
+    "TR": {
+      "name": "Turkey",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 4.26,
+          "events": 18337,
+          "conflict_events": 4257,
+          "goldstein": 0.7,
+          "conflict_ratio": 0.232,
+          "violence_events": 1586,
+          "protest_events": 144
+        },
+        {
+          "month": "2024-12",
+          "sgm": 4.18,
+          "events": 85726,
+          "conflict_events": 19221,
+          "goldstein": 0.9,
+          "conflict_ratio": 0.224,
+          "violence_events": 7171,
+          "protest_events": 470
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.26,
+          "events": 56893,
+          "conflict_events": 13685,
+          "goldstein": 0.66,
+          "conflict_ratio": 0.241,
+          "violence_events": 4589,
+          "protest_events": 349
+        },
+        {
+          "month": "2025-02",
+          "sgm": 4.13,
+          "events": 58716,
+          "conflict_events": 12662,
+          "goldstein": 1.04,
+          "conflict_ratio": 0.216,
+          "violence_events": 3631,
+          "protest_events": 260
+        },
+        {
+          "month": "2025-03",
+          "sgm": 4.86,
+          "events": 77988,
+          "conflict_events": 25727,
+          "goldstein": -0.04,
+          "conflict_ratio": 0.33,
+          "violence_events": 4987,
+          "protest_events": 3293
+        },
+        {
+          "month": "2025-04",
+          "sgm": 4.35,
+          "events": 62903,
+          "conflict_events": 15517,
+          "goldstein": 0.71,
+          "conflict_ratio": 0.247,
+          "violence_events": 3537,
+          "protest_events": 994
+        },
+        {
+          "month": "2025-05",
+          "sgm": 3.98,
+          "events": 107220,
+          "conflict_events": 20262,
+          "goldstein": 1.4,
+          "conflict_ratio": 0.189,
+          "violence_events": 4989,
+          "protest_events": 759
+        },
+        {
+          "month": "2025-06",
+          "sgm": 4.12,
+          "events": 29066,
+          "conflict_events": 6279,
+          "goldstein": 1.2,
+          "conflict_ratio": 0.216,
+          "violence_events": 1902,
+          "protest_events": 176
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.21,
+          "events": 65219,
+          "conflict_events": 15376,
+          "goldstein": 0.89,
+          "conflict_ratio": 0.236,
+          "violence_events": 4684,
+          "protest_events": 383
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.16,
+          "events": 52729,
+          "conflict_events": 11492,
+          "goldstein": 0.95,
+          "conflict_ratio": 0.218,
+          "violence_events": 3458,
+          "protest_events": 280
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.22,
+          "events": 57927,
+          "conflict_events": 13320,
+          "goldstein": 0.81,
+          "conflict_ratio": 0.23,
+          "violence_events": 3976,
+          "protest_events": 392
+        },
+        {
+          "month": "2025-10",
+          "sgm": 4.11,
+          "events": 71818,
+          "conflict_events": 15246,
+          "goldstein": 1.25,
+          "conflict_ratio": 0.212,
+          "violence_events": 4176,
+          "protest_events": 496
+        },
+        {
+          "month": "2025-11",
+          "sgm": 4.06,
+          "events": 72334,
+          "conflict_events": 13806,
+          "goldstein": 1.25,
+          "conflict_ratio": 0.191,
+          "violence_events": 3811,
+          "protest_events": 338
+        }
+      ]
+    },
+    "PL": {
+      "name": "Poland",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 4.24,
+          "events": 8822,
+          "conflict_events": 2046,
+          "goldstein": 1.11,
+          "conflict_ratio": 0.232,
+          "violence_events": 518,
+          "protest_events": 124
+        },
+        {
+          "month": "2024-12",
+          "sgm": 4.18,
+          "events": 31750,
+          "conflict_events": 7604,
+          "goldstein": 1.17,
+          "conflict_ratio": 0.239,
+          "violence_events": 1688,
+          "protest_events": 228
+        },
+        {
+          "month": "2025-01",
+          "sgm": 4.18,
+          "events": 37433,
+          "conflict_events": 8464,
+          "goldstein": 1.08,
+          "conflict_ratio": 0.226,
+          "violence_events": 1939,
+          "protest_events": 303
+        },
+        {
+          "month": "2025-02",
+          "sgm": 3.98,
+          "events": 32495,
+          "conflict_events": 7100,
+          "goldstein": 1.34,
+          "conflict_ratio": 0.218,
+          "violence_events": 1448,
+          "protest_events": 197
+        },
+        {
+          "month": "2025-03",
+          "sgm": 4.14,
+          "events": 35984,
+          "conflict_events": 7893,
+          "goldstein": 1.31,
+          "conflict_ratio": 0.219,
+          "violence_events": 1808,
+          "protest_events": 360
+        },
+        {
+          "month": "2025-04",
+          "sgm": 4.19,
+          "events": 31394,
+          "conflict_events": 7383,
+          "goldstein": 1.08,
+          "conflict_ratio": 0.235,
+          "violence_events": 1947,
+          "protest_events": 244
+        },
+        {
+          "month": "2025-05",
+          "sgm": 4.22,
+          "events": 40007,
+          "conflict_events": 9606,
+          "goldstein": 1.03,
+          "conflict_ratio": 0.24,
+          "violence_events": 2240,
+          "protest_events": 365
+        },
+        {
+          "month": "2025-06",
+          "sgm": 4.3,
+          "events": 16705,
+          "conflict_events": 4480,
+          "goldstein": 0.77,
+          "conflict_ratio": 0.268,
+          "violence_events": 1071,
+          "protest_events": 126
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.34,
+          "events": 30451,
+          "conflict_events": 8541,
+          "goldstein": 0.63,
+          "conflict_ratio": 0.28,
+          "violence_events": 2452,
+          "protest_events": 220
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.22,
+          "events": 33426,
+          "conflict_events": 8309,
+          "goldstein": 1.01,
+          "conflict_ratio": 0.249,
+          "violence_events": 1972,
+          "protest_events": 238
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.59,
+          "events": 69896,
+          "conflict_events": 24589,
+          "goldstein": -0.25,
+          "conflict_ratio": 0.352,
+          "violence_events": 7357,
+          "protest_events": 296
+        },
+        {
+          "month": "2025-10",
+          "sgm": 4.37,
+          "events": 34165,
+          "conflict_events": 10000,
+          "goldstein": 0.57,
+          "conflict_ratio": 0.293,
+          "violence_events": 2180,
+          "protest_events": 231
+        },
+        {
+          "month": "2025-11",
+          "sgm": 4.31,
+          "events": 32954,
+          "conflict_events": 9229,
+          "goldstein": 0.75,
+          "conflict_ratio": 0.28,
+          "violence_events": 1841,
+          "protest_events": 209
+        }
+      ]
+    },
+    "HU": {
+      "name": "Hungary",
+      "timeline": [
+        {
+          "month": "2024-11",
+          "sgm": 3.52,
+          "events": 4076,
+          "conflict_events": 734,
+          "goldstein": 1.65,
+          "conflict_ratio": 0.18,
+          "violence_events": 130,
+          "protest_events": 11
+        },
+        {
+          "month": "2024-12",
+          "sgm": 3.51,
+          "events": 19556,
+          "conflict_events": 3730,
+          "goldstein": 1.51,
+          "conflict_ratio": 0.191,
+          "violence_events": 573,
+          "protest_events": 86
+        },
+        {
+          "month": "2025-01",
+          "sgm": 3.95,
+          "events": 14819,
+          "conflict_events": 3672,
+          "goldstein": 0.91,
+          "conflict_ratio": 0.248,
+          "violence_events": 583,
+          "protest_events": 54
+        },
+        {
+          "month": "2025-02",
+          "sgm": 3.86,
+          "events": 13427,
+          "conflict_events": 2978,
+          "goldstein": 1.28,
+          "conflict_ratio": 0.222,
+          "violence_events": 520,
+          "protest_events": 79
+        },
+        {
+          "month": "2025-03",
+          "sgm": 3.84,
+          "events": 19207,
+          "conflict_events": 4926,
+          "goldstein": 1.09,
+          "conflict_ratio": 0.256,
+          "violence_events": 629,
+          "protest_events": 198
+        },
+        {
+          "month": "2025-04",
+          "sgm": 3.98,
+          "events": 19492,
+          "conflict_events": 4915,
+          "goldstein": 1.05,
+          "conflict_ratio": 0.252,
+          "violence_events": 743,
+          "protest_events": 225
+        },
+        {
+          "month": "2025-05",
+          "sgm": 3.93,
+          "events": 18299,
+          "conflict_events": 4890,
+          "goldstein": 0.84,
+          "conflict_ratio": 0.267,
+          "violence_events": 627,
+          "protest_events": 173
+        },
+        {
+          "month": "2025-06",
+          "sgm": 3.99,
+          "events": 6423,
+          "conflict_events": 1601,
+          "goldstein": 0.97,
+          "conflict_ratio": 0.249,
+          "violence_events": 249,
+          "protest_events": 68
+        },
+        {
+          "month": "2025-07",
+          "sgm": 4.21,
+          "events": 12226,
+          "conflict_events": 3471,
+          "goldstein": 0.72,
+          "conflict_ratio": 0.284,
+          "violence_events": 534,
+          "protest_events": 127
+        },
+        {
+          "month": "2025-08",
+          "sgm": 4.34,
+          "events": 16033,
+          "conflict_events": 4757,
+          "goldstein": 0.65,
+          "conflict_ratio": 0.297,
+          "violence_events": 900,
+          "protest_events": 76
+        },
+        {
+          "month": "2025-09",
+          "sgm": 4.31,
+          "events": 17326,
+          "conflict_events": 5162,
+          "goldstein": 0.51,
+          "conflict_ratio": 0.298,
+          "violence_events": 803,
+          "protest_events": 136
+        },
+        {
+          "month": "2025-10",
+          "sgm": 3.49,
+          "events": 34471,
+          "conflict_events": 7180,
+          "goldstein": 1.31,
+          "conflict_ratio": 0.208,
+          "violence_events": 878,
+          "protest_events": 155
+        },
+        {
+          "month": "2025-11",
+          "sgm": 3.39,
+          "events": 22359,
+          "conflict_events": 4420,
+          "goldstein": 1.51,
+          "conflict_ratio": 0.198,
+          "violence_events": 547,
+          "protest_events": 67
+        }
+      ]
+    }
+  }
+}

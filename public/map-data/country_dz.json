@@ -1,0 +1,23 @@
+{
+  "country_code": "DZ",
+  "country_name": "Algeria",
+  "latitude": 36.23342308532695,
+  "longitude": 3.4007074469696965,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 59.222061761593366,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.40777938238406625,
+    "sim_ideology": 0.35,
+    "fatalities": 9353,
+    "event_count": 2508
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:10.764884"
+}

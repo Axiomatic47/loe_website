@@ -1,0 +1,23 @@
+{
+  "country_code": "SV",
+  "country_name": "El Salvador",
+  "latitude": 13.721053808861118,
+  "longitude": -88.96260743084352,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 59.93772090780055,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.4006227909219945,
+    "sim_ideology": 0.35,
+    "fatalities": 10451,
+    "event_count": 3521
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:11.482231"
+}

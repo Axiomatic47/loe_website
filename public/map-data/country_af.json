@@ -1,0 +1,23 @@
+{
+  "country_code": "AF",
+  "country_name": "Afghanistan",
+  "latitude": 34.04205694503735,
+  "longitude": 67.14123657815077,
+  "category": "Extreme Supremacism",
+  "description": "",
+  "metrics": {
+    "sgm": 9.0,
+    "gscs": 9.0,
+    "srsD": 9.0,
+    "srsI": 9.0,
+    "sti": 56.791173668831384,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.43208826331168615,
+    "sim_ideology": 0.35,
+    "fatalities": 95704,
+    "event_count": 20614
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:10.410279"
+}

@@ -1,0 +1,23 @@
+{
+  "country_code": "GH",
+  "country_name": "Ghana",
+  "latitude": 6.68794425,
+  "longitude": -0.691126375,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 41.93645541290564,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.5806354458709436,
+    "sim_ideology": 0.35,
+    "fatalities": 10,
+    "event_count": 16
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:10.860056"
+}

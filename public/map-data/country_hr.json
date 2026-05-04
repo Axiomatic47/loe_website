@@ -1,0 +1,23 @@
+{
+  "country_code": "HR",
+  "country_name": "Croatia",
+  "latitude": 45.10103398214285,
+  "longitude": 16.773066107142856,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 46.989250783775724,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.5301074921622427,
+    "sim_ideology": 0.35,
+    "fatalities": 248,
+    "event_count": 56
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:10.902533"
+}

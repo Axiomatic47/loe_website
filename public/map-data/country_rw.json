@@ -1,0 +1,23 @@
+{
+  "country_code": "RW",
+  "country_name": "Rwanda",
+  "latitude": -1.9550187974683544,
+  "longitude": 29.765668924050633,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 51.91898114185318,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.48081018858146823,
+    "sim_ideology": 0.35,
+    "fatalities": 3165,
+    "event_count": 158
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:11.396948"
+}

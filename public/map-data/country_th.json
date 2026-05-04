@@ -1,0 +1,23 @@
+{
+  "country_code": "TH",
+  "country_name": "Thailand",
+  "latitude": 7.343416593789447,
+  "longitude": 101.34363434991162,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 49.25228207506922,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.5074771792493078,
+    "sim_ideology": 0.35,
+    "fatalities": 2885,
+    "event_count": 3961
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:11.525260"
+}

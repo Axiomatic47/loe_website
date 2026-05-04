@@ -1,0 +1,23 @@
+{
+  "country_code": "TR",
+  "country_name": "Turkey",
+  "latitude": 38.8715253807541,
+  "longitude": 36.89482281956975,
+  "category": "Soft Supremacism",
+  "description": "",
+  "metrics": {
+    "sgm": 5.5,
+    "gscs": 5.5,
+    "srsD": 5.5,
+    "srsI": 5.5,
+    "sti": 56.457930666499834,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.43542069333500166,
+    "sim_ideology": 0.35,
+    "fatalities": 6634,
+    "event_count": 4323
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:11.557464"
+}

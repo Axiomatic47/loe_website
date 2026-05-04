@@ -1,0 +1,23 @@
+{
+  "country_code": "MZ",
+  "country_name": "Mozambique",
+  "latitude": -14.440414627717391,
+  "longitude": 38.43364796603261,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 54.36542440221922,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.4563457559778078,
+    "sim_ideology": 0.35,
+    "fatalities": 8132,
+    "event_count": 1472
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:11.203769"
+}

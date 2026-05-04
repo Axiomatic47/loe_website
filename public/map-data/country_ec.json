@@ -1,0 +1,23 @@
+{
+  "country_code": "EC",
+  "country_name": "Ecuador",
+  "latitude": -0.9896458737373738,
+  "longitude": -78.88924429292929,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 41.40453058871524,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.5859546941128476,
+    "sim_ideology": 0.35,
+    "fatalities": 49,
+    "event_count": 198
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:10.775428"
+}

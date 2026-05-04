@@ -1,0 +1,1470 @@
+{
+  "metadata": {
+    "title": "Constitutional Authority Map",
+    "version": "1.0",
+    "created": "2026-02-27",
+    "purpose": "Structured database of constitutional positions, authorities, relationships, and compliance tools",
+    "framework": "Madisonian Separation of Powers Compliance Test"
+  },
+
+  "hierarchy_tiers": {
+    "tier_1": {
+      "name": "Constitution",
+      "description": "Supreme Law - all authority derives from here",
+      "constraint": "Only laws made 'in Pursuance thereof' are valid (Art. VI, cl. 2)"
+    },
+    "tier_2": {
+      "name": "Federal Statutes",
+      "description": "Laws enacted by Congress",
+      "constraint": "Must be consistent with constitutional grants and limits"
+    },
+    "tier_3": {
+      "name": "Administrative Rules",
+      "description": "Regulations promulgated by agencies",
+      "constraint": "Cannot exceed statutory authorization"
+    },
+    "tier_4": {
+      "name": "Internal Policies",
+      "description": "Agency/office procedures and guidelines",
+      "constraint": "Cannot expand authority; implement only"
+    }
+  },
+
+  "psv_framework": {
+    "tiers": {
+      "primary": {
+        "name": "Primary PSV",
+        "definition": "Direct usurpation or abdication of an EAP",
+        "types": ["USURPATION", "ABDICATION"]
+      },
+      "enabling": {
+        "name": "Enabling PSV",
+        "definition": "Improperly derived law/doctrine that PERMITS delegation of EAPs",
+        "examples": ["Chevron Deference", "Intelligible Principle", "Prosecutorial Discretion"]
+      },
+      "shielding": {
+        "name": "Shielding PSV",
+        "definition": "Doctrine that SHIELDS primary PSVs from accountability/remedy",
+        "examples": ["Qualified Immunity", "Standing Denial", "Political Question"]
+      }
+    },
+    "compound_psvs": [
+      {
+        "name": "Qualified Immunity",
+        "primary": "Courts usurped 14th Am. § 5 enforcement power",
+        "enabling": "Permits official violations",
+        "shielding": "Shields violations from remedy"
+      },
+      {
+        "name": "Chevron Deference",
+        "primary": "Courts abdicated Art. III interpretive duty",
+        "enabling": "Permits agency lawmaking",
+        "shielding": "Shields agency action from review"
+      },
+      {
+        "name": "Prosecutorial Discretion (as immunity)",
+        "primary": "Usurps Art. II, § 2 pardon power",
+        "enabling": "Permits immunity grants",
+        "shielding": "Shields prosecutors from accountability"
+      }
+    ]
+  },
+
+  "branches": {
+    "sovereign": {
+      "name": "The People",
+      "description": "Source of all constitutional authority"
+    },
+    "legislative": {
+      "name": "Legislative Branch",
+      "vesting_clause": "Art. I, § 1",
+      "vesting_text": "All legislative Powers herein granted shall be vested in a Congress"
+    },
+    "executive": {
+      "name": "Executive Branch",
+      "vesting_clause": "Art. II, § 1",
+      "vesting_text": "The executive Power shall be vested in a President"
+    },
+    "judicial": {
+      "name": "Judicial Branch",
+      "vesting_clause": "Art. III, § 1",
+      "vesting_text": "The judicial Power of the United States, shall be vested in one supreme Court"
+    },
+    "federalism": {
+      "name": "State Governments",
+      "source": "10th Amendment",
+      "description": "Powers reserved to States or the People"
+    }
+  },
+
+  "positions": {
+    "PEOPLE": {
+      "id": "PEOPLE",
+      "name": "The People",
+      "branch": "sovereign",
+      "constitutional_source": ["Preamble", "9th Amendment", "10th Amendment"],
+      "status": "Sovereign - source of all constitutional authority",
+      "authority_tier": 0,
+      "powers": [
+        {
+          "id": "PEOPLE_ORDAIN",
+          "citation": "Preamble",
+          "text": "We the People... do ordain and establish this Constitution",
+          "type": "PW",
+          "psv_status": "IRR"
+        },
+        {
+          "id": "PEOPLE_ASSEMBLE",
+          "citation": "1st Amendment",
+          "text": "the right of the people peaceably to assemble",
+          "type": "RT",
+          "psv_status": "U"
+        },
+        {
+          "id": "PEOPLE_PETITION",
+          "citation": "1st Amendment",
+          "text": "to petition the Government for a redress of grievances",
+          "type": "RT",
+          "psv_status": "U"
+        },
+        {
+          "id": "PEOPLE_ARMS",
+          "citation": "2nd Amendment",
+          "text": "the right of the people to keep and bear Arms",
+          "type": "RT",
+          "psv_status": "U"
+        },
+        {
+          "id": "PEOPLE_SECURITY",
+          "citation": "4th Amendment",
+          "text": "The right of the people to be secure... against unreasonable searches and seizures",
+          "type": "RT",
+          "psv_status": "U"
+        },
+        {
+          "id": "PEOPLE_RETAINED",
+          "citation": "9th Amendment",
+          "text": "rights... retained by the people",
+          "type": "RV",
+          "psv_status": "U"
+        },
+        {
+          "id": "PEOPLE_RESERVED",
+          "citation": "10th Amendment",
+          "text": "powers... reserved to the States respectively, or to the people",
+          "type": "RV",
+          "psv_status": "U"
+        }
+      ],
+      "relationships": {
+        "superior_to": ["CONGRESS", "PRESIDENT", "SUPREME_COURT", "STATES"],
+        "accountable_to": null,
+        "checks": ["All positions through elections, amendments, conventions"],
+        "checked_by": null
+      }
+    },
+
+    "CONGRESS": {
+      "id": "CONGRESS",
+      "name": "Congress",
+      "branch": "legislative",
+      "constitutional_source": ["Art. I, § 1"],
+      "status": "Collective legislative body",
+      "authority_tier": 1,
+      "composition": ["HOUSE", "SENATE"],
+      "powers": [
+        {
+          "id": "CONG_LEGISLATIVE",
+          "citation": "Art. I, § 1",
+          "text": "All legislative Powers herein granted shall be vested in a Congress",
+          "type": "PW",
+          "psv_status": "U/A",
+          "notes": "Cannot be delegated; abdication occurs through delegation"
+        },
+        {
+          "id": "CONG_TAX",
+          "citation": "Art. I, § 8, cl. 1",
+          "text": "To lay and collect Taxes, Duties, Imposts and Excises",
+          "type": "PW",
+          "psv_status": "U/A"
+        },
+        {
+          "id": "CONG_BORROW",
+          "citation": "Art. I, § 8, cl. 2",
+          "text": "To borrow Money on the credit of the United States",
+          "type": "PW",
+          "psv_status": "U/A"
+        },
+        {
+          "id": "CONG_COMMERCE",
+          "citation": "Art. I, § 8, cl. 3",
+          "text": "To regulate Commerce with foreign Nations, and among the several States",
+          "type": "PW",
+          "psv_status": "U/A"
+        },
+        {
+          "id": "CONG_NATURALIZATION",
+          "citation": "Art. I, § 8, cl. 4",
+          "text": "To establish an uniform Rule of Naturalization",
+          "type": "PW",
+          "psv_status": "U/A"
+        },
+        {
+          "id": "CONG_COIN",
+          "citation": "Art. I, § 8, cl. 5",
+          "text": "To coin Money, regulate the Value thereof",
+          "type": "PW",
+          "psv_status": "U/A"
+        },
+        {
+          "id": "CONG_PUNISH_COUNTERFEIT",
+          "citation": "Art. I, § 8, cl. 6",
+          "text": "To provide for the Punishment of counterfeiting",
+          "type": "PW",
+          "psv_status": "U/A"
+        },
+        {
+          "id": "CONG_POST",
+          "citation": "Art. I, § 8, cl. 7",
+          "text": "To establish Post Offices and post Roads",
+          "type": "PW",
+          "psv_status": "U/A"
+        },
+        {
+          "id": "CONG_IP",
+          "citation": "Art. I, § 8, cl. 8",
+          "text": "To promote the Progress of Science and useful Arts",
+          "type": "PW",
+          "psv_status": "U/A"
+        },
+        {
+          "id": "CONG_TRIBUNALS",
+          "citation": "Art. I, § 8, cl. 9",
+          "text": "To constitute Tribunals inferior to the supreme Court",
+          "type": "PW",
+          "psv_status": "U/A"
+        },
+        {
+          "id": "CONG_PIRACY",
+          "citation": "Art. I, § 8, cl. 10",
+          "text": "To define and punish Piracies and Felonies committed on the high Seas",
+          "type": "PW",
+          "psv_status": "U/A"
+        },
+        {
+          "id": "CONG_WAR",
+          "citation": "Art. I, § 8, cl. 11",
+          "text": "To declare War, grant Letters of Marque and Reprisal",
+          "type": "PW",
+          "psv_status": "U/A",
+          "notes": "Frequently abdicated to Executive"
+        },
+        {
+          "id": "CONG_ARMY",
+          "citation": "Art. I, § 8, cl. 12",
+          "text": "To raise and support Armies",
+          "type": "PW",
+          "psv_status": "U/A"
+        },
+        {
+          "id": "CONG_NAVY",
+          "citation": "Art. I, § 8, cl. 13",
+          "text": "To provide and maintain a Navy",
+          "type": "PW",
+          "psv_status": "U/A"
+        },
+        {
+          "id": "CONG_MILITARY_RULES",
+          "citation": "Art. I, § 8, cl. 14",
+          "text": "To make Rules for the Government and Regulation of the land and naval Forces",
+          "type": "PW",
+          "psv_status": "U/A"
+        },
+        {
+          "id": "CONG_MILITIA_CALL",
+          "citation": "Art. I, § 8, cl. 15",
+          "text": "To provide for calling forth the Militia",
+          "type": "PW",
+          "psv_status": "U/A"
+        },
+        {
+          "id": "CONG_MILITIA_ORGANIZE",
+          "citation": "Art. I, § 8, cl. 16",
+          "text": "To provide for organizing, arming, and disciplining, the Militia",
+          "type": "PW",
+          "psv_status": "U/A"
+        },
+        {
+          "id": "CONG_DC",
+          "citation": "Art. I, § 8, cl. 17",
+          "text": "To exercise exclusive Legislation... over such District",
+          "type": "PW",
+          "psv_status": "U/A"
+        },
+        {
+          "id": "CONG_NECESSARY_PROPER",
+          "citation": "Art. I, § 8, cl. 18",
+          "text": "To make all Laws which shall be necessary and proper for carrying into Execution the foregoing Powers",
+          "type": "PW",
+          "psv_status": "U/A"
+        }
+      ],
+      "prohibitions": [
+        {
+          "id": "CONG_NO_HABEAS",
+          "citation": "Art. I, § 9, cl. 2",
+          "text": "The Privilege of the Writ of Habeas Corpus shall not be suspended",
+          "type": "PH"
+        },
+        {
+          "id": "CONG_NO_ATTAINDER",
+          "citation": "Art. I, § 9, cl. 3",
+          "text": "No Bill of Attainder or ex post facto Law shall be passed",
+          "type": "PH"
+        },
+        {
+          "id": "CONG_NO_DIRECT_TAX",
+          "citation": "Art. I, § 9, cl. 4",
+          "text": "No Capitation, or other direct, Tax shall be laid, unless in Proportion to the Census",
+          "type": "PH"
+        },
+        {
+          "id": "CONG_NO_EXPORT_TAX",
+          "citation": "Art. I, § 9, cl. 5",
+          "text": "No Tax or Duty shall be laid on Articles exported from any State",
+          "type": "PH"
+        },
+        {
+          "id": "CONG_NO_PREFERENCE",
+          "citation": "Art. I, § 9, cl. 6",
+          "text": "No Preference shall be given by any Regulation of Commerce",
+          "type": "PH"
+        },
+        {
+          "id": "CONG_NO_APPROPRIATION",
+          "citation": "Art. I, § 9, cl. 7",
+          "text": "No Money shall be drawn from the Treasury, but in Consequence of Appropriations made by Law",
+          "type": "PH"
+        },
+        {
+          "id": "CONG_NO_TITLE",
+          "citation": "Art. I, § 9, cl. 8",
+          "text": "No Title of Nobility shall be granted",
+          "type": "PH"
+        }
+      ],
+      "relationships": {
+        "superior_to": ["HOUSE", "SENATE"],
+        "accountable_to": ["PEOPLE"],
+        "checks": ["PRESIDENT", "SUPREME_COURT", "INFERIOR_COURTS"],
+        "checked_by": ["PRESIDENT", "SUPREME_COURT"],
+        "coordinates_with": ["PRESIDENT", "STATES"]
+      },
+      "psv_vulnerabilities": {
+        "usurpation_risk": "Executive or Judicial exercising legislative power",
+        "abdication_risk": "Delegating legislative power to agencies",
+        "historical_abdications": ["AUMF", "IEEPA", "Broad agency delegations"]
+      }
+    },
+
+    "HOUSE": {
+      "id": "HOUSE",
+      "name": "House of Representatives",
+      "branch": "legislative",
+      "constitutional_source": ["Art. I, § 2"],
+      "status": "Lower chamber of Congress",
+      "authority_tier": 1,
+      "composition": ["REPRESENTATIVE"],
+      "powers": [
+        {
+          "id": "HOUSE_IMPEACH",
+          "citation": "Art. I, § 2, cl. 5",
+          "text": "The House of Representatives... shall have the sole Power of Impeachment",
+          "type": "PW",
+          "psv_status": "U/A"
+        },
+        {
+          "id": "HOUSE_REVENUE",
+          "citation": "Art. I, § 7, cl. 1",
+          "text": "All Bills for raising Revenue shall originate in the House of Representatives",
+          "type": "PW",
+          "psv_status": "U"
+        },
+        {
+          "id": "HOUSE_SPEAKER",
+          "citation": "Art. I, § 2, cl. 5",
+          "text": "shall chuse their Speaker and other Officers",
+          "type": "PW",
+          "psv_status": "U"
+        },
+        {
+          "id": "HOUSE_PRES_ELECT",
+          "citation": "12th Amendment",
+          "text": "the House of Representatives shall choose immediately, by ballot, the President",
+          "type": "PW",
+          "psv_status": "U",
+          "condition": "If no Electoral College majority"
+        }
+      ],
+      "relationships": {
+        "component_of": ["CONGRESS"],
+        "superior_to": ["REPRESENTATIVE", "SPEAKER"],
+        "accountable_to": ["PEOPLE"],
+        "checks": ["PRESIDENT", "SENATE"],
+        "checked_by": ["SENATE", "SUPREME_COURT"],
+        "coordinates_with": ["SENATE"]
+      }
+    },
+
+    "REPRESENTATIVE": {
+      "id": "REPRESENTATIVE",
+      "name": "Representative",
+      "branch": "legislative",
+      "constitutional_source": ["Art. I, § 2"],
+      "status": "Individual member of House of Representatives",
+      "authority_tier": 1,
+      "constitutive_conditions": {
+        "selection": {
+          "citation": "Art. I, § 2, cl. 1",
+          "text": "chosen every second Year by the People of the several States"
+        },
+        "qualifications": [
+          {
+            "citation": "Art. I, § 2, cl. 2",
+            "requirement": "Age 25 years"
+          },
+          {
+            "citation": "Art. I, § 2, cl. 2",
+            "requirement": "7 years a Citizen of the United States"
+          },
+          {
+            "citation": "Art. I, § 2, cl. 2",
+            "requirement": "Inhabitant of State when elected"
+          },
+          {
+            "citation": "14th Amendment, § 3",
+            "requirement": "Not engaged in insurrection after taking constitutional oath"
+          }
+        ],
+        "term": {
+          "citation": "Art. I, § 2, cl. 1",
+          "duration": "2 years"
+        },
+        "oath": {
+          "citation": "Art. VI, cl. 3",
+          "text": "bound by Oath or Affirmation, to support this Constitution"
+        },
+        "compensation": {
+          "citation": "Art. I, § 6, cl. 1",
+          "text": "Compensation for their Services, to be ascertained by Law"
+        },
+        "removal": {
+          "citation": "Art. I, § 5, cl. 2",
+          "method": "Expulsion by 2/3 of House"
+        },
+        "vacancy": {
+          "citation": "Art. I, § 2, cl. 4",
+          "method": "Executive Authority thereof shall issue Writs of Election"
+        },
+        "incompatibilities": [
+          {
+            "citation": "Art. I, § 6, cl. 2",
+            "prohibition": "Cannot hold any civil Office under the Authority of the United States"
+          },
+          {
+            "citation": "Art. I, § 6, cl. 2",
+            "prohibition": "Cannot be appointed to office created or emoluments increased during term"
+          },
+          {
+            "citation": "Art. II, § 1, cl. 2",
+            "prohibition": "Cannot be appointed Elector"
+          }
+        ]
+      },
+      "powers": [
+        {
+          "id": "REP_VOTE",
+          "text": "Vote on legislation",
+          "type": "PW",
+          "psv_status": "A"
+        },
+        {
+          "id": "REP_SPEECH_DEBATE",
+          "citation": "Art. I, § 6, cl. 1",
+          "text": "for any Speech or Debate... shall not be questioned in any other Place",
+          "type": "RT",
+          "psv_status": "U"
+        }
+      ],
+      "relationships": {
+        "member_of": ["HOUSE", "CONGRESS"],
+        "accountable_to": ["PEOPLE", "HOUSE"],
+        "coordinates_with": ["REPRESENTATIVE", "SENATOR"]
+      }
+    },
+
+    "SENATE": {
+      "id": "SENATE",
+      "name": "Senate",
+      "branch": "legislative",
+      "constitutional_source": ["Art. I, § 3"],
+      "status": "Upper chamber of Congress",
+      "authority_tier": 1,
+      "composition": ["SENATOR"],
+      "powers": [
+        {
+          "id": "SENATE_TRY_IMPEACH",
+          "citation": "Art. I, § 3, cl. 6",
+          "text": "The Senate shall have the sole Power to try all Impeachments",
+          "type": "PW",
+          "psv_status": "U/A"
+        },
+        {
+          "id": "SENATE_TREATY",
+          "citation": "Art. II, § 2, cl. 2",
+          "text": "by and with the Advice and Consent of the Senate... provided two thirds of the Senators present concur",
+          "type": "PW",
+          "psv_status": "IRR",
+          "notes": "2/3 threshold is irrefutable"
+        },
+        {
+          "id": "SENATE_CONFIRM",
+          "citation": "Art. II, § 2, cl. 2",
+          "text": "by and with the Advice and Consent of the Senate, shall appoint",
+          "type": "PW",
+          "psv_status": "A"
+        },
+        {
+          "id": "SENATE_VP_ELECT",
+          "citation": "12th Amendment",
+          "text": "the Senate shall choose the Vice-President",
+          "type": "PW",
+          "psv_status": "U",
+          "condition": "If no Electoral College majority"
+        }
+      ],
+      "relationships": {
+        "component_of": ["CONGRESS"],
+        "superior_to": ["SENATOR", "PRESIDENT_PRO_TEMPORE"],
+        "accountable_to": ["PEOPLE", "STATES"],
+        "checks": ["PRESIDENT", "HOUSE"],
+        "checked_by": ["HOUSE", "SUPREME_COURT"],
+        "coordinates_with": ["HOUSE", "PRESIDENT"]
+      }
+    },
+
+    "SENATOR": {
+      "id": "SENATOR",
+      "name": "Senator",
+      "branch": "legislative",
+      "constitutional_source": ["Art. I, § 3", "17th Amendment"],
+      "status": "Individual member of Senate",
+      "authority_tier": 1,
+      "constitutive_conditions": {
+        "selection": {
+          "citation": "17th Amendment",
+          "text": "elected by the people thereof"
+        },
+        "qualifications": [
+          {
+            "citation": "Art. I, § 3, cl. 3",
+            "requirement": "Age 30 years"
+          },
+          {
+            "citation": "Art. I, § 3, cl. 3",
+            "requirement": "9 years a Citizen of the United States"
+          },
+          {
+            "citation": "Art. I, § 3, cl. 3",
+            "requirement": "Inhabitant of State when elected"
+          },
+          {
+            "citation": "14th Amendment, § 3",
+            "requirement": "Not engaged in insurrection after taking constitutional oath"
+          }
+        ],
+        "term": {
+          "citation": "Art. I, § 3, cl. 1",
+          "duration": "6 years"
+        },
+        "oath": {
+          "citation": "Art. VI, cl. 3",
+          "text": "bound by Oath or Affirmation, to support this Constitution"
+        },
+        "removal": {
+          "citation": "Art. I, § 5, cl. 2",
+          "method": "Expulsion by 2/3 of Senate"
+        },
+        "incompatibilities": [
+          {
+            "citation": "Art. I, § 6, cl. 2",
+            "prohibition": "Cannot hold any civil Office under the Authority of the United States"
+          },
+          {
+            "citation": "Art. II, § 1, cl. 2",
+            "prohibition": "Cannot be appointed Elector"
+          }
+        ]
+      },
+      "relationships": {
+        "member_of": ["SENATE", "CONGRESS"],
+        "accountable_to": ["PEOPLE", "SENATE"],
+        "coordinates_with": ["SENATOR", "REPRESENTATIVE"]
+      }
+    },
+
+    "PRESIDENT": {
+      "id": "PRESIDENT",
+      "name": "President of the United States",
+      "branch": "executive",
+      "constitutional_source": ["Art. II, § 1"],
+      "status": "Chief Executive; Commander in Chief",
+      "authority_tier": 1,
+      "constitutive_conditions": {
+        "selection": {
+          "citation": "Art. II, § 1, cl. 2-3; 12th Amendment",
+          "text": "Each State shall appoint... Electors"
+        },
+        "qualifications": [
+          {
+            "citation": "Art. II, § 1, cl. 5",
+            "requirement": "natural born Citizen"
+          },
+          {
+            "citation": "Art. II, § 1, cl. 5",
+            "requirement": "Age 35 years"
+          },
+          {
+            "citation": "Art. II, § 1, cl. 5",
+            "requirement": "14 Years a Resident within the United States"
+          },
+          {
+            "citation": "22nd Amendment",
+            "requirement": "Not elected more than twice"
+          },
+          {
+            "citation": "14th Amendment, § 3",
+            "requirement": "Not engaged in insurrection after taking constitutional oath"
+          }
+        ],
+        "term": {
+          "citation": "Art. II, § 1, cl. 1",
+          "duration": "4 years"
+        },
+        "oath": {
+          "citation": "Art. II, § 1, cl. 8",
+          "text": "I do solemnly swear (or affirm) that I will faithfully execute the Office of President of the United States, and will to the best of my Ability, preserve, protect and defend the Constitution of the United States."
+        },
+        "compensation": {
+          "citation": "Art. II, § 1, cl. 7",
+          "text": "shall receive... a Compensation, which shall neither be encreased nor diminished during the Period for which he shall have been elected"
+        },
+        "removal": {
+          "citation": "Art. II, § 4",
+          "method": "removed from Office on Impeachment for, and Conviction of, Treason, Bribery, or other high Crimes and Misdemeanors"
+        },
+        "succession": {
+          "citation": "25th Amendment",
+          "text": "In case of the removal of the President from office or of his death or resignation, the Vice President shall become President"
+        },
+        "incompatibilities": [
+          {
+            "citation": "Art. I, § 6, cl. 2",
+            "prohibition": "Cannot simultaneously hold legislative office"
+          }
+        ]
+      },
+      "powers": [
+        {
+          "id": "PRES_EXECUTIVE",
+          "citation": "Art. II, § 1, cl. 1",
+          "text": "The executive Power shall be vested in a President",
+          "type": "PW",
+          "psv_status": "U"
+        },
+        {
+          "id": "PRES_COMMANDER",
+          "citation": "Art. II, § 2, cl. 1",
+          "text": "Commander in Chief of the Army and Navy... and of the Militia of the several States, when called into the actual Service of the United States",
+          "type": "PW",
+          "psv_status": "U"
+        },
+        {
+          "id": "PRES_PARDON",
+          "citation": "Art. II, § 2, cl. 1",
+          "text": "he shall have Power to grant Reprieves and Pardons for Offences against the United States, except in Cases of Impeachment",
+          "type": "PW",
+          "psv_status": "U",
+          "notes": "CRITICAL: This power belongs ONLY to President. Prosecutors cannot exercise pardon-equivalent immunity authority."
+        },
+        {
+          "id": "PRES_TREATY",
+          "citation": "Art. II, § 2, cl. 2",
+          "text": "He shall have Power, by and with the Advice and Consent of the Senate, to make Treaties",
+          "type": "PW",
+          "psv_status": "U",
+          "coordinates_with": "SENATE"
+        },
+        {
+          "id": "PRES_APPOINT",
+          "citation": "Art. II, § 2, cl. 2",
+          "text": "shall nominate, and by and with the Advice and Consent of the Senate, shall appoint Ambassadors, other public Ministers and Consuls, Judges of the supreme Court, and all other Officers of the United States",
+          "type": "PW",
+          "psv_status": "U",
+          "coordinates_with": "SENATE"
+        },
+        {
+          "id": "PRES_RECESS",
+          "citation": "Art. II, § 2, cl. 3",
+          "text": "shall have Power to fill up all Vacancies that may happen during the Recess of the Senate",
+          "type": "PW",
+          "psv_status": "U"
+        },
+        {
+          "id": "PRES_VETO",
+          "citation": "Art. I, § 7, cl. 2",
+          "text": "If he approve he shall sign it, but if not he shall return it, with his Objections",
+          "type": "PW",
+          "psv_status": "A"
+        },
+        {
+          "id": "PRES_CONVENE",
+          "citation": "Art. II, § 3",
+          "text": "he may, on extraordinary Occasions, convene both Houses, or either of them",
+          "type": "PW",
+          "psv_status": "U"
+        },
+        {
+          "id": "PRES_ADJOURN",
+          "citation": "Art. II, § 3",
+          "text": "in Case of Disagreement between them, with Respect to the Time of Adjournment, he may adjourn them",
+          "type": "PW",
+          "psv_status": "U"
+        },
+        {
+          "id": "PRES_RECEIVE",
+          "citation": "Art. II, § 3",
+          "text": "he shall receive Ambassadors and other public Ministers",
+          "type": "PW",
+          "psv_status": "U"
+        },
+        {
+          "id": "PRES_COMMISSION",
+          "citation": "Art. II, § 3",
+          "text": "shall Commission all the Officers of the United States",
+          "type": "PW",
+          "psv_status": "A"
+        }
+      ],
+      "duties": [
+        {
+          "id": "PRES_STATE_UNION",
+          "citation": "Art. II, § 3",
+          "text": "He shall from time to time give to the Congress Information of the State of the Union",
+          "type": "DT",
+          "psv_status": "A"
+        },
+        {
+          "id": "PRES_RECOMMEND",
+          "citation": "Art. II, § 3",
+          "text": "recommend to their Consideration such Measures as he shall judge necessary and expedient",
+          "type": "DT",
+          "psv_status": "A"
+        },
+        {
+          "id": "PRES_TAKE_CARE",
+          "citation": "Art. II, § 3",
+          "text": "he shall take Care that the Laws be faithfully executed",
+          "type": "DT",
+          "psv_status": "A",
+          "notes": "CRITICAL: This is a DUTY, not a power source. Cannot be used to claim non-existent powers."
+        }
+      ],
+      "relationships": {
+        "superior_to": ["VICE_PRESIDENT", "PRINCIPAL_OFFICERS", "HEADS_OF_DEPARTMENTS", "INFERIOR_OFFICERS"],
+        "accountable_to": ["PEOPLE", "CONGRESS"],
+        "checks": ["CONGRESS", "SUPREME_COURT"],
+        "checked_by": ["CONGRESS", "SUPREME_COURT"],
+        "coordinates_with": ["SENATE", "HOUSE"]
+      },
+      "psv_vulnerabilities": {
+        "usurpation_risk": "Exercising legislative power; acting without statutory authorization",
+        "abdication_risk": "Failing to take Care that Laws be faithfully executed",
+        "historical_usurpations": ["Unilateral military action", "Executive orders exceeding authority"]
+      }
+    },
+
+    "VICE_PRESIDENT": {
+      "id": "VICE_PRESIDENT",
+      "name": "Vice President",
+      "branch": "executive",
+      "constitutional_source": ["Art. I, § 3", "Art. II, § 1", "12th Amendment", "25th Amendment"],
+      "status": "President of Senate; First in presidential succession",
+      "authority_tier": 1,
+      "constitutive_conditions": {
+        "selection": {
+          "citation": "12th Amendment",
+          "text": "The Electors shall... vote by ballot for President and Vice-President"
+        },
+        "qualifications": [
+          {
+            "citation": "12th Amendment",
+            "requirement": "Same as President (natural born, 35, 14 years resident)"
+          }
+        ],
+        "term": {
+          "citation": "Art. II, § 1",
+          "duration": "4 years"
+        },
+        "removal": {
+          "citation": "Art. II, § 4",
+          "method": "Impeachment"
+        },
+        "succession": {
+          "citation": "25th Amendment, § 2",
+          "method": "Nominated by President, confirmed by both Houses"
+        }
+      },
+      "powers": [
+        {
+          "id": "VP_PRESIDE",
+          "citation": "Art. I, § 3, cl. 4",
+          "text": "The Vice President of the United States shall be President of the Senate, but shall have no Vote, unless they be equally divided",
+          "type": "PW",
+          "psv_status": "U"
+        },
+        {
+          "id": "VP_TIEBREAK",
+          "citation": "Art. I, § 3, cl. 4",
+          "text": "shall have no Vote, unless they be equally divided",
+          "type": "PW",
+          "psv_status": "U"
+        },
+        {
+          "id": "VP_CERTIFY",
+          "citation": "12th Amendment",
+          "text": "The President of the Senate shall, in the presence of the Senate and House of Representatives, open all the certificates",
+          "type": "DT",
+          "psv_status": "A"
+        }
+      ],
+      "relationships": {
+        "subordinate_to": ["PRESIDENT"],
+        "presides_over": ["SENATE"],
+        "accountable_to": ["PEOPLE"],
+        "coordinates_with": ["PRESIDENT", "SENATE"]
+      }
+    },
+
+    "PRINCIPAL_OFFICERS": {
+      "id": "PRINCIPAL_OFFICERS",
+      "name": "Principal Officers",
+      "branch": "executive",
+      "constitutional_source": ["Art. II, § 2, cl. 1", "Art. II, § 2, cl. 2"],
+      "status": "Heads of executive departments; Cabinet members",
+      "authority_tier": 2,
+      "constitutive_conditions": {
+        "selection": {
+          "citation": "Art. II, § 2, cl. 2",
+          "text": "by and with the Advice and Consent of the Senate, shall appoint"
+        },
+        "removal": {
+          "method": "At pleasure of President (per Myers v. United States)"
+        }
+      },
+      "powers": [
+        {
+          "id": "PO_OPINIONS",
+          "citation": "Art. II, § 2, cl. 1",
+          "text": "he may require the Opinion, in writing, of the principal Officer in each of the executive Departments",
+          "type": "DT",
+          "psv_status": "A"
+        }
+      ],
+      "relationships": {
+        "subordinate_to": ["PRESIDENT"],
+        "superior_to": ["INFERIOR_OFFICERS"],
+        "accountable_to": ["PRESIDENT", "CONGRESS"],
+        "coordinates_with": ["PRINCIPAL_OFFICERS", "CONGRESS"]
+      },
+      "authority_derivation": {
+        "tier_1": "Art. II, § 2 (appointment)",
+        "tier_2": "Organic statutes creating departments",
+        "tier_3": "Agency regulations",
+        "tier_4": "Internal policies",
+        "constraint": "Cannot exercise power President does not possess"
+      }
+    },
+
+    "INFERIOR_OFFICERS": {
+      "id": "INFERIOR_OFFICERS",
+      "name": "Inferior Officers",
+      "branch": "executive",
+      "constitutional_source": ["Art. II, § 2, cl. 2"],
+      "status": "Officers whose appointment Congress may vest in President, Courts, or Department Heads",
+      "authority_tier": 3,
+      "constitutive_conditions": {
+        "selection": {
+          "citation": "Art. II, § 2, cl. 2",
+          "text": "the Congress may by Law vest the Appointment of such inferior Officers, as they think proper, in the President alone, in the Courts of Law, or in the Heads of Departments"
+        }
+      },
+      "relationships": {
+        "subordinate_to": ["PRESIDENT", "PRINCIPAL_OFFICERS", "HEADS_OF_DEPARTMENTS"],
+        "accountable_to": ["PRINCIPAL_OFFICERS", "PRESIDENT"],
+        "coordinates_with": ["INFERIOR_OFFICERS"]
+      },
+      "authority_derivation": {
+        "tier_1": "Art. II, § 2 (appointment authorization)",
+        "tier_2": "Organic statutes",
+        "tier_3": "Agency regulations",
+        "tier_4": "Internal policies",
+        "constraint": "Cannot exercise power superior does not possess or cannot delegate"
+      },
+      "psv_vulnerabilities": {
+        "usurpation_risk": "Claiming powers not delegable from superiors (e.g., prosecutors claiming pardon power)",
+        "abdication_risk": "Failing to perform assigned duties"
+      },
+      "includes": ["FEDERAL_PROSECUTOR", "US_ATTORNEY", "AUSA", "FBI_AGENTS", "AGENCY_STAFF"]
+    },
+
+    "FEDERAL_PROSECUTOR": {
+      "id": "FEDERAL_PROSECUTOR",
+      "name": "Federal Prosecutor (U.S. Attorney / AUSA)",
+      "branch": "executive",
+      "constitutional_source": ["Art. II, § 2, cl. 2"],
+      "status": "Inferior Officer - prosecutes federal crimes",
+      "authority_tier": 3,
+      "constitutive_conditions": {
+        "selection": {
+          "us_attorney": "Nominated by President, confirmed by Senate",
+          "ausa": "Appointed by Attorney General"
+        }
+      },
+      "powers": [
+        {
+          "id": "PROS_PROSECUTE",
+          "source": "28 U.S.C. § 547",
+          "text": "Prosecute offenses against the United States",
+          "type": "PW",
+          "psv_status": "U"
+        },
+        {
+          "id": "PROS_GRAND_JURY",
+          "source": "Fed. R. Crim. P. 6",
+          "text": "Present cases to grand jury",
+          "type": "PW",
+          "psv_status": "U"
+        },
+        {
+          "id": "PROS_PLEA",
+          "source": "Fed. R. Crim. P. 11",
+          "text": "Negotiate plea agreements",
+          "type": "PW",
+          "psv_status": "U"
+        }
+      ],
+      "prohibitions": [
+        {
+          "id": "PROS_NO_PARDON",
+          "source": "Art. II, § 2, cl. 1 (by negative implication)",
+          "text": "CANNOT grant pardons or functional equivalents (immunity grants that preclude prosecution)",
+          "type": "PH",
+          "notes": "Pardon power belongs ONLY to President. Prosecutors claiming immunity-grant authority commit USURPATION."
+        },
+        {
+          "id": "PROS_NO_LEGISLATE",
+          "source": "Art. I, § 1",
+          "text": "CANNOT create law or policy with force of law",
+          "type": "PH"
+        }
+      ],
+      "duties": [
+        {
+          "id": "PROS_BRADY",
+          "source": "Brady v. Maryland",
+          "text": "Disclose exculpatory evidence",
+          "type": "DT"
+        },
+        {
+          "id": "PROS_ETHICS",
+          "source": "DOJ regulations; State bar rules",
+          "text": "Comply with ethical obligations",
+          "type": "DT"
+        }
+      ],
+      "relationships": {
+        "subordinate_to": ["ATTORNEY_GENERAL", "US_ATTORNEY", "PRESIDENT"],
+        "coordinates_with": ["COURTS", "GRAND_JURY", "FBI", "AGENCIES"],
+        "checked_by": ["COURTS", "GRAND_JURY", "INSPECTOR_GENERAL", "CONGRESS"]
+      },
+      "authority_derivation": {
+        "tier_1": "Art. II, § 2, cl. 2 (inferior officer appointment)",
+        "tier_2": "28 U.S.C. (DOJ organic statute)",
+        "tier_3": "DOJ regulations; USAM",
+        "tier_4": "Office policies",
+        "constraint": "Cannot exercise pardon power or any power President cannot delegate"
+      },
+      "psv_vulnerabilities": {
+        "usurpation_risk": "Granting immunity = usurping Presidential pardon power (Art. II, § 2, cl. 1)",
+        "madisonian_test_failure": {
+          "step_1": "Pardon power exists only in Art. II, § 2, cl. 1",
+          "step_2": "Immunity grant is executive clemency function",
+          "step_3": "No valid derivation from prosecution authority to pardon authority",
+          "step_4": "Same logic would permit prosecutors to make treaties",
+          "step_5": "Pardon power structurally non-delegable (pronoun 'he')",
+          "step_6": "Prosecutor ≠ President (different oath, selection, accountability)"
+        }
+      }
+    },
+
+    "SUPREME_COURT": {
+      "id": "SUPREME_COURT",
+      "name": "Supreme Court of the United States",
+      "branch": "judicial",
+      "constitutional_source": ["Art. III, § 1"],
+      "status": "Highest federal court; final arbiter of constitutional interpretation",
+      "authority_tier": 1,
+      "powers": [
+        {
+          "id": "SC_JUDICIAL",
+          "citation": "Art. III, § 1",
+          "text": "The judicial Power of the United States, shall be vested in one supreme Court",
+          "type": "PW",
+          "psv_status": "U"
+        },
+        {
+          "id": "SC_ORIGINAL",
+          "citation": "Art. III, § 2, cl. 2",
+          "text": "In all Cases affecting Ambassadors, other public Ministers and Consuls, and those in which a State shall be Party, the supreme Court shall have original Jurisdiction",
+          "type": "JR",
+          "psv_status": "U"
+        },
+        {
+          "id": "SC_APPELLATE",
+          "citation": "Art. III, § 2, cl. 2",
+          "text": "In all the other Cases before mentioned, the supreme Court shall have appellate Jurisdiction, both as to Law and Fact, with such Exceptions, and under such Regulations as the Congress shall make",
+          "type": "JR",
+          "psv_status": "U"
+        },
+        {
+          "id": "SC_JUDICIAL_REVIEW",
+          "citation": "Art. III; Marbury v. Madison",
+          "text": "It is emphatically the province and duty of the judicial department to say what the law is",
+          "type": "PW",
+          "psv_status": "U/A"
+        }
+      ],
+      "relationships": {
+        "superior_to": ["INFERIOR_COURTS", "JUDGES"],
+        "accountable_to": ["PEOPLE", "CONGRESS"],
+        "checks": ["CONGRESS", "PRESIDENT", "STATES"],
+        "checked_by": ["CONGRESS", "PRESIDENT"],
+        "coordinates_with": ["CONGRESS", "PRESIDENT"]
+      },
+      "psv_vulnerabilities": {
+        "usurpation_risk": "Creating legislative rules through doctrine",
+        "abdication_risk": "Refusing to adjudicate justiciable cases (political question abuse)",
+        "historical_enabling_psvs": ["Chevron deference", "Qualified immunity", "Standing denial doctrines"]
+      }
+    },
+
+    "JUDGES": {
+      "id": "JUDGES",
+      "name": "Federal Judges",
+      "branch": "judicial",
+      "constitutional_source": ["Art. III, § 1"],
+      "status": "Article III judicial officers",
+      "authority_tier": 1,
+      "constitutive_conditions": {
+        "selection": {
+          "citation": "Art. II, § 2, cl. 2",
+          "text": "by and with the Advice and Consent of the Senate"
+        },
+        "term": {
+          "citation": "Art. III, § 1",
+          "duration": "during good Behaviour"
+        },
+        "compensation": {
+          "citation": "Art. III, § 1",
+          "text": "shall, at stated Times, receive for their Services, a Compensation, which shall not be diminished during their Continuance in Office"
+        },
+        "removal": {
+          "citation": "Art. II, § 4",
+          "method": "Impeachment for Treason, Bribery, or other high Crimes and Misdemeanors"
+        }
+      },
+      "relationships": {
+        "member_of": ["SUPREME_COURT", "INFERIOR_COURTS"],
+        "accountable_to": ["CONGRESS"],
+        "coordinates_with": ["JUDGES"]
+      }
+    },
+
+    "GRAND_JURY": {
+      "id": "GRAND_JURY",
+      "name": "Grand Jury",
+      "branch": "judicial",
+      "constitutional_source": ["5th Amendment"],
+      "status": "Constitutional fact-finding body for serious federal crimes",
+      "authority_tier": 1,
+      "powers": [
+        {
+          "id": "GJ_INDICTMENT",
+          "citation": "5th Amendment",
+          "text": "No person shall be held to answer for a capital, or otherwise infamous crime, unless on a presentment or indictment of a Grand Jury",
+          "type": "PW",
+          "psv_status": "U"
+        }
+      ],
+      "relationships": {
+        "coordinates_with": ["FEDERAL_PROSECUTOR", "COURTS"],
+        "checks": ["FEDERAL_PROSECUTOR"],
+        "checked_by": ["COURTS"]
+      },
+      "independence": "Grand jury is independent of prosecutor and courts; shield function"
+    },
+
+    "STATES": {
+      "id": "STATES",
+      "name": "States",
+      "branch": "federalism",
+      "constitutional_source": ["Art. IV", "10th Amendment"],
+      "status": "Sovereign entities with reserved powers",
+      "authority_tier": 1,
+      "powers": [
+        {
+          "id": "STATE_RESERVED",
+          "citation": "10th Amendment",
+          "text": "The powers not delegated to the United States by the Constitution, nor prohibited by it to the States, are reserved to the States respectively, or to the people",
+          "type": "RV",
+          "psv_status": "U"
+        },
+        {
+          "id": "STATE_REPUBLICAN",
+          "citation": "Art. IV, § 4",
+          "text": "The United States shall guarantee to every State in this Union a Republican Form of Government",
+          "type": "RT",
+          "psv_status": "U"
+        }
+      ],
+      "prohibitions": [
+        {
+          "id": "STATE_NO_TREATY",
+          "citation": "Art. I, § 10, cl. 1",
+          "text": "No State shall enter into any Treaty, Alliance, or Confederation",
+          "type": "PH"
+        },
+        {
+          "id": "STATE_NO_COIN",
+          "citation": "Art. I, § 10, cl. 1",
+          "text": "No State shall... coin Money",
+          "type": "PH"
+        },
+        {
+          "id": "STATE_NO_ATTAINDER",
+          "citation": "Art. I, § 10, cl. 1",
+          "text": "No State shall... pass any Bill of Attainder, ex post facto Law, or Law impairing the Obligation of Contracts",
+          "type": "PH"
+        }
+      ],
+      "relationships": {
+        "superior_to": ["STATE_LEGISLATURE", "STATE_EXECUTIVE", "STATE_JUDICIAL"],
+        "coordinate_with": ["CONGRESS", "PRESIDENT", "STATES"],
+        "accountable_to": ["PEOPLE"]
+      }
+    }
+  },
+
+  "relationship_matrices": {
+    "checks_matrix": {
+      "description": "Which position checks which other position",
+      "CONGRESS": {
+        "checks": ["PRESIDENT", "SUPREME_COURT", "INFERIOR_COURTS", "PRINCIPAL_OFFICERS"],
+        "mechanisms": ["Legislation", "Impeachment", "Confirmation", "Appropriations", "Oversight"]
+      },
+      "HOUSE": {
+        "checks": ["PRESIDENT", "VICE_PRESIDENT", "JUDGES", "PRINCIPAL_OFFICERS"],
+        "mechanisms": ["Impeachment (sole power)", "Revenue origination"]
+      },
+      "SENATE": {
+        "checks": ["PRESIDENT", "HOUSE"],
+        "mechanisms": ["Impeachment trial (sole power)", "Treaty consent", "Appointment confirmation"]
+      },
+      "PRESIDENT": {
+        "checks": ["CONGRESS"],
+        "mechanisms": ["Veto", "Pocket veto", "Convene/adjourn"]
+      },
+      "SUPREME_COURT": {
+        "checks": ["CONGRESS", "PRESIDENT", "STATES"],
+        "mechanisms": ["Judicial review", "Constitutional interpretation"]
+      }
+    },
+    "coordination_matrix": {
+      "description": "Which positions must coordinate for specific functions",
+      "treaty_making": {
+        "positions": ["PRESIDENT", "SENATE"],
+        "requirement": "President negotiates; Senate consents (2/3)"
+      },
+      "appointments": {
+        "positions": ["PRESIDENT", "SENATE"],
+        "requirement": "President nominates; Senate confirms"
+      },
+      "legislation": {
+        "positions": ["HOUSE", "SENATE", "PRESIDENT"],
+        "requirement": "Both chambers pass; President signs or Congress overrides"
+      },
+      "impeachment": {
+        "positions": ["HOUSE", "SENATE", "CHIEF_JUSTICE"],
+        "requirement": "House impeaches; Senate tries; Chief Justice presides (for President)"
+      },
+      "constitutional_amendment": {
+        "positions": ["CONGRESS", "STATES"],
+        "requirement": "2/3 Congress proposes; 3/4 States ratify"
+      }
+    },
+    "hierarchy_matrix": {
+      "description": "Chain of authority/subordination",
+      "executive": {
+        "PRESIDENT": {
+          "subordinates": ["VICE_PRESIDENT", "PRINCIPAL_OFFICERS", "HEADS_OF_DEPARTMENTS"],
+          "authority": "Constitutional"
+        },
+        "PRINCIPAL_OFFICERS": {
+          "subordinates": ["INFERIOR_OFFICERS"],
+          "superior": "PRESIDENT",
+          "authority": "Statutory + Presidential delegation"
+        },
+        "INFERIOR_OFFICERS": {
+          "subordinates": ["Staff"],
+          "superior": "PRINCIPAL_OFFICERS",
+          "authority": "Statutory + Departmental delegation"
+        },
+        "FEDERAL_PROSECUTOR": {
+          "subordinates": ["Support staff"],
+          "superior": "ATTORNEY_GENERAL → PRESIDENT",
+          "authority": "28 U.S.C. + DOJ regulations",
+          "limitation": "Cannot exercise pardon power"
+        }
+      }
+    }
+  },
+
+  "compliance_tools": {
+    "madisonian_test": {
+      "name": "Madisonian Six-Step Compliance Test",
+      "purpose": "Audit any claimed governmental action for constitutional validity",
+      "steps": [
+        {
+          "step": 1,
+          "name": "Textual Existence",
+          "question": "Does the claimed power appear in constitutional text?",
+          "failure_result": "Power does not exist"
+        },
+        {
+          "step": 2,
+          "name": "Classification",
+          "question": "Is the action legislative, executive, or judicial?",
+          "failure_result": "Wrong branch exercising power"
+        },
+        {
+          "step": 3,
+          "name": "Logical Derivation",
+          "question": "Is the claimed derivation logically valid?",
+          "failure_result": "Invalid derivation"
+        },
+        {
+          "step": 4,
+          "name": "Textual Consistency",
+          "question": "Does the same interpretation work for parallel clauses?",
+          "failure_result": "Selective/inconsistent interpretation"
+        },
+        {
+          "step": 5,
+          "name": "Structural Delegability",
+          "question": "Can this power structurally be delegated?",
+          "failure_result": "Non-delegable power wrongly delegated"
+        },
+        {
+          "step": 6,
+          "name": "Position Indivisibility",
+          "question": "Does actor satisfy ALL constitutive conditions of position?",
+          "failure_result": "Actor lacks authority of claimed position"
+        }
+      ]
+    },
+    "authority_derivation_checker": {
+      "name": "Authority Derivation Checker",
+      "purpose": "Trace any claimed power to its constitutional source",
+      "template": {
+        "claimed_action": "[Description of action]",
+        "claimed_authority": "[Source cited for authority]",
+        "derivation_chain": [
+          {
+            "tier": 1,
+            "source": "[Constitutional provision]",
+            "grants": "[What it grants]"
+          },
+          {
+            "tier": 2,
+            "source": "[Statute]",
+            "derives_from": "[Tier 1 source]",
+            "grants": "[What it grants]"
+          },
+          {
+            "tier": 3,
+            "source": "[Regulation]",
+            "derives_from": "[Tier 2 source]",
+            "grants": "[What it grants]"
+          },
+          {
+            "tier": 4,
+            "source": "[Policy]",
+            "derives_from": "[Tier 3 source]",
+            "grants": "[What it grants]"
+          }
+        ],
+        "chain_valid": "[Yes/No]",
+        "break_point": "[Where chain breaks, if applicable]"
+      }
+    },
+    "psv_identifier": {
+      "name": "PSV Identifier",
+      "purpose": "Identify what type of PSV (if any) an action constitutes",
+      "questions": [
+        {
+          "question": "Is Position A exercising a power assigned to Position B?",
+          "if_yes": "PRIMARY PSV: USURPATION"
+        },
+        {
+          "question": "Is a position failing to exercise a mandatory power?",
+          "if_yes": "PRIMARY PSV: ABDICATION"
+        },
+        {
+          "question": "Is there a law/doctrine that permits this delegation?",
+          "if_yes": "ENABLING PSV: Identify the enabling doctrine"
+        },
+        {
+          "question": "Is there a doctrine blocking remedy for this violation?",
+          "if_yes": "SHIELDING PSV: Identify the shielding doctrine"
+        },
+        {
+          "question": "Is the doctrine itself a constitutional violation that enables and shields?",
+          "if_yes": "COMPOUND PSV"
+        }
+      ]
+    }
+  },
+
+  "cross_reference_indexes": {
+    "by_power": {
+      "pardon": {
+        "assigned_to": "PRESIDENT",
+        "citation": "Art. II, § 2, cl. 1",
+        "constraints": ["except in Cases of Impeachment"],
+        "psv_status": "U",
+        "cannot_exercise": ["CONGRESS", "COURTS", "PROSECUTORS", "ATTORNEY_GENERAL"],
+        "kirchner_relevance": "Prosecutors claiming immunity authority usurp this power"
+      },
+      "declare_war": {
+        "assigned_to": "CONGRESS",
+        "citation": "Art. I, § 8, cl. 11",
+        "psv_status": "U/A",
+        "historical_abdications": ["Korea", "Vietnam", "AUMF operations"],
+        "cannot_exercise": ["PRESIDENT"]
+      },
+      "tax": {
+        "assigned_to": "CONGRESS",
+        "citation": "Art. I, § 8, cl. 1",
+        "psv_status": "U/A",
+        "revenue_origination": "HOUSE",
+        "cannot_exercise": ["PRESIDENT", "COURTS"]
+      },
+      "treaty": {
+        "assigned_to": "PRESIDENT + SENATE",
+        "citation": "Art. II, § 2, cl. 2",
+        "requirement": "2/3 Senate concurrence",
+        "psv_status": "IRR (threshold) / U (process)",
+        "cannot_exercise": ["HOUSE", "COURTS"]
+      },
+      "appointments": {
+        "principal_officers": {
+          "assigned_to": "PRESIDENT + SENATE",
+          "citation": "Art. II, § 2, cl. 2"
+        },
+        "inferior_officers": {
+          "assigned_to": "As Congress directs",
+          "citation": "Art. II, § 2, cl. 2",
+          "options": ["PRESIDENT", "COURTS", "HEADS_OF_DEPARTMENTS"]
+        }
+      },
+      "impeachment": {
+        "house_role": {
+          "power": "sole Power of Impeachment",
+          "citation": "Art. I, § 2, cl. 5"
+        },
+        "senate_role": {
+          "power": "sole Power to try all Impeachments",
+          "citation": "Art. I, § 3, cl. 6",
+          "conviction_threshold": "2/3 of Members present"
+        }
+      }
+    },
+    "by_function": {
+      "legislation": {
+        "positions_involved": ["HOUSE", "SENATE", "PRESIDENT"],
+        "process": "Bicameralism + Presentment",
+        "citations": ["Art. I, § 7"]
+      },
+      "prosecution": {
+        "positions_involved": ["FEDERAL_PROSECUTOR", "GRAND_JURY", "COURTS"],
+        "authority_source": "28 U.S.C.",
+        "constitutional_constraints": ["5th Amendment (grand jury)", "6th Amendment (rights)"],
+        "prohibition": "Cannot exercise pardon power"
+      },
+      "judicial_review": {
+        "positions_involved": ["SUPREME_COURT", "INFERIOR_COURTS"],
+        "authority": "Art. III; Marbury v. Madison",
+        "scope": "Say what the law is"
+      }
+    }
+  },
+
+  "sample_queries": {
+    "can_prosecutor_grant_immunity": {
+      "query": "Can a federal prosecutor grant immunity to a defendant?",
+      "analysis": {
+        "claimed_action": "Grant immunity from prosecution",
+        "claimed_authority": "Prosecutorial discretion",
+        "madisonian_test": {
+          "step_1": "FAIL - Immunity/pardon power in Art. II, § 2, cl. 1 only",
+          "step_2": "FAIL - Clemency is executive function assigned to President",
+          "step_3": "FAIL - No valid derivation from prosecution to pardon",
+          "step_4": "FAIL - Same logic would permit treaty-making by prosecutors",
+          "step_5": "FAIL - Pardon power uses 'he' (non-delegable)",
+          "step_6": "FAIL - Prosecutor ≠ President"
+        },
+        "result": "UNCONSTITUTIONAL - Usurpation of Presidential pardon power",
+        "psv_type": "PRIMARY PSV: USURPATION"
+      }
+    },
+    "can_agency_make_rules": {
+      "query": "Can an executive agency make binding rules?",
+      "analysis": {
+        "claimed_action": "Promulgate binding regulations",
+        "claimed_authority": "Statutory delegation + Chevron deference",
+        "madisonian_test": {
+          "step_1": "CONCERN - Legislative power vested in Congress (Art. I, § 1)",
+          "step_2": "CONCERN - Rulemaking is legislative function",
+          "step_3": "CONCERN - Delegation doctrine permits but separation forbids",
+          "step_4": "FAIL - Same logic would permit any power transfer",
+          "step_5": "FAIL - Legislative power non-delegable per Art. I, § 1",
+          "step_6": "FAIL - Agency ≠ Congress"
+        },
+        "result": "CONSTITUTIONALLY PROBLEMATIC",
+        "psv_type": "ENABLING PSV (Chevron) + PRIMARY PSV (Congressional abdication)",
+        "note": "Chevron overruled in Loper Bright (2024)"
+      }
+    }
+  }
+}

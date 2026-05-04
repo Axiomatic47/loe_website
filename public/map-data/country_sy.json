@@ -1,0 +1,23 @@
+{
+  "country_code": "SY",
+  "country_name": "Syria",
+  "latitude": 35.1853893351534,
+  "longitude": 37.6216231524961,
+  "category": "Extreme Supremacism",
+  "description": "",
+  "metrics": {
+    "sgm": 9.0,
+    "gscs": 9.0,
+    "srsD": 9.0,
+    "srsI": 9.0,
+    "sti": 56.82944346050376,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.4317055653949624,
+    "sim_ideology": 0.35,
+    "fatalities": 28688,
+    "event_count": 7692
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:11.493298"
+}

@@ -1,0 +1,23 @@
+{
+  "country_code": "ZA",
+  "country_name": "South Africa",
+  "latitude": -28.61548874409044,
+  "longitude": 27.469422546248715,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 57.97854553465089,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.42021454465349106,
+    "sim_ideology": 0.35,
+    "fatalities": 2744,
+    "event_count": 1946
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:11.673941"
+}

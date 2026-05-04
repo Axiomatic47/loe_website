@@ -1,0 +1,23 @@
+{
+  "country_code": "IE",
+  "country_name": "Ireland",
+  "latitude": 53.34616189019608,
+  "longitude": -6.9334129450980395,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 54.57474653235248,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.45425253467647514,
+    "sim_ideology": 0.35,
+    "fatalities": 36,
+    "event_count": 255
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:10.946155"
+}

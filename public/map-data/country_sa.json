@@ -1,0 +1,23 @@
+{
+  "country_code": "SA",
+  "country_name": "Saudi Arabia",
+  "latitude": 20.92510229166667,
+  "longitude": 44.71050725,
+  "category": "Structural Supremacism",
+  "description": "",
+  "metrics": {
+    "sgm": 7.5,
+    "gscs": 7.5,
+    "srsD": 7.5,
+    "srsI": 7.5,
+    "sti": 47.5266078208473,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.524733921791527,
+    "sim_ideology": 0.35,
+    "fatalities": 552,
+    "event_count": 336
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:11.407357"
+}

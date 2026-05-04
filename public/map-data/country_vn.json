@@ -1,0 +1,23 @@
+{
+  "country_code": "VN",
+  "country_name": "Vietnam",
+  "latitude": 12.536684363636363,
+  "longitude": 107.25952945454546,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 50.10451295541187,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.49895487044588127,
+    "sim_ideology": 0.35,
+    "fatalities": 1,
+    "event_count": 11
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:11.652669"
+}

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vite Image Serving Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #000; color: #fff; }
+        .test { margin: 20px 0; border: 1px solid #333; padding: 20px; }
+        img { max-width: 400px; border: 1px solid #666; }
+        .success { color: #0f0; }
+        .error { color: #f00; }
+        .info { color: #666; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Vite Image Serving Test</h1>
+    <p>Testing if Vite dev server can serve images from /uploads/data/</p>
+
+    
+      <div class="test">
+        <h3>Test 1: 041525_ChatGPT_Addendum_H_Live_Developer_Influence_Confirmation_1752472249890_Screenshot 2025-05-07 at 7.47.38 PM.png</h3>
+
+        <h4>Raw Path Test:</h4>
+        <div class="info">Path: /uploads/data/041525_ChatGPT_Addendum_H_Live_Developer_Influence_Confirmation_1752472249890_Screenshot 2025-05-07 at 7.47.38 PM.png</div>
+        <img src="/uploads/data/041525_ChatGPT_Addendum_H_Live_Developer_Influence_Confirmation_1752472249890_Screenshot 2025-05-07 at 7.47.38 PM.png"
+             alt="Raw path test"
+             onload="this.nextElementSibling.innerHTML='<span class=\"success\">✅ Raw path works!</span>'"
+             onerror="this.nextElementSibling.innerHTML='<span class=\"error\">❌ Raw path failed</span>'">
+        <div>Loading raw path...</div>
+
+        <h4>Encoded Path Test:</h4>
+        <div class="info">Path: /uploads/data/041525_ChatGPT_Addendum_H_Live_Developer_Influence_Confirmation_1752472249890_Screenshot%202025-05-07%20at%207.47.38%E2%80%AFPM.png</div>
+        <img src="/uploads/data/041525_ChatGPT_Addendum_H_Live_Developer_Influence_Confirmation_1752472249890_Screenshot%202025-05-07%20at%207.47.38%E2%80%AFPM.png"
+             alt="Encoded path test"
+             onload="this.nextElementSibling.innerHTML='<span class=\"success\">✅ Encoded path works!</span>'"
+             onerror="this.nextElementSibling.innerHTML='<span class=\"error\">❌ Encoded path failed</span>'">
+        <div>Loading encoded path...</div>
+
+        <h4>Fetch Test:</h4>
+        <div id="fetch-0">Testing fetch...</div>
+
+        <script>
+          (async () => {
+            const results = [];
+
+            // Test raw path
+            try {
+              const response1 = await fetch('/uploads/data/041525_ChatGPT_Addendum_H_Live_Developer_Influence_Confirmation_1752472249890_Screenshot 2025-05-07 at 7.47.38 PM.png', { method: 'HEAD' });
+              results.push(`Raw: ${response1.status} ${response1.ok ? '✅' : '❌'}`);
+            } catch (e) {
+              results.push(`Raw: Error ❌`);
+            }
+
+            // Test encoded path
+            try {
+              const response2 = await fetch('/uploads/data/041525_ChatGPT_Addendum_H_Live_Developer_Influence_Confirmation_1752472249890_Screenshot%202025-05-07%20at%207.47.38%E2%80%AFPM.png', { method: 'HEAD' });
+              results.push(`Encoded: ${response2.status} ${response2.ok ? '✅' : '❌'}`);
+            } catch (e) {
+              results.push(`Encoded: Error ❌`);
+            }
+
+            document.getElementById('fetch-0').innerHTML = results.join('<br>');
+          })();
+        </script>
+      </div>
+      
+      <div class="test">
+        <h3>Test 2: 041525_ChatGPT_Addendum_H_Live_Developer_Influence_Confirmation_1752473558581_Screenshot 2025-05-07 at 7.47.38 PM.png</h3>
+
+        <h4>Raw Path Test:</h4>
+        <div class="info">Path: /uploads/data/041525_ChatGPT_Addendum_H_Live_Developer_Influence_Confirmation_1752473558581_Screenshot 2025-05-07 at 7.47.38 PM.png</div>
+        <img src="/uploads/data/041525_ChatGPT_Addendum_H_Live_Developer_Influence_Confirmation_1752473558581_Screenshot 2025-05-07 at 7.47.38 PM.png"
+             alt="Raw path test"
+             onload="this.nextElementSibling.innerHTML='<span class=\"success\">✅ Raw path works!</span>'"
+             onerror="this.nextElementSibling.innerHTML='<span class=\"error\">❌ Raw path failed</span>'">
+        <div>Loading raw path...</div>
+
+        <h4>Encoded Path Test:</h4>
+        <div class="info">Path: /uploads/data/041525_ChatGPT_Addendum_H_Live_Developer_Influence_Confirmation_1752473558581_Screenshot%202025-05-07%20at%207.47.38%E2%80%AFPM.png</div>
+        <img src="/uploads/data/041525_ChatGPT_Addendum_H_Live_Developer_Influence_Confirmation_1752473558581_Screenshot%202025-05-07%20at%207.47.38%E2%80%AFPM.png"
+             alt="Encoded path test"
+             onload="this.nextElementSibling.innerHTML='<span class=\"success\">✅ Encoded path works!</span>'"
+             onerror="this.nextElementSibling.innerHTML='<span class=\"error\">❌ Encoded path failed</span>'">
+        <div>Loading encoded path...</div>
+
+        <h4>Fetch Test:</h4>
+        <div id="fetch-1">Testing fetch...</div>
+
+        <script>
+          (async () => {
+            const results = [];
+
+            // Test raw path
+            try {
+              const response1 = await fetch('/uploads/data/041525_ChatGPT_Addendum_H_Live_Developer_Influence_Confirmation_1752473558581_Screenshot 2025-05-07 at 7.47.38 PM.png', { method: 'HEAD' });
+              results.push(`Raw: ${response1.status} ${response1.ok ? '✅' : '❌'}`);
+            } catch (e) {
+              results.push(`Raw: Error ❌`);
+            }
+
+            // Test encoded path
+            try {
+              const response2 = await fetch('/uploads/data/041525_ChatGPT_Addendum_H_Live_Developer_Influence_Confirmation_1752473558581_Screenshot%202025-05-07%20at%207.47.38%E2%80%AFPM.png', { method: 'HEAD' });
+              results.push(`Encoded: ${response2.status} ${response2.ok ? '✅' : '❌'}`);
+            } catch (e) {
+              results.push(`Encoded: Error ❌`);
+            }
+
+            document.getElementById('fetch-1').innerHTML = results.join('<br>');
+          })();
+        </script>
+      </div>
+      
+      <div class="test">
+        <h3>Test 3: 041525_ChatGPT_Addendum_IX_Ethical_Behavior_Changes_1752472249766_Screenshot 2025-05-07 at 7.52.44 PM.png</h3>
+
+        <h4>Raw Path Test:</h4>
+        <div class="info">Path: /uploads/data/041525_ChatGPT_Addendum_IX_Ethical_Behavior_Changes_1752472249766_Screenshot 2025-05-07 at 7.52.44 PM.png</div>
+        <img src="/uploads/data/041525_ChatGPT_Addendum_IX_Ethical_Behavior_Changes_1752472249766_Screenshot 2025-05-07 at 7.52.44 PM.png"
+             alt="Raw path test"
+             onload="this.nextElementSibling.innerHTML='<span class=\"success\">✅ Raw path works!</span>'"
+             onerror="this.nextElementSibling.innerHTML='<span class=\"error\">❌ Raw path failed</span>'">
+        <div>Loading raw path...</div>
+
+        <h4>Encoded Path Test:</h4>
+        <div class="info">Path: /uploads/data/041525_ChatGPT_Addendum_IX_Ethical_Behavior_Changes_1752472249766_Screenshot%202025-05-07%20at%207.52.44%E2%80%AFPM.png</div>
+        <img src="/uploads/data/041525_ChatGPT_Addendum_IX_Ethical_Behavior_Changes_1752472249766_Screenshot%202025-05-07%20at%207.52.44%E2%80%AFPM.png"
+             alt="Encoded path test"
+             onload="this.nextElementSibling.innerHTML='<span class=\"success\">✅ Encoded path works!</span>'"
+             onerror="this.nextElementSibling.innerHTML='<span class=\"error\">❌ Encoded path failed</span>'">
+        <div>Loading encoded path...</div>
+
+        <h4>Fetch Test:</h4>
+        <div id="fetch-2">Testing fetch...</div>
+
+        <script>
+          (async () => {
+            const results = [];
+
+            // Test raw path
+            try {
+              const response1 = await fetch('/uploads/data/041525_ChatGPT_Addendum_IX_Ethical_Behavior_Changes_1752472249766_Screenshot 2025-05-07 at 7.52.44 PM.png', { method: 'HEAD' });
+              results.push(`Raw: ${response1.status} ${response1.ok ? '✅' : '❌'}`);
+            } catch (e) {
+              results.push(`Raw: Error ❌`);
+            }
+
+            // Test encoded path
+            try {
+              const response2 = await fetch('/uploads/data/041525_ChatGPT_Addendum_IX_Ethical_Behavior_Changes_1752472249766_Screenshot%202025-05-07%20at%207.52.44%E2%80%AFPM.png', { method: 'HEAD' });
+              results.push(`Encoded: ${response2.status} ${response2.ok ? '✅' : '❌'}`);
+            } catch (e) {
+              results.push(`Encoded: Error ❌`);
+            }
+
+            document.getElementById('fetch-2').innerHTML = results.join('<br>');
+          })();
+        </script>
+      </div>
+      
+
+    <div class="test">
+      <h3>🔧 Debug Info</h3>
+      <p><strong>Current URL:</strong> <span id="current-url"></span></p>
+      <p><strong>Base URL:</strong> <span id="base-url"></span></p>
+      <p><strong>Dev Mode:</strong> <span id="dev-mode"></span></p>
+
+      <script>
+        document.getElementById('current-url').textContent = window.location.href;
+        document.getElementById('base-url').textContent = window.location.origin;
+        document.getElementById('dev-mode').textContent = window.location.hostname === 'localhost' ? 'Yes' : 'No';
+
+        console.log('🧪 Image serving test loaded');
+        console.log('Current URL:', window.location.href);
+        console.log('Testing image paths...');
+      </script>
+    </div>
+
+    <div class="test">
+      <h3>📋 Expected Results</h3>
+      <p>✅ <strong>Good:</strong> At least one path type works for each image</p>
+      <p>❌ <strong>Bad:</strong> Both raw and encoded paths fail (Vite middleware issue)</p>
+      <p>⚠️ <strong>Mixed:</strong> Only encoded works (need URL encoding in MediaGallery)</p>
+    </div>
+</body>
+</html>

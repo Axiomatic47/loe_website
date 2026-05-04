@@ -1,0 +1,300 @@
+# public/admin/config.yml - Updated with OPTIONAL section dates and PDF support
+# Production configuration - uses Git Gateway with Netlify Identity
+
+# Backend configuration
+backend:
+  name: git-gateway
+  branch: main
+  # NOTE: For local development, run `npm run cms` to start the proxy server
+  # and uncomment the line below:
+  # local_backend: true
+
+# Local development server configuration (only used when local_backend is enabled)
+# To enable: uncomment local_backend above and run `npm run cms`
+local_backend:
+  url: http://localhost:8081/api/v1
+  allowed_hosts: ['localhost']
+
+# Media configuration
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+# Site configuration
+site_url: https://lawsofexistence.com
+display_url: https://lawsofexistence.com
+logo_url: https://lawsofexistence.com/favicon.ico
+
+# Collections configuration
+collections:
+  - name: featured_order
+    label: Featured Content Order
+    files:
+      - label: Home Page Featured Items
+        name: home_featured
+        file: content/featured-order.json
+        fields:
+          - label: Featured Items (drag to reorder)
+            name: items
+            widget: list
+            summary: "{{collection}} > {{composition_title}} > {{section_title}}"
+            fields:
+              - label: Collection
+                name: collection
+                widget: select
+                options: ["manuscript", "data", "constitutional", "timeline", "map"]
+              - {label: Composition Index, name: composition_index, widget: number, default: 1, hint: "Which composition number (usually 1)"}
+              - {label: Section Index, name: section_index, widget: number, default: 1, hint: "Which section number"}
+              - {label: Composition Title (reference), name: composition_title, widget: string, hint: "For your reference - enter the composition name"}
+              - {label: Section Title (reference), name: section_title, widget: string, hint: "For your reference - enter the section name"}
+
+  - name: data
+    label: Evidence & Testimonies
+    folder: content/data
+    create: true
+    format: json
+    identifier_field: title
+    media_folder: "public/uploads/data"
+    public_folder: "/uploads/data"
+    sortable_fields: ['title', 'featured', 'date']
+    fields:
+      - {label: Title, name: title, widget: string}
+      - {label: Collection Type, name: collection_type, widget: hidden, default: data}
+      - {label: Date Created, name: date, widget: datetime, default: ""}
+      - {label: Featured Content, name: featured, widget: boolean, default: false}
+      - label: Sections
+        name: sections
+        widget: list
+        allow_add: true
+        collapsed: false
+        summary: "{{title}} - {{date}} {{#featured}}(Featured){{/featured}}"
+        fields:
+          - {label: Section Title, name: title, widget: string}
+          - {label: Section Date, name: date, widget: datetime, required: false, default: "", hint: "Date when this testimony/evidence was created (optional)"}
+          - {label: Featured Section, name: featured, widget: boolean, default: false}
+          - label: Images
+            name: images
+            widget: list
+            required: false
+            allow_add: true
+            collapsed: false
+            summary: "{{alt}} ({{position}})"
+            hint: "Screenshots, evidence images, and cryptographic verification materials."
+            fields:
+              - label: Image File
+                name: src
+                widget: image
+                media_folder: "/uploads/data"
+                public_folder: "/uploads/data"
+              - {label: Alt Text, name: alt, widget: string}
+              - {label: Caption, name: caption, widget: text, required: false}
+              - label: Position
+                name: position
+                widget: select
+                options: ["top", "middle", "bottom", "inline"]
+                default: "middle"
+          - {label: Verification Content (Level 1), name: content_level_1, widget: markdown, required: false, hint: "Cryptographic verification, signatures, and authentication details"}
+          - {label: Main Testimony (Level 3), name: content_level_3, widget: markdown, hint: "Primary testimony content and expert witness statements"}
+          - {label: Technical Details (Level 5), name: content_level_5, widget: markdown, required: false, hint: "Advanced technical analysis and metadata"}
+
+  - name: manuscript
+    label: Research Content
+    folder: content/manuscript
+    create: true
+    format: json
+    identifier_field: title
+    media_folder: "public/uploads/manuscript"
+    public_folder: "/uploads/manuscript"
+    sortable_fields: ['title', 'featured', 'date']
+    fields:
+      - {label: Title, name: title, widget: string}
+      - {label: Collection Type, name: collection_type, widget: hidden, default: manuscript}
+      - {label: Date Created, name: date, widget: datetime, default: ""}
+      - {label: Featured Content, name: featured, widget: boolean, default: false}
+      - label: Sections
+        name: sections
+        widget: list
+        allow_add: true
+        collapsed: false
+        summary: "{{title}} - {{date}} {{#featured}}(Featured){{/featured}}"
+        fields:
+          - {label: Section Title, name: title, widget: string}
+          - {label: Section Date, name: date, widget: datetime, required: false, default: "", hint: "Date when this research section was completed (optional)"}
+          - {label: Featured Section, name: featured, widget: boolean, default: false}
+          - label: Images
+            name: images
+            widget: list
+            required: false
+            allow_add: true
+            collapsed: false
+            summary: "{{alt}} ({{position}})"
+            hint: "Research diagrams, charts, data visualizations, and supporting materials."
+            fields:
+              - label: Image File
+                name: src
+                widget: image
+                media_folder: "/uploads/manuscript"
+                public_folder: "/uploads/manuscript"
+              - {label: Alt Text, name: alt, widget: string}
+              - {label: Caption, name: caption, widget: text, required: false}
+              - label: Position
+                name: position
+                widget: select
+                options: ["top", "middle", "bottom", "inline"]
+                default: "middle"
+          - {label: Basic Content (Level 1), name: content_level_1, widget: markdown, required: false}
+          - {label: Main Content (Level 3), name: content_level_3, widget: markdown}
+          - {label: Advanced Content (Level 5), name: content_level_5, widget: markdown, required: false}
+
+  - name: constitutional
+    label: Constitutional Challenges
+    folder: content/constitutional
+    create: true
+    format: json
+    identifier_field: title
+    media_folder: "public/uploads/constitutional"
+    public_folder: "/uploads/constitutional"
+    sortable_fields: ['title', 'featured', 'date']
+    fields:
+      - {label: Title, name: title, widget: string}
+      - {label: Collection Type, name: collection_type, widget: hidden, default: constitutional}
+      - {label: Date Created, name: date, widget: datetime, default: ""}
+      - {label: Featured Content, name: featured, widget: boolean, default: false}
+      - label: Sections
+        name: sections
+        widget: list
+        allow_add: true
+        collapsed: false
+        summary: "{{title}} - {{pdf_file}} {{#featured}}(Featured){{/featured}}"
+        fields:
+          - {label: Section Title, name: title, widget: string}
+          - {label: Section Date, name: date, widget: datetime, required: false, default: "", hint: "Date of legal filing or constitutional challenge (optional)"}
+          - {label: Featured Section, name: featured, widget: boolean, default: false}
+          - label: PDF Document
+            name: pdf_file
+            widget: file
+            required: false
+            media_folder: "/uploads/constitutional/pdfs"
+            public_folder: "/uploads/constitutional/pdfs"
+            hint: "Upload the PDF document for this constitutional challenge"
+            media_library:
+              config:
+                multiple: false
+          - {label: Document Description, name: description, widget: text, required: false, hint: "Brief description of this legal document"}
+          - label: Images
+            name: images
+            widget: list
+            required: false
+            allow_add: true
+            hint: "Supporting images, diagrams, or exhibits (optional)"
+            fields:
+              - label: Image File
+                name: src
+                widget: image
+                required: false
+                media_folder: "/uploads/constitutional"
+                public_folder: "/uploads/constitutional"
+              - {label: Alt Text, name: alt, widget: string, required: false}
+              - {label: Caption, name: caption, widget: text, required: false}
+              - label: Position
+                name: position
+                widget: select
+                required: false
+                options: ["top", "middle", "bottom", "inline"]
+                default: "middle"
+          - {label: Summary (Level 1), name: content_level_1, widget: markdown, required: false, hint: "Brief summary or key points"}
+          - {label: Full Analysis (Level 3), name: content_level_3, widget: markdown, required: false, hint: "Detailed legal analysis (optional - main content is PDF)"}
+          - {label: Technical Notes (Level 5), name: content_level_5, widget: markdown, required: false, hint: "Additional technical or legal notes"}
+
+  - name: timeline
+    label: Timeline Events
+    folder: content/timeline
+    create: true
+    format: json
+    identifier_field: title
+    media_folder: "public/uploads/timeline"
+    public_folder: "/uploads/timeline"
+    sortable_fields: ['title', 'featured', 'date']
+    fields:
+      - {label: Title, name: title, widget: string}
+      - {label: Collection Type, name: collection_type, widget: hidden, default: timeline}
+      - {label: Date Created, name: date, widget: datetime, default: ""}
+      - {label: Featured Content, name: featured, widget: boolean, default: false}
+      - label: Sections
+        name: sections
+        widget: list
+        allow_add: true
+        collapsed: false
+        summary: "{{title}} - {{date}} {{#featured}}(Featured){{/featured}}"
+        fields:
+          - {label: Section Title, name: title, widget: string}
+          - {label: Event Date, name: date, widget: datetime, required: false, default: "", hint: "Date when this timeline event occurred (optional)"}
+          - {label: Featured Section, name: featured, widget: boolean, default: false}
+          - label: Images
+            name: images
+            widget: list
+            required: false
+            allow_add: true
+            hint: "Event photos, documents, and related media"
+            fields:
+              - label: Image File
+                name: src
+                widget: image
+                media_folder: "/uploads/timeline"
+                public_folder: "/uploads/timeline"
+              - {label: Alt Text, name: alt, widget: string}
+              - {label: Caption, name: caption, widget: text, required: false}
+              - label: Position
+                name: position
+                widget: select
+                options: ["top", "middle", "bottom", "inline"]
+                default: "middle"
+          - {label: Basic Content (Level 1), name: content_level_1, widget: markdown, required: false}
+          - {label: Main Content (Level 3), name: content_level_3, widget: markdown}
+          - {label: Advanced Content (Level 5), name: content_level_5, widget: markdown, required: false}
+
+  - name: map
+    label: World Map Data
+    folder: content/map
+    create: true
+    format: json
+    identifier_field: title
+    media_folder: "public/uploads/map"
+    public_folder: "/uploads/map"
+    sortable_fields: ['title', 'featured', 'date']
+    fields:
+      - {label: Title, name: title, widget: string}
+      - {label: Collection Type, name: collection_type, widget: hidden, default: map}
+      - {label: Date Created, name: date, widget: datetime, default: ""}
+      - {label: Featured Content, name: featured, widget: boolean, default: false}
+      - label: Sections
+        name: sections
+        widget: list
+        allow_add: true
+        collapsed: false
+        summary: "{{title}} - {{date}} {{#featured}}(Featured){{/featured}}"
+        fields:
+          - {label: Section Title, name: title, widget: string}
+          - {label: Data Date, name: date, widget: datetime, required: false, default: "", hint: "Date when this geographic data was collected (optional)"}
+          - {label: Featured Section, name: featured, widget: boolean, default: false}
+          - label: Images
+            name: images
+            widget: list
+            required: false
+            allow_add: true
+            hint: "Maps, geographic data, and regional information"
+            fields:
+              - label: Image File
+                name: src
+                widget: image
+                media_folder: "/uploads/map"
+                public_folder: "/uploads/map"
+              - {label: Alt Text, name: alt, widget: string}
+              - {label: Caption, name: caption, widget: text, required: false}
+              - label: Position
+                name: position
+                widget: select
+                options: ["top", "middle", "bottom", "inline"]
+                default: "middle"
+          - {label: Basic Content (Level 1), name: content_level_1, widget: markdown, required: false}
+          - {label: Main Content (Level 3), name: content_level_3, widget: markdown}
+          - {label: Advanced Content (Level 5), name: content_level_5, widget: markdown, required: false}

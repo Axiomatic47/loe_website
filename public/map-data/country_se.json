@@ -1,0 +1,23 @@
+{
+  "country_code": "SE",
+  "country_name": "Sweden",
+  "latitude": 58.36406268253968,
+  "longitude": 15.219937166666668,
+  "category": "Non-Supremacist Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 53.892653666166666,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.4610734633383333,
+    "sim_ideology": 0.35,
+    "fatalities": 21,
+    "event_count": 126
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:11.428668"
+}

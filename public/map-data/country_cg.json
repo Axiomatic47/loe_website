@@ -1,0 +1,23 @@
+{
+  "country_code": "CG",
+  "country_name": "Republic Of The Congo",
+  "latitude": -3.511941238095238,
+  "longitude": 15.543553000000001,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 53.70658166850786,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.46293418331492137,
+    "sim_ideology": 0.35,
+    "fatalities": 47,
+    "event_count": 21
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:10.635251"
+}

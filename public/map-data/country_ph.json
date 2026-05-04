@@ -1,0 +1,23 @@
+{
+  "country_code": "PH",
+  "country_name": "Philippines",
+  "latitude": 9.82501589185292,
+  "longitude": 123.33442781989906,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 58.09137400475317,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.41908625995246834,
+    "sim_ideology": 0.35,
+    "fatalities": 9114,
+    "event_count": 6935
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:11.311564"
+}

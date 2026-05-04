@@ -1,0 +1,23 @@
+{
+  "country_code": "PY",
+  "country_name": "Paraguay",
+  "latitude": -24.118151635514018,
+  "longitude": -56.89866201869159,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 52.201392893339296,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.4779860710666071,
+    "sim_ideology": 0.35,
+    "fatalities": 52,
+    "event_count": 107
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:11.364659"
+}

@@ -1,0 +1,23 @@
+{
+  "country_code": "BR",
+  "country_name": "Brazil",
+  "latitude": -7.039302116908851,
+  "longitude": -46.99515905785997,
+  "category": "Soft Supremacism",
+  "description": "",
+  "metrics": {
+    "sgm": 5.5,
+    "gscs": 5.5,
+    "srsD": 5.5,
+    "srsI": 5.5,
+    "sti": 60.27449789297255,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.3972550210702745,
+    "sim_ideology": 0.35,
+    "fatalities": 11998,
+    "event_count": 7570
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:10.581355"
+}

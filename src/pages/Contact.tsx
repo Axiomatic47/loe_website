@@ -1,0 +1,403 @@
+// src/pages/Contact.tsx - Improved version with better styling and removed social links
+import React, { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
+import { useNavigate, useLocation } from "react-router-dom";
+import { PageLayout } from "@/components/PageLayout";
+import { cn } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
+import { MailIcon, Send, Users, BookOpen, Newspaper, MessageCircle, ArrowLeft, CheckCircle } from "lucide-react";
+
+const BlurPanel = ({
+  children,
+  className
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  return (
+    <div
+      className={cn(
+        "relative rounded-lg p-8 sm:p-12",
+        "backdrop-blur-md bg-black/80",
+        "border border-white/10",
+        "shadow-xl",
+        className
+      )}
+    >
+      {children}
+    </div>
+  );
+};
+
+const InfoCard = ({
+  icon,
+  title,
+  content
+}: {
+  icon: React.ReactNode;
+  title: string;
+  content: string;
+}) => (
+  <div className="flex flex-col items-center p-6 bg-black/40 rounded-lg backdrop-blur-sm border border-white/10 text-center hover:bg-black/50 transition-all duration-300">
+    <div className="mb-4 p-3 bg-white/10 rounded-full">{icon}</div>
+    <h3 className="text-lg font-medium mb-2 text-white">{title}</h3>
+    <p className="text-gray-300 leading-relaxed">{content}</p>
+  </div>
+);
+
+const InquiryTypeCard = ({
+  value,
+  icon,
+  title,
+  description,
+  selected,
+  onSelect
+}: {
+  value: string;
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  selected: boolean;
+  onSelect: (value: string) => void;
+}) => (
+  <div
+    className={cn(
+      "relative p-4 rounded-lg border-2 cursor-pointer transition-all duration-300",
+      "hover:scale-105 hover:shadow-lg",
+      selected
+        ? "border-blue-400 bg-blue-400/10 shadow-blue-400/20 shadow-lg"
+        : "border-white/20 bg-black/20 hover:border-white/40"
+    )}
+    onClick={() => onSelect(value)}
+  >
+    <div className="flex items-center space-x-3">
+      <div className={cn(
+        "p-2 rounded-full transition-colors",
+        selected ? "bg-blue-400/20 text-blue-300" : "bg-white/10 text-gray-300"
+      )}>
+        {icon}
+      </div>
+      <div className="flex-1">
+        <h4 className={cn(
+          "font-medium transition-colors",
+          selected ? "text-blue-300" : "text-white"
+        )}>
+          {title}
+        </h4>
+        <p className="text-sm text-gray-400 mt-1">{description}</p>
+      </div>
+      {selected && (
+        <CheckCircle className="w-5 h-5 text-blue-400" />
+      )}
+    </div>
+  </div>
+);
+
+const Contact = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { toast } = useToast();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    inquiryType: "general",
+    message: "",
+    consent: false,
+    newsletter: false
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Check for success parameter in URL
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    if (searchParams.get('success') === 'true') {
+      toast({
+        title: "Message Sent",
+        description: "Thank you for your message. We'll be in touch soon.",
+      });
+
+      // Remove success parameter from URL after toast
+      const cleanUrl = window.location.pathname;
+      window.history.replaceState({}, document.title, cleanUrl);
+    }
+  }, [location.search, toast]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleInquiryTypeSelect = (value: string) => {
+    setFormData(prev => ({ ...prev, inquiryType: value }));
+  };
+
+  const handleCheckboxChange = (name: string, checked: boolean) => {
+    setFormData(prev => ({ ...prev, [name]: checked }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!formData.consent) {
+      toast({
+        title: "Consent Required",
+        description: "Please agree to our privacy policy to submit the form.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    // Using FormSubmit.co service with updated email
+    const form = e.target as HTMLFormElement;
+    form.action = "https://formsubmit.co/contact@lawsofexistence.com";
+    form.method = "POST";
+    form.submit();
+
+    // Form will redirect to the URL specified in _next hidden field
+  };
+
+  const inquiryTypes = [
+    {
+      value: "research",
+      icon: <BookOpen className="w-5 h-5" />,
+      title: "Research",
+      description: "Questions about our research methodology, data sources, or findings"
+    },
+    {
+      value: "collaboration",
+      icon: <Users className="w-5 h-5" />,
+      title: "Collaboration",
+      description: "Interested in partnering on projects, contributing content, or participating in studies"
+    },
+    {
+      value: "media",
+      icon: <Newspaper className="w-5 h-5" />,
+      title: "Media",
+      description: "Journalists seeking interviews, commentary, or background information"
+    },
+    {
+      value: "general",
+      icon: <MessageCircle className="w-5 h-5" />,
+      title: "General",
+      description: "Any other questions or comments about our work"
+    }
+  ];
+
+  return (
+    <PageLayout>
+      <div className="container mx-auto px-4 py-12 flex-grow">
+        <BlurPanel>
+          <Button
+            variant="ghost"
+            className="text-white mb-8 hover:bg-white/10 transition-colors"
+            onClick={() => navigate("/")}
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Home
+          </Button>
+
+          <div className="text-center mb-12">
+            <h1 className="text-4xl font-serif mb-4 text-white drop-shadow-lg">Get in Touch</h1>
+            <p className="text-gray-300 max-w-2xl mx-auto text-lg">
+              Have questions about our research, want to contribute, or interested in collaboration?
+              We'd love to hear from you.
+            </p>
+          </div>
+
+          {/* Quick Contact Info */}
+          <div className="mb-12">
+            <div className="flex justify-center">
+              <div className="flex items-center p-6 bg-black/40 rounded-lg backdrop-blur-sm border border-white/10 hover:bg-black/50 transition-all duration-300">
+                <div className="p-3 bg-blue-400/20 rounded-full mr-4">
+                  <MailIcon className="w-6 h-6 text-blue-300" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-medium text-white mb-1">Email</h3>
+                  <p className="text-blue-300">contact@lawsofexistence.com</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* How We Can Help Section */}
+            <div className="lg:col-span-1">
+              <h2 className="text-2xl font-serif mb-6 text-white">How We Can Help</h2>
+              <div className="space-y-4">
+                <InfoCard
+                  icon={<BookOpen className="w-6 h-6 text-blue-300" />}
+                  title="Research Inquiries"
+                  content="Questions about our research methodology, data sources, or findings."
+                />
+                <InfoCard
+                  icon={<Users className="w-6 h-6 text-green-300" />}
+                  title="Collaboration"
+                  content="Interested in partnering on projects, contributing content, or participating in our studies."
+                />
+                <InfoCard
+                  icon={<Newspaper className="w-6 h-6 text-purple-300" />}
+                  title="Media Requests"
+                  content="Journalists seeking interviews, commentary, or background information."
+                />
+                <InfoCard
+                  icon={<MessageCircle className="w-6 h-6 text-yellow-300" />}
+                  title="General Inquiries"
+                  content="Any other questions or comments about our work."
+                />
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <div className="lg:col-span-2">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <h2 className="text-2xl font-serif mb-6 text-white">Contact Form</h2>
+
+                {/* FormSubmit.co Configuration - Hidden Fields */}
+                <input type="hidden" name="_subject" value="New contact form submission from The Laws of Existence" />
+                <input type="hidden" name="_template" value="table" />
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_next" value="https://lawsofexistence.com/contact?success=true" />
+
+                {/* Honeypot field to prevent spam */}
+                <input type="text" name="_honey" style={{ display: 'none' }} />
+
+                {/* Auto-response */}
+                <input type="hidden" name="_autoresponse" value="Thank you for contacting The Laws of Existence project. We've received your message and will respond soon." />
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <Label htmlFor="name" className="text-white mb-2 block font-medium">Name</Label>
+                    <Input
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      required
+                      className="bg-black/50 border-white/20 text-white placeholder:text-gray-500 focus:border-blue-400 focus:ring-blue-400/20"
+                      placeholder="Your name"
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="email" className="text-white mb-2 block font-medium">Email</Label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                      className="bg-black/50 border-white/20 text-white placeholder:text-gray-500 focus:border-blue-400 focus:ring-blue-400/20"
+                      placeholder="your.email@example.com"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <Label className="text-white mb-4 block font-medium">Inquiry Type</Label>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {inquiryTypes.map((type) => (
+                      <InquiryTypeCard
+                        key={type.value}
+                        value={type.value}
+                        icon={type.icon}
+                        title={type.title}
+                        description={type.description}
+                        selected={formData.inquiryType === type.value}
+                        onSelect={handleInquiryTypeSelect}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Hidden field to pass the inquiry type to email */}
+                  <input type="hidden" name="inquiryType" value={formData.inquiryType} />
+                </div>
+
+                <div>
+                  <Label htmlFor="message" className="text-white mb-2 block font-medium">Message</Label>
+                  <Textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    required
+                    className="bg-black/50 border-white/20 text-white h-40 placeholder:text-gray-500 focus:border-blue-400 focus:ring-blue-400/20"
+                    placeholder="How can we help you?"
+                  />
+                </div>
+
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <Checkbox
+                      id="consent"
+                      checked={formData.consent}
+                      onCheckedChange={(checked) =>
+                        handleCheckboxChange("consent", checked as boolean)
+                      }
+                      name="consent"
+                      className="mt-1 border-white/20 data-[state=checked]:bg-blue-400 data-[state=checked]:border-blue-400"
+                    />
+                    <Label htmlFor="consent" className="text-gray-300 text-sm cursor-pointer leading-relaxed">
+                      I agree to the processing of my personal data in accordance with the{" "}
+                      <button
+                        type="button"
+                        onClick={() => navigate("/privacy-policy")}
+                        className="text-blue-400 underline hover:text-blue-300 transition-colors"
+                      >
+                        Privacy Policy
+                      </button>
+                    </Label>
+                  </div>
+
+                  <div className="flex items-start space-x-3">
+                    <Checkbox
+                      id="newsletter"
+                      checked={formData.newsletter}
+                      onCheckedChange={(checked) =>
+                        handleCheckboxChange("newsletter", checked as boolean)
+                      }
+                      name="newsletter"
+                      className="mt-1 border-white/20 data-[state=checked]:bg-blue-400 data-[state=checked]:border-blue-400"
+                    />
+                    <Label htmlFor="newsletter" className="text-gray-300 text-sm cursor-pointer leading-relaxed">
+                      Subscribe to our newsletter to receive updates on our research and events
+                    </Label>
+                  </div>
+                </div>
+
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white border-0
+                           transition-all duration-300 px-8 py-3 text-lg font-medium
+                           shadow-lg hover:shadow-blue-500/25 disabled:opacity-50"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <div className="animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full mr-2"></div>
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5 mr-2" />
+                      Send Message
+                    </>
+                  )}
+                </Button>
+              </form>
+            </div>
+          </div>
+        </BlurPanel>
+      </div>
+    </PageLayout>
+  );
+};
+
+export default Contact;

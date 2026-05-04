@@ -1,0 +1,23 @@
+{
+  "country_code": "AT",
+  "country_name": "Austria",
+  "latitude": 48.0117210733945,
+  "longitude": 15.537096770642203,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 47.4120304939933,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.525879695060067,
+    "sim_ideology": 0.35,
+    "fatalities": 30,
+    "event_count": 109
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:10.463211"
+}

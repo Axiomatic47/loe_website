@@ -1,0 +1,23 @@
+{
+  "country_code": "BG",
+  "country_name": "Bulgaria",
+  "latitude": 42.57379459183673,
+  "longitude": 24.07198340816327,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 48.85906038102924,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.5114093961897076,
+    "sim_ideology": 0.35,
+    "fatalities": 27,
+    "event_count": 49
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:10.538214"
+}

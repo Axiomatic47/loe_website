@@ -1,0 +1,23 @@
+{
+  "country_code": "PK",
+  "country_name": "Pakistan",
+  "latitude": 30.580969614521415,
+  "longitude": 69.28572498253064,
+  "category": "Soft Supremacism",
+  "description": "",
+  "metrics": {
+    "sgm": 5.5,
+    "gscs": 5.5,
+    "srsD": 5.5,
+    "srsI": 5.5,
+    "sti": 60.918981021571014,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.39081018978428983,
+    "sim_ideology": 0.35,
+    "fatalities": 30168,
+    "event_count": 16486
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:11.322513"
+}

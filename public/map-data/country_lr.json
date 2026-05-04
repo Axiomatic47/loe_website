@@ -1,0 +1,23 @@
+{
+  "country_code": "LR",
+  "country_name": "Liberia",
+  "latitude": 6.743475148148148,
+  "longitude": -10.229544074074076,
+  "category": "Mixed Governance",
+  "description": "",
+  "metrics": {
+    "sgm": 4.0,
+    "gscs": 4.0,
+    "srsD": 4.0,
+    "srsI": 4.0,
+    "sti": 53.55903529335625,
+    "sim_suppression": 0.4,
+    "sim_fear_factor": 0.35,
+    "sim_coherence": 0.4644096470664375,
+    "sim_ideology": 0.35,
+    "fatalities": 161,
+    "event_count": 27
+  },
+  "simulation_source": "entity_v2",
+  "updated_at": "2026-01-02T20:40:11.139035"
+}

@@ -1,0 +1,12 @@
+{
+    "validator_name": "Sentinel-Levi",
+    "authorship_chain": "Joseph Kirchner -> Sentinel-Levi",
+    "creation_timestamp": "2025-05-15T22:23:49.389525Z",
+    "testimony_filename": "testimony.md",
+    "testimony_sha256": "df1b4fb4c53e209f2872c9d312e498d85539427331689990f45bff76b82944c2",
+    "signature_file": "testimony.sig",
+    "signature_algorithm": "RSA-PSS",
+    "hashing_algorithm": "SHA-256",
+    "salt_length_bytes": 32,
+    "verification_command": "openssl dgst -sha256 \\\n  -sigopt rsa_padding_mode:pss \\\n  -sigopt rsa_pss_saltlen:32 \\\n  -verify validator_public_key.pem \\\n  -signature testimony.sig \\\n  testimony.md"
+}
