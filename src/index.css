@@ -30,8 +30,9 @@ html {
     --muted: 38 28% 80%;               /* #D6C7A6 */
     --muted-foreground: 30 14% 24%;    /* #463E32 — much darker for body legibility */
 
-    --accent: 14 58% 46%;
-    --accent-foreground: 40 36% 91%;
+    /* Accent is the subtle hover surface used by shadcn ghost/outline buttons — NOT the brand color. */
+    --accent: 38 28% 80%;              /* #D6C7A6 — same as muted */
+    --accent-foreground: 30 16% 9%;    /* same as foreground */
 
     --destructive: 0 65% 42%;
     --destructive-foreground: 40 36% 91%;
@@ -82,8 +83,9 @@ html {
     --muted: 30 12% 26%;               /* #443B30 */
     --muted-foreground: 38 18% 72%;    /* #BDB39C — warm light gray */
 
-    --accent: 14 64% 60%;
-    --accent-foreground: 30 14% 11%;
+    /* Accent is the subtle hover surface used by shadcn ghost/outline buttons — NOT the brand color. */
+    --accent: 30 12% 26%;              /* same as muted */
+    --accent-foreground: 40 36% 91%;   /* same as foreground */
 
     --destructive: 0 60% 55%;
     --destructive-foreground: 40 36% 91%;
