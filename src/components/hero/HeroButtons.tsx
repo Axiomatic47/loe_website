@@ -36,7 +36,7 @@ export const HeroButtons = () => {
             "shadow-sm hover:shadow-md",
             item.variant === "accent"
               ? "border-2 border-primary/40 text-foreground hover:bg-primary/5 hover:border-primary/60"
-              : "border border-border bg-card text-foreground hover:bg-secondary"
+              : "border border-border bg-muted text-foreground hover:bg-secondary"
           )}
         >
           <span className="relative">{item.label}</span>
