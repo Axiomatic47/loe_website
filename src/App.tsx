@@ -236,39 +236,44 @@ const KirchnerEllisonSectionRedirect = () => {
 // Operative pleading is the Third Amended Complaint (Doc 51).
 // Supports:
 //   /kirchner-v-johnson/51            → main complaint (section 1)
-//   /kirchner-v-johnson/51-N          → attachment N (section N+1)
+//   /kirchner-v-johnson/51-N          → attachment N (section 1+N)
 //   /kirchner-v-johnson/doc51         → main complaint (section 1)
-//   /kirchner-v-johnson/doc51-N       → attachment N (section N+1)
-//   /kirchner-v-johnson/N             → section N (1-77)
+//   /kirchner-v-johnson/doc51-N       → attachment N (section 1+N)
+//   /kirchner-v-johnson/52..57        → main filing (errata, notices, motions)
+//   /kirchner-v-johnson/52-N..57-N    → attachment N to that filing
+//   /kirchner-v-johnson/N             → plain section number (1..107)
 // Legacy doc 13 (Second Amended Complaint) routes still resolve into the new section ordering.
+const JOHNSON_DOC_SECTION_BASE: Record<number, number> = {
+  51: 1,    // Third Amended Complaint (operative pleading)
+  52: 78,   // Errata to Third Amended Complaint (5 attachments)
+  53: 84,   // Notice of Conventionally-Maintained Exhibits (1 attachment)
+  54: 86,   // Notice of Related Case (no attachments)
+  55: 87,   // Emergency Motion for Discovery & Preservation (15 attachments)
+  56: 103,  // Errata Notice for Discovery Correlation Matrix (1 attachment)
+  57: 105,  // Emergency Motion for TRO vs. Anthropic & Comcast (2 attachments)
+};
+
 const KirchnerJohnsonDocRedirect = () => {
   const { docId } = useParams<{ docId: string }>();
 
   let sectionNum = 1;
   if (docId) {
-    // Doc 51 (current operative pleading) — main complaint
-    if (docId === '51' || docId === 'doc51') {
-      sectionNum = 1;
-    }
-    // Doc 51 attachments: 51-N or doc51-N → section N+1
-    else if (/^(?:doc)?51-(\d+)$/.test(docId)) {
-      const match = docId.match(/^(?:doc)?51-(\d+)$/);
-      sectionNum = parseInt(match![1], 10) + 1;
-    }
-    // Legacy doc 13 (Second Amended Complaint): doc13 → section 1
-    else if (docId === 'doc13') {
-      sectionNum = 1;
-    }
-    // Legacy doc 13 attachments: doc13-N or 13-N → section N+1
-    else if (/^(?:doc)?13-(\d+)$/.test(docId)) {
-      const match = docId.match(/^(?:doc)?13-(\d+)$/);
-      sectionNum = parseInt(match![1], 10) + 1;
-    }
-    // Plain section number: /kirchner-v-johnson/N → section N
-    else {
-      const plainNumberMatch = docId.match(/^(\d+)$/);
-      if (plainNumberMatch) {
-        sectionNum = parseInt(plainNumberMatch[1], 10);
+    const docMatch = docId.match(/^(doc)?(\d+)(?:-(\d+))?$/);
+    if (docMatch) {
+      const hasDocPrefix = !!docMatch[1];
+      const docNum = parseInt(docMatch[2], 10);
+      const hasAttachment = !!docMatch[3];
+      const attNum = hasAttachment ? parseInt(docMatch[3], 10) : 0;
+      const base = JOHNSON_DOC_SECTION_BASE[docNum];
+
+      if (base !== undefined) {
+        sectionNum = base + attNum;
+      } else if (docNum === 13 && (hasDocPrefix || hasAttachment)) {
+        // Legacy doc 13 (Second Amended Complaint) — re-mapped onto operative pleading.
+        // Plain "13" (no prefix, no attachment) is treated as plain section 13 below.
+        sectionNum = 1 + attNum;
+      } else if (!hasAttachment) {
+        sectionNum = docNum;
       }
     }
   }
