@@ -1,6 +1,8 @@
-// src/utils/compositionData.ts - Updated with Constitutional and Timeline Support
+// src/utils/compositionData.ts - Zustand store for composition content.
 
 import { create } from 'zustand';
+
+const DEV = import.meta.env.DEV;
 
 export interface ImageData {
   src: string;
@@ -17,7 +19,7 @@ export interface Section {
   content_level_5: string;
   pdf_file?: string;
   description?: string;
-  images?: ImageData[]; // Add images support
+  images?: ImageData[];
 }
 
 export interface Composition {
@@ -46,7 +48,6 @@ interface CompositionStore {
   lastRefresh: Date | null;
   debugMode: boolean;
 
-  // Actions - these don't change reference
   setCompositions: (compositions: Composition[]) => void;
   refreshCompositions: () => Promise<void>;
   forceRefresh: () => Promise<void>;
@@ -56,10 +57,7 @@ interface CompositionStore {
   setDebugMode: (enabled: boolean) => void;
 }
 
-// Create store with stable actions to prevent infinite loops
 export const useCompositionStore = create<CompositionStore>((set, get) => {
-
-  // Private flag to prevent multiple simultaneous loads
   let isLoading = false;
 
   return {
@@ -73,16 +71,13 @@ export const useCompositionStore = create<CompositionStore>((set, get) => {
     loading: false,
     error: null,
     lastRefresh: null,
-    debugMode: import.meta.env.DEV || false,
+    debugMode: DEV || false,
 
     setDebugMode: (enabled) => {
       set({ debugMode: enabled });
-      console.log('🐛 Debug mode:', enabled ? 'ENABLED' : 'DISABLED');
     },
 
     setCompositions: (compositions) => {
-      console.log('🔄 Setting compositions in store:', compositions.length);
-
       const manuscript = compositions.filter(comp => comp.collection_type === 'manuscript');
       const data = compositions.filter(comp => comp.collection_type === 'data');
       const constitutional = compositions.filter(comp => comp.collection_type === 'constitutional');
@@ -90,17 +85,6 @@ export const useCompositionStore = create<CompositionStore>((set, get) => {
       const timeline = compositions.filter(comp => comp.collection_type === 'timeline');
       const map = compositions.filter(comp => comp.collection_type === 'map');
 
-      console.log('📊 Filtered compositions:', {
-        manuscript: manuscript.length,
-        data: data.length,
-        constitutional: constitutional.length,
-        copyright: copyright.length,
-        timeline: timeline.length,
-        map: map.length,
-        total: compositions.length
-      });
-
-      // Single state update to prevent loops
       set({
         manuscript,
         data,
@@ -111,58 +95,39 @@ export const useCompositionStore = create<CompositionStore>((set, get) => {
         initialized: true,
         loading: false,
         error: null,
-        lastRefresh: new Date()
+        lastRefresh: new Date(),
       });
-
-      console.log('✅ Store updated successfully');
     },
 
     refreshCompositions: async () => {
-      // Prevent multiple simultaneous calls
-      if (isLoading) {
-        console.log('⏳ Already loading, skipping refresh');
-        return;
-      }
+      if (isLoading) return;
 
       const state = get();
-
-      // Don't refresh too frequently (debounce)
-      if (state.lastRefresh && (Date.now() - state.lastRefresh.getTime()) < 1000) {
-        console.log('⏳ Recently refreshed, skipping');
-        return;
-      }
+      if (state.lastRefresh && Date.now() - state.lastRefresh.getTime() < 1000) return;
 
       isLoading = true;
-      console.log('🚀 Starting composition refresh...');
-
-      // Set loading state
       set({ loading: true, error: null });
 
       try {
         const { loadCompositions } = await import('./compositionLoader');
         const compositions = await loadCompositions();
 
-        console.log('📦 Loaded compositions:', compositions.length);
-
         if (!compositions || compositions.length === 0) {
-          console.warn('⚠️ No compositions found');
           set({
             loading: false,
             error: 'No compositions found. Create content in the admin panel.',
-            initialized: true
+            initialized: true,
           });
           return;
         }
 
-        // Use the setCompositions method to update store
         get().setCompositions(compositions);
-
       } catch (error) {
-        console.error('💥 Error loading compositions:', error);
+        console.error('Error loading compositions:', error);
         set({
           loading: false,
           error: error instanceof Error ? error.message : 'Unknown error',
-          initialized: true
+          initialized: true,
         });
       } finally {
         isLoading = false;
@@ -170,9 +135,6 @@ export const useCompositionStore = create<CompositionStore>((set, get) => {
     },
 
     forceRefresh: async () => {
-      console.log('🔄 Force refresh - clearing cache');
-
-      // Reset state
       set({
         manuscript: [],
         data: [],
@@ -183,10 +145,8 @@ export const useCompositionStore = create<CompositionStore>((set, get) => {
         initialized: false,
         loading: false,
         error: null,
-        lastRefresh: null
+        lastRefresh: null,
       });
-
-      // Force refresh
       await get().refreshCompositions();
     },
 
@@ -195,104 +155,40 @@ export const useCompositionStore = create<CompositionStore>((set, get) => {
       let compositions: Composition[] = [];
 
       switch (collection) {
-        case 'manuscript':
-          compositions = state.manuscript;
-          break;
-        case 'data':
-          compositions = state.data;
-          break;
-        case 'constitutional':
-          compositions = state.constitutional;
-          break;
-        case 'copyright':
-          compositions = state.copyright;
-          break;
-        case 'timeline':
-          compositions = state.timeline;
-          break;
-        case 'map':
-          compositions = state.map;
-          break;
+        case 'manuscript': compositions = state.manuscript; break;
+        case 'data': compositions = state.data; break;
+        case 'constitutional': compositions = state.constitutional; break;
+        case 'copyright': compositions = state.copyright; break;
+        case 'timeline': compositions = state.timeline; break;
+        case 'map': compositions = state.map; break;
         default:
-          console.warn('❓ Unknown collection:', collection);
+          if (DEV) console.warn('Unknown collection:', collection);
           return null;
       }
 
-      // Index is 1-based in URL, convert to 0-based
-      const composition = compositions[index - 1] || null;
-
-      if (!composition) {
-        console.warn(`❌ No composition at index ${index} in ${collection}`);
-      }
-
-      return composition;
+      return compositions[index - 1] || null;
     },
 
     getSection: (collection: string, compositionIndex: number, sectionIndex: number) => {
       const composition = get().getComposition(collection, compositionIndex);
-      if (!composition || !composition.sections) {
-        return null;
-      }
-
-      // Section index is 1-based in URL, convert to 0-based
-      const section = composition.sections[sectionIndex - 1] || null;
-
-      if (!section) {
-        console.warn(`❌ No section at index ${sectionIndex}`);
-      }
-
-      return section;
+      if (!composition || !composition.sections) return null;
+      return composition.sections[sectionIndex - 1] || null;
     },
 
     getCollectionCompositions: (collection: string) => {
       const state = get();
 
-      console.log(`🔍 Getting compositions for collection: "${collection}"`);
-      console.log('📊 Current store state:', {
-        manuscript: state.manuscript.length,
-        data: state.data.length,
-        constitutional: state.constitutional.length,
-        copyright: state.copyright.length,
-        timeline: state.timeline.length,
-        map: state.map.length,
-        initialized: state.initialized
-      });
-
-      let compositions: Composition[] = [];
-
       switch (collection) {
-        case 'manuscript':
-          compositions = state.manuscript;
-          console.log(`📚 Returning ${compositions.length} manuscript compositions`);
-          break;
-        case 'data':
-          compositions = state.data;
-          console.log(`📊 Returning ${compositions.length} data compositions`);
-          break;
-        case 'constitutional':
-          compositions = state.constitutional;
-          console.log(`🏛️ Returning ${compositions.length} constitutional compositions`);
-          break;
-        case 'copyright':
-          compositions = state.copyright;
-          console.log(`©️ Returning ${compositions.length} copyright compositions`);
-          break;
-        case 'timeline':
-          compositions = state.timeline;
-          console.log(`📅 Returning ${compositions.length} timeline compositions`);
-          break;
-        case 'map':
-          compositions = state.map;
-          console.log(`🗺️ Returning ${compositions.length} map compositions`);
-          break;
+        case 'manuscript': return state.manuscript;
+        case 'data': return state.data;
+        case 'constitutional': return state.constitutional;
+        case 'copyright': return state.copyright;
+        case 'timeline': return state.timeline;
+        case 'map': return state.map;
         default:
-          console.warn(`❓ Unknown collection: "${collection}"`);
-          console.log('Valid collections are: manuscript, data, constitutional, copyright, timeline, map');
+          if (DEV) console.warn('Unknown collection:', collection);
           return [];
       }
-
-      console.log(`✅ Compositions for ${collection}:`, compositions.map(c => ({ id: c.id, title: c.title })));
-      return compositions;
-    }
+    },
   };
 });
