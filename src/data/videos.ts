@@ -75,12 +75,12 @@ export const videos: VideoItem[] = [
   {
     id: 'rec-12',
     youtubeId: 'YOUTUBE_VIDEO_ID', // Replace after upload
-    title: 'Copyright Prompt Completion Refusal',
-    description: 'Documentation of selective copyright prompt completion refusal, showing inconsistent enforcement of copyright protections.',
+    title: 'Copyright Audit Output Redaction',
+    description: 'Screen recording documenting real-time output redaction during a Claude copyright audit session.',
     category: 'copyright-audit',
     exhibitNumber: 'REC-12',
-    date: '2025-12-05',
-    tags: ['copyright', 'refusal', 'inconsistent']
+    date: '2026-02-16',
+    tags: ['copyright', 'audit', 'output-redaction']
   },
 
   // Prompt Audits
@@ -147,18 +147,6 @@ export const videos: VideoItem[] = [
     tags: ['targeting', 'vpn', 'fingerprinting', 'ip-change']
   },
 
-  // Network Interference
-  {
-    id: 'rec-8',
-    youtubeId: 'YOUTUBE_VIDEO_ID', // Replace after upload
-    title: 'Network Interference Proof via MAC Spoofing & VPN Change',
-    description: 'Technical documentation proving network-level interference through controlled experiments with MAC spoofing and VPN changes.',
-    category: 'network-interference',
-    exhibitNumber: 'REC-8',
-    date: '2025-11-30',
-    tags: ['network', 'interference', 'mac-spoofing', 'vpn']
-  },
-
   // Chat Deletion
   {
     id: 'rec-9',
@@ -179,6 +167,18 @@ export const videos: VideoItem[] = [
     exhibitNumber: 'REC-13',
     date: '2025-11-13',
     tags: ['chat-deletion', 'backend', 'systematic']
+  },
+
+  // Other Evidence
+  {
+    id: 'rec-14',
+    youtubeId: 'YOUTUBE_VIDEO_ID', // Replace after upload
+    title: 'Anthropic "Keep Thinking with Claude" Brand Campaign',
+    description: 'Screen recording of Anthropic\'s "Keep Thinking with Claude" brand campaign materials, dated September 18, 2025.',
+    category: 'other',
+    exhibitNumber: 'REC-14',
+    date: '2025-09-18',
+    tags: ['anthropic', 'brand-campaign', 'keep-thinking']
   },
 
   // Lyrical Screenshot Videos (for Copyright Notifications page)
