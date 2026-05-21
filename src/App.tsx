@@ -367,7 +367,7 @@ const App = () => {
                   {/* Custom route for Kirchner v. Ellison (Minnesota) case - composition 2 */}
                   <Route
                     path="/kirchner-v-ellison"
-                    element={<Navigate to="/composition/constitutional/composition/2/section/1" replace />}
+                    element={<Navigate to="/composition/constitutional/composition/2/section/23" replace />}
                   />
                   <Route
                     path="/kirchner-v-ellison/section/:sectionId"
