@@ -251,6 +251,10 @@ const JOHNSON_DOC_SECTION_BASE: Record<number, number> = {
   55: 87,   // Emergency Motion for Discovery & Preservation (15 attachments)
   56: 103,  // Errata Notice for Discovery Correlation Matrix (1 attachment)
   57: 105,  // Emergency Motion for TRO vs. Anthropic & Comcast (2 attachments)
+  59: 108,  // Federal Defendants' Motion for Extension of Time
+  60: 109,  // Notice of Appearance — AUSA Derbisz
+  61: 110,  // Appearance of Counsel — OpenAI Percarpio
+  62: 111,  // Plaintiff's Motion for USMS Service / Individual-Capacity Finding
 };
 
 const KirchnerJohnsonDocRedirect = () => {
