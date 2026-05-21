@@ -35,6 +35,7 @@ export interface Composition {
   content_level_3: string;
   content_level_5: string;
   sections: Section[];
+  hidden_case_groups?: string[];
 }
 
 interface CompositionStore {

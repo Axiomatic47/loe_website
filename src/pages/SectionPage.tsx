@@ -47,6 +47,7 @@ const SectionPage = () => {
   const [literacyLevel, setLiteracyLevel] = useState(1);
   const [mounted, setMounted] = useState(false);
   const [activeCaseGroup, setActiveCaseGroup] = useState<string | null>(null);
+  const [showAllCaseGroups, setShowAllCaseGroups] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
   const store = useCompositionStore();
@@ -87,9 +88,16 @@ const SectionPage = () => {
   // Case-group tabs: when a composition's sections carry `case_group`, the sidebar
   // splits navigation by sub-case (e.g. Ellison's trial court / refiled / appeal).
   const CASE_GROUP_LABELS: Record<string, string> = {
+    // Kirchner v. Ellison sub-cases
     'cv-00726': 'Trial Court',
     'cv-02594': 'Refiled Action',
     '26-1615': '8th Cir. Appeal',
+    // Kirchner v. Johnson — by complaint era
+    'original': 'Original Complaint',
+    'fac': 'First Amended Complaint',
+    'sac': 'Second Amended Complaint',
+    'tac': 'Third Amended Complaint',
+    'filings': 'Subsequent Filings',
   };
   const allCompositionSections = currentComposition?.sections || [];
   const caseGroupsInOrder: string[] = [];
@@ -98,6 +106,15 @@ const SectionPage = () => {
     if (cg && !caseGroupsInOrder.includes(cg)) caseGroupsInOrder.push(cg);
   }
   const hasCaseGroups = caseGroupsInOrder.length > 1;
+
+  // Per-composition list of case_groups hidden from the sidebar by default.
+  // The current section's group is always shown so users keep visual context after deep-link nav.
+  const hiddenCaseGroups: string[] = (currentComposition as any)?.hidden_case_groups || [];
+  const currentSectionGroup = (currentSection as any)?.case_group;
+  const visibleCaseGroups = showAllCaseGroups
+    ? caseGroupsInOrder
+    : caseGroupsInOrder.filter(cg => !hiddenCaseGroups.includes(cg) || cg === currentSectionGroup);
+  const hasHiddenGroups = hiddenCaseGroups.some(cg => caseGroupsInOrder.includes(cg));
 
   // Sync active tab to whichever group the current section belongs to.
   useEffect(() => {
@@ -506,7 +523,7 @@ const getCollectionConfig = (collectionType: string) => {
                   Sub-Cases
                 </div>
                 <div className="flex flex-wrap gap-1.5">
-                  {caseGroupsInOrder.map(cg => (
+                  {visibleCaseGroups.map(cg => (
                     <button
                       key={cg}
                       onClick={() => setActiveCaseGroup(cg)}
@@ -523,6 +540,14 @@ const getCollectionConfig = (collectionType: string) => {
                     </button>
                   ))}
                 </div>
+                {hasHiddenGroups && (
+                  <button
+                    onClick={() => setShowAllCaseGroups(v => !v)}
+                    className="mt-2 text-[11px] text-foreground/60 hover:text-foreground underline underline-offset-2 decoration-foreground/40 hover:decoration-foreground transition-colors"
+                  >
+                    {showAllCaseGroups ? "Hide prior pleadings" : "Show prior pleadings"}
+                  </button>
+                )}
               </div>
             )}
 

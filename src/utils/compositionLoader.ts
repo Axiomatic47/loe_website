@@ -314,6 +314,7 @@ function processCompositionData(data: any, expectedType: string, filePath: strin
     content_level_3: sections[0]?.content_level_3 || '',
     content_level_5: sections[0]?.content_level_5 || '',
     sections,
+    hidden_case_groups: Array.isArray(data.hidden_case_groups) ? data.hidden_case_groups : undefined,
   };
 }
 

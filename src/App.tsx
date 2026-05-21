@@ -244,17 +244,62 @@ const KirchnerEllisonSectionRedirect = () => {
 //   /kirchner-v-johnson/N             → plain section number (1..107)
 // Legacy doc 13 (Second Amended Complaint) routes still resolve into the new section ordering.
 const JOHNSON_DOC_SECTION_BASE: Record<number, number> = {
-  51: 1,    // Third Amended Complaint (operative pleading)
-  52: 78,   // Errata to Third Amended Complaint (5 attachments)
-  53: 84,   // Notice of Conventionally-Maintained Exhibits (1 attachment)
-  54: 86,   // Notice of Related Case (no attachments)
-  55: 87,   // Emergency Motion for Discovery & Preservation (15 attachments)
-  56: 103,  // Errata Notice for Discovery Correlation Matrix (1 attachment)
-  57: 105,  // Emergency Motion for TRO vs. Anthropic & Comcast (2 attachments)
+  // Third Amended Complaint era (operative pleading) — TAC tab
+  51: 1,    // Third Amended Complaint (operative pleading, 76 attachments)
+  // Subsequent Filings era — "Subsequent Filings" tab
+  52: 78,   // Errata to Third Amended Complaint
+  53: 84,   // Notice of Conventionally-Maintained Exhibits
+  54: 86,   // Notice of Related Case
+  55: 87,   // Emergency Motion for Discovery & Preservation
+  56: 103,  // Errata Notice for Discovery Correlation Matrix
+  57: 105,  // Emergency Motion for TRO vs. Anthropic & Comcast
   59: 108,  // Federal Defendants' Motion for Extension of Time
   60: 109,  // Notice of Appearance — AUSA Derbisz
   61: 110,  // Appearance of Counsel — OpenAI Percarpio
   62: 111,  // Plaintiff's Motion for USMS Service / Individual-Capacity Finding
+  // Original Complaint era — "Original Complaint" tab
+  1: 112,   // Original Complaint (dismissed for standing)
+  2: 114,   // Motion for TRO and Preliminary Injunction (denied as moot)
+  // First Amended Complaint era — "First Amended Complaint" tab
+  5: 149,   // First Amended Complaint
+  6: 237,   // Emergency Motion for TRO (withdrawn)
+  8: 259,   // Motion for Leave to File Under Seal
+  // Second Amended Complaint era — "Second Amended Complaint" tab
+  13: 260,  // Second Amended Complaint (86 attachments)
+  16: 347,  // Notice of Exhibit Limitations
+  17: 349,  // Notice of Intent to Contact Copyright Holders
+  18: 351,  // Notice of Related Case (Ellison)
+  19: 352,  // Certificate of Service — Copyright Holders
+  20: 355,  // Notice of Caption Correction
+  21: 356,  // Request for Summonses (10 summonses)
+  22: 367,  // Summonses Issued
+  23: 368,  // Appearance — Anthropic (Onorato)
+  24: 369,  // Appearance — Anthropic (Tighe)
+  25: 370,  // Anthropic Corp Disclosure
+  26: 371,  // Anthropic Consent Motion for Extension
+  27: 373,  // Summons Returned — Anthropic
+  28: 374,  // Summons Returned — Apple
+  29: 375,  // Summons Returned — Carr
+  30: 376,  // Summons Returned — Comcast
+  31: 377,  // Summons Returned — METR
+  32: 378,  // Summons Returned — Johnson
+  33: 379,  // Summons Returned — OpenAI
+  34: 380,  // Summons Returned — Bondi/US AG
+  35: 381,  // Summons Returned — US House
+  36: 382,  // Summons Returned — US Attorney
+  37: 383,  // Summons Unexecuted — Trump
+  38: 384,  // Notice of Service Effectuation
+  39: 387,  // Motion for Alternative Service — Trump
+  40: 390,  // Appearance — OpenAI (Margo)
+  41: 391,  // OpenAI Corp Disclosure
+  42: 392,  // Stipulation — OpenAI Leave to Amend
+  43: 393,  // Appearance — Apple
+  44: 394,  // Apple Corp Disclosure
+  45: 395,  // Apple Notice of Intent to File MTD
+  46: 396,  // Doc 46
+  47: 397,  // Doc 47
+  49: 399,  // Plaintiff's Response to Apple Notice of MTD
+  50: 401,  // Notice of Supplement to Service Effectuation
 };
 
 const KirchnerJohnsonDocRedirect = () => {
