@@ -20,6 +20,8 @@ export interface Section {
   pdf_file?: string;
   description?: string;
   images?: ImageData[];
+  case_group?: string;
+  date?: string;
 }
 
 export interface Composition {

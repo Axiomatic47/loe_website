@@ -298,6 +298,8 @@ function processCompositionData(data: any, expectedType: string, filePath: strin
       pdf_file: section.pdf_file || undefined,
       description: section.description || undefined,
       images: processedImages,
+      case_group: section.case_group || undefined,
+      date: section.date || undefined,
     };
   });
 

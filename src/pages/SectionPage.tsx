@@ -46,6 +46,7 @@ const SectionPage = () => {
   // Default to level 1 so "Content" shows first
   const [literacyLevel, setLiteracyLevel] = useState(1);
   const [mounted, setMounted] = useState(false);
+  const [activeCaseGroup, setActiveCaseGroup] = useState<string | null>(null);
   const { toast } = useToast();
   const navigate = useNavigate();
   const store = useCompositionStore();
@@ -82,6 +83,39 @@ const SectionPage = () => {
 
   // Check if this is a section with a PDF (constitutional, copyright, or manuscript collections)
   const hasPDFViewer = (compositionId === 'constitutional' || compositionId === 'copyright' || compositionId === 'manuscript') && currentSection?.pdf_file;
+
+  // Case-group tabs: when a composition's sections carry `case_group`, the sidebar
+  // splits navigation by sub-case (e.g. Ellison's trial court / refiled / appeal).
+  const CASE_GROUP_LABELS: Record<string, string> = {
+    'cv-00726': 'Trial Court',
+    'cv-02594': 'Refiled Action',
+    '26-1615': '8th Cir. Appeal',
+  };
+  const allCompositionSections = currentComposition?.sections || [];
+  const caseGroupsInOrder: string[] = [];
+  for (const s of allCompositionSections) {
+    const cg = (s as any).case_group;
+    if (cg && !caseGroupsInOrder.includes(cg)) caseGroupsInOrder.push(cg);
+  }
+  const hasCaseGroups = caseGroupsInOrder.length > 1;
+
+  // Sync active tab to whichever group the current section belongs to.
+  useEffect(() => {
+    const cg = (currentSection as any)?.case_group;
+    if (cg) {
+      setActiveCaseGroup(cg);
+    } else if (caseGroupsInOrder.length > 0) {
+      setActiveCaseGroup(prev => prev ?? caseGroupsInOrder[0]);
+    }
+  }, [(currentSection as any)?.case_group, caseGroupsInOrder.join('|')]);
+
+  // Build the list rendered in the sidebar — filtered by active tab, sorted by docket date.
+  const sidebarSections = hasCaseGroups && activeCaseGroup
+    ? allCompositionSections
+        .map((s, i) => ({ section: s, originalIndex: i }))
+        .filter(x => (x.section as any).case_group === activeCaseGroup)
+        .sort((a, b) => ((a.section as any).date || '').localeCompare((b.section as any).date || ''))
+    : allCompositionSections.map((s, i) => ({ section: s, originalIndex: i }));
 
   // Inline utility functions to avoid import issues
   const determineMediaType = (src: string): 'image' | 'video' | 'document' => {
@@ -466,30 +500,60 @@ const getCollectionConfig = (collectionType: string) => {
               <h3 className="text-sm text-foreground/70">{currentComposition.title}</h3>
             </div>
 
+            {hasCaseGroups && (
+              <div className="mb-4 pb-3 border-b border-border/40">
+                <div className="text-[11px] text-foreground/60 uppercase tracking-wider mb-2" style={{ fontWeight: 600 }}>
+                  Sub-Cases
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {caseGroupsInOrder.map(cg => (
+                    <button
+                      key={cg}
+                      onClick={() => setActiveCaseGroup(cg)}
+                      className={cn(
+                        "px-2.5 py-1.5 text-xs rounded-md transition-colors",
+                        activeCaseGroup === cg
+                          ? "bg-primary text-primary-foreground shadow-sm"
+                          : "bg-muted text-foreground/80 hover:bg-secondary"
+                      )}
+                      style={{ fontWeight: activeCaseGroup === cg ? 600 : 500 }}
+                      title={cg}
+                    >
+                      {CASE_GROUP_LABELS[cg] || cg}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <nav className="space-y-1 pb-16">
-              {currentComposition.sections?.map((section, index) => (
-                <button
-                  key={index}
-                  onClick={() => handleSectionChange(index + 1)}
-                  className={cn(
-                    "w-full text-left px-3 py-2 rounded-md transition-colors",
-                    index + 1 === parseInt(sectionId)
-                      ? "bg-card/90 text-primary border-l-2 border-primary -ml-[2px] pl-[10px] shadow-sm"
-                      : "text-foreground hover:bg-card/60"
-                  )}
-                  style={{ fontWeight: index + 1 === parseInt(sectionId) ? 580 : 480 }}
-                >
-                  <span className="text-[11px] text-foreground/60 block uppercase tracking-wider" style={{ fontWeight: 600 }}>
-                    Section {index + 1}
-                  </span>
-                  <div className="flex items-center justify-between">
-                    <span className="flex-1 text-sm leading-snug">{section.title}</span>
-                    {section.images && section.images.length > 0 && (
-                      <ImageIcon className="w-3 h-3 ml-2 text-foreground/60 flex-shrink-0" />
+              {sidebarSections.map(({ section, originalIndex }) => {
+                const sectionNum = originalIndex + 1;
+                const isActive = sectionNum === parseInt(sectionId);
+                return (
+                  <button
+                    key={originalIndex}
+                    onClick={() => handleSectionChange(sectionNum)}
+                    className={cn(
+                      "w-full text-left px-3 py-2 rounded-md transition-colors",
+                      isActive
+                        ? "bg-card/90 text-primary border-l-2 border-primary -ml-[2px] pl-[10px] shadow-sm"
+                        : "text-foreground hover:bg-card/60"
                     )}
-                  </div>
-                </button>
-              ))}
+                    style={{ fontWeight: isActive ? 580 : 480 }}
+                  >
+                    <span className="text-[11px] text-foreground/60 block uppercase tracking-wider" style={{ fontWeight: 600 }}>
+                      Section {sectionNum}
+                    </span>
+                    <div className="flex items-center justify-between">
+                      <span className="flex-1 text-sm leading-snug">{section.title}</span>
+                      {section.images && section.images.length > 0 && (
+                        <ImageIcon className="w-3 h-3 ml-2 text-foreground/60 flex-shrink-0" />
+                      )}
+                    </div>
+                  </button>
+                );
+              })}
             </nav>
           </div>
         </MobileNavigation>
