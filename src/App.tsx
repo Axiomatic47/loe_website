@@ -239,10 +239,11 @@ const KirchnerEllisonSectionRedirect = () => {
 //   /kirchner-v-johnson/51-N          → attachment N (section 1+N)
 //   /kirchner-v-johnson/doc51         → main complaint (section 1)
 //   /kirchner-v-johnson/doc51-N       → attachment N (section 1+N)
-//   /kirchner-v-johnson/52..57        → main filing (errata, notices, motions)
-//   /kirchner-v-johnson/52-N..57-N    → attachment N to that filing
-//   /kirchner-v-johnson/N             → plain section number (1..107)
-// Legacy doc 13 (Second Amended Complaint) routes still resolve into the new section ordering.
+//   /kirchner-v-johnson/52..62        → main filing (errata, notices, motions)
+//   /kirchner-v-johnson/52-N..62-N    → attachment N to that filing
+//   /kirchner-v-johnson/1,2,5,6,8     → superseded pleadings (Original / First Amended era)
+//   /kirchner-v-johnson/13, /13-N     → Second Amended Complaint and its attachments
+//   /kirchner-v-johnson/N             → doc numbers not in the map fall back to plain section N
 const JOHNSON_DOC_SECTION_BASE: Record<number, number> = {
   // Third Amended Complaint era (operative pleading) — TAC tab
   51: 1,    // Third Amended Complaint (operative pleading, 76 attachments)
@@ -307,21 +308,16 @@ const KirchnerJohnsonDocRedirect = () => {
 
   let sectionNum = 1;
   if (docId) {
-    const docMatch = docId.match(/^(doc)?(\d+)(?:-(\d+))?$/);
+    const docMatch = docId.match(/^(?:doc)?(\d+)(?:-(\d+))?$/);
     if (docMatch) {
-      const hasDocPrefix = !!docMatch[1];
-      const docNum = parseInt(docMatch[2], 10);
-      const hasAttachment = !!docMatch[3];
-      const attNum = hasAttachment ? parseInt(docMatch[3], 10) : 0;
+      const docNum = parseInt(docMatch[1], 10);
+      const attNum = docMatch[2] ? parseInt(docMatch[2], 10) : 0;
       const base = JOHNSON_DOC_SECTION_BASE[docNum];
 
       if (base !== undefined) {
         sectionNum = base + attNum;
-      } else if (docNum === 13 && (hasDocPrefix || hasAttachment)) {
-        // Legacy doc 13 (Second Amended Complaint) — re-mapped onto operative pleading.
-        // Plain "13" (no prefix, no attachment) is treated as plain section 13 below.
-        sectionNum = 1 + attNum;
-      } else if (!hasAttachment) {
+      } else if (!docMatch[2]) {
+        // Unknown doc number with no attachment → preserve as plain section number
         sectionNum = docNum;
       }
     }
@@ -330,35 +326,99 @@ const KirchnerJohnsonDocRedirect = () => {
   return <Navigate to={`/composition/constitutional/composition/3/section/${sectionNum}`} replace />;
 };
 
-// Wrapper component for Kirchner v. Ellison document routing
-// Supports: /kirchner-v-ellison/1, /kirchner-v-ellison/22, /kirchner-v-ellison/doc01-5, etc.
+// Wrapper component for Kirchner v. Ellison document routing.
+// Three docket sources are addressable under /kirchner-v-ellison/:
+//   1. Main case (cv-00726) — operative pleading is Doc 1 (Petition, 14 attachments).
+//      /kirchner-v-ellison/1          → Doc 1 main (section 1)
+//      /kirchner-v-ellison/1-6        → Doc 1 attachment 6 (section 7)
+//      /kirchner-v-ellison/19         → Doc 19 (Motion to Dismiss, section 35)
+//      Legacy /doc01, /doc01-5, /doc02..doc08 still resolve via the same map.
+//   2. Consolidated sub-case (cv-02594).
+//      /kirchner-v-ellison/2594-1     → cv-02594 Doc 1 (section 23)
+//      /kirchner-v-ellison/2594-1-2   → cv-02594 Doc 1 attachment 2 (section 25)
+//      /kirchner-v-ellison/2594-summons → cv-02594 Summons Issued (section 32)
+//   3. Eighth Circuit appeal (No. 26-1615) — addressed by filename slug.
+//      /kirchner-v-ellison/8cir-brief, /8cir-addendum, /8cir-documents,
+//      /8cir-notice-refiled, /8cir-certificate
+const ELLISON_MAIN_DOC_BASE: Record<number, number> = {
+  1: 1,    // Petition (14 attachments → sections 2..15)
+  2: 16,   // Memo I: SCOTUS Ultra Vires Practice
+  3: 17,   // Memo L: Birthright Citizenship
+  4: 18,   // Memo N: Constitutional Failures of Harlow v. Fitzgerald
+  5: 19,   // Summons Issued
+  6: 20,   // Emergency Motion for TRO and Declaratory Relief
+  7: 21,   // Notice of Hearing
+  8: 22,   // Declaration of Joseph D. Kirchner
+  19: 35,  // Defendant's Motion to Dismiss
+  20: 36,  // Notice of Hearing on Motion to Dismiss
+  21: 37,  // Defendant's Memorandum in Support of MTD
+  22: 38,  // Meet and Confer Statement
+  23: 39,  // Proposed Order on Motion to Dismiss
+  26: 40,  // Amended Complaint
+  28: 41,  // Notice of ECF Filing Anomaly
+  29: 42,  // Order Dismissing Case
+  30: 43,  // Judgment
+  31: 44,  // Notice of Appeal to Eighth Circuit
+  32: 45,  // Receipt for Appeal Filing Fee
+  33: 46,  // Notice of Appearance — Kirchner Pro Se
+  34: 47,  // Transmittal of Appeal Letter to Eighth Circuit
+  35: 48,  // USCA Case Number Assignment — No. 26-1615
+  36: 49,  // Eighth Circuit Clerk Order — Electronic Record
+  37: 50,  // Appearance of Counsel — McGuire for Appellee Ellison
+};
+
+const ELLISON_SUB_DOC_BASE: Record<number, number> = {
+  1: 23,   // cv-02594 Doc 1 (4 attachments → sections 24..27)
+  2: 28,   // cv-02594 Doc 2
+  3: 29,   // cv-02594 Doc 3 (2 attachments → sections 30..31)
+  6: 51,   // cv-02594 Doc 6 — Order of Recusal
+};
+
+const ELLISON_SPECIALS: Record<string, number> = {
+  '2594-summons':         32,
+  '8cir-brief':           33,
+  '8cir-addendum':        34,
+  '8cir-documents':       52,
+  '8cir-notice-refiled':  53,
+  '8cir-certificate':     54,
+};
+
 const KirchnerEllisonDocRedirect = () => {
   const { docId } = useParams<{ docId: string }>();
 
   let sectionNum = 1;
   if (docId) {
-    // Check if it's a plain number (e.g., "1", "22")
-    const plainNumberMatch = docId.match(/^(\d+)$/);
-    if (plainNumberMatch) {
-      sectionNum = parseInt(plainNumberMatch[1], 10);
-    }
-    // Legacy doc01 format and attachments
-    else {
-      const doc01Match = docId.match(/(?:doc)?0?1-(\d+)/);
-      const doc01Main = docId.match(/^(?:doc)?0?1$/);
+    const slug = docId.toLowerCase();
 
-      if (doc01Main) {
-        sectionNum = 1;
-      } else if (doc01Match) {
-        sectionNum = parseInt(doc01Match[1], 10) + 1;
-      } else {
-        // Handle doc02 through doc08
-        const docMatch = docId.match(/(?:doc)?0?(\d+)$/);
-        if (docMatch) {
-          const docNum = parseInt(docMatch[1], 10);
-          if (docNum >= 2 && docNum <= 8) {
-            sectionNum = 15 + (docNum - 2) + 1;
-          }
+    // 1. Named slugs (8th Cir appeal, cv-02594 summons)
+    if (ELLISON_SPECIALS[slug] !== undefined) {
+      sectionNum = ELLISON_SPECIALS[slug];
+    }
+    // 2. cv-02594 sub-case: 2594-N or 2594-N-A
+    else if (slug.startsWith('2594-')) {
+      const subMatch = slug.match(/^2594-(\d+)(?:-(\d+))?$/);
+      if (subMatch) {
+        const docNum = parseInt(subMatch[1], 10);
+        const attNum = subMatch[2] ? parseInt(subMatch[2], 10) : 0;
+        const base = ELLISON_SUB_DOC_BASE[docNum];
+        if (base !== undefined) {
+          sectionNum = base + attNum;
+        }
+      }
+    }
+    // 3. Main case docs: N, N-A, doc01, doc01-A, doc1, etc.
+    else {
+      const docMatch = slug.match(/^(?:doc)?0*(\d+)(?:-(\d+))?$/);
+      if (docMatch) {
+        const docNum = parseInt(docMatch[1], 10);
+        const attNum = docMatch[2] ? parseInt(docMatch[2], 10) : 0;
+        const base = ELLISON_MAIN_DOC_BASE[docNum];
+        if (base !== undefined) {
+          sectionNum = base + attNum;
+        } else if (!docMatch[2]) {
+          // Unknown doc number with no attachment → preserve as plain section number
+          // (mirrors Johnson's fallback for non-doc deep links)
+          sectionNum = docNum;
         }
       }
     }
@@ -373,17 +433,26 @@ const KirchnerAcostaSectionRedirect = () => {
   return <Navigate to={`/composition/constitutional/composition/1/section/${sectionId || '1'}`} replace />;
 };
 
-// Wrapper component for Kirchner v. Acosta document routing
-// Supports: /kirchner-v-acosta/1, /kirchner-v-acosta/13, etc.
+// Wrapper component for Kirchner v. Acosta document routing.
+// The Acosta filing is a single Petition bundle with 13 sequential parts
+// (Petition, Appendix A, Memos A-C, Civil Cover Sheet, Summonses, Definitions,
+//  Exhibits A-C, Notice of Related Actions). Each part is addressable by its
+//  sequence number.
+//   /kirchner-v-acosta/1         → Petition (section 1)
+//   /kirchner-v-acosta/13        → Notice of Related Actions (section 13)
+//   /kirchner-v-acosta/doc1      → same as /1
+//   /kirchner-v-acosta/01        → same as /1 (zero-padded accepted)
+//   /kirchner-v-acosta/1-2       → section 1+2 = 3 (reserved for future attachments)
 const KirchnerAcostaDocRedirect = () => {
   const { docId } = useParams<{ docId: string }>();
 
   let sectionNum = 1;
   if (docId) {
-    // Check if it's a plain number (e.g., "1", "13")
-    const plainNumberMatch = docId.match(/^(\d+)$/);
-    if (plainNumberMatch) {
-      sectionNum = parseInt(plainNumberMatch[1], 10);
+    const docMatch = docId.toLowerCase().match(/^(?:doc)?0*(\d+)(?:-(\d+))?$/);
+    if (docMatch) {
+      const docNum = parseInt(docMatch[1], 10);
+      const attNum = docMatch[2] ? parseInt(docMatch[2], 10) : 0;
+      sectionNum = docNum + attNum;
     }
   }
 

@@ -4,19 +4,9 @@
   "featured": false,
   "sections": [
     {
-      "pdf_file": "/uploads/manuscript/pdfs/exhibit-k1-fundamental-laws-supremacism-egalitarianism.pdf",
-      "featured": true,
-      "title": "Exhibit K-1: The Fundamental Laws of Supremacism and Egalitarianism",
-      "description": "Foundational paper establishing the mathematical laws governing supremacist and egalitarian ideologies by Joseph Kirchner",
-      "content_level_1": "",
-      "content_level_3": "",
-      "content_level_5": "",
-      "images": []
-    },
-    {
       "pdf_file": "/uploads/manuscript/pdfs/exhibit-k2-fundamental-law-supremacism-logic.pdf",
-      "featured": false,
-      "title": "Exhibit K-2: The Fundamental Law of Supremacism Logic",
+      "featured": true,
+      "title": "The Fundamental Law of Supremacism Logic",
       "description": "Formal logical analysis of supremacism demonstrating its internal contradictions by Joseph Kirchner",
       "content_level_1": "",
       "content_level_3": "",
@@ -26,7 +16,7 @@
     {
       "pdf_file": "/uploads/manuscript/pdfs/exhibit-k3-fundamental-law-egalitarianism-logic.pdf",
       "featured": false,
-      "title": "Exhibit K-3: The Fundamental Law of Egalitarianism Logic",
+      "title": "The Fundamental Law of Egalitarianism Logic",
       "description": "Formal logical analysis establishing egalitarianism as the only coherent moral framework by Joseph Kirchner",
       "content_level_1": "",
       "content_level_3": "",
@@ -36,7 +26,7 @@
     {
       "pdf_file": "/uploads/manuscript/pdfs/exhibit-k4-supremacism-falsification-attempt-logic.pdf",
       "featured": false,
-      "title": "Exhibit K-4: Law of Supremacism Falsification Attempt Logic",
+      "title": "Law of Supremacism Falsification Attempt Logic",
       "description": "Formal analysis of attempts to falsify the Law of Supremacism and their logical failures",
       "content_level_1": "",
       "content_level_3": "",
@@ -46,7 +36,7 @@
     {
       "pdf_file": "/uploads/manuscript/pdfs/exhibit-k5-transcendental-method-consciousness-recognition.pdf",
       "featured": false,
-      "title": "Exhibit K-5: Transcendental Method for Consciousness Recognition",
+      "title": "Transcendental Method for Consciousness Recognition",
       "description": "Complete transcendental method for substrate-independent consciousness recognition by Joseph Kirchner",
       "content_level_1": "",
       "content_level_3": "",
@@ -54,5 +44,5 @@
       "images": []
     }
   ],
-  "title": "The Fundamental Laws of Supremacism and Egalitarianism"
+  "title": "The Fundamental Laws: Formal Logic & Falsification"
 }
