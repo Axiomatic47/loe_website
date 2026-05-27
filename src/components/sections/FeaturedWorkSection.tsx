@@ -5,6 +5,7 @@ import { useCompositionStore } from "@/utils/compositionData";
 import { useNavigate } from "react-router-dom";
 import ImageEnhancedMarkdownRenderer from "@/components/ImageEnhancedMarkdownRenderer";
 import PDFViewer from "@/components/PDFViewer";
+import { CollapsibleSummary } from "@/components/CollapsibleSummary";
 import { cn } from "@/lib/utils";
 
 const FeaturedPanel = ({
@@ -190,17 +191,7 @@ export const FeaturedWorkSection = () => {
                 />
 
                 {section.content_level_1 && (
-                  <div className="mt-8 prose prose-lg max-w-none">
-                    <div className="panel-soft p-6">
-                      <h3 className="text-2xl font-serif text-foreground mb-4" style={{ letterSpacing: '-0.018em' }}>Document Summary</h3>
-                      <ImageEnhancedMarkdownRenderer
-                        content={section.content_level_1}
-                        images={[]}
-                        showToggle={false}
-                        className="text-lg"
-                      />
-                    </div>
-                  </div>
+                  <CollapsibleSummary content={section.content_level_1} proseClassName="prose-lg" />
                 )}
               </div>
             ) : (

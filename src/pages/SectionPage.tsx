@@ -13,6 +13,7 @@ import MobileNavigation, { useMobileNavigation } from "@/components/MobileNaviga
 import ImageEnhancedMarkdownRenderer from "@/components/ImageEnhancedMarkdownRenderer";
 import MediaGallery from "@/components/MediaGallery";
 import PDFViewer from "../components/PDFViewer";
+import { CollapsibleSummary } from "@/components/CollapsibleSummary";
 import {
   Loader2,
   AlertCircle,
@@ -617,17 +618,7 @@ const getCollectionConfig = (collectionType: string) => {
 
                   {/* Optional: Show any additional markdown content below PDF */}
                   {currentSection.content_level_1 && (
-                    <div className="mt-8 prose prose-xl max-w-none">
-                      <div className="panel-soft p-6">
-                        <h3 className="text-2xl font-serif text-foreground mb-4" style={{ letterSpacing: '-0.018em' }}>Document Summary</h3>
-                        <ImageEnhancedMarkdownRenderer
-                          content={currentSection.content_level_1}
-                          images={[]}
-                          showToggle={false}
-                          className="text-lg"
-                        />
-                      </div>
-                    </div>
+                    <CollapsibleSummary content={currentSection.content_level_1} proseClassName="prose-xl" />
                   )}
                 </div>
               ) : (
