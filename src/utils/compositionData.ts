@@ -14,6 +14,7 @@ export interface ImageData {
 export interface Section {
   title: string;
   featured: boolean;
+  featured_order?: number;
   content_level_1: string;
   content_level_3: string;
   content_level_5: string;

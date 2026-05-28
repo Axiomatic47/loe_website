@@ -292,6 +292,7 @@ function processCompositionData(data: any, expectedType: string, filePath: strin
     return {
       title: section.title || `Section ${sectionIndex + 1}`,
       featured: Boolean(section.featured),
+      featured_order: typeof section.featured_order === 'number' ? section.featured_order : undefined,
       content_level_1: section.content_level_1 || '',
       content_level_3: section.content_level_3 || section.content || '',
       content_level_5: section.content_level_5 || '',
