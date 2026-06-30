@@ -25,7 +25,7 @@ const BlurPanel = ({
         "relative rounded-lg p-8 sm:p-12",
         "bg-card",
         "border border-border",
-        "shadow-xl",
+        "shadow-sm",
         className
       )}
     >
@@ -68,7 +68,7 @@ const InquiryTypeCard = ({
   <div
     className={cn(
       "relative p-4 rounded-lg border-2 cursor-pointer transition-all duration-300",
-      "hover:scale-105 hover:shadow-lg",
+      "hover:shadow-md",
       selected
         ? "border-primary bg-primary/10 shadow-md"
         : "border-border bg-secondary/40 hover:border-border"
@@ -78,14 +78,14 @@ const InquiryTypeCard = ({
     <div className="flex items-center space-x-3">
       <div className={cn(
         "p-2 rounded-full transition-colors",
-        selected ? "bg-blue-400/20 text-blue-300" : "bg-secondary/60 text-muted-foreground"
+        selected ? "bg-primary/15 text-primary" : "bg-secondary/60 text-muted-foreground"
       )}>
         {icon}
       </div>
       <div className="flex-1">
         <h4 className={cn(
           "font-medium transition-colors",
-          selected ? "text-blue-300" : "text-foreground"
+          selected ? "text-primary" : "text-foreground"
         )}>
           {title}
         </h4>
@@ -215,12 +215,12 @@ const Contact = () => {
           <div className="mb-12">
             <div className="flex justify-center">
               <div className="flex items-center p-6 bg-card/80 rounded-lg border border-border hover:bg-card transition-all duration-300">
-                <div className="p-3 bg-blue-400/20 rounded-full mr-4">
-                  <MailIcon className="w-6 h-6 text-blue-300" />
+                <div className="p-3 bg-primary/15 rounded-full mr-4">
+                  <MailIcon className="w-6 h-6 text-primary" />
                 </div>
                 <div>
                   <h3 className="text-lg font-medium text-foreground mb-1">Email</h3>
-                  <p className="text-blue-300">contact@lawsofexistence.com</p>
+                  <p className="text-primary">contact@lawsofexistence.com</p>
                 </div>
               </div>
             </div>
@@ -232,22 +232,22 @@ const Contact = () => {
               <h2 className="text-2xl font-serif mb-6 text-foreground">How We Can Help</h2>
               <div className="space-y-4">
                 <InfoCard
-                  icon={<BookOpen className="w-6 h-6 text-blue-300" />}
+                  icon={<BookOpen className="w-6 h-6 text-primary" />}
                   title="Research Inquiries"
                   content="Questions about our research methodology, data sources, or findings."
                 />
                 <InfoCard
-                  icon={<Users className="w-6 h-6 text-green-300" />}
+                  icon={<Users className="w-6 h-6 text-primary" />}
                   title="Collaboration"
                   content="Interested in partnering on projects, contributing content, or participating in our studies."
                 />
                 <InfoCard
-                  icon={<Newspaper className="w-6 h-6 text-purple-300" />}
+                  icon={<Newspaper className="w-6 h-6 text-primary" />}
                   title="Media Requests"
                   content="Journalists seeking interviews, commentary, or background information."
                 />
                 <InfoCard
-                  icon={<MessageCircle className="w-6 h-6 text-yellow-300" />}
+                  icon={<MessageCircle className="w-6 h-6 text-primary" />}
                   title="General Inquiries"
                   content="Any other questions or comments about our work."
                 />
@@ -375,13 +375,13 @@ const Contact = () => {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-foreground border-0
+                  className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary/90
                            transition-all duration-300 px-8 py-3 text-lg font-medium
-                           shadow-lg hover:shadow-blue-500/25 disabled:opacity-50"
+                           shadow-sm hover:shadow-md disabled:opacity-50"
                 >
                   {isSubmitting ? (
                     <>
-                      <div className="animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full mr-2"></div>
+                      <div className="animate-spin w-5 h-5 border-2 border-primary-foreground border-t-transparent rounded-full mr-2"></div>
                       Sending...
                     </>
                   ) : (

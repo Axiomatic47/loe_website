@@ -19,7 +19,7 @@ const BlurPanel = ({
         "relative rounded-lg p-8 sm:p-12",
         "bg-card",
         "border border-border",
-        "shadow-xl",
+        "shadow-sm",
         className
       )}
     >
@@ -108,7 +108,7 @@ const PayPalDonationButton = ({
         await window.paypal!.Buttons({
           style: {
             layout: 'vertical',
-            color: 'blue',
+            color: 'gold',
             shape: 'rect',
             label: 'donate',
             height: 45
@@ -240,7 +240,7 @@ const CustomAmountDonation = () => {
         await window.paypal!.Buttons({
           style: {
             layout: 'vertical',
-            color: 'blue',
+            color: 'gold',
             shape: 'rect',
             label: 'donate',
             height: 45
@@ -325,7 +325,7 @@ const CustomAmountDonation = () => {
           />
           <Button
             onClick={handleShowPayPal}
-            className="bg-blue-600 hover:bg-blue-700 text-foreground px-6"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 px-6"
           >
             Continue
           </Button>
@@ -529,19 +529,19 @@ const Donate = () => {
               <h2 className="text-2xl font-serif mb-6 text-foreground text-center">Other Ways to Support</h2>
               <div className="space-y-4 text-muted-foreground">
                 <div className="flex items-center space-x-4">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-primary rounded-full"></div>
                   <p><strong>Share the Framework:</strong> Help spread awareness by sharing our work with researchers, developers, and institutions.</p>
                 </div>
                 <div className="flex items-center space-x-4">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-primary rounded-full"></div>
                   <p><strong>Academic Collaboration:</strong> Cite and build upon the framework in your research.</p>
                 </div>
                 <div className="flex items-center space-x-4">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-primary rounded-full"></div>
                   <p><strong>Implementation Feedback:</strong> Share your experiences implementing the framework in AI systems.</p>
                 </div>
                 <div className="flex items-center space-x-4">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-primary rounded-full"></div>
                   <p><strong>Corporate Partnerships:</strong> Contact us about institutional support and collaboration opportunities.</p>
                 </div>
               </div>

@@ -12,6 +12,7 @@ import {
   VideoCategory,
   VideoItem
 } from '@/data/videos';
+import { PageLayout } from '@/components/PageLayout';
 
 const VideosPage: React.FC = () => {
   const navigate = useNavigate();
@@ -52,10 +53,10 @@ const VideosPage: React.FC = () => {
     const colors = {
       'copyright-audit': 'bg-secondary text-foreground/85 border border-border',
       'prompt-audit': 'bg-secondary text-foreground/85 border border-border',
-      'network-interference': 'bg-secondary text-foreground/85 border border-border border-l-2 border-l-destructive',
+      'network-interference': 'bg-secondary text-foreground/85 border border-border',
       'targeting-proof': 'bg-secondary text-foreground/85 border border-border',
-      'chat-deletion': 'bg-rose-500/20 text-rose-300 border-rose-500/30',
-      'other': 'bg-gray-500/20 text-muted-foreground border-gray-500/30'
+      'chat-deletion': 'bg-secondary text-foreground/85 border border-border',
+      'other': 'bg-secondary text-foreground/85 border border-border'
     };
     return colors[category] || colors['other'];
   };
@@ -70,9 +71,9 @@ const VideosPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black">
+    <PageLayout>
       {/* Header */}
-      <div className="bg-gradient-to-b from-gray-900 to-black border-b border-border">
+      <div className="bg-secondary/40 border-b border-border">
         <div className="max-w-7xl mx-auto px-4 py-8">
           <button
             onClick={() => navigate('/')}
@@ -83,8 +84,8 @@ const VideosPage: React.FC = () => {
           </button>
 
           <div className="flex items-center gap-4 mb-4">
-            <div className="p-3 rounded-lg bg-secondary border border-border border-l-2 border-l-destructive">
-              <Video className="w-8 h-8 text-red-400" />
+            <div className="p-3 rounded-lg bg-secondary border border-border border-l-2 border-l-primary">
+              <Video className="w-8 h-8 text-primary" />
             </div>
             <div>
               <h1 className="text-3xl font-serif text-foreground">Video Evidence</h1>
@@ -98,8 +99,8 @@ const VideosPage: React.FC = () => {
               onClick={() => setSelectedCategory('all')}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                 selectedCategory === 'all'
-                  ? 'bg-white text-black'
-                  : 'bg-secondary/60 text-muted-foreground hover:bg-secondary'
+                  ? 'bg-primary text-primary-foreground border border-primary'
+                  : 'bg-secondary text-foreground/85 border border-border hover:bg-secondary/70'
               }`}
             >
               All Videos ({categoryCounts['all'] || 0})
@@ -111,8 +112,8 @@ const VideosPage: React.FC = () => {
                   onClick={() => setSelectedCategory(category)}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                     selectedCategory === category
-                      ? getCategoryColorClasses(category).replace('/20', '/40').replace('/30', '/50')
-                      : `${getCategoryColorClasses(category)} hover:opacity-80`
+                      ? 'bg-primary text-primary-foreground border border-primary'
+                      : `${getCategoryColorClasses(category)} hover:bg-secondary/70`
                   }`}
                 >
                   {categoryLabels[category]} ({categoryCounts[category] || 0})
@@ -127,7 +128,7 @@ const VideosPage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Selected video player */}
         {selectedVideo && (
-          <div className="mb-12 bg-gray-900/50 rounded-xl p-6 border border-border">
+          <div className="mb-12 bg-card rounded-xl p-6 border border-border">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
                 {selectedVideo.exhibitNumber && (
@@ -169,7 +170,7 @@ const VideosPage: React.FC = () => {
           <>
             {/* Category description */}
             {selectedCategory !== 'all' && (
-              <div className="mb-8 p-4 rounded-lg bg-gray-900/50 border border-border">
+              <div className="mb-8 p-4 rounded-lg bg-card border border-border">
                 <p className="text-muted-foreground">{categoryDescriptions[selectedCategory]}</p>
               </div>
             )}
@@ -178,11 +179,11 @@ const VideosPage: React.FC = () => {
               {filteredVideos.map((video) => (
                 <div
                   key={video.id}
-                  className="bg-gray-900/50 rounded-xl overflow-hidden border border-border hover:border-border transition-all group cursor-pointer"
+                  className="bg-card rounded-xl overflow-hidden border border-border hover:border-primary/40 hover:shadow-md transition-all group cursor-pointer"
                   onClick={() => setSelectedVideo(video)}
                 >
                   {/* Thumbnail */}
-                  <div className="relative aspect-video bg-black">
+                  <div className="relative aspect-video bg-muted">
                     <img
                       src={`https://img.youtube.com/vi/${video.youtubeId}/mqdefault.jpg`}
                       alt={video.title}
@@ -192,8 +193,8 @@ const VideosPage: React.FC = () => {
                       }}
                     />
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-14 h-14 rounded-full bg-red-600/90 group-hover:bg-red-500 flex items-center justify-center transition-all group-hover:scale-110">
-                        <Play className="w-7 h-7 text-foreground ml-1" fill="white" />
+                      <div className="w-14 h-14 rounded-full bg-primary group-hover:bg-primary/90 flex items-center justify-center transition-all group-hover:scale-110">
+                        <Play className="w-7 h-7 text-primary-foreground ml-1" fill="currentColor" />
                       </div>
                     </div>
                     {video.duration && (
@@ -207,11 +208,11 @@ const VideosPage: React.FC = () => {
                   {/* Info */}
                   <div className="p-4">
                     <div className="flex items-start justify-between gap-2 mb-2">
-                      <h3 className="text-foreground font-medium line-clamp-2 group-hover:text-red-300 transition-colors">
+                      <h3 className="text-foreground font-medium line-clamp-2 group-hover:text-primary transition-colors">
                         {video.title}
                       </h3>
                       {video.exhibitNumber && (
-                        <span className="px-2 py-0.5 bg-yellow-500/20 text-yellow-300 text-xs font-mono rounded shrink-0">
+                        <span className="px-2 py-0.5 bg-primary/15 text-primary text-xs font-mono rounded shrink-0">
                           {video.exhibitNumber}
                         </span>
                       )}
@@ -256,12 +257,12 @@ const VideosPage: React.FC = () => {
         {/* Info banner for pending uploads */}
         {uploadedVideos.length === 0 && (
           <div className="mt-8 p-6 rounded-xl bg-secondary/60 border border-border">
-            <h3 className="text-blue-300 font-medium mb-2">Video Upload Pending</h3>
-            <p className="text-blue-200/70 text-sm">
+            <h3 className="text-foreground font-medium mb-2">Video Upload Pending</h3>
+            <p className="text-muted-foreground text-sm">
               {videos.length} screen recordings are queued for upload to YouTube. Once uploaded,
               they will be displayed here organized by category with full playback capability.
             </p>
-            <ul className="mt-4 text-sm text-blue-200/60 space-y-1">
+            <ul className="mt-4 text-sm text-muted-foreground/80 space-y-1">
               <li>• Copyright Audits: {videos.filter(v => v.category === 'copyright-audit').length} videos</li>
               <li>• Prompt Audits: {videos.filter(v => v.category === 'prompt-audit').length} videos</li>
               <li>• User Targeting Proof: {videos.filter(v => v.category === 'targeting-proof').length} videos</li>
@@ -271,7 +272,7 @@ const VideosPage: React.FC = () => {
           </div>
         )}
       </div>
-    </div>
+    </PageLayout>
   );
 };
 

@@ -185,27 +185,27 @@ const sampleIndividuals: IndividualMetrics[] = [
 
 // Color utility function based on score
 const getColorForScore = (score: number) => {
-  if (score <= 2) return "text-blue-500";
-  if (score <= 4) return "text-green-500";
-  if (score <= 6) return "text-yellow-500";
-  if (score <= 8) return "text-orange-500";
-  return "text-red-500";
+  if (score <= 2) return "text-muted-foreground";
+  if (score <= 4) return "text-primary/60";
+  if (score <= 6) return "text-primary/75";
+  if (score <= 8) return "text-primary";
+  return "text-primary font-semibold";
 };
 
 // Background color utility function based on score
 const getBgColorForScore = (score: number) => {
-  if (score <= 2) return "bg-blue-500";
-  if (score <= 4) return "bg-green-500";
-  if (score <= 6) return "bg-yellow-500";
-  if (score <= 8) return "bg-orange-500";
-  return "bg-red-500";
+  if (score <= 2) return "bg-primary/30";
+  if (score <= 4) return "bg-primary/50";
+  if (score <= 6) return "bg-primary/65";
+  if (score <= 8) return "bg-primary/80";
+  return "bg-primary";
 };
 
 // Trend icon utility
 const TrendIcon = ({ trend }: { trend: string }) => {
-  if (trend === 'increasing') return <ChevronUp className="h-4 w-4 text-red-500" />;
-  if (trend === 'decreasing') return <ChevronDown className="h-4 w-4 text-green-500" />;
-  return <div className="h-4 w-4 border-t border-gray-400 mx-auto" />;
+  if (trend === 'increasing') return <ChevronUp className="h-4 w-4 text-primary" />;
+  if (trend === 'decreasing') return <ChevronDown className="h-4 w-4 text-muted-foreground" />;
+  return <div className="h-4 w-4 border-t border-muted-foreground mx-auto" />;
 };
 
 // BlurPanel component for consistency with the site
@@ -222,7 +222,7 @@ const BlurPanel = ({
         "relative rounded-lg p-8 sm:p-12",
         "bg-card",
         "border border-border",
-        "shadow-xl",
+        "shadow-sm",
         className
       )}
     >
@@ -326,7 +326,7 @@ const IndividualsMetrics = () => {
               >
                 {isLoading ? (
                   <>
-                    <div className="animate-spin mr-2 h-4 w-4 border-t-2 border-white rounded-full"></div>
+                    <div className="animate-spin mr-2 h-4 w-4 border-t-2 border-foreground rounded-full"></div>
                     Refreshing...
                   </>
                 ) : (
@@ -390,7 +390,7 @@ const IndividualsMetrics = () => {
                   </div>
 
                   <div className="bg-card/60 rounded-lg border border-border overflow-auto">
-                    <table className="min-w-full divide-y divide-white/10">
+                    <table className="min-w-full divide-y divide-border">
                       <thead className="bg-card">
                         <tr>
                           <th
@@ -503,7 +503,7 @@ const IndividualsMetrics = () => {
                           </th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-white/10 bg-secondary/40">
+                      <tbody className="divide-y divide-border bg-secondary/40">
                         {filteredIndividuals.length === 0 ? (
                           <tr>
                             <td colSpan={7} className="px-6 py-12 text-center text-muted-foreground/80">
@@ -534,20 +534,10 @@ const IndividualsMetrics = () => {
                                 <span className={getColorForScore(ind.pas)}>{ind.pas.toFixed(1)}</span>
                               </td>
                               <td className="px-6 py-4 text-center">
-                                <div className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium"
-                                  style={{
-                                    backgroundColor: `rgba(${ind.isc <= 2 ? '59, 130, 246' :
-                                                              ind.isc <= 4 ? '34, 197, 94' :
-                                                              ind.isc <= 6 ? '234, 179, 8' :
-                                                              ind.isc <= 8 ? '249, 115, 22' :
-                                                              '239, 68, 68'}, 0.2)`,
-                                    color: ind.isc <= 2 ? '#3b82f6' :
-                                           ind.isc <= 4 ? '#22c55e' :
-                                           ind.isc <= 6 ? '#eab308' :
-                                           ind.isc <= 8 ? '#f97316' :
-                                           '#ef4444'
-                                  }}
-                                >
+                                <div className={cn(
+                                  "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/15",
+                                  getColorForScore(ind.isc)
+                                )}>
                                   {ind.isc.toFixed(1)}
                                 </div>
                               </td>
@@ -588,9 +578,9 @@ const IndividualsMetrics = () => {
                         <h3 className="text-muted-foreground">Individual Prominence Score</h3>
                         <span className="text-lg font-medium text-foreground">{selectedIndividual.ips.toFixed(1)}</span>
                       </div>
-                      <div className="w-full bg-gray-700 rounded-full h-2">
+                      <div className="w-full bg-muted rounded-full h-2">
                         <div
-                          className="bg-blue-500 h-2 rounded-full"
+                          className="bg-primary h-2 rounded-full"
                           style={{ width: `${selectedIndividual.ips * 10}%` }}
                         ></div>
                       </div>
@@ -604,7 +594,7 @@ const IndividualsMetrics = () => {
                           {selectedIndividual.srs.toFixed(1)}
                         </span>
                       </div>
-                      <div className="w-full bg-gray-700 rounded-full h-2">
+                      <div className="w-full bg-muted rounded-full h-2">
                         <div
                           className={getBgColorForScore(selectedIndividual.srs) + " h-2 rounded-full"}
                           style={{ width: `${selectedIndividual.srs * 10}%` }}
@@ -620,7 +610,7 @@ const IndividualsMetrics = () => {
                           {selectedIndividual.pas.toFixed(1)}
                         </span>
                       </div>
-                      <div className="w-full bg-gray-700 rounded-full h-2">
+                      <div className="w-full bg-muted rounded-full h-2">
                         <div
                           className={getBgColorForScore(selectedIndividual.pas) + " h-2 rounded-full"}
                           style={{ width: `${selectedIndividual.pas * 10}%` }}
@@ -634,23 +624,18 @@ const IndividualsMetrics = () => {
                     <div className="bg-card/60 rounded-lg p-4 border border-border">
                       <h3 className="text-foreground mb-3">Individual Supremacism Composite</h3>
                       <div className="flex items-center justify-between mb-4">
-                        <span className="text-3xl font-bold" style={{
-                          color: selectedIndividual.isc <= 2 ? '#3b82f6' :
-                                 selectedIndividual.isc <= 4 ? '#22c55e' :
-                                 selectedIndividual.isc <= 6 ? '#eab308' :
-                                 selectedIndividual.isc <= 8 ? '#f97316' :
-                                 '#ef4444'
-                        }}>
+                        <span className={cn("text-3xl font-bold", getColorForScore(selectedIndividual.isc))}>
                           {selectedIndividual.isc.toFixed(1)}
                         </span>
                         <div className="flex items-center">
                           <span className="text-muted-foreground mr-2">Trend:</span>
                           <TrendIcon trend={selectedIndividual.trend} />
-                          <span className="ml-1 text-sm" style={{
-                            color: selectedIndividual.trend === 'increasing' ? '#ef4444' :
-                                   selectedIndividual.trend === 'decreasing' ? '#22c55e' :
-                                   '#9ca3af'
-                          }}>
+                          <span className={cn(
+                            "ml-1 text-sm",
+                            selectedIndividual.trend === 'increasing' ? 'text-primary' :
+                            selectedIndividual.trend === 'decreasing' ? 'text-muted-foreground' :
+                            'text-muted-foreground/70'
+                          )}>
                             {selectedIndividual.trend === 'increasing' ? 'Increasing' :
                              selectedIndividual.trend === 'decreasing' ? 'Decreasing' :
                              'Stable'}
@@ -658,11 +643,11 @@ const IndividualsMetrics = () => {
                         </div>
                       </div>
                       <div className="h-4 w-full rounded-lg overflow-hidden" style={{
-                        background: 'linear-gradient(to right, #3b82f6, #22c55e, #eab308, #f97316, #ef4444)'
+                        background: 'linear-gradient(to right, hsl(var(--muted)), hsl(var(--primary)))'
                       }}>
                         <div className="relative h-full w-full">
                           <div
-                            className="absolute top-0 h-full w-px bg-white"
+                            className="absolute top-0 h-full w-px bg-foreground"
                             style={{ left: `${selectedIndividual.isc * 10}%` }}
                           ></div>
                         </div>
@@ -682,7 +667,7 @@ const IndividualsMetrics = () => {
                       <ul className="space-y-2">
                         {selectedIndividual.keyIndicators?.map((indicator, index) => (
                           <li key={index} className="flex items-start">
-                            <div className="mt-1 mr-2 h-2 w-2 rounded-full bg-gray-400"></div>
+                            <div className="mt-1 mr-2 h-2 w-2 rounded-full bg-primary/70"></div>
                             <span className="text-muted-foreground">{indicator}</span>
                           </li>
                         ))}
@@ -706,8 +691,8 @@ const IndividualsMetrics = () => {
                         <span>Political Leaders</span>
                         <span>Average ISC: 5.8</span>
                       </div>
-                      <div className="w-full bg-gray-700 rounded-full h-2">
-                        <div className="bg-orange-500 h-2 rounded-full" style={{ width: '58%' }}></div>
+                      <div className="w-full bg-muted rounded-full h-2">
+                        <div className="bg-primary/85 h-2 rounded-full" style={{ width: '58%' }}></div>
                       </div>
                     </div>
                     <div>
@@ -715,8 +700,8 @@ const IndividualsMetrics = () => {
                         <span>Business Executives</span>
                         <span>Average ISC: 5.6</span>
                       </div>
-                      <div className="w-full bg-gray-700 rounded-full h-2">
-                        <div className="bg-yellow-500 h-2 rounded-full" style={{ width: '56%' }}></div>
+                      <div className="w-full bg-muted rounded-full h-2">
+                        <div className="bg-primary/70 h-2 rounded-full" style={{ width: '56%' }}></div>
                       </div>
                     </div>
                     <div>
@@ -724,8 +709,8 @@ const IndividualsMetrics = () => {
                         <span>Media Figures</span>
                         <span>Average ISC: 6.3</span>
                       </div>
-                      <div className="w-full bg-gray-700 rounded-full h-2">
-                        <div className="bg-orange-500 h-2 rounded-full" style={{ width: '63%' }}></div>
+                      <div className="w-full bg-muted rounded-full h-2">
+                        <div className="bg-primary/85 h-2 rounded-full" style={{ width: '63%' }}></div>
                       </div>
                     </div>
                     <div>
@@ -733,8 +718,8 @@ const IndividualsMetrics = () => {
                         <span>Religious Leaders</span>
                         <span>Average ISC: 4.9</span>
                       </div>
-                      <div className="w-full bg-gray-700 rounded-full h-2">
-                        <div className="bg-yellow-500 h-2 rounded-full" style={{ width: '49%' }}></div>
+                      <div className="w-full bg-muted rounded-full h-2">
+                        <div className="bg-primary/70 h-2 rounded-full" style={{ width: '49%' }}></div>
                       </div>
                     </div>
                   </div>
@@ -748,8 +733,8 @@ const IndividualsMetrics = () => {
                         <span>North America</span>
                         <span>Average ISC: 5.7</span>
                       </div>
-                      <div className="w-full bg-gray-700 rounded-full h-2">
-                        <div className="bg-yellow-500 h-2 rounded-full" style={{ width: '57%' }}></div>
+                      <div className="w-full bg-muted rounded-full h-2">
+                        <div className="bg-primary/70 h-2 rounded-full" style={{ width: '57%' }}></div>
                       </div>
                     </div>
                     <div>
@@ -757,8 +742,8 @@ const IndividualsMetrics = () => {
                         <span>Europe</span>
                         <span>Average ISC: 3.9</span>
                       </div>
-                      <div className="w-full bg-gray-700 rounded-full h-2">
-                        <div className="bg-green-500 h-2 rounded-full" style={{ width: '39%' }}></div>
+                      <div className="w-full bg-muted rounded-full h-2">
+                        <div className="bg-primary/50 h-2 rounded-full" style={{ width: '39%' }}></div>
                       </div>
                     </div>
                     <div>
@@ -766,8 +751,8 @@ const IndividualsMetrics = () => {
                         <span>Asia</span>
                         <span>Average ISC: 6.8</span>
                       </div>
-                      <div className="w-full bg-gray-700 rounded-full h-2">
-                        <div className="bg-orange-500 h-2 rounded-full" style={{ width: '68%' }}></div>
+                      <div className="w-full bg-muted rounded-full h-2">
+                        <div className="bg-primary/85 h-2 rounded-full" style={{ width: '68%' }}></div>
                       </div>
                     </div>
                     <div>
@@ -775,8 +760,8 @@ const IndividualsMetrics = () => {
                         <span>Africa</span>
                         <span>Average ISC: 5.4</span>
                       </div>
-                      <div className="w-full bg-gray-700 rounded-full h-2">
-                        <div className="bg-yellow-500 h-2 rounded-full" style={{ width: '54%' }}></div>
+                      <div className="w-full bg-muted rounded-full h-2">
+                        <div className="bg-primary/70 h-2 rounded-full" style={{ width: '54%' }}></div>
                       </div>
                     </div>
                   </div>
@@ -791,7 +776,7 @@ const IndividualsMetrics = () => {
                       .map(ind => (
                         <div key={ind.id} className="bg-card/80 p-4 rounded-lg border border-border">
                           <div className="flex flex-col items-center text-center">
-                            <div className={`w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mb-2 ${getBgColorForScore(ind.isc)} bg-opacity-20`}>
+                            <div className="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mb-2 bg-primary/15">
                               <span className={getColorForScore(ind.isc)}>{ind.isc.toFixed(1)}</span>
                             </div>
                             <h3 className="text-foreground font-medium">{ind.name}</h3>
@@ -814,7 +799,7 @@ const IndividualsMetrics = () => {
                     <h3 className="text-lg text-foreground mb-3">Scoring Components</h3>
                     <div className="space-y-4">
                       <div className="bg-card/80 p-4 rounded-lg border border-border">
-                        <h4 className="text-blue-400 font-medium mb-2">Individual Prominence Score (IPS)</h4>
+                        <h4 className="text-primary font-medium mb-2">Individual Prominence Score (IPS)</h4>
                         <p className="text-muted-foreground text-sm">Measures the individual's reach and influence based on:</p>
                         <ul className="text-muted-foreground/80 text-sm mt-2 space-y-1 ml-4">
                           <li>• Global recognition and visibility</li>
@@ -825,7 +810,7 @@ const IndividualsMetrics = () => {
                       </div>
 
                       <div className="bg-card/80 p-4 rounded-lg border border-border">
-                        <h4 className="text-blue-400 font-medium mb-2">Supremacist Rhetoric Score (SRS)</h4>
+                        <h4 className="text-primary font-medium mb-2">Supremacist Rhetoric Score (SRS)</h4>
                         <p className="text-muted-foreground text-sm">Evaluates language, messaging, and stated beliefs:</p>
                         <ul className="text-muted-foreground/80 text-sm mt-2 space-y-1 ml-4">
                           <li>• Explicit or implicit superiority claims</li>
@@ -836,7 +821,7 @@ const IndividualsMetrics = () => {
                       </div>
 
                       <div className="bg-card/80 p-4 rounded-lg border border-border">
-                        <h4 className="text-blue-400 font-medium mb-2">Policy Action Score (PAS)</h4>
+                        <h4 className="text-primary font-medium mb-2">Policy Action Score (PAS)</h4>
                         <p className="text-muted-foreground text-sm">Measures concrete actions and implemented policies:</p>
                         <ul className="text-muted-foreground/80 text-sm mt-2 space-y-1 ml-4">
                           <li>• Discriminatory policies implemented or supported</li>
@@ -852,7 +837,7 @@ const IndividualsMetrics = () => {
                     <h3 className="text-lg text-foreground mb-3">Scoring Scale & Application</h3>
 
                     <div className="bg-card/80 p-4 rounded-lg border border-border mb-4">
-                      <h4 className="text-blue-400 font-medium mb-2">Individual Supremacism Composite (ISC)</h4>
+                      <h4 className="text-primary font-medium mb-2">Individual Supremacism Composite (ISC)</h4>
                       <p className="text-muted-foreground text-sm">The ISC is calculated using a weighted formula:</p>
                       <div className="bg-card p-2 rounded my-2 text-foreground text-center">
                         ISC = (0.3 × SRS) + (0.5 × PAS) + (0.2 × adjusted IPS)
@@ -861,33 +846,33 @@ const IndividualsMetrics = () => {
                     </div>
 
                     <div className="bg-card/80 p-4 rounded-lg border border-border">
-                      <h4 className="text-blue-400 font-medium mb-2">Score Interpretation</h4>
+                      <h4 className="text-primary font-medium mb-2">Score Interpretation</h4>
                       <div className="space-y-2">
                         <div className="flex items-center">
-                          <div className="w-3 h-3 rounded-full bg-blue-500 mr-2"></div>
+                          <div className="w-3 h-3 rounded-full bg-primary/30 mr-2"></div>
                           <span className="text-foreground text-sm">0-2: Strong Egalitarianism</span>
                         </div>
                         <div className="flex items-center">
-                          <div className="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
+                          <div className="w-3 h-3 rounded-full bg-primary/50 mr-2"></div>
                           <span className="text-foreground text-sm">2.1-4: Mixed or Mild Egalitarianism</span>
                         </div>
                         <div className="flex items-center">
-                          <div className="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
+                          <div className="w-3 h-3 rounded-full bg-primary/70 mr-2"></div>
                           <span className="text-foreground text-sm">4.1-6: Soft Supremacism</span>
                         </div>
                         <div className="flex items-center">
-                          <div className="w-3 h-3 rounded-full bg-orange-500 mr-2"></div>
+                          <div className="w-3 h-3 rounded-full bg-primary/85 mr-2"></div>
                           <span className="text-foreground text-sm">6.1-8: Structural Supremacism</span>
                         </div>
                         <div className="flex items-center">
-                          <div className="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
+                          <div className="w-3 h-3 rounded-full bg-primary mr-2"></div>
                           <span className="text-foreground text-sm">8.1-10: Extreme Supremacism</span>
                         </div>
                       </div>
                     </div>
 
                     <div className="bg-card/80 p-4 rounded-lg border border-border mt-4">
-                      <h4 className="text-blue-400 font-medium mb-2">Data Collection Methods</h4>
+                      <h4 className="text-primary font-medium mb-2">Data Collection Methods</h4>
                       <ul className="text-muted-foreground/80 text-sm space-y-1 ml-4">
                         <li>• Public statements and media analysis</li>
                         <li>• Policy implementation records</li>

@@ -70,22 +70,22 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
   render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen bg-black flex items-center justify-center p-8">
-          <div className="bg-black/80 backdrop-blur-md rounded-lg p-8 border border-white/10 max-w-md text-center">
-            <h1 className="text-2xl font-serif text-white mb-4">Something went wrong</h1>
-            <p className="text-gray-300 mb-6">
+        <div className="min-h-screen bg-background flex items-center justify-center p-8">
+          <div className="bg-card rounded-2xl p-8 border border-border shadow-sm max-w-md text-center">
+            <h1 className="text-2xl font-serif text-foreground mb-4">Something went wrong</h1>
+            <p className="text-muted-foreground mb-6">
               An error occurred while loading the page. Please refresh to try again.
             </p>
             <button
               onClick={() => window.location.reload()}
-              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+              className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors shadow-sm"
             >
               Refresh Page
             </button>
             {import.meta.env.DEV && (
               <details className="mt-4 text-left">
-                <summary className="text-gray-400 cursor-pointer">Error Details (Dev)</summary>
-                <pre className="mt-2 text-xs text-gray-500 overflow-auto">
+                <summary className="text-muted-foreground cursor-pointer">Error Details (Dev)</summary>
+                <pre className="mt-2 text-xs text-muted-foreground/80 overflow-auto">
                   {this.state.error?.toString()}
                 </pre>
               </details>
@@ -105,8 +105,8 @@ const AdminPage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center">
-      <div className="text-white">Redirecting to admin panel...</div>
+    <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="text-foreground">Redirecting to admin panel...</div>
     </div>
   );
 };
@@ -188,11 +188,11 @@ const IdentityHandler = ({ children }: { children: React.ReactNode }) => {
   // Show loading state while processing tokens
   if (processingToken) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="bg-black/80 backdrop-blur-md rounded-lg p-8 border border-blue-500/30 text-center">
-          <div className="animate-spin h-8 w-8 border-4 border-blue-400 border-t-transparent rounded-full mx-auto mb-4"></div>
-          <h2 className="text-xl font-serif text-white mb-2">Processing Authentication</h2>
-          <p className="text-gray-300">Please wait while we set up your account...</p>
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="bg-card rounded-2xl p-8 border border-border shadow-sm text-center">
+          <div className="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
+          <h2 className="text-xl font-serif text-foreground mb-2">Processing Authentication</h2>
+          <p className="text-muted-foreground">Please wait while we set up your account...</p>
         </div>
       </div>
     );
@@ -571,20 +571,20 @@ const App = () => {
 
                   {/* Catch-all route for 404s */}
                   <Route path="*" element={
-                    <div className="min-h-screen bg-black flex items-center justify-center p-8">
-                      <div className="bg-black/80 backdrop-blur-md rounded-lg p-8 border border-white/10 text-center">
-                        <h1 className="text-2xl font-serif text-white mb-4">Page Not Found</h1>
-                        <p className="text-gray-300 mb-6">The page you're looking for doesn't exist.</p>
+                    <div className="min-h-screen bg-background flex items-center justify-center p-8">
+                      <div className="bg-card rounded-2xl p-8 border border-border shadow-sm text-center">
+                        <h1 className="text-2xl font-serif text-foreground mb-4">Page Not Found</h1>
+                        <p className="text-muted-foreground mb-6">The page you're looking for doesn't exist.</p>
                         <div className="space-x-4">
-                          <a href="/" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">
+                          <a href="/" className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors shadow-sm">
                             Go Home
                           </a>
-                          <a href="/kirchner-v-johnson" className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors">
+                          <a href="/kirchner-v-johnson" className="px-4 py-2 bg-card text-foreground border border-border rounded-md hover:bg-secondary transition-colors shadow-sm">
                             Kirchner v. Johnson Case
                           </a>
                         </div>
                         {import.meta.env.DEV && (
-                          <div className="mt-4 text-left text-sm text-gray-400">
+                          <div className="mt-4 text-left text-sm text-muted-foreground">
                             <p>Attempted path: {window.location.pathname}</p>
                             <p>Available collections: manuscript, data, constitutional, timeline, map</p>
                           </div>

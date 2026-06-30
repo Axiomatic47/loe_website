@@ -112,12 +112,12 @@
       /* Formal logic expressions */
       .logic-expression {
         font-family: 'Noto Serif', serif !important;
-        background: rgba(20, 30, 50, 0.7) !important;
-        border-left: 3px solid #3b82f6 !important;
+        background: hsl(var(--secondary)) !important;
+        border-left: 3px solid hsl(var(--primary)) !important;
         border-radius: 8px !important;
         padding: 1em 1.5em !important;
         margin: 1.5em 0 !important;
-        color: white !important;
+        color: hsl(var(--foreground)) !important;
         overflow-x: auto;
       }
 
@@ -125,9 +125,10 @@
         display: inline-block !important;
         padding: 0.2em 0.5em !important;
         margin: 0 0.3em !important;
-        background: rgba(20, 30, 50, 0.6) !important;
-        border: 1px solid rgba(59, 130, 246, 0.5) !important;
+        background: hsl(var(--muted)) !important;
+        border: 1px solid hsl(var(--border)) !important;
         border-radius: 4px !important;
+        color: hsl(var(--foreground)) !important;
       }
 
       /* MathJax styling improvements */
@@ -154,7 +155,7 @@
 
       /* Loading state for math */
       .math-loading {
-        background: rgba(255, 255, 255, 0.1);
+        background: hsl(var(--muted));
         border-radius: 4px;
         padding: 0.5em;
         animation: pulse 2s infinite;
