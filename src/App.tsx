@@ -241,8 +241,8 @@ const KirchnerEllisonSectionRedirect = () => {
 //   /kirchner-v-johnson/51-N          → attachment N (section 1+N)
 //   /kirchner-v-johnson/doc51         → main complaint (section 1)
 //   /kirchner-v-johnson/doc51-N       → attachment N (section 1+N)
-//   /kirchner-v-johnson/52..62        → main filing (errata, notices, motions)
-//   /kirchner-v-johnson/52-N..62-N    → attachment N to that filing
+//   /kirchner-v-johnson/52..68        → main filing (errata, notices, motions, appearances)
+//   /kirchner-v-johnson/52-N..68-N    → attachment N to that filing
 //   /kirchner-v-johnson/1,2,5,6,8     → superseded pleadings (Original / First Amended era)
 //   /kirchner-v-johnson/13, /13-N     → Second Amended Complaint and its attachments
 //   /kirchner-v-johnson/N             → doc numbers not in the map fall back to plain section N
@@ -260,6 +260,12 @@ const JOHNSON_DOC_SECTION_BASE: Record<number, number> = {
   60: 109,  // Notice of Appearance — AUSA Derbisz
   61: 110,  // Appearance of Counsel — OpenAI Percarpio
   62: 111,  // Plaintiff's Motion for USMS Service / Individual-Capacity Finding
+  63: 405,  // Appearance of Counsel — Coleman (METR)
+  64: 406,  // METR's Motion to Admit Ahuja Pro Hac Vice (attachments 64-1..64-3 → 407..409)
+  65: 410,  // Appearance of Counsel — Ahuja (METR)
+  66: 411,  // LCvR 26.1 Corporate Disclosure — METR
+  67: 412,  // Federal Defendants' Notice of Non-Service
+  68: 413,  // Plaintiff's Reply re Service / Response to Non-Service (attachments 68-1..68-10 → 414..423)
   // Original Complaint era — "Original Complaint" tab
   1: 112,   // Original Complaint (dismissed for standing)
   2: 114,   // Motion for TRO and Preliminary Injunction (denied as moot)
