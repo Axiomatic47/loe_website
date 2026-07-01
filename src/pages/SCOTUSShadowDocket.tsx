@@ -27,6 +27,7 @@ import {
   BookOpen,
   Gavel,
 } from "lucide-react";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 
 interface CaseFile {
   name: string;
@@ -106,6 +107,7 @@ const SCOTUSShadowDocket: React.FC = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [pdfLoading, setPdfLoading] = useState(false);
   const [zoom, setZoom] = useState(100);
+  useDocumentMeta("SCOTUS Shadow Docket");
 
   // Load both indexes
   useEffect(() => {

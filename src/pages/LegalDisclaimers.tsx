@@ -3,8 +3,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PageLayout from '../components/PageLayout';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 
 const LegalDisclaimers: React.FC = () => {
+  useDocumentMeta("Legal Disclaimers");
+
   return (
     <PageLayout>
       <div className="max-w-6xl mx-auto px-4 py-12">

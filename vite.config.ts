@@ -227,6 +227,13 @@ export default defineConfig(({ mode }) => {
       copyPublicDir: true,
     },
 
+    esbuild: {
+      // Strip console.* and debugger from production bundles (dev is untouched).
+      // Removes the project's ~120 ungated debug logs; the app surfaces real errors
+      // through its ErrorBoundary, not the console.
+      drop: mode === 'production' ? ['console', 'debugger'] : [],
+    },
+
     // Ensure public directory assets are properly served
     publicDir: 'public',
 

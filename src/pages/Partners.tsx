@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { PageLayout } from "@/components/PageLayout";
 import { cn } from "@/lib/utils";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 
 const BlurPanel = ({
   children,
@@ -39,6 +40,7 @@ const PartnerSection = ({ title, description }: { title: string; description: st
 
 const Partners = () => {
   const navigate = useNavigate();
+  useDocumentMeta("Partners");
 
   return (
     <PageLayout maxPullDistance={0}>

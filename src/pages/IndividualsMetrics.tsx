@@ -9,6 +9,7 @@ import { Info, Download, FileText, ChevronDown, ChevronUp, Search, Filter } from
 import { cn } from "@/lib/utils";
 import { PageLayout } from "@/components/PageLayout";
 import { useNavigate } from "react-router-dom";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 
 // Define the types for individual metrics
 interface IndividualMetrics {
@@ -242,6 +243,7 @@ const IndividualsMetrics = () => {
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
   const [selectedIndividual, setSelectedIndividual] = useState<IndividualMetrics | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  useDocumentMeta("Individual Supremacism Metrics");
 
   // Filter and sort individuals whenever relevant state changes
   useEffect(() => {

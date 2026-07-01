@@ -11,6 +11,7 @@ import { PageLayout } from "@/components/PageLayout";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { MailIcon, Send, Users, BookOpen, Newspaper, MessageCircle, ArrowLeft, CheckCircle } from "lucide-react";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 
 const BlurPanel = ({
   children,
@@ -111,6 +112,7 @@ const Contact = () => {
     newsletter: false
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  useDocumentMeta("Contact");
 
   // Check for success parameter in URL
   useEffect(() => {

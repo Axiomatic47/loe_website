@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, AlertCircle, RefreshCw, Bug, Eye, EyeOff, Music, FileText, Send, BookOpen, Database, Scale, ChevronRight } from "lucide-react";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 
 interface BlurPanelProps {
   children: React.ReactNode;
@@ -60,6 +61,8 @@ const CompositionsPage: React.FC = () => {
   const navigate = useNavigate();
   const [mounted, setMounted] = useState(false);
   const [showDebug, setShowDebug] = useState(import.meta.env.DEV);
+
+  useDocumentMeta(getCollectionTitle(compositionId));
 
   // Get store state and actions separately to prevent dependency issues
   const {

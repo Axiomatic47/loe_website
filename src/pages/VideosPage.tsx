@@ -13,11 +13,13 @@ import {
   VideoItem
 } from '@/data/videos';
 import { PageLayout } from '@/components/PageLayout';
+import { useDocumentMeta } from '@/hooks/useDocumentMeta';
 
 const VideosPage: React.FC = () => {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState<VideoCategory | 'all'>('all');
   const [selectedVideo, setSelectedVideo] = useState<VideoItem | null>(null);
+  useDocumentMeta("Video Evidence");
 
   // Get videos that have been uploaded (have real YouTube IDs)
   const uploadedVideos = useMemo(() => getUploadedVideos(), []);

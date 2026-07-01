@@ -13,6 +13,7 @@ import { AuthorityHierarchy } from '@/components/AuthorityHierarchy';
 import { RelationshipMatrix } from '@/components/RelationshipMatrix';
 import { PSVEcosystem } from '@/components/PSVEcosystem';
 import { MadisonianComplianceTest } from '@/components/MadisonianComplianceTest';
+import { useDocumentMeta } from '@/hooks/useDocumentMeta';
 
 type PageTab = 'hierarchy' | 'relationships' | 'psv' | 'compliance-test';
 
@@ -21,6 +22,7 @@ const ConstitutionalAccountability = () => {
   const [data, setData] = useState<ConstitutionalAuthorityMap | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  useDocumentMeta("Constitutional Accountability");
 
   // Load the constitutional authority data
   useEffect(() => {

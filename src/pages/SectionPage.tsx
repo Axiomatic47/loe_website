@@ -14,6 +14,7 @@ import ImageEnhancedMarkdownRenderer from "@/components/ImageEnhancedMarkdownRen
 import MediaGallery from "@/components/MediaGallery";
 import PDFViewer from "../components/PDFViewer";
 import { CollapsibleSummary } from "@/components/CollapsibleSummary";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 import {
   Loader2,
   AlertCircle,
@@ -82,6 +83,12 @@ const SectionPage = () => {
   // Get current composition and section
   const currentComposition = store.getComposition(compositionId, parseInt(compositionIndex));
   const currentSection = store.getSection(compositionId, parseInt(compositionIndex), parseInt(sectionId));
+
+  // Per-document browser-tab / share title (falls back to the site default while loading)
+  useDocumentMeta(
+    currentComposition && currentSection ? `${currentSection.title} — ${currentComposition.title}` : undefined,
+    currentSection?.description,
+  );
 
   // Check if this is a section with a PDF (constitutional, copyright, or manuscript collections)
   const hasPDFViewer = (compositionId === 'constitutional' || compositionId === 'copyright' || compositionId === 'manuscript') && currentSection?.pdf_file;
@@ -593,10 +600,9 @@ const getCollectionConfig = (collectionType: string) => {
                 <Alert className="mb-6 bg-amber-50 border-amber-300/70">
                   <AlertCircle className="h-5 w-5 text-amber-700" />
                   <AlertDescription className="text-amber-900 ml-2">
-                    <strong className="text-amber-800">Notice:</strong> This case was signed and mailed on Friday, March 13, 2026, and is pending filing in the United States District Court for the Southern District of Florida.
-                    These documents will be replaced with the officially filed versions upon electronic notification from the Court.
-                    Any filing deficiencies, if identified, will be cured immediately upon notification.
-                    Plaintiff is committed to this filing and publishes these documents now as placeholders.
+                    <strong className="text-amber-800">Notice:</strong> The Complaint in this action (No. 9:26-cv-80296-DMM, S.D. Fla.) was dismissed without prejudice on June 24, 2026 for failure to meet the Rule 8/10 pleading standards.
+                    On June 30, 2026, Plaintiff filed a motion for a 90-day extension to file an amended complaint (through September 16, 2026), or in the alternative for voluntary dismissal without prejudice.
+                    The documents below are the filed court records.
                   </AlertDescription>
                 </Alert>
               )}

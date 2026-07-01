@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { PageLayout } from "@/components/PageLayout";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 
 interface TimelineEvent {
   id: string;
@@ -34,6 +35,7 @@ const Timeline = () => {
   const [selectedEvent, setSelectedEvent] = useState<TimelineEvent | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  useDocumentMeta("Conception Timeline");
 
   // Load timeline data
   useEffect(() => {

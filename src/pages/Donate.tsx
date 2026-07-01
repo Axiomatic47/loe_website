@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { PageLayout } from "@/components/PageLayout";
 import { cn } from "@/lib/utils";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 
 const BlurPanel = ({
   children,
@@ -374,6 +375,7 @@ const Donate = () => {
   const navigate = useNavigate();
   const [paypalLoaded, setPaypalLoaded] = useState(false);
   const [paypalError, setPaypalError] = useState<string | null>(null);
+  useDocumentMeta("Support the Project");
 
   // Load PayPal SDK
   useEffect(() => {

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { PageLayout } from "@/components/PageLayout";
 import { cn } from "@/lib/utils";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { toast } from "@/components/ui/use-toast";
@@ -57,6 +58,7 @@ const BlurPanel = ({
 // Main WorldMap component
 const WorldMap = () => {
   const navigate = useNavigate();
+  useDocumentMeta("World Map");
 
   // Authentication for protected features
   const { user, isAuthenticated, isLoading: authLoading, login, logout } = useNetlifyIdentity();
