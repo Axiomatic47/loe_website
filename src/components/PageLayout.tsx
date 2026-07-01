@@ -154,7 +154,7 @@ export const PageLayout = ({ children, className = '' }: PageLayoutProps) => {
           transition: pullDistance === 0 && !isScrolling.current ? 'transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1)' : 'none',
         }}
       >
-        <main className={`${className} flex-grow relative z-10 pt-8`}>
+        <main id="main-content" className={`${className} flex-grow relative z-10 pt-8`}>
           {children}
         </main>
       </div>

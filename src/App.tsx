@@ -6,26 +6,28 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
-import { useEffect, useState } from 'react';
-import Index from "./pages/Index";
-import CompositionsPage from "./pages/CompositionsPage";
-import SectionPage from "./pages/SectionPage";
-import Contact from "./pages/Contact";
-import Partners from "./pages/Partners";
-import Donate from "./pages/Donate";
-import WorldMap from "./pages/WorldMap";
-import IndividualsMetrics from "./pages/IndividualsMetrics";
-import Timeline from "./pages/Timeline";
-import SimulationAdmin from "./pages/SimulationAdmin";
-import VideosPage from "./pages/VideosPage";
-import SCOTUSShadowDocket from "./pages/SCOTUSShadowDocket";
-import ConstitutionalAccountability from "./pages/ConstitutionalAccountability";
+import { useEffect, useState, lazy, Suspense } from 'react';
 import AdminLink from "./components/AdminLink";
 
-// Legal page imports
-import LegalDisclaimers from "./pages/LegalDisclaimers";
-import TermsOfService from "./pages/TermsOfService";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
+// Route components are lazy-loaded so each page ships as its own chunk.
+// This keeps the initial bundle small for visitors who land on a single deep
+// document (the common case for this site).
+const Index = lazy(() => import("./pages/Index"));
+const CompositionsPage = lazy(() => import("./pages/CompositionsPage"));
+const SectionPage = lazy(() => import("./pages/SectionPage"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Partners = lazy(() => import("./pages/Partners"));
+const Donate = lazy(() => import("./pages/Donate"));
+const WorldMap = lazy(() => import("./pages/WorldMap"));
+const IndividualsMetrics = lazy(() => import("./pages/IndividualsMetrics"));
+const Timeline = lazy(() => import("./pages/Timeline"));
+const SimulationAdmin = lazy(() => import("./pages/SimulationAdmin"));
+const VideosPage = lazy(() => import("./pages/VideosPage"));
+const SCOTUSShadowDocket = lazy(() => import("./pages/SCOTUSShadowDocket"));
+const ConstitutionalAccountability = lazy(() => import("./pages/ConstitutionalAccountability"));
+const LegalDisclaimers = lazy(() => import("./pages/LegalDisclaimers"));
+const TermsOfService = lazy(() => import("./pages/TermsOfService"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 
 // Declare Netlify Identity types
 declare global {
@@ -459,6 +461,13 @@ const KirchnerAcostaDocRedirect = () => {
   return <Navigate to={`/composition/constitutional/composition/1/section/${sectionNum}`} replace />;
 };
 
+// On-brand fallback shown while a lazy-loaded route chunk downloads
+const RouteFallback = () => (
+  <div className="min-h-screen bg-background flex items-center justify-center">
+    <div className="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full" aria-label="Loading" />
+  </div>
+);
+
 const App = () => {
   return (
     <ErrorBoundary>
@@ -474,6 +483,7 @@ const App = () => {
                 v7_relativeSplatPath: true
               }}
             >
+                <Suspense fallback={<RouteFallback />}>
                 <Routes>
                   {/* Home page */}
                   <Route path="/" element={<Index />} />
@@ -593,6 +603,7 @@ const App = () => {
                     </div>
                   } />
                 </Routes>
+                </Suspense>
 
                 {/* Admin Link for development */}
                 <AdminLink />

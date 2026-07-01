@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Top-level and case-landing URLs. These are all stable, guaranteed-to-resolve
+  entry points. The ~400 section-level document URLs
+  (/composition/:collection/composition/:i/section/:n and the
+  /kirchner-v-*/N redirect URLs) are NOT yet enumerated here — generating those
+  correctly requires reading the content collections in the loader's own order.
+  See follow-up: a build-time sitemap generator.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://lawsofexistence.com/</loc><priority>1.0</priority></url>
+
+  <!-- Constitutional cases (operative pleadings linked from filed documents) -->
+  <url><loc>https://lawsofexistence.com/composition/constitutional</loc><priority>0.9</priority></url>
+  <url><loc>https://lawsofexistence.com/kirchner-v-johnson</loc><priority>0.9</priority></url>
+  <url><loc>https://lawsofexistence.com/kirchner-v-ellison</loc><priority>0.9</priority></url>
+  <url><loc>https://lawsofexistence.com/kirchner-v-acosta</loc><priority>0.9</priority></url>
+
+  <!-- Research, evidence, copyright collections -->
+  <url><loc>https://lawsofexistence.com/composition/manuscript</loc><priority>0.8</priority></url>
+  <url><loc>https://lawsofexistence.com/composition/data</loc><priority>0.8</priority></url>
+  <url><loc>https://lawsofexistence.com/composition/copyright</loc><priority>0.6</priority></url>
+
+  <!-- Editorial / analysis -->
+  <url><loc>https://lawsofexistence.com/scotus-shadow-docket</loc><priority>0.7</priority></url>
+  <url><loc>https://lawsofexistence.com/constitutional-accountability</loc><priority>0.7</priority></url>
+  <url><loc>https://lawsofexistence.com/timeline</loc><priority>0.6</priority></url>
+  <url><loc>https://lawsofexistence.com/worldmap</loc><priority>0.6</priority></url>
+  <url><loc>https://lawsofexistence.com/videos</loc><priority>0.6</priority></url>
+  <url><loc>https://lawsofexistence.com/individuals-metrics</loc><priority>0.5</priority></url>
+
+  <!-- Contact / support -->
+  <url><loc>https://lawsofexistence.com/contact</loc><priority>0.5</priority></url>
+  <url><loc>https://lawsofexistence.com/partners</loc><priority>0.4</priority></url>
+  <url><loc>https://lawsofexistence.com/donate</loc><priority>0.4</priority></url>
+
+  <!-- Legal -->
+  <url><loc>https://lawsofexistence.com/legal-disclaimers</loc><priority>0.3</priority></url>
+  <url><loc>https://lawsofexistence.com/terms-of-service</loc><priority>0.3</priority></url>
+  <url><loc>https://lawsofexistence.com/privacy-policy</loc><priority>0.3</priority></url>
+</urlset>
