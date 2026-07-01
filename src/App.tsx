@@ -302,14 +302,14 @@ const JOHNSON_DOC_SECTION_BASE: Record<number, number> = {
   39: 406,  // Motion for Alternative Service — Trump
   40: 409,  // Appearance — OpenAI (Margo)
   41: 410,  // OpenAI Corp Disclosure
-  42: 411,  // Stipulation — OpenAI Leave to Amend
-  43: 412,  // Appearance — Apple
-  44: 413,  // Apple Corp Disclosure
-  45: 414,  // Apple Notice of Intent to File MTD
-  46: 415,  // Doc 46
-  47: 416,  // Doc 47
-  49: 418,  // Plaintiff's Response to Apple Notice of MTD
-  50: 420,  // Notice of Supplement to Service Effectuation
+  42: 411,  // Stipulation — OpenAI Leave to Amend (attachment 42-1 → 412)
+  43: 413,  // Appearance — Apple
+  44: 414,  // Apple Corp Disclosure
+  45: 415,  // Apple Notice of Intent to File MTD
+  46: 416,  // Appearance — Comcast Cable (Hoffman)
+  47: 417,  // Comcast Cable Corp Disclosure
+  49: 419,  // Plaintiff's Response to Apple Notice of MTD
+  50: 421,  // Notice of Supplement to Service Effectuation
 };
 
 const KirchnerJohnsonDocRedirect = () => {
