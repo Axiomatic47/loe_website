@@ -420,7 +420,11 @@ This evidence supports the legal recognition of the Laws of Existence Framework 
   }
 
   private createAdditionalInfo(dirName: string): string {
-    return `## Additional Information\n\n**Directory:** ${dirName}\n\n**Processing Date:** ${new Date().toISOString()}\n\n**Processing Note:** This testimony was automatically processed and can be manually edited through the admin interface if needed.\n\n`;
+    // NOTE: intentionally no build-time timestamp here. Embedding `new Date()`
+    // made every `npm run build` rewrite this file with a fresh Processing Date,
+    // producing a phantom git diff on each build. Output is now deterministic;
+    // git history already records when the content actually changed.
+    return `## Additional Information\n\n**Directory:** ${dirName}\n\n**Processing Note:** This testimony was automatically processed and can be manually edited through the admin interface if needed.\n\n`;
   }
 
   private createEmptyTestimonyComposition(): void {
