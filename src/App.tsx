@@ -260,55 +260,56 @@ const JOHNSON_DOC_SECTION_BASE: Record<number, number> = {
   60: 109,  // Notice of Appearance — AUSA Derbisz
   61: 110,  // Appearance of Counsel — OpenAI Percarpio
   62: 111,  // Plaintiff's Motion for USMS Service / Individual-Capacity Finding
-  63: 405,  // Appearance of Counsel — Coleman (METR)
-  64: 406,  // METR's Motion to Admit Ahuja Pro Hac Vice (attachments 64-1..64-3 → 407..409)
-  65: 410,  // Appearance of Counsel — Ahuja (METR)
-  66: 411,  // LCvR 26.1 Corporate Disclosure — METR
-  67: 412,  // Federal Defendants' Notice of Non-Service
-  68: 413,  // Plaintiff's Reply re Service / Response to Non-Service (attachments 68-1..68-10 → 414..423)
+  63: 112,  // Appearance of Counsel — Coleman (METR)
+  64: 113,  // METR's Motion to Admit Ahuja Pro Hac Vice (attachments 64-1..64-3 → 114..116)
+  65: 117,  // Appearance of Counsel — Ahuja (METR)
+  66: 118,  // LCvR 26.1 Corporate Disclosure — METR
+  67: 119,  // Federal Defendants' Notice of Non-Service
+  68: 120,  // Plaintiff's Reply re Service / Response to Non-Service (attachments 68-1..68-10 → 121..130)
+  // Superseded pleadings now follow the contiguous Subsequent Filings block in the section array.
   // Original Complaint era — "Original Complaint" tab
-  1: 112,   // Original Complaint (dismissed for standing)
-  2: 114,   // Motion for TRO and Preliminary Injunction (denied as moot)
+  1: 131,   // Original Complaint (dismissed for standing)
+  2: 133,   // Motion for TRO and Preliminary Injunction (denied as moot)
   // First Amended Complaint era — "First Amended Complaint" tab
-  5: 149,   // First Amended Complaint
-  6: 237,   // Emergency Motion for TRO (withdrawn)
-  8: 259,   // Motion for Leave to File Under Seal
+  5: 168,   // First Amended Complaint
+  6: 256,   // Emergency Motion for TRO (withdrawn)
+  8: 278,   // Motion for Leave to File Under Seal
   // Second Amended Complaint era — "Second Amended Complaint" tab
-  13: 260,  // Second Amended Complaint (86 attachments)
-  16: 347,  // Notice of Exhibit Limitations
-  17: 349,  // Notice of Intent to Contact Copyright Holders
-  18: 351,  // Notice of Related Case (Ellison)
-  19: 352,  // Certificate of Service — Copyright Holders
-  20: 355,  // Notice of Caption Correction
-  21: 356,  // Request for Summonses (10 summonses)
-  22: 367,  // Summonses Issued
-  23: 368,  // Appearance — Anthropic (Onorato)
-  24: 369,  // Appearance — Anthropic (Tighe)
-  25: 370,  // Anthropic Corp Disclosure
-  26: 371,  // Anthropic Consent Motion for Extension
-  27: 373,  // Summons Returned — Anthropic
-  28: 374,  // Summons Returned — Apple
-  29: 375,  // Summons Returned — Carr
-  30: 376,  // Summons Returned — Comcast
-  31: 377,  // Summons Returned — METR
-  32: 378,  // Summons Returned — Johnson
-  33: 379,  // Summons Returned — OpenAI
-  34: 380,  // Summons Returned — Bondi/US AG
-  35: 381,  // Summons Returned — US House
-  36: 382,  // Summons Returned — US Attorney
-  37: 383,  // Summons Unexecuted — Trump
-  38: 384,  // Notice of Service Effectuation
-  39: 387,  // Motion for Alternative Service — Trump
-  40: 390,  // Appearance — OpenAI (Margo)
-  41: 391,  // OpenAI Corp Disclosure
-  42: 392,  // Stipulation — OpenAI Leave to Amend
-  43: 393,  // Appearance — Apple
-  44: 394,  // Apple Corp Disclosure
-  45: 395,  // Apple Notice of Intent to File MTD
-  46: 396,  // Doc 46
-  47: 397,  // Doc 47
-  49: 399,  // Plaintiff's Response to Apple Notice of MTD
-  50: 401,  // Notice of Supplement to Service Effectuation
+  13: 279,  // Second Amended Complaint (86 attachments)
+  16: 366,  // Notice of Exhibit Limitations
+  17: 368,  // Notice of Intent to Contact Copyright Holders
+  18: 370,  // Notice of Related Case (Ellison)
+  19: 371,  // Certificate of Service — Copyright Holders
+  20: 374,  // Notice of Caption Correction
+  21: 375,  // Request for Summonses (10 summonses)
+  22: 386,  // Summonses Issued
+  23: 387,  // Appearance — Anthropic (Onorato)
+  24: 388,  // Appearance — Anthropic (Tighe)
+  25: 389,  // Anthropic Corp Disclosure
+  26: 390,  // Anthropic Consent Motion for Extension
+  27: 392,  // Summons Returned — Anthropic
+  28: 393,  // Summons Returned — Apple
+  29: 394,  // Summons Returned — Carr
+  30: 395,  // Summons Returned — Comcast
+  31: 396,  // Summons Returned — METR
+  32: 397,  // Summons Returned — Johnson
+  33: 398,  // Summons Returned — OpenAI
+  34: 399,  // Summons Returned — Bondi/US AG
+  35: 400,  // Summons Returned — US House
+  36: 401,  // Summons Returned — US Attorney
+  37: 402,  // Summons Unexecuted — Trump
+  38: 403,  // Notice of Service Effectuation
+  39: 406,  // Motion for Alternative Service — Trump
+  40: 409,  // Appearance — OpenAI (Margo)
+  41: 410,  // OpenAI Corp Disclosure
+  42: 411,  // Stipulation — OpenAI Leave to Amend
+  43: 412,  // Appearance — Apple
+  44: 413,  // Apple Corp Disclosure
+  45: 414,  // Apple Notice of Intent to File MTD
+  46: 415,  // Doc 46
+  47: 416,  // Doc 47
+  49: 418,  // Plaintiff's Response to Apple Notice of MTD
+  50: 420,  // Notice of Supplement to Service Effectuation
 };
 
 const KirchnerJohnsonDocRedirect = () => {
