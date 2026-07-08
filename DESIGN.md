@@ -50,18 +50,22 @@ The palette is a **warm tonal staircase** — cream paper at the page level, sof
 
 ### Dark mode tokens
 
+Dark mode is **warm ink**, not walnut: near-black surfaces with a whisper of warmth
+(hue 24–26, saturation ≤10%). The earlier brown/walnut tiers read muddy and were
+retired 2026-07.
+
 | Token | HSL | Hex | Role |
 |---|---|---|---|
-| `--background` | `30 14% 11%` | `#211B14` | Page surface (deep warm black) |
-| `--foreground` | `40 36% 91%` | `#ECE3CA` | Body text (warm cream) |
-| `--card` | `30 14% 16%` | `#2E2719` | Document card (warm charcoal) |
-| `--secondary` | `30 12% 22%` | `#3D352A` | Secondary surfaces |
-| `--muted` | `30 12% 26%` | `#443B30` | Muted surfaces |
-| `--muted-foreground` | `38 18% 72%` | `#BDB39C` | Secondary text |
-| `--primary` | `14 64% 60%` | `#DC7654` | Terracotta — lifted for dark bg legibility |
-| `--border` | `30 12% 32%` | `#574A3B` | Visible warm border |
-| `--surface-sidebar` | `28 14% 22%` | `#3D342A` | Mid warm charcoal sidebar |
-| `--surface-leather` | `26 16% 32%` | `#524337` | Walnut header / footer |
+| `--background` | `24 10% 8%` | `#171310` | Page surface (warm ink) |
+| `--foreground` | `40 30% 92%` | `#F0EADC` | Body text (soft cream) |
+| `--card` | `24 10% 12%` | `#231E1A` | Document card (ink) |
+| `--secondary` | `24 9% 17%` | `#2F2A26` | Secondary surfaces |
+| `--muted` | `24 9% 21%` | `#3A342F` | Muted surfaces |
+| `--muted-foreground` | `36 14% 74%` | `#C6BDAF` | Secondary text |
+| `--primary` | `16 66% 62%` | `#DE7E5B` | Terracotta — lifted for dark bg legibility |
+| `--border` | `26 10% 26%` | `#49423B` | Visible neutral-warm border |
+| `--surface-sidebar` | `24 9% 14%` | `#282320` | Raised ink sidebar |
+| `--surface-leather` | `24 10% 15%` | `#2B2521` | Ink panel header / footer |
 
 ### Color principles
 - **Warmth is non-negotiable.** Never introduce cold gray or neutral white. All grays in the palette are warm-shifted (hue 26–40, saturation 12–30%).
@@ -116,6 +120,12 @@ The palette is a **warm tonal staircase** — cream paper at the page level, sof
 | Outline button | `bg-card text-foreground` | `border border-border` | `shadow-sm`, `hover:shadow-md` | `rounded-md` |
 | Active sidebar item | `bg-card/90 text-primary` | `border-l-2 border-primary -ml-[2px]` | `shadow-sm` | `rounded-md` |
 
+### Background texture
+The page background carries a three-layer paper texture (`.bg-texture` in `index.css`, mounted as a fixed layer in `PageLayout`): a soft top glow, a fine dot grid (~26px), and SVG grain — all at whisper opacity. It gives the cream surface tooth without competing with content. Both modes; tuned separately for dark.
+
+### Corner radius
+`--radius: 0.45rem`. Cards use `rounded-xl` at most (the former `rounded-2xl` read soft/bubbly). Buttons `rounded-md`.
+
 ### Elevation principles
 - **Shadows are always `shadow-sm` or smaller.** Never `shadow-xl` or `shadow-2xl`. The warm tonal staircase carries the depth — shadows are a subtle reinforcement.
 - **No glassmorphism.** No `backdrop-blur` on opaque surfaces. (The previous design relied on it; it conflicts with the warm-paper aesthetic.)
@@ -129,9 +139,15 @@ The palette is a **warm tonal staircase** — cream paper at the page level, sof
 ### Header (`src/components/Header.tsx`)
 - Fixed top, full width, leather brown surface, light foreground text.
 - Left: serif wordmark "The Laws of Existence", links to `/`.
-- Center-right: nav items (`Home`, `Research`, `Evidence`, `Challenges`, `Contact`), inactive uses `text-surface-leather-foreground/85`, active uses `text-primary`.
+- Center-right: dropdown navigation (Radix NavigationMenu) — `Home`, `Research ▾`
+  (manuscripts from the content store), `Evidence ▾` (data collections),
+  `Challenges ▾` (the three cases with case numbers), `More ▾` (feature pages),
+  `Contact`. Dropdown panels are `bg-card border-border rounded-lg shadow-md`;
+  each row = title + small muted subline; footer row is a terracotta "All …" link.
+  Inactive triggers use `text-surface-leather-foreground/85`, active `text-primary`.
 - Right: terracotta `Support` button (links to `/donate`), then theme toggle (sun/moon dropdown).
-- Mobile: collapse nav into a slide-out drawer; theme toggle stays in the header bar next to a hamburger icon.
+- Mobile: collapse nav into a slide-out drawer (includes a "The Cases" group);
+  theme toggle stays in the header bar next to a hamburger icon.
 
 ### Footer (`src/components/Footer.tsx`)
 - Same leather brown surface as header.
@@ -266,6 +282,7 @@ These macros must be preloaded at the page level so any prose rendered through `
 ## 10. Animations and motion
 
 - **Theme toggle**: instant. No transition between light and dark.
+- **Reveal-on-enter**: content sections fade up 12px over 550ms (`cubic-bezier(0.16,1,0.3,1)`) via the `<Reveal>` component, staggered ≤80ms between siblings. One-shot, IntersectionObserver-driven, disabled under `prefers-reduced-motion`. This is the only scroll-linked motion — no parallax.
 - **Hover transitions**: 200ms ease for color and background. Avoid scale-on-hover for primary CTAs (feels marketing).
 - **Card hover** on home hero buttons: `shadow-sm → shadow-md`, no movement.
 - **Page transitions**: not yet implemented. When added, prefer view transitions or a 200ms fade — avoid translate/slide except on the case-doc sidebar drawer (mobile).

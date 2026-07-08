@@ -48,7 +48,7 @@ html {
     --surface-leather-border: 26 30% 38%;  /* #7A5A3E — leather edge */
     --surface-leather-foreground: 30 30% 8%;  /* #1C1610 — strong dark on leather */
 
-    --radius: 0.625rem;
+    --radius: 0.45rem; /* sharper corners site-wide */
 
     --sidebar-background: 40 28% 88%;     /* slightly darker than main bg for separation */
     --sidebar-foreground: 30 10% 14%;
@@ -61,54 +61,55 @@ html {
   }
 
   .dark {
-    /* Warm-dark mirror of cream/leather staircase: deep warm black → walnut */
+    /* Warm-ink dark mode: near-black with a whisper of warmth (desaturated —
+       the earlier walnut/brown tiers read muddy). Terracotta stays the accent. */
     /* Surfaces */
-    --background: 30 14% 11%;          /* #211B14 — deep warm black */
-    --foreground: 40 36% 91%;          /* #ECE3CA — warm cream text */
+    --background: 24 10% 8%;           /* #171310 — warm ink */
+    --foreground: 40 30% 92%;          /* #F0EADC — soft cream text */
 
-    --card: 30 14% 16%;                /* #2E2719 — warm charcoal document */
-    --card-foreground: 40 36% 91%;
+    --card: 24 10% 12%;                /* #231E1A — ink document */
+    --card-foreground: 40 30% 92%;
 
-    --popover: 30 14% 16%;
-    --popover-foreground: 40 36% 91%;
+    --popover: 24 10% 12%;
+    --popover-foreground: 40 30% 92%;
 
     /* Brand: terracotta — lifted for dark bg legibility */
-    --primary: 14 64% 60%;             /* #DC7654 — bright terracotta */
-    --primary-foreground: 30 14% 11%;
+    --primary: 16 66% 62%;             /* #DE7E5B — bright terracotta */
+    --primary-foreground: 24 12% 8%;
 
-    /* Warm dark tiers */
-    --secondary: 30 12% 22%;           /* #3D352A */
-    --secondary-foreground: 40 36% 91%;
+    /* Warm ink tiers */
+    --secondary: 24 9% 17%;            /* #2F2A26 */
+    --secondary-foreground: 40 30% 92%;
 
-    --muted: 30 12% 26%;               /* #443B30 */
-    --muted-foreground: 38 18% 72%;    /* #BDB39C — warm light gray */
+    --muted: 24 9% 21%;                /* #3A342F */
+    --muted-foreground: 36 14% 74%;    /* #C6BDAF — warm light gray */
 
     /* Accent is the subtle hover surface used by shadcn ghost/outline buttons — NOT the brand color. */
-    --accent: 30 12% 26%;              /* same as muted */
-    --accent-foreground: 40 36% 91%;   /* same as foreground */
+    --accent: 24 9% 21%;               /* same as muted */
+    --accent-foreground: 40 30% 92%;   /* same as foreground */
 
-    --destructive: 0 60% 55%;
-    --destructive-foreground: 40 36% 91%;
+    --destructive: 0 55% 55%;
+    --destructive-foreground: 40 30% 92%;
 
-    --border: 30 12% 32%;              /* #574A3B — visible warm border */
-    --input: 30 12% 32%;
-    --ring: 14 64% 60%;
+    --border: 26 10% 26%;              /* #49423B — visible neutral-warm border */
+    --input: 26 10% 26%;
+    --ring: 16 66% 62%;
 
-    /* Tiered surfaces: deep warm black (bg) → mid charcoal (sidebar) → walnut (header/footer) */
-    --surface-sidebar: 28 14% 22%;     /* #3D342A — mid warm charcoal */
-    --surface-sidebar-border: 26 14% 36%;  /* #5F5142 — clear separator */
-    --surface-leather: 26 16% 32%;     /* #524337 — walnut */
-    --surface-leather-border: 24 18% 22%;  /* #38291E — leather edge */
-    --surface-leather-foreground: 40 36% 91%;  /* warm cream text on walnut */
+    /* Tiered surfaces: ink (bg) → raised ink (sidebar) → panel ink (header/footer) */
+    --surface-sidebar: 24 9% 14%;      /* #282320 */
+    --surface-sidebar-border: 24 9% 24%;
+    --surface-leather: 24 10% 15%;     /* #2B2521 — quiet panel, no more walnut */
+    --surface-leather-border: 24 10% 24%;
+    --surface-leather-foreground: 40 30% 92%;
 
-    --sidebar-background: 28 14% 22%;
-    --sidebar-foreground: 40 36% 91%;
-    --sidebar-primary: 14 64% 60%;
-    --sidebar-primary-foreground: 30 14% 11%;
-    --sidebar-accent: 30 12% 26%;
-    --sidebar-accent-foreground: 40 36% 91%;
-    --sidebar-border: 26 14% 36%;
-    --sidebar-ring: 14 64% 60%;
+    --sidebar-background: 24 9% 14%;
+    --sidebar-foreground: 40 30% 92%;
+    --sidebar-primary: 16 66% 62%;
+    --sidebar-primary-foreground: 24 12% 8%;
+    --sidebar-accent: 24 9% 21%;
+    --sidebar-accent-foreground: 40 30% 92%;
+    --sidebar-border: 24 9% 24%;
+    --sidebar-ring: 16 66% 62%;
   }
 }
 
@@ -531,4 +532,54 @@ html.navigating .navigation-indicator {
 .animate-fadeIn {
   animation: fadeIn 0.6s ease forwards;
   opacity: 0;
+}
+
+/* Reveal-on-enter (used via <Reveal/>): quiet 12px fade-up, expo ease-out. */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  opacity: 0;
+}
+
+.reveal.is-visible {
+  animation: fadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+  }
+  .reveal.is-visible {
+    animation: none !important;
+  }
+}
+
+/* Background texture — paper tooth. Three quiet layers:
+   1. soft top glow (paper catching light), 2. fine dot grid, 3. grain noise.
+   Sits on a fixed, pointer-events-none layer above bg, below content. */
+.bg-texture {
+  background-image:
+    radial-gradient(1100px 520px at 50% -140px, hsl(45 45% 96% / 0.5), transparent 62%),
+    radial-gradient(hsl(30 24% 38% / 0.09) 1px, transparent 1.4px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.34'/%3E%3C/svg%3E");
+  background-size: 100% 100%, 26px 26px, 180px 180px;
+  background-repeat: no-repeat, repeat, repeat;
+  opacity: 0.55;
+}
+
+html.dark .bg-texture {
+  background-image:
+    radial-gradient(1100px 520px at 50% -140px, hsl(30 18% 26% / 0.35), transparent 62%),
+    radial-gradient(hsl(40 18% 82% / 0.045) 1px, transparent 1.4px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity: 0.4;
 }

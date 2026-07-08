@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import ImageEnhancedMarkdownRenderer from "@/components/ImageEnhancedMarkdownRenderer";
 import PDFViewer from "@/components/PDFViewer";
 import { CollapsibleSummary } from "@/components/CollapsibleSummary";
+import { Reveal } from "@/components/Reveal";
 import { cn } from "@/lib/utils";
 
 const FeaturedPanel = ({
@@ -18,7 +19,7 @@ const FeaturedPanel = ({
   return (
     <div
       className={cn(
-        "relative rounded-2xl p-8 sm:p-12 bg-card border border-border shadow-sm",
+        "relative rounded-xl p-8 sm:p-12 bg-card border border-border shadow-sm",
         className
       )}
     >
@@ -164,6 +165,7 @@ export const FeaturedWorkSection = () => {
     <div className="space-y-24">
       {sortedSections.map((section, index) => (
         <section key={index} className="max-w-4xl mx-auto">
+          <Reveal>
           <FeaturedPanel>
             <h2
               className="text-4xl font-serif mb-8 text-foreground text-center"
@@ -214,6 +216,7 @@ export const FeaturedWorkSection = () => {
               </button>
             </div>
           </FeaturedPanel>
+          </Reveal>
 
           {index < sortedSections.length - 1 && (
             <hr className="border-t border-border my-16" />

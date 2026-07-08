@@ -140,6 +140,13 @@ export const PageLayout = ({ children, className = '' }: PageLayoutProps) => {
         style={{ zIndex: -2 }}
       />
 
+      {/* Paper texture: soft glow + dot grid + grain (see .bg-texture in index.css) */}
+      <div
+        className="fixed inset-0 w-full h-full bg-texture pointer-events-none"
+        style={{ zIndex: -1 }}
+        aria-hidden="true"
+      />
+
       {/* Fixed header with pull distance prop */}
       <div className="fixed top-0 left-0 right-0 z-50">
         <Header pullDistance={pullDistance} maxPullDistance={MAX_PULL_DISTANCE} />
