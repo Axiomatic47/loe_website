@@ -509,10 +509,10 @@ const getCollectionConfig = (collectionType: string) => {
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-foreground/80 hover:text-foreground hover:bg-card/60 mb-4 -ml-2"
+                className="text-foreground/80 hover:text-foreground hover:bg-card/60 mb-4 -ml-2 whitespace-normal h-auto text-left justify-start"
                 onClick={handleBackToCompositions}
               >
-                <ArrowLeft className="h-4 w-4 mr-2" />
+                <ArrowLeft className="h-4 w-4 mr-2 flex-shrink-0" />
                 Back to {collectionConfig.title}
               </Button>
 

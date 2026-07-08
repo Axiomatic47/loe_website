@@ -50,7 +50,7 @@ const getCollectionTitle = (compositionId: string | undefined) => {
     case "copyright":
       return "Copyright Holder Notifications";
     case "constitutional":
-      return "Constitutional Law";
+      return "Constitutional Challenges";
     default:
       return "Content";
   }
@@ -175,17 +175,19 @@ const CompositionsPage: React.FC = () => {
               ← Back to Home
             </Button>
 
-            <div className="flex gap-2">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={toggleDebugMode}
-                className="text-muted-foreground/80 hover:text-foreground hover:bg-secondary/60"
-              >
-                {showDebug ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                Debug
-              </Button>
-            </div>
+            {import.meta.env.DEV && (
+              <div className="flex gap-2">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={toggleDebugMode}
+                  className="text-muted-foreground/80 hover:text-foreground hover:bg-secondary/60"
+                >
+                  {showDebug ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  Debug
+                </Button>
+              </div>
+            )}
           </div>
 
           <div className="text-center mb-12">
@@ -193,19 +195,21 @@ const CompositionsPage: React.FC = () => {
               {collectionTitle}
             </h1>
 
-            <div className="flex justify-center gap-2 mb-4">
-              <Badge variant="outline" className="bg-card text-foreground border-border">
-                Collection: {compositionId}
-              </Badge>
-              <Badge variant="outline" className="bg-card text-foreground border-border">
-                Items: {compositions.length}
-              </Badge>
-              {lastRefresh && (
+            {import.meta.env.DEV && (
+              <div className="flex justify-center gap-2 mb-4">
                 <Badge variant="outline" className="bg-card text-foreground border-border">
-                  Updated: {lastRefresh.toLocaleTimeString()}
+                  Collection: {compositionId}
                 </Badge>
-              )}
-            </div>
+                <Badge variant="outline" className="bg-card text-foreground border-border">
+                  Items: {compositions.length}
+                </Badge>
+                {lastRefresh && (
+                  <Badge variant="outline" className="bg-card text-foreground border-border">
+                    Updated: {lastRefresh.toLocaleTimeString()}
+                  </Badge>
+                )}
+              </div>
+            )}
           </div>
 
           {/* Debug Information */}
@@ -345,26 +349,25 @@ const CompositionsPage: React.FC = () => {
                         key={`${composition.id}-${index}`}
                         className="bg-card rounded-xl p-6 border border-border
                                  cursor-pointer transition-all duration-300
-                                 hover:bg-card hover:scale-[1.01] hover:border-primary/30
-                                 hover:shadow-lg hover:shadow-purple-500/10
+                                 hover:border-primary/30 hover:shadow-md
                                  group"
                         onClick={() => handleCompositionClick(index)}
                       >
                         {/* Icon and Badge Row */}
                         <div className="flex items-center justify-between mb-4">
                           <div className="flex items-center gap-2">
-                            <div className="p-2 rounded-lg bg-purple-500/20 group-hover:bg-purple-500/30 transition-colors">
-                              <Music className="h-5 w-5 text-purple-400" />
+                            <div className="p-2 rounded-lg bg-primary/15 group-hover:bg-primary/25 transition-colors">
+                              <Music className="h-5 w-5 text-primary" />
                             </div>
                             <Badge className="bg-primary/15 text-primary border border-primary/30 text-xs">
                               {publishers.length} {publishers.length === 1 ? 'Publisher' : 'Publishers'}
                             </Badge>
                           </div>
-                          <Send className="h-4 w-4 text-muted-foreground/70 group-hover:text-purple-400 transition-colors" />
+                          <Send className="h-4 w-4 text-muted-foreground/70 group-hover:text-primary transition-colors" />
                         </div>
 
                         {/* Song Title */}
-                        <h3 className="text-xl font-semibold text-foreground mb-1 group-hover:text-purple-200 transition-colors">
+                        <h3 className="text-xl font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
                           {songName}
                         </h3>
 
@@ -390,7 +393,7 @@ const CompositionsPage: React.FC = () => {
 
                         {/* View Button */}
                         <div className="mt-5 pt-4 border-t border-border">
-                          <span className="text-purple-400 group-hover:text-purple-300 text-sm font-medium inline-flex items-center">
+                          <span className="text-primary group-hover:text-primary/80 text-sm font-medium inline-flex items-center">
                             View Notifications
                             <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
                           </span>
@@ -412,21 +415,20 @@ const CompositionsPage: React.FC = () => {
                         key={`${composition.id}-${index}`}
                         className="bg-card rounded-xl p-6 border border-border
                                  cursor-pointer transition-all duration-300
-                                 hover:bg-card hover:border-primary/30
-                                 hover:shadow-lg hover:shadow-amber-500/10
+                                 hover:border-primary/30 hover:shadow-md
                                  group"
                         onClick={() => handleCompositionClick(index)}
                       >
                         <div className="flex items-start gap-4">
                           {/* Icon */}
-                          <div className="p-3 rounded-lg bg-amber-500/20 group-hover:bg-amber-500/30 transition-colors flex-shrink-0">
-                            <Scale className="h-6 w-6 text-amber-400" />
+                          <div className="p-3 rounded-lg bg-primary/15 group-hover:bg-primary/25 transition-colors flex-shrink-0">
+                            <Scale className="h-6 w-6 text-primary" />
                           </div>
 
                           {/* Content */}
                           <div className="flex-1 min-w-0">
                             <div className="flex items-start justify-between gap-4 mb-2">
-                              <h3 className="text-xl font-semibold text-foreground group-hover:text-amber-200 transition-colors">
+                              <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
                                 {composition.title}
                               </h3>
                               <Badge className="bg-primary/10 text-primary border border-primary/30 text-xs flex-shrink-0">
@@ -445,7 +447,7 @@ const CompositionsPage: React.FC = () => {
                             ) : null}
 
                             {/* View link */}
-                            <span className="text-amber-400 group-hover:text-amber-300 text-sm font-medium inline-flex items-center">
+                            <span className="text-primary group-hover:text-primary/80 text-sm font-medium inline-flex items-center">
                               View Case Documents
                               <ChevronRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                             </span>
@@ -483,35 +485,36 @@ const CompositionsPage: React.FC = () => {
 
                     const style = getCollectionStyle();
                     const IconComponent = style.icon;
+                    // Single warm scheme per DESIGN.md — terracotta is the only accent.
                     const colorClasses = {
                       blue: {
-                        bg: 'bg-blue-500/20',
-                        bgHover: 'group-hover:bg-blue-500/30',
-                        icon: 'text-blue-400',
+                        bg: 'bg-primary/15',
+                        bgHover: 'group-hover:bg-primary/25',
+                        icon: 'text-primary',
                         badge: 'bg-secondary text-foreground/85 border border-border',
                         border: 'hover:border-primary/30',
-                        shadow: 'hover:shadow-blue-500/10',
-                        text: 'text-blue-400 group-hover:text-blue-300',
-                        title: 'group-hover:text-blue-200'
+                        shadow: 'hover:shadow-md',
+                        text: 'text-primary group-hover:text-primary/80',
+                        title: 'group-hover:text-primary'
                       },
                       green: {
-                        bg: 'bg-emerald-500/20',
-                        bgHover: 'group-hover:bg-emerald-500/30',
-                        icon: 'text-emerald-400',
-                        badge: 'bg-primary/10 text-primary border border-primary/30',
+                        bg: 'bg-primary/15',
+                        bgHover: 'group-hover:bg-primary/25',
+                        icon: 'text-primary',
+                        badge: 'bg-secondary text-foreground/85 border border-border',
                         border: 'hover:border-primary/30',
-                        shadow: 'hover:shadow-emerald-500/10',
-                        text: 'text-emerald-400 group-hover:text-emerald-300',
-                        title: 'group-hover:text-emerald-200'
+                        shadow: 'hover:shadow-md',
+                        text: 'text-primary group-hover:text-primary/80',
+                        title: 'group-hover:text-primary'
                       },
                       gray: {
-                        bg: 'bg-gray-500/20',
-                        bgHover: 'group-hover:bg-gray-500/30',
+                        bg: 'bg-muted',
+                        bgHover: 'group-hover:bg-secondary',
                         icon: 'text-muted-foreground/80',
-                        badge: 'bg-gray-500/20 text-muted-foreground border-gray-500/30',
-                        border: 'hover:border-gray-500/30',
-                        shadow: 'hover:shadow-gray-500/10',
-                        text: 'text-muted-foreground/80 group-hover:text-muted-foreground',
+                        badge: 'bg-secondary text-muted-foreground border border-border',
+                        border: 'hover:border-border',
+                        shadow: 'hover:shadow-md',
+                        text: 'text-muted-foreground/80 group-hover:text-foreground',
                         title: 'group-hover:text-foreground/90'
                       }
                     };
@@ -523,7 +526,6 @@ const CompositionsPage: React.FC = () => {
                         className={cn(
                           "bg-card rounded-xl p-6 border border-border",
                           "cursor-pointer transition-all duration-300",
-                          "hover:bg-card hover:shadow-lg",
                           colors.border,
                           colors.shadow,
                           "group"
