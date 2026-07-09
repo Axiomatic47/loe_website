@@ -4,15 +4,18 @@
 // (<archive>/docx_exports/pdfs/*.pdf); markdown working files stay in
 // work_station and are NOT published. Only docs with a PDF are listed.
 //
-// For each archive this copies: leaf images (membranes/folios) → leaves/,
-// document PDFs → pdfs/, the SHA-256 fixity list, and (opt-in) crops/. It then
-// writes manifest.json for the /research/:archiveId pages.
+// IMAGE LICENSING (fail-closed): leaf images are NOT published by default —
+// reproduction licences from the rights holders (TNA / Harvard) are pending.
+// The default sync writes on-brand SVG placeholders and clears any crop
+// imagery; the manifest records images.published=false so the pages show a
+// licensing notice. Once a licence is in hand, run with --with-images.
+//
+//   npm run sync-archives                            # docs + PLACEHOLDER leaves
+//   npm run sync-archives -- --with-images           # real leaf images (licensed)
+//   npm run sync-archives -- --with-images --crops   # + crop tiles (large)
 //
 // MANUAL-RUN ONLY. Reads from ~/Git/work_station, which does not exist on
 // Netlify — never wire this into `npm run build`. Run locally, review, commit.
-//
-//   npm run sync-archives              # all archives, no crops
-//   npm run sync-archives -- --crops   # also copy crops/ trees (large)
 //
 import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync, copyFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
@@ -21,7 +24,11 @@ import { fileURLToPath } from 'node:url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const EM = '/Users/everest/Git/work_station/research_library/1_Central Library/2_English Materials';
 const OUT = join(__dirname, '..', 'public', 'uploads', 'research');
+const WITH_IMAGES = process.argv.includes('--with-images');
 const WITH_CROPS = process.argv.includes('--crops');
+if (WITH_CROPS && !WITH_IMAGES) {
+  console.warn('⚠ --crops ignored: crop tiles are derivatives of the leaf images and need --with-images (licence).');
+}
 
 const pad3range = (a, b) => Array.from({ length: b - a + 1 }, (_, i) => String(a + i).padStart(3, '0'));
 
@@ -34,6 +41,8 @@ const ARCHIVES = [
     title: 'Lloyd v. Barker (Star Chamber, 1607)',
     dated: 'Trinity term, 5 Jac. I (1607)',
     source: 'The National Archives (UK), Kew — series STAC 8 (Star Chamber Proceedings, James I)',
+    rightsHolder: 'The National Archives (UK)',
+    leafLabel: 'Membrane',
     leafRe: /^8368179_STAC_8_203_38_(\d{3})\.jpg$/,
     classify(stem) {
       let m;
@@ -51,6 +60,8 @@ const ARCHIVES = [
     title: 'Floyd v. Barker — the second account (Star Chamber, 1607)',
     dated: 'Pasch. 5 Jac. I (1607)',
     source: 'Harvard Law School Library, Historical & Special Collections — HLS MS 149 (Star Chamber Collection, 1607–1623)',
+    rightsHolder: 'Harvard Law School Library',
+    leafLabel: 'Folio',
     leafRe: /^ms149_(f\d{2}[rv])\.jpg$/,
     classify(stem) {
       let m;
@@ -60,6 +71,24 @@ const ARCHIVES = [
     },
   },
 ];
+
+const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+// On-brand SVG placeholder shown until the reproduction licence is in hand.
+const placeholderSvg = (A, id) => `<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1200" viewBox="0 0 900 1200">
+  <rect width="900" height="1200" fill="#ECE3CA"/>
+  <rect x="24" y="24" width="852" height="1152" fill="none" stroke="#A09173" stroke-width="2"/>
+  <g font-family="'Source Serif 4', Georgia, serif" text-anchor="middle" fill="#1C1812">
+    <text x="450" y="520" font-size="58" font-weight="600">${esc(A.leafLabel)} ${esc(id)}</text>
+    <text x="450" y="572" font-size="26" fill="#463E32">${esc(A.ref)}</text>
+    <line x1="330" y1="612" x2="570" y2="612" stroke="#A09173" stroke-width="1.5"/>
+    <text x="450" y="668" font-size="30">Image not yet published</text>
+    <text x="450" y="710" font-size="24" fill="#463E32">Reproduction licence pending —</text>
+    <text x="450" y="742" font-size="24" fill="#463E32">${esc(A.rightsHolder)}</text>
+    <text x="450" y="1120" font-size="20" fill="#463E32">Transcription PDFs and source-image fixity hashes remain available.</text>
+  </g>
+</svg>
+`;
 
 const mdTitle = (archiveSrc, stem) => {
   // titles come from the sibling working .md's first heading, when present
@@ -78,14 +107,17 @@ for (const A of ARCHIVES) {
     continue;
   }
   const dst = join(OUT, A.id);
-  // fresh leaves/ + pdfs/ so removed source files disappear; crops/ preserved
+  // fresh leaves/ + pdfs/ so removed source files disappear
   for (const d of ['leaves', 'pdfs']) {
     rmSync(join(dst, d), { recursive: true, force: true });
     mkdirSync(join(dst, d), { recursive: true });
   }
+  // crop imagery is licence-gated too: clear it unless publishing licensed images
+  if (!WITH_IMAGES) rmSync(join(dst, 'crops'), { recursive: true, force: true });
   mkdirSync(join(dst, 'crops'), { recursive: true });
 
-  // fixity
+  // fixity (hashes of the source images — publishable pre-commitment even
+  // while the images themselves await licence)
   const fixity = {};
   const fixityFile = join(A.src, '_FIXITY_SHA256_SOURCES.txt');
   if (existsSync(fixityFile)) {
@@ -96,15 +128,24 @@ for (const A of ARCHIVES) {
     copyFileSync(fixityFile, join(dst, '_FIXITY_SHA256_SOURCES.txt'));
   }
 
-  // leaves
+  // leaves — real images only with --with-images; placeholders otherwise
   const leaves = {};
   for (const f of readdirSync(A.src).sort()) {
     const m = f.match(A.leafRe);
     if (!m) continue;
-    copyFileSync(join(A.src, f), join(dst, 'leaves', f));
-    leaves[m[1]] = { id: m[1], image: `leaves/${f}`, sha256: fixity[f] || null, docs: [] };
+    const id = m[1];
+    let image;
+    if (WITH_IMAGES) {
+      copyFileSync(join(A.src, f), join(dst, 'leaves', f));
+      image = `leaves/${f}`;
+    } else {
+      const ph = `placeholder_${id}.svg`;
+      writeFileSync(join(dst, 'leaves', ph), placeholderSvg(A, id));
+      image = `leaves/${ph}`;
+    }
+    leaves[id] = { id, image, sha256: fixity[f] || null, docs: [] };
   }
-  console.log(`  leaves: ${Object.keys(leaves).length} copied`);
+  console.log(`  leaves: ${Object.keys(leaves).length} ${WITH_IMAGES ? 'images copied' : 'PLACEHOLDERS written (licence pending)'}`);
 
   // document PDFs (the published, reviewer-facing artifacts)
   const pdfDir = join(A.src, 'docx_exports', 'pdfs');
@@ -125,8 +166,8 @@ for (const A of ARCHIVES) {
   }
   console.log(`  pdfs: ${pdfs.length} copied (${workingPapers.length} working papers)`);
 
-  // crops (opt-in; index whatever is present in the destination)
-  if (WITH_CROPS && existsSync(join(A.src, 'crops'))) {
+  // crops (only alongside licensed images)
+  if (WITH_IMAGES && WITH_CROPS && existsSync(join(A.src, 'crops'))) {
     cpSync(join(A.src, 'crops'), join(dst, 'crops'), { recursive: true });
     console.log('  crops: full tree copied (--crops)');
   }
@@ -148,6 +189,7 @@ for (const A of ARCHIVES) {
     JSON.stringify(
       {
         archive: { id: A.id, ref: A.ref, title: A.title, dated: A.dated, source: A.source, pieces: leafList.length },
+        images: { published: WITH_IMAGES, rightsHolder: A.rightsHolder },
         leaves: leafList,
         workingPapers,
         crops: { count: Object.keys(cropIndex).length, index: cropIndex },
@@ -164,4 +206,5 @@ for (const A of ARCHIVES) {
   }
 }
 
-console.log('\nNOTE: review, then commit public/uploads/research/. Crops are opt-in via --crops.');
+console.log(`\nMODE: ${WITH_IMAGES ? 'REAL IMAGES (licensed)' : 'PLACEHOLDERS — leaf images withheld pending licence'}.`);
+console.log('NOTE: review, then commit public/uploads/research/.');

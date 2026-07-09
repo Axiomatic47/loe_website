@@ -7,10 +7,14 @@
     "source": "Harvard Law School Library, Historical & Special Collections — HLS MS 149 (Star Chamber Collection, 1607–1623)",
     "pieces": 6
   },
+  "images": {
+    "published": false,
+    "rightsHolder": "Harvard Law School Library"
+  },
   "leaves": [
     {
       "id": "f81r",
-      "image": "leaves/ms149_f81r.jpg",
+      "image": "leaves/placeholder_f81r.svg",
       "sha256": "a68002de90b7a2bbc532fa720ea03bbf6ec479abd3b3916f6e0df6016fd4b334",
       "docs": [
         {
@@ -22,7 +26,7 @@
     },
     {
       "id": "f81v",
-      "image": "leaves/ms149_f81v.jpg",
+      "image": "leaves/placeholder_f81v.svg",
       "sha256": "7d96a0de91ffa5033f346a95ddad2e3be3eb49293fb2a9ee257e5fc1cf4693b2",
       "docs": [
         {
@@ -34,7 +38,7 @@
     },
     {
       "id": "f82r",
-      "image": "leaves/ms149_f82r.jpg",
+      "image": "leaves/placeholder_f82r.svg",
       "sha256": "f0089182866690e9eaace1e602fde1f0c6691d816198ed68e57dd05c177a274f",
       "docs": [
         {
@@ -46,19 +50,25 @@
     },
     {
       "id": "f82v",
-      "image": "leaves/ms149_f82v.jpg",
+      "image": "leaves/placeholder_f82v.svg",
       "sha256": "62245e0613c91ef0b2cd18a3027c7ba60fd78158280dfed6799c31751e1d2174",
-      "docs": []
+      "docs": [
+        {
+          "kind": "index",
+          "title": "WORKING LINE INDEX — MS 149 f. 82v (Floyd v. Barker second account, side 4 of 6)",
+          "pdf": "pdfs/_WORKING_MS149_f82v_LINE_INDEX.pdf"
+        }
+      ]
     },
     {
       "id": "f83r",
-      "image": "leaves/ms149_f83r.jpg",
+      "image": "leaves/placeholder_f83r.svg",
       "sha256": "96747e7901a2798883f1022ffdcd43a6eccde63435a38cbf1705240acca979ad",
       "docs": []
     },
     {
       "id": "f83v",
-      "image": "leaves/ms149_f83v.jpg",
+      "image": "leaves/placeholder_f83v.svg",
       "sha256": "769019420820148e73ab6753cf4eaa01cfc8d0103458257354a6d8ce926fcb4c",
       "docs": []
     }

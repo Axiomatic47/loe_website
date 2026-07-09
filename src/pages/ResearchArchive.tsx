@@ -31,10 +31,14 @@ export interface ArchiveLeafEntry {
 }
 export interface ArchiveManifest {
   archive: { id: string; ref: string; title: string; dated: string; source: string; pieces: number };
+  /** leaf-image licensing state; absent/false ⇒ placeholders are being shown */
+  images?: { published: boolean; rightsHolder?: string };
   leaves: ArchiveLeafEntry[];
   workingPapers: Array<{ title: string; pdf: string }>;
   crops: { count: number; index: Record<string, string> };
 }
+
+export const imagesPublished = (m: ArchiveManifest | null) => m?.images?.published === true;
 
 export const archiveBase = (id: string) => `/uploads/research/${id}`;
 
@@ -142,6 +146,15 @@ const ResearchArchive = () => {
             <div className="mt-8 bg-secondary border border-border border-l-2 border-l-destructive rounded-md px-4 py-3 text-sm font-sans text-foreground/85">
               Manifest not found ({error}). Run <code>npm run sync-archives</code> locally to
               publish the current working files.
+            </div>
+          )}
+
+          {manifest && !imagesPublished(manifest) && (
+            <div className="mt-8 bg-secondary border border-border border-l-2 border-l-primary rounded-md px-5 py-4 text-sm font-sans text-foreground/85 leading-relaxed">
+              <span style={{ fontWeight: 600 }}>Leaf images are not yet published.</span> A
+              reproduction licence from {manifest.images?.rightsHolder || "the rights holder"} is
+              pending; placeholders are shown in their place. The transcription and line-index
+              PDFs, and the SHA-256 fixity hashes of the source images, are live.
             </div>
           )}
 
