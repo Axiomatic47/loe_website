@@ -63,7 +63,7 @@ const ConstitutionalAccountability = () => {
             <div className="text-destructive text-sm">{error || 'Unknown error occurred'}</div>
             <button
               onClick={() => window.location.reload()}
-              className="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-foreground rounded-lg transition-colors"
+              className="mt-4 px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg transition-colors"
             >
               Retry
             </button>
@@ -90,7 +90,7 @@ const ConstitutionalAccountability = () => {
         </div>
 
         {/* Framework Summary */}
-        <div className="bg-gradient-to-r from-blue-950/50 via-purple-950/50 to-amber-950/50 border border-border rounded-xl p-6 mb-8">
+        <div className="bg-card border border-border rounded-xl shadow-sm p-6 mb-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
             <div className="p-4">
               <div className="text-3xl font-bold text-foreground/85">
@@ -128,17 +128,9 @@ const ConstitutionalAccountability = () => {
               className={cn(
                 'px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2',
                 activeTab === tab.id
-                  ? `bg-${tab.color}-600 text-foreground shadow-lg shadow-${tab.color}-500/25`
+                  ? 'bg-primary text-primary-foreground shadow-sm'
                   : 'bg-card/80 text-muted-foreground hover:bg-card border border-border'
               )}
-              style={{
-                backgroundColor: activeTab === tab.id
-                  ? tab.color === 'blue' ? 'rgb(37, 99, 235)'
-                  : tab.color === 'emerald' ? 'rgb(5, 150, 105)'
-                  : tab.color === 'amber' ? 'rgb(217, 119, 6)'
-                  : 'rgb(147, 51, 234)'
-                  : undefined
-              }}
             >
               <span>{tab.icon}</span>
               <span>{tab.label}</span>
@@ -239,13 +231,13 @@ const ConstitutionalAccountability = () => {
             <div className="flex justify-center gap-4 flex-wrap">
               <a
                 href="/composition/constitutional"
-                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-foreground text-sm rounded-lg transition-colors"
+                className="px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground text-sm rounded-lg transition-colors"
               >
                 View Constitutional Challenges
               </a>
               <button
                 onClick={() => setActiveTab('psv')}
-                className="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-foreground text-sm rounded-lg transition-colors"
+                className="px-4 py-2 bg-card text-foreground border border-border hover:bg-secondary/60 text-sm rounded-lg transition-colors shadow-sm"
               >
                 Explore PSV Ecosystem
               </button>
@@ -265,7 +257,7 @@ const ConstitutionalAccountability = () => {
                     idx === 0 ? 'bg-primary/15 text-primary border border-primary/30' :
                     idx === 1 ? 'bg-secondary text-foreground border border-border' :
                     idx === 2 ? 'bg-muted text-foreground/85 border border-border' :
-                    'bg-gray-500/20 text-muted-foreground/80 border border-gray-500/30'
+                    'bg-muted text-muted-foreground/80 border border-border'
                   )}>
                     {idx + 1}
                   </div>

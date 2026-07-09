@@ -102,7 +102,7 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
                     className={cn(
                       'flex items-center gap-2 px-2 py-1 rounded transition-colors',
                       selectedPositionId === fromPos.id
-                        ? 'bg-blue-900/40'
+                        ? 'bg-primary/15'
                         : 'hover:bg-secondary/60'
                     )}
                   >
@@ -121,7 +121,7 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
                       className={cn(
                         'p-2 text-center cursor-pointer transition-all',
                         isSelf && 'bg-card/80',
-                        isHighlighted && 'bg-blue-900/40',
+                        isHighlighted && 'bg-primary/15',
                         !isSelf && !isHighlighted && 'hover:bg-secondary/60'
                       )}
                       onMouseEnter={() => !isSelf && setHighlightedRelation({ from: fromPos.id, to: toPos.id })}
@@ -133,7 +133,7 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
                       {isSelf ? (
                         <span className="text-muted-foreground/70">—</span>
                       ) : checks ? (
-                        <span className="text-emerald-400 font-bold">✓</span>
+                        <span className="text-primary font-bold">✓</span>
                       ) : (
                         <span className="text-muted-foreground/60">·</span>
                       )}
@@ -148,7 +148,7 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
         {/* Legend */}
         <div className="mt-4 flex gap-6 text-xs text-muted-foreground/80">
           <div className="flex items-center gap-2">
-            <span className="text-emerald-400 font-bold">✓</span>
+            <span className="text-primary font-bold">✓</span>
             <span>Has check power</span>
           </div>
           <div className="flex items-center gap-2">
@@ -189,7 +189,7 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
                         onClick={() => setSelectedPositionId(posId)}
                         className={cn(
                           'px-3 py-1 text-xs rounded-full border transition-colors',
-                          pos ? BRANCH_INFO[pos.branch]?.bgClass : 'bg-gray-900/30 text-muted-foreground/80 border-gray-500/30',
+                          pos ? BRANCH_INFO[pos.branch]?.bgClass : 'bg-muted text-muted-foreground/80 border-border',
                           'hover:opacity-80'
                         )}
                       >
@@ -236,8 +236,8 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
         {/* Relationship Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Checks */}
-          <div className="bg-emerald-900/20 border border-emerald-500/30 rounded-lg p-4">
-            <h4 className="text-emerald-400 font-semibold mb-3 flex items-center gap-2">
+          <div className="bg-primary/10 border border-primary/30 rounded-lg p-4">
+            <h4 className="text-primary font-semibold mb-3 flex items-center gap-2">
               <span>⚔️</span> Checks (This position checks)
             </h4>
             {selectedRelationships.checks.length > 0 ? (
@@ -264,8 +264,8 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
           </div>
 
           {/* Checked By */}
-          <div className="bg-amber-900/20 border border-amber-500/30 rounded-lg p-4">
-            <h4 className="text-amber-400 font-semibold mb-3 flex items-center gap-2">
+          <div className="bg-secondary border border-border rounded-lg p-4">
+            <h4 className="text-foreground/85 font-semibold mb-3 flex items-center gap-2">
               <span>🛡️</span> Checked By
             </h4>
             {selectedRelationships.checkedBy.length > 0 ? (
@@ -292,8 +292,8 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
           </div>
 
           {/* Superiors */}
-          <div className="bg-purple-900/20 border border-purple-500/30 rounded-lg p-4">
-            <h4 className="text-purple-400 font-semibold mb-3 flex items-center gap-2">
+          <div className="bg-secondary border border-border rounded-lg p-4">
+            <h4 className="text-foreground/85 font-semibold mb-3 flex items-center gap-2">
               <span>↑</span> Reports To
             </h4>
             {selectedRelationships.superiors.length > 0 ? (
@@ -320,8 +320,8 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
           </div>
 
           {/* Subordinates */}
-          <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4">
-            <h4 className="text-blue-400 font-semibold mb-3 flex items-center gap-2">
+          <div className="bg-primary/10 border border-primary/30 rounded-lg p-4">
+            <h4 className="text-primary font-semibold mb-3 flex items-center gap-2">
               <span>↓</span> Supervises
             </h4>
             {selectedRelationships.subordinates.length > 0 ? (
@@ -381,7 +381,7 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
             <div className="space-y-2">
               {checksMatrix[selectedPosition.id].mechanisms.map((mechanism, idx) => (
                 <div key={idx} className="flex items-start gap-2 text-sm">
-                  <span className="text-emerald-400">•</span>
+                  <span className="text-primary">•</span>
                   <span className="text-muted-foreground">{mechanism}</span>
                 </div>
               ))}
@@ -404,7 +404,7 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
             className={cn(
               'px-4 py-2 rounded-lg text-sm transition-colors',
               viewMode === 'checks'
-                ? 'bg-emerald-600 text-foreground'
+                ? 'bg-primary text-primary-foreground'
                 : 'bg-card/80 text-muted-foreground/80 hover:text-foreground'
             )}
           >
@@ -426,7 +426,7 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
             className={cn(
               'px-4 py-2 rounded-lg text-sm transition-colors',
               viewMode === 'detail'
-                ? 'bg-purple-600 text-foreground'
+                ? 'bg-primary text-primary-foreground'
                 : 'bg-card/80 text-muted-foreground/80 hover:text-foreground'
             )}
           >
@@ -455,7 +455,7 @@ export const RelationshipMatrix: React.FC<RelationshipMatrixProps> = ({ data }) 
           <select
             value={selectedPositionId}
             onChange={(e) => setSelectedPositionId(e.target.value)}
-            className="w-full md:w-96 bg-card border border-border rounded-lg px-4 py-2 text-foreground focus:border-blue-500 focus:outline-none"
+            className="w-full md:w-96 bg-card border border-border rounded-lg px-4 py-2 text-foreground focus:border-primary focus:outline-none"
           >
             <option value="">-- Select a Position --</option>
             {allPositions.map((pos) => (

@@ -32,7 +32,8 @@ const FEATURED_CASE = {
   operative: "Third Amended Complaint (Doc. 51), filed April 30, 2026",
   deadline:
     "Defendants’ motions to dismiss are due July 15, 2026; Plaintiff’s opposition is due August 28, 2026.",
-  href: "/kirchner-v-johnson",
+  href: "/kirchner-v-johnson", // case landing page
+  operativeHref: "/kirchner-v-johnson/51", // straight to the TAC
 };
 
 const CASE_STRIP = [
@@ -134,7 +135,7 @@ const Index = () => {
               <Button
                 size="lg"
                 className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm hover:shadow-md"
-                onClick={() => navigate(FEATURED_CASE.href)}
+                onClick={() => navigate(FEATURED_CASE.operativeHref)}
               >
                 Read the operative complaint
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -200,16 +201,16 @@ const Index = () => {
               <div className="flex flex-col sm:flex-row gap-3 mt-6">
                 <Button
                   className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm hover:shadow-md"
-                  onClick={() => navigate(FEATURED_CASE.href)}
+                  onClick={() => navigate(FEATURED_CASE.operativeHref)}
                 >
                   Read the complaint
                 </Button>
                 <Button
                   variant="outline"
                   className="bg-card text-foreground border-border shadow-sm hover:shadow-md hover:bg-secondary/60"
-                  onClick={() => navigate("/composition/constitutional")}
+                  onClick={() => navigate(FEATURED_CASE.href)}
                 >
-                  All constitutional challenges
+                  Case overview
                 </Button>
               </div>
             </div>

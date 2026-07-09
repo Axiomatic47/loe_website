@@ -227,31 +227,31 @@ export interface ConstitutionalAuthorityMap {
 // ═══════════════════════════════════════════════════════════════════
 
 export const BRANCH_INFO: Record<Branch, { name: string; color: string; icon: string; bgClass: string }> = {
-  sovereign: { name: 'Sovereign', color: 'amber', icon: '👑', bgClass: 'bg-amber-500/20 text-amber-400' },
-  legislative: { name: 'Legislative', color: 'blue', icon: '⚖️', bgClass: 'bg-blue-500/20 text-blue-400' },
-  executive: { name: 'Executive', color: 'red', icon: '🏛️', bgClass: 'bg-red-500/20 text-red-400' },
-  judicial: { name: 'Judicial', color: 'purple', icon: '⚔️', bgClass: 'bg-purple-500/20 text-purple-400' },
-  federalism: { name: 'Federalism', color: 'green', icon: '🗺️', bgClass: 'bg-green-500/20 text-green-400' },
+  sovereign: { name: 'Sovereign', color: 'amber', icon: '👑', bgClass: 'bg-secondary text-foreground/85' },
+  legislative: { name: 'Legislative', color: 'blue', icon: '⚖️', bgClass: 'bg-primary/15 text-primary' },
+  executive: { name: 'Executive', color: 'red', icon: '🏛️', bgClass: 'bg-destructive/15 text-destructive' },
+  judicial: { name: 'Judicial', color: 'purple', icon: '⚔️', bgClass: 'bg-secondary text-foreground/85' },
+  federalism: { name: 'Federalism', color: 'green', icon: '🗺️', bgClass: 'bg-primary/15 text-primary' },
 };
 
 export const PSV_STATUS_INFO: Record<PSVStatus, { name: string; description: string; color: string; bgClass: string }> = {
-  'U': { name: 'Usurpation', description: 'Vulnerable to wrongful exercise by another', color: 'red', bgClass: 'bg-red-500/20 text-red-400' },
+  'U': { name: 'Usurpation', description: 'Vulnerable to wrongful exercise by another', color: 'red', bgClass: 'bg-destructive/15 text-destructive' },
   'A': { name: 'Abdication', description: 'Vulnerable to failure to exercise', color: 'orange', bgClass: 'bg-orange-500/20 text-orange-400' },
-  'U/A': { name: 'Both', description: 'Vulnerable to both usurpation and abdication', color: 'amber', bgClass: 'bg-amber-500/20 text-amber-400' },
-  'IRR': { name: 'Irrefutable', description: 'Self-executing; cannot be violated', color: 'green', bgClass: 'bg-green-500/20 text-green-400' },
+  'U/A': { name: 'Both', description: 'Vulnerable to both usurpation and abdication', color: 'amber', bgClass: 'bg-secondary text-foreground/85' },
+  'IRR': { name: 'Irrefutable', description: 'Self-executing; cannot be violated', color: 'green', bgClass: 'bg-primary/15 text-primary' },
 };
 
 export const PSV_TIER_INFO = {
-  primary: { name: 'Primary PSV', color: 'red', bgClass: 'bg-red-500/20 text-red-400 border-red-500/30' },
-  enabling: { name: 'Enabling PSV', color: 'amber', bgClass: 'bg-amber-500/20 text-amber-400 border-amber-500/30' },
-  shielding: { name: 'Shielding PSV', color: 'purple', bgClass: 'bg-purple-500/20 text-purple-400 border-purple-500/30' },
+  primary: { name: 'Primary PSV', color: 'red', bgClass: 'bg-destructive/15 text-destructive border-destructive/30' },
+  enabling: { name: 'Enabling PSV', color: 'amber', bgClass: 'bg-secondary text-foreground/85 border-border' },
+  shielding: { name: 'Shielding PSV', color: 'purple', bgClass: 'bg-secondary text-foreground/85 border-border' },
 };
 
 export const HIERARCHY_TIER_COLORS = {
-  tier_1: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
-  tier_2: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
-  tier_3: 'bg-purple-500/20 text-purple-400 border-purple-500/30',
-  tier_4: 'bg-gray-500/20 text-gray-400 border-gray-500/30',
+  tier_1: 'bg-primary/15 text-primary border-primary/30',
+  tier_2: 'bg-primary/15 text-primary border-primary/30',
+  tier_3: 'bg-secondary text-foreground/85 border-border',
+  tier_4: 'bg-muted text-muted-foreground border-border',
 };
 
 // ═══════════════════════════════════════════════════════════════════

@@ -319,7 +319,7 @@ const SCOTUSShadowDocket: React.FC = () => {
           {/* Sidebar Header */}
           <div className="p-4 border-b border-border">
             <div className="flex items-center gap-2 mb-3">
-              <Scale className="h-6 w-6 text-amber-400" />
+              <Scale className="h-6 w-6 text-primary" />
               <h1 className="text-lg font-semibold text-foreground">Shadow Docket</h1>
             </div>
 
@@ -330,7 +330,7 @@ const SCOTUSShadowDocket: React.FC = () => {
                 className={cn(
                   "flex-1 flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-all",
                   viewMode === 'caselaw'
-                    ? "bg-amber-500/30 text-amber-200 shadow-sm"
+                    ? "bg-primary text-primary-foreground shadow-sm"
                     : "text-muted-foreground/80 hover:text-foreground hover:bg-secondary/40"
                 )}
               >
@@ -342,7 +342,7 @@ const SCOTUSShadowDocket: React.FC = () => {
                 className={cn(
                   "flex-1 flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-all",
                   viewMode === 'analysis'
-                    ? "bg-blue-500/30 text-blue-200 shadow-sm"
+                    ? "bg-primary text-primary-foreground shadow-sm"
                     : "text-muted-foreground/80 hover:text-foreground hover:bg-secondary/40"
                 )}
               >
@@ -387,12 +387,12 @@ const SCOTUSShadowDocket: React.FC = () => {
             <div className="p-2">
               {loading && (
                 <div className="flex items-center justify-center py-8">
-                  <Loader2 className="h-6 w-6 animate-spin text-amber-400" />
+                  <Loader2 className="h-6 w-6 animate-spin text-primary" />
                 </div>
               )}
 
               {error && (
-                <div className="text-center py-8 text-red-400 text-sm">
+                <div className="text-center py-8 text-destructive text-sm">
                   Error: {error}
                 </div>
               )}
@@ -409,9 +409,9 @@ const SCOTUSShadowDocket: React.FC = () => {
                                  text-left transition-colors"
                       >
                         {expandedDecades.has(decade.decade) ? (
-                          <ChevronDown className="h-4 w-4 text-amber-400 flex-shrink-0" />
+                          <ChevronDown className="h-4 w-4 text-primary flex-shrink-0" />
                         ) : (
-                          <ChevronRight className="h-4 w-4 text-amber-400 flex-shrink-0" />
+                          <ChevronRight className="h-4 w-4 text-primary flex-shrink-0" />
                         )}
                         <span className="text-foreground font-medium text-sm">{decade.decade}</span>
                         <Badge className="ml-auto bg-secondary/60 text-muted-foreground/80 text-xs px-1.5 py-0">
@@ -429,11 +429,11 @@ const SCOTUSShadowDocket: React.FC = () => {
                                 onClick={() => toggleCase(caseData.id)}
                                 className={cn(
                                   "w-full flex items-center gap-2 px-2 py-1.5 rounded text-left transition-colors",
-                                  selectedCase?.id === caseData.id ? "bg-amber-500/20" : "hover:bg-secondary/40"
+                                  selectedCase?.id === caseData.id ? "bg-primary/15" : "hover:bg-secondary/40"
                                 )}
                               >
                                 {expandedCases.has(caseData.id) ? (
-                                  <FolderOpen className="h-4 w-4 text-amber-400 flex-shrink-0" />
+                                  <FolderOpen className="h-4 w-4 text-primary flex-shrink-0" />
                                 ) : (
                                   <Folder className="h-4 w-4 text-muted-foreground/80 flex-shrink-0" />
                                 )}
@@ -453,11 +453,11 @@ const SCOTUSShadowDocket: React.FC = () => {
                                       className={cn(
                                         "w-full flex items-center gap-2 px-2 py-1 rounded text-left transition-colors",
                                         selectedFile?.path === file.path
-                                          ? "bg-amber-500/30 text-amber-200"
+                                          ? "bg-primary text-primary-foreground"
                                           : "hover:bg-secondary/40 text-muted-foreground"
                                       )}
                                     >
-                                      <FileText className="h-3 w-3 text-red-400 flex-shrink-0" />
+                                      <FileText className="h-3 w-3 text-destructive flex-shrink-0" />
                                       <span className="text-xs truncate">{file.displayName}</span>
                                     </button>
                                   ))}
@@ -490,9 +490,9 @@ const SCOTUSShadowDocket: React.FC = () => {
                                  text-left transition-colors"
                       >
                         {expandedCategories.has(category.name) ? (
-                          <ChevronDown className="h-4 w-4 text-blue-400 flex-shrink-0" />
+                          <ChevronDown className="h-4 w-4 text-primary flex-shrink-0" />
                         ) : (
-                          <ChevronRight className="h-4 w-4 text-blue-400 flex-shrink-0" />
+                          <ChevronRight className="h-4 w-4 text-primary flex-shrink-0" />
                         )}
                         <span className="text-foreground font-medium text-sm">{category.name}</span>
                         <Badge className="ml-auto bg-secondary/60 text-muted-foreground/80 text-xs px-1.5 py-0">
@@ -510,11 +510,11 @@ const SCOTUSShadowDocket: React.FC = () => {
                               className={cn(
                                 "w-full flex items-center gap-2 px-2 py-1.5 rounded text-left transition-colors",
                                 selectedAnalysisFile?.path === file.path
-                                  ? "bg-blue-500/30 text-blue-200"
+                                  ? "bg-primary text-primary-foreground"
                                   : "hover:bg-secondary/40 text-muted-foreground"
                               )}
                             >
-                              <FileText className="h-4 w-4 text-red-400 flex-shrink-0" />
+                              <FileText className="h-4 w-4 text-destructive flex-shrink-0" />
                               <span className="text-sm truncate">{file.displayName}</span>
                             </button>
                           ))}
@@ -571,7 +571,7 @@ const SCOTUSShadowDocket: React.FC = () => {
                   <div className="flex items-center gap-2">
                     <FileText className={cn(
                       "h-5 w-5 flex-shrink-0",
-                      selectedAnalysisFile ? "text-blue-400" : "text-amber-400"
+                      selectedAnalysisFile ? "text-primary" : "text-primary"
                     )} />
                     <h2 className="text-foreground font-medium truncate">{currentFile.displayName}</h2>
                     <Badge className="bg-secondary/60 text-muted-foreground/80 text-xs flex-shrink-0">
@@ -646,7 +646,7 @@ const SCOTUSShadowDocket: React.FC = () => {
                     <div className="text-center">
                       <Loader2 className={cn(
                         "h-8 w-8 animate-spin mx-auto mb-2",
-                        selectedAnalysisFile ? "text-blue-400" : "text-amber-400"
+                        selectedAnalysisFile ? "text-primary" : "text-primary"
                       )} />
                       <p className="text-foreground">Loading PDF...</p>
                     </div>
@@ -658,7 +658,7 @@ const SCOTUSShadowDocket: React.FC = () => {
                   className="w-full h-full"
                   title={currentFile.displayName}
                   onLoad={() => setPdfLoading(false)}
-                  style={{ border: 'none', background: '#1a1a1a' }}
+                  style={{ border: 'none', background: '#f5f3ed' }}
                 />
               </div>
             </>
@@ -666,7 +666,7 @@ const SCOTUSShadowDocket: React.FC = () => {
             /* Welcome Screen */
             <div className="flex-1 flex items-center justify-center bg-secondary/40">
               <div className="text-center max-w-lg px-8">
-                <Scale className="h-16 w-16 text-amber-400/50 mx-auto mb-6" />
+                <Scale className="h-16 w-16 text-primary/50 mx-auto mb-6" />
                 <h2 className="text-2xl font-serif text-foreground mb-4">
                   SCOTUS Shadow Docket Analysis
                 </h2>

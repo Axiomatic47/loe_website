@@ -131,8 +131,8 @@ export const AuthorityHierarchy: React.FC<AuthorityHierarchyProps> = ({
 
         {/* Constraint */}
         {constraint && (
-          <div className="mt-4 p-3 bg-amber-900/20 border border-amber-500/30 rounded-lg">
-            <div className="text-amber-400 text-xs font-semibold mb-1">CONSTRAINT</div>
+          <div className="mt-4 p-3 bg-secondary border border-border rounded-lg">
+            <div className="text-foreground/85 text-xs font-semibold mb-1">CONSTRAINT</div>
             <div className="text-foreground text-sm">{constraint}</div>
           </div>
         )}
@@ -143,7 +143,7 @@ export const AuthorityHierarchy: React.FC<AuthorityHierarchyProps> = ({
             <div className="text-muted-foreground/80 text-xs font-semibold mb-2">CONSTITUTIONAL SOURCES</div>
             <div className="flex flex-wrap gap-2">
               {position.constitutional_source.map((source, idx) => (
-                <span key={idx} className="px-2 py-1 text-xs bg-blue-900/30 text-blue-400 border border-blue-500/30 rounded">
+                <span key={idx} className="px-2 py-1 text-xs bg-primary/10 text-primary border border-primary/30 rounded">
                   {source}
                 </span>
               ))}
@@ -162,7 +162,7 @@ export const AuthorityHierarchy: React.FC<AuthorityHierarchyProps> = ({
                     <button
                       key={idx}
                       onClick={() => setSelectedPositionId(id)}
-                      className="px-2 py-1 text-xs bg-purple-900/30 text-purple-400 border border-purple-500/30 rounded hover:bg-purple-900/50 transition-colors"
+                      className="px-2 py-1 text-xs bg-secondary text-foreground/85 border border-border rounded hover:bg-secondary/80 transition-colors"
                     >
                       ↑ {getPosition(data, id)?.name || id}
                     </button>
@@ -179,7 +179,7 @@ export const AuthorityHierarchy: React.FC<AuthorityHierarchyProps> = ({
                     <button
                       key={idx}
                       onClick={() => setSelectedPositionId(id)}
-                      className="px-2 py-1 text-xs bg-green-900/30 text-green-400 border border-green-500/30 rounded hover:bg-green-900/50 transition-colors"
+                      className="px-2 py-1 text-xs bg-primary/10 text-primary border border-primary/30 rounded hover:bg-primary/20 transition-colors"
                     >
                       ↓ {getPosition(data, id)?.name || id}
                     </button>
@@ -238,7 +238,7 @@ export const AuthorityHierarchy: React.FC<AuthorityHierarchyProps> = ({
             className={cn(
               'px-4 py-2 rounded-lg text-sm transition-colors',
               viewMode === 'single'
-                ? 'bg-blue-600 text-foreground'
+                ? 'bg-primary text-primary-foreground'
                 : 'bg-card/80 text-muted-foreground/80 hover:text-foreground'
             )}
           >
@@ -249,7 +249,7 @@ export const AuthorityHierarchy: React.FC<AuthorityHierarchyProps> = ({
             className={cn(
               'px-4 py-2 rounded-lg text-sm transition-colors',
               viewMode === 'comparison'
-                ? 'bg-blue-600 text-foreground'
+                ? 'bg-primary text-primary-foreground'
                 : 'bg-card/80 text-muted-foreground/80 hover:text-foreground'
             )}
           >
@@ -266,7 +266,7 @@ export const AuthorityHierarchy: React.FC<AuthorityHierarchyProps> = ({
           <select
             value={selectedBranch}
             onChange={(e) => setSelectedBranch(e.target.value as Branch | '')}
-            className="w-full bg-card border border-border rounded-lg px-4 py-2 text-foreground focus:border-blue-500 focus:outline-none"
+            className="w-full bg-card border border-border rounded-lg px-4 py-2 text-foreground focus:border-primary focus:outline-none"
           >
             <option value="">All Branches</option>
             {Object.entries(BRANCH_INFO).map(([branch, info]) => (
@@ -283,7 +283,7 @@ export const AuthorityHierarchy: React.FC<AuthorityHierarchyProps> = ({
           <select
             value={selectedPositionId}
             onChange={(e) => setSelectedPositionId(e.target.value)}
-            className="w-full bg-card border border-border rounded-lg px-4 py-2 text-foreground focus:border-blue-500 focus:outline-none"
+            className="w-full bg-card border border-border rounded-lg px-4 py-2 text-foreground focus:border-primary focus:outline-none"
           >
             <option value="">-- Select a Position --</option>
             {filteredPositions.map((pos) => (
@@ -301,7 +301,7 @@ export const AuthorityHierarchy: React.FC<AuthorityHierarchyProps> = ({
             <select
               value={comparePositionId}
               onChange={(e) => setComparePositionId(e.target.value)}
-              className="w-full bg-card border border-border rounded-lg px-4 py-2 text-foreground focus:border-blue-500 focus:outline-none"
+              className="w-full bg-card border border-border rounded-lg px-4 py-2 text-foreground focus:border-primary focus:outline-none"
             >
               <option value="">-- Select a Position --</option>
               {filteredPositions
@@ -356,7 +356,7 @@ export const AuthorityHierarchy: React.FC<AuthorityHierarchyProps> = ({
                           className={cn(
                             'flex items-center gap-3 p-3 rounded-lg border text-left transition-all',
                             selectedPositionId === pos.id
-                              ? 'bg-blue-900/40 border-blue-500/50'
+                              ? 'bg-primary/15 border-primary/40'
                               : 'bg-card/80 border-border hover:border-border'
                           )}
                         >

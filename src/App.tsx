@@ -25,6 +25,7 @@ const SimulationAdmin = lazy(() => import("./pages/SimulationAdmin"));
 const VideosPage = lazy(() => import("./pages/VideosPage"));
 const SCOTUSShadowDocket = lazy(() => import("./pages/SCOTUSShadowDocket"));
 const ConstitutionalAccountability = lazy(() => import("./pages/ConstitutionalAccountability"));
+const CaseLandingPage = lazy(() => import("./pages/CaseLandingPage"));
 const LegalDisclaimers = lazy(() => import("./pages/LegalDisclaimers"));
 const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
@@ -495,10 +496,10 @@ const App = () => {
                   {/* Home page */}
                   <Route path="/" element={<Index />} />
 
-                  {/* Custom route for Kirchner v. Ellison (Minnesota) case - composition 2 */}
+                  {/* Kirchner v. Ellison (Minnesota) — composition 2. Bare URL = case landing page. */}
                   <Route
                     path="/kirchner-v-ellison"
-                    element={<Navigate to="/composition/constitutional/composition/2/section/23" replace />}
+                    element={<CaseLandingPage caseKey="ellison" />}
                   />
                   <Route
                     path="/kirchner-v-ellison/section/:sectionId"
@@ -510,10 +511,10 @@ const App = () => {
                     element={<KirchnerEllisonDocRedirect />}
                   />
 
-                  {/* Custom route for Kirchner v. Johnson (DCC) case - composition 3 */}
+                  {/* Kirchner v. Johnson (D.D.C.) — composition 3. Bare URL = case landing page. */}
                   <Route
                     path="/kirchner-v-johnson"
-                    element={<Navigate to="/composition/constitutional/composition/3/section/1" replace />}
+                    element={<CaseLandingPage caseKey="johnson" />}
                   />
                   <Route
                     path="/kirchner-v-johnson/section/:sectionId"
@@ -534,10 +535,10 @@ const App = () => {
                     element={<KirchnerJohnsonSectionRedirect />}
                   />
 
-                  {/* Custom route for Kirchner v. Acosta (Florida) case - composition 1 */}
+                  {/* Kirchner v. Acosta (Florida) — composition 1. Bare URL = case landing page. */}
                   <Route
                     path="/kirchner-v-acosta"
-                    element={<Navigate to="/composition/constitutional/composition/1/section/1" replace />}
+                    element={<CaseLandingPage caseKey="acosta" />}
                   />
                   <Route
                     path="/kirchner-v-acosta/section/:sectionId"
