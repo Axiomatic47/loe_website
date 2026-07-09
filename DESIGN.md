@@ -141,7 +141,7 @@ The page background carries a three-layer paper texture (`.bg-texture` in `index
 - Left: serif wordmark "The Laws of Existence", links to `/`.
 - Center-right: dropdown navigation (Radix NavigationMenu) — `Home`, `Research ▾`
   (manuscripts from the content store), `Evidence ▾` (data collections),
-  `Challenges ▾` (the three cases with case numbers), `More ▾` (feature pages),
+  `Cases ▾` (the cases with case numbers), `More ▾` (feature pages),
   `Contact`. Dropdown panels are `bg-card border-border rounded-lg shadow-md`;
   each row = title + small muted subline; footer row is a terracotta "All …" link.
   Inactive triggers use `text-surface-leather-foreground/85`, active `text-primary`.

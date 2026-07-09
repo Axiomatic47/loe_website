@@ -50,7 +50,7 @@ const getCollectionTitle = (compositionId: string | undefined) => {
     case "copyright":
       return "Copyright Holder Notifications";
     case "constitutional":
-      return "Constitutional Challenges";
+      return "Cases";
     default:
       return "Content";
   }

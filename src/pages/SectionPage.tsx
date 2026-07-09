@@ -269,7 +269,7 @@ const getCollectionConfig = (collectionType: string) => {
       };
     case "constitutional":
       return {
-        title: "Constitutional Challenges",
+        title: "Cases",
         icon: Scale,
         contentMapping: {
           1: { field: 'content_level_1', label: 'Content' },

@@ -550,7 +550,11 @@ html.navigating .navigation-indicator {
   opacity: 0;
 }
 
+/* Fail-open: base opacity returns to 1 the moment the class lands, so content
+   is never lost if the animation is throttled or unsupported; the animation's
+   `both` fill still drives the visible fade-up when it runs. */
 .reveal.is-visible {
+  opacity: 1;
   animation: fadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 

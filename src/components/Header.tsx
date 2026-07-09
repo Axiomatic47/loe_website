@@ -1,5 +1,5 @@
 // src/components/Header.tsx — leather header with dropdown navigation.
-// Desktop: Radix NavigationMenu dropdowns (Research / Evidence / Challenges / More).
+// Desktop: Radix NavigationMenu dropdowns (Research / Evidence / Cases / More).
 // Mobile: slide-out drawer (unchanged pattern).
 
 import React from 'react';
@@ -105,7 +105,7 @@ export const Header: React.FC<HeaderProps> = ({
     { path: '/', label: 'Home' },
     { path: '/composition/manuscript', label: 'Research' },
     { path: '/composition/data', label: 'Evidence' },
-    { path: '/composition/constitutional', label: 'Challenges' },
+    { path: '/composition/constitutional', label: 'Cases' },
     { path: '/contact', label: 'Contact' },
   ];
 
@@ -186,14 +186,14 @@ export const Header: React.FC<HeaderProps> = ({
 
                   <NavigationMenuItem>
                     <NavigationMenuTrigger className={triggerClass(inSection('/composition/constitutional'))}>
-                      Challenges
+                      Cases
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
                       <div className="w-[340px] p-2 bg-card">
                         {CASE_LINKS.map((c) => (
                           <MenuRow key={c.href} href={c.href} label={c.label} sub={c.sub} />
                         ))}
-                        <MenuFooterLink href="/composition/constitutional" label="All constitutional challenges" />
+                        <MenuFooterLink href="/composition/constitutional" label="All cases" />
                       </div>
                     </NavigationMenuContent>
                   </NavigationMenuItem>

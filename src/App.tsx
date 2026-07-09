@@ -27,6 +27,10 @@ const SCOTUSShadowDocket = lazy(() => import("./pages/SCOTUSShadowDocket"));
 const ConstitutionalAccountability = lazy(() => import("./pages/ConstitutionalAccountability"));
 const CaseLandingPage = lazy(() => import("./pages/CaseLandingPage"));
 const ForJournalists = lazy(() => import("./pages/ForJournalists"));
+// STAC archive review pages — live but UNLISTED (no nav, no sitemap, noindex)
+const StacArchive = lazy(() => import("./pages/StacArchive"));
+const StacMembrane = lazy(() => import("./pages/StacMembrane"));
+const StacDoc = lazy(() => import("./pages/StacDoc"));
 const LegalDisclaimers = lazy(() => import("./pages/LegalDisclaimers"));
 const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
@@ -559,6 +563,11 @@ const App = () => {
 
                   {/* For Journalists */}
                   <Route path="/for-journalists" element={<ForJournalists />} />
+
+                  {/* STAC 8/203/38 research archive — unlisted review pages */}
+                  <Route path="/research/stac-8-203-38" element={<StacArchive />} />
+                  <Route path="/research/stac-8-203-38/m/:membraneId" element={<StacMembrane />} />
+                  <Route path="/research/stac-8-203-38/doc/:docFile" element={<StacDoc />} />
 
                   {/* Friendly URL for Copyright Notifications */}
                   <Route

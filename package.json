@@ -17,6 +17,7 @@
     "start": "vite",
     "build": "npm run process-testimonies-cms && npm run generate-sitemap && tsc && vite build",
     "generate-sitemap": "node scripts/generate-sitemap.mjs",
+    "sync-stac": "node scripts/sync-stac.mjs",
     "preview": "vite preview",
     "clean": "rimraf dist content/manuscript/* content/data/* public/uploads/*",
     "reset": "npm run clean && mkdir -p content/manuscript content/data public/uploads && chmod 777 content/manuscript content/data public/uploads",

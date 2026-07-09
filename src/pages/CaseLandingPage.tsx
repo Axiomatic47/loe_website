@@ -179,7 +179,7 @@ const CaseLandingPage = ({ caseKey }: { caseKey: keyof typeof CASES }) => {
               className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors mb-8 font-sans"
             >
               <ArrowLeft className="h-4 w-4 mr-1.5" />
-              All constitutional challenges
+              All cases
             </Link>
           </Reveal>
 

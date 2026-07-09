@@ -151,7 +151,7 @@ export const FeaturedWorkSection = () => {
       case 'data':
         return 'Evidence';
       case 'constitutional':
-        return 'Constitutional Challenges';
+        return 'Cases';
       case 'timeline':
         return 'Timeline';
       case 'map':

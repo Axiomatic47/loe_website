@@ -233,7 +233,7 @@ const ConstitutionalAccountability = () => {
                 href="/composition/constitutional"
                 className="px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground text-sm rounded-lg transition-colors"
               >
-                View Constitutional Challenges
+                View the Cases
               </a>
               <button
                 onClick={() => setActiveTab('psv')}
