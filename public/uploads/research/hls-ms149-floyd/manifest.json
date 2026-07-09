@@ -1,0 +1,92 @@
+{
+  "archive": {
+    "id": "hls-ms149-floyd",
+    "ref": "HLS MS 149, ff. 81r–83v",
+    "title": "Floyd v. Barker — the second account (Star Chamber, 1607)",
+    "dated": "Pasch. 5 Jac. I (1607)",
+    "source": "Harvard Law School Library, Historical & Special Collections — HLS MS 149 (Star Chamber Collection, 1607–1623)",
+    "pieces": 6
+  },
+  "leaves": [
+    {
+      "id": "f81r",
+      "image": "leaves/ms149_f81r.jpg",
+      "sha256": "a68002de90b7a2bbc532fa720ea03bbf6ec479abd3b3916f6e0df6016fd4b334",
+      "docs": [
+        {
+          "kind": "index",
+          "title": "f81r LINE INDEX — MS 149 (HLS), Floyd v. Barker report, first side",
+          "pdf": "pdfs/_WORKING_MS149_f81r_LINE_INDEX.pdf"
+        }
+      ]
+    },
+    {
+      "id": "f81v",
+      "image": "leaves/ms149_f81v.jpg",
+      "sha256": "7d96a0de91ffa5033f346a95ddad2e3be3eb49293fb2a9ee257e5fc1cf4693b2",
+      "docs": [
+        {
+          "kind": "index",
+          "title": "WORKING LINE INDEX — MS 149 f. 81v (Floyd v. Barker second account, side 2 of 6)",
+          "pdf": "pdfs/_WORKING_MS149_f81v_LINE_INDEX.pdf"
+        }
+      ]
+    },
+    {
+      "id": "f82r",
+      "image": "leaves/ms149_f82r.jpg",
+      "sha256": "f0089182866690e9eaace1e602fde1f0c6691d816198ed68e57dd05c177a274f",
+      "docs": [
+        {
+          "kind": "index",
+          "title": "WORKING LINE INDEX — MS 149 f. 82r (Floyd v. Barker second account, side 3 of 6)",
+          "pdf": "pdfs/_WORKING_MS149_f82r_LINE_INDEX.pdf"
+        }
+      ]
+    },
+    {
+      "id": "f82v",
+      "image": "leaves/ms149_f82v.jpg",
+      "sha256": "62245e0613c91ef0b2cd18a3027c7ba60fd78158280dfed6799c31751e1d2174",
+      "docs": []
+    },
+    {
+      "id": "f83r",
+      "image": "leaves/ms149_f83r.jpg",
+      "sha256": "96747e7901a2798883f1022ffdcd43a6eccde63435a38cbf1705240acca979ad",
+      "docs": []
+    },
+    {
+      "id": "f83v",
+      "image": "leaves/ms149_f83v.jpg",
+      "sha256": "769019420820148e73ab6753cf4eaa01cfc8d0103458257354a6d8ce926fcb4c",
+      "docs": []
+    }
+  ],
+  "workingPapers": [
+    {
+      "title": "Reading Companion — HLS MS 149, ff. 81r–83v (*Floyd v. Barker*, the Second Account)",
+      "pdf": "pdfs/READING_COMPANION_ff81r-83v.pdf"
+    },
+    {
+      "title": "HLS MS 149, ff. 81r–83v — *Floyd v. Barker* Second Account (Manuscript Images)",
+      "pdf": "pdfs/README.pdf"
+    },
+    {
+      "title": "HAND ATLAS — MS 149 ff. 81r–83v (single later-17c round report hand)",
+      "pdf": "pdfs/_HAND_ATLAS_ms149.pdf"
+    },
+    {
+      "title": "MS 149 ff. 81r–83v — SURVEY CENSUS + PRECISION LEDGER (pass-4-grade campaign, opened 2026-07-08)",
+      "pdf": "pdfs/_WORKING_MS149_SURVEY_AND_LEDGER.pdf"
+    },
+    {
+      "title": "MARKDOWN FORMATTING GUIDE — authoring for the DOCX renderer",
+      "pdf": "pdfs/markdown_formatting_guide.pdf"
+    }
+  ],
+  "crops": {
+    "count": 0,
+    "index": {}
+  }
+}

@@ -27,10 +27,10 @@ const SCOTUSShadowDocket = lazy(() => import("./pages/SCOTUSShadowDocket"));
 const ConstitutionalAccountability = lazy(() => import("./pages/ConstitutionalAccountability"));
 const CaseLandingPage = lazy(() => import("./pages/CaseLandingPage"));
 const ForJournalists = lazy(() => import("./pages/ForJournalists"));
-// STAC archive review pages — live but UNLISTED (no nav, no sitemap, noindex)
-const StacArchive = lazy(() => import("./pages/StacArchive"));
-const StacMembrane = lazy(() => import("./pages/StacMembrane"));
-const StacDoc = lazy(() => import("./pages/StacDoc"));
+// Primary-source research archives — live but UNLISTED (no nav, no sitemap, noindex)
+const ResearchArchive = lazy(() => import("./pages/ResearchArchive"));
+const ResearchLeaf = lazy(() => import("./pages/ResearchLeaf"));
+const ResearchDoc = lazy(() => import("./pages/ResearchDoc"));
 const LegalDisclaimers = lazy(() => import("./pages/LegalDisclaimers"));
 const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
@@ -564,10 +564,11 @@ const App = () => {
                   {/* For Journalists */}
                   <Route path="/for-journalists" element={<ForJournalists />} />
 
-                  {/* STAC 8/203/38 research archive — unlisted review pages */}
-                  <Route path="/research/stac-8-203-38" element={<StacArchive />} />
-                  <Route path="/research/stac-8-203-38/m/:membraneId" element={<StacMembrane />} />
-                  <Route path="/research/stac-8-203-38/doc/:docFile" element={<StacDoc />} />
+                  {/* Primary-source research archives — unlisted review pages
+                      (configs in src/data/researchArchives.ts; data via `npm run sync-archives`) */}
+                  <Route path="/research/:archiveId" element={<ResearchArchive />} />
+                  <Route path="/research/:archiveId/leaf/:leafId" element={<ResearchLeaf />} />
+                  <Route path="/research/:archiveId/doc/:docFile" element={<ResearchDoc />} />
 
                   {/* Friendly URL for Copyright Notifications */}
                   <Route

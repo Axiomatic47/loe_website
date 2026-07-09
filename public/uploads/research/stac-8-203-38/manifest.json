@@ -1,207 +1,227 @@
 {
   "archive": {
+    "id": "stac-8-203-38",
     "ref": "STAC 8/203/38",
     "title": "Lloyd v. Barker (Star Chamber, 1607)",
     "dated": "Trinity term, 5 Jac. I (1607)",
     "source": "The National Archives (UK), Kew — series STAC 8 (Star Chamber Proceedings, James I)",
     "pieces": 10
   },
-  "membranes": [
+  "leaves": [
     {
       "id": "001",
-      "image": "membranes/8368179_STAC_8_203_38_001.jpg",
+      "image": "leaves/8368179_STAC_8_203_38_001.jpg",
       "sha256": "ee090a2477bd5098d71a4e915d4f9fed55c34aae489e35c1debecc459e658be0",
-      "lineIndex": {
-        "file": "docs/_WORKING_001_LINE_INDEX.md",
-        "title": "MEMBRANE 001 — LINE-INDEXED RE-SWEEP (Phase 4D, Fable 5, first-hand)"
-      },
-      "transcriptions": [
+      "docs": [
         {
-          "file": "docs/_WORKING_TOWNELEY_DEPOSITION_001-003L.md",
+          "kind": "index",
+          "title": "MEMBRANE 001 — LINE-INDEXED RE-SWEEP (Phase 4D, Fable 5, first-hand)",
+          "pdf": "pdfs/_WORKING_001_LINE_INDEX.pdf"
+        },
+        {
+          "kind": "transcription",
+          "span": "001–003L",
           "title": "Working transcription — the TOWNELEY deposition (membranes 001, 002L, 002R, 003L), full line-by-line re-sweep",
-          "span": "001–003L"
+          "pdf": "pdfs/_WORKING_TOWNELEY_DEPOSITION_001-003L.pdf"
         }
       ]
     },
     {
       "id": "002",
-      "image": "membranes/8368179_STAC_8_203_38_002.jpg",
+      "image": "leaves/8368179_STAC_8_203_38_002.jpg",
       "sha256": "3e81992d0e6e50c135bc4940aa101e6c15904b645e40304565fdfb05e6d402aa",
-      "lineIndex": {
-        "file": "docs/_WORKING_002_LINE_INDEX.md",
-        "title": "WORKING — MEMBRANE 002 LINE INDEX (Phase 4D-2)"
-      },
-      "transcriptions": [
+      "docs": [
         {
-          "file": "docs/_WORKING_TOWNELEY_DEPOSITION_001-003L.md",
+          "kind": "index",
+          "title": "WORKING — MEMBRANE 002 LINE INDEX (Phase 4D-2)",
+          "pdf": "pdfs/_WORKING_002_LINE_INDEX.pdf"
+        },
+        {
+          "kind": "transcription",
+          "span": "001–003L",
           "title": "Working transcription — the TOWNELEY deposition (membranes 001, 002L, 002R, 003L), full line-by-line re-sweep",
-          "span": "001–003L"
+          "pdf": "pdfs/_WORKING_TOWNELEY_DEPOSITION_001-003L.pdf"
         }
       ]
     },
     {
       "id": "003",
-      "image": "membranes/8368179_STAC_8_203_38_003.jpg",
+      "image": "leaves/8368179_STAC_8_203_38_003.jpg",
       "sha256": "9746f1142f1a979dca55ca42dca208e78a71d418a8f414f763ff5bb5ed6d97ba",
-      "lineIndex": {
-        "file": "docs/_WORKING_003_LINE_INDEX.md",
-        "title": "WORKING LINE INDEX — MEMBRANE 003 (P4D-3)"
-      },
-      "transcriptions": [
+      "docs": [
         {
-          "file": "docs/_WORKING_LLOYD_DEPOSITION_003R-007.md",
-          "title": "Working transcription — the LLOYD deposition (membranes 003R → 007), full line-by-line re-sweep",
-          "span": "003–007"
+          "kind": "index",
+          "title": "WORKING LINE INDEX — MEMBRANE 003 (P4D-3)",
+          "pdf": "pdfs/_WORKING_003_LINE_INDEX.pdf"
         },
         {
-          "file": "docs/_WORKING_TOWNELEY_DEPOSITION_001-003L.md",
+          "kind": "transcription",
+          "span": "003–007",
+          "title": "Working transcription — the LLOYD deposition (membranes 003R → 007), full line-by-line re-sweep",
+          "pdf": "pdfs/_WORKING_LLOYD_DEPOSITION_003R-007.pdf"
+        },
+        {
+          "kind": "transcription",
+          "span": "001–003L",
           "title": "Working transcription — the TOWNELEY deposition (membranes 001, 002L, 002R, 003L), full line-by-line re-sweep",
-          "span": "001–003L"
+          "pdf": "pdfs/_WORKING_TOWNELEY_DEPOSITION_001-003L.pdf"
         }
       ]
     },
     {
       "id": "004",
-      "image": "membranes/8368179_STAC_8_203_38_004.jpg",
+      "image": "leaves/8368179_STAC_8_203_38_004.jpg",
       "sha256": "a94519159b28985360252e84154cc707918419ab8eb4944a83ec94e738266e38",
-      "lineIndex": {
-        "file": "docs/_WORKING_004_LINE_INDEX.md",
-        "title": "WORKING LINE INDEX — MEMBRANE 004 (P4D-4)"
-      },
-      "transcriptions": [
+      "docs": [
         {
-          "file": "docs/_WORKING_LLOYD_DEPOSITION_003R-007.md",
+          "kind": "index",
+          "title": "WORKING LINE INDEX — MEMBRANE 004 (P4D-4)",
+          "pdf": "pdfs/_WORKING_004_LINE_INDEX.pdf"
+        },
+        {
+          "kind": "transcription",
+          "span": "003–007",
           "title": "Working transcription — the LLOYD deposition (membranes 003R → 007), full line-by-line re-sweep",
-          "span": "003–007"
+          "pdf": "pdfs/_WORKING_LLOYD_DEPOSITION_003R-007.pdf"
         }
       ]
     },
     {
       "id": "005",
-      "image": "membranes/8368179_STAC_8_203_38_005.jpg",
+      "image": "leaves/8368179_STAC_8_203_38_005.jpg",
       "sha256": "b0ce2627cd6240dd6e0cc9715f958eedad914941c332262a50467bd2ad93d364",
-      "lineIndex": {
-        "file": "docs/_WORKING_005_LINE_INDEX.md",
-        "title": "WORKING LINE INDEX — MEMBRANE 005 (P4D-5)"
-      },
-      "transcriptions": [
+      "docs": [
         {
-          "file": "docs/_WORKING_LLOYD_DEPOSITION_003R-007.md",
+          "kind": "index",
+          "title": "WORKING LINE INDEX — MEMBRANE 005 (P4D-5)",
+          "pdf": "pdfs/_WORKING_005_LINE_INDEX.pdf"
+        },
+        {
+          "kind": "transcription",
+          "span": "003–007",
           "title": "Working transcription — the LLOYD deposition (membranes 003R → 007), full line-by-line re-sweep",
-          "span": "003–007"
+          "pdf": "pdfs/_WORKING_LLOYD_DEPOSITION_003R-007.pdf"
         }
       ]
     },
     {
       "id": "006",
-      "image": "membranes/8368179_STAC_8_203_38_006.jpg",
+      "image": "leaves/8368179_STAC_8_203_38_006.jpg",
       "sha256": "3c0577e937849ecc058338ad1044c5704455f1a454666c2ae2b3981662768910",
-      "lineIndex": {
-        "file": "docs/_WORKING_006_LINE_INDEX.md",
-        "title": "WORKING LINE INDEX — MEMBRANE 006 (P4D-6)"
-      },
-      "transcriptions": [
+      "docs": [
         {
-          "file": "docs/_WORKING_LLOYD_DEPOSITION_003R-007.md",
+          "kind": "index",
+          "title": "WORKING LINE INDEX — MEMBRANE 006 (P4D-6)",
+          "pdf": "pdfs/_WORKING_006_LINE_INDEX.pdf"
+        },
+        {
+          "kind": "transcription",
+          "span": "003–007",
           "title": "Working transcription — the LLOYD deposition (membranes 003R → 007), full line-by-line re-sweep",
-          "span": "003–007"
+          "pdf": "pdfs/_WORKING_LLOYD_DEPOSITION_003R-007.pdf"
         }
       ]
     },
     {
       "id": "007",
-      "image": "membranes/8368179_STAC_8_203_38_007.jpg",
+      "image": "leaves/8368179_STAC_8_203_38_007.jpg",
       "sha256": "fb14e23bd7b6caa6def6ff0151ba8c8037f48759aaa1a5e303cd573ec88f3462",
-      "lineIndex": {
-        "file": "docs/_WORKING_007_LINE_INDEX.md",
-        "title": "MEMBRANE 007 — PHASE 4D-7 LINE INDEX (native+ sweep, 2026-07-08)"
-      },
-      "transcriptions": [
+      "docs": [
         {
-          "file": "docs/_WORKING_LLOYD_DEPOSITION_003R-007.md",
+          "kind": "index",
+          "title": "MEMBRANE 007 — PHASE 4D-7 LINE INDEX (native+ sweep, 2026-07-08)",
+          "pdf": "pdfs/_WORKING_007_LINE_INDEX.pdf"
+        },
+        {
+          "kind": "transcription",
+          "span": "003–007",
           "title": "Working transcription — the LLOYD deposition (membranes 003R → 007), full line-by-line re-sweep",
-          "span": "003–007"
+          "pdf": "pdfs/_WORKING_LLOYD_DEPOSITION_003R-007.pdf"
         }
       ]
     },
     {
       "id": "008",
-      "image": "membranes/8368179_STAC_8_203_38_008.jpg",
+      "image": "leaves/8368179_STAC_8_203_38_008.jpg",
       "sha256": "d4d9c3e71ea834963436efa1794d72a9101426051d6a1b87575c563fa0268f92",
-      "lineIndex": {
-        "file": "docs/_WORKING_008_LINE_INDEX.md",
-        "title": "Membrane 008 — LINE INDEX (Pass 4, native+ half-column re-sweep, 2026-07-07)"
-      },
-      "transcriptions": [
+      "docs": [
         {
-          "file": "docs/_WORKING_008_TRANSCRIPTION.md",
+          "kind": "index",
+          "title": "Membrane 008 — LINE INDEX (Pass 4, native+ half-column re-sweep, 2026-07-07)",
+          "pdf": "pdfs/_WORKING_008_LINE_INDEX.pdf"
+        },
+        {
+          "kind": "transcription",
+          "span": "008",
           "title": "Working transcription — membrane 008 (the Articles/interrogatories vs Lloyd), dedicated line-by-line sweep",
-          "span": "008"
+          "pdf": "pdfs/_WORKING_008_TRANSCRIPTION.pdf"
         }
       ]
     },
     {
       "id": "009",
-      "image": "membranes/8368179_STAC_8_203_38_009.jpg",
+      "image": "leaves/8368179_STAC_8_203_38_009.jpg",
       "sha256": "889cf85b563be6c1222d7c521f87af0c47f9a51b2392dd9a4d5866189db83d05",
-      "lineIndex": {
-        "file": "docs/_WORKING_009_LINE_INDEX.md",
-        "title": "Membrane 009 — LINE INDEX (Pass 4B, native+ half-column re-sweep, 2026-07-07)"
-      },
-      "transcriptions": [
+      "docs": [
         {
-          "file": "docs/_WORKING_009_TRANSCRIPTION.md",
+          "kind": "index",
+          "title": "Membrane 009 — LINE INDEX (Pass 4B, native+ half-column re-sweep, 2026-07-07)",
+          "pdf": "pdfs/_WORKING_009_LINE_INDEX.pdf"
+        },
+        {
+          "kind": "transcription",
+          "span": "009",
           "title": "Working transcription — membrane 009 (Articles 13–16, the continuation leaf of the 008 instrument), precision-pass line-by-line sweep",
-          "span": "009"
+          "pdf": "pdfs/_WORKING_009_TRANSCRIPTION.pdf"
         }
       ]
     },
     {
       "id": "010",
-      "image": "membranes/8368179_STAC_8_203_38_010.jpg",
+      "image": "leaves/8368179_STAC_8_203_38_010.jpg",
       "sha256": "ccbaf25b529dd3c036e6de44ecd1eec52b5a95cce8867536a98d9d895f12daab",
-      "lineIndex": null,
-      "transcriptions": [
+      "docs": [
         {
-          "file": "docs/_WORKING_010_TRANSCRIPTION.md",
+          "kind": "transcription",
+          "span": "010",
           "title": "Working transcription — membrane 010 (defendant's Answer), full line-by-line pass",
-          "span": "010"
+          "pdf": "pdfs/_WORKING_010_TRANSCRIPTION.pdf"
         }
       ]
     }
   ],
   "workingPapers": [
     {
-      "file": "docs/CORRECTIONS_LOG.md",
-      "title": "CORRECTIONS LOG — the transcription's record of catching its own errors"
+      "title": "CORRECTIONS LOG — the transcription's record of catching its own errors",
+      "pdf": "pdfs/CORRECTIONS_LOG.pdf"
     },
     {
-      "file": "docs/QUOTATION_CONCORDANCE.md",
-      "title": "QUOTATION CONCORDANCE — every STAC 8/203/38 reading quoted in print, traced to its evidence"
+      "title": "QUOTATION CONCORDANCE — every STAC 8/203/38 reading quoted in print, traced to its evidence",
+      "pdf": "pdfs/QUOTATION_CONCORDANCE.pdf"
     },
     {
-      "file": "docs/READING_COMPANION_STAC_8_203_38.md",
-      "title": "Reading Companion — TNA STAC 8/203/38 (*Floyd v. Barker* Star Chamber depositions, 1607)"
+      "title": "Reading Companion — TNA STAC 8/203/38 (*Floyd v. Barker* Star Chamber depositions, 1607)",
+      "pdf": "pdfs/READING_COMPANION_STAC_8_203_38.pdf"
     },
     {
-      "file": "docs/README_FOR_REVIEWERS.md",
-      "title": "FOR REVIEWERS — Independent verification of the STAC 8/203/38 transcription"
+      "title": "FOR REVIEWERS — Independent verification of the STAC 8/203/38 transcription",
+      "pdf": "pdfs/README_FOR_REVIEWERS.pdf"
     },
     {
-      "file": "docs/_PRECISION_PASS_LEDGER.md",
-      "title": "PRECISION PASS (third pass) — master gap ledger — opened 2026-07-02"
+      "title": "PRECISION PASS (third pass) — master gap ledger — opened 2026-07-02",
+      "pdf": "pdfs/_PRECISION_PASS_LEDGER.pdf"
     },
     {
-      "file": "docs/_RESUME_TRANSCRIPTION_NOTES.md",
-      "title": "RESUME NOTES — STAC 8/203/38 transcription (read this first after any compaction)"
+      "title": "PHASE 4C AUDIT — completeness + fidelity closure, STAC 8/203/38 (2026-07-07)",
+      "pdf": "pdfs/_WORKING_P4C_AUDIT.pdf"
     },
     {
-      "file": "docs/_WORKING_P4C_AUDIT.md",
-      "title": "PHASE 4C AUDIT — completeness + fidelity closure, STAC 8/203/38 (2026-07-07)"
+      "title": "RE-ZOOM VERDICTS — 2026-07-02 (Fable-5 re-sweep, verification zooms)",
+      "pdf": "pdfs/_WORKING_REZOOM_VERDICTS_2026-07-02.pdf"
     },
     {
-      "file": "docs/_WORKING_REZOOM_VERDICTS_2026-07-02.md",
-      "title": "RE-ZOOM VERDICTS — 2026-07-02 (Fable-5 re-sweep, verification zooms)"
+      "title": "MARKDOWN FORMATTING GUIDE — authoring for the DOCX renderer",
+      "pdf": "pdfs/markdown_formatting_guide.pdf"
     }
   ],
   "crops": {
