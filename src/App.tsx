@@ -26,6 +26,7 @@ const VideosPage = lazy(() => import("./pages/VideosPage"));
 const SCOTUSShadowDocket = lazy(() => import("./pages/SCOTUSShadowDocket"));
 const ConstitutionalAccountability = lazy(() => import("./pages/ConstitutionalAccountability"));
 const CaseLandingPage = lazy(() => import("./pages/CaseLandingPage"));
+const ForJournalists = lazy(() => import("./pages/ForJournalists"));
 const LegalDisclaimers = lazy(() => import("./pages/LegalDisclaimers"));
 const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
@@ -549,6 +550,15 @@ const App = () => {
                     path="/kirchner-v-acosta/:docId"
                     element={<KirchnerAcostaDocRedirect />}
                   />
+
+                  {/* SCOTUS amicus (Trump v. Barbara) — constitutional composition 4 */}
+                  <Route
+                    path="/scotus-amicus"
+                    element={<Navigate to="/composition/constitutional/composition/4/section/1" replace />}
+                  />
+
+                  {/* For Journalists */}
+                  <Route path="/for-journalists" element={<ForJournalists />} />
 
                   {/* Friendly URL for Copyright Notifications */}
                   <Route

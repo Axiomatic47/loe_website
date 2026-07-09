@@ -82,10 +82,12 @@ const CASES: Record<string, CaseConfig> = {
   ellison: {
     caption: "Kirchner v. Ellison",
     court: "United States District Court for the District of Minnesota",
-    caseNo: "No. 0:26-cv-00726",
+    caseNo: "No. 0:26-cv-00726 · refiled No. 0:26-cv-02594",
     summary:
-      "A pro se petition against Minnesota Attorney General Keith Ellison concerning state enforcement obligations under the federal constitutional framework — dismissed at the trial court and now on appeal before the Eighth Circuit.",
-    status: "On appeal — U.S. Court of Appeals for the Eighth Circuit, No. 26-1615",
+      "A pro se petition against Minnesota Attorney General Keith Ellison concerning state enforcement obligations under the federal constitutional framework — dismissed at the trial court, now proceeding on two tracks: an appeal before the Eighth Circuit and a refiled action in the District of Minnesota.",
+    status: "Two active tracks — Eighth Circuit appeal No. 26-1615; refiled action No. 0:26-cv-02594",
+    deadline:
+      "The refiled action is in motion-to-dismiss briefing; Plaintiff’s opposition has been filed.",
     operativeHref: "/kirchner-v-ellison/1",
     operativeLabel: "Read the Petition",
     matchTitle: "ellison",
@@ -100,13 +102,15 @@ const CASES: Record<string, CaseConfig> = {
       { date: "Apr 1, 2026", event: "Notice of appeal to the Eighth Circuit" },
       { date: "Apr 2, 2026", event: "Appeal docketed — No. 26-1615" },
       { date: "Apr 6, 2026", event: "Opening brief filed" },
+      { date: "May 13, 2026", event: "Action refiled in the District of Minnesota — No. 0:26-cv-02594" },
+      { date: "May 14, 2026", event: "Order of recusal entered in the refiled action" },
     ],
     keyDocuments: [
       { label: "Petition", doc: "Doc. 1", date: "Jan 27, 2026", href: "/kirchner-v-ellison/1" },
       { label: "Emergency Motion for TRO & Declaratory Relief", doc: "Doc. 6", date: "Jan 29, 2026", href: "/kirchner-v-ellison/6" },
-      { label: "Amended Complaint", doc: "Doc. 26", date: "Mar 27, 2026", href: "/kirchner-v-ellison/26" },
       { label: "Order Dismissing Case", doc: "Doc. 29", date: "Mar 30, 2026", href: "/kirchner-v-ellison/29" },
       { label: "Eighth Circuit Opening Brief", doc: "No. 26-1615", date: "Apr 6, 2026", href: "/kirchner-v-ellison/8cir-brief" },
+      { label: "Refiled Complaint (cv-02594)", doc: "Doc. 1", date: "May 13, 2026", href: "/kirchner-v-ellison/2594-1" },
     ],
   },
   acosta: {

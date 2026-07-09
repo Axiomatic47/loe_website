@@ -22,6 +22,8 @@ const STATIC_ROUTES = [
   ['/composition/manuscript', '0.8'],
   ['/composition/data', '0.8'],
   ['/composition/copyright', '0.6'],
+  ['/scotus-amicus', '0.7'],
+  ['/for-journalists', '0.7'],
   ['/scotus-shadow-docket', '0.7'],
   ['/constitutional-accountability', '0.7'],
   ['/timeline', '0.6'],

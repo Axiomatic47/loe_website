@@ -32,6 +32,7 @@ const CASE_LINKS = [
 ];
 
 const MORE_LINKS = [
+  { label: 'For Journalists', sub: 'Case numbers, documents, and press contact', href: '/for-journalists' },
   { label: 'Video Evidence', sub: 'Screen recordings of AI system behavior', href: '/videos' },
   { label: 'Copyright Notifications', sub: 'Notices to copyright holders', href: '/composition/copyright' },
   { label: 'SCOTUS Shadow Docket', sub: 'Emergency-docket archive and analysis', href: '/scotus-shadow-docket' },

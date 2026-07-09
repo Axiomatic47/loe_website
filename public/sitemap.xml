@@ -9,6 +9,8 @@
   <url><loc>https://lawsofexistence.com/composition/manuscript</loc><priority>0.8</priority></url>
   <url><loc>https://lawsofexistence.com/composition/data</loc><priority>0.8</priority></url>
   <url><loc>https://lawsofexistence.com/composition/copyright</loc><priority>0.6</priority></url>
+  <url><loc>https://lawsofexistence.com/scotus-amicus</loc><priority>0.7</priority></url>
+  <url><loc>https://lawsofexistence.com/for-journalists</loc><priority>0.7</priority></url>
   <url><loc>https://lawsofexistence.com/scotus-shadow-docket</loc><priority>0.7</priority></url>
   <url><loc>https://lawsofexistence.com/constitutional-accountability</loc><priority>0.7</priority></url>
   <url><loc>https://lawsofexistence.com/timeline</loc><priority>0.6</priority></url>
@@ -644,6 +646,9 @@
   <url><loc>https://lawsofexistence.com/composition/constitutional/composition/3/section/422</loc><priority>0.6</priority></url>
   <url><loc>https://lawsofexistence.com/composition/constitutional/composition/3/section/423</loc><priority>0.6</priority></url>
   <url><loc>https://lawsofexistence.com/composition/constitutional/composition/3/section/424</loc><priority>0.6</priority></url>
+  <url><loc>https://lawsofexistence.com/composition/constitutional/composition/4/section/1</loc><priority>0.6</priority></url>
+  <url><loc>https://lawsofexistence.com/composition/constitutional/composition/4/section/2</loc><priority>0.6</priority></url>
+  <url><loc>https://lawsofexistence.com/composition/constitutional/composition/4/section/3</loc><priority>0.6</priority></url>
   <url><loc>https://lawsofexistence.com/composition/copyright/composition/1/section/1</loc><priority>0.6</priority></url>
   <url><loc>https://lawsofexistence.com/composition/copyright/composition/2/section/1</loc><priority>0.6</priority></url>
   <url><loc>https://lawsofexistence.com/composition/copyright/composition/2/section/2</loc><priority>0.6</priority></url>
