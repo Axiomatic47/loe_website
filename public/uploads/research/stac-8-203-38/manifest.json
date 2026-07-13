@@ -16,7 +16,13 @@
       "id": "001",
       "image": "leaves/placeholder_001.svg",
       "sha256": "ee090a2477bd5098d71a4e915d4f9fed55c34aae489e35c1debecc459e658be0",
+      "credit": null,
       "docs": [
+        {
+          "kind": "transcript",
+          "title": "CANONICAL TRANSCRIPT — MEMBRANE 001 (TNA STAC 8/203/38)",
+          "pdf": "pdfs/TRANSCRIPT_M001.pdf"
+        },
         {
           "kind": "index",
           "title": "MEMBRANE 001 — LINE-INDEXED RE-SWEEP (Phase 4D, Fable 5, first-hand)",
@@ -34,7 +40,13 @@
       "id": "002",
       "image": "leaves/placeholder_002.svg",
       "sha256": "3e81992d0e6e50c135bc4940aa101e6c15904b645e40304565fdfb05e6d402aa",
+      "credit": null,
       "docs": [
+        {
+          "kind": "transcript",
+          "title": "CANONICAL TRANSCRIPT — MEMBRANE 002 (TNA STAC 8/203/38)",
+          "pdf": "pdfs/TRANSCRIPT_M002.pdf"
+        },
         {
           "kind": "index",
           "title": "WORKING — MEMBRANE 002 LINE INDEX (Phase 4D-2)",
@@ -52,7 +64,13 @@
       "id": "003",
       "image": "leaves/placeholder_003.svg",
       "sha256": "9746f1142f1a979dca55ca42dca208e78a71d418a8f414f763ff5bb5ed6d97ba",
+      "credit": null,
       "docs": [
+        {
+          "kind": "transcript",
+          "title": "CANONICAL TRANSCRIPT — MEMBRANE 003 (TNA STAC 8/203/38)",
+          "pdf": "pdfs/TRANSCRIPT_M003.pdf"
+        },
         {
           "kind": "index",
           "title": "WORKING LINE INDEX — MEMBRANE 003 (P4D-3)",
@@ -76,7 +94,13 @@
       "id": "004",
       "image": "leaves/placeholder_004.svg",
       "sha256": "a94519159b28985360252e84154cc707918419ab8eb4944a83ec94e738266e38",
+      "credit": null,
       "docs": [
+        {
+          "kind": "transcript",
+          "title": "CANONICAL TRANSCRIPT — MEMBRANE 004 (TNA STAC 8/203/38)",
+          "pdf": "pdfs/TRANSCRIPT_M004.pdf"
+        },
         {
           "kind": "index",
           "title": "WORKING LINE INDEX — MEMBRANE 004 (P4D-4)",
@@ -94,7 +118,13 @@
       "id": "005",
       "image": "leaves/placeholder_005.svg",
       "sha256": "b0ce2627cd6240dd6e0cc9715f958eedad914941c332262a50467bd2ad93d364",
+      "credit": null,
       "docs": [
+        {
+          "kind": "transcript",
+          "title": "CANONICAL TRANSCRIPT — MEMBRANE 005 (TNA STAC 8/203/38)",
+          "pdf": "pdfs/TRANSCRIPT_M005.pdf"
+        },
         {
           "kind": "index",
           "title": "WORKING LINE INDEX — MEMBRANE 005 (P4D-5)",
@@ -112,7 +142,13 @@
       "id": "006",
       "image": "leaves/placeholder_006.svg",
       "sha256": "3c0577e937849ecc058338ad1044c5704455f1a454666c2ae2b3981662768910",
+      "credit": null,
       "docs": [
+        {
+          "kind": "transcript",
+          "title": "CANONICAL TRANSCRIPT — MEMBRANE 006 (TNA STAC 8/203/38)",
+          "pdf": "pdfs/TRANSCRIPT_M006.pdf"
+        },
         {
           "kind": "index",
           "title": "WORKING LINE INDEX — MEMBRANE 006 (P4D-6)",
@@ -130,7 +166,13 @@
       "id": "007",
       "image": "leaves/placeholder_007.svg",
       "sha256": "fb14e23bd7b6caa6def6ff0151ba8c8037f48759aaa1a5e303cd573ec88f3462",
+      "credit": null,
       "docs": [
+        {
+          "kind": "transcript",
+          "title": "CANONICAL TRANSCRIPT — MEMBRANE 007 (TNA STAC 8/203/38)",
+          "pdf": "pdfs/TRANSCRIPT_M007.pdf"
+        },
         {
           "kind": "index",
           "title": "MEMBRANE 007 — PHASE 4D-7 LINE INDEX (native+ sweep, 2026-07-08)",
@@ -148,7 +190,13 @@
       "id": "008",
       "image": "leaves/placeholder_008.svg",
       "sha256": "d4d9c3e71ea834963436efa1794d72a9101426051d6a1b87575c563fa0268f92",
+      "credit": null,
       "docs": [
+        {
+          "kind": "transcript",
+          "title": "CANONICAL TRANSCRIPT — MEMBRANE 008 (TNA STAC 8/203/38)",
+          "pdf": "pdfs/TRANSCRIPT_M008.pdf"
+        },
         {
           "kind": "index",
           "title": "Membrane 008 — LINE INDEX (Pass 4, native+ half-column re-sweep, 2026-07-07)",
@@ -166,7 +214,13 @@
       "id": "009",
       "image": "leaves/placeholder_009.svg",
       "sha256": "889cf85b563be6c1222d7c521f87af0c47f9a51b2392dd9a4d5866189db83d05",
+      "credit": null,
       "docs": [
+        {
+          "kind": "transcript",
+          "title": "CANONICAL TRANSCRIPT — MEMBRANE 009 (TNA STAC 8/203/38)",
+          "pdf": "pdfs/TRANSCRIPT_M009.pdf"
+        },
         {
           "kind": "index",
           "title": "Membrane 009 — LINE INDEX (Pass 4B, native+ half-column re-sweep, 2026-07-07)",
@@ -184,7 +238,13 @@
       "id": "010",
       "image": "leaves/placeholder_010.svg",
       "sha256": "ccbaf25b529dd3c036e6de44ecd1eec52b5a95cce8867536a98d9d895f12daab",
+      "credit": null,
       "docs": [
+        {
+          "kind": "transcript",
+          "title": "CANONICAL TRANSCRIPT — MEMBRANE 010 (TNA STAC 8/203/38)",
+          "pdf": "pdfs/TRANSCRIPT_M010.pdf"
+        },
         {
           "kind": "transcription",
           "span": "010",

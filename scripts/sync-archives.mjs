@@ -4,15 +4,20 @@
 // (<archive>/docx_exports/pdfs/*.pdf); markdown working files stay in
 // work_station and are NOT published. Only docs with a PDF are listed.
 //
-// IMAGE LICENSING (fail-closed): leaf images are NOT published by default —
-// reproduction licences from the rights holders (TNA / Harvard) are pending.
-// The default sync writes on-brand SVG placeholders and clears any crop
-// imagery; the manifest records images.published=false so the pages show a
-// licensing notice. Once a licence is in hand, run with --with-images.
+// IMAGE LICENSING (fail-closed, PER ARCHIVE via `imagesLicensed`):
+//  - hls-ms149-floyd: LICENSED — Harvard's 2014 PD-reproductions policy + HSC
+//    Permission-to-Publish require no application or fee. Basis memo:
+//    work_station/research_library/3_Transcription and Translation/
+//    01_HLS_MS149_Floyd_ff81r-83v/HLS Publication Rights/HLS_PUBLICATION_RIGHTS_MS149.md
+//    (2026-07-13). Credit per HSC convention is baked into each leaf entry.
+//  - stac-8-203-38: NOT licensed — TNA reproduction-licence application
+//    (order RC8368179) sent 2026-07-13, pending. Placeholders until granted;
+//    flip imagesLicensed to true when TNA answers.
+// Unlicensed archives get on-brand SVG placeholders and no crop imagery; the
+// manifest records images.published=false so the pages show a licensing notice.
 //
-//   npm run sync-archives                            # docs + PLACEHOLDER leaves
-//   npm run sync-archives -- --with-images           # real leaf images (licensed)
-//   npm run sync-archives -- --with-images --crops   # + crop tiles (large)
+//   npm run sync-archives             # licensed archives get real leaves; others placeholders
+//   npm run sync-archives -- --crops  # + crop tiles for licensed archives (large)
 //
 // MANUAL-RUN ONLY. Reads from ~/Git/work_station, which does not exist on
 // Netlify — never wire this into `npm run build`. Run locally, review, commit.
@@ -22,30 +27,36 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const EM = '/Users/everest/Git/work_station/research_library/1_Central Library/2_English Materials';
+const ROOT = '/Users/everest/Git/work_station/research_library/3_Transcription and Translation';
 const OUT = join(__dirname, '..', 'public', 'uploads', 'research');
-const WITH_IMAGES = process.argv.includes('--with-images');
 const WITH_CROPS = process.argv.includes('--crops');
-if (WITH_CROPS && !WITH_IMAGES) {
-  console.warn('⚠ --crops ignored: crop tiles are derivatives of the leaf images and need --with-images (licence).');
-}
 
 const pad3range = (a, b) => Array.from({ length: b - a + 1 }, (_, i) => String(a + i).padStart(3, '0'));
 
-// Per-archive source config. classify(stem) → {kind:'index'|'transcription', leaves, span} | null (= working paper)
+// HLS MS 149 manifest sequence numbers (corpus README table) — part of HSC's
+// preferred credit line for each folio.
+const MS149_SEQ = { f81r: 166, f81v: 167, f82r: 168, f82v: 169, f83r: 170, f83v: 171 };
+
+// Per-archive source config. classify(stem) →
+//   {kind:'transcript'|'index'|'transcription', leaves, span} | null (= working paper)
+// 'transcript' = the canonical per-leaf transcript (citation artifact);
+// 'transcription' = working assemblies/spans (deposition series etc.).
+const KIND_ORDER = { transcript: 0, index: 1, transcription: 2 };
 const ARCHIVES = [
   {
     id: 'stac-8-203-38',
-    src: join(EM, '02_STAC_8_203_38'),
+    src: join(ROOT, '02_STAC_8_203_38'),
     ref: 'STAC 8/203/38',
     title: 'Lloyd v. Barker (Star Chamber, 1607)',
     dated: 'Trinity term, 5 Jac. I (1607)',
     source: 'The National Archives (UK), Kew — series STAC 8 (Star Chamber Proceedings, James I)',
     rightsHolder: 'The National Archives (UK)',
+    imagesLicensed: false, // TNA licence application pending (order RC8368179)
     leafLabel: 'Membrane',
     leafRe: /^8368179_STAC_8_203_38_(\d{3})\.jpg$/,
     classify(stem) {
       let m;
+      if ((m = stem.match(/^TRANSCRIPT_M(\d{3})$/))) return { kind: 'transcript', leaves: [m[1]] };
       if ((m = stem.match(/^_WORKING_(\d{3})_LINE_INDEX$/))) return { kind: 'index', leaves: [m[1]] };
       if ((m = stem.match(/^_WORKING_(\d{3})_TRANSCRIPTION$/))) return { kind: 'transcription', leaves: [m[1]], span: m[1] };
       if ((m = stem.match(/^_WORKING_[A-Z]+_DEPOSITION_(\d{3})[LR]?-(\d{3})([LR])?$/)))
@@ -55,12 +66,18 @@ const ARCHIVES = [
   },
   {
     id: 'hls-ms149-floyd',
-    src: join(EM, '01_HLS_MS149_Floyd_ff81r-83v'),
+    src: join(ROOT, '01_HLS_MS149_Floyd_ff81r-83v'),
     ref: 'HLS MS 149, ff. 81r–83v',
     title: 'Floyd v. Barker — the second account (Star Chamber, 1607)',
     dated: 'Pasch. 5 Jac. I (1607)',
     source: 'Harvard Law School Library, Historical & Special Collections — HLS MS 149 (Star Chamber Collection, 1607–1623)',
     rightsHolder: 'Harvard Law School Library',
+    imagesLicensed: true, // Harvard 2014 PD policy + HSC Permission to Publish — no permission or fee required
+    rightsNote:
+      'Reproduced under Harvard Library’s Policy on Access to Digital Reproductions of Works in the Public Domain (2014) and HSC’s Permission to Publish policy — no permission or fee required.',
+    creditUrl: 'https://nrs.lib.harvard.edu/URN-3:HLS.LIBR:29137268',
+    credit: (id) =>
+      `Star Chamber collection, 1607–1623, HLS MS 149, fol. ${id.slice(1)}, Seq. ${MS149_SEQ[id]}, Harvard Law School Library, Historical & Special Collections`,
     leafLabel: 'Folio',
     leafRe: /^ms149_(f\d{2}[rv])\.jpg$/,
     classify(stem) {
@@ -112,8 +129,8 @@ for (const A of ARCHIVES) {
     rmSync(join(dst, d), { recursive: true, force: true });
     mkdirSync(join(dst, d), { recursive: true });
   }
-  // crop imagery is licence-gated too: clear it unless publishing licensed images
-  if (!WITH_IMAGES) rmSync(join(dst, 'crops'), { recursive: true, force: true });
+  // crop imagery is licence-gated too: clear it unless publishing licensed crops
+  if (!(A.imagesLicensed && WITH_CROPS)) rmSync(join(dst, 'crops'), { recursive: true, force: true });
   mkdirSync(join(dst, 'crops'), { recursive: true });
 
   // fixity (hashes of the source images — publishable pre-commitment even
@@ -128,14 +145,14 @@ for (const A of ARCHIVES) {
     copyFileSync(fixityFile, join(dst, '_FIXITY_SHA256_SOURCES.txt'));
   }
 
-  // leaves — real images only with --with-images; placeholders otherwise
+  // leaves — real images for licensed archives; placeholders otherwise
   const leaves = {};
   for (const f of readdirSync(A.src).sort()) {
     const m = f.match(A.leafRe);
     if (!m) continue;
     const id = m[1];
     let image;
-    if (WITH_IMAGES) {
+    if (A.imagesLicensed) {
       copyFileSync(join(A.src, f), join(dst, 'leaves', f));
       image = `leaves/${f}`;
     } else {
@@ -143,9 +160,9 @@ for (const A of ARCHIVES) {
       writeFileSync(join(dst, 'leaves', ph), placeholderSvg(A, id));
       image = `leaves/${ph}`;
     }
-    leaves[id] = { id, image, sha256: fixity[f] || null, docs: [] };
+    leaves[id] = { id, image, sha256: fixity[f] || null, credit: A.credit ? A.credit(id) : null, docs: [] };
   }
-  console.log(`  leaves: ${Object.keys(leaves).length} ${WITH_IMAGES ? 'images copied' : 'PLACEHOLDERS written (licence pending)'}`);
+  console.log(`  leaves: ${Object.keys(leaves).length} ${A.imagesLicensed ? 'images copied (licensed)' : 'PLACEHOLDERS written (licence pending)'}`);
 
   // document PDFs (the published, reviewer-facing artifacts)
   const pdfDir = join(A.src, 'docx_exports', 'pdfs');
@@ -166,8 +183,8 @@ for (const A of ARCHIVES) {
   }
   console.log(`  pdfs: ${pdfs.length} copied (${workingPapers.length} working papers)`);
 
-  // crops (only alongside licensed images)
-  if (WITH_IMAGES && WITH_CROPS && existsSync(join(A.src, 'crops'))) {
+  // crops (only for licensed archives, and only on request — large)
+  if (A.imagesLicensed && WITH_CROPS && existsSync(join(A.src, 'crops'))) {
     cpSync(join(A.src, 'crops'), join(dst, 'crops'), { recursive: true });
     console.log('  crops: full tree copied (--crops)');
   }
@@ -182,14 +199,20 @@ for (const A of ARCHIVES) {
   };
   walk(join(dst, 'crops'));
 
-  // manifest
+  // manifest — canonical transcript first, then line index, then working spans
   const leafList = Object.values(leaves);
+  for (const l of leafList) l.docs.sort((a, b) => KIND_ORDER[a.kind] - KIND_ORDER[b.kind]);
   writeFileSync(
     join(dst, 'manifest.json'),
     JSON.stringify(
       {
         archive: { id: A.id, ref: A.ref, title: A.title, dated: A.dated, source: A.source, pieces: leafList.length },
-        images: { published: WITH_IMAGES, rightsHolder: A.rightsHolder },
+        images: {
+          published: A.imagesLicensed,
+          rightsHolder: A.rightsHolder,
+          ...(A.rightsNote ? { rightsNote: A.rightsNote } : {}),
+          ...(A.creditUrl ? { creditUrl: A.creditUrl } : {}),
+        },
         leaves: leafList,
         workingPapers,
         crops: { count: Object.keys(cropIndex).length, index: cropIndex },
@@ -200,11 +223,12 @@ for (const A of ARCHIVES) {
   );
 
   for (const l of leafList) {
+    const canon = l.docs.some((d) => d.kind === 'transcript') ? 'TRANSCRIPT' : '—';
     const idx = l.docs.some((d) => d.kind === 'index') ? 'index' : '—';
-    const tr = l.docs.filter((d) => d.kind === 'transcription').map((d) => d.span).join(', ') || 'no transcription';
-    console.log(`    ${l.id}: ${idx} · ${tr}`);
+    const tr = l.docs.filter((d) => d.kind === 'transcription').map((d) => d.span).join(', ') || 'no working spans';
+    console.log(`    ${l.id}: ${canon} · ${idx} · ${tr}`);
   }
+  console.log(`  MODE: ${A.imagesLicensed ? 'REAL IMAGES (licensed)' : 'placeholders — leaf images withheld pending licence'}`);
 }
 
-console.log(`\nMODE: ${WITH_IMAGES ? 'REAL IMAGES (licensed)' : 'PLACEHOLDERS — leaf images withheld pending licence'}.`);
-console.log('NOTE: review, then commit public/uploads/research/.');
+console.log('\nNOTE: review, then commit public/uploads/research/.');

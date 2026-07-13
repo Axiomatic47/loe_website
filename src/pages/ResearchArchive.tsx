@@ -18,7 +18,8 @@ import { RESEARCH_ARCHIVES } from "@/data/researchArchives";
 import { ArrowRight, FileText, ScrollText } from "lucide-react";
 
 export interface ArchiveDoc {
-  kind: "index" | "transcription";
+  /** transcript = the canonical per-leaf transcript; transcription = working assemblies/spans */
+  kind: "transcript" | "index" | "transcription";
   span?: string;
   title: string;
   pdf: string;
@@ -27,12 +28,14 @@ export interface ArchiveLeafEntry {
   id: string;
   image: string;
   sha256: string | null;
+  /** rights-holder-preferred credit line for the leaf image, when published */
+  credit?: string | null;
   docs: ArchiveDoc[];
 }
 export interface ArchiveManifest {
   archive: { id: string; ref: string; title: string; dated: string; source: string; pieces: number };
   /** leaf-image licensing state; absent/false ⇒ placeholders are being shown */
-  images?: { published: boolean; rightsHolder?: string };
+  images?: { published: boolean; rightsHolder?: string; rightsNote?: string; creditUrl?: string };
   leaves: ArchiveLeafEntry[];
   workingPapers: Array<{ title: string; pdf: string }>;
   crops: { count: number; index: Record<string, string> };
@@ -76,11 +79,13 @@ const CONVENTIONS: Array<[string, string]> = [
 ];
 
 export const leafStatus = (leaf: ArchiveLeafEntry): string => {
+  const hasCanon = leaf.docs.some((d) => d.kind === "transcript");
   const hasIndex = leaf.docs.some((d) => d.kind === "index");
   const spans = [...new Set(leaf.docs.filter((d) => d.kind === "transcription").map((d) => d.span))];
   const parts = [];
-  parts.push(hasIndex ? "Line index" : "—");
-  if (spans.length) parts.push(`transcribed (${spans.join(", ")})`);
+  if (hasCanon) parts.push("Transcript");
+  parts.push(hasIndex ? (hasCanon ? "line index" : "Line index") : "—");
+  if (!hasCanon && spans.length) parts.push(`transcribed (${spans.join(", ")})`);
   return parts.join(" · ");
 };
 
@@ -166,8 +171,8 @@ const ResearchArchive = () => {
                 <ol className="text-sm font-sans text-foreground/85 space-y-2 list-decimal ml-4 leading-relaxed">
                   <li>Open a {config.leafLabel.toLowerCase()} below — the leaf image sits beside its documents (PDF).</li>
                   <li>
-                    Compare the image against the <strong>line index</strong> (line-by-line census)
-                    and the <strong>transcription</strong> (continuous text with editorial notes).
+                    Compare the image against the <strong>transcript</strong> (continuous text with
+                    editorial notes) and the <strong>line index</strong> (line-by-line census).
                   </li>
                   <li>
                     Readings marked <code>[?]</code> are uncertain; <code>⟦…⟧</code> notes record
@@ -264,7 +269,11 @@ const ResearchArchive = () => {
                 <FileText className="h-4 w-4 text-primary mt-1 flex-shrink-0" />
                 <div className="text-sm text-foreground/85 font-sans leading-relaxed">
                   <span style={{ fontWeight: 600 }}>Provenance &amp; fixity.</span> Source images:{" "}
-                  {config.source}. Each leaf's SHA-256 is recorded at sync time and shown on its
+                  {config.source}.
+                  {imagesPublished(manifest) && manifest?.images?.rightsNote && (
+                    <> {manifest.images.rightsNote}</>
+                  )}{" "}
+                  Each leaf's SHA-256 is recorded at sync time and shown on its
                   page, so any copy can be verified against the published hash. Crop tiles used
                   during transcription are hash-manifested in the working tree
                   {manifest && manifest.crops.count > 0

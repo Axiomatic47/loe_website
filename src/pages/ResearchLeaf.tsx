@@ -43,7 +43,12 @@ const ResearchLeaf = () => {
       seen.add(d.pdf);
       t.push({
         key: d.pdf,
-        label: d.kind === "index" ? "Line index" : `Transcription ${d.span || ""}`.trim(),
+        label:
+          d.kind === "transcript"
+            ? "Transcript"
+            : d.kind === "index"
+              ? "Line index"
+              : `Transcription ${d.span || ""}`.trim(),
         doc: d,
       });
     }
@@ -171,9 +176,27 @@ const ResearchLeaf = () => {
                   )}
                 </p>
               ) : (
-                leaf.sha256 && (
-                  <p className="mt-2 text-[11px] text-muted-foreground font-mono break-all">sha256 {leaf.sha256}</p>
-                )
+                <div className="mt-2 text-[11px] text-muted-foreground font-sans leading-relaxed space-y-0.5">
+                  {leaf.credit && (
+                    <p>
+                      {leaf.credit}
+                      {manifest?.images?.creditUrl && (
+                        <>
+                          {" · "}
+                          <a
+                            href={manifest.images.creditUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="underline underline-offset-2 hover:text-foreground transition-colors break-all"
+                          >
+                            {manifest.images.creditUrl.replace(/^https?:\/\//, "")}
+                          </a>
+                        </>
+                      )}
+                    </p>
+                  )}
+                  {leaf.sha256 && <p className="font-mono break-all">sha256 {leaf.sha256}</p>}
+                </div>
               )}
             </div>
 
