@@ -90,6 +90,19 @@
   status = 301
   force = true
 
+# Redirect .ai domain (alias) to primary .com domain
+[[redirects]]
+  from = "https://lawsofexistence.ai/*"
+  to = "https://lawsofexistence.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.lawsofexistence.ai/*"
+  to = "https://lawsofexistence.com/:splat"
+  status = 301
+  force = true
+
 # Redirect Netlify subdomain to primary domain
 [[redirects]]
   from = "https://lawofexistence.netlify.app/*"
