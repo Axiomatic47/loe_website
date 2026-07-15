@@ -31,7 +31,7 @@ const FEATURED_CASE = {
     "the Speaker of the House, the President, the Attorney General, the FCC Chairman, the U.S. House of Representatives, Anthropic, OpenAI, Apple, Comcast, and METR",
   operative: "Third Amended Complaint (Doc. 51), filed April 30, 2026",
   deadline:
-    "Defendants’ motions to dismiss are due July 15, 2026; Plaintiff’s opposition is due August 28, 2026.",
+    "The federal defendants moved to dismiss on July 15, 2026; Plaintiff’s opposition is due August 28, 2026.",
   href: "/kirchner-v-johnson", // case landing page
   operativeHref: "/kirchner-v-johnson/51", // straight to the TAC
 };
