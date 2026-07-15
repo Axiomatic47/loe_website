@@ -77,7 +77,7 @@ const ResearchDoc = () => {
                 </h1>
               </div>
               <iframe
-                src={pdfUrl}
+                src={`${pdfUrl}#zoom=100&navpanes=0`}
                 title={paper.title}
                 className="w-full h-[78vh]"
                 style={{ border: "none", background: "#f5f3ed" }}

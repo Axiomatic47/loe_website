@@ -157,7 +157,14 @@ const ResearchLeaf = () => {
         )}
 
         {leaf && (
-          <div className={cn("grid grid-cols-1 gap-6 items-start", layout === "side" && "lg:grid-cols-2")}>
+          <div
+            className={cn(
+              "grid grid-cols-1 gap-6 items-start",
+              // stacked reads as one centered column (sitewide document width);
+              // side-by-side uses the full container
+              layout === "side" ? "lg:grid-cols-2" : "max-w-4xl mx-auto"
+            )}
+          >
             {/* leaf image */}
             <div className={cn(layout === "side" && "lg:sticky lg:top-20")}>
               <MembraneViewer
@@ -252,8 +259,11 @@ const ResearchLeaf = () => {
                     )}
                     {pdfUrl && (
                       <iframe
-                        key={pdfUrl}
-                        src={pdfUrl}
+                        // rendering params match the sitewide PDFViewer (#zoom=100);
+                        // the half-width side pane fits the page width instead.
+                        // key includes layout — fragment params only apply on load.
+                        key={`${pdfUrl}-${layout}`}
+                        src={`${pdfUrl}${layout === "stacked" ? "#zoom=100&navpanes=0" : "#view=FitH&navpanes=0"}`}
                         title={activeTab?.doc.title || "document"}
                         className={cn("w-full", layout === "stacked" ? "h-[80vh] lg:h-[85vh]" : "h-[62vh] lg:h-[72vh]")}
                         style={{ border: "none", background: "#f5f3ed" }}

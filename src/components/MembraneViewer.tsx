@@ -1,8 +1,9 @@
 // src/components/MembraneViewer.tsx — dependency-free zoom/pan viewer for
-// large manuscript images (wheel to zoom at cursor, drag to pan, buttons for
-// zoom/fit). On load the leaf auto-fits the pane width — no more arbitrary
-// initial zoom. Designed for the archive leaves (~2800×4100 up to ~3000×6800).
-import React, { useCallback, useRef, useState } from 'react';
+// large manuscript images (scroll/pinch to zoom at the cursor, double-click to
+// zoom in, drag to pan, buttons for zoom/fit). On load the leaf auto-fits the
+// pane width — no more arbitrary initial zoom. Designed for the archive
+// leaves (~2800×4100 up to ~7400×7000).
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ZoomIn, ZoomOut, Maximize2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -19,6 +20,9 @@ interface MembraneViewerProps {
 
 const MIN = 0.1;
 const MAX = 8;
+// keep at least this much of the leaf inside the pane, so a stray pan or zoom
+// can never throw it entirely off-screen
+const EDGE = 96;
 
 export const MembraneViewer: React.FC<MembraneViewerProps> = ({
   src,
@@ -31,7 +35,23 @@ export const MembraneViewer: React.FC<MembraneViewerProps> = ({
   const [t, setT] = useState({ scale: 0.28, x: 0, y: 0 });
   const drag = useRef<{ startX: number; startY: number; ox: number; oy: number } | null>(null);
 
-  const clamp = (s: number) => Math.min(MAX, Math.max(MIN, s));
+  const clampScale = (s: number) => Math.min(MAX, Math.max(MIN, s));
+
+  const clampPos = useCallback((x: number, y: number, scale: number) => {
+    const box = boxRef.current;
+    const img = imgRef.current;
+    if (!box || !img || !img.naturalWidth) return { x, y };
+    const w = img.naturalWidth * scale;
+    const h = img.naturalHeight * scale;
+    const loX = EDGE - w;
+    const hiX = box.clientWidth - EDGE;
+    const loY = EDGE - h;
+    const hiY = box.clientHeight - EDGE;
+    return {
+      x: loX > hiX ? (box.clientWidth - w) / 2 : Math.min(hiX, Math.max(loX, x)),
+      y: loY > hiY ? (box.clientHeight - h) / 2 : Math.min(hiY, Math.max(loY, y)),
+    };
+  }, []);
 
   // fit the leaf to the pane (centered), capped at natural size
   const fit = useCallback(() => {
@@ -39,7 +59,7 @@ export const MembraneViewer: React.FC<MembraneViewerProps> = ({
     const img = imgRef.current;
     if (!box || !img || !img.naturalWidth) return;
     const wScale = box.clientWidth / img.naturalWidth;
-    const scale = clamp(
+    const scale = clampScale(
       fitMode === 'contain' ? Math.min(wScale, box.clientHeight / img.naturalHeight, 1) : Math.min(wScale, 1)
     );
     setT({
@@ -49,24 +69,42 @@ export const MembraneViewer: React.FC<MembraneViewerProps> = ({
     });
   }, [fitMode]);
 
-  const zoomAt = useCallback((clientX: number, clientY: number, factor: number) => {
+  const zoomAt = useCallback(
+    (clientX: number, clientY: number, factor: number) => {
+      const box = boxRef.current;
+      if (!box) return;
+      const rect = box.getBoundingClientRect();
+      const cx = clientX - rect.left;
+      const cy = clientY - rect.top;
+      setT((prev) => {
+        const scale = clampScale(prev.scale * factor);
+        const k = scale / prev.scale;
+        // keep the point under the cursor fixed
+        return { scale, ...clampPos(cx - k * (cx - prev.x), cy - k * (cy - prev.y), scale) };
+      });
+    },
+    [clampPos]
+  );
+
+  // Native, NON-passive wheel listener. React's synthetic onWheel is attached
+  // passively, so preventDefault there is silently ignored — the page would
+  // scroll while zooming, which made the viewer feel broken.
+  useEffect(() => {
     const box = boxRef.current;
     if (!box) return;
-    const rect = box.getBoundingClientRect();
-    const cx = clientX - rect.left;
-    const cy = clientY - rect.top;
-    setT((prev) => {
-      const scale = clamp(prev.scale * factor);
-      const k = scale / prev.scale;
-      // keep the point under the cursor fixed
-      return { scale, x: cx - k * (cx - prev.x), y: cy - k * (cy - prev.y) };
-    });
-  }, []);
-
-  const onWheel = (e: React.WheelEvent) => {
-    e.preventDefault();
-    zoomAt(e.clientX, e.clientY, e.deltaY < 0 ? 1.12 : 1 / 1.12);
-  };
+    const onWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      const dy = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? 120 : 1);
+      // zoom proportional to the gesture, not a fixed step per event — smooth
+      // on trackpads AND mouse wheels; pinch arrives as ctrlKey-wheel with
+      // small deltas, so it gets a higher gain
+      const gain = e.ctrlKey ? 0.012 : 0.002;
+      const factor = Math.min(1.4, Math.max(1 / 1.4, Math.exp(-dy * gain)));
+      zoomAt(e.clientX, e.clientY, factor);
+    };
+    box.addEventListener('wheel', onWheel, { passive: false });
+    return () => box.removeEventListener('wheel', onWheel);
+  }, [zoomAt]);
 
   const onPointerDown = (e: React.PointerEvent) => {
     (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
@@ -75,10 +113,17 @@ export const MembraneViewer: React.FC<MembraneViewerProps> = ({
   const onPointerMove = (e: React.PointerEvent) => {
     if (!drag.current) return;
     const d = drag.current;
-    setT((prev) => ({ ...prev, x: d.ox + (e.clientX - d.startX), y: d.oy + (e.clientY - d.startY) }));
+    setT((prev) => ({
+      ...prev,
+      ...clampPos(d.ox + (e.clientX - d.startX), d.oy + (e.clientY - d.startY), prev.scale),
+    }));
   };
   const onPointerUp = () => {
     drag.current = null;
+  };
+
+  const onDoubleClick = (e: React.MouseEvent) => {
+    zoomAt(e.clientX, e.clientY, e.altKey || e.shiftKey ? 0.5 : 2);
   };
 
   const zoomCenter = (factor: number) => {
@@ -101,7 +146,7 @@ export const MembraneViewer: React.FC<MembraneViewerProps> = ({
         <Button variant="ghost" size="sm" className="h-8 w-8 p-0" onClick={() => zoomCenter(1.25)} aria-label="Zoom in">
           <ZoomIn className="h-4 w-4" />
         </Button>
-        <Button variant="ghost" size="sm" className="h-8 w-8 p-0" onClick={fit} aria-label="Fit to width">
+        <Button variant="ghost" size="sm" className="h-8 w-8 p-0" onClick={fit} aria-label="Fit to pane">
           <Maximize2 className="h-4 w-4" />
         </Button>
       </div>
@@ -109,11 +154,11 @@ export const MembraneViewer: React.FC<MembraneViewerProps> = ({
       <div
         ref={boxRef}
         className={cn('cursor-grab active:cursor-grabbing touch-none select-none', heightClass)}
-        onWheel={onWheel}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
         onPointerLeave={onPointerUp}
+        onDoubleClick={onDoubleClick}
       >
         <img
           ref={imgRef}
@@ -122,12 +167,12 @@ export const MembraneViewer: React.FC<MembraneViewerProps> = ({
           draggable={false}
           onLoad={fit}
           className="origin-top-left max-w-none"
-          style={{ transform: `translate(${t.x}px, ${t.y}px) scale(${t.scale})` }}
+          style={{ transform: `translate(${t.x}px, ${t.y}px) scale(${t.scale})`, willChange: 'transform' }}
         />
       </div>
 
       <div className="px-3 py-1.5 border-t border-border bg-card/60 text-[11px] text-muted-foreground font-sans">
-        Scroll to zoom · drag to pan · ⤢ fits the leaf to the pane
+        Scroll or pinch to zoom · double-click to zoom in (⇧-double-click out) · drag to pan · ⤢ refits the leaf
       </div>
     </div>
   );
