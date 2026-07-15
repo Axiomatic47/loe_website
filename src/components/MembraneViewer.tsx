@@ -30,6 +30,7 @@ export const MembraneViewer: React.FC<MembraneViewerProps> = ({
   heightClass = 'h-[62vh] lg:h-[74vh]',
   fitMode = 'width',
 }) => {
+  const rootRef = useRef<HTMLDivElement>(null);
   const boxRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
   const [t, setT] = useState({ scale: 0.28, x: 0, y: 0 });
@@ -88,10 +89,12 @@ export const MembraneViewer: React.FC<MembraneViewerProps> = ({
 
   // Native, NON-passive wheel listener. React's synthetic onWheel is attached
   // passively, so preventDefault there is silently ignored — the page would
-  // scroll while zooming, which made the viewer feel broken.
+  // scroll while zooming, which made the viewer feel broken. Attached to the
+  // whole widget (controls overlay and hint bar included), not just the pan
+  // area, so no part of the viewer lets a gesture fall through to the page.
   useEffect(() => {
-    const box = boxRef.current;
-    if (!box) return;
+    const root = rootRef.current;
+    if (!root) return;
     const onWheel = (e: WheelEvent) => {
       e.preventDefault();
       const dy = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? 120 : 1);
@@ -102,8 +105,32 @@ export const MembraneViewer: React.FC<MembraneViewerProps> = ({
       const factor = Math.min(1.4, Math.max(1 / 1.4, Math.exp(-dy * gain)));
       zoomAt(e.clientX, e.clientY, factor);
     };
-    box.addEventListener('wheel', onWheel, { passive: false });
-    return () => box.removeEventListener('wheel', onWheel);
+    root.addEventListener('wheel', onWheel, { passive: false });
+
+    // Safari trackpad pinch fires proprietary GestureEvents (not ctrl-wheel);
+    // left unhandled, Safari zooms the whole page instead of the leaf.
+    let gScale = 1;
+    const onGestureStart = (e: Event) => {
+      e.preventDefault();
+      gScale = 1;
+    };
+    const onGestureChange = (e: Event) => {
+      e.preventDefault();
+      const g = e as Event & { scale: number; clientX: number; clientY: number };
+      if (!g.scale) return;
+      zoomAt(g.clientX, g.clientY, g.scale / gScale);
+      gScale = g.scale;
+    };
+    const onGestureEnd = (e: Event) => e.preventDefault();
+    root.addEventListener('gesturestart', onGestureStart);
+    root.addEventListener('gesturechange', onGestureChange);
+    root.addEventListener('gestureend', onGestureEnd);
+    return () => {
+      root.removeEventListener('wheel', onWheel);
+      root.removeEventListener('gesturestart', onGestureStart);
+      root.removeEventListener('gesturechange', onGestureChange);
+      root.removeEventListener('gestureend', onGestureEnd);
+    };
   }, [zoomAt]);
 
   const onPointerDown = (e: React.PointerEvent) => {
@@ -134,7 +161,7 @@ export const MembraneViewer: React.FC<MembraneViewerProps> = ({
   };
 
   return (
-    <div className="relative bg-muted border border-border rounded-lg overflow-hidden">
+    <div ref={rootRef} className="relative bg-muted border border-border rounded-lg overflow-hidden" style={{ overscrollBehavior: 'contain' }}>
       {/* controls */}
       <div className="absolute top-3 right-3 z-10 flex items-center gap-1 bg-card/95 border border-border rounded-md shadow-sm p-1">
         <Button variant="ghost" size="sm" className="h-8 w-8 p-0" onClick={() => zoomCenter(1 / 1.25)} aria-label="Zoom out">
