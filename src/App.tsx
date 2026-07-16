@@ -273,50 +273,51 @@ const JOHNSON_DOC_SECTION_BASE: Record<number, number> = {
   67: 119,  // Federal Defendants' Notice of Non-Service
   68: 120,  // Plaintiff's Reply re Service / Response to Non-Service (attachments 68-1..68-10 → 121..130)
   69: 131,  // Federal Defendants' Motion to Dismiss (TAC) — opp due Aug 28, 2026
+  70: 132,  // Corporate Defendants' Joint MTD (attachments 70-1, 70-2 → 133, 134)
   // Superseded pleadings now follow the contiguous Subsequent Filings block in the section array.
   // Original Complaint era — "Original Complaint" tab
-  1: 132,   // Original Complaint (dismissed for standing)
-  2: 134,   // Motion for TRO and Preliminary Injunction (denied as moot)
+  1: 135,   // Original Complaint (dismissed for standing)
+  2: 137,   // Motion for TRO and Preliminary Injunction (denied as moot)
   // First Amended Complaint era — "First Amended Complaint" tab
-  5: 169,   // First Amended Complaint
-  6: 257,   // Emergency Motion for TRO (withdrawn)
-  8: 279,   // Motion for Leave to File Under Seal
+  5: 172,   // First Amended Complaint
+  6: 260,   // Emergency Motion for TRO (withdrawn)
+  8: 282,   // Motion for Leave to File Under Seal
   // Second Amended Complaint era — "Second Amended Complaint" tab
-  13: 280,  // Second Amended Complaint (86 attachments)
-  16: 367,  // Notice of Exhibit Limitations
-  17: 369,  // Notice of Intent to Contact Copyright Holders
-  18: 371,  // Notice of Related Case (Ellison)
-  19: 372,  // Certificate of Service — Copyright Holders
-  20: 375,  // Notice of Caption Correction
-  21: 376,  // Request for Summonses (10 summonses)
-  22: 387,  // Summonses Issued
-  23: 388,  // Appearance — Anthropic (Onorato)
-  24: 389,  // Appearance — Anthropic (Tighe)
-  25: 390,  // Anthropic Corp Disclosure
-  26: 391,  // Anthropic Consent Motion for Extension
-  27: 393,  // Summons Returned — Anthropic
-  28: 394,  // Summons Returned — Apple
-  29: 395,  // Summons Returned — Carr
-  30: 396,  // Summons Returned — Comcast
-  31: 397,  // Summons Returned — METR
-  32: 398,  // Summons Returned — Johnson
-  33: 399,  // Summons Returned — OpenAI
-  34: 400,  // Summons Returned — Bondi/US AG
-  35: 401,  // Summons Returned — US House
-  36: 402,  // Summons Returned — US Attorney
-  37: 403,  // Summons Unexecuted — Trump
-  38: 404,  // Notice of Service Effectuation
-  39: 407,  // Motion for Alternative Service — Trump
-  40: 410,  // Appearance — OpenAI (Margo)
-  41: 411,  // OpenAI Corp Disclosure
-  42: 412,  // Stipulation — OpenAI Leave to Amend (attachment 42-1 → 413)
-  43: 414,  // Appearance — Apple
-  44: 415,  // Apple Corp Disclosure
-  45: 416,  // Apple Notice of Intent to File MTD
-  46: 417,  // Appearance — Comcast Cable (Hoffman)
-  47: 418,  // Comcast Cable Corp Disclosure
-  49: 420,  // Plaintiff's Response to Apple Notice of MTD
-  50: 422,  // Notice of Supplement to Service Effectuation
+  13: 283,  // Second Amended Complaint (86 attachments)
+  16: 370,  // Notice of Exhibit Limitations
+  17: 372,  // Notice of Intent to Contact Copyright Holders
+  18: 374,  // Notice of Related Case (Ellison)
+  19: 375,  // Certificate of Service — Copyright Holders
+  20: 378,  // Notice of Caption Correction
+  21: 379,  // Request for Summonses (10 summonses)
+  22: 390,  // Summonses Issued
+  23: 391,  // Appearance — Anthropic (Onorato)
+  24: 392,  // Appearance — Anthropic (Tighe)
+  25: 393,  // Anthropic Corp Disclosure
+  26: 394,  // Anthropic Consent Motion for Extension
+  27: 396,  // Summons Returned — Anthropic
+  28: 397,  // Summons Returned — Apple
+  29: 398,  // Summons Returned — Carr
+  30: 399,  // Summons Returned — Comcast
+  31: 400,  // Summons Returned — METR
+  32: 401,  // Summons Returned — Johnson
+  33: 402,  // Summons Returned — OpenAI
+  34: 403,  // Summons Returned — Bondi/US AG
+  35: 404,  // Summons Returned — US House
+  36: 405,  // Summons Returned — US Attorney
+  37: 406,  // Summons Unexecuted — Trump
+  38: 407,  // Notice of Service Effectuation
+  39: 410,  // Motion for Alternative Service — Trump
+  40: 413,  // Appearance — OpenAI (Margo)
+  41: 414,  // OpenAI Corp Disclosure
+  42: 415,  // Stipulation — OpenAI Leave to Amend (attachment 42-1 → 413)
+  43: 417,  // Appearance — Apple
+  44: 418,  // Apple Corp Disclosure
+  45: 419,  // Apple Notice of Intent to File MTD
+  46: 420,  // Appearance — Comcast Cable (Hoffman)
+  47: 421,  // Comcast Cable Corp Disclosure
+  49: 423,  // Plaintiff's Response to Apple Notice of MTD
+  50: 425,  // Notice of Supplement to Service Effectuation
 };
 
 const KirchnerJohnsonDocRedirect = () => {
