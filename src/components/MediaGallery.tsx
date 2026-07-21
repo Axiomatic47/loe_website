@@ -34,7 +34,7 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({
   const [imageLoadErrors, setImageLoadErrors] = useState<Set<string>>(new Set());
 
   // Debug logging for development
-  if (import.meta.env.DEV) {
+  if (process.env.NODE_ENV !== 'production') {
     console.log('🎨 MediaGallery received items:', items.map(item => ({
       id: item.id,
       src: item.src,
@@ -88,7 +88,7 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({
   };
 
   const handleImageLoad = (src: string) => {
-    if (import.meta.env.DEV) {
+    if (process.env.NODE_ENV !== 'production') {
       console.log('✅ MediaGallery image loaded successfully:', src);
     }
   };

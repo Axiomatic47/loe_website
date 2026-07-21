@@ -9,7 +9,7 @@ async function initializeApp() {
     console.log('🚀 Laws of Existence Framework - Initializing Application');
 
     // Development-only logging
-    if (import.meta.env.DEV) {
+    if (process.env.NODE_ENV !== 'production') {
       console.log('🔧 Development Mode - Enhanced Logging Enabled');
       console.log('📁 Supported Collections:', {
         manuscript: 'Research Content',
@@ -52,7 +52,7 @@ async function initializeApp() {
       console.error('🚨 Unhandled promise rejection:', event.reason);
 
       // Don't prevent default behavior in production
-      if (import.meta.env.DEV) {
+      if (process.env.NODE_ENV !== 'production') {
         console.error('🔧 Development mode: showing full error details');
       }
     });
@@ -67,7 +67,7 @@ async function initializeApp() {
       console.log('🏛️ Constitutional page detected - performing constitutional-specific initialization');
 
       // Ensure constitutional directories exist in development
-      if (import.meta.env.DEV) {
+      if (process.env.NODE_ENV !== 'production') {
         console.log('📁 Constitutional content should be available at:');
         console.log('   - /composition/constitutional (collection view)');
         console.log('   - /kirchner-v-johnson/51 (case document reader)');
@@ -77,7 +77,7 @@ async function initializeApp() {
     }
 
     // Performance monitoring in development
-    if (import.meta.env.DEV) {
+    if (process.env.NODE_ENV !== 'production') {
       // Monitor performance
       if ('performance' in window) {
         window.addEventListener('load', () => {
@@ -137,7 +137,7 @@ async function initializeApp() {
             >
               Refresh Page
             </button>
-            ${import.meta.env.DEV ? `
+            ${process.env.NODE_ENV !== 'production' ? `
               <details style="margin-top: 1rem; text-align: left;">
                 <summary style="cursor: pointer; color: #999;">Error Details</summary>
                 <pre style="

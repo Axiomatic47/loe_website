@@ -1,25 +1,61 @@
-// src/pages/CaseLandingPage.tsx — per-case landing page (dossier pattern).
+// app/[caseSlug]/page.tsx — bare case URLs.
 //
-// Mounted at the bare case URLs (/kirchner-v-johnson, /kirchner-v-ellison,
-// /kirchner-v-acosta). Deep links (/:docId) continue to redirect straight into
-// the section reader and are untouched.
-//
-// Timeline entries and status lines are editorial content — update them as the
-// dockets move. Document counts are derived live from the content store.
+// /kirchner-v-johnson|-ellison|-acosta → landing dossier (server port of the
+// vite CaseLandingPage; editorial content shared via src/data/caseLanding.ts).
+// /scotus-amicus → renders part 1 directly (published URL — no redirect),
+// exactly like the vite ScotusAmicusIndex.
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { Button } from '@/components/ui/button';
+import { Reveal } from '@/components/Reveal';
+import { ArrowLeft, ArrowRight, CalendarClock, FileText, Scale } from 'lucide-react';
+import { CASES } from '@/data/caseLanding';
+import { getCaseComposition } from '@/lib/content-manifest';
+import { CASE_SLUGS, sectionUrl, absoluteUrl, isCaseSlug } from '@/utils/urls';
+import { SitePageLayout } from '../_components/SitePageLayout';
+import { CaseDocView } from '../_components/CaseDocView';
 
-import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { PageLayout } from "@/components/PageLayout";
-import { Reveal } from "@/components/Reveal";
-import { useCompositionStore } from "@/utils/compositionData";
-import { useDocumentMeta } from "@/hooks/useDocumentMeta";
-import { useCanonical } from "@/hooks/useCanonical";
-import { sectionUrl } from "@/utils/urls";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowRight, CalendarClock, FileText, Scale } from "lucide-react";
-// Editorial dossier content — shared with the Next.js [caseSlug] page; edit
-// docket status/timelines in src/data/caseLanding.ts, not here.
-import { CASES } from "@/data/caseLanding";
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return CASE_SLUGS.map(caseSlug => ({ caseSlug }));
+}
+
+type Params = { params: Promise<{ caseSlug: string }> };
+
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const { caseSlug } = await params;
+
+  if (caseSlug === 'scotus-amicus') {
+    const composition = getCaseComposition('scotus-amicus');
+    return {
+      title: composition?.title ?? 'SCOTUS Amicus',
+      description: composition?.sections[0]?.description,
+      alternates: { canonical: '/scotus-amicus' },
+      openGraph: {
+        title: composition?.title ?? 'SCOTUS Amicus',
+        url: absoluteUrl('/scotus-amicus'),
+        type: 'article',
+      },
+    };
+  }
+
+  const caseKey = caseSlug.replace('kirchner-v-', '');
+  const c = CASES[caseKey];
+  if (!c) return {};
+  return {
+    title: c.caption,
+    description: c.summary,
+    alternates: { canonical: `/${caseSlug}` },
+    openGraph: {
+      title: c.caption,
+      description: c.summary,
+      url: absoluteUrl(`/${caseSlug}`),
+      type: 'website',
+    },
+  };
+}
 
 const Eyebrow = ({ children }: { children: React.ReactNode }) => (
   <div
@@ -30,18 +66,21 @@ const Eyebrow = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
-const CaseLandingPage = ({ caseKey }: { caseKey: keyof typeof CASES }) => {
+export default async function CasePage({ params }: Params) {
+  const { caseSlug } = await params;
+  if (!isCaseSlug(caseSlug)) notFound();
+
+  // scotus-amicus has no landing page — its canonical entry is part 1.
+  if (caseSlug === 'scotus-amicus') {
+    const composition = getCaseComposition('scotus-amicus');
+    const first = composition?.sections[0];
+    if (!composition || !first) notFound();
+    return <CaseDocView caseSlug="scotus-amicus" docSlug={first.slug} />;
+  }
+
+  const caseKey = caseSlug.replace('kirchner-v-', '');
   const c = CASES[caseKey];
-  const caseSlug = `kirchner-v-${caseKey}`;
-  const navigate = useNavigate();
-  const { loadCollections, getCaseComposition } = useCompositionStore();
-
-  useCanonical(`/${caseSlug}`);
-  useDocumentMeta(c.caption, c.summary, `/${caseSlug}`);
-
-  useEffect(() => {
-    loadCollections(['constitutional']);
-  }, [loadCollections]);
+  if (!c) notFound();
 
   const composition = getCaseComposition(caseSlug);
   const docCount = composition?.sections?.length || null;
@@ -52,13 +91,13 @@ const CaseLandingPage = ({ caseKey }: { caseKey: keyof typeof CASES }) => {
       : c.operativeHref;
 
   return (
-    <PageLayout>
-      <main className="container mx-auto px-4 py-12">
+    <SitePageLayout>
+      <div className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
           {/* Back link */}
           <Reveal>
             <Link
-              to="/composition/constitutional"
+              href="/composition/constitutional"
               className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors mb-8 font-sans"
             >
               <ArrowLeft className="h-4 w-4 mr-1.5" />
@@ -77,9 +116,9 @@ const CaseLandingPage = ({ caseKey }: { caseKey: keyof typeof CASES }) => {
                 <h1
                   className="font-serif text-foreground"
                   style={{
-                    fontSize: "clamp(28px, 4vw, 42px)",
+                    fontSize: 'clamp(28px, 4vw, 42px)',
                     fontWeight: 580,
-                    letterSpacing: "-0.02em",
+                    letterSpacing: '-0.02em',
                     lineHeight: 1.1,
                   }}
                 >
@@ -87,18 +126,18 @@ const CaseLandingPage = ({ caseKey }: { caseKey: keyof typeof CASES }) => {
                 </h1>
                 <p
                   className="text-sm text-muted-foreground mt-2 font-sans"
-                  style={{ fontVariantNumeric: "tabular-nums" }}
+                  style={{ fontVariantNumeric: 'tabular-nums' }}
                 >
                   {c.caseNo}
-                  {c.judge ? ` · ${c.judge}` : ""}
-                  {docCount ? ` · ${docCount} documents on this site` : ""}
+                  {c.judge ? ` · ${c.judge}` : ''}
+                  {docCount ? ` · ${docCount} documents on this site` : ''}
                 </p>
               </div>
             </div>
 
             <p
               className="font-serif text-foreground/90 mt-6"
-              style={{ fontSize: "1.0625rem", lineHeight: 1.68 }}
+              style={{ fontSize: '1.0625rem', lineHeight: 1.68 }}
             >
               {c.summary}
             </p>
@@ -122,17 +161,21 @@ const CaseLandingPage = ({ caseKey }: { caseKey: keyof typeof CASES }) => {
             <div className="flex flex-col sm:flex-row gap-3 mt-6">
               <Button
                 className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm hover:shadow-md"
-                onClick={() => navigate(c.operativeHref)}
+                asChild
               >
-                {c.operativeLabel}
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <Link href={c.operativeHref}>
+                  {c.operativeLabel}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
               </Button>
               <Button
                 variant="outline"
                 className="bg-card text-foreground border-border shadow-sm hover:shadow-md hover:bg-secondary/60"
-                onClick={() => navigate(docketHref)}
+                asChild
               >
-                Browse the full docket{docCount ? ` (${docCount} documents)` : ""}
+                <Link href={docketHref}>
+                  Browse the full docket{docCount ? ` (${docCount} documents)` : ''}
+                </Link>
               </Button>
             </div>
           </Reveal>
@@ -148,13 +191,13 @@ const CaseLandingPage = ({ caseKey }: { caseKey: keyof typeof CASES }) => {
                       <span
                         className={
                           t.upcoming
-                            ? "absolute -left-[5px] mt-1.5 h-2.5 w-2.5 rounded-full border-2 border-primary bg-card"
-                            : "absolute -left-[5px] mt-1.5 h-2.5 w-2.5 rounded-full bg-primary"
+                            ? 'absolute -left-[5px] mt-1.5 h-2.5 w-2.5 rounded-full border-2 border-primary bg-card'
+                            : 'absolute -left-[5px] mt-1.5 h-2.5 w-2.5 rounded-full bg-primary'
                         }
                       />
                       <p
                         className="text-xs text-muted-foreground font-sans"
-                        style={{ fontVariantNumeric: "tabular-nums", fontWeight: 600 }}
+                        style={{ fontVariantNumeric: 'tabular-nums', fontWeight: 600 }}
                       >
                         {t.date}
                         {t.upcoming && (
@@ -176,10 +219,10 @@ const CaseLandingPage = ({ caseKey }: { caseKey: keyof typeof CASES }) => {
               <div className="bg-card border border-border rounded-xl shadow-sm p-6 md:p-7 h-full flex flex-col">
                 <Eyebrow>Key documents</Eyebrow>
                 <div className="mt-2 flex-grow">
-                  {c.keyDocuments.map((d) => (
+                  {c.keyDocuments.map(d => (
                     <Link
                       key={d.href}
-                      to={d.href}
+                      href={d.href}
                       className="group flex items-start gap-3 rounded-md px-3 py-2.5 -mx-3 hover:bg-secondary transition-colors"
                     >
                       <FileText className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
@@ -192,7 +235,7 @@ const CaseLandingPage = ({ caseKey }: { caseKey: keyof typeof CASES }) => {
                         </p>
                         <p
                           className="text-xs text-muted-foreground mt-0.5 font-sans"
-                          style={{ fontVariantNumeric: "tabular-nums" }}
+                          style={{ fontVariantNumeric: 'tabular-nums' }}
                         >
                           {d.doc} · {d.date}
                         </p>
@@ -201,7 +244,7 @@ const CaseLandingPage = ({ caseKey }: { caseKey: keyof typeof CASES }) => {
                   ))}
                 </div>
                 <Link
-                  to={docketHref}
+                  href={docketHref}
                   className="inline-flex items-center text-sm text-primary hover:text-primary/80 font-sans mt-4 pt-4 border-t border-border transition-colors"
                   style={{ fontWeight: 550 }}
                 >
@@ -223,7 +266,7 @@ const CaseLandingPage = ({ caseKey }: { caseKey: keyof typeof CASES }) => {
                 .map(([k, rc]) => (
                   <Link
                     key={k}
-                    to={`/kirchner-v-${k}`}
+                    href={`/kirchner-v-${k}`}
                     className="text-sm text-foreground/80 hover:text-primary font-sans underline-offset-4 hover:underline transition-colors"
                     style={{ fontWeight: 500 }}
                   >
@@ -233,9 +276,7 @@ const CaseLandingPage = ({ caseKey }: { caseKey: keyof typeof CASES }) => {
             </div>
           </Reveal>
         </div>
-      </main>
-    </PageLayout>
+      </div>
+    </SitePageLayout>
   );
-};
-
-export default CaseLandingPage;
+}

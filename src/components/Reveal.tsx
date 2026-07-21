@@ -1,5 +1,7 @@
 // src/components/Reveal.tsx — fade-up-on-enter wrapper.
 // Respects prefers-reduced-motion (content simply appears). One-shot per mount.
+'use client';
+
 import React, { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 

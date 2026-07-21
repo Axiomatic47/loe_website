@@ -166,7 +166,7 @@ function getSubcategoriesFor(collection: string): string[] {
  * Test if image path exists (development only)
  */
 export async function testImagePath(path: string): Promise<boolean> {
-  if (!import.meta.env.DEV) return true;
+  if (process.env.NODE_ENV === 'production') return true;
 
   try {
     const response = await fetch(path, { method: 'HEAD' });
@@ -180,7 +180,7 @@ export async function testImagePath(path: string): Promise<boolean> {
  * Find working image path from fallbacks
  */
 export async function findWorkingImagePath(fallbackPaths: string[]): Promise<string | null> {
-  if (!import.meta.env.DEV) return fallbackPaths[0] || null;
+  if (process.env.NODE_ENV === 'production') return fallbackPaths[0] || null;
 
   for (const path of fallbackPaths) {
     if (await testImagePath(path)) {
@@ -197,7 +197,7 @@ export async function findWorkingImagePath(fallbackPaths: string[]): Promise<str
 export function enhancedResolveImagePath(src: any): string {
   const debug = debugAndResolveImagePath(src);
 
-  if (import.meta.env.DEV) {
+  if (process.env.NODE_ENV !== 'production') {
     console.log('🔍 Enhanced Image Debug:', {
       original: debug.originalSrc,
       resolved: debug.resolvedSrc,

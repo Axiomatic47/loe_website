@@ -1,14 +1,21 @@
 'use client';
 
 import { ThemeProvider } from 'next-themes';
+import { TooltipProvider } from '@/components/ui/tooltip';
+import { Toaster } from '@/components/ui/toaster';
+import { Toaster as Sonner } from '@/components/ui/sonner';
 
-// Mirrors the vite app's provider exactly (src/App.tsx): class strategy on
-// <html>, light default, System option, and the same storage key so existing
-// visitors keep their theme choice across the renderer migration.
+// Mirrors the vite app shell exactly (src/App.tsx): same theme strategy and
+// storage key so existing visitors keep their choice across the renderer
+// migration, plus the tooltip context and both toast outlets.
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem storageKey="loe-theme">
-      {children}
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        {children}
+      </TooltipProvider>
     </ThemeProvider>
   );
 }

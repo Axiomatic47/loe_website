@@ -100,7 +100,7 @@ export const FeaturedWorkSection = () => {
     processCompositions(map, 'map');
 
     // Debug logging in development
-    if (import.meta.env.DEV) {
+    if (process.env.NODE_ENV !== 'production') {
       console.log('Featured sections analysis:');
       console.log(`  Total featured sections found: ${featured.length}`);
 
@@ -184,7 +184,7 @@ export const FeaturedWorkSection = () => {
             </h2>
 
             {/* Show debug info in development */}
-            {import.meta.env.DEV && (
+            {process.env.NODE_ENV !== 'production' && (
               <div className="mb-6 text-center text-sm text-muted-foreground/80">
                 Featured via: {section.featuredSource} | Collection: {section.collection}
                 {section.pdf_file && ' | Type: PDF'}

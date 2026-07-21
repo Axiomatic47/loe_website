@@ -141,21 +141,21 @@ const PayPalDonationButton = ({
               alert(`Thank you for your $${amount} donation to the Laws of Existence Framework!`);
 
               // Optional: Send data to your backend for tracking
-              if (import.meta.env.DEV) console.log('Donation completed:', details);
+              if (process.env.NODE_ENV !== 'production') console.log('Donation completed:', details);
 
             } catch (error) {
-              if (import.meta.env.DEV) console.error('Error capturing payment:', error);
+              if (process.env.NODE_ENV !== 'production') console.error('Error capturing payment:', error);
               alert('There was an error processing your donation. Please try again.');
             }
           },
 
           onError: (err: Error) => {
-            if (import.meta.env.DEV) console.error('PayPal error:', err);
+            if (process.env.NODE_ENV !== 'production') console.error('PayPal error:', err);
             setError('PayPal encountered an error. Please try again or contact support.');
           },
 
           onCancel: () => {
-            if (import.meta.env.DEV) console.log('Payment cancelled by user');
+            if (process.env.NODE_ENV !== 'production') console.log('Payment cancelled by user');
           }
 
         }).render(`#${containerId}`);
@@ -163,7 +163,7 @@ const PayPalDonationButton = ({
         setIsLoading(false);
 
       } catch (error) {
-        if (import.meta.env.DEV) console.error('Error rendering PayPal button:', error);
+        if (process.env.NODE_ENV !== 'production') console.error('Error rendering PayPal button:', error);
         setError('Failed to load PayPal button. Please refresh the page.');
         setIsLoading(false);
       }
@@ -277,13 +277,13 @@ const CustomAmountDonation = () => {
               buttonRendered.current = false;
 
             } catch (error) {
-              if (import.meta.env.DEV) console.error('Error capturing payment:', error);
+              if (process.env.NODE_ENV !== 'production') console.error('Error capturing payment:', error);
               alert('There was an error processing your donation. Please try again.');
             }
           },
 
           onError: (err: Error) => {
-            if (import.meta.env.DEV) console.error('PayPal error:', err);
+            if (process.env.NODE_ENV !== 'production') console.error('PayPal error:', err);
             setError('PayPal encountered an error. Please try again.');
           },
 
@@ -298,7 +298,7 @@ const CustomAmountDonation = () => {
         setIsLoading(false);
 
       } catch (error) {
-        if (import.meta.env.DEV) console.error('Error rendering custom PayPal button:', error);
+        if (process.env.NODE_ENV !== 'production') console.error('Error rendering custom PayPal button:', error);
         setError('Failed to load PayPal button.');
         setIsLoading(false);
       }

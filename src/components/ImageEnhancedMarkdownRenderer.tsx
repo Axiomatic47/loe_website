@@ -59,7 +59,7 @@ const EnhancedImage: React.FC<{
     setRetryCount(0);
 
     // Generate fallback paths in development
-    if (import.meta.env.DEV && resolvedSrc) {
+    if (process.env.NODE_ENV !== 'production' && resolvedSrc) {
       const filename = resolvedSrc.split('/').pop() || '';
       const fallbacks = [
         resolvedSrc,
@@ -77,7 +77,7 @@ const EnhancedImage: React.FC<{
     console.error('❌ Image failed to load:', { originalSrc: src, resolvedSrc: currentSrc, retryCount });
 
     // Try fallback paths in development
-    if (import.meta.env.DEV && fallbackPaths.length > retryCount + 1) {
+    if (process.env.NODE_ENV !== 'production' && fallbackPaths.length > retryCount + 1) {
       const nextFallback = fallbackPaths[retryCount + 1];
       console.log(`🔄 Trying fallback ${retryCount + 1}: ${nextFallback}`);
 
@@ -146,7 +146,7 @@ const EnhancedImage: React.FC<{
             <RefreshCw className="h-3 w-3 mr-1" />
             Retry
           </Button>
-          {import.meta.env.DEV && retryCount < fallbackPaths.length - 1 && (
+          {process.env.NODE_ENV !== 'production' && retryCount < fallbackPaths.length - 1 && (
             <Button
               variant="outline"
               size="sm"
@@ -157,7 +157,7 @@ const EnhancedImage: React.FC<{
             </Button>
           )}
         </div>
-        {import.meta.env.DEV && (
+        {process.env.NODE_ENV !== 'production' && (
           <details className="mt-2 w-full">
             <summary className="text-xs cursor-pointer">Debug Info</summary>
             <pre className="text-xs mt-1 bg-card/80 p-2 rounded max-w-full overflow-auto">
@@ -209,7 +209,7 @@ const ImageGallery: React.FC<{ images: ImageData[]; position: string }> = ({ ima
     const hasValidSrc = img.src && (typeof img.src === 'string' || typeof img.src === 'object');
     const hasCorrectPosition = img.position === position;
 
-    if (import.meta.env.DEV) {
+    if (process.env.NODE_ENV !== 'production') {
       console.log(`🖼️ Image filter check [${position}]:`, {
         img,
         hasValidSrc,
@@ -222,7 +222,7 @@ const ImageGallery: React.FC<{ images: ImageData[]; position: string }> = ({ ima
   });
 
   useEffect(() => {
-    if (import.meta.env.DEV) {
+    if (process.env.NODE_ENV !== 'production') {
       console.log(`🖼️ ImageGallery [${position}] rendered with ${filteredImages.length} images`);
     }
   }, [filteredImages, position]);
@@ -339,7 +339,7 @@ const ImageEnhancedMarkdownRenderer: React.FC<ImageEnhancedMarkdownProps> = ({
 
   // Enhanced debug logging
   useEffect(() => {
-    if (import.meta.env.DEV) {
+    if (process.env.NODE_ENV !== 'production') {
       console.log('🎨 ImageEnhancedMarkdownRenderer:', {
         contentLength: content.length,
         imagesCount: images.length,
@@ -551,7 +551,7 @@ const customComponents = {
       )}
 
       {/* Debug info in development */}
-      {import.meta.env.DEV && images.length > 0 && (
+      {process.env.NODE_ENV !== 'production' && images.length > 0 && (
         <div className="mb-4 p-2 bg-blue-900/20 border border-blue-500/30 rounded text-xs text-blue-200">
           <strong>Debug:</strong> Found {images.length} images -
           {images.filter(img => img.position === 'top').length} top,

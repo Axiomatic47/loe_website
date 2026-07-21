@@ -1,7 +1,7 @@
 // src/utils/compositionLoader.ts - Loads JSON content collections into the Zustand store.
 import { Composition, ImageData, Section, CollectionType } from './compositionData';
 
-const DEV = import.meta.env.DEV;
+const DEV = process.env.NODE_ENV !== 'production';
 
 // ---------------------------------------------------------------------------
 // Slug derivation (fallback for un-enriched content).

@@ -46,7 +46,7 @@ const Timeline = () => {
 
   const loadTimelineData = async () => {
     try {
-      if (import.meta.env.DEV) console.log('🔄 Loading timeline data...');
+      if (process.env.NODE_ENV !== 'production') console.log('🔄 Loading timeline data...');
 
       // FIXED: Load JSON files as raw text to avoid Vite JSON plugin processing
       const timelineModules = import.meta.glob('/content/timeline/*.json', {
@@ -57,11 +57,11 @@ const Timeline = () => {
 
       let events: TimelineEvent[] = [];
 
-      if (import.meta.env.DEV) console.log('📁 Found timeline files:', Object.keys(timelineModules));
+      if (process.env.NODE_ENV !== 'production') console.log('📁 Found timeline files:', Object.keys(timelineModules));
 
       // Process timeline files
       Object.entries(timelineModules).forEach(([path, rawData]: [string, any]) => {
-        if (import.meta.env.DEV) console.log('🔧 Processing timeline file:', path);
+        if (process.env.NODE_ENV !== 'production') console.log('🔧 Processing timeline file:', path);
 
         try {
           // Parse the raw JSON string
@@ -71,15 +71,15 @@ const Timeline = () => {
             // Process events from timeline file
             const processedEvents = data.events.map((event: any) => normalizeTimelineEvent(event));
             events = [...events, ...processedEvents];
-            if (import.meta.env.DEV) console.log('✅ Added events from:', path, `(${processedEvents.length} events)`);
+            if (process.env.NODE_ENV !== 'production') console.log('✅ Added events from:', path, `(${processedEvents.length} events)`);
           } else if (Array.isArray(data)) {
             // If data itself is an array of events
             const processedEvents = data.map((event: any) => normalizeTimelineEvent(event));
             events = [...events, ...processedEvents];
-            if (import.meta.env.DEV) console.log('✅ Added events from:', path, `(${processedEvents.length} events)`);
+            if (process.env.NODE_ENV !== 'production') console.log('✅ Added events from:', path, `(${processedEvents.length} events)`);
           }
         } catch (error) {
-          if (import.meta.env.DEV) console.error('❌ Error processing timeline file:', path, error);
+          if (process.env.NODE_ENV !== 'production') console.error('❌ Error processing timeline file:', path, error);
         }
       });
 
@@ -88,14 +88,14 @@ const Timeline = () => {
 
       // If no events found, use sample data
       if (events.length === 0) {
-        if (import.meta.env.DEV) console.log('📚 No timeline files found, using sample data');
+        if (process.env.NODE_ENV !== 'production') console.log('📚 No timeline files found, using sample data');
         events = getSampleTimelineData();
       }
 
-      if (import.meta.env.DEV) console.log('📊 Total timeline events loaded:', events.length);
+      if (process.env.NODE_ENV !== 'production') console.log('📊 Total timeline events loaded:', events.length);
       setTimelineEvents(events);
     } catch (error) {
-      if (import.meta.env.DEV) console.error('💥 Error loading timeline data:', error);
+      if (process.env.NODE_ENV !== 'production') console.error('💥 Error loading timeline data:', error);
       setTimelineEvents(getSampleTimelineData());
     } finally {
       setIsLoading(false);

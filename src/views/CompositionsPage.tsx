@@ -58,7 +58,7 @@ const CompositionsPage: React.FC = () => {
   const { compositionId } = useParams<{ compositionId: string }>();
   const navigate = useNavigate();
   const [mounted, setMounted] = useState(false);
-  const [showDebug, setShowDebug] = useState(import.meta.env.DEV);
+  const [showDebug, setShowDebug] = useState(process.env.NODE_ENV !== 'production');
 
   useDocumentMeta(getCollectionTitle(compositionId));
 
@@ -92,7 +92,7 @@ const CompositionsPage: React.FC = () => {
   // Mount effect - runs only once
   useEffect(() => {
     setMounted(true);
-    if (import.meta.env.DEV) console.log('🚀 CompositionsPage mounted for collection:', compositionId);
+    if (process.env.NODE_ENV !== 'production') console.log('🚀 CompositionsPage mounted for collection:', compositionId);
   }, [compositionId]);
 
   // Load data effect - stable dependencies to prevent loops
@@ -101,10 +101,10 @@ const CompositionsPage: React.FC = () => {
 
     const loadData = async () => {
       try {
-        if (import.meta.env.DEV) console.log('📊 Loading compositions for:', compositionId);
+        if (process.env.NODE_ENV !== 'production') console.log('📊 Loading compositions for:', compositionId);
 
         // Enable debug mode in development
-        if (import.meta.env.DEV && !debugMode) {
+        if (process.env.NODE_ENV !== 'production' && !debugMode) {
           setDebugMode(true);
         }
 
@@ -113,7 +113,7 @@ const CompositionsPage: React.FC = () => {
           await loadCollections([compositionId as CollectionType]);
         }
       } catch (error) {
-        if (import.meta.env.DEV) console.error('💥 Error in loadData:', error);
+        if (process.env.NODE_ENV !== 'production') console.error('💥 Error in loadData:', error);
       }
     };
 
@@ -133,7 +133,7 @@ const CompositionsPage: React.FC = () => {
     const composition = getCollectionCompositions(compositionId || '')[index];
     if (!composition) return;
     const targetUrl = compositionUrl(composition);
-    if (import.meta.env.DEV) console.log('🔗 Navigating to:', targetUrl);
+    if (process.env.NODE_ENV !== 'production') console.log('🔗 Navigating to:', targetUrl);
     navigate(targetUrl);
   }, [compositionId, navigate, getCollectionCompositions]);
 
@@ -142,7 +142,7 @@ const CompositionsPage: React.FC = () => {
   }, [navigate]);
 
   const handleForceRefresh = useCallback(async () => {
-    if (import.meta.env.DEV) console.log('🔄 Force refresh requested');
+    if (process.env.NODE_ENV !== 'production') console.log('🔄 Force refresh requested');
     await forceRefresh();
   }, [forceRefresh]);
 
@@ -155,7 +155,7 @@ const CompositionsPage: React.FC = () => {
     return null;
   }
 
-  if (import.meta.env.DEV) {
+  if (process.env.NODE_ENV !== 'production') {
     console.log('🎯 CompositionsPage render:', {
       compositionId,
       collectionTitle,
@@ -179,7 +179,7 @@ const CompositionsPage: React.FC = () => {
               ← Back to Home
             </Button>
 
-            {import.meta.env.DEV && (
+            {process.env.NODE_ENV !== 'production' && (
               <div className="flex gap-2">
                 <Button
                   variant="ghost"
@@ -199,7 +199,7 @@ const CompositionsPage: React.FC = () => {
               {collectionTitle}
             </h1>
 
-            {import.meta.env.DEV && (
+            {process.env.NODE_ENV !== 'production' && (
               <div className="flex justify-center gap-2 mb-4">
                 <Badge variant="outline" className="bg-card text-foreground border-border">
                   Collection: {compositionId}

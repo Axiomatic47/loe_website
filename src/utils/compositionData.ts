@@ -6,7 +6,7 @@ import { create } from 'zustand';
 // zustand) into its program. Re-exported here so existing imports keep working.
 import type { CollectionType, Composition, ImageData, Section } from '@/lib/content-types';
 
-const DEV = import.meta.env.DEV;
+const DEV = process.env.NODE_ENV !== 'production';
 
 export type { CollectionType, Composition, ImageData, Section };
 

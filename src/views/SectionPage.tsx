@@ -88,7 +88,7 @@ const SectionPage = ({
 
     if ((ALL_COLLECTIONS as string[]).includes(collection)) {
       store.loadCollections([collection as CollectionType]).catch(error => {
-        if (import.meta.env.DEV) console.error('Error loading collection:', collection, error);
+        if (process.env.NODE_ENV !== 'production') console.error('Error loading collection:', collection, error);
       });
     }
   }, [store, collection]);
@@ -247,7 +247,7 @@ const SectionPage = ({
   // Convert ImageData to MediaItem format for the gallery
   const convertImagesToMediaItems = (images: ImageData[]): MediaItem[] => {
     if (!images || !Array.isArray(images)) {
-      if (import.meta.env.DEV) console.warn('convertImagesToMediaItems: Invalid images array', images);
+      if (process.env.NODE_ENV !== 'production') console.warn('convertImagesToMediaItems: Invalid images array', images);
       return [];
     }
 
@@ -270,7 +270,7 @@ const SectionPage = ({
         ]
       };
 
-      if (import.meta.env.DEV) {
+      if (process.env.NODE_ENV !== 'production') {
         console.log(`Converting image ${index}:`, {
           originalSrc: img.src,
           srcType: typeof img.src,
@@ -383,14 +383,14 @@ const getCollectionConfig = (collectionType: string) => {
     const targetUrl =
       currentComposition && targetSection ? sectionUrl(currentComposition, targetSection) : null;
     if (!targetUrl) return;
-    if (import.meta.env.DEV) console.log('Navigating to section:', targetUrl);
+    if (process.env.NODE_ENV !== 'production') console.log('Navigating to section:', targetUrl);
 
     try {
       navigate(targetUrl);
       // Reset to default content view when changing sections
       setLiteracyLevel(1);
     } catch (error) {
-      if (import.meta.env.DEV) console.error('Section navigation error:', error);
+      if (process.env.NODE_ENV !== 'production') console.error('Section navigation error:', error);
       window.location.href = targetUrl;
     }
   };
@@ -436,7 +436,7 @@ const getCollectionConfig = (collectionType: string) => {
     try {
       navigate(`/composition/${collection}`);
     } catch (error) {
-      if (import.meta.env.DEV) console.error('Back navigation error:', error);
+      if (process.env.NODE_ENV !== 'production') console.error('Back navigation error:', error);
       window.location.href = `/composition/${collection}`;
     }
   };
@@ -531,7 +531,7 @@ const getCollectionConfig = (collectionType: string) => {
   const hasImages = mediaItems.length > 0;
 
   // Debug logging for development
-  if (import.meta.env.DEV) {
+  if (process.env.NODE_ENV !== 'production') {
     console.log('SectionPage Collection Debug:', {
       collection,
       compositionSlug,
@@ -758,7 +758,7 @@ const getCollectionConfig = (collectionType: string) => {
               </div>
 
             {/* Development Debug Info */}
-            {import.meta.env.DEV && (
+            {process.env.NODE_ENV !== 'production' && (
               <Card className="mt-8 bg-muted border border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-base text-foreground/85 flex items-center gap-2">

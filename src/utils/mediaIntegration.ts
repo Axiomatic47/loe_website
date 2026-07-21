@@ -127,7 +127,7 @@ export function convertImageDataToMediaItems(
       ]
     };
 
-    if (import.meta.env.DEV) {
+    if (process.env.NODE_ENV !== 'production') {
       console.log(`🖼️ Converted image ${index}:`, {
         originalSrc: img.src,
         resolvedSrc: resolvedSrc,
@@ -183,7 +183,7 @@ export function debugMediaIntegration(
   mediaItems: MediaItem[],
   sectionTitle: string
 ) {
-  if (!import.meta.env.DEV) return;
+  if (process.env.NODE_ENV === 'production') return;
 
   console.group(`🖼️ Media Integration Debug - ${sectionTitle}`);
 
@@ -269,7 +269,7 @@ export function validateMediaItems(items: MediaItem[]): MediaItem[] {
       ['image', 'video', 'document'].includes(item.type)
     );
 
-    if (!isValid && import.meta.env.DEV) {
+    if (!isValid && process.env.NODE_ENV !== 'production') {
       console.warn('🚫 Invalid media item filtered out:', item);
     }
 

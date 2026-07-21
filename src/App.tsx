@@ -56,7 +56,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    if (import.meta.env.DEV) console.error('Error Boundary caught an error:', error, errorInfo);
+    if (process.env.NODE_ENV !== 'production') console.error('Error Boundary caught an error:', error, errorInfo);
   }
 
   render() {
@@ -74,7 +74,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
             >
               Refresh Page
             </button>
-            {import.meta.env.DEV && (
+            {process.env.NODE_ENV !== 'production' && (
               <details className="mt-4 text-left">
                 <summary className="text-muted-foreground cursor-pointer">Error Details (Dev)</summary>
                 <pre className="mt-2 text-xs text-muted-foreground/80 overflow-auto">
@@ -229,7 +229,7 @@ const NotFound = () => {
             Kirchner v. Johnson Case
           </a>
         </div>
-        {import.meta.env.DEV && (
+        {process.env.NODE_ENV !== 'production' && (
           <div className="mt-4 text-left text-sm text-muted-foreground">
             <p>Attempted path: {window.location.pathname}</p>
             <p>Available collections: manuscript, data, constitutional, timeline, map</p>
