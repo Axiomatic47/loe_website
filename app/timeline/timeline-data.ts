@@ -1,7 +1,6 @@
 // app/timeline/timeline-data.ts — the Timeline page's event shape,
 // normalization, and sample fallback (extracted from src/views/Timeline.tsx
 // so the server page can prepare data for the client body).
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface TimelineEvent {
   id: string;

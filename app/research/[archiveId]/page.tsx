@@ -1,50 +1,41 @@
-// src/pages/ResearchArchive.tsx — landing page for an unlisted primary-source
-// archive (/research/:archiveId). Live by URL, not linked from navigation or
-// the sitemap, and noindex while under review.
-//
-// Data: public/uploads/research/<id>/manifest.json, produced by
-// `npm run sync-archives` (PDF-first — documents are the docx-converter PDF
-// exports). Presentation copy lives in src/data/researchArchives.ts.
-
-/* eslint-disable react-refresh/only-export-components -- useArchiveManifest
-   (and the src/lib/research-archive re-exports) are shared with ResearchLeaf
-   and ResearchDoc. */
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import { PageLayout } from "@/components/PageLayout";
-import { Reveal } from "@/components/Reveal";
-import { useDocumentMeta } from "@/hooks/useDocumentMeta";
-import { useNoIndex } from "@/hooks/useNoIndex";
-import { RESEARCH_ARCHIVES } from "@/data/researchArchives";
-import { ArrowRight, FileText, ScrollText } from "lucide-react";
-// Types + pure helpers live in src/lib/research-archive.ts (shared with the
-// Next pages, which read the manifest at build instead of fetching).
+// app/research/[archiveId]/page.tsx — landing page for an unlisted
+// primary-source archive (server port of src/views/ResearchArchive.tsx).
+// Live by URL, not linked from navigation or the sitemap, and noindex while
+// under review. The manifest is read from public/uploads/research at build.
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import { Reveal } from '@/components/Reveal';
+import { RESEARCH_ARCHIVES } from '@/data/researchArchives';
 import {
-  type ArchiveManifest,
   imagesPublished,
   archiveBase,
   leafStatus,
   CONVENTIONS,
-} from "@/lib/research-archive";
+} from '@/lib/research-archive';
+import { ArrowRight, FileText, ScrollText } from 'lucide-react';
+import { SitePageLayout } from '../../_components/SitePageLayout';
+import { readArchiveManifest } from '../manifest-server';
 
-export type { ArchiveDoc, ArchiveLeafEntry, ArchiveManifest } from "@/lib/research-archive";
-export { imagesPublished, archiveBase, leafStatus } from "@/lib/research-archive";
+export const dynamicParams = false;
 
-export function useArchiveManifest(id: string | undefined) {
-  const [manifest, setManifest] = useState<ArchiveManifest | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  useEffect(() => {
-    if (!id) return;
-    setManifest(null);
-    setError(null);
-    fetch(`${archiveBase(id)}/manifest.json`)
-      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
-      .then(setManifest)
-      .catch((e) => setError(e.message));
-  }, [id]);
-  return { manifest, error };
+export function generateStaticParams() {
+  return Object.keys(RESEARCH_ARCHIVES).map(archiveId => ({ archiveId }));
+}
+
+type Params = { params: Promise<{ archiveId: string }> };
+
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const { archiveId } = await params;
+  const config = RESEARCH_ARCHIVES[archiveId];
+  if (!config) return { robots: { index: false, follow: false } };
+  return {
+    title: `${config.ref} — working transcription`,
+    description: `Working diplomatic transcription of ${config.ref}: leaf images, line indexes, and transcriptions.`,
+    robots: { index: false, follow: false },
+  };
 }
 
 const Eyebrow = ({ children }: { children: React.ReactNode }) => (
@@ -53,29 +44,15 @@ const Eyebrow = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
-const ResearchArchive = () => {
-  const { archiveId = "" } = useParams();
+export default async function ResearchArchivePage({ params }: Params) {
+  const { archiveId } = await params;
   const config = RESEARCH_ARCHIVES[archiveId];
-  const { manifest, error } = useArchiveManifest(config ? archiveId : undefined);
+  if (!config) notFound();
 
-  useDocumentMeta(
-    config ? `${config.ref} — working transcription` : "Research archive",
-    config ? `Working diplomatic transcription of ${config.ref}: leaf images, line indexes, and transcriptions.` : undefined
-  );
-  useNoIndex();
-
-  if (!config) {
-    return (
-      <PageLayout>
-        <main className="container mx-auto px-4 py-24 text-center font-sans text-muted-foreground">
-          No research archive “{archiveId}”.
-        </main>
-      </PageLayout>
-    );
-  }
+  const manifest = readArchiveManifest(archiveId);
 
   return (
-    <PageLayout>
+    <SitePageLayout>
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-5xl mx-auto">
           <Reveal>
@@ -111,9 +88,9 @@ const ResearchArchive = () => {
             </div>
           </Reveal>
 
-          {error && (
+          {!manifest && (
             <div className="mt-8 bg-secondary border border-border border-l-2 border-l-destructive rounded-md px-4 py-3 text-sm font-sans text-foreground/85">
-              Manifest not found ({error}). Run <code>npm run sync-archives</code> locally to
+              Manifest not found. Run <code>npm run sync-archives</code> locally to
               publish the current working files.
             </div>
           )}
@@ -171,7 +148,7 @@ const ResearchArchive = () => {
                 {(manifest?.leaves || []).map((leaf) => (
                   <Link
                     key={leaf.id}
-                    to={`/research/${archiveId}/leaf/${leaf.id}`}
+                    href={`/research/${archiveId}/leaf/${leaf.id}`}
                     className="group bg-card border border-border rounded-lg shadow-sm hover:shadow-md hover:border-primary/30 transition-all overflow-hidden flex flex-col"
                   >
                     <div className="aspect-[3/4] bg-muted overflow-hidden">
@@ -208,7 +185,7 @@ const ResearchArchive = () => {
                   {manifest.workingPapers.map((p) => (
                     <Link
                       key={p.pdf}
-                      to={`/research/${archiveId}/doc/${encodeURIComponent(p.pdf.replace(/^pdfs\//, ""))}`}
+                      href={`/research/${archiveId}/doc/${encodeURIComponent(p.pdf.replace(/^pdfs\//, ""))}`}
                       className="group flex items-start gap-3 rounded-md px-3 py-2.5 hover:bg-secondary transition-colors"
                     >
                       <ScrollText className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
@@ -250,8 +227,6 @@ const ResearchArchive = () => {
           </Reveal>
         </div>
       </main>
-    </PageLayout>
+    </SitePageLayout>
   );
-};
-
-export default ResearchArchive;
+}
