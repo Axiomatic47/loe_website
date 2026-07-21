@@ -31,3 +31,9 @@ dist-ssr
 
 # Testimony curation decisions - editorial working state, never publish
 .testimony-decisions.json
+
+# Local staging inbox: working COPY of the chronological testimony corpus
+# (originals live outside this repo). UNPUBLISHED material must never enter
+# this public repo's tracking — testimonies enter the repo ONLY when the
+# curation console publishes them into testimonies/<Set>/.
+/Chronological Testimonies/
