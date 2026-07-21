@@ -221,7 +221,7 @@ for (const f of fs.readdirSync(CONTENT_DATA)) {
 // ---- 5. Prune unreferenced processor-copied uploads -------------------------
 // Each processor run re-copies images under fresh timestamps; anything matching
 // the processor naming pattern but referenced by NO content JSON is stale.
-const PROCESSOR_NAME_RE = /_(root|exhibit|exhibits|screenshot|image|attachment|evidence)_\d{12,14}_/;
+const PROCESSOR_NAME_RE = /_[a-z0-9-]+_\d{12,14}_/;
 // Auth-chain copies use stable `<package>_auth_<name>` filenames (no
 // timestamp); one goes stale only when its package is renamed/unpublished.
 const AUTH_NAME_RE = /_auth_/;
@@ -233,7 +233,19 @@ const contentRoot = path.join(REPO_ROOT, 'content');
     if (entry.isDirectory()) collect(p);
     else if (entry.name.endsWith('.json')) {
       const text = fs.readFileSync(p, 'utf-8');
-      for (const m of text.matchAll(/\/uploads\/data\/([^"\\]+)/g)) referenced.add(m[1]);
+      // References appear two ways: raw filenames in JSON "src" fields, and
+      // URL-encoded, ')'-terminated targets inside markdown links (the
+      // Authentication Materials tables). Record every plausible reading.
+      for (const m of text.matchAll(/\/uploads\/data\/([^"\\]+)/g)) {
+        referenced.add(m[1]);
+        const cut = m[1].split(')')[0];
+        referenced.add(cut);
+        try {
+          referenced.add(decodeURIComponent(cut));
+        } catch {
+          /* not a URI-encoded reference */
+        }
+      }
     }
   }
 })(contentRoot);

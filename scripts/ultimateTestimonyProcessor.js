@@ -262,55 +262,81 @@ function hasTestimonyContent(dirPath) {
   }
 }
 
-// Enhanced image search in multiple locations
+// Image search — recursive over the whole package so custom-named exhibit
+// dirs ("Copyright Policy Reveal/", "exhibits/secondary/", …) are never
+// silently dropped. Skips original/ (sealed bundles are published verbatim,
+// not rendered), mnt/ (normalized away; its strays hoist to top level), and
+// hidden dirs. The legacy fixed dir names keep their historical prefixes;
+// other dirs get a slug of their package-relative path.
+const LEGACY_PREFIXES = {
+  '': 'root',
+  exhibits: 'exhibit',
+  screenshots: 'screenshot',
+  images: 'image',
+  attachments: 'attachment',
+  evidence: 'evidence',
+};
+
+function imagePrefixFor(relDir) {
+  if (relDir in LEGACY_PREFIXES) return LEGACY_PREFIXES[relDir];
+  return relDir.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'root';
+}
+
+function collectImageDirs(testimonyPath) {
+  const dirs = [{ path: testimonyPath, rel: '' }];
+  (function walk(dir, rel) {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (!entry.isDirectory()) continue;
+      if (entry.name.startsWith('.')) continue;
+      const lower = entry.name.toLowerCase();
+      if (rel === '' && (lower === 'original' || lower === 'mnt')) continue;
+      const childRel = rel ? `${rel}/${entry.name}` : entry.name;
+      dirs.push({ path: path.join(dir, entry.name), rel: childRel });
+      walk(path.join(dir, entry.name), childRel);
+    }
+  })(testimonyPath, '');
+  return dirs;
+}
+
 function findImagesInTestimony(testimonyPath, testimonyName) {
   const images = [];
-  const searchPaths = [
-    { path: testimonyPath, prefix: 'root' },
-    { path: path.join(testimonyPath, 'exhibits'), prefix: 'exhibit' },
-    { path: path.join(testimonyPath, 'screenshots'), prefix: 'screenshot' },
-    { path: path.join(testimonyPath, 'images'), prefix: 'image' },
-    { path: path.join(testimonyPath, 'attachments'), prefix: 'attachment' },
-    { path: path.join(testimonyPath, 'evidence'), prefix: 'evidence' }
-  ];
 
   console.log(`  🔍 Searching for images in: ${testimonyName}`);
 
-  for (const searchPath of searchPaths) {
-    if (fs.existsSync(searchPath.path)) {
-      const files = fs.readdirSync(searchPath.path);
-      const imageFiles = files.filter(file =>
-        /\.(png|jpg|jpeg|gif|webp|svg|bmp|tiff)$/i.test(file)
-      );
+  for (const searchPath of collectImageDirs(testimonyPath)) {
+    const prefix = imagePrefixFor(searchPath.rel);
+    const files = fs.readdirSync(searchPath.path);
+    const imageFiles = files.filter(file =>
+      /\.(png|jpg|jpeg|gif|webp|svg|bmp|tiff)$/i.test(file)
+    );
 
-      if (imageFiles.length > 0) {
-        console.log(`    📸 Found ${imageFiles.length} images in ${searchPath.prefix}`);
+    if (imageFiles.length > 0) {
+      console.log(`    📸 Found ${imageFiles.length} images in ${searchPath.rel || 'root'}`);
 
-        for (const imageFile of imageFiles) {
-          const sourcePath = path.join(searchPath.path, imageFile);
-          const uniqueKey = `${testimonyName}_${searchPath.prefix}_${imageFile}`;
+      for (const imageFile of imageFiles) {
+        const sourcePath = path.join(searchPath.path, imageFile);
+        const uniqueKey = `${testimonyName}_${prefix}_${imageFile}`;
 
-          if (!processedImages.has(uniqueKey)) {
-            const timestamp = Date.now();
-            const cleanFilename = `${testimonyName}_${searchPath.prefix}_${timestamp}_${imageFile}`;
-            const destPath = path.join(publicDir, cleanFilename);
+        if (!processedImages.has(uniqueKey)) {
+          const timestamp = Date.now();
+          const cleanFilename = `${testimonyName}_${prefix}_${timestamp}_${imageFile}`;
+          const destPath = path.join(publicDir, cleanFilename);
 
-            try {
-              fs.copyFileSync(sourcePath, destPath);
-              processedImages.add(uniqueKey);
+          try {
+            fs.copyFileSync(sourcePath, destPath);
+            processedImages.add(uniqueKey);
 
-              const imageData = {
-                src: `/uploads/data/${cleanFilename}`,
-                alt: generateAltText(imageFile, testimonyName, searchPath.prefix),
-                caption: generateCaption(imageFile, testimonyName),
-                position: determinePosition(searchPath.prefix)
-              };
+            const imageData = {
+              src: `/uploads/data/${cleanFilename}`,
+              alt: generateAltText(imageFile, testimonyName, prefix),
+              caption: generateCaption(imageFile, testimonyName),
+              position: determinePosition(prefix)
+            };
 
-              images.push(imageData);
-              console.log(`      ✅ Copied: ${imageFile} → ${cleanFilename}`);
-            } catch (error) {
-              console.log(`      ❌ Failed to copy ${imageFile}: ${error.message}`);
-            }
+            images.push(imageData);
+            console.log(`      ✅ Copied: ${imageFile} → ${cleanFilename}`);
+          } catch (error) {
+            console.log(`      ❌ Failed to copy ${imageFile}: ${error.message}`);
           }
         }
       }
@@ -380,7 +406,10 @@ function processVerificationFiles(testimonyPath, testimonyName) {
       continue;
     }
     const kb = Math.max(1, Math.round(fs.statSync(f.abs).size / 1024));
-    verification += `| [\`${f.name}\`](/uploads/data/${encodeURIComponent(cleanFilename)}) | ${roleLabel(f.role)} | ${kb} KB | \`${hash.slice(0, 16)}…\` |\n`;
+    // Markdown link targets must also encode parentheses (encodeURIComponent
+    // leaves them alone, and a bare ')' terminates the markdown link).
+    const linkTarget = encodeURIComponent(cleanFilename).replace(/\(/g, '%28').replace(/\)/g, '%29');
+    verification += `| [\`${f.name}\`](/uploads/data/${linkTarget}) | ${roleLabel(f.role)} | ${kb} KB | \`${hash.slice(0, 16)}…\` |\n`;
   }
   verification += '\n';
 
