@@ -27,6 +27,8 @@
     "sync-archives": "node scripts/sync-archives.mjs",
     "process-testimonies-cms": "tsx scripts/processTestimoniesToCMS.ts",
     "testimonies:count": "find testimonies -name '*.md' 2>/dev/null | wc -l || echo '0'",
+    "testimonies:review": "node scripts/testimony-review/server.mjs",
+    "testimonies:apply": "node scripts/testimony-review/apply.mjs",
     "scotus:process": "tsx scripts/processSCOTUSCases.ts",
     "scotus:clean": "rimraf public/scotus-cases"
   },

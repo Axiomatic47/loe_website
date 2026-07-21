@@ -28,3 +28,6 @@ dist-ssr
 .env.local
 .env.production
 .env.*.local
+
+# Testimony curation decisions - editorial working state, never publish
+.testimony-decisions.json
