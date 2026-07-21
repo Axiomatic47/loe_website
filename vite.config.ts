@@ -1,4 +1,4 @@
-import { defineConfig, loadEnv } from 'vite';
+import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import fs from 'fs';
@@ -97,43 +97,6 @@ const uploadsStaticPlugin = () => ({
   }
 });
 
-// API proxy configuration
-const apiProxyPlugin = (env) => ({
-  name: 'api-proxy-plugin',
-  configureServer(server) {
-    const apiBaseUrl = env.VITE_API_URL || 'http://localhost:4041';
-    console.log(`Proxying API requests to: ${apiBaseUrl}`);
-
-    server.middlewares.use('/api', (req, res, _next) => {
-      const target = `${apiBaseUrl}${req.url}`;
-      console.log(`Proxying request to: ${target}`);
-
-      fetch(target, {
-        method: req.method,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: req.method !== 'GET' && req.method !== 'HEAD' ? req.body : undefined,
-      })
-      .then(apiRes => {
-        res.statusCode = apiRes.status;
-        apiRes.headers.forEach((value, key) => {
-          res.setHeader(key, value);
-        });
-        return apiRes.text();
-      })
-      .then(body => {
-        res.end(body);
-      })
-      .catch(err => {
-        console.error('API proxy error:', err);
-        res.statusCode = 500;
-        res.end(JSON.stringify({ error: 'API proxy error', details: err.message }));
-      });
-    });
-  }
-});
-
 // RESTORED: Custom plugin to handle content JSON files properly for CMS
 const contentJsonPlugin = () => ({
   name: 'content-json-plugin',
@@ -161,13 +124,10 @@ const contentJsonPlugin = () => ({
 });
 
 export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), '');
-
   return {
     plugins: [
       react(),
       uploadsStaticPlugin(),
-      apiProxyPlugin(env),
       contentJsonPlugin()
     ],
     resolve: {
