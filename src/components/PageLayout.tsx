@@ -13,9 +13,9 @@ export const PageLayout = ({ children, className = '' }: PageLayoutProps) => {
   const [pullDistance, setPullDistance] = useState(0);
   const lastScrollY = useRef(0);
   const isScrolling = useRef(false);
-  const animationFrame = useRef<number>();
+  const animationFrame = useRef<number | undefined>(undefined);
   const contentRef = useRef<HTMLDivElement>(null);
-  const scrollTimeout = useRef<NodeJS.Timeout>();
+  const scrollTimeout = useRef<NodeJS.Timeout | undefined>(undefined);
   const MAX_PULL_DISTANCE = 800;
 
   useEffect(() => {
