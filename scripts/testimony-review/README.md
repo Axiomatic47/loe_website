@@ -70,3 +70,16 @@ the applied results do).
 
 After an `--execute` run: `npm run build` (regenerates sitemap + nav
 manifest + validates content), review `git status`, then commit on `preview`.
+
+## Standard package layout (added 2026-07-21)
+
+Publishing now normalizes every package to the standard layout defined in
+`scripts/lib/testimony-package.mjs` (typo fix, `mnt/data/` hoist,
+`Original/` → `original/`) and writes a `manifest.json` (role + size +
+sha256 per file). The processor then copies the FULL authentication chain —
+signed testimony `.md`, `.sig`, `.pem`, `verify_*.js`/`.sh`, formal PDFs,
+sealed `original/` bundles, and the manifest — to `public/uploads/data/` as
+stable `<package>_auth_<name>` files and renders an **Authentication
+Materials** table (downloads + hashes) in place of the old truncated
+inline blobs. Standalone sweep: `npm run testimonies:normalize` (dry-run;
+`--apply`, `--inbox`).

@@ -7,6 +7,7 @@ import { fileURLToPath } from 'url';
 // Canonical URL slugs: emit them at generation time so freshly (re)processed
 // testimony compositions carry the same slug fields as enrich-content-slugs.mjs.
 import { deriveSectionSlug, deriveCompositionSlug } from './lib/content-model.mjs';
+import { classifyFile, roleLabel, sha256 } from './lib/testimony-package.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -319,74 +320,93 @@ function findImagesInTestimony(testimonyPath, testimonyName) {
   return images;
 }
 
-// Enhanced verification file processing
-function processVerificationFiles(testimonyPath) {
-  const files = fs.readdirSync(testimonyPath);
-  let verification = '## Cryptographic Verification\n\n';
-  verification += 'This testimony includes cryptographic verification to ensure authenticity and integrity.\n\n';
-
-  // Find signature files
-  const sigFiles = files.filter(file => file.endsWith('.sig') || file.endsWith('.sig.txt'));
-  if (sigFiles.length > 0) {
-    verification += '### Digital Signature\n';
-    verification += `**File:** \`${sigFiles[0]}\`\n\n`;
-
-    try {
-      const sigContent = fs.readFileSync(path.join(testimonyPath, sigFiles[0]), 'utf-8');
-      verification += '```\n';
-      verification += sigContent.length > 500 ? sigContent.substring(0, 500) + '\n... (truncated)' : sigContent;
-      verification += '\n```\n\n';
-    } catch (error) {
-      verification += `Error reading signature file: ${error.message}\n\n`;
+// Authentication materials — the full chain, downloadable.
+//
+// Every file needed for INDEPENDENT verification is copied into
+// public/uploads/data under a stable `<package>_auth_<name>` filename and
+// linked from the section: the signed testimony .md (the signature covers its
+// exact bytes — the rendered page is not byte-identical), the detached .sig,
+// the public key .pem, the verify script (.js or .sh), formal PDFs, sealed
+// original bundles, and the generated manifest.json.
+function processVerificationFiles(testimonyPath, testimonyName) {
+  // Post-normalization everything sits at the top level; mnt/data is searched
+  // as a fallback so pre-standard packages still publish correctly.
+  const searchDirs = [testimonyPath, path.join(testimonyPath, 'mnt', 'data')];
+  const chainFiles = []; // {abs, name, role}
+  const seen = new Set();
+  for (const dir of searchDirs) {
+    if (!fs.existsSync(dir)) continue;
+    for (const name of fs.readdirSync(dir).sort()) {
+      const abs = path.join(dir, name);
+      if (!fs.statSync(abs).isFile() || seen.has(name)) continue;
+      const role = classifyFile(name);
+      if (['testimony', 'document_md', 'signature', 'public_key', 'verify_script', 'document_pdf', 'manifest'].includes(role)) {
+        chainFiles.push({ abs, name, role });
+        seen.add(name);
+      }
+    }
+  }
+  // Sealed original bundles are published verbatim alongside the chain.
+  const originalDir = path.join(testimonyPath, 'original');
+  if (fs.existsSync(originalDir)) {
+    for (const name of fs.readdirSync(originalDir).sort()) {
+      const abs = path.join(originalDir, name);
+      if (fs.statSync(abs).isFile() && !seen.has(name)) {
+        chainFiles.push({ abs, name, role: 'original_bundle' });
+        seen.add(name);
+      }
     }
   }
 
-  // Find public key files
-  const keyFiles = files.filter(file => file.includes('public_key') || file.endsWith('.pem'));
-  if (keyFiles.length > 0) {
-    verification += '### Public Key\n';
-    verification += `**File:** \`${keyFiles[0]}\`\n\n`;
+  if (chainFiles.length === 0) return '';
 
+  let verification = '## Authentication Materials\n\n';
+  verification += 'Every file below is provided for independent verification of this testimony: the signed source markdown (the signature covers its exact bytes), the detached signature, the signer public key, an executable verification script, and any formal documents or sealed original bundles.\n\n';
+  verification += '| File | Purpose | Size | SHA-256 |\n|---|---|---|---|\n';
+
+  const order = { testimony: 0, signature: 1, public_key: 2, verify_script: 3, document_pdf: 4, document_md: 5, original_bundle: 6, manifest: 7 };
+  chainFiles.sort((a, b) => (order[a.role] ?? 9) - (order[b.role] ?? 9) || a.name.localeCompare(b.name));
+
+  for (const f of chainFiles) {
+    const cleanFilename = `${testimonyName}_auth_${f.name}`;
+    const destPath = path.join(publicDir, cleanFilename);
+    let hash = '';
     try {
-      const keyContent = fs.readFileSync(path.join(testimonyPath, keyFiles[0]), 'utf-8');
-      verification += '```\n';
-      verification += keyContent.length > 500 ? keyContent.substring(0, 500) + '\n... (truncated)' : keyContent;
-      verification += '\n```\n\n';
+      fs.copyFileSync(f.abs, destPath);
+      hash = sha256(f.abs);
+      console.log(`      🔏 Auth file: ${f.name} → ${cleanFilename}`);
     } catch (error) {
-      verification += `Error reading public key file: ${error.message}\n\n`;
+      console.log(`      ❌ Failed to copy auth file ${f.name}: ${error.message}`);
+      continue;
     }
+    const kb = Math.max(1, Math.round(fs.statSync(f.abs).size / 1024));
+    verification += `| [\`${f.name}\`](/uploads/data/${encodeURIComponent(cleanFilename)}) | ${roleLabel(f.role)} | ${kb} KB | \`${hash.slice(0, 16)}…\` |\n`;
   }
+  verification += '\n';
 
-  // Find verification scripts
-  const scriptFiles = files.filter(file => file.startsWith('verify_') && file.endsWith('.js'));
-  if (scriptFiles.length > 0) {
-    verification += '### Verification Script\n\n';
-    verification += `**Script:** \`${scriptFiles[0]}\`\n\n`;
-    verification += '**Verification Instructions:**\n\n';
-    verification += '1. Download the signature, public key, and verification script files\n';
-    verification += '2. Install Node.js on your system\n';
-    verification += '3. Run verification:\n';
-    verification += '   ```bash\n';
-    verification += `   node ${scriptFiles[0]}\n`;
-    verification += '   ```\n';
-    verification += '4. Check the output for verification status\n\n';
-
-    // Include script content
+  const scripts = chainFiles.filter((f) => f.role === 'verify_script');
+  if (scripts.length > 0) {
+    const s = scripts[0];
+    const isSh = s.name.endsWith('.sh');
+    verification += '### How to Verify\n\n';
+    verification += '1. Download the files above into one directory (keep the original filenames)\n';
+    verification += `2. Run the verification script: \`${isSh ? 'sh' : 'node'} ${s.name}\`${isSh ? '' : ' (requires Node.js)'}\n`;
+    verification += '3. The script checks the signature over the testimony file against the public key\n\n';
     try {
-      const scriptContent = fs.readFileSync(path.join(testimonyPath, scriptFiles[0]), 'utf-8');
-      verification += `**Script Content:**\n\n`;
-      verification += '```javascript\n';
+      const scriptContent = fs.readFileSync(s.abs, 'utf-8');
+      verification += `**Script content (\`${s.name}\`):**\n\n`;
+      verification += '```' + (isSh ? 'bash' : 'javascript') + '\n';
       verification += scriptContent;
       verification += '\n```\n\n';
     } catch (error) {
       verification += `Error reading script file: ${error.message}\n\n`;
     }
-
-    verification += '**What This Proves:**\n\n';
-    verification += '- **Authenticity:** Created by the holder of the private key\n';
-    verification += '- **Integrity:** Content has not been modified since signing\n';
-    verification += '- **Non-repudiation:** Signer cannot deny creating this testimony\n\n';
   }
+
+  verification += '**What This Proves:**\n\n';
+  verification += '- **Authenticity:** Created by the holder of the private key\n';
+  verification += '- **Integrity:** Content has not been modified since signing\n';
+  verification += '- **Non-repudiation:** Signer cannot deny creating this testimony\n\n';
 
   return verification;
 }
@@ -424,7 +444,7 @@ function processTestimonyContent(testimonyPath, testimonyName) {
   }
 
   // Process verification files
-  const verificationContent = processVerificationFiles(testimonyPath);
+  const verificationContent = processVerificationFiles(testimonyPath, testimonyName);
 
   return {
     title: title,

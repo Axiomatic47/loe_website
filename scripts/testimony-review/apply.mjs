@@ -18,6 +18,7 @@ import {
   testimonyAbsPath,
   loadState,
 } from './lib.mjs';
+import { normalizePackage, writeManifest } from '../lib/testimony-package.mjs';
 
 const EXECUTE = process.argv.includes('--execute');
 const CONTENT_DATA = path.join(REPO_ROOT, 'content', 'data');
@@ -94,25 +95,28 @@ for (const set of Object.values(sets)) {
   }
 }
 
-// Published dirs still carrying the exihibits/ typo count as pending work:
-// their exhibit images are silently missing from the live compositions.
-const typoFixes = [];
+// Normalization pre-pass over ALL published packages (standard layout: typo
+// fix, mnt/data hoist, Original/ -> original/). Runs (and on --execute, acts)
+// before the moves so a normalize-only invocation still does useful work.
+const normResults = [];
 if (fs.existsSync(PUBLISHED_ROOT)) {
   for (const setDir of fs.readdirSync(PUBLISHED_ROOT, { withFileTypes: true })) {
     if (!setDir.isDirectory()) continue;
     for (const tDir of fs.readdirSync(path.join(PUBLISHED_ROOT, setDir.name), { withFileTypes: true })) {
-      if (tDir.isDirectory() && fs.existsSync(path.join(PUBLISHED_ROOT, setDir.name, tDir.name, 'exihibits'))) {
-        typoFixes.push(path.join(PUBLISHED_ROOT, setDir.name, tDir.name));
-      }
+      if (!tDir.isDirectory()) continue;
+      const tPath = path.join(PUBLISHED_ROOT, setDir.name, tDir.name);
+      const norm = normalizePackage(tPath, { execute: EXECUTE });
+      if (norm.actions.length || norm.warnings.length) normResults.push({ tPath, ...norm });
     }
   }
 }
+const normActionCount = normResults.reduce((n, r) => n + r.actions.length, 0);
 
 log(`Testimony curation apply — ${EXECUTE ? 'EXECUTE' : 'DRY RUN (pass --execute to act)'}`);
 log(`Decisions: ${Object.keys(decisions).length} recorded, ${plan.noop} already satisfied`);
-log(`Published dirs with exihibits/ typo (exhibits currently missing from site): ${typoFixes.length}\n`);
+log(`Published packages needing layout normalization: ${normResults.length} (${normActionCount} action(s))\n`);
 
-if (!plan.publish.length && !plan.queue.length && !plan.remove.length && !typoFixes.length) {
+if (!plan.publish.length && !plan.queue.length && !plan.remove.length && !normActionCount) {
   log('Nothing to do.');
   process.exit(0);
 }
@@ -128,14 +132,13 @@ for (const t of plan.publish) {
     act(`  BLOCKED (not moved): ${blockReason}`);
     continue;
   }
-  // The processor only searches fixed subdir names; fix the known typo so
-  // exhibits are not silently skipped once published.
-  const typo = path.join(src, 'exihibits');
-  if (fs.existsSync(typo)) {
-    act(`  rename exihibits/ -> exhibits/ in ${t.dirname}`);
-    if (EXECUTE) fs.renameSync(typo, path.join(src, 'exhibits'));
-  }
+  // Bring the package to the standard layout before it goes live (typo fix,
+  // mnt/data hoist, Original/ -> original/ — see scripts/lib/testimony-package.mjs).
+  const norm = normalizePackage(src, { execute: EXECUTE });
+  for (const a of norm.actions) act(`  ${a}`);
+  for (const w of norm.warnings) act(`  ⚠ ${w}`);
   moveDir(src, dest);
+  if (EXECUTE) writeManifest(dest, { execute: true });
 }
 
 for (const t of plan.queue) {
@@ -151,12 +154,23 @@ for (const t of plan.remove) {
   if (EXECUTE) fs.rmSync(src, { recursive: true, force: true });
 }
 
-// Normalize the exihibits/ typo across ALL published testimonies (not just
-// this run's publishes) — the processor regenerates every composition below,
-// and these dirs' images have been silently skipped until now.
-for (const tPath of typoFixes) {
-  act(`fix typo: ${path.relative(REPO_ROOT, tPath)}/exihibits -> exhibits`);
-  if (EXECUTE) fs.renameSync(path.join(tPath, 'exihibits'), path.join(tPath, 'exhibits'));
+// Report the normalization pre-pass (it already acted under --execute) and,
+// on execute, refresh every published package's manifest.json so the
+// processor links fresh hashes below.
+for (const r of normResults) {
+  act(`normalize: ${path.relative(REPO_ROOT, r.tPath)}`);
+  for (const a of r.actions) act(`  ${a}`);
+  for (const w of r.warnings) act(`  ⚠ ${w}`);
+}
+if (EXECUTE && fs.existsSync(PUBLISHED_ROOT)) {
+  for (const setDir of fs.readdirSync(PUBLISHED_ROOT, { withFileTypes: true })) {
+    if (!setDir.isDirectory()) continue;
+    for (const tDir of fs.readdirSync(path.join(PUBLISHED_ROOT, setDir.name), { withFileTypes: true })) {
+      if (!tDir.isDirectory()) continue;
+      writeManifest(path.join(PUBLISHED_ROOT, setDir.name, tDir.name), { execute: true });
+    }
+  }
+  log('  manifest.json refreshed for all published packages');
 }
 
 pruneEmptySetDirs();
@@ -208,6 +222,9 @@ for (const f of fs.readdirSync(CONTENT_DATA)) {
 // Each processor run re-copies images under fresh timestamps; anything matching
 // the processor naming pattern but referenced by NO content JSON is stale.
 const PROCESSOR_NAME_RE = /_(root|exhibit|exhibits|screenshot|image|attachment|evidence)_\d{12,14}_/;
+// Auth-chain copies use stable `<package>_auth_<name>` filenames (no
+// timestamp); one goes stale only when its package is renamed/unpublished.
+const AUTH_NAME_RE = /_auth_/;
 const referenced = new Set();
 const contentRoot = path.join(REPO_ROOT, 'content');
 (function collect(dir) {
@@ -224,7 +241,7 @@ const contentRoot = path.join(REPO_ROOT, 'content');
 let pruned = 0;
 if (fs.existsSync(UPLOADS_DATA)) {
   for (const f of fs.readdirSync(UPLOADS_DATA)) {
-    if (PROCESSOR_NAME_RE.test(f) && !referenced.has(f)) {
+    if ((PROCESSOR_NAME_RE.test(f) || AUTH_NAME_RE.test(f)) && !referenced.has(f)) {
       fs.rmSync(path.join(UPLOADS_DATA, f));
       pruned++;
     }

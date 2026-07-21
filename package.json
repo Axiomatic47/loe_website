@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "description": "The Laws of Existence — public legal-advocacy site (lawsofexistence.com)",
+  "description": "The Laws of Existence \u2014 public legal-advocacy site (lawsofexistence.com)",
   "author": "Joseph Kirchner",
   "keywords": [
     "consciousness",
@@ -29,6 +29,7 @@
     "testimonies:count": "find testimonies -name '*.md' 2>/dev/null | wc -l || echo '0'",
     "testimonies:review": "node scripts/testimony-review/server.mjs",
     "testimonies:apply": "node scripts/testimony-review/apply.mjs",
+    "testimonies:normalize": "node scripts/normalize-testimony-packages.mjs",
     "scotus:process": "tsx scripts/processSCOTUSCases.ts",
     "scotus:clean": "rimraf public/scotus-cases"
   },
