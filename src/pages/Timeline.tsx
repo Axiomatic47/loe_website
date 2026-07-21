@@ -37,9 +37,11 @@ const Timeline = () => {
   const [isLoading, setIsLoading] = useState(true);
   useDocumentMeta("Conception Timeline");
 
-  // Load timeline data
+  // Load timeline data once on mount — loadTimelineData reads only static
+  // glob imports, so re-running it on identity churn would be pure waste.
   useEffect(() => {
     loadTimelineData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadTimelineData = async () => {

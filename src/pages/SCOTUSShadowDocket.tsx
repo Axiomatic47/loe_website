@@ -304,7 +304,6 @@ const SCOTUSShadowDocket: React.FC = () => {
 
   // Get current selected file info
   const currentFile = selectedFile || selectedAnalysisFile;
-  const currentFilePath = currentFile?.path || null;
 
   return (
     <PageLayout>

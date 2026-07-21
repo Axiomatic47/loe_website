@@ -1,4 +1,4 @@
-// src/components/Footer.tsx - Footer with TM symbol and fixed World Map link
+// src/components/Footer.tsx - Footer with TM symbol
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
@@ -9,11 +9,7 @@ interface FooterProps {
   maxPullDistance?: number;
 }
 
-export const Footer: React.FC<FooterProps> = ({
-  className,
-  pullDistance = 0,
-  maxPullDistance = 800
-}) => {
+export const Footer: React.FC<FooterProps> = ({ className }) => {
   return (
     <footer
       className={cn(

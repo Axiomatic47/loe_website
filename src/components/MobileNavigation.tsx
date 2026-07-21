@@ -1,5 +1,7 @@
 // src/components/MobileNavigation.tsx
 
+/* eslint-disable react-refresh/only-export-components -- the drawer state
+   hook is deliberately co-located with its component. */
 import React from 'react';
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";

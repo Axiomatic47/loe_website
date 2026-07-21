@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Code, Eye, Copy, Check, ZoomIn, X, AlertCircle, RefreshCw } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ensureMathJax, hasMath } from '@/utils/mathjax';
-import { enhancedResolveImagePath, testImagePath, findWorkingImagePath } from '@/utils/imageDebugHelper';
+import { enhancedResolveImagePath, testImagePath } from '@/utils/imageDebugHelper';
 
 // For MathJax approach
 declare global {

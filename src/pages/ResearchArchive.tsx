@@ -6,6 +6,9 @@
 // `npm run sync-archives` (PDF-first — documents are the docx-converter PDF
 // exports). Presentation copy lives in src/data/researchArchives.ts.
 
+/* eslint-disable react-refresh/only-export-components -- manifest helpers
+   (useArchiveManifest, archiveBase, …) are shared with ResearchLeaf and
+   ResearchDoc; extraction is deferred to the Next.js port. */
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";

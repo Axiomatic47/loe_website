@@ -165,7 +165,7 @@ export const initPerformanceTracking = () => {
 
     try {
       observer.observe({ entryTypes: ['paint'] });
-    } catch (e) {
+    } catch {
       // PerformanceObserver not supported
     }
   }

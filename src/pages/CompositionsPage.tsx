@@ -3,8 +3,6 @@ import React, { useEffect, useState, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { PageLayout } from "@/components/PageLayout";
 import { useCompositionStore, ALL_COLLECTIONS, type CollectionType } from "@/utils/compositionData";
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -120,6 +118,10 @@ const CompositionsPage: React.FC = () => {
     };
 
     loadData();
+    // deps are deliberately limited (this page has infinite-loop history);
+    // loadCollections/setDebugMode are stable zustand actions, and debugMode
+    // is only guarded on, never reacted to.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mounted, compositionId, initialized]); // Stable dependencies
 
   // Get compositions for current collection

@@ -166,14 +166,17 @@ const SectionPage = ({
   const hasHiddenGroups = hiddenCaseGroups.some(cg => caseGroupsInOrder.includes(cg));
 
   // Sync active tab to whichever group the current section belongs to.
+  // Keyed on derived strings (not the array/object rebuilt every render) so
+  // the effect only fires when the group or the group list actually changes.
+  const caseGroupsKey = caseGroupsInOrder.join('|');
   useEffect(() => {
-    const cg = (currentSection as any)?.case_group;
-    if (cg) {
-      setActiveCaseGroup(cg);
+    if (currentSectionGroup) {
+      setActiveCaseGroup(currentSectionGroup);
     } else if (caseGroupsInOrder.length > 0) {
       setActiveCaseGroup(prev => prev ?? caseGroupsInOrder[0]);
     }
-  }, [(currentSection as any)?.case_group, caseGroupsInOrder.join('|')]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentSectionGroup, caseGroupsKey]);
 
   // Build the list rendered in the sidebar — filtered by active tab, sorted by docket date.
   const sidebarSections = hasCaseGroups && activeCaseGroup

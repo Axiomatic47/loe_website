@@ -267,7 +267,7 @@ const CustomAmountDonation = () => {
 
           onApprove: async (_data: { orderID: string }, actions: PayPalActions) => {
             try {
-              const details = await actions.order.capture();
+              await actions.order.capture();
               alert(`Thank you for your $${customAmount} donation to the Laws of Existence Framework!`);
 
               // Reset form

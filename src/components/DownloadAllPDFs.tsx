@@ -16,7 +16,7 @@ interface DownloadAllPDFsProps {
   compositionTitle: string;
 }
 
-export default function DownloadAllPDFs({ sections, compositionTitle }: DownloadAllPDFsProps) {
+export default function DownloadAllPDFs({ sections }: DownloadAllPDFsProps) {
   const [downloading, setDownloading] = useState(false);
   const [progress, setProgress] = useState(0);
   const { toast } = useToast();

@@ -256,7 +256,7 @@ function hasTestimonyContent(dirPath) {
       file.includes('testimony') ||
       /\.(png|jpg|jpeg|gif|webp|svg)$/i.test(file)
     );
-  } catch (error) {
+  } catch {
     return false;
   }
 }
@@ -435,7 +435,7 @@ function processTestimonyContent(testimonyPath, testimonyName) {
 }
 
 // Generate helper functions
-function generateAltText(filename, testimonyName, prefix) {
+function generateAltText(filename, testimonyName, _prefix) {
   const cleanName = filename.replace(/\.(png|jpg|jpeg|gif|webp|svg|bmp|tiff)$/i, '');
 
   if (cleanName.toLowerCase().includes('screenshot')) {
@@ -465,7 +465,7 @@ function generateCaption(filename, testimonyName) {
   return cleanName || `${testimonyName} evidence`;
 }
 
-function determinePosition(prefix) {
+function determinePosition(_prefix) {
   return 'middle'; // Default to middle for all images
 }
 

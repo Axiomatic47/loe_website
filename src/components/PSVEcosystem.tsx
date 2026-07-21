@@ -6,9 +6,6 @@ import React, { useState, useMemo } from 'react';
 import { cn } from '@/lib/utils';
 import {
   type ConstitutionalAuthorityMap,
-  type Position,
-  type Power,
-  type CompoundPSV,
   BRANCH_INFO,
   PSV_STATUS_INFO,
   PSV_TIER_INFO,

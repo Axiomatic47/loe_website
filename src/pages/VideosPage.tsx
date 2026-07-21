@@ -1,7 +1,7 @@
 // src/pages/VideosPage.tsx - Video evidence gallery page
 import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Video, Filter, Play, Calendar, Clock, Tag, ExternalLink } from 'lucide-react';
+import { ArrowLeft, Video, Play, Calendar, Clock } from 'lucide-react';
 import YouTubePlayer from '@/components/YouTubePlayer';
 import {
   videos,
@@ -40,16 +40,6 @@ const VideosPage: React.FC = () => {
     });
     return counts;
   }, [uploadedVideos]);
-
-  // Category colors
-  const categoryColors: Record<VideoCategory, string> = {
-    'copyright-audit': 'purple',
-    'prompt-audit': 'blue',
-    'network-interference': 'red',
-    'targeting-proof': 'orange',
-    'chat-deletion': 'rose',
-    'other': 'gray'
-  };
 
   const getCategoryColorClasses = (category: VideoCategory) => {
     const colors = {

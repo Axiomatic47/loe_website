@@ -27,10 +27,9 @@ interface MediaGalleryProps {
 const MediaGallery: React.FC<MediaGalleryProps> = ({
   items,
   allowDownload = true,
-  className,
-  columns = 3
+  className
 }) => {
-  const [selectedItem, setSelectedItem] = useState<MediaItem | null>(null);
+  const [, setSelectedItem] = useState<MediaItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [imageLoadErrors, setImageLoadErrors] = useState<Set<string>>(new Set());
 

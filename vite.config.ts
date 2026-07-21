@@ -7,7 +7,7 @@ import fs from 'fs';
 const uploadsStaticPlugin = () => ({
   name: 'uploads-static-plugin',
   configureServer(server) {
-    server.middlewares.use('/uploads', (req, res, next) => {
+    server.middlewares.use('/uploads', (req, res, _next) => {
       try {
         // CRITICAL FIX: Decode URL first to handle encoded spaces
         const decodedUrl = decodeURIComponent(req.url || '');
@@ -104,7 +104,7 @@ const apiProxyPlugin = (env) => ({
     const apiBaseUrl = env.VITE_API_URL || 'http://localhost:4041';
     console.log(`Proxying API requests to: ${apiBaseUrl}`);
 
-    server.middlewares.use('/api', (req, res, next) => {
+    server.middlewares.use('/api', (req, res, _next) => {
       const target = `${apiBaseUrl}${req.url}`;
       console.log(`Proxying request to: ${target}`);
 

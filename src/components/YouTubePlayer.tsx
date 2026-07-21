@@ -1,7 +1,7 @@
 // src/components/YouTubePlayer.tsx - YouTube video embed component
 import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
-import { Play, Maximize2, ExternalLink } from 'lucide-react';
+import { Play, ExternalLink } from 'lucide-react';
 
 interface YouTubePlayerProps {
   videoId: string;

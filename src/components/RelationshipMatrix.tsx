@@ -6,17 +6,12 @@ import React, { useState, useMemo } from 'react';
 import { cn } from '@/lib/utils';
 import {
   type ConstitutionalAuthorityMap,
-  type Position,
-  type ChecksMatrixEntry,
-  type CoordinationEntry,
   BRANCH_INFO,
   getPosition,
-  getPositionsByBranch,
   getAllPositions,
   getChecksMatrix,
   getCoordinationMatrix,
   getPositionRelationships,
-  type Branch,
 } from '@/data/constitutionalAuthority';
 
 interface RelationshipMatrixProps {

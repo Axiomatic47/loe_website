@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useToast } from "@/hooks/use-toast";
-import { Info, Download, FileText, ChevronDown, ChevronUp, Search, Filter } from "lucide-react";
+import { Info, FileText, ChevronDown, ChevronUp, Search, Filter } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PageLayout } from "@/components/PageLayout";
 import { useNavigate } from "react-router-dom";
@@ -235,7 +235,7 @@ const BlurPanel = ({
 const IndividualsMetrics = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
-  const [individuals, setIndividuals] = useState<IndividualMetrics[]>(sampleIndividuals);
+  const [individuals] = useState<IndividualMetrics[]>(sampleIndividuals);
   const [filteredIndividuals, setFilteredIndividuals] = useState<IndividualMetrics[]>(sampleIndividuals);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");

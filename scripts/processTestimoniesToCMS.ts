@@ -201,7 +201,7 @@ class CMSTestimonyProcessor {
     Object.entries(fileGroups).forEach(([groupName, files]) => {
       console.log(`📂 Creating section for: ${groupName} (${files.length} images)`);
 
-      const images: ImageData[] = files.map((file, index) => ({
+      const images: ImageData[] = files.map((file) => ({
         src: `/uploads/data/${file}`,
         alt: this.generateAltFromFilename(file, groupName),
         caption: this.generateCaptionFromFilename(file),
@@ -433,7 +433,7 @@ This evidence supports the legal recognition of the Laws of Existence Framework 
       .join(' ');
   }
 
-  private createVerificationContent(signature: string | null, publicKey: string | null, script: string | null): string {
+  private createVerificationContent(_signature: string | null, _publicKey: string | null, _script: string | null): string {
     return '## Cryptographic Verification\n\nThis testimony has been cryptographically signed to ensure authenticity and integrity.\n\n';
   }
 

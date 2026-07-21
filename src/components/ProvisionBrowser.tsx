@@ -3,7 +3,6 @@ import {
   provisions,
   PAEPS,
   getStatistics,
-  type ConstitutionalProvision,
   type ElementType,
   type PSVStatus
 } from '../data/constitutionalProvisions';

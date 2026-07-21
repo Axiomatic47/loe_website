@@ -3,11 +3,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { cn } from '@/lib/utils';
-import {
-  constitutionalPositions,
-  BRANCH_INFO,
-  type Position,
-} from '@/data/constitutionalPositions';
+import { constitutionalPositions } from '@/data/constitutionalPositions';
 
 // Types for the test
 type CoordinateActionType = 'legislative' | 'judicial' | 'executive' | '';
@@ -295,19 +291,6 @@ export const MadisonianComplianceTest = () => {
   const [state, setState] = useState<TestState>(initialState);
   const [currentStep, setCurrentStep] = useState(1);
   const [showResults, setShowResults] = useState(false);
-
-  // Get the selected position details
-  const selectedPositionData = useMemo(() => {
-    return constitutionalPositions.find(p => p.id === state.selectedPosition);
-  }, [state.selectedPosition]);
-
-  // Get powers for selected position
-  const availablePowers = useMemo(() => {
-    if (!selectedPositionData) return [];
-    return selectedPositionData.constitutiveConditions
-      .filter(c => c.code === 'PW')
-      .map(c => ({ clause: c.clause, text: c.provisionText }));
-  }, [selectedPositionData]);
 
   // Calculate step results
   const stepResults = useMemo(() => {

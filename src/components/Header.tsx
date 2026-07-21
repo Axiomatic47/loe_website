@@ -80,11 +80,7 @@ const MenuFooterLink = ({ href, label }: { href: string; label: string }) => (
   </NavigationMenuLink>
 );
 
-export const Header: React.FC<HeaderProps> = ({
-  className,
-  pullDistance = 0,
-  maxPullDistance = 800,
-}) => {
+export const Header: React.FC<HeaderProps> = ({ className }) => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const { manuscript, data } = navManifest;
