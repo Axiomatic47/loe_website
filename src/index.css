@@ -312,22 +312,6 @@ html {
     border: 1px solid hsl(var(--border));
   }
 
-  /* Sidebar surface — cream with warm border */
-  .sidebar-fixed {
-    position: fixed;
-    top: 4rem;
-    left: 0;
-    bottom: 0;
-    width: 16rem;
-    z-index: 40;
-    background-color: hsl(var(--sidebar-background));
-    border-right: 1px solid hsl(var(--sidebar-border));
-    overflow-y: auto;
-  }
-
-  .content-with-sidebar {
-    margin-left: 16rem;
-  }
 
   .main-content-area {
     overflow-y: auto;
@@ -372,54 +356,6 @@ html {
     border-radius: 20px;
   }
 
-  @media (min-width: 768px) {
-    .sidebar-fixed {
-      display: block;
-    }
-  }
-
-  @media (max-width: 767px) {
-    .sidebar-fixed {
-      transform: translateX(-100%);
-      transition: transform 0.3s ease;
-    }
-
-    .sidebar-fixed.open {
-      transform: translateX(0);
-    }
-
-    .content-with-sidebar {
-      margin-left: 0;
-    }
-  }
-
-  @media (max-width: 767px) {
-    .sidebar-container {
-      position: fixed;
-      top: 4rem;
-      bottom: 0;
-      left: 0;
-      width: 16rem;
-      z-index: 40;
-      transform: translateX(-100%);
-      transition: transform 0.3s ease-in-out;
-      background-color: hsl(var(--sidebar-background));
-    }
-
-    .sidebar-container.open {
-      transform: translateX(0);
-    }
-
-    .main-content-area {
-      margin-left: 0;
-    }
-  }
-
-  @supports (-webkit-backdrop-filter: none) {
-    .sidebar-container {
-      background-color: hsl(var(--sidebar-background));
-    }
-  }
 
   .line-clamp-1 {
     display: -webkit-box;

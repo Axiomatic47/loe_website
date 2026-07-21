@@ -1,0 +1,71 @@
+/* app/head-styles.css — verbatim copy of the inline <style> block the vite
+   index.html carries (math + formal-logic prose styling). Lives as a file so
+   the Next layout can import it; delete the index.html copy at cutover. */
+
+/* Mathematical expression styling */
+.math-display {
+  margin: 1.5em 0;
+  text-align: center;
+  overflow-x: auto;
+}
+
+.math-inline {
+  margin: 0 0.2em;
+}
+
+/* Formal logic expressions */
+.logic-expression {
+  font-family: 'Noto Serif', serif !important;
+  background: hsl(var(--secondary)) !important;
+  border-left: 3px solid hsl(var(--primary)) !important;
+  border-radius: 8px !important;
+  padding: 1em 1.5em !important;
+  margin: 1.5em 0 !important;
+  color: hsl(var(--foreground)) !important;
+  overflow-x: auto;
+}
+
+.logic-expression.inline {
+  display: inline-block !important;
+  padding: 0.2em 0.5em !important;
+  margin: 0 0.3em !important;
+  background: hsl(var(--muted)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 4px !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+/* MathJax styling improvements */
+.MathJax {
+  font-size: 1.1em !important;
+}
+
+.MathJax_Display {
+  margin: 1.5em 0 !important;
+}
+
+/* Responsive mathematical content */
+@media (max-width: 768px) {
+  .logic-expression {
+    font-size: 0.9em;
+    padding: 0.8em 1em;
+    overflow-x: auto;
+  }
+
+  .MathJax {
+    font-size: 1em !important;
+  }
+}
+
+/* Loading state for math */
+.math-loading {
+  background: hsl(var(--muted));
+  border-radius: 4px;
+  padding: 0.5em;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}

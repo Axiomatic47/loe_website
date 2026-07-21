@@ -9,7 +9,7 @@ import { PageLayout } from "@/components/PageLayout";
 import { MembraneViewer } from "@/components/MembraneViewer";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 import { useNoIndex } from "@/hooks/useNoIndex";
-import { useArchiveManifest, archiveBase, imagesPublished, ArchiveDoc } from "@/pages/ResearchArchive";
+import { useArchiveManifest, archiveBase, imagesPublished, ArchiveDoc } from "@/views/ResearchArchive";
 import { RESEARCH_ARCHIVES } from "@/data/researchArchives";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, Columns, Download, ExternalLink, Loader2, Rows } from "lucide-react";

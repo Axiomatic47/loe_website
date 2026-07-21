@@ -14,26 +14,26 @@ import { normalizeDocId, sectionUrl, type CaseSlug } from "./utils/urls";
 // Route components are lazy-loaded so each page ships as its own chunk.
 // This keeps the initial bundle small for visitors who land on a single deep
 // document (the common case for this site).
-const Index = lazy(() => import("./pages/Index"));
-const CompositionsPage = lazy(() => import("./pages/CompositionsPage"));
-const SectionPage = lazy(() => import("./pages/SectionPage"));
-const Contact = lazy(() => import("./pages/Contact"));
-const Partners = lazy(() => import("./pages/Partners"));
-const Donate = lazy(() => import("./pages/Donate"));
-const IndividualsMetrics = lazy(() => import("./pages/IndividualsMetrics"));
-const Timeline = lazy(() => import("./pages/Timeline"));
-const VideosPage = lazy(() => import("./pages/VideosPage"));
-const SCOTUSShadowDocket = lazy(() => import("./pages/SCOTUSShadowDocket"));
-const ConstitutionalAccountability = lazy(() => import("./pages/ConstitutionalAccountability"));
-const CaseLandingPage = lazy(() => import("./pages/CaseLandingPage"));
-const ForJournalists = lazy(() => import("./pages/ForJournalists"));
+const Index = lazy(() => import("./views/Index"));
+const CompositionsPage = lazy(() => import("./views/CompositionsPage"));
+const SectionPage = lazy(() => import("./views/SectionPage"));
+const Contact = lazy(() => import("./views/Contact"));
+const Partners = lazy(() => import("./views/Partners"));
+const Donate = lazy(() => import("./views/Donate"));
+const IndividualsMetrics = lazy(() => import("./views/IndividualsMetrics"));
+const Timeline = lazy(() => import("./views/Timeline"));
+const VideosPage = lazy(() => import("./views/VideosPage"));
+const SCOTUSShadowDocket = lazy(() => import("./views/SCOTUSShadowDocket"));
+const ConstitutionalAccountability = lazy(() => import("./views/ConstitutionalAccountability"));
+const CaseLandingPage = lazy(() => import("./views/CaseLandingPage"));
+const ForJournalists = lazy(() => import("./views/ForJournalists"));
 // Primary-source research archives — live but UNLISTED (no nav, no sitemap, noindex)
-const ResearchArchive = lazy(() => import("./pages/ResearchArchive"));
-const ResearchLeaf = lazy(() => import("./pages/ResearchLeaf"));
-const ResearchDoc = lazy(() => import("./pages/ResearchDoc"));
-const LegalDisclaimers = lazy(() => import("./pages/LegalDisclaimers"));
-const TermsOfService = lazy(() => import("./pages/TermsOfService"));
-const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const ResearchArchive = lazy(() => import("./views/ResearchArchive"));
+const ResearchLeaf = lazy(() => import("./views/ResearchLeaf"));
+const ResearchDoc = lazy(() => import("./views/ResearchDoc"));
+const LegalDisclaimers = lazy(() => import("./views/LegalDisclaimers"));
+const TermsOfService = lazy(() => import("./views/TermsOfService"));
+const PrivacyPolicy = lazy(() => import("./views/PrivacyPolicy"));
 
 // Error Boundary Component
 interface ErrorBoundaryState {

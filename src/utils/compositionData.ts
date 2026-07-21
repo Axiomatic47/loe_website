@@ -1,16 +1,14 @@
 // src/utils/compositionData.ts - Zustand store for composition content.
 
 import { create } from 'zustand';
+// Types live in @/lib/content-types (pure types module) so the Next.js server
+// manifest can share them without pulling this vite-only module (import.meta,
+// zustand) into its program. Re-exported here so existing imports keep working.
+import type { CollectionType, Composition, ImageData, Section } from '@/lib/content-types';
 
 const DEV = import.meta.env.DEV;
 
-export type CollectionType =
-  | 'manuscript'
-  | 'data'
-  | 'constitutional'
-  | 'copyright'
-  | 'timeline'
-  | 'map';
+export type { CollectionType, Composition, ImageData, Section };
 
 export const ALL_COLLECTIONS: CollectionType[] = [
   'manuscript',
@@ -20,47 +18,6 @@ export const ALL_COLLECTIONS: CollectionType[] = [
   'timeline',
   'map',
 ];
-
-export interface ImageData {
-  src: string;
-  alt: string;
-  caption?: string;
-  position: 'top' | 'middle' | 'bottom' | 'inline';
-}
-
-export interface Section {
-  title: string;
-  featured: boolean;
-  featured_order?: number;
-  content_level_1: string;
-  content_level_3: string;
-  content_level_5: string;
-  pdf_file?: string;
-  description?: string;
-  images?: ImageData[];
-  case_group?: string;
-  date?: string;
-  // Descriptive URL slug. Read from content JSON when present; otherwise derived
-  // by the loader. Authoritative rules: scripts/lib/content-model.mjs.
-  slug: string;
-}
-
-export interface Composition {
-  id: number;
-  title: string;
-  collection_type: 'manuscript' | 'data' | 'constitutional' | 'copyright' | 'timeline' | 'map';
-  section: number;
-  section_title: string;
-  featured: boolean;
-  content_level_1: string;
-  content_level_3: string;
-  content_level_5: string;
-  sections: Section[];
-  hidden_case_groups?: string[];
-  // Descriptive URL slug. Read from content JSON when present; otherwise derived
-  // by the loader. Authoritative rules: scripts/lib/content-model.mjs.
-  slug: string;
-}
 
 interface CompositionStore {
   manuscript: Composition[];

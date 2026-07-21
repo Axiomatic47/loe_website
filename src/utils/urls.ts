@@ -10,7 +10,7 @@
 // The legacy positional URLs (/composition/:type/composition/:i/section/:n) are
 // still accepted by the router but only ever *redirect* to the canonical form —
 // nothing in the app should emit them anymore.
-import type { Composition, Section } from './compositionData';
+import type { Composition, Section } from '@/lib/content-types';
 
 export const SITE_ORIGIN = 'https://lawsofexistence.com';
 

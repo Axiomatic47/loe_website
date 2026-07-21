@@ -37,3 +37,7 @@ dist-ssr
 # this public repo's tracking — testimonies enter the repo ONLY when the
 # curation console publishes them into testimonies/<Set>/.
 /Chronological Testimonies/
+
+# Next.js (Phase 2 port)
+/.next/
+next-env.d.ts

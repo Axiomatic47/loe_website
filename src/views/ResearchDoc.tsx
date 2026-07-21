@@ -6,7 +6,7 @@ import { Link, useParams } from "react-router-dom";
 import { PageLayout } from "@/components/PageLayout";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 import { useNoIndex } from "@/hooks/useNoIndex";
-import { useArchiveManifest, archiveBase } from "@/pages/ResearchArchive";
+import { useArchiveManifest, archiveBase } from "@/views/ResearchArchive";
 import { RESEARCH_ARCHIVES } from "@/data/researchArchives";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Download, ExternalLink, Loader2 } from "lucide-react";
