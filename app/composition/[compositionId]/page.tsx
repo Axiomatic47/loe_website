@@ -1,18 +1,19 @@
-// app/composition/[compositionId]/page.tsx — collection grid pages.
+// app/composition/[compositionId]/page.tsx — collection landing pages.
 //
-// Server port of the vite CompositionsPage: same three card variants
-// (copyright / constitutional / standard), cards are real <Link>s. The
-// store/loading/error/debug machinery falls away — the manifest is resolved
-// at build time.
+// Editorial redesign (owner direction 2026-07-21): these are the public
+// reading-room doors, not CMS grids. Each collection gets an eyebrow, a
+// serif title, one factual lede, and a quiet count line; cards follow the
+// home/case-page design language (serif titles, tabular meta, terracotta
+// hover, ArrowRight nudge). Excerpts are cleaned — markdown tokens, leading
+// "Summary"/byline boilerplate, and placeholder text never reach the page;
+// when no honest excerpt exists, the card shows its section titles instead.
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Music, Send, FileText, Scale, BookOpen, Database, ChevronRight } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { ArrowLeft, ArrowRight, Music, Scale } from 'lucide-react';
+import { Reveal } from '@/components/Reveal';
 import { getCollection, ALL_COLLECTIONS } from '@/lib/content-manifest';
-import type { CollectionType } from '@/lib/content-types';
+import type { CollectionType, Composition } from '@/lib/content-types';
 import { compositionUrl } from '@/utils/urls';
 import { SitePageLayout } from '../../_components/SitePageLayout';
 
@@ -22,294 +23,380 @@ export function generateStaticParams() {
   return ALL_COLLECTIONS.map(compositionId => ({ compositionId }));
 }
 
-const getCollectionTitle = (compositionId: string | undefined) => {
-  switch (compositionId) {
-    case 'manuscript':
-      return 'Research';
-    case 'data':
-      return 'Evidence';
-    case 'map':
-      return 'Egalitarian World Map';
-    case 'copyright':
-      return 'Copyright Holder Notifications';
-    case 'constitutional':
-      return 'Cases';
-    default:
-      return 'Content';
-  }
+// ---------------------------------------------------------------------------
+// Per-collection editorial framing (title/lede are page copy, not data)
+// ---------------------------------------------------------------------------
+interface CollectionPageConfig {
+  eyebrow: string;
+  title: string;
+  lede: string;
+  itemNoun: [string, string]; // singular, plural
+  unitNoun: [string, string];
+  cta: string;
+}
+
+const COLLECTION_PAGES: Record<string, CollectionPageConfig> = {
+  manuscript: {
+    eyebrow: 'Research library',
+    title: 'Research',
+    lede:
+      'The Laws of Existence manuscripts — a unified mathematical framework for consciousness, ethics, and reality — published here in full.',
+    itemNoun: ['manuscript', 'manuscripts'],
+    unitNoun: ['section', 'sections'],
+    cta: 'Read the manuscript',
+  },
+  data: {
+    eyebrow: 'Evidence collections',
+    title: 'Evidence',
+    lede:
+      'Documented AI-system testimonies, forensic records, and simulations — published with the signatures, public keys, and verification scripts needed to authenticate each item independently.',
+    itemNoun: ['collection', 'collections'],
+    unitNoun: ['item', 'items'],
+    cta: 'View the collection',
+  },
+  constitutional: {
+    eyebrow: 'The federal record',
+    title: 'Cases',
+    lede:
+      'The filed record of the federal constitutional litigation. Every document is the as-filed version and can be verified independently against the courts’ dockets.',
+    itemNoun: ['matter', 'matters'],
+    unitNoun: ['document', 'documents'],
+    cta: 'View case documents',
+  },
+  copyright: {
+    eyebrow: 'Copyright program',
+    title: 'Copyright Holder Notifications',
+    lede:
+      'Formal notifications delivered to publishers and rights holders regarding documented use of protected works.',
+    itemNoun: ['notification', 'notifications'],
+    unitNoun: ['publisher', 'publishers'],
+    cta: 'View notifications',
+  },
+  timeline: {
+    eyebrow: 'Chronology',
+    title: 'Timeline',
+    lede: 'Chronological records of the framework’s development and documented AI-system events.',
+    itemNoun: ['record', 'records'],
+    unitNoun: ['section', 'sections'],
+    cta: 'View the record',
+  },
+  map: {
+    eyebrow: 'Data visualization',
+    title: 'Egalitarian World Map',
+    lede: 'Country-level analyses from the egalitarian world-map dataset.',
+    itemNoun: ['dataset', 'datasets'],
+    unitNoun: ['entry', 'entries'],
+    cta: 'View the data',
+  },
 };
 
+const noun = ([singular, plural]: [string, string], n: number) => (n === 1 ? singular : plural);
+
+// ---------------------------------------------------------------------------
+// Excerpt hygiene — data text reaches the page only after cleanup
+// ---------------------------------------------------------------------------
+const PLACEHOLDER_RE = /blank page|under construction|coming soon|lorem ipsum|placeholder/i;
+
+function cleanExcerpt(raw: string | undefined): string | null {
+  if (!raw) return null;
+  let t = raw
+    .replace(/^#.*$/gm, ' ') // headings
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1') // links → text
+    .replace(/[#*_`>|]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/^Summary[:.\s—–-]+/i, '')
+    .replace(/^Joseph(\s+D\.)?\s+Kirchner[.,:\s—–-]+/i, '');
+  // Front-matter before an early horizontal rule (byline, affiliation) is
+  // not an excerpt — drop it when it isn't a real sentence.
+  t = t.replace(/^(.{0,100}?)\s*-{3,}\s*/, (m, head) => (/[.!?]/.test(head) ? m : ''));
+  t = t.replace(/\s-{3,}\s/g, ' ').replace(/\s+/g, ' ').trim();
+  if (!t || t.length < 40 || PLACEHOLDER_RE.test(t)) return null;
+  if (t.length > 220) {
+    const cut = t.slice(0, 220);
+    t = cut.slice(0, Math.max(cut.lastIndexOf(' '), 180)).trimEnd() + '…';
+  }
+  return t;
+}
+
+function compositionExcerpt(c: Composition): string | null {
+  const first = c.sections?.[0];
+  return (
+    cleanExcerpt(first?.description) ??
+    cleanExcerpt(first?.content_level_1) ??
+    cleanExcerpt(first?.content_level_3)
+  );
+}
+
+function contentsLine(c: Composition): string | null {
+  const titles = (c.sections ?? []).map(s => s.title).filter(Boolean);
+  if (!titles.length) return null;
+  const shown = titles.slice(0, 3).join(' · ');
+  return titles.length > 3 ? `${shown} · +${titles.length - 3} more` : shown;
+}
+
+// Processor/CMS label suffixes never reach the page ("… - Case Documents",
+// "… (Enhanced)") — the data keeps them, the presentation drops them.
+function displayTitle(title: string): string {
+  return title
+    .replace(/\s*[-–—]\s*Case Documents$/i, '')
+    .replace(/\s*\(Enhanced\)$/i, '')
+    .trim();
+}
+
+// ---------------------------------------------------------------------------
 type Params = { params: Promise<{ compositionId: string }> };
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { compositionId } = await params;
-  const title = getCollectionTitle(compositionId);
+  const page = COLLECTION_PAGES[compositionId];
+  if (!page) return {};
   return {
-    title,
+    title: page.title,
+    description: page.lede,
     alternates: { canonical: `/composition/${compositionId}` },
   };
 }
+
+const Eyebrow = ({ children }: { children: React.ReactNode }) => (
+  <div
+    className="text-xs uppercase tracking-[0.1em] text-muted-foreground font-sans mb-3"
+    style={{ fontWeight: 600 }}
+  >
+    {children}
+  </div>
+);
 
 export default async function CompositionsGridPage({ params }: Params) {
   const { compositionId } = await params;
   if (!(ALL_COLLECTIONS as string[]).includes(compositionId)) notFound();
 
   const compositions = getCollection(compositionId as CollectionType);
-  const collectionTitle = getCollectionTitle(compositionId);
+  const page = COLLECTION_PAGES[compositionId] ?? {
+    eyebrow: 'Collection',
+    title: 'Content',
+    lede: '',
+    itemNoun: ['item', 'items'] as [string, string],
+    unitNoun: ['section', 'sections'] as [string, string],
+    cta: 'View',
+  };
+  const totalUnits = compositions.reduce((n, c) => n + (c.sections?.length || 0), 0);
 
   return (
     <SitePageLayout>
-      <div className="container mx-auto px-4 py-12">
-        <div className="rounded-2xl bg-secondary/60 border border-border p-8 sm:p-12 mb-16">
-          <div className="flex justify-between items-center mb-8">
-            <Button variant="ghost" className="text-foreground hover:bg-secondary/60" asChild>
-              <Link href="/">← Back to Home</Link>
-            </Button>
-          </div>
+      <main className="container mx-auto px-4 py-12">
+        <div className="max-w-5xl mx-auto">
+          {/* Back link */}
+          <Reveal>
+            <Link
+              href="/"
+              className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors mb-8 font-sans"
+            >
+              <ArrowLeft className="h-4 w-4 mr-1.5" />
+              Home
+            </Link>
+          </Reveal>
 
-          <div className="text-center mb-12">
-            <h1 className="text-4xl sm:text-5xl font-serif mb-6 text-foreground">
-              {collectionTitle}
+          {/* Header */}
+          <Reveal delay={60}>
+            <Eyebrow>{page.eyebrow}</Eyebrow>
+            <h1
+              className="font-serif text-foreground"
+              style={{
+                fontSize: 'clamp(30px, 4.5vw, 44px)',
+                fontWeight: 580,
+                letterSpacing: '-0.02em',
+                lineHeight: 1.1,
+              }}
+            >
+              {page.title}
             </h1>
-          </div>
-
-          {compositions.length === 0 ? (
-            <div className="text-center py-12">
-              <h2 className="text-2xl text-foreground mb-4">No Compositions Found</h2>
-              <p className="text-muted-foreground/80">
-                No {collectionTitle.toLowerCase()} compositions have been published yet.
+            {page.lede && (
+              <p
+                className="font-serif text-foreground/90 mt-4"
+                style={{ fontSize: '1.0625rem', lineHeight: 1.68, maxWidth: '46rem' }}
+              >
+                {page.lede}
               </p>
-            </div>
-          ) : compositionId === 'copyright' ? (
-            /* Special grid layout for Copyright Notifications */
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {compositions.map(composition => {
-                // Extract song and artist from title (format: "Song - Artist")
-                const titleParts = composition.title.split(' - ');
-                const songName = titleParts[0] || composition.title;
-                const artistName = titleParts.slice(1).join(' - ') || '';
-                const publishers = composition.sections?.map(s => s.title) || [];
+            )}
+            {compositions.length > 0 && (
+              <p
+                className="text-sm text-muted-foreground mt-3 font-sans"
+                style={{ fontVariantNumeric: 'tabular-nums' }}
+              >
+                {compositions.length} {noun(page.itemNoun, compositions.length)}
+                {totalUnits > 0 && (
+                  <>
+                    {' · '}
+                    {totalUnits} {noun(page.unitNoun, totalUnits)}
+                  </>
+                )}
+              </p>
+            )}
+          </Reveal>
+
+          {/* Grid */}
+          {compositions.length === 0 ? (
+            <Reveal delay={120}>
+              <div className="mt-12 bg-card border border-border rounded-xl shadow-sm p-10 text-center">
+                <p className="text-muted-foreground font-sans text-sm">
+                  Nothing has been published in this collection yet.
+                </p>
+              </div>
+            </Reveal>
+          ) : compositionId === 'constitutional' ? (
+            /* Cases — docket-style rows */
+            <div className="mt-10 space-y-4">
+              {compositions.map((composition, i) => {
+                const docCount = composition.sections?.length || 0;
+                const excerpt = compositionExcerpt(composition);
+                const contents = excerpt ? null : contentsLine(composition);
 
                 return (
-                  <Link
-                    key={composition.slug}
-                    href={compositionUrl(composition)}
-                    className="block bg-card rounded-xl p-6 border border-border
-                             cursor-pointer transition-all duration-300
-                             hover:border-primary/30 hover:shadow-md
-                             group"
-                  >
-                    {/* Icon and Badge Row */}
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-2">
-                        <div className="p-2 rounded-lg bg-primary/15 group-hover:bg-primary/25 transition-colors">
-                          <Music className="h-5 w-5 text-primary" />
-                        </div>
-                        <Badge className="bg-primary/15 text-primary border border-primary/30 text-xs">
-                          {publishers.length} {publishers.length === 1 ? 'Publisher' : 'Publishers'}
-                        </Badge>
+                  <Reveal key={composition.slug} delay={Math.min(120 + i * 60, 360)}>
+                    <Link
+                      href={compositionUrl(composition)}
+                      className="group flex items-start gap-4 bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-200"
+                    >
+                      <div className="p-3 rounded-lg bg-primary/15 flex-shrink-0 hidden sm:block">
+                        <Scale className="h-5 w-5 text-primary" />
                       </div>
-                      <Send className="h-4 w-4 text-muted-foreground/70 group-hover:text-primary transition-colors" />
-                    </div>
-
-                    {/* Song Title */}
-                    <h3 className="text-xl font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
-                      {songName}
-                    </h3>
-
-                    {/* Artist Name */}
-                    {artistName && (
-                      <p className="text-muted-foreground/80 text-sm mb-4">{artistName}</p>
-                    )}
-
-                    {/* Publisher Badges */}
-                    <div className="flex flex-wrap gap-2 mt-4">
-                      {publishers.map((publisher, pIndex) => (
-                        <Badge
-                          key={pIndex}
-                          variant="outline"
-                          className="bg-card/80 text-muted-foreground border-border text-xs
-                                   group-hover:border-primary/40 group-hover:text-primary transition-colors"
+                      <div className="min-w-0 flex-1">
+                        <h2
+                          className="font-serif text-foreground group-hover:text-primary transition-colors"
+                          style={{ fontSize: '1.25rem', fontWeight: 580, letterSpacing: '-0.014em', lineHeight: 1.3 }}
                         >
-                          <FileText className="h-3 w-3 mr-1" />
-                          {publisher}
-                        </Badge>
-                      ))}
-                    </div>
-
-                    {/* View Button */}
-                    <div className="mt-5 pt-4 border-t border-border">
-                      <span className="text-primary group-hover:text-primary/80 text-sm font-medium inline-flex items-center">
-                        View Notifications
-                        <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
-                      </span>
-                    </div>
-                  </Link>
+                          {displayTitle(composition.title)}
+                        </h2>
+                        <p
+                          className="text-xs text-muted-foreground mt-1.5 font-sans"
+                          style={{ fontVariantNumeric: 'tabular-nums' }}
+                        >
+                          {docCount} {noun(page.unitNoun, docCount)} · as filed
+                        </p>
+                        {excerpt && (
+                          <p className="text-sm text-foreground/85 mt-3 font-sans leading-relaxed line-clamp-2">
+                            {excerpt}
+                          </p>
+                        )}
+                        {contents && (
+                          <p className="text-sm text-muted-foreground mt-3 font-sans leading-snug line-clamp-2">
+                            {contents}
+                          </p>
+                        )}
+                        <p
+                          className="text-sm text-primary mt-4 font-sans inline-flex items-center"
+                          style={{ fontWeight: 500 }}
+                        >
+                          {page.cta}
+                          <ArrowRight className="ml-1.5 h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+                        </p>
+                      </div>
+                    </Link>
+                  </Reveal>
                 );
               })}
             </div>
-          ) : compositionId === 'constitutional' ? (
-            /* Constitutional Law - Case documents with PDF info */
-            <div className="grid grid-cols-1 gap-6">
-              {compositions.map(composition => {
-                const sectionCount = composition.sections?.length || 0;
-                const firstSection = composition.sections?.[0];
-                const description = firstSection?.description || '';
+          ) : compositionId === 'copyright' ? (
+            /* Copyright notifications — work · artist · publishers */
+            <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {compositions.map((composition, i) => {
+                const titleParts = composition.title.split(' - ');
+                const songName = titleParts[0] || composition.title;
+                const artistName = titleParts.slice(1).join(' - ');
+                const publishers = (composition.sections ?? []).map(s => s.title).filter(Boolean);
 
                 return (
-                  <Link
-                    key={composition.slug}
-                    href={compositionUrl(composition)}
-                    className="block bg-card rounded-xl p-6 border border-border
-                             cursor-pointer transition-all duration-300
-                             hover:border-primary/30 hover:shadow-md
-                             group"
-                  >
-                    <div className="flex items-start gap-4">
-                      {/* Icon */}
-                      <div className="p-3 rounded-lg bg-primary/15 group-hover:bg-primary/25 transition-colors flex-shrink-0">
-                        <Scale className="h-6 w-6 text-primary" />
-                      </div>
-
-                      {/* Content */}
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-start justify-between gap-4 mb-2">
-                          <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
-                            {composition.title}
-                          </h3>
-                          <Badge className="bg-primary/10 text-primary border border-primary/30 text-xs flex-shrink-0">
-                            {sectionCount} {sectionCount === 1 ? 'Document' : 'Documents'}
-                          </Badge>
+                  <Reveal key={composition.slug} delay={Math.min(120 + i * 50, 360)}>
+                    <Link
+                      href={compositionUrl(composition)}
+                      className="group bg-card border border-border rounded-xl p-5 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-200 flex flex-col h-full"
+                    >
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 rounded-lg bg-primary/15 flex-shrink-0">
+                          <Music className="h-4 w-4 text-primary" />
                         </div>
-
-                        {/* Description or section list preview */}
-                        {description ? (
-                          <p className="text-muted-foreground/80 text-sm line-clamp-2 mb-4">{description}</p>
-                        ) : sectionCount > 0 ? (
-                          <p className="text-muted-foreground/80 text-sm mb-4">
-                            Includes: {composition.sections?.slice(0, 3).map(s => s.title).join(', ')}
-                            {sectionCount > 3 ? ` and ${sectionCount - 3} more...` : ''}
-                          </p>
-                        ) : null}
-
-                        {/* View link */}
-                        <span className="text-primary group-hover:text-primary/80 text-sm font-medium inline-flex items-center">
-                          View Case Documents
-                          <ChevronRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                        </span>
+                        <div className="min-w-0">
+                          <h2
+                            className="font-serif text-foreground group-hover:text-primary transition-colors"
+                            style={{ fontSize: '1.125rem', fontWeight: 580, letterSpacing: '-0.014em', lineHeight: 1.3 }}
+                          >
+                            {songName}
+                          </h2>
+                          {artistName && (
+                            <p className="text-xs text-muted-foreground mt-1 font-sans">{artistName}</p>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  </Link>
+                      {publishers.length > 0 && (
+                        <p className="text-sm text-muted-foreground mt-3 font-sans leading-snug line-clamp-2 flex-grow">
+                          {publishers.join(' · ')}
+                        </p>
+                      )}
+                      <p
+                        className="text-sm text-primary mt-4 font-sans inline-flex items-center"
+                        style={{ fontWeight: 500 }}
+                      >
+                        {publishers.length} {noun(page.unitNoun, publishers.length)}
+                        <ArrowRight className="ml-1.5 h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+                      </p>
+                    </Link>
+                  </Reveal>
                 );
               })}
             </div>
           ) : (
-            /* Standard layout for manuscript, data, and other collections */
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {compositions.map(composition => {
+            /* Standard — manuscript, data, timeline, map */
+            <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4">
+              {compositions.map((composition, i) => {
                 const sectionCount = composition.sections?.length || 0;
-                const firstSection = composition.sections?.[0];
-
-                // Try to get preview content from various fields
-                const previewContent =
-                  firstSection?.description ||
-                  firstSection?.content_level_3?.replace(/^#.*\n/, '').substring(0, 200) ||
-                  firstSection?.content_level_1?.replace(/^#.*\n/, '').substring(0, 200) ||
-                  '';
-
-                const isManuscript = compositionId === 'manuscript';
-                const isData = compositionId === 'data';
-                const IconComponent = isManuscript ? BookOpen : isData ? Database : FileText;
-                const accent = isManuscript || isData;
-                // Single warm scheme per DESIGN.md — terracotta is the only accent.
-                const colors = accent
-                  ? {
-                      bg: 'bg-primary/15',
-                      bgHover: 'group-hover:bg-primary/25',
-                      icon: 'text-primary',
-                      badge: 'bg-secondary text-foreground/85 border border-border',
-                      border: 'hover:border-primary/30',
-                      shadow: 'hover:shadow-md',
-                      text: 'text-primary group-hover:text-primary/80',
-                      title: 'group-hover:text-primary',
-                    }
-                  : {
-                      bg: 'bg-muted',
-                      bgHover: 'group-hover:bg-secondary',
-                      icon: 'text-muted-foreground/80',
-                      badge: 'bg-secondary text-muted-foreground border border-border',
-                      border: 'hover:border-border',
-                      shadow: 'hover:shadow-md',
-                      text: 'text-muted-foreground/80 group-hover:text-foreground',
-                      title: 'group-hover:text-foreground/90',
-                    };
+                const excerpt = compositionExcerpt(composition);
+                const contents = excerpt ? null : contentsLine(composition);
 
                 return (
-                  <Link
-                    key={composition.slug}
-                    href={compositionUrl(composition)}
-                    className={cn(
-                      'block bg-card rounded-xl p-6 border border-border',
-                      'cursor-pointer transition-all duration-300',
-                      colors.border,
-                      colors.shadow,
-                      'group'
-                    )}
-                  >
-                    {/* Header with icon */}
-                    <div className="flex items-start gap-4 mb-4">
-                      <div className={cn('p-2 rounded-lg transition-colors flex-shrink-0', colors.bg, colors.bgHover)}>
-                        <IconComponent className={cn('h-5 w-5', colors.icon)} />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className={cn('text-lg font-semibold text-foreground transition-colors line-clamp-2', colors.title)}>
-                          {composition.title}
-                        </h3>
-                      </div>
-                      <Badge className={cn('text-xs flex-shrink-0', colors.badge)}>
-                        {sectionCount} {sectionCount === 1 ? 'Section' : 'Sections'}
-                      </Badge>
-                    </div>
-
-                    {/* Preview content */}
-                    {previewContent ? (
-                      <p className="text-muted-foreground/80 text-sm line-clamp-3 mb-4 leading-relaxed">
-                        {previewContent.replace(/[#*_`]/g, '').trim()}...
+                  <Reveal key={composition.slug} delay={Math.min(120 + i * 60, 360)}>
+                    <Link
+                      href={compositionUrl(composition)}
+                      className="group bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-200 flex flex-col h-full"
+                    >
+                      <h2
+                        className="font-serif text-foreground group-hover:text-primary transition-colors"
+                        style={{ fontSize: '1.25rem', fontWeight: 580, letterSpacing: '-0.014em', lineHeight: 1.3 }}
+                      >
+                        {displayTitle(composition.title)}
+                      </h2>
+                      <p
+                        className="text-xs text-muted-foreground mt-1.5 font-sans"
+                        style={{ fontVariantNumeric: 'tabular-nums' }}
+                      >
+                        {sectionCount} {noun(page.unitNoun, sectionCount)}
                       </p>
-                    ) : sectionCount > 0 ? (
-                      <div className="mb-4">
-                        <p className="text-muted-foreground/70 text-sm mb-2">Sections:</p>
-                        <div className="flex flex-wrap gap-1">
-                          {composition.sections?.slice(0, 4).map((s, i) => (
-                            <Badge key={i} variant="outline" className="bg-card/80 text-muted-foreground/80 border-border text-xs">
-                              {s.title.length > 25 ? s.title.substring(0, 25) + '...' : s.title}
-                            </Badge>
-                          ))}
-                          {sectionCount > 4 && (
-                            <Badge variant="outline" className="bg-card/80 text-muted-foreground/70 border-border text-xs">
-                              +{sectionCount - 4} more
-                            </Badge>
-                          )}
-                        </div>
-                      </div>
-                    ) : (
-                      <p className="text-muted-foreground/70 text-sm mb-4 italic">No content yet</p>
-                    )}
-
-                    {/* Footer */}
-                    <div className="pt-4 border-t border-border">
-                      <span className={cn('text-sm font-medium inline-flex items-center', colors.text)}>
-                        {isManuscript ? 'Read Research' : isData ? 'View Evidence' : 'View Content'}
-                        <ChevronRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                      </span>
-                    </div>
-                  </Link>
+                      {excerpt ? (
+                        <p className="text-sm text-foreground/85 mt-3 font-sans leading-relaxed line-clamp-3 flex-grow">
+                          {excerpt}
+                        </p>
+                      ) : contents ? (
+                        <p className="text-sm text-muted-foreground mt-3 font-sans leading-snug line-clamp-3 flex-grow">
+                          {contents}
+                        </p>
+                      ) : (
+                        <span className="flex-grow" />
+                      )}
+                      <p
+                        className="text-sm text-primary mt-4 font-sans inline-flex items-center"
+                        style={{ fontWeight: 500 }}
+                      >
+                        {page.cta}
+                        <ArrowRight className="ml-1.5 h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+                      </p>
+                    </Link>
+                  </Reveal>
                 );
               })}
             </div>
           )}
         </div>
-      </div>
+      </main>
     </SitePageLayout>
   );
 }
