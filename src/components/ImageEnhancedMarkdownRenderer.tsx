@@ -2,7 +2,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import rehypeRaw from 'rehype-raw';
 import { Button } from '@/components/ui/button';
 import { Code, Eye, Copy, Check, ZoomIn, X, AlertCircle, RefreshCw } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -572,9 +571,12 @@ const customComponents = {
           <ImageGallery images={images} position="top" />
 
           {/* Main Content */}
+          {/* rehype-raw removed 2026-07: the content corpus contains no raw
+              HTML, and unsanitized passthrough was a stored-XSS hole the
+              moment content sourcing changes. react-markdown escapes raw
+              HTML by default. */}
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
-            rehypePlugins={[rehypeRaw]}
             components={customComponents}
           >
             {content}

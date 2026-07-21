@@ -5,7 +5,6 @@ import { PageLayout } from "@/components/PageLayout";
 import { useCompositionStore } from "@/utils/compositionData";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import rehypeRaw from 'rehype-raw';
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
