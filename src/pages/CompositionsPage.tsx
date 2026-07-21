@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { PageLayout } from "@/components/PageLayout";
-import { useCompositionStore } from "@/utils/compositionData";
+import { useCompositionStore, ALL_COLLECTIONS, type CollectionType } from "@/utils/compositionData";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { cn } from "@/lib/utils";
@@ -78,7 +78,7 @@ const CompositionsPage: React.FC = () => {
   } = useCompositionStore();
 
   // Get actions separately to prevent infinite loops
-  const refreshCompositions = useCompositionStore(state => state.refreshCompositions);
+  const loadCollections = useCompositionStore(state => state.loadCollections);
   const forceRefresh = useCompositionStore(state => state.forceRefresh);
   const setDebugMode = useCompositionStore(state => state.setDebugMode);
   const getCollectionCompositions = useCompositionStore(state => state.getCollectionCompositions);
@@ -110,9 +110,9 @@ const CompositionsPage: React.FC = () => {
           setDebugMode(true);
         }
 
-        // Only refresh if not initialized or if collection changed
-        if (!initialized) {
-          await refreshCompositions();
+        // Load only this grid's collection
+        if (compositionId && (ALL_COLLECTIONS as string[]).includes(compositionId)) {
+          await loadCollections([compositionId as CollectionType]);
         }
       } catch (error) {
         if (import.meta.env.DEV) console.error('💥 Error in loadData:', error);
@@ -288,7 +288,7 @@ const CompositionsPage: React.FC = () => {
                     variant="outline"
                     size="sm"
                     className="border-destructive/40 text-destructive hover:bg-destructive/10"
-                    onClick={() => refreshCompositions()}
+                    onClick={() => forceRefresh()}
                   >
                     <RefreshCw className="h-4 w-4 mr-2" />
                     Retry

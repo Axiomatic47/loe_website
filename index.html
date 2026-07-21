@@ -36,61 +36,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
-    <!-- MathJax Configuration -->
-    <script>
-      window.MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']],
-          displayMath: [['$$', '$$'], ['\\[', '\\]']],
-          processEscapes: true,
-          processEnvironments: true,
-          tags: 'ams',
-          packages: { '[+]': ['ams', 'newcommand', 'configmacros'] },
-          macros: {
-            // Laws of Existence specific macros - ONLY custom ones
-            LoE: '\\mathfrak{L}',
-            Coh: '\\text{Coh}',
-            // Custom operators for the framework
-            PhiP: '\\Phi_P',
-            PhiT: '\\Phi_T',
-            PhiU: '\\Phi_U',
-            PhiF: '\\Phi_F',
-            PhiN: '\\Phi_N',
-            // Recursive operator
-            RecOp: '\\mathcal{R}',
-            // Phase space
-            PS: '\\mathcal{PS}',
-            // Attractor structure
-            Att: '\\mathcal{A}',
-            // Basin of attraction
-            Basin: '\\mathcal{B}',
-            // Evolution function
-            Evol: '\\mathcal{F}',
-            // Existence threshold
-            ExistThresh: '\\tau_{\\text{exist}}',
-            // Valence function
-            Val: '\\text{Val}',
-            // Choice mapping
-            Choice: '\\text{Choice}',
-            // Correspondence function
-            Corresponds: '\\text{Corresponds}'
-          }
-        },
-        options: {
-          ignoreHtmlClass: 'tex2jax_ignore',
-          processHtmlClass: 'tex2jax_process'
-        },
-        startup: {
-          typeset: false // React will handle typesetting
-        },
-        svg: {
-          fontCache: 'global'
-        }
-      };
-    </script>
-
-    <!-- Load MathJax -->
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- MathJax loads ON DEMAND from src/utils/mathjax.ts (config + macros
+         moved there verbatim) — only pages whose content contains TeX pay
+         for the ~1 MB bundle. -->
 
     <!-- Plausible Analytics - Privacy-focused, GDPR compliant with enhanced features -->
     <script defer data-domain="lawsofexistence.com" src="https://plausible.io/js/script.file-downloads.hash.outbound-links.pageview-props.tagged-events.js"></script>

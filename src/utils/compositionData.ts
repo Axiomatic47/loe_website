@@ -4,6 +4,23 @@ import { create } from 'zustand';
 
 const DEV = import.meta.env.DEV;
 
+export type CollectionType =
+  | 'manuscript'
+  | 'data'
+  | 'constitutional'
+  | 'copyright'
+  | 'timeline'
+  | 'map';
+
+export const ALL_COLLECTIONS: CollectionType[] = [
+  'manuscript',
+  'data',
+  'constitutional',
+  'copyright',
+  'timeline',
+  'map',
+];
+
 export interface ImageData {
   src: string;
   alt: string;
@@ -57,8 +74,13 @@ interface CompositionStore {
   error: string | null;
   lastRefresh: Date | null;
   debugMode: boolean;
+  // Per-collection load tracking: routes request only the collections they
+  // render (loadCollections), so a deep-link visitor never downloads the
+  // whole corpus. refreshCompositions() remains the load-everything path.
+  loadedCollections: Record<CollectionType, boolean>;
 
   setCompositions: (compositions: Composition[]) => void;
+  loadCollections: (collections: CollectionType[]) => Promise<void>;
   refreshCompositions: () => Promise<void>;
   forceRefresh: () => Promise<void>;
   getComposition: (collection: string, index: number) => Composition | null;
@@ -74,8 +96,19 @@ interface CompositionStore {
   setDebugMode: (enabled: boolean) => void;
 }
 
+const NO_COLLECTIONS_LOADED: Record<CollectionType, boolean> = {
+  manuscript: false,
+  data: false,
+  constitutional: false,
+  copyright: false,
+  timeline: false,
+  map: false,
+};
+
 export const useCompositionStore = create<CompositionStore>((set, get) => {
   let isLoading = false;
+  // In-flight per-collection loads (deduped across concurrent callers).
+  const inflight = new Map<CollectionType, Promise<void>>();
 
   return {
     manuscript: [],
@@ -89,6 +122,7 @@ export const useCompositionStore = create<CompositionStore>((set, get) => {
     error: null,
     lastRefresh: null,
     debugMode: DEV || false,
+    loadedCollections: { ...NO_COLLECTIONS_LOADED },
 
     setDebugMode: (enabled) => {
       set({ debugMode: enabled });
@@ -113,7 +147,65 @@ export const useCompositionStore = create<CompositionStore>((set, get) => {
         loading: false,
         error: null,
         lastRefresh: new Date(),
+        loadedCollections: {
+          manuscript: true,
+          data: true,
+          constitutional: true,
+          copyright: true,
+          timeline: true,
+          map: true,
+        },
       });
+    },
+
+    loadCollections: async (collections) => {
+      const state = get();
+      const missing = collections.filter(
+        c => !state.loadedCollections[c] && !inflight.has(c),
+      );
+
+      if (missing.length > 0) {
+        const load = (async () => {
+          set({ loading: true, error: null });
+          try {
+            const { loadCompositions } = await import('./compositionLoader');
+            const loaded = await loadCompositions(missing);
+
+            set(s => {
+              const patch: Record<string, unknown> = {
+                initialized: true,
+                lastRefresh: new Date(),
+                loadedCollections: {
+                  ...s.loadedCollections,
+                  ...Object.fromEntries(missing.map(c => [c, true])),
+                },
+              };
+              for (const c of missing) {
+                patch[c] = loaded.filter(comp => comp.collection_type === c);
+              }
+              return patch as Partial<CompositionStore>;
+            });
+          } catch (error) {
+            console.error('Error loading collections:', missing, error);
+            set({
+              error: error instanceof Error ? error.message : 'Unknown error',
+              initialized: true,
+            });
+          } finally {
+            missing.forEach(c => inflight.delete(c));
+            set({ loading: inflight.size > 0 });
+          }
+        })();
+
+        missing.forEach(c => inflight.set(c, load));
+      }
+
+      // Wait for everything the caller asked for that is still in flight.
+      await Promise.all(
+        collections
+          .map(c => inflight.get(c))
+          .filter((p): p is Promise<void> => Boolean(p)),
+      );
     },
 
     refreshCompositions: async () => {
@@ -152,6 +244,7 @@ export const useCompositionStore = create<CompositionStore>((set, get) => {
     },
 
     forceRefresh: async () => {
+      inflight.clear();
       set({
         manuscript: [],
         data: [],
@@ -163,6 +256,7 @@ export const useCompositionStore = create<CompositionStore>((set, get) => {
         loading: false,
         error: null,
         lastRefresh: null,
+        loadedCollections: { ...NO_COLLECTIONS_LOADED },
       });
       await get().refreshCompositions();
     },

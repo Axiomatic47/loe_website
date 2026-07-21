@@ -157,14 +157,14 @@ const CaseLandingPage = ({ caseKey }: { caseKey: keyof typeof CASES }) => {
   const c = CASES[caseKey];
   const caseSlug = `kirchner-v-${caseKey}`;
   const navigate = useNavigate();
-  const { refreshCompositions, getCaseComposition } = useCompositionStore();
+  const { loadCollections, getCaseComposition } = useCompositionStore();
 
   useCanonical(`/${caseSlug}`);
   useDocumentMeta(c.caption, c.summary, `/${caseSlug}`);
 
   useEffect(() => {
-    refreshCompositions();
-  }, [refreshCompositions]);
+    loadCollections(['constitutional']);
+  }, [loadCollections]);
 
   const composition = getCaseComposition(caseSlug);
   const docCount = composition?.sections?.length || null;

@@ -5,9 +5,10 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense, useMemo } from 'react';
 import { useNoIndex } from "./hooks/useNoIndex";
-import { useCompositionStore } from "./utils/compositionData";
+import { useCollections } from "./hooks/useCollections";
+import { useCompositionStore, ALL_COLLECTIONS, type CollectionType } from "./utils/compositionData";
 import { normalizeDocId, sectionUrl, type CaseSlug } from "./utils/urls";
 
 // Route components are lazy-loaded so each page ships as its own chunk.
@@ -100,16 +101,10 @@ const RouteFallback = () => (
   </div>
 );
 
-// Make sure the content store is loading/loaded before a resolver reads it.
-function useEnsureCompositions() {
-  const store = useCompositionStore();
-  useEffect(() => {
-    if (!store.initialized && !store.loading) {
-      store.refreshCompositions();
-    }
-  }, [store]);
-  return store;
-}
+// Case resolvers only ever need the constitutional collection (module-level
+// constant so the useCollections effect dep stays stable).
+const CONSTITUTIONAL: CollectionType[] = ['constitutional'];
+const NO_COLLECTIONS: CollectionType[] = [];
 
 // Descriptive case-document routes (/kirchner-v-<case>/:docId, /scotus-amicus/:docId)
 // render the reader DIRECTLY — no redirect. The docId is normalized to a section
@@ -118,9 +113,10 @@ function useEnsureCompositions() {
 // its legacy N-A arithmetic deep links).
 const CaseDocReader = ({ caseSlug }: { caseSlug: CaseSlug }) => {
   const { docId = "" } = useParams<{ docId: string }>();
-  const store = useEnsureCompositions();
+  const store = useCompositionStore();
+  const { ready, error } = useCollections(CONSTITUTIONAL);
 
-  if (store.loading || !store.initialized) return <RouteFallback />;
+  if (!ready) return error ? <NotFound /> : <RouteFallback />;
 
   const composition = store.getCaseComposition(caseSlug);
   if (!composition) return <NotFound />;
@@ -158,9 +154,10 @@ const CaseDocReader = ({ caseSlug }: { caseSlug: CaseSlug }) => {
 // to the canonical descriptive slug URL.
 const CaseSectionRedirect = ({ caseSlug }: { caseSlug: CaseSlug }) => {
   const { sectionId = "1" } = useParams<{ sectionId: string }>();
-  const store = useEnsureCompositions();
+  const store = useCompositionStore();
+  const { ready, error } = useCollections(CONSTITUTIONAL);
 
-  if (store.loading || !store.initialized) return <RouteFallback />;
+  if (!ready) return error ? <NotFound /> : <RouteFallback />;
 
   const composition = store.getCaseComposition(caseSlug);
   const target = composition?.sections?.[parseInt(sectionId, 10) - 1];
@@ -170,9 +167,10 @@ const CaseSectionRedirect = ({ caseSlug }: { caseSlug: CaseSlug }) => {
 
 // Bare /scotus-amicus renders part 1 directly (published URL — no redirect).
 const ScotusAmicusIndex = () => {
-  const store = useEnsureCompositions();
+  const store = useCompositionStore();
+  const { ready, error } = useCollections(CONSTITUTIONAL);
 
-  if (store.loading || !store.initialized) return <RouteFallback />;
+  if (!ready) return error ? <NotFound /> : <RouteFallback />;
 
   const composition = store.getCaseComposition("scotus-amicus");
   const first = composition?.sections?.[0];
@@ -188,9 +186,16 @@ const ScotusAmicusIndex = () => {
 // resolve by index and redirect to the canonical descriptive URL.
 const LegacyPositionalRedirect = () => {
   const { compositionId = "", compositionIndex = "1", sectionId = "1" } = useParams();
-  const store = useEnsureCompositions();
+  const store = useCompositionStore();
+  const isCollection = (ALL_COLLECTIONS as string[]).includes(compositionId);
+  const collections = useMemo<CollectionType[]>(
+    () => (isCollection ? [compositionId as CollectionType] : NO_COLLECTIONS),
+    [isCollection, compositionId],
+  );
+  const { ready, error } = useCollections(collections);
 
-  if (store.loading || !store.initialized) return <RouteFallback />;
+  if (!isCollection) return <NotFound />;
+  if (!ready) return error ? <NotFound /> : <RouteFallback />;
 
   const composition = store.getComposition(compositionId, parseInt(compositionIndex, 10));
   const section = store.getSection(compositionId, parseInt(compositionIndex, 10), parseInt(sectionId, 10));

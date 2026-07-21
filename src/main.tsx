@@ -30,29 +30,9 @@ async function initializeApp() {
       }
     }
 
-    // Pre-load composition store for better performance
-    try {
-      const { useCompositionStore } = await import('./utils/compositionData');
-      const store = useCompositionStore.getState();
-
-      if (import.meta.env.DEV) {
-        console.log('📊 Composition Store initialized');
-        console.log('🔄 Store initialization status:', {
-          initialized: store.initialized,
-          loading: store.loading,
-          error: store.error
-        });
-      }
-
-      // Trigger initial composition loading
-      if (!store.initialized) {
-        store.refreshCompositions().catch(error => {
-          console.error('⚠️ Error during initial composition loading:', error);
-        });
-      }
-    } catch (error) {
-      console.error('❌ Error initializing composition store:', error);
-    }
+    // NOTE: no store preload here — routes load only the content collections
+    // they render (src/hooks/useCollections.ts), so a deep-link visitor never
+    // downloads the whole corpus at boot.
 
     // Get the root element with proper error handling
     const rootElement = document.getElementById('root');

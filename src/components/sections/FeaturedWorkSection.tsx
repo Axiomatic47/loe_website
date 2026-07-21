@@ -31,11 +31,13 @@ const FeaturedPanel = ({
 
 export const FeaturedWorkSection = () => {
   const navigate = useNavigate();
-  const { manuscript, data, constitutional, timeline, map, refreshCompositions, getComposition, getSection } = useCompositionStore();
+  const { manuscript, data, constitutional, timeline, map, loadCollections, getComposition, getSection } = useCompositionStore();
 
+  // The homepage renders featured content inline, so it loads the collections
+  // it actually displays (copyright is the only one it never shows).
   useEffect(() => {
-    refreshCompositions();
-  }, [refreshCompositions]);
+    loadCollections(['manuscript', 'data', 'constitutional', 'timeline', 'map']);
+  }, [loadCollections]);
 
   const getFeaturedSections = () => {
     const featured = [];

@@ -74,11 +74,11 @@ const Eyebrow = ({ children }: { children: React.ReactNode }) => (
 
 const Index = () => {
   const navigate = useNavigate();
-  const { constitutional, refreshCompositions } = useCompositionStore();
+  const { constitutional, loadCollections } = useCompositionStore();
 
   useEffect(() => {
-    refreshCompositions();
-  }, [refreshCompositions]);
+    loadCollections(['constitutional']);
+  }, [loadCollections]);
 
   // Live document count across the three cases
   const totalCaseDocs = constitutional.reduce(

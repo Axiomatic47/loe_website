@@ -1,5 +1,5 @@
 // src/utils/compositionLoader.ts - Loads JSON content collections into the Zustand store.
-import { Composition, ImageData, Section } from './compositionData';
+import { Composition, ImageData, Section, CollectionType } from './compositionData';
 
 const DEV = import.meta.env.DEV;
 
@@ -83,7 +83,9 @@ function deriveConstitutionalSectionSlug(
   }
 }
 
-export const loadCompositions = async (): Promise<Composition[]> => {
+export const loadCompositions = async (
+  collections?: CollectionType[],
+): Promise<Composition[]> => {
   try {
     const manuscriptFiles = import.meta.glob('/content/manuscript/*.json', {
       eager: false,
@@ -118,28 +120,33 @@ export const loadCompositions = async (): Promise<Composition[]> => {
 
     const compositions: Composition[] = [];
 
+    // Per-collection loading: when a subset is requested, only those glob maps
+    // are processed — a court-doc deep link loads 'constitutional' only, not
+    // the full ~2.6 MB corpus.
+    const want = (c: CollectionType) => !collections || collections.includes(c);
+
     // Bounded concurrency: fully-parallel loads can swamp Vite's dev server
     // and cause some imports to time out, surfacing as "Error Loading" fallbacks.
     const CONCURRENCY = 8;
     const allTasks: Array<() => Promise<void>> = [
-      ...Object.entries(manuscriptFiles).map(([p, l]) =>
+      ...(want('manuscript') ? Object.entries(manuscriptFiles).map(([p, l]) =>
         () => processFileWithErrorHandling(p, l, 'manuscript', compositions),
-      ),
-      ...Object.entries(dataFiles).map(([p, l]) =>
+      ) : []),
+      ...(want('data') ? Object.entries(dataFiles).map(([p, l]) =>
         () => processFileWithErrorHandling(p, l, 'data', compositions),
-      ),
-      ...Object.entries(constitutionalFiles).map(([p, l]) =>
+      ) : []),
+      ...(want('constitutional') ? Object.entries(constitutionalFiles).map(([p, l]) =>
         () => processFileWithErrorHandling(p, l, 'constitutional', compositions),
-      ),
-      ...Object.entries(mapFiles).map(([p, l]) =>
+      ) : []),
+      ...(want('map') ? Object.entries(mapFiles).map(([p, l]) =>
         () => processFileWithErrorHandling(p, l, 'map', compositions),
-      ),
-      ...Object.entries(copyrightFiles).map(([p, l]) =>
+      ) : []),
+      ...(want('copyright') ? Object.entries(copyrightFiles).map(([p, l]) =>
         () => processFileWithErrorHandling(p, l, 'copyright', compositions),
-      ),
-      ...Object.entries(timelineFiles).map(([p, l]) =>
+      ) : []),
+      ...(want('timeline') ? Object.entries(timelineFiles).map(([p, l]) =>
         () => processTimelineFileWithErrorHandling(p, l, compositions),
-      ),
+      ) : []),
     ];
 
     for (let i = 0; i < allTasks.length; i += CONCURRENCY) {
@@ -148,7 +155,9 @@ export const loadCompositions = async (): Promise<Composition[]> => {
     }
 
     if (compositions.length === 0) {
-      return getSampleCompositions();
+      // Sample content only makes sense on a full load of an empty site;
+      // an empty subset result is just an empty subset.
+      return collections ? [] : getSampleCompositions();
     }
 
     return compositions.sort((a, b) => {

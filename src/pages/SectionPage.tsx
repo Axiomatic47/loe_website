@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { useCompositionStore } from "@/utils/compositionData";
+import { useCompositionStore, ALL_COLLECTIONS, type CollectionType } from "@/utils/compositionData";
 import { PageLayout } from "@/components/PageLayout";
 import { cn } from "@/lib/utils";
 import MobileNavigation, { useMobileNavigation } from "@/components/MobileNavigation";
@@ -81,22 +81,17 @@ const SectionPage = ({
   const store = useCompositionStore();
   const { isSidebarOpen, setIsSidebarOpen, isMobile } = useMobileNavigation();
 
-  // Initialize and load data
+  // Initialize and load ONLY this page's collection (deep-link visitors never
+  // download the whole corpus).
   useEffect(() => {
     setMounted(true);
 
-    const loadData = async () => {
-      if (!store.initialized) {
-        try {
-          await store.refreshCompositions();
-        } catch (error) {
-          if (import.meta.env.DEV) console.error('Error loading compositions:', error);
-        }
-      }
-    };
-
-    loadData();
-  }, [store]);
+    if ((ALL_COLLECTIONS as string[]).includes(collection)) {
+      store.loadCollections([collection as CollectionType]).catch(error => {
+        if (import.meta.env.DEV) console.error('Error loading collection:', collection, error);
+      });
+    }
+  }, [store, collection]);
 
   // Scroll to top when section changes
   useEffect(() => {
@@ -448,9 +443,13 @@ const getCollectionConfig = (collectionType: string) => {
     return null;
   }
 
-  // Loading state — also covers the pre-initialization tick so an unresolved
-  // slug never flashes "Section Not Found" before the store has loaded.
-  if (store.loading || !store.initialized) {
+  // Loading state — gates on THIS page's collection readiness so an unresolved
+  // slug never flashes "Section Not Found" before its collection has loaded.
+  // (An unknown collection name skips the gate and falls through to not-found.)
+  if (
+    (ALL_COLLECTIONS as string[]).includes(collection) &&
+    !store.loadedCollections[collection as CollectionType]
+  ) {
     return (
       <PageLayout>
         <div className="container mx-auto px-4 py-12">

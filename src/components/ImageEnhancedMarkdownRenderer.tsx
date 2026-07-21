@@ -5,6 +5,7 @@ import remarkGfm from 'remark-gfm';
 import { Button } from '@/components/ui/button';
 import { Code, Eye, Copy, Check, ZoomIn, X, AlertCircle, RefreshCw } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { ensureMathJax, hasMath } from '@/utils/mathjax';
 import { enhancedResolveImagePath, testImagePath, findWorkingImagePath } from '@/utils/imageDebugHelper';
 
 // For MathJax approach
@@ -353,13 +354,25 @@ const ImageEnhancedMarkdownRenderer: React.FC<ImageEnhancedMarkdownProps> = ({
     }
   }, [content, images]);
 
-  // Process MathJax after render
+  // Process MathJax after render — loaded ON DEMAND, and only for content
+  // that actually contains TeX (court-doc PDF pages never pay the ~1 MB cost).
   useEffect(() => {
-    if (window.MathJax && containerRef.current && viewMode === 'rendered') {
-      window.MathJax.typesetPromise([containerRef.current]).catch((err: any) =>
-        console.error('MathJax error:', err)
-      );
-    }
+    if (viewMode !== 'rendered' || !hasMath(content)) return;
+
+    let cancelled = false;
+    ensureMathJax()
+      .then(() => {
+        if (!cancelled && window.MathJax?.typesetPromise && containerRef.current) {
+          window.MathJax.typesetPromise([containerRef.current]).catch((err: any) =>
+            console.error('MathJax error:', err)
+          );
+        }
+      })
+      .catch((err: any) => console.error('MathJax load error:', err));
+
+    return () => {
+      cancelled = true;
+    };
   }, [content, viewMode]);
 
   // Copy to clipboard function

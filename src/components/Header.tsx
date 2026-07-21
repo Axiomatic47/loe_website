@@ -8,8 +8,9 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import ThemeToggle from '@/components/ThemeToggle';
-import { useCompositionStore } from '@/utils/compositionData';
-import { compositionUrl } from '@/utils/urls';
+// Dropdown menus read the tiny build-time nav manifest instead of the content
+// store — the Header renders on every page and must not pull the corpus.
+import navManifest from '@/data/navManifest.json';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -87,12 +88,7 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
-  const { manuscript, data, refreshCompositions } = useCompositionStore();
-
-  // Ensure dropdown lists are populated even on pages that don't load the store
-  React.useEffect(() => {
-    refreshCompositions();
-  }, [refreshCompositions]);
+  const { manuscript, data } = navManifest;
 
   const isActive = (path: string) => location.pathname === path;
   const inSection = (prefix: string) => location.pathname.startsWith(prefix);
@@ -153,12 +149,12 @@ export const Header: React.FC<HeaderProps> = ({
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
                       <div className="w-[340px] p-2 bg-card">
-                        {manuscript.map((comp, i) => (
+                        {manuscript.map((item, i) => (
                           <MenuRow
                             key={i}
-                            href={compositionUrl(comp)}
-                            label={comp.title}
-                            sub={`${comp.sections?.length || 0} section${(comp.sections?.length || 0) === 1 ? '' : 's'}`}
+                            href={item.url}
+                            label={item.title}
+                            sub={`${item.sectionCount} section${item.sectionCount === 1 ? '' : 's'}`}
                           />
                         ))}
                         <MenuFooterLink href="/composition/manuscript" label="All research" />
@@ -172,12 +168,12 @@ export const Header: React.FC<HeaderProps> = ({
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
                       <div className="w-[340px] p-2 bg-card">
-                        {data.map((comp, i) => (
+                        {data.map((item, i) => (
                           <MenuRow
                             key={i}
-                            href={compositionUrl(comp)}
-                            label={comp.title}
-                            sub={`${comp.sections?.length || 0} section${(comp.sections?.length || 0) === 1 ? '' : 's'}`}
+                            href={item.url}
+                            label={item.title}
+                            sub={`${item.sectionCount} section${item.sectionCount === 1 ? '' : 's'}`}
                           />
                         ))}
                         <MenuFooterLink href="/composition/data" label="All evidence" />
