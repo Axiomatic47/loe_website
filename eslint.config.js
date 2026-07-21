@@ -18,10 +18,10 @@ export default tseslint.config(
       "Chronological Testimonies",
     ],
   },
-  // TypeScript + React app code
+  // TypeScript + React app code (both renderers: vite src/ and Next app/)
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
-    files: ["src/**/*.{ts,tsx}"],
+    files: ["src/**/*.{ts,tsx}", "app/**/*.{ts,tsx}"],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
@@ -53,8 +53,10 @@ export default tseslint.config(
   },
   // shadcn/ui primitives co-export their cva variants/context hooks by
   // design (vendored library pattern) — the fast-refresh nudge doesn't apply.
+  // Nor to the App Router tree: pages co-export metadata/generateStaticParams
+  // by contract, and Next's own Fast Refresh handles them.
   {
-    files: ["src/components/ui/**/*.{ts,tsx}"],
+    files: ["src/components/ui/**/*.{ts,tsx}", "app/**/*.{ts,tsx}"],
     rules: {
       "react-refresh/only-export-components": "off",
     },
@@ -97,7 +99,7 @@ export default tseslint.config(
   // Node-side pipeline scripts (TypeScript) + vite config
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
-    files: ["scripts/**/*.ts", "vite.config.ts"],
+    files: ["scripts/**/*.ts", "vite.config.ts", "next.config.ts"],
     languageOptions: {
       ecmaVersion: 2022,
       globals: globals.node,

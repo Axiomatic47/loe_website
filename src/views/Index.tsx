@@ -18,50 +18,9 @@ import { Reveal } from "@/components/Reveal";
 import { useCompositionStore } from "@/utils/compositionData";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Scale, CalendarClock } from "lucide-react";
-
-// ---------------------------------------------------------------------------
-// Case registry (manual status lines — keep current with the dockets)
-// ---------------------------------------------------------------------------
-const FEATURED_CASE = {
-  caption: "Kirchner v. Johnson, et al.",
-  court: "United States District Court for the District of Columbia",
-  caseNo: "No. 1:25-cv-02735-ACR",
-  judge: "Hon. Ana C. Reyes",
-  defendants:
-    "the Speaker of the House, the President, the Attorney General, the FCC Chairman, the U.S. House of Representatives, Anthropic, OpenAI, Apple, Comcast, and METR",
-  operative: "Third Amended Complaint (Doc. 51), filed April 30, 2026",
-  deadline:
-    "All defendants moved to dismiss on July 15, 2026; Plaintiff’s opposition is due August 28, 2026.",
-  href: "/kirchner-v-johnson", // case landing page
-  operativeHref: "/kirchner-v-johnson/51", // straight to the TAC
-};
-
-const CASE_STRIP = [
-  {
-    caption: "Kirchner v. Johnson, et al.",
-    court: "U.S. District Court, D.D.C.",
-    caseNo: "1:25-cv-02735-ACR",
-    status: "Active — motion-to-dismiss briefing underway",
-    href: "/kirchner-v-johnson",
-    matchTitle: "johnson",
-  },
-  {
-    caption: "Kirchner v. Ellison",
-    court: "U.S. District Court, D. Minn.",
-    caseNo: "0:26-cv-00726",
-    status: "On appeal — Eighth Circuit No. 26-1615",
-    href: "/kirchner-v-ellison",
-    matchTitle: "ellison",
-  },
-  {
-    caption: "Kirchner v. Acosta",
-    court: "U.S. District Court, S.D. Fla.",
-    caseNo: "9:26-cv-80296-DMM",
-    status: "Dismissed without prejudice — motion to amend pending",
-    href: "/kirchner-v-acosta",
-    matchTitle: "acosta",
-  },
-];
+// Case registry (manual status lines) lives in src/data/homeContent.ts,
+// shared with the Next.js home — update docket status THERE.
+import { FEATURED_CASE, CASE_STRIP } from "@/data/homeContent";
 
 const Eyebrow = ({ children }: { children: React.ReactNode }) => (
   <div
