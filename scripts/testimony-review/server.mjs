@@ -7,10 +7,11 @@ import { fileURLToPath } from 'url';
 import {
   PUBLISHED_ROOT,
   QUEUE_ROOT,
+  INBOX_ROOT,
   scanAll,
   testimonyAbsPath,
-  loadDecisions,
-  saveDecisions,
+  loadState,
+  saveState,
 } from './lib.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -35,14 +36,14 @@ const json = (res, code, body) => {
   res.end(JSON.stringify(body));
 };
 
-// Resolve a requested file strictly inside one of the two testimony roots.
+// Resolve a requested file strictly inside one of the three testimony roots.
 function resolveSandboxed(key, location, relFile) {
   const slash = key.indexOf('/');
   if (slash < 0) return null;
   const t = { baseSet: key.slice(0, slash), dirname: key.slice(slash + 1), location };
   const base = testimonyAbsPath(t);
   const abs = path.resolve(base, relFile);
-  const roots = [PUBLISHED_ROOT, QUEUE_ROOT];
+  const roots = [PUBLISHED_ROOT, QUEUE_ROOT, INBOX_ROOT];
   if (!roots.some((r) => abs.startsWith(r + path.sep))) return null;
   if (!abs.startsWith(base + path.sep) && abs !== base) return null;
   return abs;
@@ -72,7 +73,8 @@ const server = http.createServer(async (req, res) => {
 
     if (req.method === 'GET' && url.pathname === '/api/state') {
       const { sets } = scanAll();
-      json(res, 200, { sets, decisions: loadDecisions() });
+      const state = loadState();
+      json(res, 200, { sets, decisions: state.decisions, primaries: state.primaries });
       return;
     }
 
@@ -102,11 +104,34 @@ const server = http.createServer(async (req, res) => {
         json(res, 400, { error: 'bad decision' });
         return;
       }
-      const decisions = loadDecisions();
-      if (decision) decisions[key] = decision;
-      else delete decisions[key];
-      saveDecisions(decisions);
-      json(res, 200, { ok: true, decisions });
+      const state = loadState();
+      if (decision) state.decisions[key] = decision;
+      else delete state.decisions[key];
+      saveState(state);
+      json(res, 200, { ok: true, decisions: state.decisions, primaries: state.primaries });
+      return;
+    }
+
+    // Choose which markdown file is THE document for a dir with no top-level
+    // md (the processor reads only the primary once apply hoists it).
+    if (req.method === 'POST' && url.pathname === '/api/primary') {
+      const { key, loc, relpath } = JSON.parse(await readBody(req));
+      if (typeof key !== 'string' || !key.includes('/')) {
+        json(res, 400, { error: 'bad key' });
+        return;
+      }
+      if (relpath != null) {
+        const abs = resolveSandboxed(key, loc, relpath);
+        if (!relpath.endsWith('.md') || !abs || !fs.existsSync(abs)) {
+          json(res, 400, { error: 'primary must be an existing .md inside the testimony' });
+          return;
+        }
+      }
+      const state = loadState();
+      if (relpath) state.primaries[key] = relpath;
+      else delete state.primaries[key];
+      saveState(state);
+      json(res, 200, { ok: true, decisions: state.decisions, primaries: state.primaries });
       return;
     }
 

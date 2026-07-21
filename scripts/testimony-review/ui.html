@@ -34,6 +34,7 @@
   .badge { font-size: 10px; padding: 2px 6px; border-radius: 4px; border: 1px solid var(--line); color: var(--dim); flex: none; }
   .badge.published { color: var(--pub); border-color: var(--pub); }
   .badge.queued { color: var(--que); border-color: var(--que); }
+  .badge.inbox { color: #7fb3d9; border-color: #7fb3d9; }
   .warn { color: var(--rem); font-size: 11px; }
   button { font: inherit; font-size: 12px; padding: 3px 9px; border-radius: 5px; border: 1px solid var(--line); background: transparent; color: var(--dim); cursor: pointer; flex: none; }
   button:hover { border-color: var(--dim); color: var(--ink); }
@@ -61,7 +62,7 @@
   <div id="reader"><div class="placeholder">Select a testimony to read it</div></div>
 </main>
 <script>
-let STATE = { sets: {}, decisions: {} };
+let STATE = { sets: {}, decisions: {}, primaries: {} };
 let OPEN_KEY = null;
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -116,11 +117,26 @@ async function decide(key, decision) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ key, decision: next }),
   });
-  STATE.decisions = (await r.json()).decisions;
+  const out = await r.json();
+  STATE.decisions = out.decisions; STATE.primaries = out.primaries || STATE.primaries;
   renderList();
 }
 
-function allTestimonies(set) { return [...set.published, ...set.queued]; }
+async function setPrimary(key, loc, relpath) {
+  const next = STATE.primaries[key] === relpath ? null : relpath; // click again to clear
+  const r = await fetch('/api/primary', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ key, loc, relpath: next }),
+  });
+  const out = await r.json();
+  if (out.error) { alert(out.error); return; }
+  STATE.primaries = out.primaries;
+  renderList();
+  openReader(key, loc);
+}
+
+function allTestimonies(set) { return [...set.published, ...set.queued, ...(set.inbox || [])]; }
 
 async function bulk(baseSet, decision) {
   for (const t of allTestimonies(STATE.sets[baseSet])) {
@@ -144,7 +160,7 @@ function tally() {
     }
   }
   document.getElementById('tally').innerHTML =
-    `publish <b>${counts.publish}</b> &middot; queue <b>${counts.queue}</b> &middot; ` +
+    `publish <b>${counts.publish}</b> &middot; queue/hold <b>${counts.queue}</b> &middot; ` +
     `remove <b>${counts.remove}</b> &middot; undecided <b>${counts.undecided}</b>`;
 }
 
@@ -157,9 +173,15 @@ function renderList() {
       .sort((a, b) => a.dirname.localeCompare(b.dirname))
       .map((t) => {
         const d = STATE.decisions[t.key];
-        const warn = t.unreachableImages.length
+        let warn = t.unreachableImages.length
           ? `<span class="warn" title="${esc(t.unreachableImages.join(', '))}">&#9888; ${t.unreachableImages.length} img in non-standard dir</span>`
           : '';
+        if (t.hasRootMd === false) {
+          warn += STATE.primaries[t.key]
+            ? ' <span class="warn" style="color:var(--pub)">primary &#10003;</span>'
+            : ' <span class="warn">&#9888; no top-level md — pick primary in reader</span>';
+        }
+        const holdLabel = t.location === 'inbox' ? 'hold' : 'queue';
         return `<div class="row ${OPEN_KEY === t.key ? 'open' : ''}" data-key="${esc(t.key)}" data-loc="${t.location}">
           <div class="meta" onclick="openReader('${esc(t.key)}','${t.location}')">
             <span class="t">${esc(t.title)}</span>
@@ -167,17 +189,18 @@ function renderList() {
           </div>
           <span class="badge ${t.location}">${t.location}</span>
           <button class="${d === 'publish' ? 'on-publish' : ''}" onclick="decide('${esc(t.key)}','publish')">publish</button>
-          <button class="${d === 'queue' ? 'on-queue' : ''}" onclick="decide('${esc(t.key)}','queue')">queue</button>
+          <button class="${d === 'queue' ? 'on-queue' : ''}" onclick="decide('${esc(t.key)}','queue')">${holdLabel}</button>
           <button class="${d === 'remove' ? 'on-remove' : ''}" onclick="decide('${esc(t.key)}','remove')">remove</button>
         </div>`;
       }).join('');
+    const inboxCount = (set.inbox || []).length;
     return `<div class="set">
       <div class="set-head">
         <h2>${esc(name)}</h2>
-        <span class="counts">${set.published.length} published &middot; ${set.queued.length} queued</span>
+        <span class="counts">${set.published.length} published &middot; ${set.queued.length} queued${inboxCount ? ` &middot; ${inboxCount} inbox` : ''}</span>
         <span class="bulk">
           <button onclick="bulk('${esc(name)}','publish')">all publish</button>
-          <button onclick="bulk('${esc(name)}','queue')">all queue</button>
+          <button onclick="bulk('${esc(name)}','queue')">all ${inboxCount && !set.published.length && !set.queued.length ? 'hold' : 'queue'}</button>
         </span>
       </div>
       ${rows}
@@ -197,7 +220,12 @@ async function openReader(key, loc) {
   for (const f of t.files) {
     if (f.endsWith('.md')) {
       const text = await (await fetch(docUrl(f))).text();
-      reader.innerHTML += `<div class="filehead">${esc(f)}</div>` + md(text);
+      let head = esc(f);
+      if (t.hasRootMd === false) {
+        const isPrimary = STATE.primaries[key] === f;
+        head += ` <button class="${isPrimary ? 'on-publish' : ''}" onclick="setPrimary('${esc(key)}','${loc}','${esc(f)}')">${isPrimary ? 'primary &#10003;' : 'set primary'}</button>`;
+      }
+      reader.innerHTML += `<div class="filehead">${head}</div>` + md(text);
     } else if (/\.(png|jpg|jpeg|gif|webp|svg)$/i.test(f)) {
       reader.innerHTML += `<div class="filehead">${esc(f)}</div><img loading="lazy" src="${docUrl(f)}">`;
     } else if (f.endsWith('.pdf')) {

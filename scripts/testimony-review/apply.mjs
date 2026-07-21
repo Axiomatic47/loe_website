@@ -7,6 +7,7 @@
 //            (git history still holds it until the separate, owner-gated purge)
 import fs from 'fs';
 import path from 'path';
+import crypto from 'crypto';
 import { spawnSync } from 'child_process';
 import {
   REPO_ROOT,
@@ -15,7 +16,7 @@ import {
   queueDirName,
   scanAll,
   testimonyAbsPath,
-  loadDecisions,
+  loadState,
 } from './lib.mjs';
 
 const EXECUTE = process.argv.includes('--execute');
@@ -49,18 +50,46 @@ function pruneEmptySetDirs() {
   }
 }
 
+// The processor reads only TOP-LEVEL .md. For a dir whose markdown is all
+// nested: hoist a copy to the top — the single unique document if the nested
+// copies dedupe to one, else the owner's chosen primary. Returns null when
+// OK, or a blocking reason string.
+function ensureRootMd(t, src, primaries) {
+  if (t.hasRootMd) return null;
+  const nested = t.mdFiles.filter((f) => f.includes('/'));
+  if (!nested.length) return 'no markdown at all';
+  let pick = primaries[t.key] || null;
+  if (!pick) {
+    const byHash = new Map();
+    for (const f of nested) {
+      const h = crypto.createHash('sha256').update(fs.readFileSync(path.join(src, f))).digest('hex');
+      if (!byHash.has(h)) byHash.set(h, f);
+    }
+    if (byHash.size === 1) pick = nested[0];
+    else return `has ${byHash.size} distinct nested .md files — pick a primary in the console`;
+  }
+  const destName = path.basename(pick);
+  act(`  hoist primary md: ${pick} -> ${destName}`);
+  if (EXECUTE) fs.copyFileSync(path.join(src, pick), path.join(src, destName));
+  return null;
+}
+
 // ---- 1. Build the plan -----------------------------------------------------
-const decisions = loadDecisions();
+const { decisions, primaries } = loadState();
 const { sets } = scanAll();
 const plan = { publish: [], queue: [], remove: [], noop: 0 };
+const blocked = [];
 
 for (const set of Object.values(sets)) {
-  for (const t of [...set.published, ...set.queued]) {
+  for (const t of [...set.published, ...set.queued, ...(set.inbox || [])]) {
     const d = decisions[t.key];
     if (!d) continue;
     if (d === 'remove') plan.remove.push(t);
     else if (d === 'publish' && t.location !== 'published') plan.publish.push(t);
-    else if (d === 'queue' && t.location !== 'queued') plan.queue.push(t);
+    // 'queue' on an INBOX item means HOLD: it stays in the gitignored local
+    // inbox. Moving it into testimony_queue/ would put unpublished material
+    // into the public repo's tracking — exactly what the inbox model avoids.
+    else if (d === 'queue' && t.location === 'published') plan.queue.push(t);
     else plan.noop++;
   }
 }
@@ -93,6 +122,12 @@ for (const t of plan.publish) {
   const src = testimonyAbsPath(t);
   const dest = path.join(PUBLISHED_ROOT, t.baseSet, t.dirname);
   act(`publish: ${t.key}`);
+  const blockReason = ensureRootMd(t, src, primaries);
+  if (blockReason) {
+    blocked.push({ key: t.key, reason: blockReason });
+    act(`  BLOCKED (not moved): ${blockReason}`);
+    continue;
+  }
   // The processor only searches fixed subdir names; fix the known typo so
   // exhibits are not silently skipped once published.
   const typo = path.join(src, 'exihibits');
@@ -126,7 +161,14 @@ for (const tPath of typoFixes) {
 
 pruneEmptySetDirs();
 
+const reportBlocked = () => {
+  if (!blocked.length) return;
+  log(`\n⚠ ${blocked.length} publish decision(s) BLOCKED — nothing moved for these:`);
+  for (const b of blocked) log(`  - ${b.key}: ${b.reason}`);
+};
+
 if (!EXECUTE) {
+  reportBlocked();
   log('\nDry run only. Re-run with:  npm run testimonies:apply -- --execute');
   process.exit(0);
 }
@@ -189,6 +231,8 @@ if (fs.existsSync(UPLOADS_DATA)) {
   }
 }
 log(`  pruned ${pruned} stale uploaded image(s)`);
+
+reportBlocked();
 
 log(`
 Done. Follow-ups:

@@ -5,6 +5,27 @@ testimony, what is **published** (lives in `testimonies/`, rendered on the
 site), **queued** (lives in `testimony_queue/`, not rendered), or **removed**
 (deleted from the working tree entirely).
 
+Third root — the **inbox**: `Chronological Testimonies/` at the repo root is
+the owner's staging COPY of the chronological corpus (4.6 GB, 272 dirs,
+**gitignored** — it must never enter this public repo's tracking; originals
+live outside the repo and are never touched by this tool). Inbox items group
+by month bucket derived from their MMDDYY dirname prefix. Decisions there:
+
+- **publish** — move into `testimonies/Chronological Testimonies MMYY/`;
+  it becomes tracked repo content on the next commit and renders on the site.
+- **hold** — same decision value as queue, but the item simply STAYS in the
+  gitignored inbox (moving it to `testimony_queue/` would put unpublished
+  material into the public repo, which the inbox model exists to avoid).
+- **remove** — delete this local copy only.
+
+**Primary markdown**: the processor renders only TOP-LEVEL `.md`. Dirs whose
+markdown is all nested (`mnt/data/` dumps, `Original/`) show a ⚠ in the list;
+open the reader and click **set primary** on the document that IS the
+testimony. On publish, apply hoists a copy of the primary to the top level.
+If the nested copies are content-identical, apply hoists automatically; if
+they are distinct and no primary is chosen, that publish is BLOCKED (listed
+loudly, everything else proceeds).
+
 This is NOT part of the site. Nothing here is imported by `src/`, no route
 serves it, and the server binds to 127.0.0.1 only. When the sorting work is
 finished, delete this directory and the two npm scripts — it is designed to
