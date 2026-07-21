@@ -44,18 +44,13 @@ const FormalLogicRenderer: React.FC<FormalLogicProps> = ({
       .replace(/\b(\d+)\b/g, '<span class="constant">$1</span>')
       .replace(/\b(true|false)\b/g, '<span class="constant">$1</span>');
 
-    // Sanitize the HTML to prevent XSS attacks
-    // Only allow specific safe tags and attributes used by this component
+    // Sanitize the HTML to prevent XSS attacks.
+    // (ALLOWED_CLASSES was removed here: DOMPurify has never supported that
+    // option — it was silently ignored. Tag + attribute allow-listing below is
+    // what actually enforces.)
     return DOMPurify.sanitize(processedExpression, {
       ALLOWED_TAGS: ['span'],
       ALLOWED_ATTR: ['class'],
-      ALLOWED_CLASSES: {
-        'span': [
-          'logic-symbol', 'logic-and', 'logic-or', 'logic-not',
-          'logic-implies', 'logic-iff', 'logic-forall', 'logic-exists',
-          'predicate', 'variable', 'constant'
-        ]
-      }
     });
   }, [expression]);
 

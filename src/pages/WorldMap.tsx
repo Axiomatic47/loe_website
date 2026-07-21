@@ -38,7 +38,7 @@ import {
 // Define the BlurPanel component for consistent styling
 const BlurPanel = ({
   children,
-  className
+  className = ''
 }) => {
   return (
     <div

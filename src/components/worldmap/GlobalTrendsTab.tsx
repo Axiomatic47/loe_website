@@ -35,7 +35,7 @@ const calculateRegionalData = (countries) => {
   if (!countries || countries.length === 0) return [];
 
   // Group countries by region
-  const regionGroups = {};
+  const regionGroups: Record<string, any[]> = {};
 
   for (const country of countries) {
     const region = COUNTRY_REGIONS[country.code] || 'Other';
@@ -79,14 +79,14 @@ const getCategoryDistribution = (countries) => {
     const category = country.category || "Unknown";
     acc[category] = (acc[category] || 0) + 1;
     return acc;
-  }, {});
+  }, {} as Record<string, number>);
 
   // Calculate total for percentages
-  const total = Object.values(categoryCounts).reduce((sum, count) => sum + Number(count), 0);
+  const total = Number(Object.values(categoryCounts).reduce((sum: number, count) => sum + Number(count), 0));
 
   // Map categories to format needed for display
   return Object.entries(categoryCounts).map(([category, count]) => {
-    const percentage = ((count / total) * 100).toFixed(1);
+    const percentage = ((Number(count) / total) * 100).toFixed(1);
     const colorClass =
       category.includes("Non-Supremacist") ? "bg-blue-500" :
       category.includes("Mixed") ? "bg-green-500" :
@@ -96,7 +96,7 @@ const getCategoryDistribution = (countries) => {
 
     return {
       category,
-      count,
+      count: Number(count),
       percentage,
       colorClass
     };
@@ -110,17 +110,17 @@ const getEventTypeDistribution = (events) => {
     const type = event.event_type || "Unknown";
     acc[type] = (acc[type] || 0) + 1;
     return acc;
-  }, {});
+  }, {} as Record<string, number>);
 
   // Calculate total
-  const total = Object.values(typeCounts).reduce((sum, count) => sum + count, 0);
+  const total = Number(Object.values(typeCounts).reduce((sum: number, count) => sum + Number(count), 0));
 
   // Convert to array and sort by count
   const typeArray = Object.entries(typeCounts)
     .map(([type, count]) => ({
       type,
-      count,
-      percentage: ((count / total) * 100).toFixed(1)
+      count: Number(count),
+      percentage: ((Number(count) / total) * 100).toFixed(1)
     }))
     .sort((a, b) => b.count - a.count);
 

@@ -21,7 +21,7 @@ interface MediaGalleryProps {
   allowDownload?: boolean;
   className?: string;
   layout?: 'grid' | 'masonry' | 'carousel';
-  columns?: 2 | 3 | 4;
+  columns?: 1 | 2 | 3 | 4;
 }
 
 const MediaGallery: React.FC<MediaGalleryProps> = ({

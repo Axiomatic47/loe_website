@@ -17,7 +17,10 @@ export type ConditionCode =
   | 'IC'  // Incompatibility - What cannot be held simultaneously
   | 'AC'  // Accountability - To whom position answers
   | 'JR'  // Jurisdiction - Scope of authority
-  | 'NM'; // Number - How many hold position
+  | 'NM'  // Number - How many hold position
+  | 'RT'  // Right - What position holds as of right
+  | 'RV'  // Reservation - Powers/rights reserved to position
+  | 'DF'; // Definition - Who or what the position IS
 
 export type Branch = 'sovereign' | 'legislative' | 'executive' | 'judicial' | 'federalism' | 'electoral' | 'individual';
 
@@ -69,6 +72,9 @@ export const CONDITION_CATEGORIES: Record<ConditionCode, { name: string; descrip
   AC: { name: 'Accountability', description: 'To whom position answers', color: 'sky' },
   JR: { name: 'Jurisdiction', description: 'Scope of authority', color: 'violet' },
   NM: { name: 'Number', description: 'How many hold position', color: 'slate' },
+  RT: { name: 'Right', description: 'What position holds as of right', color: 'green' },
+  RV: { name: 'Reservation', description: 'Powers/rights reserved to position', color: 'fuchsia' },
+  DF: { name: 'Definition', description: 'Who or what the position IS', color: 'stone' },
 };
 
 export const BRANCH_INFO: Record<Branch, { name: string; color: string; icon: string }> = {

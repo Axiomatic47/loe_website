@@ -43,7 +43,7 @@ const Partners = () => {
   useDocumentMeta("Partners");
 
   return (
-    <PageLayout maxPullDistance={0}>
+    <PageLayout>
       <div className="container mx-auto px-4 py-12 flex-grow">
         <BlurPanel>
           <Button
