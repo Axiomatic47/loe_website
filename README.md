@@ -6,9 +6,8 @@ three federal constitutional cases (Kirchner v. Johnson, v. Ellison, v. Acosta
 SCOTUS shadow-docket analyses, and manuscript/timeline realms.
 
 **Stack:** React 18 + Vite 6 + TypeScript SPA · react-router v6 · Radix/shadcn
-UI · Tailwind · Netlify (functions + hosting). Design system: `DESIGN.md`
-(read before any visual work). Refactor/migration roadmap:
-`docs/AUDIT_AND_REFACTOR_PLAN_2026-07-20.md`.
+UI · Tailwind · Netlify hosting (static — no serverless functions). Design
+system: `DESIGN.md` (read before any visual work).
 
 ## ⚠ Deploy model
 
@@ -23,9 +22,9 @@ strategy notes.
 ```bash
 npm install
 npm run dev        # vite dev server → http://localhost:3000
-npm run build      # sitemap + production build into dist/
+npm run build      # validate-content → nav manifest → sitemap → typecheck → vite build into dist/
 npm run preview    # serve the production build locally
-npm run typecheck  # real TS check (not yet wired into build — error burn-down in progress)
+npm run typecheck  # real TS check (also runs inside build)
 npm run lint
 ```
 
@@ -33,22 +32,26 @@ npm run lint
 
 Content is JSON, loaded from `content/<collection>/*.json` (constitutional ·
 copyright · data · manuscript · map · timeline) by
-`src/utils/compositionLoader.ts` into a zustand store. Court-doc PDFs and
-media live under `public/uploads/`. **Note:** document URLs are currently
-positional (array-index based); the descriptive-URL refactor is Phase 1 of the
-plan in `docs/`.
+`src/utils/compositionLoader.ts` into a zustand store, per collection on
+demand. Court-doc PDFs and media live under `public/uploads/`. **URLs are
+descriptive and slug-based:** court documents resolve by ECF coordinate
+(`/kirchner-v-johnson/70-1`), everything else by explicit `slug` fields in the
+content JSON — identity lives in data, never in sort order, and
+`scripts/validate-content.mjs` fails the build on malformed or slug-colliding
+content. The 684 legacy positional URLs are frozen as forced 301s in the
+generated `public/_redirects` (source data: `scripts/data/legacy-routes.json`).
+Never hand-edit or break these maps — the URLs are cited in filed legal
+documents and must resolve forever.
 
 ### Content pipelines (manual — never wired into `build`)
 
 | Command | Purpose |
 |---|---|
-| `npm run process-testimonies-cms` | legacy testimony → `content/data` processor (retirement planned; see plan §Phase 3) |
+| `npm run process-testimonies-cms` | legacy testimony → `content/data` processor (retirement planned) |
 | `node scripts/ultimateTestimonyProcessor.js` | generator of the four `*-testimonies-enhanced.json` collections |
-| `npm run sync-archives` | research-archive sync from work_station (fail-closed licensing, fixity manifests) |
-| `npm run scotus:process` | ⚠ broken — hardcoded source path no longer exists (plan §Phase 3) |
+| `npm run testimonies:review` / `testimonies:apply` | local-only testimony curation console (temporary tool — `scripts/testimony-review/README.md`) |
+| `npm run sync-archives` | research-archive sync (fail-closed licensing, fixity manifests) |
+| `npm run scotus:process` | ⚠ broken — hardcoded source path no longer exists; the committed corpus is the source of truth |
 | `npm run generate-sitemap` | sitemap.xml (also runs inside `build`) |
-
-## Functions
-
-`netlify/functions/simulate.js` — proxy for the world-map simulation API
-(feature retirement pending owner decision; see plan §3 D4).
+| `npm run enrich-content-slugs` | one-shot slug enrichment across content JSON (already run) |
+| `npm run freeze-legacy-urls` | regenerates the legacy-301 map from `legacy-routes.json` |

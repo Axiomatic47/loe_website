@@ -140,7 +140,7 @@ The page background carries a three-layer paper texture (`.bg-texture` in `index
 - Fixed top, full width, leather brown surface, light foreground text.
 - Left: serif wordmark "The Laws of Existence", links to `/`.
 - Center-right: dropdown navigation (Radix NavigationMenu) — `Home`, `Research ▾`
-  (manuscripts from the content store), `Evidence ▾` (data collections),
+  (manuscripts), `Evidence ▾` (data collections),
   `Cases ▾` (the cases with case numbers), `More ▾` (feature pages),
   `Contact`. Dropdown panels are `bg-card border-border rounded-lg shadow-md`;
   each row = title + small muted subline; footer row is a terracotta "All …" link.
@@ -152,7 +152,7 @@ The page background carries a three-layer paper texture (`.bg-texture` in `index
 ### Footer (`src/components/Footer.tsx`)
 - Same leather brown surface as header.
 - Left: "Laws of Existence Framework™" wordmark, "Patent Pending" badge (terracotta tinted, uppercase, small caps), copyright line.
-- Right: text links — Home, World Map, Contact, Legal, Terms, Privacy.
+- Right: text links — Home, Contact, Legal, Terms, Privacy.
 
 ### Reading sidebar (case-document nav, `src/pages/SectionPage.tsx`)
 - Fixed left, 16rem (`w-64`) wide, beige sidebar surface.
@@ -211,33 +211,36 @@ The page background carries a three-layer paper texture (`.bg-texture` in `index
 
 ## 7. URL and routing map
 
-The site is a Vite-built React SPA today. URLs that must remain stable for legal/SEO purposes:
+The site is a Vite-built React SPA today. **Descriptive, slug-based URLs are canonical** (since the 2026-07 Phase 1 refactor): court documents resolve by ECF coordinate, all other content by explicit `slug` fields in the content JSON. Identity lives in data, never in sort order. URLs that must remain stable for legal/SEO purposes:
 
 | Pattern | Renders |
 |---|---|
 | `/` | Home — hero panel + featured-work sections |
+| `/kirchner-v-johnson` | Case landing page (documents listed with ECF coordinates) |
+| `/kirchner-v-johnson/51` | Doc 51 (the operative pleading), rendered directly |
+| `/kirchner-v-johnson/51-N` | Attachment N of Doc 51, rendered directly |
+| `/kirchner-v-johnson/mo-stay` | Named docket entries by slug |
+| `/kirchner-v-ellison`, `/kirchner-v-ellison/:docId` | Same pattern, Ellison case |
+| `/kirchner-v-acosta`, `/kirchner-v-acosta/:docId` | Same pattern, Acosta case |
+| `/kirchner-v-trump`, `/kirchner-v-trump/:docId` | Redirects to the Johnson equivalents |
+| `/scotus-amicus`, `/scotus-amicus/:docId` | SCOTUS amicus index + per-part reader |
 | `/composition/:collection` | Collection grid: `manuscript`, `data`, `constitutional`, `copyright`, `timeline`, `map` |
-| `/composition/:collection/composition/:i/section/:n` | Section reader (PDF viewer or markdown prose) |
-| `/kirchner-v-johnson` | Redirects to Johnson section 1 |
-| `/kirchner-v-johnson/51` | Redirects to Johnson section 1 (Doc 51, the operative pleading) |
-| `/kirchner-v-johnson/51-N` | Redirects to Johnson section N+1 (attachment N) |
-| `/kirchner-v-johnson/N` | Redirects to Johnson section N |
-| `/kirchner-v-ellison`, `/kirchner-v-ellison/N` | Same pattern, Ellison case |
-| `/kirchner-v-acosta`, `/kirchner-v-acosta/N` | Same pattern, Acosta case (currently pending filing) |
+| `/composition/:collection/:compositionSlug/:sectionSlug` | Canonical section reader (PDF viewer or markdown prose) |
+| `/composition/:collection/composition/:i/section/:n` | Legacy positional URLs — **301 to the descriptive successor** (684 frozen in the generated `public/_redirects`; source data `scripts/data/legacy-routes.json`) |
+| `/research/:archiveId` (+ `/leaf/:leafId`, `/doc/:docFile`) | Unlisted research archives (noindexed, manifest-resolved IDs) |
 | `/copyright` | Redirects to `/composition/copyright` |
-| `/donate`, `/contact`, `/partners` | Static pages |
-| `/timeline`, `/worldmap`, `/individuals-metrics`, `/videos`, `/scotus-shadow-docket`, `/constitutional-accountability` | Feature pages |
+| `/donate`, `/contact`, `/partners`, `/for-journalists` | Static pages |
+| `/timeline`, `/individuals-metrics`, `/videos`, `/scotus-shadow-docket`, `/constitutional-accountability` | Feature pages |
 | `/legal-disclaimers`, `/terms-of-service`, `/privacy-policy` | Footer pages |
-| `/admin/*` | Decap CMS (formerly Netlify CMS) for content editors |
-| `/simulation-admin` | Auth-gated dashboard via Netlify Identity |
+| `*` | 404 (noindexed NotFound) — unknown doc ids land here or on the case landing page, never on an array index |
 
-When generating a new page or layout, **maintain these URL patterns**. The `/kirchner-v-johnson/51-N` pattern in particular is referenced from filed legal documents and must continue to resolve.
+When generating a new page or layout, **maintain these URL patterns**. The `/kirchner-v-johnson/51-N` pattern in particular is referenced from filed legal documents and must continue to resolve. Never hand-edit `public/_redirects` or `legacy-routes.json`, and never reintroduce positional routing.
 
 ---
 
 ## 8. Content collections
 
-The site's content is JSON files, edited via Decap CMS, loaded at build time. Each page that lists or renders content reads from one of six collections:
+The site's content is JSON files under `content/`, maintained directly in the repo (the CMS stratum was retired 2026-07) and loaded at build time. Every composition and section carries an explicit `slug` field (court docs: the ECF coordinate from the `pdf_file` basename) — the URL contract in §7 reads these, and `validate-content` fails the build on malformed or slug-colliding JSON. Each page that lists or renders content reads from one of six collections:
 
 | Collection | Path | Purpose |
 |---|---|---|
@@ -246,7 +249,7 @@ The site's content is JSON files, edited via Decap CMS, loaded at build time. Ea
 | `data` | `content/data/*.json` | Evidence collections (testimonies, exhibits). Same shape as manuscript. |
 | `copyright` | `content/copyright/*.json` | Copyright-holder notifications. |
 | `timeline` | `content/timeline/*.json` | Time-series of events with dates and descriptions. Renders as an interactive timeline page. |
-| `map` | `content/map/*.json` | Country and event data for the world map page. |
+| `map` | `content/map/*.json` | Country and event data, rendered through the composition reader and the homepage featured-work section. (The interactive world-map page was retired 2026-07.) |
 
 The reading interface on `SectionPage` includes a **content-depth slider** (1 / 3 / 5) for collections that have multiple depth levels. Don't redesign this away — it's a deliberate accessibility feature ("show me the summary" vs "show me the full argument" vs "show me the methodology").
 
@@ -275,7 +278,7 @@ Prose may include LaTeX inline (`$...$`) or display (`$$...$$`). The framework d
 \Corresponds → \text{Corresponds}     % correspondence
 ```
 
-These macros must be preloaded at the page level so any prose rendered through `MathJaxMarkdownRenderer` resolves them.
+These macros live in the on-demand MathJax loader (`src/utils/mathjax.ts` — config + macro set, loaded by the markdown renderer only when a page contains math). Any new prose surface must keep resolving them.
 
 ---
 
@@ -329,7 +332,7 @@ These macros must be preloaded at the page level so any prose rendered through `
 - ✅ "Patent Pending" footer badge in terracotta.
 - ✅ The MathJax macro set.
 - ✅ The elastic-scroll PageLayout behavior.
-- ✅ Decap CMS-driven JSON content workflow.
+- ✅ JSON content collections under `content/` as the single source of truth, edited in-repo (the CMS stratum is retired — don't reintroduce one).
 - ✅ All current URL patterns (legal documents are linked from filed pleadings).
 
 ---
@@ -341,9 +344,9 @@ When generating a new page or component:
 2. Pick the right surface tier: page bg, card, soft panel, sidebar, or leather chrome.
 3. Body copy in Source Serif 4 at weight 430. UI labels in Inter at 430.
 4. If it's a long-form reading surface, use the `.prose` class.
-5. If it includes math, route the markdown through `MathJaxMarkdownRenderer`.
+5. If it includes math, route the markdown through `ImageEnhancedMarkdownRenderer` — MathJax and the macro set load on demand via `src/utils/mathjax.ts`.
 6. Test in both light and dark modes before shipping. The dark mode should feel like the same site, not a different one.
-7. If it's a redirect-receiving page (`/kirchner-v-X/N`), wire the redirect map in `App.tsx`.
+7. Court-doc and content URLs resolve from `slug` fields in the content JSON (`src/utils/urls.ts`) — never reintroduce positional offset maps; unknown ids land on the case page or 404, never on an array index.
 8. Add a corresponding entry to the relevant content collection JSON if the page is content-driven.
 
 ---
@@ -367,16 +370,14 @@ When generating a new page or component:
 | Home page | `src/pages/Index.tsx` |
 | Hero buttons | `src/components/hero/HeroButtons.tsx` |
 | Featured work | `src/components/sections/FeaturedWorkSection.tsx` |
-| Markdown renderer (with images) | `src/components/ImageEnhancedMarkdownRenderer.tsx` |
-| Markdown renderer (with math) | `src/components/MathJaxMarkdownRenderer.tsx` |
-| Composition data store | `src/utils/compositionData.ts` (Zustand) |
+| Markdown renderer (images + math; the one live renderer) | `src/components/ImageEnhancedMarkdownRenderer.tsx` |
+| MathJax on-demand loader (config + macro set) | `src/utils/mathjax.ts` |
+| Composition data store | `src/utils/compositionData.ts` (Zustand, per-collection loading) |
 | Composition loader | `src/utils/compositionLoader.ts` (`import.meta.glob`) |
-| Decap CMS config | `public/admin/config.yml` |
-| Netlify Functions | `netlify/functions/` (`simulate.js`) |
+| URL / slug helpers | `src/utils/urls.ts` |
+| Generated nav manifest (Header menus) | `src/data/navManifest.json` |
+| Frozen legacy-301 map | `public/_redirects`, generated from `scripts/data/legacy-routes.json` |
 
 ---
 
 *This document was generated for Anthropic's Claude Design tool (claude.ai/design) so that mockups and prototypes for The Laws of Existence remain on-brand without re-specifying colors and typography in every prompt.*
-
-
-Design a more editorial home page hero for The Laws of Existence. Keep the warm cream + leather aesthetic and Source Serif 4 typography from DESIGN.md. The current hero is a centered serif title + subtitle + 8 nav cards in a flex grid. I want something with more visual hierarchy — maybe a featured-document area, a smaller secondary nav, and an emotional anchor since this is a legal-advocacy site. Show me 2 variants.
