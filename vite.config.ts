@@ -3,32 +3,7 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import fs from 'fs';
 
-// Simple content directory plugin for admin console file serving
-const contentDirectoryPlugin = () => ({
-  name: 'content-directory-plugin',
-  configureServer(server) {
-    server.middlewares.use((req, res, next) => {
-      // Handle directory listing for content folders (for admin console)
-      if (req.url?.startsWith('/content/')) {
-        const contentPath = path.join(process.cwd(), req.url.split('?')[0]);
-
-        try {
-          if (fs.existsSync(contentPath) && fs.statSync(contentPath).isDirectory()) {
-            const files = fs.readdirSync(contentPath);
-            res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify(files));
-            return;
-          }
-        } catch (e) {
-          console.error('Error serving content directory:', e);
-        }
-      }
-      next();
-    });
-  },
-});
-
-// COMPLETELY FIXED static file serving plugin for uploads
+// Static file serving plugin for uploads (dev only)
 const uploadsStaticPlugin = () => ({
   name: 'uploads-static-plugin',
   configureServer(server) {
@@ -191,8 +166,7 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [
       react(),
-      contentDirectoryPlugin(),
-      uploadsStaticPlugin(), // FIXED version
+      uploadsStaticPlugin(),
       apiProxyPlugin(env),
       contentJsonPlugin()
     ],
@@ -212,17 +186,6 @@ export default defineConfig(({ mode }) => {
       }
     },
     build: {
-      rollupOptions: {
-        input: {
-          main: path.resolve(__dirname, 'index.html'),
-          admin: path.resolve(__dirname, 'public/admin/index.html'),
-        },
-        // Exclude problematic JSON files from build processing
-        external: (id) => {
-          // Don't externalize, but skip JSON processing for content files
-          return false;
-        }
-      },
       // Ensure uploads directory is copied during build
       copyPublicDir: true,
     },

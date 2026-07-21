@@ -1,3 +1,7 @@
+# netlify.toml — SINGLE source of truth for build, redirects, and headers.
+# (public/_headers and public/_redirects were removed 2026-07 — do not recreate;
+#  the live site serves THIS file's headers.)
+
 [build]
   publish = "dist"
   command = "npm run build"
@@ -6,7 +10,6 @@
 [build.environment]
   GIT_LFS_ENABLED = "true"
 
-# Functions configuration
 [functions]
   directory = "netlify/functions"
 
@@ -17,18 +20,8 @@
 # Environment variables for production
 [context.production.environment]
   VITE_API_URL = "https://api.lawsofexistence.com"
-  # Add your PayPal Client ID here - you'll need to set this in Netlify dashboard
-  # VITE_PAYPAL_CLIENT_ID = "your-paypal-client-id-here"
 
 # Simulation API is handled by Netlify Function at /.netlify/functions/simulate
-# (Redirect-based proxying to HTTP backends doesn't work reliably)
-
-# Handle admin routes
-[[redirects]]
-  from = "/admin/*"
-  to = "/admin/index.html"
-  status = 200
-  force = true
 
 # Serve static assets directly (must come before SPA catch-all)
 [[redirects]]
@@ -47,16 +40,44 @@
   to = "/index.html"
   status = 200
 
-# Add security headers - FIXED CSP to allow PayPal
+# Security headers.
+# CSP notes: 'unsafe-inline'/'unsafe-eval' remain for the inline theme/MathJax/
+# plausible bootstraps and MathJax's eval (tightening tracked for the framework
+# migration). unpkg = Leaflet runtime loader (worldmap); jsdelivr = MathJax.
+# identity.netlify.com and cdnjs removed with the CMS stack (2026-07).
 [[headers]]
   for = "/*"
     [headers.values]
     X-Frame-Options = "SAMEORIGIN"
-    X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://identity.netlify.com https://www.paypal.com https://*.paypal.com https://www.paypalobjects.com https://*.paypalobjects.com https://plausible.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.paypal.com https://*.paypalobjects.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com https://cdn.jsdelivr.net; img-src 'self' data: blob: https: https://ucarecdn.com https://*.paypal.com https://*.paypalobjects.com https://*.basemaps.cartocdn.com https://*.tile.openstreetmap.org https://img.youtube.com https://i.ytimg.com; connect-src 'self' https://api.lawsofexistence.com https://*.paypal.com https://api.sandbox.paypal.com https://plausible.io https://unpkg.com https://cdn.jsdelivr.net; frame-src 'self' https://*.paypal.com https://www.paypal.com https://www.youtube.com https://youtube.com https://www.youtube-nocookie.com;"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://www.paypal.com https://*.paypal.com https://www.paypalobjects.com https://*.paypalobjects.com https://plausible.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.paypal.com https://*.paypalobjects.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com https://cdn.jsdelivr.net; img-src 'self' data: blob: https: https://*.paypal.com https://*.paypalobjects.com https://*.basemaps.cartocdn.com https://*.tile.openstreetmap.org https://img.youtube.com https://i.ytimg.com; connect-src 'self' https://api.lawsofexistence.com https://*.paypal.com https://api.sandbox.paypal.com https://plausible.io https://unpkg.com https://cdn.jsdelivr.net; frame-src 'self' https://*.paypal.com https://www.paypal.com https://www.youtube.com https://youtube.com https://www.youtube-nocookie.com; frame-ancestors 'self';"
+
+# Immutable long-cache for content-hashed build assets
+[[headers]]
+  for = "/assets/*"
+    [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Filed exhibits / media: content never changes once published
+[[headers]]
+  for = "/uploads/*"
+    [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# Unlisted research archives: server-enforced noindex (pages AND raw files)
+[[headers]]
+  for = "/research/*"
+    [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/uploads/research/*"
+    [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "public, max-age=86400"
 
 # Development server configuration
 [dev]

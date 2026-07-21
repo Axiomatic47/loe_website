@@ -1,13 +1,12 @@
-// src/App.tsx - Enhanced with proper Constitutional support and Identity token handling
+// src/App.tsx - route table + app shell
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
-import { useEffect, useState, lazy, Suspense } from 'react';
-import AdminLink from "./components/AdminLink";
+import { lazy, Suspense } from 'react';
+import { useNoIndex } from "./hooks/useNoIndex";
 
 // Route components are lazy-loaded so each page ships as its own chunk.
 // This keeps the initial bundle small for visitors who land on a single deep
@@ -34,22 +33,6 @@ const ResearchDoc = lazy(() => import("./pages/ResearchDoc"));
 const LegalDisclaimers = lazy(() => import("./pages/LegalDisclaimers"));
 const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
-
-// Declare Netlify Identity types
-declare global {
-  interface Window {
-    netlifyIdentity: any;
-  }
-}
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: 1,
-      refetchOnWindowFocus: false,
-    },
-  },
-});
 
 // Error Boundary Component
 interface ErrorBoundaryState {
@@ -106,127 +89,6 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
     return this.props.children;
   }
 }
-
-const AdminPage = () => {
-  useEffect(() => {
-    window.location.href = '/admin/index.html';
-  }, []);
-
-  return (
-    <div className="min-h-screen bg-background flex items-center justify-center">
-      <div className="text-foreground">Redirecting to admin panel...</div>
-    </div>
-  );
-};
-
-// Component to handle Identity callbacks
-const IdentityHandler = ({ children }: { children: React.ReactNode }) => {
-  const [identityReady, setIdentityReady] = useState(false);
-  const [processingToken, setProcessingToken] = useState(false);
-
-  useEffect(() => {
-    const initIdentity = () => {
-      if (window.netlifyIdentity) {
-        if (import.meta.env.DEV) console.log('Initializing Netlify Identity...');
-        window.netlifyIdentity.init();
-
-        // Check for Identity tokens in URL hash
-        const hash = window.location.hash;
-        if (import.meta.env.DEV) console.log('Current hash:', hash);
-
-        if (hash.includes('invite_token') ||
-            hash.includes('confirmation_token') ||
-            hash.includes('recovery_token') ||
-            hash.includes('email_change_token')) {
-          if (import.meta.env.DEV) console.log('Identity token detected, processing...');
-          setProcessingToken(true);
-
-          // Let the Identity widget handle the token
-          // It will automatically show the appropriate form
-        }
-
-        // Set up event listeners
-        window.netlifyIdentity.on('init', (user: any) => {
-          if (import.meta.env.DEV) console.log('Identity initialized, user:', user);
-          setIdentityReady(true);
-          setProcessingToken(false);
-        });
-
-        window.netlifyIdentity.on('login', (user: any) => {
-          if (import.meta.env.DEV) console.log('User logged in:', user);
-          // Only redirect to admin if we're on the admin page or explicitly requested
-          // Otherwise stay on current page (e.g., /worldmap for simulation access)
-          if (window.location.pathname.startsWith('/admin')) {
-            window.location.reload();
-          }
-          // For other pages, just reload to update auth state
-          else {
-            window.location.reload();
-          }
-        });
-
-        window.netlifyIdentity.on('logout', () => {
-          if (import.meta.env.DEV) console.log('User logged out');
-          // Redirect to home on logout
-          if (window.location.pathname.startsWith('/admin')) {
-            window.location.href = '/';
-          }
-        });
-
-        window.netlifyIdentity.on('error', (error: any) => {
-          if (import.meta.env.DEV) console.error('Identity error:', error);
-          setProcessingToken(false);
-        });
-
-        window.netlifyIdentity.on('close', () => {
-          if (import.meta.env.DEV) console.log('Identity modal closed');
-          setProcessingToken(false);
-        });
-
-        setIdentityReady(true);
-      } else {
-        // Widget not loaded yet, try again in 100ms
-        setTimeout(initIdentity, 100);
-      }
-    };
-
-    initIdentity();
-  }, []);
-
-  // Show loading state while processing tokens
-  if (processingToken) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="bg-card rounded-2xl p-8 border border-border shadow-sm text-center">
-          <div className="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
-          <h2 className="text-xl font-serif text-foreground mb-2">Processing Authentication</h2>
-          <p className="text-muted-foreground">Please wait while we set up your account...</p>
-        </div>
-      </div>
-    );
-  }
-
-  return <>{children}</>;
-};
-
-// Route validation component to help debug routing issues
-const RouteDebugger = ({ children }: { children: React.ReactNode }) => {
-  useEffect(() => {
-    if (import.meta.env.DEV) {
-      console.log('Route Debug Info:', {
-        currentPath: window.location.pathname,
-        isConstitutional: window.location.pathname.includes('/constitutional'),
-        isManuscript: window.location.pathname.includes('/manuscript'),
-        isData: window.location.pathname.includes('/data'),
-        isTimeline: window.location.pathname.includes('/timeline'),
-        isMap: window.location.pathname.includes('/map'),
-        supportedCollections: ['manuscript', 'data', 'constitutional', 'timeline', 'map']
-      });
-    }
-  }, []);
-
-  return <>{children}</>;
-};
 
 // Wrapper component for Kirchner v. Johnson (DCC) section routing
 const KirchnerJohnsonSectionRedirect = () => {
@@ -476,6 +338,35 @@ const KirchnerAcostaDocRedirect = () => {
   return <Navigate to={`/composition/constitutional/composition/1/section/${sectionNum}`} replace />;
 };
 
+// 404 page — noindex'd so the SPA's soft-404 (HTTP 200 + shell) doesn't get
+// indexed as a duplicate of the site shell. Real 404 status arrives with the
+// framework migration.
+const NotFound = () => {
+  useNoIndex();
+  return (
+    <div className="min-h-screen bg-background flex items-center justify-center p-8">
+      <div className="bg-card rounded-2xl p-8 border border-border shadow-sm text-center">
+        <h1 className="text-2xl font-serif text-foreground mb-4">Page Not Found</h1>
+        <p className="text-muted-foreground mb-6">The page you're looking for doesn't exist.</p>
+        <div className="space-x-4">
+          <a href="/" className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors shadow-sm">
+            Go Home
+          </a>
+          <a href="/kirchner-v-johnson" className="px-4 py-2 bg-card text-foreground border border-border rounded-md hover:bg-secondary transition-colors shadow-sm">
+            Kirchner v. Johnson Case
+          </a>
+        </div>
+        {import.meta.env.DEV && (
+          <div className="mt-4 text-left text-sm text-muted-foreground">
+            <p>Attempted path: {window.location.pathname}</p>
+            <p>Available collections: manuscript, data, constitutional, timeline, map</p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
 // On-brand fallback shown while a lazy-loaded route chunk downloads
 const RouteFallback = () => (
   <div className="min-h-screen bg-background flex items-center justify-center">
@@ -487,11 +378,9 @@ const App = () => {
   return (
     <ErrorBoundary>
       <ThemeProvider attribute="class" defaultTheme="light" enableSystem storageKey="loe-theme">
-      <QueryClientProvider client={queryClient}>
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          <IdentityHandler>
             <BrowserRouter
               future={{
                 v7_startTransition: true,
@@ -605,42 +494,15 @@ const App = () => {
                   <Route path="/terms-of-service" element={<TermsOfService />} />
                   <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 
-                  {/* Admin pages */}
-                  <Route path="/admin/*" element={<AdminPage />} />
+                  {/* Simulation admin (worldmap realm — retirement pending owner decision D4) */}
                   <Route path="/simulation-admin" element={<SimulationAdmin />} />
 
                   {/* Catch-all route for 404s */}
-                  <Route path="*" element={
-                    <div className="min-h-screen bg-background flex items-center justify-center p-8">
-                      <div className="bg-card rounded-2xl p-8 border border-border shadow-sm text-center">
-                        <h1 className="text-2xl font-serif text-foreground mb-4">Page Not Found</h1>
-                        <p className="text-muted-foreground mb-6">The page you're looking for doesn't exist.</p>
-                        <div className="space-x-4">
-                          <a href="/" className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors shadow-sm">
-                            Go Home
-                          </a>
-                          <a href="/kirchner-v-johnson" className="px-4 py-2 bg-card text-foreground border border-border rounded-md hover:bg-secondary transition-colors shadow-sm">
-                            Kirchner v. Johnson Case
-                          </a>
-                        </div>
-                        {import.meta.env.DEV && (
-                          <div className="mt-4 text-left text-sm text-muted-foreground">
-                            <p>Attempted path: {window.location.pathname}</p>
-                            <p>Available collections: manuscript, data, constitutional, timeline, map</p>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  } />
+                  <Route path="*" element={<NotFound />} />
                 </Routes>
                 </Suspense>
-
-                {/* Admin Link for development */}
-                <AdminLink />
               </BrowserRouter>
-            </IdentityHandler>
         </TooltipProvider>
-      </QueryClientProvider>
       </ThemeProvider>
     </ErrorBoundary>
   );

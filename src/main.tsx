@@ -54,12 +54,6 @@ async function initializeApp() {
       console.error('❌ Error initializing composition store:', error);
     }
 
-    // Initialize Netlify Identity if available
-    if (window.netlifyIdentity) {
-      console.log('🔐 Netlify Identity detected - initializing');
-      window.netlifyIdentity.init();
-    }
-
     // Get the root element with proper error handling
     const rootElement = document.getElementById('root');
     if (!rootElement) {
