@@ -40,7 +40,6 @@ const MORE_LINKS = [
   { label: 'SCOTUS Shadow Docket', sub: 'Emergency-docket archive and analysis', href: '/scotus-shadow-docket' },
   { label: 'Constitutional Accountability', sub: 'Interactive authority map', href: '/constitutional-accountability' },
   { label: 'Timeline', sub: 'Documented events, 2025–present', href: '/timeline' },
-  { label: 'World Map', sub: 'Global governance tracking', href: '/worldmap' },
 ];
 
 // Trigger styling tuned for the leather surface (overrides shadcn defaults)

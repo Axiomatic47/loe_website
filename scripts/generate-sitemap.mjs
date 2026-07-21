@@ -32,7 +32,6 @@ const STATIC_ROUTES = [
   ['/scotus-shadow-docket', '0.7'],
   ['/constitutional-accountability', '0.7'],
   ['/timeline', '0.6'],
-  ['/worldmap', '0.6'],
   ['/videos', '0.6'],
   ['/individuals-metrics', '0.5'],
   ['/contact', '0.5'],

@@ -41,7 +41,6 @@ export const Footer: React.FC<FooterProps> = ({
           {/* Right side - Links */}
           <div className="flex items-center space-x-6 text-sm">
             <Link to="/" className="text-surface-leather-foreground/85 hover:text-surface-leather-foreground transition-colors">Home</Link>
-            <Link to="/worldmap" className="text-surface-leather-foreground/85 hover:text-surface-leather-foreground transition-colors">World Map</Link>
             <Link to="/contact" className="text-surface-leather-foreground/85 hover:text-surface-leather-foreground transition-colors">Contact</Link>
             <Link to="/legal-disclaimers" className="text-surface-leather-foreground/85 hover:text-surface-leather-foreground transition-colors">Legal</Link>
             <Link to="/terms-of-service" className="text-surface-leather-foreground/85 hover:text-surface-leather-foreground transition-colors">Terms</Link>

@@ -20,10 +20,8 @@ const SectionPage = lazy(() => import("./pages/SectionPage"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Partners = lazy(() => import("./pages/Partners"));
 const Donate = lazy(() => import("./pages/Donate"));
-const WorldMap = lazy(() => import("./pages/WorldMap"));
 const IndividualsMetrics = lazy(() => import("./pages/IndividualsMetrics"));
 const Timeline = lazy(() => import("./pages/Timeline"));
-const SimulationAdmin = lazy(() => import("./pages/SimulationAdmin"));
 const VideosPage = lazy(() => import("./pages/VideosPage"));
 const SCOTUSShadowDocket = lazy(() => import("./pages/SCOTUSShadowDocket"));
 const ConstitutionalAccountability = lazy(() => import("./pages/ConstitutionalAccountability"));
@@ -332,7 +330,6 @@ const App = () => {
                   />
 
                   {/* Feature pages */}
-                  <Route path="/worldmap" element={<WorldMap />} />
                   <Route path="/timeline" element={<Timeline />} />
                   <Route path="/individuals-metrics" element={<IndividualsMetrics />} />
                   <Route path="/videos" element={<VideosPage />} />
@@ -348,9 +345,6 @@ const App = () => {
                   <Route path="/legal-disclaimers" element={<LegalDisclaimers />} />
                   <Route path="/terms-of-service" element={<TermsOfService />} />
                   <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-
-                  {/* Simulation admin (worldmap realm — retirement pending owner decision D4) */}
-                  <Route path="/simulation-admin" element={<SimulationAdmin />} />
 
                   {/* Catch-all route for 404s */}
                   <Route path="*" element={<NotFound />} />

@@ -1,7 +1,5 @@
 # The Laws of Existence — https://lawsofexistence.com
 User-agent: *
 Allow: /
-Disallow: /admin
-Disallow: /simulation-admin
 
 Sitemap: https://lawsofexistence.com/sitemap.xml

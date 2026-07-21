@@ -2,7 +2,6 @@
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import './index.css';
-import 'leaflet/dist/leaflet.css';
 
 // Initialize application with proper error handling and constitutional support
 async function initializeApp() {
