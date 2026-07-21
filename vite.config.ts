@@ -10,7 +10,7 @@ const uploadsStaticPlugin = () => ({
     server.middlewares.use('/uploads', (req, res, next) => {
       try {
         // CRITICAL FIX: Decode URL first to handle encoded spaces
-        let decodedUrl = decodeURIComponent(req.url || '');
+        const decodedUrl = decodeURIComponent(req.url || '');
 
         // CRITICAL FIX: Properly construct path - when middleware captures '/uploads',
         // req.url becomes '/data/filename.png', so we need to add 'uploads' back
