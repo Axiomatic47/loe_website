@@ -16,13 +16,18 @@ interface DownloadAllPDFsProps {
   compositionTitle: string;
 }
 
-export default function DownloadAllPDFs({ sections }: DownloadAllPDFsProps) {
+export default function DownloadAllPDFs({ sections, compositionTitle }: DownloadAllPDFsProps) {
   const [downloading, setDownloading] = useState(false);
   const [progress, setProgress] = useState(0);
   const { toast } = useToast();
 
   // Filter sections that have PDFs
   const pdfSections = sections.filter(section => section.pdf_file);
+
+  // Archive name derives from the composition title, e.g.
+  // "Kirchner v. Johnson et al. - Case Documents" → "Kirchner-v-Johnson-et-al-Case-Documents"
+  const archiveName =
+    compositionTitle.replace(/[^A-Za-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'Documents';
 
   const downloadAllPDFs = async () => {
     if (pdfSections.length === 0) {
@@ -39,7 +44,7 @@ export default function DownloadAllPDFs({ sections }: DownloadAllPDFsProps) {
 
     try {
       const zip = new JSZip();
-      const pdfFolder = zip.folder("Kirchner-v-Johnson-Case-Documents");
+      const pdfFolder = zip.folder(archiveName);
 
       // Download all PDFs and add to ZIP
       for (let i = 0; i < pdfSections.length; i++) {
@@ -86,7 +91,7 @@ export default function DownloadAllPDFs({ sections }: DownloadAllPDFsProps) {
       });
 
       // Save the ZIP file
-      saveAs(zipBlob, 'Kirchner-v-Johnson-Case-Documents.zip');
+      saveAs(zipBlob, `${archiveName}.zip`);
 
       toast({
         title: "Download Complete",
