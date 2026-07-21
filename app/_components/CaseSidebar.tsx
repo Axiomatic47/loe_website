@@ -11,12 +11,40 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Scale, Image as ImageIcon } from 'lucide-react';
+import {
+  ArrowLeft,
+  Scale,
+  FileText,
+  Eye,
+  Calendar,
+  Map as MapIcon,
+  Image as ImageIcon,
+} from 'lucide-react';
 import MobileNavigation, { useMobileNavigation } from '@/components/MobileNavigation';
 
-// Sub-case tab labels — mirror the vite SectionPage's CASE_GROUP_LABELS use:
-// the case_group value itself is the label unless mapped here.
-const CASE_GROUP_LABELS: Record<string, string> = {};
+// Sub-case tab labels — verbatim from the vite SectionPage.
+const CASE_GROUP_LABELS: Record<string, string> = {
+  // Kirchner v. Ellison sub-cases
+  'cv-00726': 'Trial Court',
+  'cv-02594': 'Refiled Action',
+  '26-1615': '8th Cir. Appeal',
+  // Kirchner v. Johnson — by complaint era
+  'original': 'Original Complaint',
+  'fac': 'First Amended Complaint',
+  'sac': 'Second Amended Complaint',
+  'tac': 'Third Amended Complaint',
+  'filings': 'Subsequent Filings',
+};
+
+// Per-collection sidebar icon — mirrors getCollectionConfig in the vite reader.
+const COLLECTION_ICONS: Record<string, typeof Scale> = {
+  constitutional: Scale,
+  manuscript: FileText,
+  data: Eye,
+  copyright: FileText,
+  timeline: Calendar,
+  map: MapIcon,
+};
 
 export interface SidebarSection {
   slug: string;
@@ -30,6 +58,7 @@ export interface SidebarSection {
 }
 
 interface CaseSidebarProps {
+  collectionKey: string;
   collectionTitle: string;
   collectionHref: string;
   compositionTitle: string;
@@ -39,6 +68,7 @@ interface CaseSidebarProps {
 }
 
 export function CaseSidebar({
+  collectionKey,
   collectionTitle,
   collectionHref,
   compositionTitle,
@@ -46,6 +76,7 @@ export function CaseSidebar({
   currentSlug,
   hiddenCaseGroups,
 }: CaseSidebarProps) {
+  const CollectionIcon = COLLECTION_ICONS[collectionKey] || FileText;
   const { isSidebarOpen, setIsSidebarOpen } = useMobileNavigation();
 
   const current = sections.find(s => s.slug === currentSlug);
@@ -93,7 +124,7 @@ export function CaseSidebar({
           </Button>
 
           <div className="flex items-center gap-2 mb-1">
-            <Scale className="h-4 w-4 text-primary" />
+            <CollectionIcon className="h-4 w-4 text-primary" />
             <h2 className="text-lg font-serif text-foreground" style={{ letterSpacing: '-0.018em' }}>
               {collectionTitle}
             </h2>

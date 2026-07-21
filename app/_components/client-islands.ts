@@ -7,3 +7,4 @@
 export { PDFViewer } from '@/components/PDFViewer';
 export { CollapsibleSummary } from '@/components/CollapsibleSummary';
 export { default as ImageEnhancedMarkdownRenderer } from '@/components/ImageEnhancedMarkdownRenderer';
+export { default as MediaGallery } from '@/components/MediaGallery';

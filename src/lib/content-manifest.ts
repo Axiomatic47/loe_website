@@ -145,8 +145,8 @@ function validatePosition(position: unknown): 'top' | 'middle' | 'bottom' | 'inl
   return 'middle';
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any -- raw JSON in, typed out */
-
+// Raw JSON in, typed out — `any` here matches the vite loader it mirrors
+// (the repo-wide no-explicit-any rule is off during the strictness ratchet).
 function processCompositionData(data: any, expectedType: string, filename: string): Composition {
   const title = data.title || data.name || 'Untitled';
   const collection_type = data.collection_type || expectedType;
@@ -312,8 +312,6 @@ function generateTimelineMarkdown(title: string, description: string, events: an
   markdown += `*Navigate to the Timeline page to view the interactive timeline.*`;
   return markdown;
 }
-
-/* eslint-enable @typescript-eslint/no-explicit-any */
 
 // ---------------------------------------------------------------------------
 // Loading + accessors

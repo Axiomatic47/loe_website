@@ -23,6 +23,7 @@
     "generate-nav-manifest": "node scripts/generate-nav-manifest.mjs",
     "enrich-content-slugs": "node scripts/enrich-content-slugs.mjs",
     "freeze-legacy-urls": "node scripts/freeze-legacy-urls.mjs",
+    "generate-next-redirects": "node scripts/generate-next-redirects.mjs",
     "generate-sitemap": "node scripts/generate-sitemap.mjs",
     "sync-archives": "node scripts/sync-archives.mjs",
     "process-testimonies-cms": "tsx scripts/processTestimoniesToCMS.ts",

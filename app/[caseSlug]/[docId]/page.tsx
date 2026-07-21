@@ -9,7 +9,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getCaseComposition, getSection } from '@/lib/content-manifest';
 import { CASE_SLUGS, absoluteUrl, isCaseSlug } from '@/utils/urls';
-import { CaseDocView } from '../../_components/CaseDocView';
+import { DocReaderView } from '../../_components/DocReaderView';
 
 export const dynamicParams = false;
 
@@ -51,5 +51,5 @@ export default async function CaseDocPage({ params }: Params) {
   if (!isCaseSlug(caseSlug)) notFound();
   const composition = getCaseComposition(caseSlug);
   if (!composition || !getSection(composition, docId)) notFound();
-  return <CaseDocView caseSlug={caseSlug} docSlug={docId} />;
+  return <DocReaderView collection="constitutional" compositionSlug={caseSlug} sectionSlug={docId} />;
 }

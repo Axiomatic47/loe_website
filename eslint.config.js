@@ -10,6 +10,8 @@ export default tseslint.config(
   {
     ignores: [
       "dist",
+      ".next",
+      "next-env.d.ts",
       "public",
       "testimonies",
       "testimony_queue",

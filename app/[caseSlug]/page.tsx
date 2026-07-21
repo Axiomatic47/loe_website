@@ -14,7 +14,7 @@ import { CASES } from '@/data/caseLanding';
 import { getCaseComposition } from '@/lib/content-manifest';
 import { CASE_SLUGS, sectionUrl, absoluteUrl, isCaseSlug } from '@/utils/urls';
 import { SitePageLayout } from '../_components/SitePageLayout';
-import { CaseDocView } from '../_components/CaseDocView';
+import { DocReaderView } from '../_components/DocReaderView';
 
 export const dynamicParams = false;
 
@@ -75,7 +75,7 @@ export default async function CasePage({ params }: Params) {
     const composition = getCaseComposition('scotus-amicus');
     const first = composition?.sections[0];
     if (!composition || !first) notFound();
-    return <CaseDocView caseSlug="scotus-amicus" docSlug={first.slug} />;
+    return <DocReaderView collection="constitutional" compositionSlug="scotus-amicus" sectionSlug={first.slug} />;
   }
 
   const caseKey = caseSlug.replace('kirchner-v-', '');
