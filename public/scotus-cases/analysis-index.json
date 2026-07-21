@@ -1,20 +1,7 @@
 {
   "generatedAt": "2026-02-20T22:17:13.362Z",
-  "totalFiles": 4,
+  "totalFiles": 3,
   "categories": [
-    {
-      "name": "Exhibits",
-      "files": [
-        {
-          "id": "EXHIBIT_N_1_B_SCOTUS_Emergency_Docket_Research_and_Statistical_Analysis_pdf",
-          "name": "EXHIBIT N-1-B SCOTUS Emergency Docket Research and Statistical Analysis.pdf",
-          "displayName": "SCOTUS Emergency Docket Statistical Analysis",
-          "path": "/scotus-cases/analysis/EXHIBIT N-1-B SCOTUS Emergency Docket Research and Statistical Analysis.pdf",
-          "size": 1436499,
-          "category": "Exhibits"
-        }
-      ]
-    },
     {
       "name": "Legal Memos and Exhibits",
       "files": [
