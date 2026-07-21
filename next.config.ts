@@ -2,8 +2,10 @@ import type { NextConfig } from 'next';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-// Legacy URL space — real permanent redirects compiled from data, replacing
-// public/_redirects + the vite client resolvers at cutover:
+// Legacy URL space — real permanent redirects compiled from data. They
+// replace the vite client resolvers; public/_redirects (same frozen map,
+// forced 301s, evaluated first) deliberately STAYS as the backstop layer
+// for URLs cited in filed legal documents.
 // - legacy-routes.json: the FROZEN positional→descriptive map (Phase 1;
 //   684 URLs; regenerate never — it is a historical contract).
 // - next-redirects.json: data-derived grammars (section-index forms, doc-id

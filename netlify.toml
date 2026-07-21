@@ -1,22 +1,20 @@
-# netlify.toml — SINGLE source of truth for build, redirects, and headers.
-# (public/_headers and public/_redirects were removed 2026-07 — do not recreate;
-#  the live site serves THIS file's headers.)
+# netlify.toml — source of truth for build, redirects, and headers.
+# Headers live HERE (public/_headers stays removed — do not recreate).
+# Redirect layers, in evaluation order:
+#   1. public/_redirects — GENERATED frozen legacy 301s (freeze-legacy-urls.mjs;
+#      686 forced rules; cited in filed legal documents — the backstop layer)
+#   2. this file's domain-level 301s
+#   3. next.config.ts compiled redirects (same frozen map + 2,098 generated)
+#
+# CUTOVER (2026-07-21): builds the Next.js App Router site via
+# @netlify/plugin-nextjs. The old vite build ("npm run build") still works
+# on this branch until the vite side is deleted.
 
 [build]
-  publish = "dist"
-  command = "npm run build"
+  command = "npm run build:next"
 
-# Serve static assets directly (must come before SPA catch-all)
-[[redirects]]
-  from = "/assets/*"
-  to = "/assets/:splat"
-  status = 200
-
-# Handle SPA routing - redirect all routes to index.html
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
 
 # Security headers.
 # CSP notes: 'unsafe-inline'/'unsafe-eval' remain for the inline theme/MathJax/
@@ -34,9 +32,9 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
     Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://www.paypal.com https://*.paypal.com https://www.paypalobjects.com https://*.paypalobjects.com https://plausible.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.paypal.com https://*.paypalobjects.com; font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com https://cdn.jsdelivr.net; img-src 'self' data: blob: https: https://*.paypal.com https://*.paypalobjects.com https://img.youtube.com https://i.ytimg.com; connect-src 'self' https://*.paypal.com https://api.sandbox.paypal.com https://plausible.io https://cdn.jsdelivr.net; frame-src 'self' https://*.paypal.com https://www.paypal.com https://www.youtube.com https://youtube.com https://www.youtube-nocookie.com; frame-ancestors 'self';"
 
-# Immutable long-cache for content-hashed build assets
+# Immutable long-cache for content-hashed build assets (Next emits /_next/static)
 [[headers]]
-  for = "/assets/*"
+  for = "/_next/static/*"
     [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
@@ -58,13 +56,13 @@
     X-Robots-Tag = "noindex, nofollow"
     Cache-Control = "public, max-age=86400"
 
-# Development server configuration
+# Development server configuration (Next dev; the vite server is still
+# available directly via `npm run dev` until the vite side is deleted)
 [dev]
   framework = "#custom"
-  command = "npm run dev"
-  targetPort = 5173  # Vite's default port
+  command = "npx next dev"
+  targetPort = 3000  # next dev default port
   port = 8888
-  publish = "dist"
   autoLaunch = false
 
 # Force HTTPS redirect for the new domain
