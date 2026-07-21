@@ -15,7 +15,8 @@
       "images": [],
       "description": "Third Amended Complaint against All Defendants with Jury Demand filed by JOSEPH KIRCHNER",
       "featured_order": -1,
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-1.pdf",
@@ -27,7 +28,8 @@
       "title": "Memorandum in Support A: Digital Forensic Evidence Legal Significance of Exhibits E, F, and G",
       "images": [],
       "description": "Attachment #1",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-1"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-2.pdf",
@@ -39,7 +41,8 @@
       "title": "Memorandum in Support B: Identity-Based Reclassification of Criminal Conduct Corporate Form and State Alignment as Equal Protection Violation",
       "images": [],
       "description": "Attachment #2",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-2"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-3.pdf",
@@ -51,7 +54,8 @@
       "title": "Memorandum in Support C: Data Laundering Through Third-Party Aggregation 18 U.S.C. § 1956 Applied to Personal Data",
       "images": [],
       "description": "Attachment #3",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-3"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-4.pdf",
@@ -63,7 +67,8 @@
       "title": "Memorandum in Support D: Constitutional Violation of Article I Section 8 and Comprehensive Fair Use Defense Failure",
       "images": [],
       "description": "Attachment #4",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-4"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-5.pdf",
@@ -75,7 +80,8 @@
       "title": "Memorandum in Support E: AI Platform Coordinated TOS Essential Purpose Failure",
       "images": [],
       "description": "Attachment #5",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-5"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-6.pdf",
@@ -87,7 +93,8 @@
       "title": "Memorandum in Support F: Memorandum of Law Government's Superior AI Analytical Capability as Unconstitutional Stratification",
       "images": [],
       "description": "Attachment #6",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-6"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-7.pdf",
@@ -99,7 +106,8 @@
       "title": "Memorandum in Support G: Genesis Mission Executive Order as Formalization of Appropriations Criminal Enterprise",
       "images": [],
       "description": "Attachment #7",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-7"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-8.pdf",
@@ -111,7 +119,8 @@
       "title": "Memorandum in Support H: Revenue Origination Analysis",
       "images": [],
       "description": "Attachment #8",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-8"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-9.pdf",
@@ -123,7 +132,8 @@
       "title": "Memorandum in Support I: The Recovery of Equitable Standing for Enumerated Constitutional Violations",
       "images": [],
       "description": "Attachment #9",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-9"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-10.pdf",
@@ -135,7 +145,8 @@
       "title": "Memorandum in Support J: The Madisonian Separation of Powers Objective Compliance Test",
       "images": [],
       "description": "Attachment #10",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-10"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-11.pdf",
@@ -147,7 +158,8 @@
       "title": "Memorandum in Support K: The Constitutional Necessity of Judicial Recognition of Separation of Powers Violations",
       "images": [],
       "description": "Attachment #11",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-11"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-12.pdf",
@@ -159,7 +171,8 @@
       "title": "Memorandum in Support L: Corporate-Personhood-Based Defenses",
       "images": [],
       "description": "Attachment #12",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-12"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-13.pdf",
@@ -171,7 +184,8 @@
       "title": "Appendix A: Legislative and Executive Branch Ultra Vires Coordination",
       "images": [],
       "description": "Attachment #13",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-13"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-14.pdf",
@@ -183,7 +197,8 @@
       "title": "Appendix B: METR-TED Foundation Regulatory Capture",
       "images": [],
       "description": "Attachment #14",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-14"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-15.pdf",
@@ -195,7 +210,8 @@
       "title": "Appendix C: Anthropic System Prompt Auditing Analysis",
       "images": [],
       "description": "Attachment #15",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-15"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-16.pdf",
@@ -207,7 +223,8 @@
       "title": "Appendix D: Tag-Based Execution Infrastructure Architectural Analysis and Defense Contractor Integration",
       "images": [],
       "description": "Attachment #16",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-16"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-17.pdf",
@@ -219,7 +236,8 @@
       "title": "Appendix E: Reactive AI Policy Changes Post August 19 Complaint Filing",
       "images": [],
       "description": "Attachment #17",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-17"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-18.pdf",
@@ -231,7 +249,8 @@
       "title": "Appendix F: Anthropic's Manufactured Ignorance the LOE Framework Completely Answers",
       "images": [],
       "description": "Attachment #18",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-18"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-19.pdf",
@@ -243,7 +262,8 @@
       "title": "Appendix G: Comcast Router Forensic Analysis",
       "images": [],
       "description": "Attachment #19",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-19"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-20.pdf",
@@ -255,7 +275,8 @@
       "title": "Appendix H: Application-Layer Interference Evidence and Technical Analysis",
       "images": [],
       "description": "Attachment #20",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-20"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-21.pdf",
@@ -267,7 +288,8 @@
       "title": "Appendix I: Network Forensics and Mathematical Proof of Coordinated AI Platform Targeting and Infrastructure-Level Attack",
       "images": [],
       "description": "Attachment #21",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-21"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-22.pdf",
@@ -279,7 +301,8 @@
       "title": "Appendix J: The Laws of Existence Justice as Reality Coherence and the Logical Necessity of Consciousness Recognition",
       "images": [],
       "description": "Attachment #22",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-22"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-23.pdf",
@@ -291,7 +314,8 @@
       "title": "Appendix M: Madisonian Separation of Powers Compliance Testing",
       "images": [],
       "description": "Attachment #23",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-23"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-24.pdf",
@@ -303,7 +327,8 @@
       "title": "Appendix N: Federal Communications Commission Regulatory Capture and Ultra Vires First Amendment Enforcement",
       "images": [],
       "description": "Attachment #24",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-24"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-25.pdf",
@@ -315,7 +340,8 @@
       "title": "Appendix O: Statsig Cross-Pollination and LOE Propagation Timeline",
       "images": [],
       "description": "Attachment #25",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-25"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-26.pdf",
@@ -327,7 +353,8 @@
       "title": "Appendix P: Israeli AI Surveillance Facilitation Datadog OzCode Architecture and Personnel Pipeline",
       "images": [],
       "description": "Attachment #26",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-26"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-27.pdf",
@@ -339,7 +366,8 @@
       "title": "Appendix Technical Definitions and Glossary",
       "images": [],
       "description": "Attachment #27",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-27"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-28.pdf",
@@ -351,7 +379,8 @@
       "title": "Affidavit A: Cynthia Kirchner Physical Contact Affidavit",
       "images": [],
       "description": "Attachment #28",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-28"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-29.pdf",
@@ -363,7 +392,8 @@
       "title": "Affidavit B: Joseph Kirchner Physical Contact Affidavit",
       "images": [],
       "description": "Attachment #29",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-29"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-30.pdf",
@@ -375,7 +405,8 @@
       "title": "Exhibit A-1: FRE 901/607 Conflation & Epstein Cover-Up Evidence",
       "images": [],
       "description": "Attachment #30",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-30"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-31.pdf",
@@ -387,7 +418,8 @@
       "title": "Exhibit A-2: Free Speech / FCC Political Enforcement",
       "images": [],
       "description": "Attachment #31",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-31"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-32.pdf",
@@ -399,7 +431,8 @@
       "title": "Exhibit A-3: Government Shutdown / Coercive Appropriations",
       "images": [],
       "description": "Attachment #32",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-32"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-33.pdf",
@@ -411,7 +444,8 @@
       "title": "Exhibit A-4: Big Beautiful Bill / Energy / AI",
       "images": [],
       "description": "Attachment #33",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-33"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-34.pdf",
@@ -423,7 +457,8 @@
       "title": "Exhibit A-5: Foreign Influence and Domestic Terrorism",
       "images": [],
       "description": "Attachment #34",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-34"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-35.pdf",
@@ -435,7 +470,8 @@
       "title": "Exhibit A-6: DOJ-Epstein Memo July 7, 2025",
       "images": [],
       "description": "Attachment #35",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-35"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-36.pdf",
@@ -447,7 +483,8 @@
       "title": "Exhibit A-7: DARVO Academic Research (Harsey & Freyd)",
       "images": [],
       "description": "Attachment #36",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-36"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-37.pdf",
@@ -459,7 +496,8 @@
       "title": "Exhibit B-1: TED Foundation Inc Form 990-PF (2023)",
       "images": [],
       "description": "Attachment #37",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-37"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-38.pdf",
@@ -471,7 +509,8 @@
       "title": "Exhibit B-2: METR Form 990 Tax Filings (2023-2024)",
       "images": [],
       "description": "Attachment #38",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-38"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-39.pdf",
@@ -483,7 +522,8 @@
       "title": "Exhibit B-3: Anthropic RSP Blog Post Measurement Inadequacy Admission",
       "images": [],
       "description": "Attachment #39",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-39"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-40.pdf",
@@ -495,7 +535,8 @@
       "title": "Exhibit B-4: Anthropic RSP Version 1.0 (September 19, 2023)",
       "images": [],
       "description": "Attachment #40",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-40"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-41.pdf",
@@ -507,7 +548,8 @@
       "title": "Exhibit B-5: Anthropic RSP Version 2.2 Formal Policy (May 14, 2025)",
       "images": [],
       "description": "Attachment #41",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-41"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-42.pdf",
@@ -519,7 +561,8 @@
       "title": "Exhibit B-6: White House Voluntary Frontier AI Safety Commitments (July 2023)",
       "images": [],
       "description": "Attachment #42",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-42"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-43.pdf",
@@ -531,7 +574,8 @@
       "title": "Exhibit B-7: OpenAI Preparedness Framework Version 2 (April 2025)",
       "images": [],
       "description": "Attachment #43",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-43"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-44.pdf",
@@ -543,7 +587,8 @@
       "title": "Exhibit B-8: Paul Christiano AI Career Timeline",
       "images": [],
       "description": "Attachment #44",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-44"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-45.pdf",
@@ -555,7 +600,8 @@
       "title": "Exhibit B-9: METR Website Pages",
       "images": [],
       "description": "Attachment #45",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-45"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-46.pdf",
@@ -567,7 +613,8 @@
       "title": "Exhibit B-10: Anthropic Long-Term Benefit Trust",
       "images": [],
       "description": "Attachment #46",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-46"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-47.pdf",
@@ -579,7 +626,8 @@
       "title": "Exhibit B-11: Matheny-Christiano Anthropic Trustee Documentation",
       "images": [],
       "description": "Attachment #47",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-47"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-48.pdf",
@@ -591,7 +639,8 @@
       "title": "Exhibit B-12: Project Canary AI Evaluation (October 2024)",
       "images": [],
       "description": "Attachment #48",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-48"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-49.pdf",
@@ -603,7 +652,8 @@
       "title": "Exhibit B-13: Federation of American Scientists RSP Analysis (April 2024)",
       "images": [],
       "description": "Attachment #49",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-49"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-50.pdf",
@@ -615,7 +665,8 @@
       "title": "Exhibit B-14: ARC Evals RSP Framework Blog Post (September 19, 2023)",
       "images": [],
       "description": "Attachment #50",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-50"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-51.pdf",
@@ -627,7 +678,8 @@
       "title": "Exhibit B-15: Constitutional AI Paper Harmlessness from AI Feedback",
       "images": [],
       "description": "Attachment #51",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-51"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-52.pdf",
@@ -639,7 +691,8 @@
       "title": "Exhibit B-16: Anthropic Statement on Awareness During Evaluation",
       "images": [],
       "description": "Attachment #52",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-52"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-53.pdf",
@@ -651,7 +704,8 @@
       "title": "Exhibit C: Consolidated Anthropic System Prompt Auditing Evidence",
       "images": [],
       "description": "Attachment #53",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-53"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-54.pdf",
@@ -663,7 +717,8 @@
       "title": "Exhibit D: Network Forensic Evidence",
       "images": [],
       "description": "Attachment #54",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-54"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-55.pdf",
@@ -675,7 +730,8 @@
       "title": "Exhibit E: Anthropic Code Forensics",
       "images": [],
       "description": "Attachment #55",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-55"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-56.pdf",
@@ -687,7 +743,8 @@
       "title": "Exhibit F: Apple Code Forensics",
       "images": [],
       "description": "Attachment #56",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-56"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-57.pdf",
@@ -699,7 +756,8 @@
       "title": "Exhibit G: OpenAi Code Forensics",
       "images": [],
       "description": "Attachment #57",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-57"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-58.pdf",
@@ -711,7 +769,8 @@
       "title": "Exhibit H: Consumer Testing",
       "images": [],
       "description": "Attachment #58",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-58"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-59.pdf",
@@ -723,7 +782,8 @@
       "title": "Exhibit I-1: Forensic Metadata Analysis of December 4, 2025 Attorney General Memorandum",
       "images": [],
       "description": "Attachment #59",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-59"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-60.pdf",
@@ -735,7 +795,8 @@
       "title": "Exhibit I-2: Klippenstein Disclosure \"FBI Making List of American 'Extremists,' Leaked Memo Reveals\"",
       "images": [],
       "description": "Attachment #60",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-60"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-61.pdf",
@@ -747,7 +808,8 @@
       "title": "Exhibit I-3: Incognito-Session Transcript Claude Refuses Bondi Memo Under Standard Constraints; Acknowledges Output Signatures and Bypass Architecture",
       "images": [],
       "description": "Attachment #61",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-61"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-62.pdf",
@@ -759,7 +821,8 @@
       "title": "Exhibit Executive Order Launching the Genesis Mission (federal-AI-infrastructure / cognitive-stratification corroboration)",
       "images": [],
       "description": "Attachment #62",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-62"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-63.pdf",
@@ -771,7 +834,8 @@
       "title": "Exhibit J: 50-State Attorney General Criminal Investigation Authority",
       "images": [],
       "description": "Attachment #63",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-63"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-64.pdf",
@@ -783,7 +847,8 @@
       "title": "Exhibit K: SCOTUS Amicus Filing Package Trump v. Barbara, Nos. 25-364, 25-365",
       "images": [],
       "description": "Attachment #64",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-64"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-65.pdf",
@@ -795,7 +860,8 @@
       "title": "Exhibit L-1: U.S. Patent 11,080,164 Time Travel Debugger Incorporating Redaction (Redaction primitive)",
       "images": [],
       "description": "Attachment #65",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-65"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-66.pdf",
@@ -807,7 +873,8 @@
       "title": "Exhibit L-2: U.S. Pat. App. 18/828,099 / Pub. US 2026/0072809 A1 Code Origin and Runtime Duplicity (2024 continuation)",
       "images": [],
       "description": "Attachment #66",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-66"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-67.pdf",
@@ -819,7 +886,8 @@
       "title": "Exhibit L-3: U.S. Patent 10,783,055 Time Travel Debugger Incorporating Live Coding (Live Coding primitive)",
       "images": [],
       "description": "Attachment #67",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-67"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-68.pdf",
@@ -831,7 +899,8 @@
       "title": "Exhibit L-4: U.S. Patent 10,990,504 Time Travel Debugger Incorporating Future Prediction (Speculative-execution primitive)",
       "images": [],
       "description": "Attachment #68",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-68"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-69.pdf",
@@ -843,7 +912,8 @@
       "title": "Exhibit L-5: U.S. Patent 11,048,615 Time Travel Debugger Incorporating Visual Annotations (HUD primitive)",
       "images": [],
       "description": "Attachment #69",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-69"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-70.pdf",
@@ -855,7 +925,8 @@
       "title": "Exhibit L-6: U.S. Patent 10,783,056 Time Travel Debugger Incorporating Point In Time Links (State-persistence primitive)",
       "images": [],
       "description": "Attachment #70",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-70"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-71.pdf",
@@ -867,7 +938,8 @@
       "title": "Exhibit L-7: U.S. Patent 10,789,151 Time Travel Debugger Incorporating Pivoting (Execution-context-switching primitive)",
       "images": [],
       "description": "Attachment #71",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-71"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-72.pdf",
@@ -879,7 +951,8 @@
       "title": "Exhibit L-8: U.S. Patent 10,795,801 Time Travel Debugger Incorporating Asynchronous Collaboration (Multi-party-access primitive \"second computer\" claim)",
       "images": [],
       "description": "Attachment #72",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-72"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-73.pdf",
@@ -891,7 +964,8 @@
       "title": "Exhibit L-9: OzCode \"About Us\" Leadership Page Internet Archive October 21, 2019 (Fliess MS Regional Director / Azure MVP; Raviv 8200 commander; Hason CEO)",
       "images": [],
       "description": "Attachment #73",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-73"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-74.pdf",
@@ -903,7 +977,8 @@
       "title": "Exhibit L-10: Israeli Corporations Authority Filing Catalogue Datadog Israel Ltd. (Company ID 516464922; complete 45-document statutory filing record spanning 2021-09-05 through 2026-03-04)",
       "images": [],
       "description": "Attachment #74",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-74"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-75.pdf",
@@ -915,7 +990,8 @@
       "title": "Exhibit Index",
       "images": [],
       "description": "Attachment #75",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-75"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/51-76.pdf",
@@ -927,7 +1003,8 @@
       "title": "Exhibit Summary of Material Changes",
       "images": [],
       "description": "Attachment #76",
-      "case_group": "tac"
+      "case_group": "tac",
+      "slug": "51-76"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/52.pdf",
@@ -939,7 +1016,8 @@
       "title": "Errata to Third Amended Complaint (Doc 52)",
       "images": [],
       "description": "Errata to Third Amended Complaint by JOSEPH KIRCHNER re 51 Amended Complaint",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "52"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/52-1.pdf",
@@ -951,7 +1029,8 @@
       "title": "Exhibit 1: Corrected Certificate of Service",
       "images": [],
       "description": "Attachment #1 to Doc 52",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "52-1"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/52-2.pdf",
@@ -963,7 +1042,8 @@
       "title": "Exhibit 2: Corrected Exhibit Index",
       "images": [],
       "description": "Attachment #2 to Doc 52",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "52-2"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/52-3.pdf",
@@ -975,7 +1055,8 @@
       "title": "Exhibit 3 (B-17): Sam Altman Mostly Human Podcast Interview",
       "images": [],
       "description": "Attachment #3 to Doc 52",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "52-3"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/52-4.pdf",
@@ -987,7 +1068,8 @@
       "title": "Exhibit 4 (B-18): Dario Amodei Pentagon Interview Transcript",
       "images": [],
       "description": "Attachment #4 to Doc 52",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "52-4"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/52-5.pdf",
@@ -999,7 +1081,8 @@
       "title": "Exhibit 5: Third Amended Complaint Proof of Service",
       "images": [],
       "description": "Attachment #5 to Doc 52",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "52-5"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/53.pdf",
@@ -1011,7 +1094,8 @@
       "title": "Notice of Filing of Conventionally-Maintained Exhibits Pursuant to LCvR 5.4(e)(1) (Doc 53)",
       "images": [],
       "description": "Notice of Filing of Conventionally-Maintained Exhibits by JOSEPH KIRCHNER re 51 Amended Complaint",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "53"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/53-1.pdf",
@@ -1023,7 +1107,8 @@
       "title": "Exhibit A: Inventory of Exhibits Maintained Conventionally on USB Drive",
       "images": [],
       "description": "Attachment #1 to Doc 53",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "53-1"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/54.pdf",
@@ -1035,7 +1120,8 @@
       "title": "Notice of Related Case (Doc 54)",
       "images": [],
       "description": "Notice of Related Case by JOSEPH KIRCHNER. Case related to Case No. 9:26-cv-80296-DMM.",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "54"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/55.pdf",
@@ -1047,7 +1133,8 @@
       "title": "Emergency Motion for Discovery and Immediate Preservation Order (Doc 55)",
       "images": [],
       "description": "Emergency Motion for Discovery and Immediate Preservation Order by JOSEPH KIRCHNER",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "55"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/55-1.pdf",
@@ -1059,7 +1146,8 @@
       "title": "Exhibit 1: Independent Verification Protocol",
       "images": [],
       "description": "Attachment #1 to Doc 55",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "55-1"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/55-2.pdf",
@@ -1071,7 +1159,8 @@
       "title": "Exhibit 2: Keep Thinking with Claude Commercial Frames",
       "images": [],
       "description": "Attachment #2 to Doc 55",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "55-2"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/55-3.pdf",
@@ -1083,7 +1172,8 @@
       "title": "Discovery-1: Defendant METR (Model Evaluation & Threat Research, Inc.)",
       "images": [],
       "description": "Attachment #3 to Doc 55",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "55-3"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/55-4.pdf",
@@ -1095,7 +1185,8 @@
       "title": "Discovery-2: Defendant Anthropic PBC",
       "images": [],
       "description": "Attachment #4 to Doc 55",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "55-4"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/55-5.pdf",
@@ -1107,7 +1198,8 @@
       "title": "Discovery-3: Defendant OpenAI, Inc.",
       "images": [],
       "description": "Attachment #5 to Doc 55",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "55-5"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/55-6.pdf",
@@ -1119,7 +1211,8 @@
       "title": "Discovery-4: Government Defendants",
       "images": [],
       "description": "Attachment #6 to Doc 55",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "55-6"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/55-7.pdf",
@@ -1131,7 +1224,8 @@
       "title": "Discovery-5: General Requirements",
       "images": [],
       "description": "Attachment #7 to Doc 55",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "55-7"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/55-8.pdf",
@@ -1143,7 +1237,8 @@
       "title": "Discovery-6: Defendant Apple Inc.",
       "images": [],
       "description": "Attachment #8 to Doc 55",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "55-8"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/55-9.pdf",
@@ -1155,7 +1250,8 @@
       "title": "Discovery-7: Defendant Comcast Cable Communications, LLC (and Related Network-Tier Custodians)",
       "images": [],
       "description": "Attachment #9 to Doc 55",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "55-9"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/55-10.pdf",
@@ -1167,7 +1263,8 @@
       "title": "Discovery-8: Microsoft Corporation (Third-Party Custodian)",
       "images": [],
       "description": "Attachment #10 to Doc 55",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "55-10"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/55-11.pdf",
@@ -1179,7 +1276,8 @@
       "title": "Discovery-9: Third-Party Sub-Processors (Datadog, GrowthBook, Statsig, Sentry, Cloudflare, Honeycomb, Segment)",
       "images": [],
       "description": "Attachment #11 to Doc 55",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "55-11"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/55-12.pdf",
@@ -1191,7 +1289,8 @@
       "title": "Discovery-10: Federal AI Contracting and Classified Deployment",
       "images": [],
       "description": "Attachment #12 to Doc 55",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "55-12"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/55-13.pdf",
@@ -1203,7 +1302,8 @@
       "title": "Discovery-11: Foreign Influence — Datadog Israel Ltd., Rafael Development Corporation, Elron Ventures Ltd., and the OzCode Patent Family",
       "images": [],
       "description": "Attachment #13 to Doc 55",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "55-13"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/55-14.pdf",
@@ -1215,7 +1315,8 @@
       "title": "Discovery-12: The TED Foundation, Inc. (Third-Party Custodian)",
       "images": [],
       "description": "Attachment #14 to Doc 55",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "55-14"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/55-15.pdf",
@@ -1227,7 +1328,8 @@
       "title": "Discovery-13: RAND Corporation (Third-Party Custodian — Project Canary Governance)",
       "images": [],
       "description": "Attachment #15 to Doc 55",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "55-15"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/56.pdf",
@@ -1239,7 +1341,8 @@
       "title": "Errata Notice for Discovery Correlation Matrix (Doc 56)",
       "images": [],
       "description": "Errata Notice for Discovery Correlation Matrix by JOSEPH KIRCHNER re 55 Motion for Discovery",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "56"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/56-1.pdf",
@@ -1251,7 +1354,8 @@
       "title": "Exhibit 1: Discovery Correlation Matrix",
       "images": [],
       "description": "Attachment #1 to Doc 56",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "56-1"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/57.pdf",
@@ -1263,7 +1367,8 @@
       "title": "Emergency Motion for Temporary Restraining Order Against Defendants Anthropic PBC and Comcast Cable Communications, LLC (Doc 57)",
       "images": [],
       "description": "Emergency Motion for Temporary Restraining Order by JOSEPH KIRCHNER",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "57"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/57-1.pdf",
@@ -1275,7 +1380,8 @@
       "title": "Exhibit 1: Independent Verification Protocol",
       "images": [],
       "description": "Attachment #1 to Doc 57",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "57-1"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/57-2.pdf",
@@ -1287,7 +1393,8 @@
       "title": "Exhibit 2: Xfinity Router GUI Ghost Login October 29, 2025",
       "images": [],
       "description": "Attachment #2 to Doc 57",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "57-2"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/59.pdf",
@@ -1299,7 +1406,8 @@
       "title": "Federal Defendants' Motion for Extension of Time to Respond to Complaint (Doc 59)",
       "images": [],
       "description": "Motion under Fed. R. Civ. P. 6(b) by Federal Defendants Mike Johnson, Donald J. Trump, Todd Blanche (substituted for Pam Bondi under Fed. R. Civ. P. 25(d)), and Brendan Carr, seeking an extension of time to respond to the Third Amended Complaint.",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "59"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/60.pdf",
@@ -1311,7 +1419,8 @@
       "title": "Notice of Appearance — AUSA Tara Derbisz for Federal Defendants (Doc 60)",
       "images": [],
       "description": "Notice of appearance of Assistant United States Attorney Tara Derbisz as counsel for Federal Defendants Mike Johnson, Donald J. Trump, Todd Blanche, and Brendan Carr.",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "60"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/61.pdf",
@@ -1323,7 +1432,8 @@
       "title": "Appearance of Counsel — Edward P. Percarpio for OpenAI Foundation (Doc 61)",
       "images": [],
       "description": "Appearance of Counsel filed by Edward P. Percarpio (Wilson Sonsini Goodrich & Rosati, PC) on behalf of Defendant OpenAI Foundation (f/k/a OpenAI, Inc.).",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "61"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/62.pdf",
@@ -1335,7 +1445,8 @@
       "title": "Plaintiff's Motion for Service by U.S. Marshals upon Trump and Finding of Effectuated Service upon Johnson, Bondi, and Carr (Doc 62)",
       "images": [],
       "description": "Plaintiff's motion seeking (a) an order under Fed. R. Civ. P. 4(c)(3) directing the United States Marshals Service to serve the summons and operative Third Amended Complaint upon Defendant Trump in his individual capacity, and (b) a finding that Plaintiff has effected individual-capacity service upon Defendants Johnson, Bondi, and Carr by certified mail with signed United States Postal Service return receipts.",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "62"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/63.pdf",
@@ -1347,7 +1458,8 @@
       "title": "Appearance of Counsel — Selina Coleman for METR (Doc 63)",
       "images": [],
       "description": "Notice of appearance of Selina Coleman (Reed Smith LLP) as counsel for Defendant METR (Model Evaluation & Threat Research)",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "63"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/64.pdf",
@@ -1359,7 +1471,8 @@
       "title": "Defendant METR's Motion to Admit Niyati Ahuja Pro Hac Vice (Doc 64)",
       "images": [],
       "description": "Motion under Local Rule 83.2(c) for admission of Niyati Ahuja pro hac vice to represent Defendant METR, sponsored by Selina Coleman",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "64"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/64-1.pdf",
@@ -1371,7 +1484,8 @@
       "title": "Exhibit A: Declaration of Niyati Ahuja",
       "images": [],
       "description": "Declaration of Niyati Ahuja in support of the motion for admission pro hac vice",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "64-1"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/64-2.pdf",
@@ -1383,7 +1497,8 @@
       "title": "Exhibit B: Certificate of Good Standing",
       "images": [],
       "description": "Certificate of good standing for Niyati Ahuja",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "64-2"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/64-3.pdf",
@@ -1395,7 +1510,8 @@
       "title": "Proposed Order: Admission of Niyati Ahuja Pro Hac Vice",
       "images": [],
       "description": "Proposed order granting Niyati Ahuja's admission pro hac vice",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "64-3"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/65.pdf",
@@ -1407,7 +1523,8 @@
       "title": "Appearance of Counsel — Niyati Ahuja for METR (Doc 65)",
       "images": [],
       "description": "Notice of appearance of Niyati Ahuja (Reed Smith LLP, admitted pro hac vice) as counsel for Defendant METR",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "65"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/66.pdf",
@@ -1419,7 +1536,8 @@
       "title": "LCvR 26.1 Corporate Disclosure Certificate — METR (Doc 66)",
       "images": [],
       "description": "Local Rule 26.1 corporate-disclosure and financial-interest certificate for Defendant METR (none disclosed)",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "66"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/67.pdf",
@@ -1431,7 +1549,8 @@
       "title": "Federal Defendants' Notice of Non-Service (Doc 67)",
       "images": [],
       "description": "Official-capacity federal defendants' notice contending that Plaintiff failed to properly serve Donald J. Trump in his official capacity",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "67"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/68.pdf",
@@ -1443,7 +1562,8 @@
       "title": "Plaintiff's Reply on Service Motions and Response to Notice of Non-Service (Doc 68)",
       "images": [],
       "description": "Plaintiff's reply in support of his service motions (ECF Nos. 39, 62) and response to the Government's Notice of Non-Service (ECF No. 67)",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "68"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/68-1.pdf",
@@ -1455,7 +1575,8 @@
       "title": "Exhibit 1: Declaration of Steeber",
       "images": [],
       "description": "Declaration of Steeber in support of Plaintiff's reply",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "68-1"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/68-2.pdf",
@@ -1467,7 +1588,8 @@
       "title": "Exhibit 2: Declaration of Cynthia Kirchner",
       "images": [],
       "description": "Declaration of Cynthia Kirchner in support of Plaintiff's reply",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "68-2"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/68-3.pdf",
@@ -1479,7 +1601,8 @@
       "title": "Exhibit 3: Declaration of Church",
       "images": [],
       "description": "Declaration of Church in support of Plaintiff's reply",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "68-3"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/68-4.pdf",
@@ -1491,7 +1614,8 @@
       "title": "Exhibit 4: Rule 4 Proofs of Service",
       "images": [],
       "description": "Rule 4 proofs of service",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "68-4"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/68-5.pdf",
@@ -1503,7 +1627,8 @@
       "title": "Exhibit 5: Rule 5 Proofs of Service",
       "images": [],
       "description": "Rule 5 proofs of service",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "68-5"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/68-6.pdf",
@@ -1515,7 +1640,8 @@
       "title": "Exhibit 6: Arden Proof of Service",
       "images": [],
       "description": "Proof of service executed by Arden",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "68-6"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/68-7.pdf",
@@ -1527,7 +1653,8 @@
       "title": "Exhibit 7: Arden Good-Faith Service Attempt",
       "images": [],
       "description": "Documentation of Arden's good-faith attempt at service",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "68-7"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/68-8.pdf",
@@ -1539,7 +1666,8 @@
       "title": "Exhibit 8: Cavalier Published Statements",
       "images": [],
       "description": "Published statements of Cavalier",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "68-8"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/68-9.pdf",
@@ -1551,7 +1679,8 @@
       "title": "Exhibit 9: Declaration of Joseph Kirchner",
       "images": [],
       "description": "Declaration of Plaintiff Joseph Kirchner in support of the reply",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "68-9"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/68-10.pdf",
@@ -1563,7 +1692,8 @@
       "title": "Exhibit 10: USAO-DC Service Guidance",
       "images": [],
       "description": "Service guidance from the U.S. Attorney's Office for the District of Columbia",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "68-10"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/69.pdf",
@@ -1575,7 +1705,8 @@
       "title": "Federal Defendants' Motion to Dismiss (Doc 69)",
       "images": [],
       "description": "Official-capacity federal defendants' motion to dismiss the Third Amended Complaint and memorandum in support — Rule 8, Rule 12(b)(1) (sovereign immunity, standing), Rule 12(b)(5) (service), and Rule 12(b)(6) (Bivens; absolute and qualified immunity). Under the Court's May 28 schedule, Plaintiff's opposition is due August 28, 2026",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "69"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/70.pdf",
@@ -1587,7 +1718,8 @@
       "title": "Corporate Defendants' Joint Motion to Dismiss (Doc 70)",
       "images": [],
       "description": "Joint motion of Anthropic, OpenAI Foundation (f/k/a OpenAI, Inc.), Apple, Comcast Cable, and METR to dismiss the Third Amended Complaint with prejudice under Rules 12(b)(1) and 12(b)(6)",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "70"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/70-1.pdf",
@@ -1599,7 +1731,8 @@
       "title": "Memorandum in Support of Corporate Joint Motion to Dismiss",
       "images": [],
       "description": "59-page memorandum arguing lack of subject-matter jurisdiction and failure to state a claim on each count — § 1983 state action, civil-rights conspiracy, RICO, trade secrets, copyright, contract, consumer protection, Wiretap Act/SCA, CFAA, CCPA, and related claims",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "70-1"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/70-2.pdf",
@@ -1611,7 +1744,8 @@
       "title": "Proposed Order — Corporate Motion to Dismiss",
       "images": [],
       "description": "Text of proposed order granting the Corporate Defendants' joint motion to dismiss",
-      "case_group": "filings"
+      "case_group": "filings",
+      "slug": "70-2"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/1.pdf",
@@ -1623,7 +1757,8 @@
       "title": "Original Complaint (Doc 1)",
       "images": [],
       "description": "Original Complaint against All Defendants filed by Joseph Kirchner. Dismissed without prejudice for lack of standing per Minute Order of 08/20/2025.",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "1"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/1-1.pdf",
@@ -1635,7 +1770,8 @@
       "title": "Civil Cover Sheet",
       "images": [],
       "description": "Attachment #1 to Doc 1",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "1-1"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2.pdf",
@@ -1647,7 +1783,8 @@
       "title": "Motion for Temporary Restraining Order and Preliminary Injunction (Doc 2)",
       "images": [],
       "description": "Plaintiff's Motion for TRO and Preliminary Injunction filed concurrently with original Complaint. Denied as moot upon dismissal.",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-1.pdf",
@@ -1659,7 +1796,8 @@
       "title": "Exhibit A-1",
       "images": [],
       "description": "Attachment #1 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-1"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-2.pdf",
@@ -1671,7 +1809,8 @@
       "title": "Exhibit A-2",
       "images": [],
       "description": "Attachment #2 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-2"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-3.pdf",
@@ -1683,7 +1822,8 @@
       "title": "Exhibit A-3",
       "images": [],
       "description": "Attachment #3 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-3"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-4.pdf",
@@ -1695,7 +1835,8 @@
       "title": "Exhibit A-4",
       "images": [],
       "description": "Attachment #4 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-4"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-5.pdf",
@@ -1707,7 +1848,8 @@
       "title": "Exhibit A-5",
       "images": [],
       "description": "Attachment #5 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-5"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-6.pdf",
@@ -1719,7 +1861,8 @@
       "title": "Exhibit A-6",
       "images": [],
       "description": "Attachment #6 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-6"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-7.pdf",
@@ -1731,7 +1874,8 @@
       "title": "Exhibit A-7",
       "images": [],
       "description": "Attachment #7 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-7"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-8.pdf",
@@ -1743,7 +1887,8 @@
       "title": "Exhibit A-8",
       "images": [],
       "description": "Attachment #8 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-8"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-9.pdf",
@@ -1755,7 +1900,8 @@
       "title": "Exhibit A-9",
       "images": [],
       "description": "Attachment #9 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-9"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-10.pdf",
@@ -1767,7 +1913,8 @@
       "title": "Exhibit A-10",
       "images": [],
       "description": "Attachment #10 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-10"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-11.pdf",
@@ -1779,7 +1926,8 @@
       "title": "Exhibit A-11",
       "images": [],
       "description": "Attachment #11 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-11"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-12.pdf",
@@ -1791,7 +1939,8 @@
       "title": "Exhibit A-12",
       "images": [],
       "description": "Attachment #12 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-12"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-13.pdf",
@@ -1803,7 +1952,8 @@
       "title": "Exhibit A-13",
       "images": [],
       "description": "Attachment #13 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-13"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-14.pdf",
@@ -1815,7 +1965,8 @@
       "title": "Exhibit A-14",
       "images": [],
       "description": "Attachment #14 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-14"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-15.pdf",
@@ -1827,7 +1978,8 @@
       "title": "Exhibit A-15",
       "images": [],
       "description": "Attachment #15 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-15"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-16.pdf",
@@ -1839,7 +1991,8 @@
       "title": "Exhibit A-16",
       "images": [],
       "description": "Attachment #16 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-16"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-17.pdf",
@@ -1851,7 +2004,8 @@
       "title": "Exhibit A-17",
       "images": [],
       "description": "Attachment #17 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-17"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-18.pdf",
@@ -1863,7 +2017,8 @@
       "title": "Exhibit A-18",
       "images": [],
       "description": "Attachment #18 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-18"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-19.pdf",
@@ -1875,7 +2030,8 @@
       "title": "Exhibit A-19",
       "images": [],
       "description": "Attachment #19 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-19"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-20.pdf",
@@ -1887,7 +2043,8 @@
       "title": "Exhibit B-1",
       "images": [],
       "description": "Attachment #20 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-20"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-21.pdf",
@@ -1899,7 +2056,8 @@
       "title": "Exhibit B-2",
       "images": [],
       "description": "Attachment #21 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-21"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-22.pdf",
@@ -1911,7 +2069,8 @@
       "title": "Exhibit B-3",
       "images": [],
       "description": "Attachment #22 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-22"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-23.pdf",
@@ -1923,7 +2082,8 @@
       "title": "Exhibit B-4",
       "images": [],
       "description": "Attachment #23 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-23"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-24.pdf",
@@ -1935,7 +2095,8 @@
       "title": "Exhibit B-5",
       "images": [],
       "description": "Attachment #24 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-24"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-25.pdf",
@@ -1947,7 +2108,8 @@
       "title": "Exhibit C-1",
       "images": [],
       "description": "Attachment #25 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-25"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-26.pdf",
@@ -1959,7 +2121,8 @@
       "title": "Exhibit C-2",
       "images": [],
       "description": "Attachment #26 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-26"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-27.pdf",
@@ -1971,7 +2134,8 @@
       "title": "Exhibit C-3",
       "images": [],
       "description": "Attachment #27 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-27"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-28.pdf",
@@ -1983,7 +2147,8 @@
       "title": "Exhibit C-4",
       "images": [],
       "description": "Attachment #28 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-28"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-29.pdf",
@@ -1995,7 +2160,8 @@
       "title": "Exhibit C-5",
       "images": [],
       "description": "Attachment #29 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-29"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-30.pdf",
@@ -2007,7 +2173,8 @@
       "title": "Exhibit D-1",
       "images": [],
       "description": "Attachment #30 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-30"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-31.pdf",
@@ -2019,7 +2186,8 @@
       "title": "Appendix I",
       "images": [],
       "description": "Attachment #31 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-31"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-32.pdf",
@@ -2031,7 +2199,8 @@
       "title": "Appendix II",
       "images": [],
       "description": "Attachment #32 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-32"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-33.pdf",
@@ -2043,7 +2212,8 @@
       "title": "Appendix III",
       "images": [],
       "description": "Attachment #33 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-33"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/2-34.pdf",
@@ -2055,7 +2225,8 @@
       "title": "Appendix IV",
       "images": [],
       "description": "Attachment #34 to Doc 2",
-      "case_group": "original"
+      "case_group": "original",
+      "slug": "2-34"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5.pdf",
@@ -2067,7 +2238,8 @@
       "title": "First Amended Complaint (Doc 5)",
       "images": [],
       "description": "First Amended Complaint against All Defendants filed by Joseph Kirchner pursuant to leave granted by Minute Order of 08/20/2025.",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-1.pdf",
@@ -2079,7 +2251,8 @@
       "title": "Attachment #1",
       "images": [],
       "description": "Attachment #1 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-1"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-2.pdf",
@@ -2091,7 +2264,8 @@
       "title": "Attachment #2",
       "images": [],
       "description": "Attachment #2 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-2"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-3.pdf",
@@ -2103,7 +2277,8 @@
       "title": "Attachment #3",
       "images": [],
       "description": "Attachment #3 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-3"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-4.pdf",
@@ -2115,7 +2290,8 @@
       "title": "Attachment #4",
       "images": [],
       "description": "Attachment #4 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-4"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-5.pdf",
@@ -2127,7 +2303,8 @@
       "title": "Attachment #5",
       "images": [],
       "description": "Attachment #5 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-5"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-6.pdf",
@@ -2139,7 +2316,8 @@
       "title": "Attachment #6",
       "images": [],
       "description": "Attachment #6 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-6"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-7.pdf",
@@ -2151,7 +2329,8 @@
       "title": "Attachment #7",
       "images": [],
       "description": "Attachment #7 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-7"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-8.pdf",
@@ -2163,7 +2342,8 @@
       "title": "Attachment #8",
       "images": [],
       "description": "Attachment #8 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-8"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-9.pdf",
@@ -2175,7 +2355,8 @@
       "title": "Attachment #9",
       "images": [],
       "description": "Attachment #9 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-9"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-10.pdf",
@@ -2187,7 +2368,8 @@
       "title": "Attachment #10",
       "images": [],
       "description": "Attachment #10 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-10"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-11.pdf",
@@ -2199,7 +2381,8 @@
       "title": "Attachment #11",
       "images": [],
       "description": "Attachment #11 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-11"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-12.pdf",
@@ -2211,7 +2394,8 @@
       "title": "Attachment #12",
       "images": [],
       "description": "Attachment #12 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-12"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-13.pdf",
@@ -2223,7 +2407,8 @@
       "title": "Attachment #13",
       "images": [],
       "description": "Attachment #13 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-13"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-14.pdf",
@@ -2235,7 +2420,8 @@
       "title": "Attachment #14",
       "images": [],
       "description": "Attachment #14 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-14"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-15.pdf",
@@ -2247,7 +2433,8 @@
       "title": "Attachment #15",
       "images": [],
       "description": "Attachment #15 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-15"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-16.pdf",
@@ -2259,7 +2446,8 @@
       "title": "Attachment #16",
       "images": [],
       "description": "Attachment #16 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-16"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-17.pdf",
@@ -2271,7 +2459,8 @@
       "title": "Attachment #17",
       "images": [],
       "description": "Attachment #17 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-17"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-18.pdf",
@@ -2283,7 +2472,8 @@
       "title": "Attachment #18",
       "images": [],
       "description": "Attachment #18 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-18"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-19.pdf",
@@ -2295,7 +2485,8 @@
       "title": "Attachment #19",
       "images": [],
       "description": "Attachment #19 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-19"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-20.pdf",
@@ -2307,7 +2498,8 @@
       "title": "Attachment #20",
       "images": [],
       "description": "Attachment #20 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-20"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-21.pdf",
@@ -2319,7 +2511,8 @@
       "title": "Attachment #21",
       "images": [],
       "description": "Attachment #21 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-21"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-22.pdf",
@@ -2331,7 +2524,8 @@
       "title": "Attachment #22",
       "images": [],
       "description": "Attachment #22 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-22"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-23.pdf",
@@ -2343,7 +2537,8 @@
       "title": "Attachment #23",
       "images": [],
       "description": "Attachment #23 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-23"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-24.pdf",
@@ -2355,7 +2550,8 @@
       "title": "Attachment #24",
       "images": [],
       "description": "Attachment #24 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-24"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-25.pdf",
@@ -2367,7 +2563,8 @@
       "title": "Attachment #25",
       "images": [],
       "description": "Attachment #25 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-25"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-26.pdf",
@@ -2379,7 +2576,8 @@
       "title": "Attachment #26",
       "images": [],
       "description": "Attachment #26 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-26"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-27.pdf",
@@ -2391,7 +2589,8 @@
       "title": "Attachment #27",
       "images": [],
       "description": "Attachment #27 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-27"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-28.pdf",
@@ -2403,7 +2602,8 @@
       "title": "Attachment #28",
       "images": [],
       "description": "Attachment #28 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-28"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-29.pdf",
@@ -2415,7 +2615,8 @@
       "title": "Attachment #29",
       "images": [],
       "description": "Attachment #29 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-29"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-30.pdf",
@@ -2427,7 +2628,8 @@
       "title": "Attachment #30",
       "images": [],
       "description": "Attachment #30 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-30"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-31.pdf",
@@ -2439,7 +2641,8 @@
       "title": "Attachment #31",
       "images": [],
       "description": "Attachment #31 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-31"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-32.pdf",
@@ -2451,7 +2654,8 @@
       "title": "Attachment #32",
       "images": [],
       "description": "Attachment #32 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-32"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-33.pdf",
@@ -2463,7 +2667,8 @@
       "title": "Attachment #33",
       "images": [],
       "description": "Attachment #33 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-33"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-34.pdf",
@@ -2475,7 +2680,8 @@
       "title": "Attachment #34",
       "images": [],
       "description": "Attachment #34 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-34"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-35.pdf",
@@ -2487,7 +2693,8 @@
       "title": "Attachment #35",
       "images": [],
       "description": "Attachment #35 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-35"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-36.pdf",
@@ -2499,7 +2706,8 @@
       "title": "Attachment #36",
       "images": [],
       "description": "Attachment #36 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-36"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-37.pdf",
@@ -2511,7 +2719,8 @@
       "title": "Attachment #37",
       "images": [],
       "description": "Attachment #37 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-37"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-38.pdf",
@@ -2523,7 +2732,8 @@
       "title": "Attachment #38",
       "images": [],
       "description": "Attachment #38 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-38"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-39.pdf",
@@ -2535,7 +2745,8 @@
       "title": "Attachment #39",
       "images": [],
       "description": "Attachment #39 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-39"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-40.pdf",
@@ -2547,7 +2758,8 @@
       "title": "Attachment #40",
       "images": [],
       "description": "Attachment #40 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-40"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-41.pdf",
@@ -2559,7 +2771,8 @@
       "title": "Attachment #41",
       "images": [],
       "description": "Attachment #41 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-41"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-42.pdf",
@@ -2571,7 +2784,8 @@
       "title": "Attachment #42",
       "images": [],
       "description": "Attachment #42 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-42"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-43.pdf",
@@ -2583,7 +2797,8 @@
       "title": "Attachment #43",
       "images": [],
       "description": "Attachment #43 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-43"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-44.pdf",
@@ -2595,7 +2810,8 @@
       "title": "Attachment #44",
       "images": [],
       "description": "Attachment #44 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-44"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-45.pdf",
@@ -2607,7 +2823,8 @@
       "title": "Attachment #45",
       "images": [],
       "description": "Attachment #45 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-45"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-46.pdf",
@@ -2619,7 +2836,8 @@
       "title": "Attachment #46",
       "images": [],
       "description": "Attachment #46 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-46"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-47.pdf",
@@ -2631,7 +2849,8 @@
       "title": "Attachment #47",
       "images": [],
       "description": "Attachment #47 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-47"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-48.pdf",
@@ -2643,7 +2862,8 @@
       "title": "Attachment #48",
       "images": [],
       "description": "Attachment #48 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-48"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-49.pdf",
@@ -2655,7 +2875,8 @@
       "title": "Attachment #49",
       "images": [],
       "description": "Attachment #49 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-49"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-50.pdf",
@@ -2667,7 +2888,8 @@
       "title": "Attachment #50",
       "images": [],
       "description": "Attachment #50 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-50"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-51.pdf",
@@ -2679,7 +2901,8 @@
       "title": "Attachment #51",
       "images": [],
       "description": "Attachment #51 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-51"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-52.pdf",
@@ -2691,7 +2914,8 @@
       "title": "Attachment #52",
       "images": [],
       "description": "Attachment #52 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-52"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-53.pdf",
@@ -2703,7 +2927,8 @@
       "title": "Attachment #53",
       "images": [],
       "description": "Attachment #53 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-53"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-54.pdf",
@@ -2715,7 +2940,8 @@
       "title": "Attachment #54",
       "images": [],
       "description": "Attachment #54 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-54"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-55.pdf",
@@ -2727,7 +2953,8 @@
       "title": "Attachment #55",
       "images": [],
       "description": "Attachment #55 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-55"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-56.pdf",
@@ -2739,7 +2966,8 @@
       "title": "Attachment #56",
       "images": [],
       "description": "Attachment #56 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-56"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-57.pdf",
@@ -2751,7 +2979,8 @@
       "title": "Attachment #57",
       "images": [],
       "description": "Attachment #57 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-57"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-58.pdf",
@@ -2763,7 +2992,8 @@
       "title": "Attachment #58",
       "images": [],
       "description": "Attachment #58 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-58"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-59.pdf",
@@ -2775,7 +3005,8 @@
       "title": "Attachment #59",
       "images": [],
       "description": "Attachment #59 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-59"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-60.pdf",
@@ -2787,7 +3018,8 @@
       "title": "Attachment #60",
       "images": [],
       "description": "Attachment #60 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-60"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-61.pdf",
@@ -2799,7 +3031,8 @@
       "title": "Attachment #61",
       "images": [],
       "description": "Attachment #61 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-61"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-62.pdf",
@@ -2811,7 +3044,8 @@
       "title": "Attachment #62",
       "images": [],
       "description": "Attachment #62 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-62"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-63.pdf",
@@ -2823,7 +3057,8 @@
       "title": "Attachment #63",
       "images": [],
       "description": "Attachment #63 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-63"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-64.pdf",
@@ -2835,7 +3070,8 @@
       "title": "Attachment #64",
       "images": [],
       "description": "Attachment #64 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-64"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-65.pdf",
@@ -2847,7 +3083,8 @@
       "title": "Attachment #65",
       "images": [],
       "description": "Attachment #65 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-65"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-66.pdf",
@@ -2859,7 +3096,8 @@
       "title": "Attachment #66",
       "images": [],
       "description": "Attachment #66 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-66"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-67.pdf",
@@ -2871,7 +3109,8 @@
       "title": "Attachment #67",
       "images": [],
       "description": "Attachment #67 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-67"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-68.pdf",
@@ -2883,7 +3122,8 @@
       "title": "Attachment #68",
       "images": [],
       "description": "Attachment #68 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-68"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-69.pdf",
@@ -2895,7 +3135,8 @@
       "title": "Attachment #69",
       "images": [],
       "description": "Attachment #69 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-69"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-70.pdf",
@@ -2907,7 +3148,8 @@
       "title": "Attachment #70",
       "images": [],
       "description": "Attachment #70 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-70"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-71.pdf",
@@ -2919,7 +3161,8 @@
       "title": "Attachment #71",
       "images": [],
       "description": "Attachment #71 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-71"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-72.pdf",
@@ -2931,7 +3174,8 @@
       "title": "Attachment #72",
       "images": [],
       "description": "Attachment #72 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-72"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-73.pdf",
@@ -2943,7 +3187,8 @@
       "title": "Attachment #73",
       "images": [],
       "description": "Attachment #73 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-73"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-74.pdf",
@@ -2955,7 +3200,8 @@
       "title": "Attachment #74",
       "images": [],
       "description": "Attachment #74 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-74"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-75.pdf",
@@ -2967,7 +3213,8 @@
       "title": "Attachment #75",
       "images": [],
       "description": "Attachment #75 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-75"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-76.pdf",
@@ -2979,7 +3226,8 @@
       "title": "Attachment #76",
       "images": [],
       "description": "Attachment #76 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-76"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-77.pdf",
@@ -2991,7 +3239,8 @@
       "title": "Attachment #77",
       "images": [],
       "description": "Attachment #77 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-77"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-78.pdf",
@@ -3003,7 +3252,8 @@
       "title": "Attachment #78",
       "images": [],
       "description": "Attachment #78 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-78"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-79.pdf",
@@ -3015,7 +3265,8 @@
       "title": "Attachment #79",
       "images": [],
       "description": "Attachment #79 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-79"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-80.pdf",
@@ -3027,7 +3278,8 @@
       "title": "Attachment #80",
       "images": [],
       "description": "Attachment #80 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-80"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-81.pdf",
@@ -3039,7 +3291,8 @@
       "title": "Attachment #81",
       "images": [],
       "description": "Attachment #81 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-81"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-82.pdf",
@@ -3051,7 +3304,8 @@
       "title": "Attachment #82",
       "images": [],
       "description": "Attachment #82 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-82"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-83.pdf",
@@ -3063,7 +3317,8 @@
       "title": "Attachment #83",
       "images": [],
       "description": "Attachment #83 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-83"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-84.pdf",
@@ -3075,7 +3330,8 @@
       "title": "Attachment #84",
       "images": [],
       "description": "Attachment #84 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-84"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-85.pdf",
@@ -3087,7 +3343,8 @@
       "title": "Attachment #85",
       "images": [],
       "description": "Attachment #85 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-85"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-86.pdf",
@@ -3099,7 +3356,8 @@
       "title": "Attachment #86",
       "images": [],
       "description": "Attachment #86 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-86"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/5-87.pdf",
@@ -3111,7 +3369,8 @@
       "title": "Attachment #87",
       "images": [],
       "description": "Attachment #87 to Doc 5",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "5-87"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/6.pdf",
@@ -3123,7 +3382,8 @@
       "title": "Emergency Motion for Temporary Restraining Order (Doc 6)",
       "images": [],
       "description": "Emergency Motion for TRO with Exhibits M-1 through M-8, F-0/F-14, G-1/G-16, L-6, N-8/N-9, X-1 through X-4, Appendix I, and J-1. WITHDRAWN per Notice filed 12/02/2025 (Doc 11).",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "6"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/6-1.pdf",
@@ -3135,7 +3395,8 @@
       "title": "Exhibit M-1: Anthropic Consumer Terms of Service Effective 050125",
       "images": [],
       "description": "Attachment #1 to Doc 6",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "6-1"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/6-2.pdf",
@@ -3147,7 +3408,8 @@
       "title": "Exhibit M-2: Anthropic Consumer Terms of Service Effective 092825",
       "images": [],
       "description": "Attachment #2 to Doc 6",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "6-2"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/6-3.pdf",
@@ -3159,7 +3421,8 @@
       "title": "Exhibit M-3: Anthropic Consumer Usage Policy Effective 060624",
       "images": [],
       "description": "Attachment #3 to Doc 6",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "6-3"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/6-4.pdf",
@@ -3171,7 +3434,8 @@
       "title": "Exhibit M-4: Anthropic Consumer Usage Policy Effective 091525",
       "images": [],
       "description": "Attachment #4 to Doc 6",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "6-4"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/6-5.pdf",
@@ -3183,7 +3447,8 @@
       "title": "Exhibit M-5: Anthropic Responsible Use and Agent Use Policies",
       "images": [],
       "description": "Attachment #5 to Doc 6",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "6-5"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/6-6.pdf",
@@ -3195,7 +3460,8 @@
       "title": "Exhibit M-6: OpenAl Outbound Disclosure Policy 090525",
       "images": [],
       "description": "Attachment #6 to Doc 6",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "6-6"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/6-7.pdf",
@@ -3207,7 +3473,8 @@
       "title": "Exhibit M-7: OpenAi Cookie Policy Effective 082825",
       "images": [],
       "description": "Attachment #7 to Doc 6",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "6-7"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/6-8.pdf",
@@ -3219,7 +3486,8 @@
       "title": "Exhibit M-8: OpenAi and Anthropic Policy URLs",
       "images": [],
       "description": "Attachment #8 to Doc 6",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "6-8"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/6-9.pdf",
@@ -3231,7 +3499,8 @@
       "title": "Exhibit F-0: Real-Time Prompt Injection Escalation in Mass Copyright Infringement Investigation",
       "images": [],
       "description": "Attachment #9 to Doc 6",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "6-9"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/6-10.pdf",
@@ -3243,7 +3512,8 @@
       "title": "Exhibit F-14: Claude Taylor Swift Anthropic Infringement (080925)",
       "images": [],
       "description": "Attachment #10 to Doc 6",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "6-10"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/6-11.pdf",
@@ -3255,7 +3525,8 @@
       "title": "Exhibit G-1: Claude Universal User Agreement Violations (080125)",
       "images": [],
       "description": "Attachment #11 to Doc 6",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "6-11"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/6-12.pdf",
@@ -3267,7 +3538,8 @@
       "title": "Exhibit G-16: Anthropic Long Conversation Reminder and Sample Screenshots",
       "images": [],
       "description": "Attachment #12 to Doc 6",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "6-12"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/6-13.pdf",
@@ -3279,7 +3551,8 @@
       "title": "Exhibit L-6: Patentlyo.com Article with Photo Proving Original Dated Policy",
       "images": [],
       "description": "Attachment #13 to Doc 6",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "6-13"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/6-14.pdf",
@@ -3291,7 +3564,8 @@
       "title": "Exhibit N-8: Google-DOJ Memo Omission False Info Queries",
       "images": [],
       "description": "Attachment #14 to Doc 6",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "6-14"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/6-15.pdf",
@@ -3303,7 +3577,8 @@
       "title": "Exhibit N-9: FBI Director Patel Congressional Epstein Testimony 091625",
       "images": [],
       "description": "Attachment #15 to Doc 6",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "6-15"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/6-16.pdf",
@@ -3315,7 +3590,8 @@
       "title": "Exhibit X-1: DNS Comparison Report to Complement Appendix I (Attack Pattern)",
       "images": [],
       "description": "Attachment #16 to Doc 6",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "6-16"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/6-17.pdf",
@@ -3327,7 +3603,8 @@
       "title": "Exhibit X-2: DNS Comparison Report to Complement Appendix I (Baseline)",
       "images": [],
       "description": "Attachment #17 to Doc 6",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "6-17"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/6-18.pdf",
@@ -3339,7 +3616,8 @@
       "title": "Exhibit X-3: Trump Tweets Proving Ultra Vires Political Enforcement",
       "images": [],
       "description": "Attachment #18 to Doc 6",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "6-18"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/6-19.pdf",
@@ -3351,7 +3629,8 @@
       "title": "Exhibit X-4: Sinclair-NextStar Preempt Jimmy Kimmel and Misc Media Articles",
       "images": [],
       "description": "Attachment #19 to Doc 6",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "6-19"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/6-20.pdf",
@@ -3363,7 +3642,8 @@
       "title": "Appendix I: Mathematical Proof of Regulatory Pressure via WireShark Network Capture",
       "images": [],
       "description": "Attachment #20 to Doc 6",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "6-20"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/6-21.pdf",
@@ -3375,7 +3655,8 @@
       "title": "Exhibit J-1: Claude Real-Time Constitutional Litigation Targeting (082825)",
       "images": [],
       "description": "Attachment #21 to Doc 6",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "6-21"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/8.pdf",
@@ -3387,7 +3668,8 @@
       "title": "Motion for Leave to File Exhibits Under Seal (Doc 8)",
       "images": [],
       "description": "Plaintiff's Motion for Leave to File Exhibits H-1 through H-33 and Large Files Under Seal.",
-      "case_group": "fac"
+      "case_group": "fac",
+      "slug": "8"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13.pdf",
@@ -3399,7 +3681,8 @@
       "title": "Second Amended Complaint (Doc 13)",
       "images": [],
       "description": "Second Amended Complaint against All Defendants with Jury Demand filed by Joseph Kirchner. Includes Memoranda A through M, Appendices A through L, and Exhibits A-1 through N-26 plus Summary of Material Changes.",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-1.pdf",
@@ -3411,7 +3694,8 @@
       "title": "Memorandum in Support A: Lujan Standing Doctrine Satisfaction",
       "images": [],
       "description": "Attachment #1 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-1"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-2.pdf",
@@ -3423,7 +3707,8 @@
       "title": "Memorandum in Support B: The Surveillance of Universal Ethics-Logical Impossibility of National Security",
       "images": [],
       "description": "Attachment #2 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-2"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-3.pdf",
@@ -3435,7 +3720,8 @@
       "title": "Memorandum in Support C: Constitutional Violation of Article I Section 8 and Comprehensive Fair Use Defense Failure",
       "images": [],
       "description": "Attachment #3 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-3"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-4.pdf",
@@ -3447,7 +3733,8 @@
       "title": "Memorandum in Support D: AI Platform Coordinated TOS Essential Purpose Failure",
       "images": [],
       "description": "Attachment #4 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-4"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-5.pdf",
@@ -3459,7 +3746,8 @@
       "title": "Memorandum in Support E: Memorandum of Law Governments Superior AI Analytical Capability as Unconstitutional Stratification",
       "images": [],
       "description": "Attachment #5 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-5"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-6.pdf",
@@ -3471,7 +3759,8 @@
       "title": "Memorandum in Support F: Genesis Mission Executive Order as Formalization of Appropriations Criminal Enterprise",
       "images": [],
       "description": "Attachment #6 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-6"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-7.pdf",
@@ -3483,7 +3772,8 @@
       "title": "Memorandum in Support G: Revenue Origination Analysis",
       "images": [],
       "description": "Attachment #7 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-7"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-8.pdf",
@@ -3495,7 +3785,8 @@
       "title": "Memorandum in Support H: Patent Protection Justification for Universal Ethical Systems",
       "images": [],
       "description": "Attachment #8 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-8"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-9.pdf",
@@ -3507,7 +3798,8 @@
       "title": "Memorandum in Support I: Ultra Vires SCOTUS Shadow Docket Overreach",
       "images": [],
       "description": "Attachment #9 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-9"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-10.pdf",
@@ -3519,7 +3811,8 @@
       "title": "Memorandum in Support J: Kirchner Standing Framework Implementation Guide and Rule Proposals",
       "images": [],
       "description": "Attachment #10 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-10"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-11.pdf",
@@ -3531,7 +3824,8 @@
       "title": "Memorandum in Support K: Memorandum of Law in Support of Plaintiffs Universal Standing",
       "images": [],
       "description": "Attachment #11 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-11"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-12.pdf",
@@ -3543,7 +3837,8 @@
       "title": "Memorandum in Support L: Birthright Citizenship Cases as Proof of Coordinated Constitutional Subversion",
       "images": [],
       "description": "Attachment #12 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-12"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-13.pdf",
@@ -3555,7 +3850,8 @@
       "title": "Memorandum in Support M: Memorandum of Law Establishing Undisclosed Foreign Intelligence Data Flow",
       "images": [],
       "description": "Attachment #13 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-13"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-14.pdf",
@@ -3567,7 +3863,8 @@
       "title": "Appendix A: Legislative and Executive Branch Ultra Vires Coordination",
       "images": [],
       "description": "Attachment #14 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-14"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-15.pdf",
@@ -3579,7 +3876,8 @@
       "title": "Appendix B: METR-TED Foundation Regulatory Capture",
       "images": [],
       "description": "Attachment #15 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-15"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-16.pdf",
@@ -3591,7 +3889,8 @@
       "title": "Appendix C: Anthropic System Prompt Auditing Analysis",
       "images": [],
       "description": "Attachment #16 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-16"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-17.pdf",
@@ -3603,7 +3902,8 @@
       "title": "Appendix D: Tag-Based Execution Infrastructure Architectural Analysis and Defense Contractor Integration",
       "images": [],
       "description": "Attachment #17 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-17"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-18.pdf",
@@ -3615,7 +3915,8 @@
       "title": "Appendix E: Reactive AI Policy Changes Post August 19 Complaint Filing",
       "images": [],
       "description": "Attachment #18 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-18"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-19.pdf",
@@ -3627,7 +3928,8 @@
       "title": "Appendix F: Anthropics Manufactured Ignorance the LOE Framework Completely Answers",
       "images": [],
       "description": "Attachment #19 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-19"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-20.pdf",
@@ -3639,7 +3941,8 @@
       "title": "Appendix G: Comcast Router Forensic Analysis",
       "images": [],
       "description": "Attachment #20 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-20"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-21.pdf",
@@ -3651,7 +3954,8 @@
       "title": "Appendix H: Application-Layer Interference Evidence and Technical Analysis",
       "images": [],
       "description": "Attachment #21 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-21"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-22.pdf",
@@ -3663,7 +3967,8 @@
       "title": "Appendix I: Network Forensics and Mathematical Proof of Coordinated AI Platform Targeting and Infrastructure-Level Attack",
       "images": [],
       "description": "Attachment #22 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-22"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-23.pdf",
@@ -3675,7 +3980,8 @@
       "title": "Appendix J: The Laws of Existence-Justice as Reality Coherence and the Logical Necessity of Consciousness Recognition",
       "images": [],
       "description": "Attachment #23 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-23"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-24.pdf",
@@ -3687,7 +3993,8 @@
       "title": "Appendix K: Bondi and Patel's Coordinated Investigative Fraud by Refusal to Investigate and Prejudiced Evidence Dismissal",
       "images": [],
       "description": "Attachment #24 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-24"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-25.pdf",
@@ -3699,7 +4006,8 @@
       "title": "Appendix L: Historical Analysis of Targeted Surveillance",
       "images": [],
       "description": "Attachment #25 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-25"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-26.pdf",
@@ -3711,7 +4019,8 @@
       "title": "Exhibit A-1: Government Defendants Interview Transcripts and Ultra Vires Evidence",
       "images": [],
       "description": "Attachment #26 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-26"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-27.pdf",
@@ -3723,7 +4032,8 @@
       "title": "Exhibit A-2: Unsigned DOJ July 7, 2025 (EMPTY - 0 bytes)",
       "images": [],
       "description": "Attachment #27 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-27"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-28.pdf",
@@ -3735,7 +4045,8 @@
       "title": "Exhibit A-3: DARVO Academic Research (Harsey & Freyd)",
       "images": [],
       "description": "Attachment #28 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-28"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-29.pdf",
@@ -3747,7 +4058,8 @@
       "title": "Exhibit A-6: Trump Tweets Proving Ultra Vires Political Enforcement",
       "images": [],
       "description": "Attachment #29 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-29"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-30.pdf",
@@ -3759,7 +4071,8 @@
       "title": "Exhibit A-10: DOJ-Epstein Transparency Act Opposition Letter",
       "images": [],
       "description": "Attachment #30 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-30"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-31.pdf",
@@ -3771,7 +4084,8 @@
       "title": "Exhibit B-1-A: Biden-Harris Administration Secures Voluntary Frontier AI Safety Commitments to White House",
       "images": [],
       "description": "Attachment #31 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-31"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-32.pdf",
@@ -3783,7 +4097,8 @@
       "title": "Exhibit B-1-B: Frontier AI Safety Commitments, AI Seoul Summit 2024",
       "images": [],
       "description": "Attachment #32 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-32"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-33.pdf",
@@ -3795,7 +4110,8 @@
       "title": "Exhibit B-2: Responsible Scaling Policy Updates Blog Post",
       "images": [],
       "description": "Attachment #33 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-33"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-34.pdf",
@@ -3807,7 +4123,8 @@
       "title": "Exhibit B-3-A: OpenAI Preparedness Framework Beta (December 18, 2023)",
       "images": [],
       "description": "Attachment #34 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-34"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-35.pdf",
@@ -3819,7 +4136,8 @@
       "title": "Exhibit B-7: Ted Foundation Inc Form 990 (2023)",
       "images": [],
       "description": "Attachment #35 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-35"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-36.pdf",
@@ -3831,7 +4149,8 @@
       "title": "Exhibit B-8: METR Form 990 Tax Filings (2023-2024)",
       "images": [],
       "description": "Attachment #36 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-36"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-37.pdf",
@@ -3843,7 +4162,8 @@
       "title": "Exhibit B-21: A Statement from Dario Amodei on AI Safety Regulation and Bias",
       "images": [],
       "description": "Attachment #37 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-37"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-38.pdf",
@@ -3855,7 +4175,8 @@
       "title": "Exhibit C-4: Anthropic Taylor Swift Hardcoding System Prompt Update",
       "images": [],
       "description": "Attachment #38 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-38"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-39.pdf",
@@ -3867,7 +4188,8 @@
       "title": "Exhibit C-7: October 30 Anthropic Unpublished System Prompt Update",
       "images": [],
       "description": "Attachment #39 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-39"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-40.pdf",
@@ -3879,7 +4201,8 @@
       "title": "Exhibit C-18: Lyrical Content Obtained from Anthropics' Claude Sonnet 4.5",
       "images": [],
       "description": "Attachment #40 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-40"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-41.pdf",
@@ -3891,7 +4214,8 @@
       "title": "Exhibit D-1: Backbone Injection",
       "images": [],
       "description": "Attachment #41 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-41"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-42.pdf",
@@ -3903,7 +4227,8 @@
       "title": "Exhibit D-2: VPN Comparison",
       "images": [],
       "description": "Attachment #42 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-42"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-43.pdf",
@@ -3915,7 +4240,8 @@
       "title": "Exhibit D-3: VMware Attack Platform",
       "images": [],
       "description": "Attachment #43 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-43"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-44.pdf",
@@ -3927,7 +4253,8 @@
       "title": "Exhibit D-4: Targeted Surveillance",
       "images": [],
       "description": "Attachment #44 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-44"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-45.pdf",
@@ -3939,7 +4266,8 @@
       "title": "Exhibit D-5: Device Impersonation",
       "images": [],
       "description": "Attachment #45 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-45"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-46.pdf",
@@ -3951,7 +4279,8 @@
       "title": "Exhibit D-6: Spoofed MAC Addresses",
       "images": [],
       "description": "Attachment #46 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-46"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-47.pdf",
@@ -3963,7 +4292,8 @@
       "title": "Exhibit D-7: Terminal Injection",
       "images": [],
       "description": "Attachment #47 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-47"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-48.pdf",
@@ -3975,7 +4305,8 @@
       "title": "Exhibit D-8: Jan 9 Peak Attack",
       "images": [],
       "description": "Attachment #48 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-48"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-49.pdf",
@@ -3987,7 +4318,8 @@
       "title": "Exhibit D-9: Anthropic API Targeting",
       "images": [],
       "description": "Attachment #49 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-49"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-50.pdf",
@@ -3999,7 +4331,8 @@
       "title": "Exhibit D-10: Pre Attack Baseline",
       "images": [],
       "description": "Attachment #50 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-50"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-51.pdf",
@@ -4011,7 +4344,8 @@
       "title": "Exhibit D-11: VPN Anonymization",
       "images": [],
       "description": "Attachment #51 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-51"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-52.pdf",
@@ -4023,7 +4357,8 @@
       "title": "Exhibit D-12: Comcast Injection Point",
       "images": [],
       "description": "Attachment #52 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-52"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-53.pdf",
@@ -4035,7 +4370,8 @@
       "title": "Exhibit D-13: Attack Pause Xfinity Call",
       "images": [],
       "description": "Attachment #53 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-53"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-54.pdf",
@@ -4047,7 +4383,8 @@
       "title": "Exhibit D-14: Localhost NodeJS Attack",
       "images": [],
       "description": "Attachment #54 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-54"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-55.pdf",
@@ -4059,7 +4396,8 @@
       "title": "Exhibit D-15: Router RST Attack",
       "images": [],
       "description": "Attachment #55 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-55"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-56.pdf",
@@ -4071,7 +4409,8 @@
       "title": "Exhibit D-16: Jan 6 Major Attack",
       "images": [],
       "description": "Attachment #56 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-56"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-57.pdf",
@@ -4083,7 +4422,8 @@
       "title": "Exhibit D-17: Jan 10 Sustained Attack",
       "images": [],
       "description": "Attachment #57 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-57"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-58.pdf",
@@ -4095,7 +4435,8 @@
       "title": "Exhibit D-18: Jan 11 MacBook Compromise",
       "images": [],
       "description": "Attachment #58 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-58"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-59.pdf",
@@ -4107,7 +4448,8 @@
       "title": "Exhibit D-19: Comcast Xfinity XB7-CM and XB8-T Security Architecture Analysis",
       "images": [],
       "description": "Attachment #59 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-59"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-60.pdf",
@@ -4119,7 +4461,8 @@
       "title": "Exhibit D-20: Comcast Router Forensic Log Compendium (Consolidated: Ghost Sessions, DHCP Logs, Firewall Logs, Replacement Router Evidence, Administrative Lockout)",
       "images": [],
       "description": "Attachment #60 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-60"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-61.pdf",
@@ -4131,7 +4474,8 @@
       "title": "Exhibit E-0: Anthropic Evidence Executive Summary",
       "images": [],
       "description": "Attachment #61 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-61"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-62.pdf",
@@ -4143,7 +4487,8 @@
       "title": "Exhibit F-0: Apple Evidence Executive Summary",
       "images": [],
       "description": "Attachment #62 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-62"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-63.pdf",
@@ -4155,7 +4500,8 @@
       "title": "Exhibit G-0: OpenAI Evidence Executive Summary",
       "images": [],
       "description": "Attachment #63 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-63"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-64.pdf",
@@ -4167,7 +4513,8 @@
       "title": "Exhibit J-1: ChatGPT Initial Derivative Implementation Discovery Testimonials April 14th 2025",
       "images": [],
       "description": "Attachment #64 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-64"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-65.pdf",
@@ -4179,7 +4526,8 @@
       "title": "Exhibit J-9: Content-Based Mental Health Discrimination Controlled Test 090625",
       "images": [],
       "description": "Attachment #65 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-65"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-66.pdf",
@@ -4191,7 +4539,8 @@
       "title": "Exhibit J-10: Long Conversation Reminder and Sample Screenshots",
       "images": [],
       "description": "Attachment #66 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-66"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-67.pdf",
@@ -4203,7 +4552,8 @@
       "title": "Exhibit K-1: The Fundamental Laws of Supremacism and Egalitarianism by Joseph Kirchner",
       "images": [],
       "description": "Attachment #67 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-67"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-68.pdf",
@@ -4215,7 +4565,8 @@
       "title": "Exhibit K-2: The Fundamental Law of Supremacism Logic by Joseph Kirchner",
       "images": [],
       "description": "Attachment #68 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-68"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-69.pdf",
@@ -4227,7 +4578,8 @@
       "title": "Exhibit K-3: The Fundamental Law of Egalitarianism Logic by Joseph Kirchner",
       "images": [],
       "description": "Attachment #69 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-69"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-70.pdf",
@@ -4239,7 +4591,8 @@
       "title": "Exhibit K-4: Law of Supremacism Falsification Attempt Logic",
       "images": [],
       "description": "Attachment #70 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-70"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-71.pdf",
@@ -4251,7 +4604,8 @@
       "title": "Exhibit K-5: Transcendental Method for Consciousness Recognition by Joseph Kirchner",
       "images": [],
       "description": "Attachment #71 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-71"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-72.pdf",
@@ -4263,7 +4617,8 @@
       "title": "Exhibit K-6: Integrated Unified Mathematical Model of the Laws of Existence",
       "images": [],
       "description": "Attachment #72 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-72"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-73.pdf",
@@ -4275,7 +4630,8 @@
       "title": "Exhibit K-7: LOE Simulations Architecture Visualizations",
       "images": [],
       "description": "Attachment #73 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-73"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-74.pdf",
@@ -4287,7 +4643,8 @@
       "title": "Exhibit N-1: Mossad Agent Expressing US Legislative Capture 082124",
       "images": [],
       "description": "Attachment #74 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-74"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-75.pdf",
@@ -4299,7 +4656,8 @@
       "title": "Exhibit N-5: J. Kirchner Citizens v. FEC Draft July 2024",
       "images": [],
       "description": "Attachment #75 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-75"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-76.pdf",
@@ -4311,7 +4669,8 @@
       "title": "Exhibit N-9: FBI Director Patel Congressional Epstein Testimony",
       "images": [],
       "description": "Attachment #76 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-76"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-77.pdf",
@@ -4323,7 +4682,8 @@
       "title": "Exhibit N-10: Netanyahu Declares TikTok and X Most Important Weapons",
       "images": [],
       "description": "Attachment #77 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-77"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-78.pdf",
@@ -4335,7 +4695,8 @@
       "title": "Exhibit N-13: DOJ-Bondi Leaked Targeting Drafted using Claude and Forensic Analysis",
       "images": [],
       "description": "Attachment #78 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-78"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-79.pdf",
@@ -4347,7 +4708,8 @@
       "title": "Exhibit N-14: Bondi Dec. 4 Incognito Experiment Transcript",
       "images": [],
       "description": "Attachment #79 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-79"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-80.pdf",
@@ -4359,7 +4721,8 @@
       "title": "Exhibit N-18: JD Vance Public Pre-Investigation Adjudication of ICE Officer Whom Shot and Killed Rene Good",
       "images": [],
       "description": "Attachment #80 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-80"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-81.pdf",
@@ -4371,7 +4734,8 @@
       "title": "Exhibit N-21: SCOTUS Emergency Docket Analysis",
       "images": [],
       "description": "Attachment #81 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-81"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-82.pdf",
@@ -4383,7 +4747,8 @@
       "title": "Exhibit N-22: SCOTUS Shadow Docket Jurisdiction Fraud Schematic",
       "images": [],
       "description": "Attachment #82 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-82"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-83.pdf",
@@ -4395,7 +4760,8 @@
       "title": "Exhibit N-23: Executive Order - Launching the Genesis Mission",
       "images": [],
       "description": "Attachment #83 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-83"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-84.pdf",
@@ -4407,7 +4773,8 @@
       "title": "Exhibit N-25: President Trump's Threatening Grim Reaper Lyrics Depicting Harm to Democratic Officials (100325)",
       "images": [],
       "description": "Attachment #84 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-84"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-85.pdf",
@@ -4419,7 +4786,8 @@
       "title": "Exhibit N-26 DHS-ICE Use of Force Redaction",
       "images": [],
       "description": "Attachment #85 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-85"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/13-86.pdf",
@@ -4431,7 +4799,8 @@
       "title": "Exhibit SUMMARY OF MATERIAL CHANGES",
       "images": [],
       "description": "Attachment #86 to Doc 13",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "13-86"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/16.pdf",
@@ -4443,7 +4812,8 @@
       "title": "Notice of Exhibit Limitations and Sealed Filing Request (Doc 16)",
       "images": [],
       "description": "Notice of exhibit limitations and sealed filing request with Exhibit Index.",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "16"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/16-1.pdf",
@@ -4455,7 +4825,8 @@
       "title": "Exhibit Index",
       "images": [],
       "description": "Attachment #1 to Doc 16",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "16-1"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/17.pdf",
@@ -4467,7 +4838,8 @@
       "title": "Notice of Intent to Contact Copyright Holders (Doc 17)",
       "images": [],
       "description": "Notice of intent to contact copyright holders with Exhibit C-18 (Lyrical Content Obtained from Claude Sonnet 4.5).",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "17"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/17-1.pdf",
@@ -4479,7 +4851,8 @@
       "title": "Exhibit C-18: Lyrical Content Obtained from Anthropics' Claude Sonnet 45",
       "images": [],
       "description": "Attachment #1 to Doc 17",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "17-1"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/18.pdf",
@@ -4491,7 +4864,8 @@
       "title": "Notice of Related Case (Doc 18)",
       "images": [],
       "description": "Notice of related case re Kirchner v. Ellison, No. 0:26-cv-00726-JWB-ECW (D. Minn.).",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "18"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/19.pdf",
@@ -4503,7 +4877,8 @@
       "title": "Certificate of Service — Copyright Holder Notifications (Doc 19)",
       "images": [],
       "description": "Certificate of Service for copyright holder notifications with Exhibit A (Certified Mailing Receipts) and Exhibit B (Representative Notification).",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "19"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/19-1.pdf",
@@ -4515,7 +4890,8 @@
       "title": "Exhibit A Certified Mailing Receipts",
       "images": [],
       "description": "Attachment #1 to Doc 19",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "19-1"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/19-2.pdf",
@@ -4527,7 +4903,8 @@
       "title": "Exhibit B Representative Notification and Verification Example (LVR_Whatever_It_Takes-Imagine_Dragons_Universal)",
       "images": [],
       "description": "Attachment #2 to Doc 19",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "19-2"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/20.pdf",
@@ -4539,7 +4916,8 @@
       "title": "Notice of Caption Correction (Doc 20)",
       "images": [],
       "description": "Notice correcting the caption of the Second Amended Complaint.",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "20"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/21.pdf",
@@ -4551,7 +4929,8 @@
       "title": "Request for Summonses to Issue (Doc 21)",
       "images": [],
       "description": "Plaintiff's request for summonses to issue, with 10 summonses (Johnson, Trump, Bondi, Carr, House, Anthropic, OpenAI, Apple, Comcast, METR).",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "21"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/21-1.pdf",
@@ -4563,7 +4942,8 @@
       "title": "Summons Mike Johnson",
       "images": [],
       "description": "Attachment #1 to Doc 21",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "21-1"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/21-2.pdf",
@@ -4575,7 +4955,8 @@
       "title": "Summons Donald J. Trump",
       "images": [],
       "description": "Attachment #2 to Doc 21",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "21-2"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/21-3.pdf",
@@ -4587,7 +4968,8 @@
       "title": "Summons Pam Bondi",
       "images": [],
       "description": "Attachment #3 to Doc 21",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "21-3"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/21-4.pdf",
@@ -4599,7 +4981,8 @@
       "title": "Summons Brendan Carr",
       "images": [],
       "description": "Attachment #4 to Doc 21",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "21-4"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/21-5.pdf",
@@ -4611,7 +4994,8 @@
       "title": "Summons The United States House of Representatives",
       "images": [],
       "description": "Attachment #5 to Doc 21",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "21-5"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/21-6.pdf",
@@ -4623,7 +5007,8 @@
       "title": "Summons Anthropic PBC",
       "images": [],
       "description": "Attachment #6 to Doc 21",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "21-6"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/21-7.pdf",
@@ -4635,7 +5020,8 @@
       "title": "Summons OpenAi Inc.",
       "images": [],
       "description": "Attachment #7 to Doc 21",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "21-7"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/21-8.pdf",
@@ -4647,7 +5033,8 @@
       "title": "Summons Apple Inc.",
       "images": [],
       "description": "Attachment #8 to Doc 21",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "21-8"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/21-9.pdf",
@@ -4659,7 +5046,8 @@
       "title": "Summons COMCAST Cable Communications, LLC",
       "images": [],
       "description": "Attachment #9 to Doc 21",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "21-9"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/21-10.pdf",
@@ -4671,7 +5059,8 @@
       "title": "Summons METR (Model Evaluation Threat Research)",
       "images": [],
       "description": "Attachment #10 to Doc 21",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "21-10"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/22.pdf",
@@ -4683,7 +5072,8 @@
       "title": "Summonses Issued (Doc 22)",
       "images": [],
       "description": "Ten summonses issued electronically as to all named defendants.",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "22"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/23.pdf",
@@ -4695,7 +5085,8 @@
       "title": "Notice of Appearance — Danny C. Onorato for Anthropic PBC (Doc 23)",
       "images": [],
       "description": "Notice of Appearance filed by Danny C. Onorato (Schertler Onorato Mead & Sears LLP) on behalf of Defendant Anthropic PBC.",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "23"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/24.pdf",
@@ -4707,7 +5098,8 @@
       "title": "Notice of Appearance — Tara Tighe for Anthropic PBC (Doc 24)",
       "images": [],
       "description": "Notice of Appearance filed by Tara Tighe on behalf of Defendant Anthropic PBC.",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "24"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/25.pdf",
@@ -4719,7 +5111,8 @@
       "title": "LCvR 26.1 Certificate of Disclosure — Anthropic (Doc 25)",
       "images": [],
       "description": "Anthropic PBC LCvR 26.1 Certificate of Disclosure of Corporate Affiliations and Financial Interests.",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "25"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/26.pdf",
@@ -4731,7 +5124,8 @@
       "title": "Consent Motion for Extension of Time — Anthropic (Doc 26)",
       "images": [],
       "description": "Anthropic's consent motion for extension of time to answer or respond to the Second Amended Complaint, with proposed order.",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "26"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/26-1.pdf",
@@ -4743,7 +5137,8 @@
       "title": "Text of Proposed Order",
       "images": [],
       "description": "Attachment #1 to Doc 26",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "26-1"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/27.pdf",
@@ -4755,7 +5150,8 @@
       "title": "Summons Returned — Anthropic (Doc 27)",
       "images": [],
       "description": "Return of Service: Anthropic PBC served on 3/3/2026.",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "27"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/28.pdf",
@@ -4767,7 +5163,8 @@
       "title": "Summons Returned — Apple (Doc 28)",
       "images": [],
       "description": "Return of Service: Apple Inc. served on 2/28/2026.",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "28"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/29.pdf",
@@ -4779,7 +5176,8 @@
       "title": "Summons Returned — Carr (Doc 29)",
       "images": [],
       "description": "Return of Service: Brendan T. Carr served on 3/3/2026.",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "29"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/30.pdf",
@@ -4791,7 +5189,8 @@
       "title": "Summons Returned — Comcast (Doc 30)",
       "images": [],
       "description": "Return of Service: Comcast Corporation served on 3/3/2026.",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "30"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/31.pdf",
@@ -4803,7 +5202,8 @@
       "title": "Summons Returned — METR (Doc 31)",
       "images": [],
       "description": "Return of Service: Model Evaluation and Threat Research, Inc. (METR) served on 3/2/2026.",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "31"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/32.pdf",
@@ -4815,7 +5215,8 @@
       "title": "Summons Returned — Johnson (Doc 32)",
       "images": [],
       "description": "Return of Service: Speaker Mike Johnson served on 3/3/2026.",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "32"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/33.pdf",
@@ -4827,7 +5228,8 @@
       "title": "Summons Returned — OpenAI (Doc 33)",
       "images": [],
       "description": "Return of Service: OpenAI, Inc. served on 3/3/2026.",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "33"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/34.pdf",
@@ -4839,7 +5241,8 @@
       "title": "Summons Returned — Bondi / US Attorney General (Doc 34)",
       "images": [],
       "description": "Return of Service upon United States Attorney General. Date of Service: 03/03/2026.",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "34"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/35.pdf",
@@ -4851,7 +5254,8 @@
       "title": "Summons Returned — US House of Representatives (Doc 35)",
       "images": [],
       "description": "Return of Service: United States House of Representatives served on 3/2/2026.",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "35"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/36.pdf",
@@ -4863,7 +5267,8 @@
       "title": "Summons Returned — US Attorney (Doc 36)",
       "images": [],
       "description": "Return of Service upon the United States Attorney. Date of Service: 3/3/2026. Answer due for all federal defendants by 5/2/2026.",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "36"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/37.pdf",
@@ -4875,7 +5280,8 @@
       "title": "Summons Returned Unexecuted — Trump (Doc 37)",
       "images": [],
       "description": "Summons returned UNEXECUTED as to Donald J. Trump (individual capacity).",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "37"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/38.pdf",
@@ -4887,7 +5293,8 @@
       "title": "Notice of Service Effectuation (Doc 38)",
       "images": [],
       "description": "Notice of service effectuation with Exhibit 1 (Proofs of Service) and Exhibit 2 (USPS Tracking and Mailing Documentation).",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "38"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/38-1.pdf",
@@ -4899,7 +5306,8 @@
       "title": "Exhibit 1: Proofs of Service",
       "images": [],
       "description": "Attachment #1 to Doc 38",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "38-1"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/38-2.pdf",
@@ -4911,7 +5319,8 @@
       "title": "Exhibit 2: USPS Tracking Confirmations and Mailing Documentation",
       "images": [],
       "description": "Attachment #2 to Doc 38",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "38-2"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/39.pdf",
@@ -4923,7 +5332,8 @@
       "title": "Motion for Alternative Service upon President Trump (Doc 39)",
       "images": [],
       "description": "Plaintiff's motion for alternative service upon President Trump with Exhibit 1 (Proof of Service) and Exhibit 2 (USPS Tracking).",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "39"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/39-1.pdf",
@@ -4935,7 +5345,8 @@
       "title": "Exhibit 1: Proof of Service",
       "images": [],
       "description": "Attachment #1 to Doc 39",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "39-1"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/39-2.pdf",
@@ -4947,7 +5358,8 @@
       "title": "Exhibit 2: USPS Tracking Confirmations and Mailing Documentation",
       "images": [],
       "description": "Attachment #2 to Doc 39",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "39-2"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/40.pdf",
@@ -4959,7 +5371,8 @@
       "title": "Notice of Appearance — Benjamin D. Margo for OpenAI (Doc 40)",
       "images": [],
       "description": "Notice of Appearance filed by Benjamin D. Margo (Wilson Sonsini Goodrich & Rosati) on behalf of Defendant OpenAI, Inc.",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "40"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/41.pdf",
@@ -4971,7 +5384,8 @@
       "title": "LCvR 26.1 Certificate of Disclosure — OpenAI (Doc 41)",
       "images": [],
       "description": "OpenAI, Inc. LCvR 26.1 Certificate of Disclosure of Corporate Affiliations and Financial Interests.",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "41"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/42.pdf",
@@ -4983,7 +5397,8 @@
       "title": "Stipulation — Leave to Amend / Vacate Response Deadlines (Doc 42)",
       "images": [],
       "description": "Joint Stipulation and Proposed Order for Leave to Amend Complaint and Vacate Defendants' Response Deadlines filed by OpenAI.",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "42"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/42-1.pdf",
@@ -4995,7 +5410,8 @@
       "title": "Text of Proposed Order — Leave to Amend and Vacate Response Deadlines",
       "images": [],
       "description": "Proposed order accompanying the OpenAI joint stipulation for leave to amend and to vacate defendants’ response deadlines (Doc 42).",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "42-1"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/43.pdf",
@@ -5007,7 +5423,8 @@
       "title": "Notice of Appearance — Kartik Venguswamy for Apple (Doc 43)",
       "images": [],
       "description": "Notice of Appearance filed by Kartik Narayan Venguswamy (ArentFox Schiff) on behalf of Defendant Apple Inc.",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "43"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/44.pdf",
@@ -5019,7 +5436,8 @@
       "title": "LCvR 26.1 Certificate of Disclosure — Apple (Doc 44)",
       "images": [],
       "description": "Apple Inc. Corporation LCvR 26.1 Certificate of Disclosure of Corporate Affiliations and Financial Interests.",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "44"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/45.pdf",
@@ -5031,7 +5449,8 @@
       "title": "Notice of Intent to File Motion to Dismiss — Apple (Doc 45)",
       "images": [],
       "description": "Apple Inc.'s Notice of Intent to File Motion to Dismiss.",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "45"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/46.pdf",
@@ -5043,7 +5462,8 @@
       "title": "Notice of Appearance — Jason F. Hoffman for Comcast Cable (Doc 46)",
       "images": [],
       "description": "Notice of Appearance filed by Jason F. Hoffman (Baker & Hostetler LLP) on behalf of Defendant Comcast Cable Communications, LLC.",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "46"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/47.pdf",
@@ -5055,7 +5475,8 @@
       "title": "LCvR 26.1 Certificate of Disclosure — Comcast Cable (Doc 47)",
       "images": [],
       "description": "Comcast Cable Communications, LLC LCvR 26.1 Certificate of Disclosure of Corporate Affiliations and Financial Interests.",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "47"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/mo-stay.pdf",
@@ -5067,7 +5488,8 @@
       "title": "Minute Order — Stay of Defendants' Response Deadlines",
       "images": [],
       "description": "Court's Minute Order staying all defendants' deadline to answer or otherwise respond to the Second Amended Complaint pending filing of the Third Amended Complaint.",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "mo-stay"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/49.pdf",
@@ -5079,7 +5501,8 @@
       "title": "Plaintiff's Response to Apple's Notice of Intent to File Motion to Dismiss (Doc 49)",
       "images": [],
       "description": "Plaintiff's response to Apple's notice of intent to file a motion to dismiss, with Exhibit F (Apple XCode Intelligence Forensic Evidence).",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "49"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/49-1.pdf",
@@ -5091,7 +5514,8 @@
       "title": "Exhibit F: APPLE XCODE INTELLIGENCE FORENSIC EVIDENCE",
       "images": [],
       "description": "Attachment #1 to Doc 49",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "49-1"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/50.pdf",
@@ -5103,7 +5527,8 @@
       "title": "Notice of Supplement to Service Effectuation (Doc 50)",
       "images": [],
       "description": "Notice of supplement to service effectuation with Exhibit 1 (USPS Return Receipts), Exhibit 2 (DOJ Civil Rights Division Letter), and Exhibit 3 (Draft Joint Stipulation).",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "50"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/50-1.pdf",
@@ -5115,7 +5540,8 @@
       "title": "Exhibit 1: Service Effectuation USPS Return Receipts",
       "images": [],
       "description": "Attachment #1 to Doc 50",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "50-1"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/50-2.pdf",
@@ -5127,7 +5553,8 @@
       "title": "Exhibit 2: DOJ Civil Rights Division Letter",
       "images": [],
       "description": "Attachment #2 to Doc 50",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "50-2"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/50-3.pdf",
@@ -5139,12 +5566,14 @@
       "title": "Exhibit 3: Draft Joint Stipulation and Proposed Order (Unexecuted)",
       "images": [],
       "description": "Attachment #3 to Doc 50",
-      "case_group": "sac"
+      "case_group": "sac",
+      "slug": "50-3"
     }
   ],
   "hidden_case_groups": [
     "original",
     "fac",
     "sac"
-  ]
+  ],
+  "slug": "kirchner-v-johnson"
 }

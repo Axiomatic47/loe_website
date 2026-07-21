@@ -5,8 +5,10 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { useNoIndex } from "./hooks/useNoIndex";
+import { useCompositionStore } from "./utils/compositionData";
+import { normalizeDocId, sectionUrl, type CaseSlug } from "./utils/urls";
 
 // Route components are lazy-loaded so each page ships as its own chunk.
 // This keeps the initial bundle small for visitors who land on a single deep
@@ -90,252 +92,120 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
   }
 }
 
-// Wrapper component for Kirchner v. Johnson (DCC) section routing
-const KirchnerJohnsonSectionRedirect = () => {
-  const { sectionId } = useParams<{ sectionId: string }>();
-  return <Navigate to={`/composition/constitutional/composition/3/section/${sectionId || '1'}`} replace />;
-};
+// On-brand fallback shown while a lazy-loaded route chunk downloads or while the
+// content store is still loading during slug/index resolution.
+const RouteFallback = () => (
+  <div className="min-h-screen bg-background flex items-center justify-center">
+    <div className="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full" aria-label="Loading" />
+  </div>
+);
 
-// Wrapper component for Kirchner v. Ellison (Minnesota) section routing
-const KirchnerEllisonSectionRedirect = () => {
-  const { sectionId } = useParams<{ sectionId: string }>();
-  return <Navigate to={`/composition/constitutional/composition/2/section/${sectionId || '1'}`} replace />;
-};
+// Make sure the content store is loading/loaded before a resolver reads it.
+function useEnsureCompositions() {
+  const store = useCompositionStore();
+  useEffect(() => {
+    if (!store.initialized && !store.loading) {
+      store.refreshCompositions();
+    }
+  }, [store]);
+  return store;
+}
 
-// Wrapper component for Kirchner v. Johnson document routing
-// Operative pleading is the Third Amended Complaint (Doc 51).
-// Supports:
-//   /kirchner-v-johnson/51            → main complaint (section 1)
-//   /kirchner-v-johnson/51-N          → attachment N (section 1+N)
-//   /kirchner-v-johnson/doc51         → main complaint (section 1)
-//   /kirchner-v-johnson/doc51-N       → attachment N (section 1+N)
-//   /kirchner-v-johnson/52..68        → main filing (errata, notices, motions, appearances)
-//   /kirchner-v-johnson/52-N..68-N    → attachment N to that filing
-//   /kirchner-v-johnson/1,2,5,6,8     → superseded pleadings (Original / First Amended era)
-//   /kirchner-v-johnson/13, /13-N     → Second Amended Complaint and its attachments
-//   /kirchner-v-johnson/N             → doc numbers not in the map fall back to plain section N
-const JOHNSON_DOC_SECTION_BASE: Record<number, number> = {
-  // Third Amended Complaint era (operative pleading) — TAC tab
-  51: 1,    // Third Amended Complaint (operative pleading, 76 attachments)
-  // Subsequent Filings era — "Subsequent Filings" tab
-  52: 78,   // Errata to Third Amended Complaint
-  53: 84,   // Notice of Conventionally-Maintained Exhibits
-  54: 86,   // Notice of Related Case
-  55: 87,   // Emergency Motion for Discovery & Preservation
-  56: 103,  // Errata Notice for Discovery Correlation Matrix
-  57: 105,  // Emergency Motion for TRO vs. Anthropic & Comcast
-  59: 108,  // Federal Defendants' Motion for Extension of Time
-  60: 109,  // Notice of Appearance — AUSA Derbisz
-  61: 110,  // Appearance of Counsel — OpenAI Percarpio
-  62: 111,  // Plaintiff's Motion for USMS Service / Individual-Capacity Finding
-  63: 112,  // Appearance of Counsel — Coleman (METR)
-  64: 113,  // METR's Motion to Admit Ahuja Pro Hac Vice (attachments 64-1..64-3 → 114..116)
-  65: 117,  // Appearance of Counsel — Ahuja (METR)
-  66: 118,  // LCvR 26.1 Corporate Disclosure — METR
-  67: 119,  // Federal Defendants' Notice of Non-Service
-  68: 120,  // Plaintiff's Reply re Service / Response to Non-Service (attachments 68-1..68-10 → 121..130)
-  69: 131,  // Federal Defendants' Motion to Dismiss (TAC) — opp due Aug 28, 2026
-  70: 132,  // Corporate Defendants' Joint MTD (attachments 70-1, 70-2 → 133, 134)
-  // Superseded pleadings now follow the contiguous Subsequent Filings block in the section array.
-  // Original Complaint era — "Original Complaint" tab
-  1: 135,   // Original Complaint (dismissed for standing)
-  2: 137,   // Motion for TRO and Preliminary Injunction (denied as moot)
-  // First Amended Complaint era — "First Amended Complaint" tab
-  5: 172,   // First Amended Complaint
-  6: 260,   // Emergency Motion for TRO (withdrawn)
-  8: 282,   // Motion for Leave to File Under Seal
-  // Second Amended Complaint era — "Second Amended Complaint" tab
-  13: 283,  // Second Amended Complaint (86 attachments)
-  16: 370,  // Notice of Exhibit Limitations
-  17: 372,  // Notice of Intent to Contact Copyright Holders
-  18: 374,  // Notice of Related Case (Ellison)
-  19: 375,  // Certificate of Service — Copyright Holders
-  20: 378,  // Notice of Caption Correction
-  21: 379,  // Request for Summonses (10 summonses)
-  22: 390,  // Summonses Issued
-  23: 391,  // Appearance — Anthropic (Onorato)
-  24: 392,  // Appearance — Anthropic (Tighe)
-  25: 393,  // Anthropic Corp Disclosure
-  26: 394,  // Anthropic Consent Motion for Extension
-  27: 396,  // Summons Returned — Anthropic
-  28: 397,  // Summons Returned — Apple
-  29: 398,  // Summons Returned — Carr
-  30: 399,  // Summons Returned — Comcast
-  31: 400,  // Summons Returned — METR
-  32: 401,  // Summons Returned — Johnson
-  33: 402,  // Summons Returned — OpenAI
-  34: 403,  // Summons Returned — Bondi/US AG
-  35: 404,  // Summons Returned — US House
-  36: 405,  // Summons Returned — US Attorney
-  37: 406,  // Summons Unexecuted — Trump
-  38: 407,  // Notice of Service Effectuation
-  39: 410,  // Motion for Alternative Service — Trump
-  40: 413,  // Appearance — OpenAI (Margo)
-  41: 414,  // OpenAI Corp Disclosure
-  42: 415,  // Stipulation — OpenAI Leave to Amend (attachment 42-1 → 413)
-  43: 417,  // Appearance — Apple
-  44: 418,  // Apple Corp Disclosure
-  45: 419,  // Apple Notice of Intent to File MTD
-  46: 420,  // Appearance — Comcast Cable (Hoffman)
-  47: 421,  // Comcast Cable Corp Disclosure
-  49: 423,  // Plaintiff's Response to Apple Notice of MTD
-  50: 425,  // Notice of Supplement to Service Effectuation
-};
+// Descriptive case-document routes (/kirchner-v-<case>/:docId, /scotus-amicus/:docId)
+// render the reader DIRECTLY — no redirect. The docId is normalized to a section
+// slug and looked up on the case composition. An unknown docId never falls through
+// to an array index: it redirects to the case landing page instead (Acosta keeps
+// its legacy N-A arithmetic deep links).
+const CaseDocReader = ({ caseSlug }: { caseSlug: CaseSlug }) => {
+  const { docId = "" } = useParams<{ docId: string }>();
+  const store = useEnsureCompositions();
 
-const KirchnerJohnsonDocRedirect = () => {
-  const { docId } = useParams<{ docId: string }>();
+  if (store.loading || !store.initialized) return <RouteFallback />;
 
-  let sectionNum = 1;
-  if (docId) {
-    const docMatch = docId.match(/^(?:doc)?(\d+)(?:-(\d+))?$/);
-    if (docMatch) {
-      const docNum = parseInt(docMatch[1], 10);
-      const attNum = docMatch[2] ? parseInt(docMatch[2], 10) : 0;
-      const base = JOHNSON_DOC_SECTION_BASE[docNum];
+  const composition = store.getCaseComposition(caseSlug);
+  if (!composition) return <NotFound />;
 
-      if (base !== undefined) {
-        sectionNum = base + attNum;
-      } else if (!docMatch[2]) {
-        // Unknown doc number with no attachment → preserve as plain section number
-        sectionNum = docNum;
-      }
+  const resolved = store.getSectionBySlug(composition, normalizeDocId(caseSlug, docId));
+  if (resolved) {
+    return (
+      <SectionPage
+        collection="constitutional"
+        compositionSlug={caseSlug}
+        sectionSlug={resolved.section.slug}
+      />
+    );
+  }
+
+  // Acosta legacy arithmetic deep links: /kirchner-v-acosta/N-A → section (N + A).
+  if (caseSlug === "kirchner-v-acosta") {
+    const m = docId.match(/^(\d+)-(\d+)$/);
+    if (m) {
+      const target = composition.sections?.[parseInt(m[1], 10) + parseInt(m[2], 10) - 1];
+      if (target) return <Navigate to={sectionUrl(composition, target)} replace />;
     }
   }
 
-  return <Navigate to={`/composition/constitutional/composition/3/section/${sectionNum}`} replace />;
-};
-
-// Wrapper component for Kirchner v. Ellison document routing.
-// Three docket sources are addressable under /kirchner-v-ellison/:
-//   1. Main case (cv-00726) — operative pleading is Doc 1 (Petition, 14 attachments).
-//      /kirchner-v-ellison/1          → Doc 1 main (section 1)
-//      /kirchner-v-ellison/1-6        → Doc 1 attachment 6 (section 7)
-//      /kirchner-v-ellison/19         → Doc 19 (Motion to Dismiss, section 35)
-//      Legacy /doc01, /doc01-5, /doc02..doc08 still resolve via the same map.
-//   2. Consolidated sub-case (cv-02594).
-//      /kirchner-v-ellison/2594-1     → cv-02594 Doc 1 (section 23)
-//      /kirchner-v-ellison/2594-1-2   → cv-02594 Doc 1 attachment 2 (section 25)
-//      /kirchner-v-ellison/2594-summons → cv-02594 Summons Issued (section 32)
-//   3. Eighth Circuit appeal (No. 26-1615) — addressed by filename slug.
-//      /kirchner-v-ellison/8cir-brief, /8cir-addendum, /8cir-documents,
-//      /8cir-notice-refiled, /8cir-certificate
-const ELLISON_MAIN_DOC_BASE: Record<number, number> = {
-  1: 1,    // Petition (14 attachments → sections 2..15)
-  2: 16,   // Memo I: SCOTUS Ultra Vires Practice
-  3: 17,   // Memo L: Birthright Citizenship
-  4: 18,   // Memo N: Constitutional Failures of Harlow v. Fitzgerald
-  5: 19,   // Summons Issued
-  6: 20,   // Emergency Motion for TRO and Declaratory Relief
-  7: 21,   // Notice of Hearing
-  8: 22,   // Declaration of Joseph D. Kirchner
-  19: 35,  // Defendant's Motion to Dismiss
-  20: 36,  // Notice of Hearing on Motion to Dismiss
-  21: 37,  // Defendant's Memorandum in Support of MTD
-  22: 38,  // Meet and Confer Statement
-  23: 39,  // Proposed Order on Motion to Dismiss
-  26: 40,  // Amended Complaint
-  28: 41,  // Notice of ECF Filing Anomaly
-  29: 42,  // Order Dismissing Case
-  30: 43,  // Judgment
-  31: 44,  // Notice of Appeal to Eighth Circuit
-  32: 45,  // Receipt for Appeal Filing Fee
-  33: 46,  // Notice of Appearance — Kirchner Pro Se
-  34: 47,  // Transmittal of Appeal Letter to Eighth Circuit
-  35: 48,  // USCA Case Number Assignment — No. 26-1615
-  36: 49,  // Eighth Circuit Clerk Order — Electronic Record
-  37: 50,  // Appearance of Counsel — McGuire for Appellee Ellison
-};
-
-const ELLISON_SUB_DOC_BASE: Record<number, number> = {
-  1: 23,   // cv-02594 Doc 1 (4 attachments → sections 24..27)
-  2: 28,   // cv-02594 Doc 2
-  3: 29,   // cv-02594 Doc 3 (2 attachments → sections 30..31)
-  6: 51,   // cv-02594 Doc 6 — Order of Recusal
-};
-
-const ELLISON_SPECIALS: Record<string, number> = {
-  '2594-summons':         32,
-  '8cir-brief':           33,
-  '8cir-addendum':        34,
-  '8cir-documents':       52,
-  '8cir-notice-refiled':  53,
-  '8cir-certificate':     54,
-};
-
-const KirchnerEllisonDocRedirect = () => {
-  const { docId } = useParams<{ docId: string }>();
-
-  let sectionNum = 1;
-  if (docId) {
-    const slug = docId.toLowerCase();
-
-    // 1. Named slugs (8th Cir appeal, cv-02594 summons)
-    if (ELLISON_SPECIALS[slug] !== undefined) {
-      sectionNum = ELLISON_SPECIALS[slug];
-    }
-    // 2. cv-02594 sub-case: 2594-N or 2594-N-A
-    else if (slug.startsWith('2594-')) {
-      const subMatch = slug.match(/^2594-(\d+)(?:-(\d+))?$/);
-      if (subMatch) {
-        const docNum = parseInt(subMatch[1], 10);
-        const attNum = subMatch[2] ? parseInt(subMatch[2], 10) : 0;
-        const base = ELLISON_SUB_DOC_BASE[docNum];
-        if (base !== undefined) {
-          sectionNum = base + attNum;
-        }
-      }
-    }
-    // 3. Main case docs: N, N-A, doc01, doc01-A, doc1, etc.
-    else {
-      const docMatch = slug.match(/^(?:doc)?0*(\d+)(?:-(\d+))?$/);
-      if (docMatch) {
-        const docNum = parseInt(docMatch[1], 10);
-        const attNum = docMatch[2] ? parseInt(docMatch[2], 10) : 0;
-        const base = ELLISON_MAIN_DOC_BASE[docNum];
-        if (base !== undefined) {
-          sectionNum = base + attNum;
-        } else if (!docMatch[2]) {
-          // Unknown doc number with no attachment → preserve as plain section number
-          // (mirrors Johnson's fallback for non-doc deep links)
-          sectionNum = docNum;
-        }
-      }
-    }
+  // scotus-amicus has no landing page — its canonical entry is part 1.
+  if (caseSlug === "scotus-amicus") {
+    const first = composition.sections?.[0];
+    return first ? <Navigate to={sectionUrl(composition, first)} replace /> : <NotFound />;
   }
 
-  return <Navigate to={`/composition/constitutional/composition/2/section/${sectionNum}`} replace />;
+  return <Navigate to={`/${caseSlug}`} replace />;
 };
 
-// Wrapper component for Kirchner v. Acosta (Florida) section routing
-const KirchnerAcostaSectionRedirect = () => {
-  const { sectionId } = useParams<{ sectionId: string }>();
-  return <Navigate to={`/composition/constitutional/composition/1/section/${sectionId || '1'}`} replace />;
+// Legacy /kirchner-v-<case>/section/:sectionId — resolve by index, then redirect
+// to the canonical descriptive slug URL.
+const CaseSectionRedirect = ({ caseSlug }: { caseSlug: CaseSlug }) => {
+  const { sectionId = "1" } = useParams<{ sectionId: string }>();
+  const store = useEnsureCompositions();
+
+  if (store.loading || !store.initialized) return <RouteFallback />;
+
+  const composition = store.getCaseComposition(caseSlug);
+  const target = composition?.sections?.[parseInt(sectionId, 10) - 1];
+  if (composition && target) return <Navigate to={sectionUrl(composition, target)} replace />;
+  return composition ? <Navigate to={`/${caseSlug}`} replace /> : <NotFound />;
 };
 
-// Wrapper component for Kirchner v. Acosta document routing.
-// The Acosta filing is a single Petition bundle with 13 sequential parts
-// (Petition, Appendix A, Memos A-C, Civil Cover Sheet, Summonses, Definitions,
-//  Exhibits A-C, Notice of Related Actions). Each part is addressable by its
-//  sequence number.
-//   /kirchner-v-acosta/1         → Petition (section 1)
-//   /kirchner-v-acosta/13        → Notice of Related Actions (section 13)
-//   /kirchner-v-acosta/doc1      → same as /1
-//   /kirchner-v-acosta/01        → same as /1 (zero-padded accepted)
-//   /kirchner-v-acosta/1-2       → section 1+2 = 3 (reserved for future attachments)
-const KirchnerAcostaDocRedirect = () => {
-  const { docId } = useParams<{ docId: string }>();
+// Bare /scotus-amicus renders part 1 directly (published URL — no redirect).
+const ScotusAmicusIndex = () => {
+  const store = useEnsureCompositions();
 
-  let sectionNum = 1;
-  if (docId) {
-    const docMatch = docId.toLowerCase().match(/^(?:doc)?0*(\d+)(?:-(\d+))?$/);
-    if (docMatch) {
-      const docNum = parseInt(docMatch[1], 10);
-      const attNum = docMatch[2] ? parseInt(docMatch[2], 10) : 0;
-      sectionNum = docNum + attNum;
-    }
+  if (store.loading || !store.initialized) return <RouteFallback />;
+
+  const composition = store.getCaseComposition("scotus-amicus");
+  const first = composition?.sections?.[0];
+  if (composition && first) {
+    return (
+      <SectionPage collection="constitutional" compositionSlug="scotus-amicus" sectionSlug={first.slug} />
+    );
   }
+  return <NotFound />;
+};
 
-  return <Navigate to={`/composition/constitutional/composition/1/section/${sectionNum}`} replace />;
+// Legacy positional reader URL (/composition/:type/composition/:i/section/:n):
+// resolve by index and redirect to the canonical descriptive URL.
+const LegacyPositionalRedirect = () => {
+  const { compositionId = "", compositionIndex = "1", sectionId = "1" } = useParams();
+  const store = useEnsureCompositions();
+
+  if (store.loading || !store.initialized) return <RouteFallback />;
+
+  const composition = store.getComposition(compositionId, parseInt(compositionIndex, 10));
+  const section = store.getSection(compositionId, parseInt(compositionIndex, 10), parseInt(sectionId, 10));
+  if (composition && section) return <Navigate to={sectionUrl(composition, section)} replace />;
+  return <NotFound />;
+};
+
+// Legacy /kirchner-v-trump/* → Johnson equivalents (preserving the sub-path).
+const TrumpDocRedirect = () => {
+  const { docId = "" } = useParams<{ docId: string }>();
+  return <Navigate to={`/kirchner-v-johnson/${docId}`} replace />;
+};
+const TrumpSectionRedirect = () => {
+  const { sectionId = "" } = useParams<{ sectionId: string }>();
+  return <Navigate to={`/kirchner-v-johnson/section/${sectionId}`} replace />;
 };
 
 // 404 page — noindex'd so the SPA's soft-404 (HTTP 200 + shell) doesn't get
@@ -367,13 +237,6 @@ const NotFound = () => {
   );
 };
 
-// On-brand fallback shown while a lazy-loaded route chunk downloads
-const RouteFallback = () => (
-  <div className="min-h-screen bg-background flex items-center justify-center">
-    <div className="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full" aria-label="Loading" />
-  </div>
-);
-
 const App = () => {
   return (
     <ErrorBoundary>
@@ -392,65 +255,48 @@ const App = () => {
                   {/* Home page */}
                   <Route path="/" element={<Index />} />
 
-                  {/* Kirchner v. Ellison (Minnesota) — composition 2. Bare URL = case landing page. */}
-                  <Route
-                    path="/kirchner-v-ellison"
-                    element={<CaseLandingPage caseKey="ellison" />}
-                  />
+                  {/* Kirchner v. Ellison (Minnesota). Bare URL = case landing page;
+                      /:docId renders the reader directly; legacy /section/:n redirects. */}
+                  <Route path="/kirchner-v-ellison" element={<CaseLandingPage caseKey="ellison" />} />
                   <Route
                     path="/kirchner-v-ellison/section/:sectionId"
-                    element={<KirchnerEllisonSectionRedirect />}
+                    element={<CaseSectionRedirect caseSlug="kirchner-v-ellison" />}
                   />
-                  {/* Document-specific routes: /kirchner-v-ellison/doc01, /kirchner-v-ellison/doc02, etc. */}
                   <Route
                     path="/kirchner-v-ellison/:docId"
-                    element={<KirchnerEllisonDocRedirect />}
+                    element={<CaseDocReader caseSlug="kirchner-v-ellison" />}
                   />
 
-                  {/* Kirchner v. Johnson (D.D.C.) — composition 3. Bare URL = case landing page. */}
-                  <Route
-                    path="/kirchner-v-johnson"
-                    element={<CaseLandingPage caseKey="johnson" />}
-                  />
+                  {/* Kirchner v. Johnson (D.D.C.). */}
+                  <Route path="/kirchner-v-johnson" element={<CaseLandingPage caseKey="johnson" />} />
                   <Route
                     path="/kirchner-v-johnson/section/:sectionId"
-                    element={<KirchnerJohnsonSectionRedirect />}
+                    element={<CaseSectionRedirect caseSlug="kirchner-v-johnson" />}
                   />
-                  {/* Document-specific routes: /kirchner-v-johnson/51, /kirchner-v-johnson/51-1, etc. (legacy doc13 supported) */}
                   <Route
                     path="/kirchner-v-johnson/:docId"
-                    element={<KirchnerJohnsonDocRedirect />}
-                  />
-                  {/* Legacy redirect from old URL */}
-                  <Route
-                    path="/kirchner-v-trump"
-                    element={<Navigate to="/kirchner-v-johnson" replace />}
-                  />
-                  <Route
-                    path="/kirchner-v-trump/section/:sectionId"
-                    element={<KirchnerJohnsonSectionRedirect />}
+                    element={<CaseDocReader caseSlug="kirchner-v-johnson" />}
                   />
 
-                  {/* Kirchner v. Acosta (Florida) — composition 1. Bare URL = case landing page. */}
-                  <Route
-                    path="/kirchner-v-acosta"
-                    element={<CaseLandingPage caseKey="acosta" />}
-                  />
+                  {/* Legacy redirects from the old /kirchner-v-trump URLs */}
+                  <Route path="/kirchner-v-trump" element={<Navigate to="/kirchner-v-johnson" replace />} />
+                  <Route path="/kirchner-v-trump/section/:sectionId" element={<TrumpSectionRedirect />} />
+                  <Route path="/kirchner-v-trump/:docId" element={<TrumpDocRedirect />} />
+
+                  {/* Kirchner v. Acosta (Florida). */}
+                  <Route path="/kirchner-v-acosta" element={<CaseLandingPage caseKey="acosta" />} />
                   <Route
                     path="/kirchner-v-acosta/section/:sectionId"
-                    element={<KirchnerAcostaSectionRedirect />}
+                    element={<CaseSectionRedirect caseSlug="kirchner-v-acosta" />}
                   />
-                  {/* Document-specific routes: /kirchner-v-acosta/1, /kirchner-v-acosta/2, etc. */}
                   <Route
                     path="/kirchner-v-acosta/:docId"
-                    element={<KirchnerAcostaDocRedirect />}
+                    element={<CaseDocReader caseSlug="kirchner-v-acosta" />}
                   />
 
-                  {/* SCOTUS amicus (Trump v. Barbara) — constitutional composition 4 */}
-                  <Route
-                    path="/scotus-amicus"
-                    element={<Navigate to="/composition/constitutional/composition/4/section/1" replace />}
-                  />
+                  {/* SCOTUS amicus (Trump v. Barbara). Bare URL reads part 1 directly. */}
+                  <Route path="/scotus-amicus" element={<ScotusAmicusIndex />} />
+                  <Route path="/scotus-amicus/:docId" element={<CaseDocReader caseSlug="scotus-amicus" />} />
 
                   {/* For Journalists */}
                   <Route path="/for-journalists" element={<ForJournalists />} />
@@ -462,18 +308,22 @@ const App = () => {
                   <Route path="/research/:archiveId/doc/:docFile" element={<ResearchDoc />} />
 
                   {/* Friendly URL for Copyright Notifications */}
-                  <Route
-                    path="/copyright"
-                    element={<Navigate to="/composition/copyright" replace />}
-                  />
+                  <Route path="/copyright" element={<Navigate to="/composition/copyright" replace />} />
 
-                  {/* Collection pages - simple parameterized route handles ALL collection types */}
+                  {/* Collection grid — one parameterized route handles ALL collection types */}
                   <Route path="/composition/:compositionId" element={<CompositionsPage />} />
 
-                  {/* Section page with proper route parameters - handles ALL collection types */}
+                  {/* Canonical descriptive reader URL for non-case collections:
+                      /composition/<collection>/<composition-slug>/<section-slug> */}
+                  <Route
+                    path="/composition/:compositionId/:compositionSlug/:sectionSlug"
+                    element={<SectionPage />}
+                  />
+
+                  {/* Legacy positional reader URL → redirect to the canonical form */}
                   <Route
                     path="/composition/:compositionId/composition/:compositionIndex/section/:sectionId"
-                    element={<SectionPage />}
+                    element={<LegacyPositionalRedirect />}
                   />
 
                   {/* Feature pages */}

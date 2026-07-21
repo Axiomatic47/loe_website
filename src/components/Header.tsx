@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import ThemeToggle from '@/components/ThemeToggle';
 import { useCompositionStore } from '@/utils/compositionData';
+import { compositionUrl } from '@/utils/urls';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -155,7 +156,7 @@ export const Header: React.FC<HeaderProps> = ({
                         {manuscript.map((comp, i) => (
                           <MenuRow
                             key={i}
-                            href={`/composition/manuscript/composition/${i + 1}/section/1`}
+                            href={compositionUrl(comp)}
                             label={comp.title}
                             sub={`${comp.sections?.length || 0} section${(comp.sections?.length || 0) === 1 ? '' : 's'}`}
                           />
@@ -174,7 +175,7 @@ export const Header: React.FC<HeaderProps> = ({
                         {data.map((comp, i) => (
                           <MenuRow
                             key={i}
-                            href={`/composition/data/composition/${i + 1}/section/1`}
+                            href={compositionUrl(comp)}
                             label={comp.title}
                             sub={`${comp.sections?.length || 0} section${(comp.sections?.length || 0) === 1 ? '' : 's'}`}
                           />

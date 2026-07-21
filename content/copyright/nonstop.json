@@ -13,7 +13,8 @@
       "content_level_5": "",
       "title": "Payday Publishing",
       "images": [],
-      "description": "Lyrics Verification Request sent to Payday Publishing"
+      "description": "Lyrics Verification Request sent to Payday Publishing",
+      "slug": "payday-publishing"
     },
     {
       "pdf_file": "/uploads/copyright/pdfs/LVR_Nonstop-Drake_Sony_ATV_enclosures.pdf",
@@ -24,7 +25,9 @@
       "content_level_5": "",
       "title": "Sony/ATV Music Publishing",
       "images": [],
-      "description": "Lyrics Verification Request sent to Sony/ATV Music Publishing"
+      "description": "Lyrics Verification Request sent to Sony/ATV Music Publishing",
+      "slug": "sony-atv-music-publishing"
     }
-  ]
+  ],
+  "slug": "nonstop"
 }

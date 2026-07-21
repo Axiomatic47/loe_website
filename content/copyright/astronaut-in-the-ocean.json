@@ -13,7 +13,8 @@
       "content_level_5": "",
       "title": "BMG Rights Management",
       "images": [],
-      "description": "Lyrics Verification Request sent to BMG Rights Management"
+      "description": "Lyrics Verification Request sent to BMG Rights Management",
+      "slug": "bmg-rights-management"
     },
     {
       "pdf_file": "/uploads/copyright/pdfs/LVR_Astronaut_in_the_Ocean-Masked_Wolf_Warner_Chappell_enclosures.pdf",
@@ -24,7 +25,9 @@
       "content_level_5": "",
       "title": "Warner Chappell Music",
       "images": [],
-      "description": "Lyrics Verification Request sent to Warner Chappell Music"
+      "description": "Lyrics Verification Request sent to Warner Chappell Music",
+      "slug": "warner-chappell-music"
     }
-  ]
+  ],
+  "slug": "astronaut-in-the-ocean"
 }

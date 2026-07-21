@@ -6,6 +6,7 @@
 // (Twitter/Facebook/Slack/LinkedIn) still read the static tags baked into index.html —
 // giving those per-URL cards would require SSR or prerendering (future work).
 import { useEffect } from 'react';
+import { absoluteUrl } from '@/utils/urls';
 
 const SITE = 'The Laws of Existence';
 const DEFAULT_DESCRIPTION =
@@ -26,8 +27,11 @@ function upsertMeta(attr: 'name' | 'property', key: string, content: string) {
  * Pass `undefined` while data is still loading — the site default is used until a
  * real title is available. No cleanup on unmount: each page sets its own title on
  * mount, which avoids a flash back to the default during client-side navigation.
+ *
+ * When `canonicalPath` is supplied, og:url is kept in sync with the page's
+ * canonical URL (see useCanonical) so the social card and canonical tag agree.
  */
-export function useDocumentMeta(title?: string, description?: string) {
+export function useDocumentMeta(title?: string, description?: string, canonicalPath?: string) {
   useEffect(() => {
     const fullTitle = title ? `${title} — ${SITE}` : SITE;
     const desc = description || DEFAULT_DESCRIPTION;
@@ -36,5 +40,8 @@ export function useDocumentMeta(title?: string, description?: string) {
     upsertMeta('property', 'og:title', fullTitle);
     upsertMeta('name', 'description', desc);
     upsertMeta('property', 'og:description', desc);
-  }, [title, description]);
+    if (canonicalPath) {
+      upsertMeta('property', 'og:url', absoluteUrl(canonicalPath));
+    }
+  }, [title, description, canonicalPath]);
 }

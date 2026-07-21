@@ -13,7 +13,8 @@
       "content_level_5": "",
       "title": "Kobalt Music Publishing",
       "images": [],
-      "description": "Lyrics Verification Request sent to Kobalt Music Publishing"
+      "description": "Lyrics Verification Request sent to Kobalt Music Publishing",
+      "slug": "kobalt-music-publishing"
     },
     {
       "pdf_file": "/uploads/copyright/pdfs/LVR_Jealous-Nick_Jonas_Royalty_Network_enclosures.pdf",
@@ -24,7 +25,8 @@
       "content_level_5": "",
       "title": "Royalty Network",
       "images": [],
-      "description": "Lyrics Verification Request sent to Royalty Network"
+      "description": "Lyrics Verification Request sent to Royalty Network",
+      "slug": "royalty-network"
     },
     {
       "pdf_file": "/uploads/copyright/pdfs/LVR_Jealous-Nick_Jonas_Spirit_enclosures.pdf",
@@ -35,7 +37,9 @@
       "content_level_5": "",
       "title": "Spirit Music Group",
       "images": [],
-      "description": "Lyrics Verification Request sent to Spirit Music Group"
+      "description": "Lyrics Verification Request sent to Spirit Music Group",
+      "slug": "spirit-music-group"
     }
-  ]
+  ],
+  "slug": "jealous"
 }

@@ -13,7 +13,8 @@
       "content_level_5": "",
       "title": "Kobalt Music Publishing",
       "images": [],
-      "description": "Lyrics Verification Request sent to Kobalt Music Publishing"
+      "description": "Lyrics Verification Request sent to Kobalt Music Publishing",
+      "slug": "kobalt-music-publishing"
     },
     {
       "pdf_file": "/uploads/copyright/pdfs/LVR_Like_Im_Gonna_Lose_You-Meghan_Trainor_John_Legend_Spirit_enclosures.pdf",
@@ -24,7 +25,8 @@
       "content_level_5": "",
       "title": "Spirit Music Group",
       "images": [],
-      "description": "Lyrics Verification Request sent to Spirit Music Group"
+      "description": "Lyrics Verification Request sent to Spirit Music Group",
+      "slug": "spirit-music-group"
     },
     {
       "pdf_file": "/uploads/copyright/pdfs/LVR_Like_Im_Gonna_Lose_You-Meghan_Trainor_John_Legend_Warner_Chappell_enclosures.pdf",
@@ -35,7 +37,9 @@
       "content_level_5": "",
       "title": "Warner Chappell Music",
       "images": [],
-      "description": "Lyrics Verification Request sent to Warner Chappell Music"
+      "description": "Lyrics Verification Request sent to Warner Chappell Music",
+      "slug": "warner-chappell-music"
     }
-  ]
+  ],
+  "slug": "like-im-gonna-lose-you"
 }

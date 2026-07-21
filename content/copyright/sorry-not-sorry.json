@@ -13,7 +13,8 @@
       "content_level_5": "",
       "title": "Downtown Music Publishing",
       "images": [],
-      "description": "Lyrics Verification Request sent to Downtown Music Publishing"
+      "description": "Lyrics Verification Request sent to Downtown Music Publishing",
+      "slug": "downtown-music-publishing"
     },
     {
       "pdf_file": "/uploads/copyright/pdfs/LVR_Sorry_Not_Sorry-Demi_Lovato_Reservoir_enclosures.pdf",
@@ -24,7 +25,8 @@
       "content_level_5": "",
       "title": "Reservoir Media",
       "images": [],
-      "description": "Lyrics Verification Request sent to Reservoir Media"
+      "description": "Lyrics Verification Request sent to Reservoir Media",
+      "slug": "reservoir-media"
     },
     {
       "pdf_file": "/uploads/copyright/pdfs/LVR_Sorry_Not_Sorry-Demi_Lovato_Universal_enclosures.pdf",
@@ -35,7 +37,9 @@
       "content_level_5": "",
       "title": "Universal Music Publishing Group",
       "images": [],
-      "description": "Lyrics Verification Request sent to Universal Music Publishing Group"
+      "description": "Lyrics Verification Request sent to Universal Music Publishing Group",
+      "slug": "universal-music-publishing-group"
     }
-  ]
+  ],
+  "slug": "sorry-not-sorry"
 }

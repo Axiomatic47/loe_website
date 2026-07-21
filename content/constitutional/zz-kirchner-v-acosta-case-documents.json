@@ -14,7 +14,8 @@
       "title": "Petition",
       "images": [],
       "description": "PETITION against Alexander Acosta filed by Joseph Kirchner (S.D. Fla.)",
-      "featured_order": -1
+      "featured_order": -1,
+      "slug": "1"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/florida/02_Appendix_A.pdf",
@@ -25,7 +26,8 @@
       "content_level_5": "",
       "title": "Appendix A: Madisonian Separation of Powers Compliance Testing",
       "images": [],
-      "description": "Madisonian Separation of Powers Compliance Testing Framework"
+      "description": "Madisonian Separation of Powers Compliance Testing Framework",
+      "slug": "2"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/florida/03_Memo_A.pdf",
@@ -36,7 +38,8 @@
       "content_level_5": "",
       "title": "Memo A: Recovery of Equitable Standing",
       "images": [],
-      "description": "The Recovery of Equitable Standing for Enumerated Constitutional Violations"
+      "description": "The Recovery of Equitable Standing for Enumerated Constitutional Violations",
+      "slug": "3"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/florida/04_Memo_B.pdf",
@@ -47,7 +50,8 @@
       "content_level_5": "",
       "title": "Memo B: Madisonian Separation of Powers Test",
       "images": [],
-      "description": "The Madisonian Separation of Powers Objective Compliance Test"
+      "description": "The Madisonian Separation of Powers Objective Compliance Test",
+      "slug": "4"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/florida/05_Memo_C.pdf",
@@ -58,7 +62,8 @@
       "content_level_5": "",
       "title": "Memo C: Constitutional Necessity of Judicial Recognition",
       "images": [],
-      "description": "The Constitutional Necessity of Judicial Recognition of Separation of Powers Violations and Adoption of an Objective Compliance Test"
+      "description": "The Constitutional Necessity of Judicial Recognition of Separation of Powers Violations and Adoption of an Objective Compliance Test",
+      "slug": "5"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/florida/06_Civil_Cover_Sheet.pdf",
@@ -69,7 +74,8 @@
       "content_level_5": "",
       "title": "JS44 Civil Cover Sheet",
       "images": [],
-      "description": "Civil Cover Sheet (JS44 Form)"
+      "description": "Civil Cover Sheet (JS44 Form)",
+      "slug": "6"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/florida/07_Acosta_Summons.pdf",
@@ -80,7 +86,8 @@
       "content_level_5": "",
       "title": "Civil Summons - Alexander Acosta",
       "images": [],
-      "description": "AO440 Civil Summons for Defendant Alexander Acosta"
+      "description": "AO440 Civil Summons for Defendant Alexander Acosta",
+      "slug": "7"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/florida/08_AG_Summons.pdf",
@@ -91,7 +98,8 @@
       "content_level_5": "",
       "title": "Civil Summons - Attorney General",
       "images": [],
-      "description": "AO440 Civil Summons for Attorney General"
+      "description": "AO440 Civil Summons for Attorney General",
+      "slug": "8"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/florida/09_Definitions.pdf",
@@ -102,7 +110,8 @@
       "content_level_5": "",
       "title": "Definitions: Kirchner Framework",
       "images": [],
-      "description": "Definitions and Terms for the Kirchner Constitutional Framework"
+      "description": "Definitions and Terms for the Kirchner Constitutional Framework",
+      "slug": "9"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/florida/10_Exhibit_A.pdf",
@@ -113,7 +122,8 @@
       "content_level_5": "",
       "title": "Exhibit A: Epstein 2008 Non-Prosecution Agreement",
       "images": [],
-      "description": "Jeffrey Epstein Non-Prosecution Agreement (2008)"
+      "description": "Jeffrey Epstein Non-Prosecution Agreement (2008)",
+      "slug": "10"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/florida/11_Exhibit_B.pdf",
@@ -124,7 +134,8 @@
       "content_level_5": "",
       "title": "Exhibit B: Epstein 2019 Federal Indictment",
       "images": [],
-      "description": "Jeffrey Epstein Federal Indictment (SDNY, 2019)"
+      "description": "Jeffrey Epstein Federal Indictment (SDNY, 2019)",
+      "slug": "11"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/florida/12_Exhibit_C.pdf",
@@ -135,7 +146,8 @@
       "content_level_5": "",
       "title": "Exhibit C: DOJ OPR Report Excerpts",
       "images": [],
-      "description": "Department of Justice Office of Professional Responsibility Report Excerpts"
+      "description": "Department of Justice Office of Professional Responsibility Report Excerpts",
+      "slug": "12"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/florida/13_Notice_Related_Actions.pdf",
@@ -146,7 +158,8 @@
       "content_level_5": "",
       "title": "Notice of Related Actions",
       "images": [],
-      "description": "Notice of Related Actions (Kirchner v. Ellison, Kirchner v. Johnson)"
+      "description": "Notice of Related Actions (Kirchner v. Ellison, Kirchner v. Johnson)",
+      "slug": "13"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/florida/14_Order_Dismissing_Complaint.pdf",
@@ -157,7 +170,8 @@
       "content_level_5": "",
       "title": "Order Dismissing Complaint",
       "images": [],
-      "description": "Court order (DE 13) dismissing the Complaint without prejudice for failure to meet the pleading standards of Federal Rules of Civil Procedure 8 and 10, with one opportunity to file an amended complaint by June 18, 2026 (Hon. Donald M. Middlebrooks, S.D. Fla.)"
+      "description": "Court order (DE 13) dismissing the Complaint without prejudice for failure to meet the pleading standards of Federal Rules of Civil Procedure 8 and 10, with one opportunity to file an amended complaint by June 18, 2026 (Hon. Donald M. Middlebrooks, S.D. Fla.)",
+      "slug": "14"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/florida/15_Order_Dismissing_Case.pdf",
@@ -168,7 +182,8 @@
       "content_level_5": "",
       "title": "Order Dismissing Case",
       "images": [],
-      "description": "Court order (DE 14) dismissing the case without prejudice and directing the Clerk to close it after no amended complaint was filed by the deadline; all pending motions denied as moot"
+      "description": "Court order (DE 14) dismissing the case without prejudice and directing the Clerk to close it after no amended complaint was filed by the deadline; all pending motions denied as moot",
+      "slug": "15"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/florida/16_Notice_Corrected_Email_Address.pdf",
@@ -179,7 +194,8 @@
       "content_level_5": "",
       "title": "Notice of Corrected Email Address",
       "images": [],
-      "description": "Plaintiff's notice (DE 15) correcting the email address of record for electronic noticing to legal@lawsofexistence.com"
+      "description": "Plaintiff's notice (DE 15) correcting the email address of record for electronic noticing to legal@lawsofexistence.com",
+      "slug": "16"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/florida/17_Motion_Extension_Time_Amended_Complaint.pdf",
@@ -190,7 +206,9 @@
       "content_level_5": "",
       "title": "Motion for Extension of Time to File Amended Complaint",
       "images": [],
-      "description": "Plaintiff's motion (DE 16) under Rule 6(b)(1)(A) for a 90-day extension to file an amended complaint through September 16, 2026, or in the alternative for voluntary dismissal without prejudice under Rule 41(a)(1)(A)(i)"
+      "description": "Plaintiff's motion (DE 16) under Rule 6(b)(1)(A) for a 90-day extension to file an amended complaint through September 16, 2026, or in the alternative for voluntary dismissal without prejudice under Rule 41(a)(1)(A)(i)",
+      "slug": "17"
     }
-  ]
+  ],
+  "slug": "kirchner-v-acosta"
 }

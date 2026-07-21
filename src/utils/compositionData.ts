@@ -23,6 +23,9 @@ export interface Section {
   images?: ImageData[];
   case_group?: string;
   date?: string;
+  // Descriptive URL slug. Read from content JSON when present; otherwise derived
+  // by the loader. Authoritative rules: scripts/lib/content-model.mjs.
+  slug: string;
 }
 
 export interface Composition {
@@ -37,6 +40,9 @@ export interface Composition {
   content_level_5: string;
   sections: Section[];
   hidden_case_groups?: string[];
+  // Descriptive URL slug. Read from content JSON when present; otherwise derived
+  // by the loader. Authoritative rules: scripts/lib/content-model.mjs.
+  slug: string;
 }
 
 interface CompositionStore {
@@ -58,6 +64,13 @@ interface CompositionStore {
   getComposition: (collection: string, index: number) => Composition | null;
   getSection: (collection: string, compositionIndex: number, sectionIndex: number) => Section | null;
   getCollectionCompositions: (collection: string) => Composition[];
+  // Slug-based accessors (canonical descriptive-URL resolution).
+  getCompositionBySlug: (collection: string, slug: string) => Composition | null;
+  getCaseComposition: (caseSlug: string) => Composition | null;
+  getSectionBySlug: (
+    composition: Composition | null,
+    slug: string,
+  ) => { section: Section; index: number } | null;
   setDebugMode: (enabled: boolean) => void;
 }
 
@@ -193,6 +206,22 @@ export const useCompositionStore = create<CompositionStore>((set, get) => {
           if (DEV) console.warn('Unknown collection:', collection);
           return [];
       }
+    },
+
+    getCompositionBySlug: (collection: string, slug: string) => {
+      const comps = get().getCollectionCompositions(collection);
+      return comps.find(c => c.slug === slug) || null;
+    },
+
+    getCaseComposition: (caseSlug: string) => {
+      return get().constitutional.find(c => c.slug === caseSlug) || null;
+    },
+
+    getSectionBySlug: (composition: Composition | null, slug: string) => {
+      if (!composition || !composition.sections) return null;
+      const index = composition.sections.findIndex(s => s.slug === slug);
+      if (index === -1) return null;
+      return { section: composition.sections[index], index: index + 1 };
     },
   };
 });

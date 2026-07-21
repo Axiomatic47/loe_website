@@ -8,6 +8,7 @@ import PDFViewer from "@/components/PDFViewer";
 import { CollapsibleSummary } from "@/components/CollapsibleSummary";
 import { Reveal } from "@/components/Reveal";
 import { cn } from "@/lib/utils";
+import { sectionUrl } from "@/utils/urls";
 
 const FeaturedPanel = ({
   children,
@@ -30,7 +31,7 @@ const FeaturedPanel = ({
 
 export const FeaturedWorkSection = () => {
   const navigate = useNavigate();
-  const { manuscript, data, constitutional, timeline, map, refreshCompositions } = useCompositionStore();
+  const { manuscript, data, constitutional, timeline, map, refreshCompositions, getComposition, getSection } = useCompositionStore();
 
   useEffect(() => {
     refreshCompositions();
@@ -140,7 +141,13 @@ export const FeaturedWorkSection = () => {
   }
 
   const handleReadMore = (section: any) => {
-    navigate(`/composition/${section.collection}/composition/${section.compositionIndex}/section/${section.sectionIndex}`);
+    // The flattened featured record carries collection + 1-based indices; resolve
+    // the live composition/section and emit their canonical descriptive URL.
+    const composition = getComposition(section.collection, section.compositionIndex);
+    const target = getSection(section.collection, section.compositionIndex, section.sectionIndex);
+    if (composition && target) {
+      navigate(sectionUrl(composition, target));
+    }
   };
 
   // Helper function to get collection display name

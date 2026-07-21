@@ -11,6 +11,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, AlertCircle, RefreshCw, Bug, Eye, EyeOff, Music, FileText, Send, BookOpen, Database, Scale, ChevronRight } from "lucide-react";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
+import { compositionUrl } from "@/utils/urls";
 
 interface BlurPanelProps {
   children: React.ReactNode;
@@ -127,10 +128,12 @@ const CompositionsPage: React.FC = () => {
 
   // Stable event handlers
   const handleCompositionClick = useCallback((index: number) => {
-    const targetUrl = `/composition/${compositionId}/composition/${index + 1}/section/1`;
+    const composition = getCollectionCompositions(compositionId || '')[index];
+    if (!composition) return;
+    const targetUrl = compositionUrl(composition);
     if (import.meta.env.DEV) console.log('🔗 Navigating to:', targetUrl);
     navigate(targetUrl);
-  }, [compositionId, navigate]);
+  }, [compositionId, navigate, getCollectionCompositions]);
 
   const handleBackClick = useCallback(() => {
     navigate('/');

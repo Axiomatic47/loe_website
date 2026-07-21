@@ -13,7 +13,8 @@
       "content_level_5": "",
       "title": "Amicus Curiae Brief",
       "images": [],
-      "description": "Brief of amicus curiae Joseph D. Kirchner, pro se, in Trump v. Barbara, Nos. 25-364 and 25-365 (birthright citizenship), as mailed to the Clerk of the Supreme Court on March 19, 2026"
+      "description": "Brief of amicus curiae Joseph D. Kirchner, pro se, in Trump v. Barbara, Nos. 25-364 and 25-365 (birthright citizenship), as mailed to the Clerk of the Supreme Court on March 19, 2026",
+      "slug": "1"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/scotus-amicus/02_Motion_for_Leave.pdf",
@@ -24,7 +25,8 @@
       "content_level_5": "",
       "title": "Motion for Leave to File",
       "images": [],
-      "description": "Motion for leave to file the amicus curiae brief"
+      "description": "Motion for leave to file the amicus curiae brief",
+      "slug": "2"
     },
     {
       "pdf_file": "/uploads/constitutional/pdfs/scotus-amicus/03_Cover_Letter.pdf",
@@ -35,7 +37,9 @@
       "content_level_5": "",
       "title": "Cover Letter to the Clerk",
       "images": [],
-      "description": "Cover letter accompanying the filing package mailed to the Clerk of the Supreme Court"
+      "description": "Cover letter accompanying the filing package mailed to the Clerk of the Supreme Court",
+      "slug": "3"
     }
-  ]
+  ],
+  "slug": "scotus-amicus"
 }

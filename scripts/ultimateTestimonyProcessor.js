@@ -4,6 +4,9 @@ console.log('🚀 ULTIMATE TESTIMONY PROCESSOR - Comprehensive Processing + Date
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+// Canonical URL slugs: emit them at generation time so freshly (re)processed
+// testimony compositions carry the same slug fields as enrich-content-slugs.mjs.
+import { deriveSectionSlug, deriveCompositionSlug } from './lib/content-model.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -483,6 +486,12 @@ function createCollectionCompositions(testimonies) {
     console.log(`\n📄 Creating collection: ${collectionName}`);
     const sections = [];
     let latestDate = null;
+    // Composition slug + per-composition section-slug dedup set (data collection rules).
+    const compSlug = deriveCompositionSlug(
+      'data',
+      `${collectionName.toLowerCase().replace(/\s+/g, '-')}-testimonies-enhanced.json`,
+    );
+    const usedSectionSlugs = new Set();
 
     for (const testimony of collectionTestimonies) {
       console.log(`  🔄 Processing: ${testimony.name}`);
@@ -503,6 +512,7 @@ function createCollectionCompositions(testimonies) {
 
       sections.push({
         title: title,
+        slug: deriveSectionSlug('data', compSlug, { title }, sections.length + 1, usedSectionSlugs),
         featured: false,
         images: images,
         content_level_1: verification,
@@ -519,6 +529,7 @@ function createCollectionCompositions(testimonies) {
     const composition = {
       title: `${collectionName}: Framework Recognition Testimonies (Enhanced)`,
       collection_type: "data",
+      slug: compSlug,
       date: compositionDate,
       featured: collectionName === 'Claude Collection',
       sections: sections

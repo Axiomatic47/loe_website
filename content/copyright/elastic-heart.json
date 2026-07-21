@@ -13,7 +13,8 @@
       "content_level_5": "",
       "title": "Hipgnosis Songs Fund",
       "images": [],
-      "description": "Lyrics Verification Request sent to Hipgnosis Songs Fund"
+      "description": "Lyrics Verification Request sent to Hipgnosis Songs Fund",
+      "slug": "hipgnosis-songs-fund"
     },
     {
       "pdf_file": "/uploads/copyright/pdfs/LVR_Elastic_Heart-Sia_Sony_ATV_enclosures.pdf",
@@ -24,7 +25,9 @@
       "content_level_5": "",
       "title": "Sony/ATV Music Publishing",
       "images": [],
-      "description": "Lyrics Verification Request sent to Sony/ATV Music Publishing"
+      "description": "Lyrics Verification Request sent to Sony/ATV Music Publishing",
+      "slug": "sony-atv-music-publishing"
     }
-  ]
+  ],
+  "slug": "elastic-heart"
 }

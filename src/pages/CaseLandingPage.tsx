@@ -13,6 +13,8 @@ import { PageLayout } from "@/components/PageLayout";
 import { Reveal } from "@/components/Reveal";
 import { useCompositionStore } from "@/utils/compositionData";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
+import { useCanonical } from "@/hooks/useCanonical";
+import { sectionUrl } from "@/utils/urls";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, CalendarClock, FileText, Scale } from "lucide-react";
 
@@ -40,7 +42,6 @@ interface CaseConfig {
   operativeHref: string;
   operativeLabel: string;
   matchTitle: string;
-  docketHref: string;
   timeline: TimelineEntry[];
   keyDocuments: KeyDocument[];
 }
@@ -59,7 +60,6 @@ const CASES: Record<string, CaseConfig> = {
     operativeHref: "/kirchner-v-johnson/51",
     operativeLabel: "Read the Third Amended Complaint",
     matchTitle: "johnson",
-    docketHref: "/composition/constitutional/composition/3/section/1",
     timeline: [
       { date: "Aug 19, 2025", event: "Complaint filed" },
       { date: "Aug 20, 2025", event: "Complaint dismissed sua sponte for standing; leave to amend" },
@@ -93,7 +93,6 @@ const CASES: Record<string, CaseConfig> = {
     operativeHref: "/kirchner-v-ellison/1",
     operativeLabel: "Read the Petition",
     matchTitle: "ellison",
-    docketHref: "/composition/constitutional/composition/2/section/1",
     timeline: [
       { date: "Jan 27, 2026", event: "Petition filed" },
       { date: "Jan 29, 2026", event: "Emergency motion for TRO and declaratory relief" },
@@ -128,7 +127,6 @@ const CASES: Record<string, CaseConfig> = {
     operativeHref: "/kirchner-v-acosta/1",
     operativeLabel: "Read the Petition",
     matchTitle: "acosta",
-    docketHref: "/composition/constitutional/composition/1/section/1",
     timeline: [
       { date: "Mar 13, 2026", event: "Petition signed and mailed" },
       { date: "Mar 18, 2026", event: "Complaint filed" },
@@ -157,18 +155,24 @@ const Eyebrow = ({ children }: { children: React.ReactNode }) => (
 
 const CaseLandingPage = ({ caseKey }: { caseKey: keyof typeof CASES }) => {
   const c = CASES[caseKey];
+  const caseSlug = `kirchner-v-${caseKey}`;
   const navigate = useNavigate();
-  const { constitutional, refreshCompositions } = useCompositionStore();
+  const { refreshCompositions, getCaseComposition } = useCompositionStore();
 
-  useDocumentMeta(c.caption, c.summary);
+  useCanonical(`/${caseSlug}`);
+  useDocumentMeta(c.caption, c.summary, `/${caseSlug}`);
 
   useEffect(() => {
     refreshCompositions();
   }, [refreshCompositions]);
 
-  const docCount =
-    constitutional.find((comp) => comp.title.toLowerCase().includes(c.matchTitle))
-      ?.sections?.length || null;
+  const composition = getCaseComposition(caseSlug);
+  const docCount = composition?.sections?.length || null;
+  // "Browse the full docket" opens the first section's reader in canonical form.
+  const docketHref =
+    composition && composition.sections?.[0]
+      ? sectionUrl(composition, composition.sections[0])
+      : c.operativeHref;
 
   return (
     <PageLayout>
@@ -249,7 +253,7 @@ const CaseLandingPage = ({ caseKey }: { caseKey: keyof typeof CASES }) => {
               <Button
                 variant="outline"
                 className="bg-card text-foreground border-border shadow-sm hover:shadow-md hover:bg-secondary/60"
-                onClick={() => navigate(c.docketHref)}
+                onClick={() => navigate(docketHref)}
               >
                 Browse the full docket{docCount ? ` (${docCount} documents)` : ""}
               </Button>
@@ -320,7 +324,7 @@ const CaseLandingPage = ({ caseKey }: { caseKey: keyof typeof CASES }) => {
                   ))}
                 </div>
                 <Link
-                  to={c.docketHref}
+                  to={docketHref}
                   className="inline-flex items-center text-sm text-primary hover:text-primary/80 font-sans mt-4 pt-4 border-t border-border transition-colors"
                   style={{ fontWeight: 550 }}
                 >

@@ -13,7 +13,8 @@
       "content_level_5": "",
       "title": "Kobalt Music Publishing",
       "images": [],
-      "description": "Lyrics Verification Request sent to Kobalt Music Publishing"
+      "description": "Lyrics Verification Request sent to Kobalt Music Publishing",
+      "slug": "kobalt-music-publishing"
     },
     {
       "pdf_file": "/uploads/copyright/pdfs/LVR_Controlla-Drake_Sony_ATV_enclosures.pdf",
@@ -24,7 +25,9 @@
       "content_level_5": "",
       "title": "Sony/ATV Music Publishing",
       "images": [],
-      "description": "Lyrics Verification Request sent to Sony/ATV Music Publishing"
+      "description": "Lyrics Verification Request sent to Sony/ATV Music Publishing",
+      "slug": "sony-atv-music-publishing"
     }
-  ]
+  ],
+  "slug": "controlla"
 }

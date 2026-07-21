@@ -15,6 +15,8 @@ import MediaGallery from "@/components/MediaGallery";
 import PDFViewer from "../components/PDFViewer";
 import { CollapsibleSummary } from "@/components/CollapsibleSummary";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
+import { useCanonical } from "@/hooks/useCanonical";
+import { sectionUrl } from "@/utils/urls";
 import {
   Loader2,
   AlertCircle,
@@ -43,8 +45,32 @@ interface MediaItem {
   tags?: string[];
 }
 
-const SectionPage = () => {
-  const { compositionId = "", compositionIndex = "1", sectionId = "1" } = useParams();
+// SectionPage resolves its target either from descriptive-slug props (passed by
+// the case-document resolver in App.tsx and by the generic descriptive route) or,
+// as a fallback, from the legacy positional route params. `collection` is the
+// collection type ("constitutional", "manuscript", …) — the same value the code
+// historically read from the :compositionId param.
+interface SectionPageProps {
+  collection?: string;
+  compositionSlug?: string;
+  sectionSlug?: string;
+}
+
+const SectionPage = ({
+  collection: collectionProp,
+  compositionSlug: compositionSlugProp,
+  sectionSlug: sectionSlugProp,
+}: SectionPageProps = {}) => {
+  const params = useParams();
+  const collection = collectionProp ?? params.compositionId ?? "";
+  const compositionSlug = compositionSlugProp ?? params.compositionSlug;
+  const sectionSlug = sectionSlugProp ?? params.sectionSlug;
+  const positionalIndex = params.compositionIndex ?? "1";
+  const positionalSectionId = params.sectionId ?? "1";
+  const slugMode = Boolean(compositionSlug && sectionSlug);
+  // Stable identity of the current section for scroll-reset (works in both modes).
+  const sectionKey = slugMode ? `${compositionSlug}/${sectionSlug}` : positionalSectionId;
+
   // Default to level 1 so "Content" shows first
   const [literacyLevel, setLiteracyLevel] = useState(1);
   const [mounted, setMounted] = useState(false);
@@ -78,20 +104,40 @@ const SectionPage = () => {
     if (mainContentArea) {
       mainContentArea.scrollTop = 0;
     }
-  }, [sectionId]);
+  }, [sectionKey]);
 
-  // Get current composition and section
-  const currentComposition = store.getComposition(compositionId, parseInt(compositionIndex));
-  const currentSection = store.getSection(compositionId, parseInt(compositionIndex), parseInt(sectionId));
+  // Get current composition and section.
+  // Slug mode: resolve by descriptive slug. Positional mode (legacy): resolve by index.
+  let currentComposition = null;
+  let currentSection = null;
+  let currentSectionNumber = 1;
+  if (slugMode) {
+    currentComposition = store.getCompositionBySlug(collection, compositionSlug as string);
+    const resolved = store.getSectionBySlug(currentComposition, sectionSlug as string);
+    if (resolved) {
+      currentSection = resolved.section;
+      currentSectionNumber = resolved.index;
+    }
+  } else {
+    currentComposition = store.getComposition(collection, parseInt(positionalIndex));
+    currentSection = store.getSection(collection, parseInt(positionalIndex), parseInt(positionalSectionId));
+    currentSectionNumber = parseInt(positionalSectionId);
+  }
+
+  // Canonical URL for the resolved content (reader page). Kept in sync with og:url.
+  const canonicalPath =
+    currentComposition && currentSection ? sectionUrl(currentComposition, currentSection) : undefined;
+  useCanonical(canonicalPath);
 
   // Per-document browser-tab / share title (falls back to the site default while loading)
   useDocumentMeta(
     currentComposition && currentSection ? `${currentSection.title} — ${currentComposition.title}` : undefined,
     currentSection?.description,
+    canonicalPath,
   );
 
   // Check if this is a section with a PDF (constitutional, copyright, or manuscript collections)
-  const hasPDFViewer = (compositionId === 'constitutional' || compositionId === 'copyright' || compositionId === 'manuscript') && currentSection?.pdf_file;
+  const hasPDFViewer = (collection === 'constitutional' || collection === 'copyright' || collection === 'manuscript') && currentSection?.pdf_file;
 
   // Case-group tabs: when a composition's sections carry `case_group`, the sidebar
   // splits navigation by sub-case (e.g. Ellison's trial court / refiled / appeal).
@@ -186,7 +232,7 @@ const SectionPage = () => {
       }
 
       // Default: use collection-specific path
-      return `/uploads/${compositionId}/${src}`;
+      return `/uploads/${collection}/${src}`;
     }
 
     // Handle object URLs (from CMS)
@@ -219,7 +265,7 @@ const SectionPage = () => {
         description: img.caption,
         tags: [
           currentSection?.title || 'Unknown Section',
-          compositionId || 'general',
+          collection || 'general',
           img.position,
           mediaType,
           ...(currentSection?.featured ? ['featured'] : [])
@@ -320,7 +366,7 @@ const getCollectionConfig = (collectionType: string) => {
   }
 };
 
-  const collectionConfig = getCollectionConfig(compositionId);
+  const collectionConfig = getCollectionConfig(collection);
 
   const handleSectionChange = (newSectionId: number) => {
     // Close mobile sidebar
@@ -334,8 +380,11 @@ const getCollectionConfig = (collectionType: string) => {
       mainContentArea.scrollTop = 0;
     }
 
-    // Navigate to new section
-    const targetUrl = `/composition/${compositionId}/composition/${compositionIndex}/section/${newSectionId}`;
+    // Navigate to the target section's canonical descriptive URL.
+    const targetSection = currentComposition?.sections?.[newSectionId - 1];
+    const targetUrl =
+      currentComposition && targetSection ? sectionUrl(currentComposition, targetSection) : null;
+    if (!targetUrl) return;
     if (import.meta.env.DEV) console.log('Navigating to section:', targetUrl);
 
     try {
@@ -387,10 +436,10 @@ const getCollectionConfig = (collectionType: string) => {
 
   const handleBackToCompositions = () => {
     try {
-      navigate(`/composition/${compositionId}`);
+      navigate(`/composition/${collection}`);
     } catch (error) {
       if (import.meta.env.DEV) console.error('Back navigation error:', error);
-      window.location.href = `/composition/${compositionId}`;
+      window.location.href = `/composition/${collection}`;
     }
   };
 
@@ -399,8 +448,9 @@ const getCollectionConfig = (collectionType: string) => {
     return null;
   }
 
-  // Loading state
-  if (store.loading) {
+  // Loading state — also covers the pre-initialization tick so an unresolved
+  // slug never flashes "Section Not Found" before the store has loaded.
+  if (store.loading || !store.initialized) {
     return (
       <PageLayout>
         <div className="container mx-auto px-4 py-12">
@@ -473,7 +523,6 @@ const getCollectionConfig = (collectionType: string) => {
   }
 
   const totalSections = currentComposition.sections?.length || 0;
-  const currentSectionNumber = parseInt(sectionId);
 
   // Convert section images to MediaItems for the gallery
   const mediaItems = convertImagesToMediaItems(currentSection.images || []);
@@ -482,7 +531,9 @@ const getCollectionConfig = (collectionType: string) => {
   // Debug logging for development
   if (import.meta.env.DEV) {
     console.log('SectionPage Collection Debug:', {
-      compositionId,
+      collection,
+      compositionSlug,
+      sectionSlug,
       collectionConfig,
       currentSection,
       literacyLevel,
@@ -562,7 +613,7 @@ const getCollectionConfig = (collectionType: string) => {
             <nav className="space-y-1 pb-16">
               {sidebarSections.map(({ section, originalIndex }) => {
                 const sectionNum = originalIndex + 1;
-                const isActive = sectionNum === parseInt(sectionId);
+                const isActive = sectionNum === currentSectionNumber;
                 return (
                   <button
                     key={originalIndex}
@@ -596,7 +647,7 @@ const getCollectionConfig = (collectionType: string) => {
           {/* Standard Content Section */}
             <div className="p-8">
               {/* Pending Filing Disclaimer for Kirchner v. Acosta (Florida) */}
-              {compositionId === 'constitutional' && currentComposition?.title?.toLowerCase().includes('acosta') && (
+              {collection === 'constitutional' && currentComposition?.title?.toLowerCase().includes('acosta') && (
                 <Alert className="mb-6 bg-amber-50 border-amber-300/70">
                   <AlertCircle className="h-5 w-5 text-amber-700" />
                   <AlertDescription className="text-amber-900 ml-2">
@@ -715,10 +766,10 @@ const getCollectionConfig = (collectionType: string) => {
                 </CardHeader>
                 <CardContent className="text-sm text-muted-foreground">
                   <div className="grid grid-cols-2 gap-2">
-                    <div>Collection: {compositionId}</div>
+                    <div>Collection: {collection}</div>
                     <div>Collection Type: {currentComposition?.collection_type || 'N/A'}</div>
-                    <div>Composition: {compositionIndex}</div>
-                    <div>Section: {sectionId} - {currentSection?.title || 'N/A'}</div>
+                    <div>Composition: {currentComposition?.slug || 'N/A'}</div>
+                    <div>Section: {currentSectionNumber} ({currentSection?.slug || 'N/A'}) - {currentSection?.title || 'N/A'}</div>
                     <div>Featured: {String(currentSection?.featured ?? false)}</div>
                     <div>Images: {currentSection?.images?.length || 0}</div>
                     <div>Media Items: {mediaItems.length}</div>

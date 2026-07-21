@@ -16,6 +16,7 @@ interface ImageData {
 
 interface TestimonySection {
   title: string;
+  slug?: string;
   featured: boolean;
   content_level_1: string;
   content_level_3: string;
@@ -25,10 +26,25 @@ interface TestimonySection {
 
 interface TestimonyComposition {
   title: string;
+  slug?: string;
   collection_type: string;
   date: string;
   featured: boolean;
   sections: TestimonySection[];
+}
+
+// Mirror of slugifyTitle / section-slug rules in scripts/lib/content-model.mjs —
+// duplicated inline so this standalone tsx script has no ESM-interop dependency.
+// Keep in sync with content-model.mjs.
+function slugifyTitle(s: string): string {
+  return String(s ?? '')
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 60)
+    .replace(/-+$/, '');
 }
 
 class CMSTestimonyProcessor {
@@ -40,6 +56,27 @@ class CMSTestimonyProcessor {
     this.testimonyDir = path.join(__dirname, '../testimonies');
     this.outputDir = path.join(__dirname, '../content/data');
     this.publicDir = path.join(__dirname, '../public/uploads/data');
+  }
+
+  // Populate canonical URL slugs on the composition + every section immediately before
+  // serialization, so a freshly (re)generated file carries the same slug fields as
+  // scripts/enrich-content-slugs.mjs would add (data-collection rules: slugified title,
+  // deterministic "-2"/"-3" suffix on collision, "section-N" fallback if untitled).
+  private applyCanonicalSlugs(composition: TestimonyComposition, filename: string): void {
+    composition.slug = filename.replace(/\.json$/, '');
+    const used = new Set<string>();
+    composition.sections.forEach((section, i) => {
+      let base = section.title ? slugifyTitle(section.title) : '';
+      if (!base) base = `section-${i + 1}`;
+      let candidate = base;
+      let n = 2;
+      while (used.has(candidate)) {
+        candidate = `${base}-${n}`;
+        n += 1;
+      }
+      used.add(candidate);
+      section.slug = candidate;
+    });
   }
 
   async processAllTestimonies(): Promise<void> {
@@ -124,6 +161,7 @@ class CMSTestimonyProcessor {
     const filename = 'framework-recognition-testimonies.json';
     const outputPath = path.join(this.outputDir, filename);
 
+    this.applyCanonicalSlugs(composition, filename);
     fs.writeFileSync(outputPath, JSON.stringify(composition, null, 2));
 
     console.log(`\n📄 Created: ${filename}`);
@@ -195,6 +233,7 @@ class CMSTestimonyProcessor {
     const filename = 'framework-recognition-testimonies.json';
     const outputPath = path.join(this.outputDir, filename);
 
+    this.applyCanonicalSlugs(composition, filename);
     fs.writeFileSync(outputPath, JSON.stringify(composition, null, 2));
 
     const totalImages = sections.reduce((sum, section) => sum + section.images.length, 0);
@@ -446,6 +485,7 @@ This evidence supports the legal recognition of the Laws of Existence Framework 
     const filename = 'framework-recognition-testimonies.json';
     const outputPath = path.join(this.outputDir, filename);
 
+    this.applyCanonicalSlugs(composition, filename);
     fs.writeFileSync(outputPath, JSON.stringify(composition, null, 2));
     console.log(`📄 Created empty composition: ${filename}`);
   }

@@ -13,7 +13,8 @@
       "content_level_5": "",
       "title": "Concord Music Publishing",
       "images": [],
-      "description": "Lyrics Verification Request sent to Concord Music Publishing"
+      "description": "Lyrics Verification Request sent to Concord Music Publishing",
+      "slug": "concord-music-publishing"
     },
     {
       "pdf_file": "/uploads/copyright/pdfs/LVR_The_Red-Chevelle_Warner_Chappell_enclosures.pdf",
@@ -24,7 +25,9 @@
       "content_level_5": "",
       "title": "Warner Chappell Music",
       "images": [],
-      "description": "Lyrics Verification Request sent to Warner Chappell Music"
+      "description": "Lyrics Verification Request sent to Warner Chappell Music",
+      "slug": "warner-chappell-music"
     }
-  ]
+  ],
+  "slug": "the-red"
 }

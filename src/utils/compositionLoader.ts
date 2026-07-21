@@ -1,7 +1,87 @@
 // src/utils/compositionLoader.ts - Loads JSON content collections into the Zustand store.
-import { Composition, ImageData } from './compositionData';
+import { Composition, ImageData, Section } from './compositionData';
 
 const DEV = import.meta.env.DEV;
+
+// ---------------------------------------------------------------------------
+// Slug derivation (fallback for un-enriched content).
+//
+// The AUTHORITATIVE copy of these rules lives in scripts/lib/content-model.mjs
+// (owned by the content pipeline, which writes `slug` fields into the JSON).
+// A content file's own `slug` field ALWAYS wins; the functions below only run
+// when a slug is missing, and they MUST mirror content-model.mjs exactly so an
+// un-enriched file resolves to the same canonical URL a build would emit.
+//
+//   Composition slug:
+//     - constitutional → one of the four fixed case slugs
+//       (kirchner-v-johnson / -ellison / -acosta / scotus-amicus)
+//     - other collections → JSON filename minus ".json"
+//   Section slug:
+//     - constitutional: pdf_file basename minus extension, lowercased, then
+//         Acosta / SCOTUS → leading number without zeros ("01_Petition" → "1")
+//         Ellison        → leading zeros stripped per hyphen segment
+//                          ("01" → "1", "2594-01-02" → "2594-1-2", "8cir-brief" as-is)
+//         Johnson        → as-is
+//     - other collections: slugified title (fallback description, then
+//         "section-<index>"), deduped with "-2"/"-3" suffixes in array order
+// ---------------------------------------------------------------------------
+
+function fileStem(filePath: string): string {
+  return filePath.split('/').pop()?.replace(/\.json$/i, '') || '';
+}
+
+function basenameNoExt(pdf: string): string {
+  const base = pdf.split('/').pop() || '';
+  return base.replace(/\.[^.]*$/, '');
+}
+
+function stripLeadingZerosPerSegment(s: string): string {
+  return s
+    .split('-')
+    .map(seg => (/^\d+$/.test(seg) ? String(parseInt(seg, 10)) : seg))
+    .join('-');
+}
+
+function slugifyTitle(s: string): string {
+  const base = (s || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  return base.slice(0, 60).replace(/-+$/g, '');
+}
+
+function deriveCompositionSlug(collectionType: string, filePath: string, title: string): string {
+  if (collectionType === 'constitutional') {
+    const hay = `${filePath} ${title}`.toLowerCase();
+    if (hay.includes('johnson')) return 'kirchner-v-johnson';
+    if (hay.includes('ellison')) return 'kirchner-v-ellison';
+    if (hay.includes('acosta')) return 'kirchner-v-acosta';
+    if (hay.includes('scotus') || hay.includes('amicus') || hay.includes('barbara')) return 'scotus-amicus';
+  }
+  return fileStem(filePath);
+}
+
+function deriveConstitutionalSectionSlug(
+  caseSlug: string,
+  section: { pdf_file?: string; title?: string; description?: string },
+  index: number,
+): string {
+  const base = section.pdf_file ? basenameNoExt(section.pdf_file).toLowerCase() : '';
+  if (!base) {
+    return slugifyTitle(section.title || '') || slugifyTitle(section.description || '') || `section-${index + 1}`;
+  }
+  switch (caseSlug) {
+    case 'kirchner-v-acosta':
+    case 'scotus-amicus': {
+      const m = base.match(/^(\d+)/);
+      return m ? String(parseInt(m[1], 10)) : base;
+    }
+    case 'kirchner-v-ellison':
+      return stripLeadingZerosPerSegment(base);
+    default: // kirchner-v-johnson (and any future case) — as-is
+      return base;
+  }
+}
 
 export const loadCompositions = async (): Promise<Composition[]> => {
   try {
@@ -126,20 +206,23 @@ async function processTimelineFileWithErrorHandling(
   }
 }
 
-function processTimelineData(data: any, _filePath: string): Composition | null {
+function processTimelineData(data: any, filePath: string): Composition | null {
   if (!data || typeof data !== 'object') return null;
 
   const title = data.title || 'Timeline';
   const description = data.description || '';
   const events = Array.isArray(data.events) ? data.events : [];
+  const compositionSlug =
+    typeof data.slug === 'string' && data.slug ? data.slug : fileStem(filePath);
 
-  const timelineSection = {
+  const timelineSection: Section = {
     title,
     featured: true,
     content_level_1: '',
     content_level_3: generateTimelineMarkdown(title, description, events),
     content_level_5: '',
     images: extractTimelineImages(events),
+    slug: slugifyTitle(title) || 'section-1',
   };
 
   return {
@@ -153,6 +236,7 @@ function processTimelineData(data: any, _filePath: string): Composition | null {
     content_level_3: timelineSection.content_level_3,
     content_level_5: '',
     sections: [timelineSection],
+    slug: compositionSlug,
   };
 }
 
@@ -194,6 +278,7 @@ function extractTimelineImages(events: any[]): ImageData[] {
 function createFallbackComposition(filePath: string, expectedType: string, id: number): Composition {
   const filename = filePath.split('/').pop()?.replace('.json', '') || 'untitled';
   const title = `${filename} (Error Loading)`;
+  const slug = fileStem(filePath) || 'untitled';
 
   return {
     id,
@@ -213,14 +298,17 @@ function createFallbackComposition(filePath: string, expectedType: string, id: n
         content_level_3: `# ${title}\n\nError loading content from ${filePath}. Please check the file syntax.`,
         content_level_5: '',
         images: [],
+        slug: 'section-1',
       },
     ],
+    slug,
   };
 }
 
 function createFallbackTimelineComposition(filePath: string, id: number): Composition {
   const filename = filePath.split('/').pop()?.replace('.json', '') || 'timeline';
   const title = `${filename} (Error Loading)`;
+  const slug = fileStem(filePath) || 'timeline';
 
   return {
     id,
@@ -240,8 +328,10 @@ function createFallbackTimelineComposition(filePath: string, id: number): Compos
         content_level_3: `# ${title}\n\nError loading timeline from ${filePath}. Please check the file syntax.`,
         content_level_5: '',
         images: [],
+        slug: 'section-1',
       },
     ],
+    slug,
   };
 }
 
@@ -250,6 +340,11 @@ function processCompositionData(data: any, expectedType: string, filePath: strin
 
   const title = data.title || data.name || 'Untitled';
   const collection_type = data.collection_type || expectedType;
+
+  const compositionSlug =
+    typeof data.slug === 'string' && data.slug
+      ? data.slug
+      : deriveCompositionSlug(collection_type, filePath, title);
 
   let sections: any[] = [];
 
@@ -279,6 +374,7 @@ function processCompositionData(data: any, expectedType: string, filePath: strin
     ];
   }
 
+  const usedSlugs = new Set<string>();
   sections = sections.map((section, sectionIndex) => {
     let processedImages: ImageData[] = [];
     if (section.images && Array.isArray(section.images)) {
@@ -288,6 +384,26 @@ function processCompositionData(data: any, expectedType: string, filePath: strin
         )
         .filter((img: ImageData | null): img is ImageData => img !== null);
     }
+
+    let slug: string;
+    if (typeof section.slug === 'string' && section.slug) {
+      slug = section.slug;
+    } else if (collection_type === 'constitutional') {
+      slug = deriveConstitutionalSectionSlug(compositionSlug, section, sectionIndex);
+    } else {
+      const baseSlug =
+        slugifyTitle(section.title || '') ||
+        slugifyTitle(section.description || '') ||
+        `section-${sectionIndex + 1}`;
+      let candidate = baseSlug;
+      let n = 2;
+      while (usedSlugs.has(candidate)) {
+        candidate = `${baseSlug}-${n}`;
+        n += 1;
+      }
+      slug = candidate;
+    }
+    usedSlugs.add(slug);
 
     return {
       title: section.title || `Section ${sectionIndex + 1}`,
@@ -301,6 +417,7 @@ function processCompositionData(data: any, expectedType: string, filePath: strin
       images: processedImages,
       case_group: section.case_group || undefined,
       date: section.date || undefined,
+      slug,
     };
   });
 
@@ -316,6 +433,7 @@ function processCompositionData(data: any, expectedType: string, filePath: strin
     content_level_5: sections[0]?.content_level_5 || '',
     sections,
     hidden_case_groups: Array.isArray(data.hidden_case_groups) ? data.hidden_case_groups : undefined,
+    slug: compositionSlug,
   };
 }
 
@@ -398,8 +516,10 @@ You can add images to your sections using the admin panel. Images can be positio
 Create content in the admin panel to see it here. If there were loading errors, check the browser console for details.`,
           content_level_5: '',
           images: [],
+          slug: 'getting-started',
         },
       ],
+      slug: 'getting-started',
     },
   ];
 }

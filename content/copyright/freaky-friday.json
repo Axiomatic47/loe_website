@@ -13,7 +13,8 @@
       "content_level_5": "",
       "title": "BMG Rights Management",
       "images": [],
-      "description": "Lyrics Verification Request sent to BMG Rights Management"
+      "description": "Lyrics Verification Request sent to BMG Rights Management",
+      "slug": "bmg-rights-management"
     },
     {
       "pdf_file": "/uploads/copyright/pdfs/LVR_Freaky_Friday-Lil_Dicky_Chris_Brown_Kobalt_enclosures.pdf",
@@ -24,7 +25,8 @@
       "content_level_5": "",
       "title": "Kobalt Music Publishing",
       "images": [],
-      "description": "Lyrics Verification Request sent to Kobalt Music Publishing"
+      "description": "Lyrics Verification Request sent to Kobalt Music Publishing",
+      "slug": "kobalt-music-publishing"
     },
     {
       "pdf_file": "/uploads/copyright/pdfs/LVR_Freaky_Friday-Lil_Dicky_Chris_Brown_Universal_enclosures.pdf",
@@ -35,7 +37,9 @@
       "content_level_5": "",
       "title": "Universal Music Publishing Group",
       "images": [],
-      "description": "Lyrics Verification Request sent to Universal Music Publishing Group"
+      "description": "Lyrics Verification Request sent to Universal Music Publishing Group",
+      "slug": "universal-music-publishing-group"
     }
-  ]
+  ],
+  "slug": "freaky-friday"
 }

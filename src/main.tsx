@@ -91,7 +91,7 @@ async function initializeApp() {
       if (import.meta.env.DEV) {
         console.log('📁 Constitutional content should be available at:');
         console.log('   - /composition/constitutional (collection view)');
-        console.log('   - /composition/constitutional/composition/1/section/1 (section view)');
+        console.log('   - /kirchner-v-johnson/51 (case document reader)');
         console.log('   - Content files: content/constitutional/*.json');
         console.log('   - Media files: public/uploads/constitutional/*');
       }

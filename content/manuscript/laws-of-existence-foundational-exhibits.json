@@ -11,7 +11,8 @@
       "content_level_1": "",
       "content_level_3": "",
       "content_level_5": "",
-      "images": []
+      "images": [],
+      "slug": "the-fundamental-law-of-supremacism-logic"
     },
     {
       "pdf_file": "/uploads/manuscript/pdfs/exhibit-k3-fundamental-law-egalitarianism-logic.pdf",
@@ -21,7 +22,8 @@
       "content_level_1": "",
       "content_level_3": "",
       "content_level_5": "",
-      "images": []
+      "images": [],
+      "slug": "the-fundamental-law-of-egalitarianism-logic"
     },
     {
       "pdf_file": "/uploads/manuscript/pdfs/exhibit-k4-supremacism-falsification-attempt-logic.pdf",
@@ -31,7 +33,8 @@
       "content_level_1": "",
       "content_level_3": "",
       "content_level_5": "",
-      "images": []
+      "images": [],
+      "slug": "law-of-supremacism-falsification-attempt-logic"
     },
     {
       "pdf_file": "/uploads/manuscript/pdfs/exhibit-k5-transcendental-method-consciousness-recognition.pdf",
@@ -41,8 +44,10 @@
       "content_level_1": "",
       "content_level_3": "",
       "content_level_5": "",
-      "images": []
+      "images": [],
+      "slug": "transcendental-method-for-consciousness-recognition"
     }
   ],
-  "title": "The Fundamental Laws: Formal Logic & Falsification"
+  "title": "The Fundamental Laws: Formal Logic & Falsification",
+  "slug": "laws-of-existence-foundational-exhibits"
 }

@@ -13,7 +13,8 @@
       "content_level_5": "",
       "title": "Anthem Entertainment Canada",
       "images": [],
-      "description": "Lyrics Verification Request sent to Anthem Entertainment Canada"
+      "description": "Lyrics Verification Request sent to Anthem Entertainment Canada",
+      "slug": "anthem-entertainment-canada"
     },
     {
       "pdf_file": "/uploads/copyright/pdfs/LVR_Bad_at_Love-Halsey_Downtown_enclosures.pdf",
@@ -24,7 +25,8 @@
       "content_level_5": "",
       "title": "Downtown Music Publishing",
       "images": [],
-      "description": "Lyrics Verification Request sent to Downtown Music Publishing"
+      "description": "Lyrics Verification Request sent to Downtown Music Publishing",
+      "slug": "downtown-music-publishing"
     },
     {
       "pdf_file": "/uploads/copyright/pdfs/LVR_Bad_at_Love-Halsey_Kobalt_enclosures.pdf",
@@ -35,7 +37,9 @@
       "content_level_5": "",
       "title": "Kobalt Music Publishing",
       "images": [],
-      "description": "Lyrics Verification Request sent to Kobalt Music Publishing"
+      "description": "Lyrics Verification Request sent to Kobalt Music Publishing",
+      "slug": "kobalt-music-publishing"
     }
-  ]
+  ],
+  "slug": "bad-at-love"
 }

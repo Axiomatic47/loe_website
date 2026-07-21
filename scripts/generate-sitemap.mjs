@@ -1,15 +1,20 @@
 // scripts/generate-sitemap.mjs
-// Generates public/sitemap.xml from static routes + content collections.
-// Mirrors the ordering in src/utils/compositionLoader.ts so that section-level
-// URLs match the indices the app actually routes to:
-//   /composition/:collection/composition/:index/section/:sectionId
+// Generates public/sitemap.xml from static routes + content collections, emitting only
+// CANONICAL descriptive URLs (no positional /composition/:collection/composition/:index
+// forms — those are frozen to 301s by scripts/freeze-legacy-urls.mjs).
+//
+//   constitutional                -> /<caseSlug>/<sectionSlug>
+//   manuscript | data | copyright -> /composition/<collection>/<compositionSlug>/<sectionSlug>
+//
+// Slugs are read from the content data (populated by scripts/enrich-content-slugs.mjs);
+// this script does NOT compute positional indices. <lastmod> per section URL comes from
+// the content file's last git commit date (fallback: fs mtime), cached per file.
 // Run manually with `npm run generate-sitemap`; also runs as part of `npm run build`.
-import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
-import { join, dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { writeFileSync, statSync } from 'node:fs';
+import { join } from 'node:path';
+import { execSync } from 'node:child_process';
+import { ROOT, READING_COLLECTIONS, loadCollection } from './lib/content-model.mjs';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const ROOT = join(__dirname, '..');
 const ORIGIN = 'https://lawsofexistence.com';
 
 // Static, always-valid entry points (grids, case landings, feature + legal pages).
@@ -38,41 +43,33 @@ const STATIC_ROUTES = [
   ['/privacy-policy', '0.3'],
 ];
 
-// Collections whose individual sections are meaningful reading URLs.
-// (`map` = world-map visualization data, `timeline` = served by /timeline — both excluded.)
-const READING_COLLECTIONS = ['manuscript', 'data', 'constitutional', 'copyright'];
+const xmlEscape = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-function loadCollection(collection) {
-  const dir = join(ROOT, 'content', collection);
-  let files;
+// Last-modified date for a content file: git commit date, fallback fs mtime. Cached.
+const lastmodCache = new Map();
+function lastmodFor(collection, filename) {
+  const rel = `content/${collection}/${filename}`;
+  if (lastmodCache.has(rel)) return lastmodCache.get(rel);
+  let iso;
   try {
-    files = readdirSync(dir).filter((f) => f.endsWith('.json'));
+    const out = execSync(`git log -1 --format=%cI -- "${rel}"`, {
+      cwd: ROOT,
+      encoding: 'utf8',
+    }).trim();
+    iso = out || null;
   } catch {
-    return [];
+    iso = null;
   }
-  const comps = [];
-  for (const file of files) {
+  if (!iso) {
     try {
-      const data = JSON.parse(readFileSync(join(dir, file), 'utf8'));
-      const title = data.title || data.name || 'Untitled';
-      const hasSections = Array.isArray(data.sections) && data.sections.length > 0;
-      const sectionCount = hasSections ? data.sections.length : 1;
-      // compositionLoader sets composition.featured from sections[0].featured
-      const featured = hasSections ? Boolean(data.sections[0].featured) : false;
-      comps.push({ title, sectionCount, featured, file });
-    } catch (e) {
-      console.warn(`  ! skipped malformed ${collection}/${file}: ${e.message}`);
+      iso = statSync(join(ROOT, rel)).mtime.toISOString();
+    } catch {
+      iso = null;
     }
   }
-  // Mirror compositionLoader.ts sort (within one collection_type): featured first, then title asc.
-  comps.sort((a, b) => {
-    if (a.featured !== b.featured) return b.featured ? 1 : -1;
-    return a.title.localeCompare(b.title);
-  });
-  return comps;
+  lastmodCache.set(rel, iso);
+  return iso;
 }
-
-const xmlEscape = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 const urls = STATIC_ROUTES.map(([loc, priority]) => ({ loc: ORIGIN + loc, priority }));
 
@@ -80,18 +77,38 @@ let sectionTotal = 0;
 for (const collection of READING_COLLECTIONS) {
   const comps = loadCollection(collection);
   console.log(`\n${collection}: ${comps.length} composition(s)`);
-  comps.forEach((comp, i) => {
-    const index = i + 1;
-    console.log(`  ${index}. "${comp.title}" — ${comp.sectionCount} section(s)${comp.featured ? ' [featured]' : ''}`);
-    for (let s = 1; s <= comp.sectionCount; s++) {
-      urls.push({ loc: `${ORIGIN}/composition/${collection}/composition/${index}/section/${s}`, priority: '0.6' });
-      sectionTotal++;
+  for (const comp of comps) {
+    if (!comp.slug) throw new Error(`${collection}/${comp.filename}: missing composition slug (run enrich first)`);
+    const sections = Array.isArray(comp.sections) ? comp.sections : [];
+    const lastmod = lastmodFor(collection, comp.filename);
+    console.log(`  ${comp.slug} — ${sections.length} section(s)`);
+    for (const section of sections) {
+      if (!section.slug) {
+        throw new Error(`${collection}/${comp.filename}: a section is missing its slug (run enrich first)`);
+      }
+      const path =
+        collection === 'constitutional'
+          ? `/${comp.slug}/${section.slug}`
+          : `/composition/${collection}/${comp.slug}/${section.slug}`;
+      urls.push({ loc: ORIGIN + path, priority: '0.6', lastmod });
+      sectionTotal += 1;
     }
-  });
+  }
+}
+
+// Self-check: no legacy positional forms may leak into the canonical sitemap.
+const positional = urls.filter((u) => /\/composition\/[a-z]+\/composition\/\d+/.test(u.loc));
+if (positional.length > 0) {
+  console.error(`ERROR: ${positional.length} positional URL(s) leaked into sitemap:`);
+  positional.slice(0, 10).forEach((u) => console.error(`  - ${u.loc}`));
+  process.exit(1);
 }
 
 const body = urls
-  .map((u) => `  <url><loc>${xmlEscape(u.loc)}</loc><priority>${u.priority}</priority></url>`)
+  .map((u) => {
+    const lm = u.lastmod ? `<lastmod>${u.lastmod}</lastmod>` : '';
+    return `  <url><loc>${xmlEscape(u.loc)}</loc>${lm}<priority>${u.priority}</priority></url>`;
+  })
   .join('\n');
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
