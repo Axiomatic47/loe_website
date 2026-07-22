@@ -6,9 +6,7 @@
 // including the `data` collection's deliberate level swap.
 import Link from 'next/link';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Button } from '@/components/ui/button';
-import { AlertCircle, ArrowLeft, ArrowRight, Monitor, Maximize2, Image as ImageIcon } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { AlertCircle, ArrowLeft, ArrowRight } from 'lucide-react';
 import { getComposition, getSection } from '@/lib/content-manifest';
 import type { CollectionType, ImageData, Section } from '@/lib/content-types';
 import { sectionUrl } from '@/utils/urls';
@@ -17,12 +15,24 @@ import { SitePageLayout } from './SitePageLayout';
 import { CaseSidebar, type SidebarSection } from './CaseSidebar';
 import { SectionContent, type ContentLevel } from './SectionContent';
 import { PDFViewer, CollapsibleSummary, MediaGallery } from './client-islands';
+import { displayTitle } from './presentation';
 
 // Collection config — server copy of the vite reader's getCollectionConfig
-// (icons live in the sidebar island, keyed by collection).
-const COLLECTION_CONFIG: Record<string, { title: string; contentMapping: Record<number, { field: keyof Section; label: string }> }> = {
+// (icons live in the sidebar island, keyed by collection). `unit` names one
+// entry in reader chrome ("Document 3 of 17"); `mediaLabel` heads the gallery.
+const COLLECTION_CONFIG: Record<
+  string,
+  {
+    title: string;
+    unit: string;
+    mediaLabel: string;
+    contentMapping: Record<number, { field: keyof Section; label: string }>;
+  }
+> = {
   manuscript: {
     title: 'Research',
+    unit: 'Section',
+    mediaLabel: 'Figures',
     contentMapping: {
       1: { field: 'content_level_1', label: 'Content' },
       3: { field: 'content_level_3', label: 'Verify' },
@@ -32,6 +42,8 @@ const COLLECTION_CONFIG: Record<string, { title: string; contentMapping: Record<
   data: {
     // Evidence content: main content in level_3, verification in level_1
     title: 'Evidence',
+    unit: 'Item',
+    mediaLabel: 'Exhibits',
     contentMapping: {
       1: { field: 'content_level_3', label: 'Content' },
       3: { field: 'content_level_1', label: 'Verify' },
@@ -40,6 +52,8 @@ const COLLECTION_CONFIG: Record<string, { title: string; contentMapping: Record<
   },
   constitutional: {
     title: 'Cases',
+    unit: 'Document',
+    mediaLabel: 'Exhibits',
     contentMapping: {
       1: { field: 'content_level_1', label: 'Content' },
       3: { field: 'content_level_3', label: 'Methodology' },
@@ -48,6 +62,8 @@ const COLLECTION_CONFIG: Record<string, { title: string; contentMapping: Record<
   },
   copyright: {
     title: 'Copyright Notifications',
+    unit: 'Notification',
+    mediaLabel: 'Attachments',
     contentMapping: {
       1: { field: 'content_level_1', label: 'Content' },
       3: { field: 'content_level_3', label: 'Details' },
@@ -56,6 +72,8 @@ const COLLECTION_CONFIG: Record<string, { title: string; contentMapping: Record<
   },
   timeline: {
     title: 'Timeline',
+    unit: 'Section',
+    mediaLabel: 'Media',
     contentMapping: {
       1: { field: 'content_level_1', label: 'Content' },
       3: { field: 'content_level_3', label: 'Details' },
@@ -64,6 +82,8 @@ const COLLECTION_CONFIG: Record<string, { title: string; contentMapping: Record<
   },
   map: {
     title: 'Egalitarian World Map',
+    unit: 'Entry',
+    mediaLabel: 'Media',
     contentMapping: {
       1: { field: 'content_level_1', label: 'Content' },
       3: { field: 'content_level_3', label: 'Analysis' },
@@ -146,6 +166,7 @@ export function DocReaderView({
   if (!section) return null;
 
   const config = COLLECTION_CONFIG[collection] ?? COLLECTION_CONFIG.manuscript;
+  const compositionDisplay = displayTitle(composition.title);
   const sections = composition.sections;
   const index = sections.findIndex(s => s.slug === section.slug);
   const totalSections = sections.length;
@@ -185,7 +206,7 @@ export function DocReaderView({
           collectionKey={collection}
           collectionTitle={config.title}
           collectionHref={`/composition/${collection}`}
-          compositionTitle={composition.title}
+          compositionTitle={compositionDisplay}
           sections={sidebarSections}
           currentSlug={section.slug}
           hiddenCaseGroups={composition.hidden_case_groups || []}
@@ -207,6 +228,22 @@ export function DocReaderView({
             )}
 
             <div className="mx-auto doc-card p-8 md:p-10">
+              {/* Context strip — where this document sits in the record */}
+              <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-8 pb-4 border-b border-border">
+                <span
+                  className="text-xs uppercase tracking-[0.1em] text-muted-foreground font-sans min-w-0"
+                  style={{ fontWeight: 600 }}
+                >
+                  {config.title} · {compositionDisplay}
+                </span>
+                <span
+                  className="text-xs text-muted-foreground font-sans flex-shrink-0"
+                  style={{ fontVariantNumeric: 'tabular-nums' }}
+                >
+                  {config.unit} {index + 1} of {totalSections}
+                </span>
+              </div>
+
               {hasPdf ? (
                 <div className="mb-8">
                   <PDFViewer
@@ -214,7 +251,7 @@ export function DocReaderView({
                     title={section.title}
                     description={section.description}
                     allSections={sections.map(s => ({ title: s.title, pdf_file: s.pdf_file }))}
-                    compositionTitle={composition.title}
+                    compositionTitle={compositionDisplay}
                     className="w-full"
                   />
                   {section.content_level_1 && (
@@ -225,96 +262,77 @@ export function DocReaderView({
                 <SectionContent levels={levels} />
               )}
 
-              {/* Section Navigation */}
+              {/* Prev/next — book-reader style, neighbor titles shown */}
               <div className="mt-12 pt-6 border-t border-border">
-                <div className="flex justify-between items-center">
-                  <Button
-                    variant="outline"
-                    className={cn(
-                      'px-4 py-2 flex items-center space-x-2 rounded-lg transition-colors duration-200',
-                      !prev ? 'opacity-40 pointer-events-none' : ''
-                    )}
-                    asChild={Boolean(prev)}
-                    disabled={!prev}
-                  >
-                    {prev ? (
-                      <Link href={sectionUrl(composition, prev)}>
-                        <ArrowLeft className="h-4 w-4" />
-                        <span>Previous</span>
-                      </Link>
-                    ) : (
-                      <span className="flex items-center space-x-2">
-                        <ArrowLeft className="h-4 w-4" />
-                        <span>Previous</span>
+                <div className="flex items-start justify-between gap-6">
+                  {prev ? (
+                    <Link href={sectionUrl(composition, prev)} className="group min-w-0 flex-1">
+                      <span className="inline-flex items-center text-xs uppercase tracking-[0.08em] text-muted-foreground font-sans" style={{ fontWeight: 600 }}>
+                        <ArrowLeft className="h-3 w-3 mr-1 group-hover:-translate-x-0.5 transition-transform" />
+                        Previous
                       </span>
-                    )}
-                  </Button>
+                      <span
+                        className="block text-sm text-foreground group-hover:text-primary transition-colors font-sans truncate mt-1"
+                        style={{ fontWeight: 550 }}
+                      >
+                        {prev.title}
+                      </span>
+                    </Link>
+                  ) : (
+                    <span className="flex-1" />
+                  )}
 
-                  <div className="text-muted-foreground text-center">
-                    <span className="text-sm">
-                      Section {index + 1} of {totalSections}
-                    </span>
-                    {hasImages && (
-                      <div className="text-xs text-muted-foreground/80 mt-1">
-                        {mediaItems.length} media {mediaItems.length === 1 ? 'item' : 'items'}
-                      </div>
-                    )}
+                  <div
+                    className="text-xs text-muted-foreground text-center font-sans pt-0.5 flex-shrink-0"
+                    style={{ fontVariantNumeric: 'tabular-nums' }}
+                  >
+                    {config.unit} {index + 1} of {totalSections}
                   </div>
 
-                  <Button
-                    variant="outline"
-                    className={cn(
-                      'px-4 py-2 flex items-center space-x-2 rounded-lg transition-colors duration-200',
-                      !next ? 'opacity-40 pointer-events-none' : ''
-                    )}
-                    asChild={Boolean(next)}
-                    disabled={!next}
-                  >
-                    {next ? (
-                      <Link href={sectionUrl(composition, next)}>
-                        <span>Next</span>
-                        <ArrowRight className="h-4 w-4" />
-                      </Link>
-                    ) : (
-                      <span className="flex items-center space-x-2">
-                        <span>Next</span>
-                        <ArrowRight className="h-4 w-4" />
+                  {next ? (
+                    <Link href={sectionUrl(composition, next)} className="group min-w-0 flex-1 text-right">
+                      <span className="inline-flex items-center text-xs uppercase tracking-[0.08em] text-muted-foreground font-sans" style={{ fontWeight: 600 }}>
+                        Next
+                        <ArrowRight className="h-3 w-3 ml-1 group-hover:translate-x-0.5 transition-transform" />
                       </span>
-                    )}
-                  </Button>
+                      <span
+                        className="block text-sm text-foreground group-hover:text-primary transition-colors font-sans truncate mt-1"
+                        style={{ fontWeight: 550 }}
+                      >
+                        {next.title}
+                      </span>
+                    </Link>
+                  ) : (
+                    <span className="flex-1" />
+                  )}
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Full-Width Media Gallery Section - OUTSIDE constrained content */}
+          {/* Full-width media gallery — outside the constrained document card */}
           {hasImages && (
             <div className="w-full bg-secondary/40 border-t border-border">
               <div className="px-4 py-12">
-                {/* Gallery Header */}
-                <div className="max-w-6xl mx-auto mb-8">
-                  <div className="text-center mb-6">
-                    <h2 className="text-2xl font-serif text-foreground mb-2 flex items-center justify-center gap-3" style={{ letterSpacing: '-0.018em' }}>
-                      <Monitor className="w-6 h-6 text-primary" />
-                      Documentation &amp; Screenshots
-                    </h2>
-                    <p className="text-muted-foreground text-base mb-1">
-                      Full-resolution captures from 32-inch development monitor
-                    </p>
-                    <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground/80">
-                      <span className="flex items-center gap-1">
-                        <ImageIcon className="w-4 h-4" />
-                        {mediaItems.length} {mediaItems.length === 1 ? 'item' : 'items'}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Maximize2 className="w-4 h-4" />
-                        Click to view all images full-screen
-                      </span>
-                    </div>
+                <div className="max-w-6xl mx-auto mb-8 text-center">
+                  <div
+                    className="text-xs uppercase tracking-[0.1em] text-muted-foreground font-sans mb-3"
+                    style={{ fontWeight: 600 }}
+                  >
+                    {config.mediaLabel}
                   </div>
+                  <h2 className="text-2xl font-serif text-foreground" style={{ letterSpacing: '-0.018em', fontWeight: 580 }}>
+                    {section.title}
+                  </h2>
+                  <p
+                    className="text-sm text-muted-foreground mt-2 font-sans"
+                    style={{ fontVariantNumeric: 'tabular-nums' }}
+                  >
+                    {mediaItems.length} full-resolution {mediaItems.length === 1 ? 'image' : 'images'} · select any to
+                    open the gallery
+                  </p>
                 </div>
 
-                {/* Full-Width Media Gallery */}
                 <div className="w-full max-w-none">
                   <MediaGallery
                     items={mediaItems}
@@ -324,18 +342,6 @@ export function DocReaderView({
                     columns={1}
                     layout="grid"
                   />
-                </div>
-
-                {/* Gallery Footer */}
-                <div className="max-w-6xl mx-auto mt-8 pt-6 border-t border-border">
-                  <div className="text-center text-sm text-muted-foreground/80">
-                    <p className="mb-2">
-                      Click any image to view all screenshots in full-screen scrollable gallery
-                    </p>
-                    <p className="text-xs">
-                      Images maintain original resolution and aspect ratios from development environment
-                    </p>
-                  </div>
                 </div>
               </div>
             </div>

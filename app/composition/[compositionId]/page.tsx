@@ -16,6 +16,7 @@ import { getCollection, ALL_COLLECTIONS } from '@/lib/content-manifest';
 import type { CollectionType, Composition } from '@/lib/content-types';
 import { compositionUrl } from '@/utils/urls';
 import { SitePageLayout } from '../../_components/SitePageLayout';
+import { displayTitle } from '../../_components/presentation';
 
 export const dynamicParams = false;
 
@@ -133,15 +134,6 @@ function contentsLine(c: Composition): string | null {
   if (!titles.length) return null;
   const shown = titles.slice(0, 3).join(' · ');
   return titles.length > 3 ? `${shown} · +${titles.length - 3} more` : shown;
-}
-
-// Processor/CMS label suffixes never reach the page ("… - Case Documents",
-// "… (Enhanced)") — the data keeps them, the presentation drops them.
-function displayTitle(title: string): string {
-  return title
-    .replace(/\s*[-–—]\s*Case Documents$/i, '')
-    .replace(/\s*\(Enhanced\)$/i, '')
-    .trim();
 }
 
 // ---------------------------------------------------------------------------
