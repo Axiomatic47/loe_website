@@ -34,16 +34,12 @@ export function SectionContent({ levels }: { levels: ContentLevel[] }) {
     const newLevel = hasContent ? requestedLevel : 1;
     setLiteracyLevel(newLevel);
 
-    const levelLabel = levelFor(newLevel)?.label || 'Content';
+    // Toast only when the request couldn't be honored — the label beside the
+    // slider already announces successful changes; a toast per move is noise.
     if (!hasContent) {
       toast({
         title: 'Content Type Adjusted',
-        description: `Content not available at requested type, showing ${levelLabel} instead.`,
-      });
-    } else {
-      toast({
-        title: 'Content Type Updated',
-        description: `Showing ${levelLabel}`,
+        description: `Content not available at requested type, showing ${levelFor(newLevel)?.label || 'Content'} instead.`,
       });
     }
   };

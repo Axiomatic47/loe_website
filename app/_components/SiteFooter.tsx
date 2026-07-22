@@ -24,8 +24,10 @@ export function SiteFooter({ className }: { className?: string }) {
                 Patent Pending
               </span>
             </div>
-            <div className="text-surface-leather-foreground/75 text-sm">
-              © 2025 Joseph Kirchner
+            {/* suppressHydrationWarning: prerendered year can lag the client's
+                across a New Year until the next deploy — let React patch it. */}
+            <div className="text-surface-leather-foreground/75 text-sm" suppressHydrationWarning>
+              © 2025–{new Date().getFullYear()} Joseph Kirchner
             </div>
           </div>
 
