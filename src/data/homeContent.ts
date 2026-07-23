@@ -52,8 +52,8 @@ export const CASE_STRIP: CaseStripEntry[] = [
   {
     caption: "Kirchner v. Ellison",
     court: "U.S. District Court, D. Minn.",
-    caseNo: "0:26-cv-00726",
-    status: "On appeal — Eighth Circuit No. 26-1615",
+    caseNo: "0:26-cv-00726 · refiled 0:26-cv-02594",
+    status: "Refiled action in motion-to-dismiss briefing; appeal summarily affirmed June 25, 2026",
     href: "/kirchner-v-ellison",
     matchTitle: "ellison",
   },

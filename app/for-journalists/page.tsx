@@ -29,7 +29,7 @@ const MATTERS = [
     caption: "Kirchner v. Ellison",
     court: "U.S. District Court, D. Minn. / U.S. Court of Appeals, 8th Cir.",
     caseNo: "0:26-cv-00726 · appeal 26-1615 · refiled 0:26-cv-02594",
-    status: "On appeal; refiled action in motion-to-dismiss briefing",
+    status: "Refiled action in motion-to-dismiss briefing; appeal summarily affirmed June 25, 2026",
     operative: { label: "Petition (Doc. 1)", href: "/kirchner-v-ellison/1" },
     landing: "/kirchner-v-ellison",
   },

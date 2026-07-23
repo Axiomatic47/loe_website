@@ -21,7 +21,7 @@ const PrivacyPolicy: React.FC = () => {
           </p>
           <div className="text-center mt-6">
             <span className="bg-card text-foreground/90 px-4 py-2 rounded-lg text-sm border border-border">
-              Last Updated: July 13, 2025 | Effective Date: July 13, 2025
+              Last Updated: July 22, 2026 | Effective Date: July 13, 2025
             </span>
           </div>
         </div>
@@ -100,7 +100,6 @@ const PrivacyPolicy: React.FC = () => {
                   <li>Pages visited and content accessed</li>
                   <li>Time spent on pages and sections</li>
                   <li>Click patterns and navigation paths</li>
-                  <li>Search queries within the Website</li>
                   <li>Downloads and content interactions</li>
                   <li>Error logs and performance metrics</li>
                 </ul>
@@ -109,18 +108,19 @@ const PrivacyPolicy: React.FC = () => {
 
             <h3 className="text-xl font-semibold text-foreground mb-4">2.3 Cookies and Tracking Technologies</h3>
             <p className="mb-6 text-foreground/90 leading-relaxed">
-              We use cookies, web beacons, and similar tracking technologies to enhance your experience, analyze website
-              usage, and improve our services. These technologies help us understand user preferences, monitor website
-              performance, and detect potential security issues.
+              Our analytics (Plausible) are cookieless and aggregate-only — we do not use advertising trackers or
+              cross-site tracking. The Website stores a small number of preferences, such as your display theme and
+              reading layout, in your browser&apos;s local storage; these stay on your device. Third-party services
+              embedded on specific pages — video playback (YouTube) and payment processing (PayPal) — may set their
+              own cookies when you interact with those features, governed by their own privacy policies.
             </p>
 
             <div className="bg-secondary/60 border border-border rounded-lg p-6 mb-6">
-              <h4 className="font-semibold text-foreground/90 mb-3">Types of Cookies We Use:</h4>
+              <h4 className="font-semibold text-foreground/90 mb-3">Browser Storage We Use:</h4>
               <ul className="list-disc list-inside text-foreground space-y-2 ml-4">
-                <li><strong>Essential Cookies:</strong> Required for basic website functionality</li>
-                <li><strong>Analytics Cookies:</strong> Help us understand how visitors use our Website</li>
-                <li><strong>Preference Cookies:</strong> Remember your settings and preferences</li>
-                <li><strong>Security Cookies:</strong> Detect suspicious activity and protect against threats</li>
+                <li><strong>Preferences (local storage):</strong> Your display theme and reading-layout choices, kept in your browser</li>
+                <li><strong>Essential storage:</strong> Technical storage strictly required for pages to function</li>
+                <li><strong>Third-party embeds:</strong> YouTube and PayPal set their own cookies only when you use those features</li>
               </ul>
             </div>
 
