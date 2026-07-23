@@ -12,6 +12,10 @@
 
 [build]
   command = "npm run build:next"
+  # Required by @netlify/plugin-nextjs v5 — must be the Next build output
+  # dir. Also pins the value so no stale dashboard publish setting (the old
+  # vite "dist") can leak through.
+  publish = ".next"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
