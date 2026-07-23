@@ -25,6 +25,16 @@ const nextConfig: NextConfig = {
   // Static corpus is served from public/ exactly as on the vite site;
   // next/image + Netlify image CDN adoption is Phase 4.
   images: { unoptimized: true },
+  // A few pages read JSON indexes from public/ at BUILD time (authority map,
+  // scotus indexes, research manifests). Output tracing saw those dynamic fs
+  // paths and pulled the entire public/ corpus (~920MB of court PDFs and
+  // exhibits) into the serverless handler, blowing Netlify's function upload
+  // limit. Every route is fully prerendered (dynamicParams=false, no
+  // revalidation), so the handler never re-renders and never needs public/ —
+  // the CDN serves it. Keep content/** traced (small) as render-input safety.
+  outputFileTracingExcludes: {
+    '*': ['./public/**', 'public/**'],
+  },
   async redirects() {
     return [
       // Statics (mirror public/_redirects' hand rules + vite client redirects)
