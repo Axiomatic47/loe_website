@@ -180,80 +180,195 @@ export default async function CasePage({ params }: Params) {
             </div>
           </Reveal>
 
-          {/* Timeline + key documents */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
-            <Reveal delay={120}>
-              <div className="bg-card border border-border rounded-xl shadow-sm p-6 md:p-7 h-full">
-                <Eyebrow>Procedural history</Eyebrow>
-                <ol className="relative border-l border-border ml-1.5 space-y-5 mt-4">
-                  {c.timeline.map((t, i) => (
-                    <li key={i} className="ml-5">
-                      <span
-                        className={
-                          t.upcoming
-                            ? 'absolute -left-[5px] mt-1.5 h-2.5 w-2.5 rounded-full border-2 border-primary bg-card'
-                            : 'absolute -left-[5px] mt-1.5 h-2.5 w-2.5 rounded-full bg-primary'
-                        }
-                      />
-                      <p
-                        className="text-xs text-muted-foreground font-sans"
-                        style={{ fontVariantNumeric: 'tabular-nums', fontWeight: 600 }}
-                      >
-                        {t.date}
-                        {t.upcoming && (
-                          <span className="ml-2 text-primary uppercase tracking-wide text-[10px]">
-                            Upcoming
-                          </span>
-                        )}
-                      </p>
-                      <p className="text-sm text-foreground/90 font-sans mt-0.5 leading-snug">
-                        {t.event}
-                      </p>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            </Reveal>
-
-            <Reveal delay={180}>
-              <div className="bg-card border border-border rounded-xl shadow-sm p-6 md:p-7 h-full flex flex-col">
-                <Eyebrow>Key documents</Eyebrow>
-                <div className="mt-2 flex-grow">
-                  {c.keyDocuments.map(d => (
-                    <Link
-                      key={d.href}
-                      href={d.href}
-                      className="group flex items-start gap-3 rounded-md px-3 py-2.5 -mx-3 hover:bg-secondary transition-colors"
-                    >
-                      <FileText className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                      <div className="min-w-0">
-                        <p
-                          className="text-sm text-foreground group-hover:text-primary transition-colors leading-snug font-sans"
-                          style={{ fontWeight: 550 }}
-                        >
-                          {d.label}
-                        </p>
-                        <p
-                          className="text-xs text-muted-foreground mt-0.5 font-sans"
-                          style={{ fontVariantNumeric: 'tabular-nums' }}
-                        >
-                          {d.doc} · {d.date}
-                        </p>
-                      </div>
-                    </Link>
-                  ))}
+          {/* Procedural history: separated per-proceeding tracks when the
+              matter spans several dockets; single timeline + key documents
+              otherwise. */}
+          {c.proceedings ? (
+            <>
+              <Reveal delay={120}>
+                <div className="mt-12">
+                  <Eyebrow>The proceedings</Eyebrow>
                 </div>
-                <Link
-                  href={docketHref}
-                  className="inline-flex items-center text-sm text-primary hover:text-primary/80 font-sans mt-4 pt-4 border-t border-border transition-colors"
-                  style={{ fontWeight: 550 }}
-                >
-                  Browse the full docket
-                  <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
-                </Link>
+              </Reveal>
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-5">
+                {c.proceedings.map((p, pi) => (
+                  <Reveal key={p.caseNo} delay={140 + pi * 60}>
+                    <div
+                      className={
+                        p.active
+                          ? 'bg-card border border-border border-t-2 border-t-primary rounded-xl shadow-sm p-6 h-full flex flex-col'
+                          : 'bg-card border border-border rounded-xl shadow-sm p-6 h-full flex flex-col'
+                      }
+                    >
+                      <Eyebrow>{p.label}</Eyebrow>
+                      <p
+                        className="font-serif text-foreground"
+                        style={{ fontSize: '1.125rem', fontWeight: 580, letterSpacing: '-0.014em', lineHeight: 1.3 }}
+                      >
+                        {p.caseNo}
+                      </p>
+                      <p className="text-xs text-muted-foreground mt-1 font-sans leading-snug">
+                        {p.court}
+                        {p.judge ? <><br />{p.judge}</> : null}
+                      </p>
+                      <p
+                        className={
+                          p.active
+                            ? 'text-sm text-foreground/90 font-sans mt-3'
+                            : 'text-sm text-muted-foreground font-sans mt-3'
+                        }
+                        style={{ fontWeight: p.active ? 600 : 500 }}
+                      >
+                        {p.disposition}
+                      </p>
+
+                      <ol className="relative border-l border-border ml-1.5 space-y-4 mt-5 flex-grow">
+                        {p.timeline.map((t, i) => (
+                          <li key={i} className="ml-5">
+                            <span
+                              className={
+                                t.upcoming
+                                  ? 'absolute -left-[5px] mt-1.5 h-2.5 w-2.5 rounded-full border-2 border-primary bg-card'
+                                  : 'absolute -left-[5px] mt-1.5 h-2.5 w-2.5 rounded-full bg-primary'
+                              }
+                            />
+                            <p
+                              className="text-xs text-muted-foreground font-sans"
+                              style={{ fontVariantNumeric: 'tabular-nums', fontWeight: 600 }}
+                            >
+                              {t.date}
+                              {t.upcoming && (
+                                <span className="ml-2 text-primary uppercase tracking-wide text-[10px]">
+                                  Upcoming
+                                </span>
+                              )}
+                            </p>
+                            <p className="text-sm text-foreground/90 font-sans mt-0.5 leading-snug">
+                              {t.event}
+                            </p>
+                          </li>
+                        ))}
+                      </ol>
+
+                      {p.keyDocuments && p.keyDocuments.length > 0 && (
+                        <div className="mt-5 pt-4 border-t border-border">
+                          {p.keyDocuments.map(d => (
+                            <Link
+                              key={d.href}
+                              href={d.href}
+                              className="group flex items-start gap-2.5 rounded-md px-2.5 py-2 -mx-2.5 hover:bg-secondary transition-colors"
+                            >
+                              <FileText className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                              <div className="min-w-0">
+                                <p
+                                  className="text-sm text-foreground group-hover:text-primary transition-colors leading-snug font-sans"
+                                  style={{ fontWeight: 550 }}
+                                >
+                                  {d.label}
+                                </p>
+                                <p
+                                  className="text-xs text-muted-foreground mt-0.5 font-sans"
+                                  style={{ fontVariantNumeric: 'tabular-nums' }}
+                                >
+                                  {d.doc} · {d.date}
+                                </p>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </Reveal>
+                ))}
               </div>
-            </Reveal>
-          </div>
+              <Reveal delay={320}>
+                <div className="mt-6 text-right">
+                  <Link
+                    href={docketHref}
+                    className="inline-flex items-center text-sm text-primary hover:text-primary/80 font-sans transition-colors"
+                    style={{ fontWeight: 550 }}
+                  >
+                    Browse the full docket
+                    <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+                  </Link>
+                </div>
+              </Reveal>
+            </>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+              <Reveal delay={120}>
+                <div className="bg-card border border-border rounded-xl shadow-sm p-6 md:p-7 h-full">
+                  <Eyebrow>Procedural history</Eyebrow>
+                  <ol className="relative border-l border-border ml-1.5 space-y-5 mt-4">
+                    {c.timeline.map((t, i) => (
+                      <li key={i} className="ml-5">
+                        <span
+                          className={
+                            t.upcoming
+                              ? 'absolute -left-[5px] mt-1.5 h-2.5 w-2.5 rounded-full border-2 border-primary bg-card'
+                              : 'absolute -left-[5px] mt-1.5 h-2.5 w-2.5 rounded-full bg-primary'
+                          }
+                        />
+                        <p
+                          className="text-xs text-muted-foreground font-sans"
+                          style={{ fontVariantNumeric: 'tabular-nums', fontWeight: 600 }}
+                        >
+                          {t.date}
+                          {t.upcoming && (
+                            <span className="ml-2 text-primary uppercase tracking-wide text-[10px]">
+                              Upcoming
+                            </span>
+                          )}
+                        </p>
+                        <p className="text-sm text-foreground/90 font-sans mt-0.5 leading-snug">
+                          {t.event}
+                        </p>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              </Reveal>
+
+              <Reveal delay={180}>
+                <div className="bg-card border border-border rounded-xl shadow-sm p-6 md:p-7 h-full flex flex-col">
+                  <Eyebrow>Key documents</Eyebrow>
+                  <div className="mt-2 flex-grow">
+                    {c.keyDocuments.map(d => (
+                      <Link
+                        key={d.href}
+                        href={d.href}
+                        className="group flex items-start gap-3 rounded-md px-3 py-2.5 -mx-3 hover:bg-secondary transition-colors"
+                      >
+                        <FileText className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                        <div className="min-w-0">
+                          <p
+                            className="text-sm text-foreground group-hover:text-primary transition-colors leading-snug font-sans"
+                            style={{ fontWeight: 550 }}
+                          >
+                            {d.label}
+                          </p>
+                          <p
+                            className="text-xs text-muted-foreground mt-0.5 font-sans"
+                            style={{ fontVariantNumeric: 'tabular-nums' }}
+                          >
+                            {d.doc} · {d.date}
+                          </p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                  <Link
+                    href={docketHref}
+                    className="inline-flex items-center text-sm text-primary hover:text-primary/80 font-sans mt-4 pt-4 border-t border-border transition-colors"
+                    style={{ fontWeight: 550 }}
+                  >
+                    Browse the full docket
+                    <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+                  </Link>
+                </div>
+              </Reveal>
+            </div>
+          )}
 
           {/* Related cases */}
           <Reveal delay={220}>

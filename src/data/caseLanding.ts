@@ -18,6 +18,21 @@ export interface KeyDocument {
   href: string;
 }
 
+/** One distinct proceeding within a matter (trial court, appeal, refiled
+ *  action …) — its own docket number, judge, chronology, and disposition. */
+export interface ProceedingConfig {
+  label: string;
+  court: string;
+  caseNo: string;
+  judge?: string;
+  /** One-line disposition/status for THIS proceeding. */
+  disposition: string;
+  /** The currently live proceeding (accented in the UI). */
+  active?: boolean;
+  timeline: TimelineEntry[];
+  keyDocuments?: KeyDocument[];
+}
+
 export interface CaseConfig {
   caption: string;
   court: string;
@@ -31,6 +46,10 @@ export interface CaseConfig {
   matchTitle: string;
   timeline: TimelineEntry[];
   keyDocuments: KeyDocument[];
+  /** When a matter spans several dockets, the separated per-proceeding
+   *  chronologies. Renderers that understand this show it INSTEAD of the
+   *  merged `timeline`/`keyDocuments` (which remain as the fallback view). */
+  proceedings?: ProceedingConfig[];
 }
 
 export const CASES: Record<string, CaseConfig> = {
@@ -70,10 +89,10 @@ export const CASES: Record<string, CaseConfig> = {
   },
   ellison: {
     caption: "Kirchner v. Ellison",
-    court: "United States District Court for the District of Minnesota",
-    caseNo: "No. 0:26-cv-00726 · refiled No. 0:26-cv-02594",
+    court: "U.S. District Court (D. Minn.) · U.S. Court of Appeals (8th Cir.)",
+    caseNo: "Nos. 0:26-cv-00726 · 26-1615 · 0:26-cv-02594",
     summary:
-      "A pro se petition against Minnesota Attorney General Keith Ellison concerning state enforcement obligations under the federal constitutional framework — dismissed at the trial court and summarily affirmed on appeal; the substantive state-law claims proceed in a refiled action in the District of Minnesota.",
+      "A pro se petition against Minnesota Attorney General Keith Ellison concerning state enforcement obligations under the federal constitutional framework. The matter spans three proceedings: the original action (dismissed), an Eighth Circuit appeal (summarily affirmed), and a refiled action carrying the substantive state-law claims forward in the District of Minnesota.",
     status: "Active — refiled action No. 0:26-cv-02594 in motion-to-dismiss briefing; appeal No. 26-1615 summarily affirmed June 25, 2026",
     deadline:
       "The refiled action is in motion-to-dismiss briefing; Plaintiff’s opposition was filed July 8, 2026.",
@@ -81,7 +100,10 @@ export const CASES: Record<string, CaseConfig> = {
     operativeLabel: "Read the Petition",
     matchTitle: "ellison",
     // Chronology verified against the ECF record (docket + document stamps),
-    // 2026-07-22. Dates are filing dates as stamped.
+    // 2026-07-22/23. Dates are filing dates as stamped.
+    //
+    // MERGED view (vite fallback) — proceedings-aware renderers show the
+    // separated tracks below instead.
     timeline: [
       { date: "Jan 27, 2026", event: "Petition filed" },
       { date: "Jan 29, 2026", event: "Emergency motion for TRO and declaratory relief" },
@@ -104,6 +126,64 @@ export const CASES: Record<string, CaseConfig> = {
       { label: "Order Dismissing Case", doc: "Doc. 29", date: "Mar 30, 2026", href: "/kirchner-v-ellison/29" },
       { label: "Eighth Circuit Opening Brief", doc: "No. 26-1615", date: "May 12, 2026", href: "/kirchner-v-ellison/8cir-brief" },
       { label: "Refiled Complaint (cv-02594)", doc: "Doc. 1", date: "May 12, 2026", href: "/kirchner-v-ellison/2594-1" },
+    ],
+    proceedings: [
+      {
+        label: "Original action",
+        court: "U.S. District Court, D. Minn.",
+        caseNo: "No. 0:26-cv-00726",
+        judge: "Hon. Patrick J. Schiltz, Chief Judge",
+        disposition: "Closed — amended complaint dismissed; judgment entered Mar 31, 2026",
+        timeline: [
+          { date: "Jan 27, 2026", event: "Petition and three memoranda of law filed" },
+          { date: "Jan 28, 2026", event: "Summons issued" },
+          { date: "Jan 29, 2026", event: "Emergency motion for TRO and declaratory relief" },
+          { date: "Feb 23, 2026", event: "Proceedings stayed; motion-to-dismiss schedule set" },
+          { date: "Mar 9, 2026", event: "Defendant’s motion to dismiss" },
+          { date: "Mar 27, 2026", event: "Amended Complaint filed" },
+          { date: "Mar 30, 2026", event: "Amended complaint dismissed; pending motions denied as moot" },
+          { date: "Mar 31, 2026", event: "Judgment entered" },
+          { date: "Apr 1, 2026", event: "Notice of appeal filed" },
+        ],
+        keyDocuments: [
+          { label: "Petition", doc: "Doc. 1", date: "Jan 27, 2026", href: "/kirchner-v-ellison/1" },
+          { label: "Emergency Motion for TRO & Declaratory Relief", doc: "Doc. 6", date: "Jan 29, 2026", href: "/kirchner-v-ellison/6" },
+          { label: "Order Dismissing Case", doc: "Doc. 29", date: "Mar 30, 2026", href: "/kirchner-v-ellison/29" },
+        ],
+      },
+      {
+        label: "Eighth Circuit appeal",
+        court: "U.S. Court of Appeals for the Eighth Circuit",
+        caseNo: "No. 26-1615",
+        judge: "Before Erickson, Grasz, and Kobes, Circuit Judges",
+        disposition: "Decided — judgment summarily affirmed Jun 25, 2026 (8th Cir. R. 47A(a))",
+        timeline: [
+          { date: "Apr 2, 2026", event: "Appeal docketed" },
+          { date: "May 12, 2026", event: "Opening brief filed — procedural issues only" },
+          { date: "May 18, 2026", event: "Notice of the refiled district-court action" },
+          { date: "Jun 25, 2026", event: "Judgment of the district court summarily affirmed" },
+        ],
+        keyDocuments: [
+          { label: "Eighth Circuit Opening Brief", doc: "No. 26-1615", date: "May 12, 2026", href: "/kirchner-v-ellison/8cir-brief" },
+        ],
+      },
+      {
+        label: "Refiled action",
+        court: "U.S. District Court, D. Minn.",
+        caseNo: "No. 0:26-cv-02594",
+        judge: "Hon. Laura M. Provinzino",
+        disposition: "Active — motion to dismiss fully briefed; to be decided on the papers",
+        active: true,
+        timeline: [
+          { date: "May 12, 2026", event: "Complaint filed — the substantive Chapter 8 state-law claims, refiled as a standalone action" },
+          { date: "May 14, 2026", event: "Judge Bryan recuses; case reassigned to Judge Provinzino" },
+          { date: "Jun 17, 2026", event: "Defendant’s motion to dismiss — to be heard on the papers" },
+          { date: "Jul 8, 2026", event: "Plaintiff’s opposition filed" },
+        ],
+        keyDocuments: [
+          { label: "Refiled Complaint", doc: "Doc. 1", date: "May 12, 2026", href: "/kirchner-v-ellison/2594-1" },
+        ],
+      },
     ],
   },
   acosta: {
