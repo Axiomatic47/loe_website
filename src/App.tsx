@@ -18,9 +18,7 @@ const Index = lazy(() => import("./views/Index"));
 const CompositionsPage = lazy(() => import("./views/CompositionsPage"));
 const SectionPage = lazy(() => import("./views/SectionPage"));
 const Contact = lazy(() => import("./views/Contact"));
-const Partners = lazy(() => import("./views/Partners"));
 const Donate = lazy(() => import("./views/Donate"));
-const IndividualsMetrics = lazy(() => import("./views/IndividualsMetrics"));
 const Timeline = lazy(() => import("./views/Timeline"));
 const VideosPage = lazy(() => import("./views/VideosPage"));
 const SCOTUSShadowDocket = lazy(() => import("./views/SCOTUSShadowDocket"));
@@ -331,14 +329,12 @@ const App = () => {
 
                   {/* Feature pages */}
                   <Route path="/timeline" element={<Timeline />} />
-                  <Route path="/individuals-metrics" element={<IndividualsMetrics />} />
                   <Route path="/videos" element={<VideosPage />} />
                   <Route path="/scotus-shadow-docket" element={<SCOTUSShadowDocket />} />
                   <Route path="/constitutional-accountability" element={<ConstitutionalAccountability />} />
 
                   {/* Contact and support pages */}
                   <Route path="/contact" element={<Contact />} />
-                  <Route path="/partners" element={<Partners />} />
                   <Route path="/donate" element={<Donate />} />
 
                   {/* Legal pages */}
