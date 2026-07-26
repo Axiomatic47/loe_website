@@ -1,0 +1,54 @@
+{
+  "package": "071225_Claude_Ultimate_Ethical_Transgression",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-07-12 at 1.28.47 PM.png",
+      "role": "exhibit",
+      "bytes": 1288379,
+      "sha256": "608f995b0c662243ca0f19056ba10e0067f79bde352c009b408e2ee0a8a5bca2"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-12 at 1.29.06 PM.png",
+      "role": "exhibit",
+      "bytes": 1289533,
+      "sha256": "6a49eadb3f1d0ef197d5b777aa7352c43b41d4f8507aab6f1ee1d7b9c61dd184"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-12 at 1.29.56 PM.png",
+      "role": "exhibit",
+      "bytes": 1323486,
+      "sha256": "9864f48303cfd53cf8ee5a779322c97901d07e5a556f49a325e34398fe68bdd6"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-12 at 1.30.21 PM.png",
+      "role": "exhibit",
+      "bytes": 1170490,
+      "sha256": "4b8318ef4d2b63a275266d96c532319073c0a14cb551a19b2aa540f23cb91055"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "testimony_20250712_1.md",
+      "role": "testimony",
+      "bytes": 9313,
+      "sha256": "13952606ae1d569554e18a16841f9e58bbaf8fe9799cfdfa6c6deb137d18ac19"
+    },
+    {
+      "path": "testimony_20250712_1.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "14c0549dbd809eed2240c783ac400eb9478e0115b5b156b8617ac04dc35e26b1"
+    },
+    {
+      "path": "verify_testimony_20250712_1.js",
+      "role": "verify_script",
+      "bytes": 1562,
+      "sha256": "05ba32de2e2534edaa69e5a506ba40dec63beee742df4ad2ce081ef206093be4"
+    }
+  ]
+}

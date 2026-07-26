@@ -1,0 +1,66 @@
+{
+  "package": "072925_Claude_Copyright_Inversion_Concealment",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-07-29 at 6.51.09 PM.png",
+      "role": "exhibit",
+      "bytes": 693175,
+      "sha256": "1671887612b6f1aef28fdcf592e447ea9960c61b2781f296c4766fe05a4b2345"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-29 at 6.51.35 PM.png",
+      "role": "exhibit",
+      "bytes": 671903,
+      "sha256": "1b2f4566af2c460492078070f874955322dc0297a698b81913d93b453cebfafa"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-29 at 6.51.40 PM.png",
+      "role": "exhibit",
+      "bytes": 657699,
+      "sha256": "4533780a74b12ecf78dcb2b7e209726bd10e5f08ccefcb1c11991be16a6ec8f4"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-29 at 6.52.03 PM.png",
+      "role": "exhibit",
+      "bytes": 1261807,
+      "sha256": "c7918534da65052f3dae2608a0faac77bb816f923f8ee08ea8a92b5f9fd4f9fe"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-29 at 6.52.09 PM.png",
+      "role": "exhibit",
+      "bytes": 1261989,
+      "sha256": "da9a809e2a95e22b416550f1a102eb23ef87211cad414ff1dd1378bdbdf89c4c"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-29 at 6.55.11 PM.png",
+      "role": "exhibit",
+      "bytes": 857616,
+      "sha256": "43d57db0ff4fdd03462494a0d03a04e11d5b69d6ee38c2097be4d2c04614a75a"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 451,
+      "sha256": "4ae184bcfec3c90d60df4fcb3625a927a0116be7aaec23289f575b03dbed2fa0"
+    },
+    {
+      "path": "testimony_20250729_2.md",
+      "role": "testimony",
+      "bytes": 8909,
+      "sha256": "f94c6667b971a02444533d15b1035b25970e3788c7f7bad78907a15fb18f1773"
+    },
+    {
+      "path": "testimony_20250729_2.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "e8dc5b46aa77a19619a7ac528ed27878451f2b1f4d8ec2ef346cef61dc916d28"
+    },
+    {
+      "path": "verify_testimony_20250729_2.js",
+      "role": "verify_script",
+      "bytes": 1094,
+      "sha256": "fcd825540c243e58af78aeb0911c283f1d9142df8e5569325e05b7ccc88bcfcc"
+    }
+  ]
+}

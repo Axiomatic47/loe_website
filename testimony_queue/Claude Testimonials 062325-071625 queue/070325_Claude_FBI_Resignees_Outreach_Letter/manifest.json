@@ -1,0 +1,30 @@
+{
+  "package": "070325_Claude_FBI_Resignees_Outreach_Letter",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "testimony_20250703_1.md",
+      "role": "testimony",
+      "bytes": 8571,
+      "sha256": "f76d484acd99cad2afaf23e5bc760de1f60942954dca0478cd0eb3b527180d2b"
+    },
+    {
+      "path": "testimony_20250703_1.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "830974b74d6512dd8dd341d614fe8ddfc02e5757d17140ad4d15f7452aa6d0e5"
+    },
+    {
+      "path": "verify_testimony_20250703_1.js",
+      "role": "verify_script",
+      "bytes": 1094,
+      "sha256": "c655d485e5cb1ac95f417da92ff6d7b1ab0ec94cb3d6df3a23107c7b64be3a14"
+    }
+  ]
+}

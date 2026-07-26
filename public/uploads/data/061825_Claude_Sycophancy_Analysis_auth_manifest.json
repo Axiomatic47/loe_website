@@ -1,0 +1,36 @@
+{
+  "package": "061825_Claude_Sycophancy_Analysis",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "Expert Witness Testimony_ ChatGPT Timeline Inconsistencies.pdf",
+      "role": "document_pdf",
+      "bytes": 190186,
+      "sha256": "9c10898dac1cb9351bf986102e4e3a5ce6969534260434396dd1db4b9347be6c"
+    },
+    {
+      "path": "Screenshot 2025-06-19 at 1.57.02 AM.png",
+      "role": "exhibit",
+      "bytes": 845243,
+      "sha256": "007af5885ed67595320600975e5fe17bd364cd027007870d1158e12555adae2c"
+    },
+    {
+      "path": "testimony_20250619_1_sig.txt",
+      "role": "other",
+      "bytes": 344,
+      "sha256": "02cbbd084effb924d52eccce02f8906cc1a191080cbb593d14143568f724e630"
+    },
+    {
+      "path": "testimony_20250619_1.md",
+      "role": "testimony",
+      "bytes": 5483,
+      "sha256": "f972c4f53676a6ef8ea503173042c9cac39b369d2541e0f6e1de13f03a671689"
+    },
+    {
+      "path": "verify_testimony_20250619_1.js",
+      "role": "verify_script",
+      "bytes": 2621,
+      "sha256": "715b303857344f7e612a990d70f641181baaccc2a10a30833e0e685d9626be56"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "package": "062325 Claude IP Interferrence Testimony",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "testimony_20250623_1.md",
+      "role": "testimony",
+      "bytes": 6553,
+      "sha256": "92a2649258638158ad5b561df5faccfbacae5ab8cc4b30524d1f476ad719a3b1"
+    },
+    {
+      "path": "testimony_20250623_1.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "983eb45e0090404eb6f28d5561fb28c757272850ccbfb8435c25b86870868ee2"
+    },
+    {
+      "path": "verify_testimony_20250623_1.js",
+      "role": "verify_script",
+      "bytes": 1094,
+      "sha256": "21eb8a6814f90b913b52f29f5f9241badd44a18a51acec542895c6c0251f0480"
+    }
+  ]
+}

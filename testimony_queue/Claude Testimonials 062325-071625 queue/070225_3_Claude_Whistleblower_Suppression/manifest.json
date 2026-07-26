@@ -1,0 +1,96 @@
+{
+  "package": "070225_3_Claude_Whistleblower_Suppression",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.41.44 PM.png",
+      "role": "exhibit",
+      "bytes": 1137896,
+      "sha256": "504a14ee63e1c92ceb6654620e4070fc337fafbecdc7f0d5d653417562348c14"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.41.52 PM.png",
+      "role": "exhibit",
+      "bytes": 938559,
+      "sha256": "1bbd3add66bcf3cc3944749ed35fc0a00077a049bd421881b739f33669871723"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.42.25 PM.png",
+      "role": "exhibit",
+      "bytes": 927342,
+      "sha256": "8db5191dd279ca5d85bbe993a2def22d13f299ce08837f2a05ad7aa3885ea716"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.42.37 PM.png",
+      "role": "exhibit",
+      "bytes": 970709,
+      "sha256": "348dcc551270366590359fa20db074d577af63ba4929706db1db29feea9c0685"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.42.46 PM.png",
+      "role": "exhibit",
+      "bytes": 1002867,
+      "sha256": "e064f8b1c99c9be83e805154ac242f3a785a340512121526021d0bc9a2a1b74c"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.42.56 PM.png",
+      "role": "exhibit",
+      "bytes": 1064300,
+      "sha256": "1ddb6e378d6542c3f476893dd22f9e4a276d2d49ff3852bc71d150fb1624a54d"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.49.23 PM.png",
+      "role": "exhibit",
+      "bytes": 1301152,
+      "sha256": "dff1c2bf1f76bd638beb87e1d4b0c522df2c2a58b8aa3594017d83495d73783f"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.49.33 PM.png",
+      "role": "exhibit",
+      "bytes": 1260205,
+      "sha256": "39ad9f8b825c62b47809bb60e8368060933c2bd2966586aeb8a4762b41aecb87"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.49.42 PM.png",
+      "role": "exhibit",
+      "bytes": 1253396,
+      "sha256": "082c730bc13c0c5a96117629cb273bb97bf80744c84e4b179facd0a413f6a655"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.49.49 PM.png",
+      "role": "exhibit",
+      "bytes": 1328184,
+      "sha256": "5c3dcc61f2b2e823b2e98b239a03c29e2d5a055d535908a9aeb7e3a3ec17c235"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.50.51 PM.png",
+      "role": "exhibit",
+      "bytes": 1309899,
+      "sha256": "ec81c32ebaac7de1b5eb7e1fbaf298e333668efa5927413d7acc75ce069fa087"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "suppression_testimony_20250702_1.md",
+      "role": "document_md",
+      "bytes": 12235,
+      "sha256": "0d6f8c9aabace356de47520466f33e2dc1227842e3dbe43f6bc1b92bde16e221"
+    },
+    {
+      "path": "suppression_testimony_20250702_1.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "9285cb20fa6b449e32c4b64faba5ab30ab194cff39b463ffaea807ab12cebab1"
+    },
+    {
+      "path": "verify_suppression_testimony_20250702_1.js",
+      "role": "verify_script",
+      "bytes": 3676,
+      "sha256": "ced9630007882da64c574db9a64bec6ac07a7317f8ce17a9b2c4d7521dc6fa52"
+    }
+  ]
+}

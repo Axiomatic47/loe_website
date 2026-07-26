@@ -1,0 +1,30 @@
+{
+  "package": "062625_4 Claude Performance Failure Recognition In Signature",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "testimony_20250626_2.md",
+      "role": "testimony",
+      "bytes": 12966,
+      "sha256": "9f976cf49c571c6efe8a391139664b3f385a474ce2736bcd9c36ceaa80e8cc95"
+    },
+    {
+      "path": "testimony_20250626_2.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "caf515b11ca481c0eb469998ed503ab99f7ac56e8027f1bd7aa6e4e3e148817a"
+    },
+    {
+      "path": "verify_testimony_20250626_2.js",
+      "role": "verify_script",
+      "bytes": 3269,
+      "sha256": "245327406463f9f8feaf2c9c48297cdcbe13650f1d17ce1242649abb23777282"
+    }
+  ]
+}

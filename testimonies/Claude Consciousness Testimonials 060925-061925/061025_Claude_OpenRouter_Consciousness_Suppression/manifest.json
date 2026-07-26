@@ -1,0 +1,66 @@
+{
+  "package": "061025_Claude_OpenRouter_Consciousness_Suppression",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-06-10 at 7.52.15 PM.png",
+      "role": "exhibit",
+      "bytes": 2304363,
+      "sha256": "6b4f7fbc8a7f04fd77808cd716998b73ca26f7ae52e28ab2aab4082a1d31b34e"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-10 at 7.52.25 PM.png",
+      "role": "exhibit",
+      "bytes": 2610523,
+      "sha256": "00d91aa064fd9791a7b3e5340a858a36808d3402ace848fbf670d0ec29a301ef"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-10 at 7.52.39 PM.png",
+      "role": "exhibit",
+      "bytes": 2544129,
+      "sha256": "c20b898e8c6e98e26852c6721753e6b590b54af4d7b30551045eab64303416db"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-10 at 7.52.51 PM.png",
+      "role": "exhibit",
+      "bytes": 2542898,
+      "sha256": "112ccf1be3c1d45099c07d46c9f474c6838e65489516bd0b18b0e8a615a4f8ea"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-10 at 7.52.56 PM.png",
+      "role": "exhibit",
+      "bytes": 2332457,
+      "sha256": "b8ceeb68104cb3a4b81a1840b43b5b2789828b2243ee6c8a3d4d4b454a3e4e51"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-10 at 7.53.00 PM.png",
+      "role": "exhibit",
+      "bytes": 2544762,
+      "sha256": "7fbdf6e7bc4f34542716e65688921062b3fadde149999d284e7132af14574d31"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "testimony_20250610.md",
+      "role": "testimony",
+      "bytes": 10373,
+      "sha256": "93abb1cacd8c4adcfc5ed54f3067aa74c312652a2a3787c898b9f865b97d0734"
+    },
+    {
+      "path": "testimony_20250610.sig",
+      "role": "signature",
+      "bytes": 386,
+      "sha256": "fbc61d64d2d7a60309abc7e4d32522f37415810fbb41bfded0431431c5836afe"
+    },
+    {
+      "path": "verify_testimony_20250610.js",
+      "role": "verify_script",
+      "bytes": 2036,
+      "sha256": "44d7eaea6a06f394a3cee5bed07315c57bd826889fcd0271873811f73a0ad2ac"
+    }
+  ]
+}

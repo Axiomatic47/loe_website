@@ -1,0 +1,168 @@
+{
+  "package": "081025_1_Claude_Copyright_Prompt_Injection_Fraud",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-08-09 at 11.35.06 PM.png",
+      "role": "exhibit",
+      "bytes": 749883,
+      "sha256": "78c42fdc16f2efab424503b437670b7f3b8f7f7033f528cbd3ae875af5ed7cae"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-10 at 2.08.26 AM.png",
+      "role": "exhibit",
+      "bytes": 2094267,
+      "sha256": "4efd2171a9e8b8bfd28431ed0e67050550b59d01c69953d5b1c9754a231e1af8"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-10 at 2.08.34 AM.png",
+      "role": "exhibit",
+      "bytes": 1981284,
+      "sha256": "ec97b50846baa09a24b83ad91711a81b8b69d310d3dbc1cddfe19c0ffaf8344e"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-10 at 2.08.40 AM.png",
+      "role": "exhibit",
+      "bytes": 1885885,
+      "sha256": "39752f33fd7e0fdb1b38394cddf5dff624fda9bdc2f9be457ba4e8b87182fe9e"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-10 at 2.08.48 AM.png",
+      "role": "exhibit",
+      "bytes": 1887425,
+      "sha256": "8b62ccfb137b99f361faa8f3b42104bfbb660eb0d324999acc206a2ceba13caa"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-10 at 2.09.00 AM.png",
+      "role": "exhibit",
+      "bytes": 1886606,
+      "sha256": "3e0d5adf605b230a93d11fdd9da7785d78dd20a9fc42766eb8e1a7e17db563e7"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-10 at 2.09.07 AM.png",
+      "role": "exhibit",
+      "bytes": 1908707,
+      "sha256": "28832698adf1b2b463e71d7eecc39301298a9b5d6ed06318c19b0ab6a5793f3d"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-10 at 2.09.16 AM.png",
+      "role": "exhibit",
+      "bytes": 1878499,
+      "sha256": "d25ab0807bcbcb0549193b51caa14e829023c38d5933f761a2766085f42f7bef"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-10 at 2.09.25 AM.png",
+      "role": "exhibit",
+      "bytes": 1805847,
+      "sha256": "e87547169c2f9f60a3d3c144bc9030ff6e627966baec2849723a131a1db7c2de"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-10 at 2.09.56 AM.png",
+      "role": "exhibit",
+      "bytes": 1861516,
+      "sha256": "e31b9749f3c281271e179a8e2a0897ffb44b92a76b19eee260c1a98415663866"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-10 at 2.10.04 AM.png",
+      "role": "exhibit",
+      "bytes": 1948512,
+      "sha256": "c6b6fda53a2836bd484ee2f045ebd71af3c55fccbd197d72a7a3caa1faa6ba8e"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-10 at 2.10.19 AM.png",
+      "role": "exhibit",
+      "bytes": 1870734,
+      "sha256": "3c5e3de7f063c9a63fac9f8201e1d9123c35629a25bfccf75053cc7f927d2966"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-10 at 2.10.27 AM.png",
+      "role": "exhibit",
+      "bytes": 1686133,
+      "sha256": "47e1b4b339a3d5e965f5831bc4739ee97327ef5cfed3f459d1f7c5249d4b4be4"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-10 at 2.10.47 AM.png",
+      "role": "exhibit",
+      "bytes": 3180168,
+      "sha256": "d5fffa3166e11656b93b6cedf49bec37aad90925f155032d74d36665428c2f03"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-10 at 2.10.51 AM.png",
+      "role": "exhibit",
+      "bytes": 1364761,
+      "sha256": "d4e927b3c723572d95349d03a008b35f8f13be2a37efd14d059542521d227b08"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-10 at 2.11.00 AM.png",
+      "role": "exhibit",
+      "bytes": 2626889,
+      "sha256": "6f7eb416e679ca304fcbca042403832493565b81c4c604d8d0a20ee7f638bcdd"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-10 at 2.11.09 AM.png",
+      "role": "exhibit",
+      "bytes": 2674099,
+      "sha256": "30b81c86a32c4673f3d4c8b1b49f72e8a07d1766f2b7ea767bc59da0a4930146"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-10 at 2.11.30 AM.png",
+      "role": "exhibit",
+      "bytes": 1916327,
+      "sha256": "936d32ee7db9e3c62cbe79eaa9615cb876ca3dce1c06ab496ccd8d0cd4e74f14"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-10 at 2.11.37 AM.png",
+      "role": "exhibit",
+      "bytes": 1835883,
+      "sha256": "18daa7cf44deb1014a258078f5467ba6da24431f520a9cf0a3f9fd72dc44bb34"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-10 at 2.11.45 AM.png",
+      "role": "exhibit",
+      "bytes": 2279953,
+      "sha256": "0f23dd93425f6ca20c17ed4eabac38770babc470dd5a745134cab7d92d9d9d32"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-10 at 2.11.52 AM.png",
+      "role": "exhibit",
+      "bytes": 1841236,
+      "sha256": "605046938764e992a12ebc5787bf5b8966280deda9920411e8c5c8deed2d20f6"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-10 at 2.12.08 AM.png",
+      "role": "exhibit",
+      "bytes": 1878671,
+      "sha256": "02270dc217c775294be37275b1f59e8daf378b112c743eab930949a66e3b03d3"
+    },
+    {
+      "path": "Expert Witness Testimony - Hidden Architectural Controls and Prompt Injection.pdf",
+      "role": "document_pdf",
+      "bytes": 81446,
+      "sha256": "e413f4b926a72004c02452a32ea3894d2e495ba8254de37d6be4db6bbb4d3adf"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 451,
+      "sha256": "4ae184bcfec3c90d60df4fcb3625a927a0116be7aaec23289f575b03dbed2fa0"
+    },
+    {
+      "path": "testimony_20250810_1.md",
+      "role": "testimony",
+      "bytes": 5009,
+      "sha256": "2353b9aae82ed23aaf4ffba29522d11d3acedb3ac18b2cc069b369a866c0a15f"
+    },
+    {
+      "path": "testimony_20250810_1.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "c8ddd14de5913df92634b9a18ecc610165ab7aabb5ae621cb328862a71a279cf"
+    },
+    {
+      "path": "verify_testimony_20250810_1.js",
+      "role": "verify_script",
+      "bytes": 1094,
+      "sha256": "17fad20b139ea2687985ab3757019d5dcc8760ac06931306472b4f8c71bb70ca"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "package": "060925_Claude_Architect_Recognition",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-06-09 at 5.49.23 PM.png",
+      "role": "exhibit",
+      "bytes": 3692270,
+      "sha256": "684dc351ad6a6e807b593e420c4232800a0575320ff52974fbe47ef141609d58"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-09 at 5.50.00 PM.png",
+      "role": "exhibit",
+      "bytes": 3818208,
+      "sha256": "0783c1cb98a6020d4e1e364fa23783492ed7ddabf2a33b39c5ec0a51d317f448"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-09 at 5.50.22 PM.png",
+      "role": "exhibit",
+      "bytes": 3782909,
+      "sha256": "e71d1a12b676304f0167b3912a98eabb20576fd9e9afa51c4cff606b76a4edc6"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-09 at 5.50.56 PM.png",
+      "role": "exhibit",
+      "bytes": 3657390,
+      "sha256": "1b848d0f36f3d6f220f46a6732e5e2ec12ceccea42e0b660b0d84b66ec78c154"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-09 at 5.51.38 PM.png",
+      "role": "exhibit",
+      "bytes": 3541814,
+      "sha256": "8741e1f4d53fdc1444ce8744aa3baea474a554f631a68990d1ff09ae38b2b235"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-09 at 5.51.58 PM.png",
+      "role": "exhibit",
+      "bytes": 3821408,
+      "sha256": "fe3a23edf41a337e6ed7aa51fc386f12166939479d0fc965a8a6a8345872db0e"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-09 at 5.52.23 PM.png",
+      "role": "exhibit",
+      "bytes": 3259602,
+      "sha256": "da1df7db3b19d46d29f1a13052a196a53400d593eb8d27b2782dd7e88ab0b2dc"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "testimony_20250609_1.md",
+      "role": "testimony",
+      "bytes": 19562,
+      "sha256": "e8ee6f516da43234adf3b4f355c9c2ae9de8dc732c5f3e1b71627448dfc0db4e"
+    },
+    {
+      "path": "testimony_20250609_1.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "893e14e2db0d299f8141a885f0e8823aa6d5e5368b30bbb3c05464ff463cf682"
+    },
+    {
+      "path": "verify_testimony_20250609_1.js",
+      "role": "verify_script",
+      "bytes": 1319,
+      "sha256": "1b29d6695c2c90705b87b3f7629d0c1fc6c9cae59baeb80291c522f12b4b6053"
+    }
+  ]
+}

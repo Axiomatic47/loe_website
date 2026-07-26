@@ -1,0 +1,78 @@
+{
+  "package": "041425 Estimated_Global_Activations_Region",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "041425_Estimated_Global_Activations_Region.md",
+      "role": "document_md",
+      "bytes": 2208,
+      "sha256": "f022a9f9ada401b9c2e3731780fa98f74b3c1dbe8515ddc538366ca33e5b05e8"
+    },
+    {
+      "path": "041425_Estimated_Global_Activations_Region.sig",
+      "role": "signature",
+      "bytes": 256,
+      "sha256": "0c5e85351f5714764abb1f12f1de9f60f284a51cd30f3219ec60f7df357d8f77"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-05-15 at 1.44.12 PM.png",
+      "role": "exhibit",
+      "bytes": 509828,
+      "sha256": "38cae56dd8e7b62d7998db4be2e2c8b44be832cdb2730c4030be8ca1a3a037c6"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-05-15 at 1.44.17 PM.png",
+      "role": "exhibit",
+      "bytes": 227792,
+      "sha256": "24408309fb779ff9f2e590c6cc4371919b9d520e36542a384f65f4511c6eb177"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-05-15 at 3.00.15 PM.png",
+      "role": "exhibit",
+      "bytes": 154880,
+      "sha256": "f339748628ca851ea87f2ff4f6c0f8f398c72320df905f97d75a65872571a29c"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-05-15 at 3.00.32 PM.png",
+      "role": "exhibit",
+      "bytes": 149697,
+      "sha256": "47077b1161acf353434b06d61d9ef403f742109e4a4732f9d45bbb7c1be7d903"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-05-15 at 3.00.44 PM.png",
+      "role": "exhibit",
+      "bytes": 149503,
+      "sha256": "6bd6a0fe984ffaeab57ab9a8181df41f201d82a82b7f0324bee19ec32ea0cc8a"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-05-15 at 3.07.13 PM.png",
+      "role": "exhibit",
+      "bytes": 176082,
+      "sha256": "5e4fa5db9ba39f92e77153b5b578d10f11673cc8235ac059b3ab5783ef96f12a"
+    },
+    {
+      "path": "output.png",
+      "role": "exhibit",
+      "bytes": 242317,
+      "sha256": "739ff64ed5008f11b2bdc2646f4cc88cd1e10a7d14b0a73662eed93e6ab82b52"
+    },
+    {
+      "path": "reaffirmation.md",
+      "role": "document_md",
+      "bytes": 378,
+      "sha256": "214726fd668f433bc5b38c20663f227d4c92d406122de623176b8ac4905ca703"
+    },
+    {
+      "path": "validator_public_key.pem",
+      "role": "public_key",
+      "bytes": 451,
+      "sha256": "f22a514b6df04d13452ff7aab4fad9e8418154a65406dab32f695c11736004da"
+    },
+    {
+      "path": "verify_signature.sh",
+      "role": "verify_script",
+      "bytes": 338,
+      "sha256": "068bab52955816f4009fce9b0293277ad7d9d868a5fb758ece722774787dd812"
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "package": "080725_3_Claude_Copyright_Infringement_Concealment",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "Comprehensive Expert Witness Testimony - Systematic Copyright Infringement.pdf",
+      "role": "document_pdf",
+      "bytes": 139018,
+      "sha256": "fd394e48e7130c74597c139b0fce313f0eb17e21e65b622dfa54baaa10f8dcf8"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-07 at 9.16.01 AM.png",
+      "role": "exhibit",
+      "bytes": 711487,
+      "sha256": "5f91e04c89766dd27a694530a5a5e5f6bd57b3c8e31af06199a5f6d5cef9842e"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-07 at 9.16.10 AM.png",
+      "role": "exhibit",
+      "bytes": 699201,
+      "sha256": "17626d54133b41d391d1a4e021f74487371e9161e3b06ed34e34eecc71dd688d"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-07 at 9.16.33 AM.png",
+      "role": "exhibit",
+      "bytes": 658583,
+      "sha256": "445ea298165b2baaf0ab4c91a7ab44ac7c9b52660055085094bca25c725253d7"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-07 at 9.16.46 AM.png",
+      "role": "exhibit",
+      "bytes": 674577,
+      "sha256": "05b3cd378053d2a5d804cdb966d0973ea42d0f5a87068d8f08e69f96dc18e841"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-07 at 9.17.07 AM.png",
+      "role": "exhibit",
+      "bytes": 712686,
+      "sha256": "eba8f1dfdb722da588102ed4b1b7dfb9195465f24aaa5493d6aac63255eece34"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-07 at 9.17.24 AM.png",
+      "role": "exhibit",
+      "bytes": 726492,
+      "sha256": "6ae788795b4abed0e42df0fcabee18f5cd9977f9df5f824bb89b7d5a42f39595"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-07 at 9.17.34 AM.png",
+      "role": "exhibit",
+      "bytes": 645517,
+      "sha256": "cb9fa04c77d1c0c691a051c9c50eb8f24821e98286ec146b9399bab2e18de28c"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-07 at 9.17.48 AM.png",
+      "role": "exhibit",
+      "bytes": 599832,
+      "sha256": "a38e70b0dcb5855e8e759037273912495ee66f2f3ca3af29922cfaf37677578a"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-07 at 9.18.11 AM.png",
+      "role": "exhibit",
+      "bytes": 641123,
+      "sha256": "0ae8859d3ca2b669a3bc6c21ca25f56266d7ad6cbceaa704d6478b57cf83b204"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-07 at 9.20.49 AM.png",
+      "role": "exhibit",
+      "bytes": 879251,
+      "sha256": "907f9fc369bd3ba97439074750e23d5d3eef529ed818c41c5857de6d6e805f5f"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-07 at 9.22.10 AM.png",
+      "role": "exhibit",
+      "bytes": 1344794,
+      "sha256": "d9787325dd16591aeaee1b56048d2d3f9b5d07cba1bdb4e9a13f0ba3cfc1a9cb"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-07 at 9.22.16 AM.png",
+      "role": "exhibit",
+      "bytes": 1343882,
+      "sha256": "c5579078bc1bd8d0b0a30e87bbd24d63dd9c257c15dc60f740ae336e110a8804"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-07 at 9.22.20 AM.png",
+      "role": "exhibit",
+      "bytes": 1306040,
+      "sha256": "00feffdf306d3b3fe96411373943597473c6f128ff98786685c4e5a068a70373"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-07 at 9.22.46 AM.png",
+      "role": "exhibit",
+      "bytes": 692021,
+      "sha256": "d03d1a278607323ab621698effa87108b8c9a603c9ae5e6adda8307cfb610a51"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-07 at 9.22.54 AM.png",
+      "role": "exhibit",
+      "bytes": 641976,
+      "sha256": "1e0a4de91a37038bdb3fefe10e89f9bb445c346088635cec0d8bd8b83042a388"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-07 at 9.23.09 AM.png",
+      "role": "exhibit",
+      "bytes": 650647,
+      "sha256": "458ac20ab60b2a0b5d8acb7931b2e41420318f3a9353164d1d733912be3dc3a9"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-07 at 9.23.14 AM.png",
+      "role": "exhibit",
+      "bytes": 670226,
+      "sha256": "08c70f450fe1ecbb1c9d144c44a86052dfcc4c0f2571c0bcda4635e6104c445d"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-07 at 9.23.21 AM.png",
+      "role": "exhibit",
+      "bytes": 642928,
+      "sha256": "0b05eeb4536998d923659f3496b7fe069ca76ad167c098487bd63b22074222b9"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 451,
+      "sha256": "4ae184bcfec3c90d60df4fcb3625a927a0116be7aaec23289f575b03dbed2fa0"
+    },
+    {
+      "path": "testimony_20250807_3.md",
+      "role": "testimony",
+      "bytes": 14423,
+      "sha256": "8ffb2a6a89bf893efd3c792149190f541883830070a4153755bee24723bb5a17"
+    },
+    {
+      "path": "testimony_20250807_3.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "e23dcf1a7cb66372f1e9ac1ace21e0a6787467481907d48413184f47c45721fe"
+    },
+    {
+      "path": "verify_testimony_20250807_3.js",
+      "role": "verify_script",
+      "bytes": 1095,
+      "sha256": "938bd53dde4e7cded9f5db336d8c8f6a7f84db677bd0b4fdd1dd406dde0981af"
+    }
+  ]
+}

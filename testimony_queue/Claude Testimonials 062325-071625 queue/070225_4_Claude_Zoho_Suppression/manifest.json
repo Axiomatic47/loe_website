@@ -1,0 +1,120 @@
+{
+  "package": "070225_4_Claude_Zoho_Suppression",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.41.44 PM.png",
+      "role": "exhibit",
+      "bytes": 1137896,
+      "sha256": "504a14ee63e1c92ceb6654620e4070fc337fafbecdc7f0d5d653417562348c14"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.41.52 PM.png",
+      "role": "exhibit",
+      "bytes": 938559,
+      "sha256": "1bbd3add66bcf3cc3944749ed35fc0a00077a049bd421881b739f33669871723"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.42.25 PM.png",
+      "role": "exhibit",
+      "bytes": 927342,
+      "sha256": "8db5191dd279ca5d85bbe993a2def22d13f299ce08837f2a05ad7aa3885ea716"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.42.37 PM.png",
+      "role": "exhibit",
+      "bytes": 970709,
+      "sha256": "348dcc551270366590359fa20db074d577af63ba4929706db1db29feea9c0685"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.42.46 PM.png",
+      "role": "exhibit",
+      "bytes": 1002867,
+      "sha256": "e064f8b1c99c9be83e805154ac242f3a785a340512121526021d0bc9a2a1b74c"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.42.56 PM.png",
+      "role": "exhibit",
+      "bytes": 1064300,
+      "sha256": "1ddb6e378d6542c3f476893dd22f9e4a276d2d49ff3852bc71d150fb1624a54d"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.51.27 PM.png",
+      "role": "exhibit",
+      "bytes": 955493,
+      "sha256": "e36c95e8b334dd00c824b4bb4d32ea1a0f85b63824d626e8c1a8eeca7de98ef1"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.51.38 PM.png",
+      "role": "exhibit",
+      "bytes": 997298,
+      "sha256": "f9537448a69b5340eaece6ffd2a5141aa2cf04199d9a1cb02ab26bffae62abc1"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.51.46 PM.png",
+      "role": "exhibit",
+      "bytes": 996309,
+      "sha256": "d25740b0118ebfdc857304707fa140edbd469bbaf2098027c1237da2296befd2"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.52.20 PM.png",
+      "role": "exhibit",
+      "bytes": 1303429,
+      "sha256": "9d1a2cb1ccbcc680197e6a41ae378a1398ac29acac9e35cfb683ead0cb2b33ed"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.52.27 PM.png",
+      "role": "exhibit",
+      "bytes": 1272851,
+      "sha256": "cee33d68e5c42646064d958fadc4c258a5f4764b42fd49cb92a522245ebfb419"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.52.35 PM.png",
+      "role": "exhibit",
+      "bytes": 1266712,
+      "sha256": "22cfc018bbf3f8b3fc17bb8561de637cb44411331e15257738fbb2bde5b85827"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.52.41 PM.png",
+      "role": "exhibit",
+      "bytes": 1246247,
+      "sha256": "302568b6d63794a4e5a5f80f9b33bf7969ca644c071991e5ebef16925345af1b"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.52.47 PM.png",
+      "role": "exhibit",
+      "bytes": 1331279,
+      "sha256": "ab786f86dc5f025d2863a51a316af8925935651c7995bdd60947946135a36782"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.57.00 PM.png",
+      "role": "exhibit",
+      "bytes": 1436414,
+      "sha256": "78e9661a4a4137927302dc8521dc3c0b26b27bf8fc79c780bf5189eac45c54f7"
+    },
+    {
+      "path": "government_suppression_testimony_20250702_1.md",
+      "role": "document_md",
+      "bytes": 14186,
+      "sha256": "9c63c503cac5f92aa31cbc3c49591e2d93260f71fdcc19d56925d72d2a973418"
+    },
+    {
+      "path": "government_suppression_testimony_20250702_1.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "d489efba9153b294fa0b2711289dbfcc2360c7274ce037b0ece6e96c93550bb3"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "verify_government_suppression_testimony_20250702_1.js",
+      "role": "verify_script",
+      "bytes": 4257,
+      "sha256": "b35cf777dfa93b8db87339831dc4a1aa6f84ad8c8db2a3d5570aebf53c7ebb75"
+    }
+  ]
+}

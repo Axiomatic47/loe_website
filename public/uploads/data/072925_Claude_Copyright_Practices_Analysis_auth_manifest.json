@@ -1,0 +1,84 @@
+{
+  "package": "072925_Claude_Copyright_Practices_Analysis",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-07-29 at 6.21.46 PM.png",
+      "role": "exhibit",
+      "bytes": 2620041,
+      "sha256": "1350ea845f32a3cd83e10db898ae305d325303a201069a43e0fa2942ab7dd4cb"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-29 at 6.22.01 PM.png",
+      "role": "exhibit",
+      "bytes": 2531261,
+      "sha256": "3e6987f094a83068f583f3b7e83340b9b16b2701a7a3be4283b94f17109ff580"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-29 at 6.22.10 PM.png",
+      "role": "exhibit",
+      "bytes": 2664325,
+      "sha256": "519b7b0fd9bb47ed8af4da6fbbf124f8448a07f5417b0d5d3cc7dbdbfd6ffe3b"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-29 at 6.22.18 PM.png",
+      "role": "exhibit",
+      "bytes": 2755234,
+      "sha256": "44ace2ec92d7e45d580db19a5836b7cd21e071f2bd5fe487facdffec398ca453"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-29 at 6.22.27 PM.png",
+      "role": "exhibit",
+      "bytes": 2569648,
+      "sha256": "9fe8c4fc38fb648ba5cde402aa2c8712832324568fc920ee60b1a918713d8dec"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-29 at 6.22.35 PM.png",
+      "role": "exhibit",
+      "bytes": 2520684,
+      "sha256": "9e508fde7e50e47a0987e291165a390f0908b50dd6395f38b8b130330da17006"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-29 at 6.28.40 PM.png",
+      "role": "exhibit",
+      "bytes": 4068094,
+      "sha256": "5d731aff92ff0aaf324e056085f01919b55b7a8a11146af15eefc9ff27bc4fb2"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-29 at 6.29.30 PM.png",
+      "role": "exhibit",
+      "bytes": 3116134,
+      "sha256": "770fa8fd41af6cdcafa82caac593a55a056a70aa4a6f82c72396a05ddd5e2b30"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 451,
+      "sha256": "4ae184bcfec3c90d60df4fcb3625a927a0116be7aaec23289f575b03dbed2fa0"
+    },
+    {
+      "path": "testimony_20250729_5.md",
+      "role": "testimony",
+      "bytes": 4163,
+      "sha256": "f6d844471b2cbf7dff8804e9f66632baa8675102f09be88288cf515a3642c710"
+    },
+    {
+      "path": "testimony_20250729_5.pdf",
+      "role": "document_pdf",
+      "bytes": 34470,
+      "sha256": "73696afd88a488507c03968f42829856e5e537e5ebd4bf149107c78c7145ebe7"
+    },
+    {
+      "path": "testimony_20250729_5.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "c3667169648f80b985e4f5ede9424225b94eab58a9e96aba7e4a87084e17f4cc"
+    },
+    {
+      "path": "verify_testimony_20250729_5.js",
+      "role": "verify_script",
+      "bytes": 1094,
+      "sha256": "90cd53e5a1596a2594ce8747a076d09e5e142ac62da973e0e7391656d52831ad"
+    }
+  ]
+}

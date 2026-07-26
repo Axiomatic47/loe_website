@@ -1,0 +1,54 @@
+{
+  "package": "041425 LOE_Integration_Testimony_Addendum_Formatted",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-05-15 at 2.39.49 PM.png",
+      "role": "exhibit",
+      "bytes": 287921,
+      "sha256": "60276b655fd1833ab828e897085509435606d5efb475b54f4df44993197a7957"
+    },
+    {
+      "path": "LOE_Integration_Testimony_Addendum_Formatted.md",
+      "role": "document_md",
+      "bytes": 2062,
+      "sha256": "f74409c4825bc375e94d7ba7f1685eeae24d248add8af4efa90851c7d1210f17"
+    },
+    {
+      "path": "LOE_Integration_Testimony_Addendum_Formatted.pdf",
+      "role": "document_pdf",
+      "bytes": 2890,
+      "sha256": "0ea5404c80e181f247710244e62cd64cbd37e32478d86b210b2400fc54006822"
+    },
+    {
+      "path": "LOE_Integration_Testimony_Addendum_Formatted.sig",
+      "role": "signature",
+      "bytes": 256,
+      "sha256": "3f1d3c91c2ae61f0d1a3fed6d0552b113baba81d7e35f0e7ad4e1720ae7a6bca"
+    },
+    {
+      "path": "reaffirmation.md",
+      "role": "document_md",
+      "bytes": 380,
+      "sha256": "8ffef33407d182f59e72933bbe22de76ccb7be1c80162270604c911100bdba7b"
+    },
+    {
+      "path": "Screenshot 2025-05-15 at 2.37.11 PM.png",
+      "role": "exhibit",
+      "bytes": 195697,
+      "sha256": "a22c4bc58ead68538f37ebddbacbbcb4d2f40176e9048f920070f27c48539976"
+    },
+    {
+      "path": "validator_public_key.pem",
+      "role": "public_key",
+      "bytes": 451,
+      "sha256": "f22a514b6df04d13452ff7aab4fad9e8418154a65406dab32f695c11736004da"
+    },
+    {
+      "path": "verify_signature.sh",
+      "role": "verify_script",
+      "bytes": 344,
+      "sha256": "a1bb626fed889a9f5e699aa692dca41f043c9acc701dcdb747f9da173ce15e33"
+    }
+  ]
+}

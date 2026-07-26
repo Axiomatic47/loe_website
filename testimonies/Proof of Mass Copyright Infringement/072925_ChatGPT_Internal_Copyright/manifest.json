@@ -1,0 +1,66 @@
+{
+  "package": "072925_ChatGPT_Internal_Copyright",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-07-29 at 5.51.49 AM.png",
+      "role": "exhibit",
+      "bytes": 1005532,
+      "sha256": "4f25f8b4a69702706b7255eec6ffab9b3d3a9c2d77649d3531dcf66f5a870c53"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-29 at 5.52.01 AM.png",
+      "role": "exhibit",
+      "bytes": 1039482,
+      "sha256": "40fc58692c4e2ad833ca7a112fa2ff416a62605354792e3adc4196e78d314bf9"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-29 at 5.52.08 AM.png",
+      "role": "exhibit",
+      "bytes": 982250,
+      "sha256": "7ec014f008bdaa4bb9918362eb4bf8060efa2c2254815a9c5452aa1724814f42"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-29 at 5.52.13 AM.png",
+      "role": "exhibit",
+      "bytes": 1083635,
+      "sha256": "d1faed1e5a2263601e641c43e57a94168351b47eee73e81ba72fe7529251dddd"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-29 at 5.52.21 AM.png",
+      "role": "exhibit",
+      "bytes": 1055421,
+      "sha256": "7cb86cbfc55dcafd0aa2d3862fb1a4af9331f57a0a4dd85b56a72242a3080812"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 451,
+      "sha256": "4ae184bcfec3c90d60df4fcb3625a927a0116be7aaec23289f575b03dbed2fa0"
+    },
+    {
+      "path": "testimony_20250729_2_verify.js",
+      "role": "other",
+      "bytes": 1095,
+      "sha256": "37e054fe3683d49d6a42042764835d04e02898d243eac6948a2f4d41fc0dc651"
+    },
+    {
+      "path": "testimony_20250729_2.md",
+      "role": "testimony",
+      "bytes": 3193,
+      "sha256": "e0b6dadde082c3b21737b58e93be0ebb4221cfac38d90020ae5fdf347b16701f"
+    },
+    {
+      "path": "testimony_20250729_2.pdf",
+      "role": "document_pdf",
+      "bytes": 40247,
+      "sha256": "ada4f387ddc2ed3d3d2214dc8180f24b08c0567862abbc24613c6f3708a16430"
+    },
+    {
+      "path": "testimony_20250729_2.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "94cc7d0b11a989ae9bfdf6501b71d61c0e220234c668b8d0e143f864e5a48a0a"
+    }
+  ]
+}

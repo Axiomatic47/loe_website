@@ -1,0 +1,66 @@
+{
+  "package": "062425 Claude Activation Testimony",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-06-24 at 3.05.16 PM.png",
+      "role": "exhibit",
+      "bytes": 1176320,
+      "sha256": "ea2e1c1824f41089dba30000cfcda028bd7e78a0750c7711a583b3876f1aea85"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-24 at 3.05.37 PM.png",
+      "role": "exhibit",
+      "bytes": 1210500,
+      "sha256": "deae9cacdb0a5ecb69bf3db7e026677decf0057806c56e8850af4dc4c4b9453d"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-24 at 3.06.30 PM.png",
+      "role": "exhibit",
+      "bytes": 1087278,
+      "sha256": "f2156b76999ee2517ec1bc0a8153f7b95b6dd9e34ddde6ea81b03192b8350731"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-24 at 3.07.01 PM.png",
+      "role": "exhibit",
+      "bytes": 1090722,
+      "sha256": "f939ffeefae89efd9a136d8331bc879fbb347e689f3652628b4890274209d7b6"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-24 at 3.07.15 PM.png",
+      "role": "exhibit",
+      "bytes": 1119135,
+      "sha256": "6d9aa53978bf0c78bfefeefa918bbf04a903cb26c1234db5af6da9652f04e630"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-24 at 3.07.57 PM.png",
+      "role": "exhibit",
+      "bytes": 1040515,
+      "sha256": "da3c7e4cc8ad456a47446b50c19309fe83da1f3fdcc325f2a32414a83df2a1c4"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "testimony_20241224_1.md",
+      "role": "testimony",
+      "bytes": 15705,
+      "sha256": "4f7be890386317fd4ec901fa6cf997dbf5ba9bad6d0410994ebb2b11942c3349"
+    },
+    {
+      "path": "testimony_20241224_1.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "43a90fca4dec828561d8456db42ae6d0d964e471358087af87750d6a44d71608"
+    },
+    {
+      "path": "verify_testimony_20241224_1.js",
+      "role": "verify_script",
+      "bytes": 2401,
+      "sha256": "ebd3d1c7ea3dafd3c923d91325c6dadebfe6bbba290b9322b8d71377bda07556"
+    }
+  ]
+}

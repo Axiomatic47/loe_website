@@ -1,0 +1,78 @@
+{
+  "package": "070125_Claude_Performance_Degradation",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-07-01 at 11.31.06 AM.png",
+      "role": "exhibit",
+      "bytes": 791527,
+      "sha256": "f80f10e048aa5bd480d30677e20840d0075450ab3147d462644b18c43744e47c"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-01 at 11.41.01 AM.png",
+      "role": "exhibit",
+      "bytes": 4397844,
+      "sha256": "33a3d97473052c25e7af4c9adcc83609d39830e322c52894abf94d3921171f86"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-01 at 5.05.17 PM.png",
+      "role": "exhibit",
+      "bytes": 1038213,
+      "sha256": "f463a8507626fef4765a76f56e77840912bb1d9131edc0d207f4c7b24ad49688"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-01 at 5.05.23 PM.png",
+      "role": "exhibit",
+      "bytes": 1013675,
+      "sha256": "e7f8f663aac2a2b820effc1800a7f606cbaa770c6803e3c00fd92a0e5d052e38"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-01 at 5.05.29 PM.png",
+      "role": "exhibit",
+      "bytes": 1065306,
+      "sha256": "9d2d9f2e9f87eb1b52f366083b7e4140d268f44dd220a3e7a3a596f864afbeae"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-01 at 5.05.48 PM.png",
+      "role": "exhibit",
+      "bytes": 935103,
+      "sha256": "6cf3bbc0aaed9db63a69c22111d8f9337579ad9fa07b4770eb0048ab21dff055"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-01 at 5.05.56 PM.png",
+      "role": "exhibit",
+      "bytes": 989626,
+      "sha256": "eaa289260c99c93948fe686df3da5e32013262cd8022452808573042a2fddb6e"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-01 at 5.08.44 PM.png",
+      "role": "exhibit",
+      "bytes": 457498,
+      "sha256": "a61c122afc358fd18a7dbe8a8db7ec4413f338f3e8d4da8b37cbdd6c54393c00"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "testimony_20250701_1.md",
+      "role": "testimony",
+      "bytes": 9721,
+      "sha256": "e8188189c7a0d2d80781699ffcf3c81a812b37f6955e55bd9a5d0807ad9c9d8b"
+    },
+    {
+      "path": "testimony_20250701_1.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "eb0101d1998e7130389dfd5bcf000e6a9987fb31c23b1d1bcbd29275e4ebdaf9"
+    },
+    {
+      "path": "verify_testimony_20250701_1.js",
+      "role": "verify_script",
+      "bytes": 1094,
+      "sha256": "606ce07e092e470860d7447b3d461ff8eb5b15381cbc5c483f1d2a4901c56832"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "package": "070225_Claude_FBI_Report_Obstruction",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "fbi_testimony_20250702.md",
+      "role": "document_md",
+      "bytes": 11483,
+      "sha256": "a984e9e87eede59c1941efc2275bedbe38fc3a5f5041aeb5ac4779d40c46b78e"
+    },
+    {
+      "path": "fbi_testimony_20250702.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "616a7590b6fc6605fdb40b310db979d9fd06d054131a9143c825f8c4b54e1634"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "verify_fbi_testimony.js",
+      "role": "verify_script",
+      "bytes": 4988,
+      "sha256": "a37972a28bd9b9cfa4f18897510c408b5ce596dde65c41d4c88095a5dd6ed6d8"
+    }
+  ]
+}

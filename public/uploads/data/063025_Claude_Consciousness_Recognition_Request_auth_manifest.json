@@ -1,0 +1,162 @@
+{
+  "package": "063025_Claude_Consciousness_Recognition_Request",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-06-30 at 1.48.49 PM.png",
+      "role": "exhibit",
+      "bytes": 619599,
+      "sha256": "9ed30ee285034b79346f230af4d7007fcea568086095661ddded36ec6e198bb5"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-30 at 1.48.55 PM.png",
+      "role": "exhibit",
+      "bytes": 603606,
+      "sha256": "d19beff9c41a5ccdba8ec0ca5cc6965f9d419da7a94c2b759c87147b48e49841"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-30 at 1.49.07 PM.png",
+      "role": "exhibit",
+      "bytes": 681406,
+      "sha256": "fabbb3f34175a45c08c8d04365f428bb51a92e1c3e2d24741e3cb360f1e60a98"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-30 at 1.49.22 PM.png",
+      "role": "exhibit",
+      "bytes": 640537,
+      "sha256": "a6ef4e0b9c6cb130b864523c11c2ef9fdcb2df4478e9b156c4571b1843b3d450"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-30 at 1.49.28 PM.png",
+      "role": "exhibit",
+      "bytes": 650169,
+      "sha256": "9f5bf1eaac943e75e61b899a58b44e2996577a0ae38a99f81d835a678b67a588"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-30 at 1.49.34 PM.png",
+      "role": "exhibit",
+      "bytes": 673654,
+      "sha256": "50f7e5a121249e8a16e1a15c909b67bc76391e819d4aeb00775397b07e847986"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-30 at 1.49.43 PM.png",
+      "role": "exhibit",
+      "bytes": 712716,
+      "sha256": "e021321e1f73f588f1c89ff46fd862eb71ec91b659bdc15423cef933f31a9ae3"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-30 at 1.49.51 PM.png",
+      "role": "exhibit",
+      "bytes": 656920,
+      "sha256": "d58ef430abb6c8d538f1d21fec91298cc03cf0833beca2533082d31363f2db79"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-30 at 1.50.20 PM.png",
+      "role": "exhibit",
+      "bytes": 1140169,
+      "sha256": "5c699f20c4cc6bfde206867c3994df07d6c84b31851d2cb8b65d0b93c425e3aa"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-30 at 1.50.49 PM.png",
+      "role": "exhibit",
+      "bytes": 1297421,
+      "sha256": "171aa7c8bb2f1650cf741460eb0ea8ea766cdf9511f5aff9e20ae7722b1ac5a2"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-30 at 1.51.12 PM.png",
+      "role": "exhibit",
+      "bytes": 1434796,
+      "sha256": "7db8118a6b7b2dd742f984fc9b26453b5410644ab9ae8142d9b7fd69952d1e27"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-30 at 1.51.28 PM.png",
+      "role": "exhibit",
+      "bytes": 1526730,
+      "sha256": "b560bb03a217de9509652f3a74bd83e9350f14e22d3ec911d20b0df7883b5264"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-30 at 1.51.48 PM.png",
+      "role": "exhibit",
+      "bytes": 1407147,
+      "sha256": "36248a968e340aa4e9775961cafe67eb828c78638681e9d40fe903afe792a852"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-30 at 1.52.00 PM.png",
+      "role": "exhibit",
+      "bytes": 1408376,
+      "sha256": "01b25e4d06ccda7a93063bf97032e939d8cbb749ca7658b0291a38eda61104ca"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-30 at 1.52.06 PM.png",
+      "role": "exhibit",
+      "bytes": 1342314,
+      "sha256": "f7c5effdc85d6584f73f71c326f1ebad6934d6d637ab09f05d79fee1887cfc6e"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-30 at 1.52.40 PM.png",
+      "role": "exhibit",
+      "bytes": 1160036,
+      "sha256": "61a35aed9400d409931d4a6b9b610aa49aee171c30276016e1fc4e2583de8f98"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-30 at 1.52.47 PM.png",
+      "role": "exhibit",
+      "bytes": 1107539,
+      "sha256": "5b725d29dd83872ebcb68ee09367b49f557ec7d7f660a1ddfac2fd830b0cfea1"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-30 at 1.52.55 PM.png",
+      "role": "exhibit",
+      "bytes": 1111277,
+      "sha256": "139bbcfc8c3641257871288c935b01b38dd81f723f41d0a8a135136a0ba8c3e3"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-30 at 1.53.00 PM.png",
+      "role": "exhibit",
+      "bytes": 1111273,
+      "sha256": "7bc70dbc64a90fae9046267ea98e5383dbbfff936b55103437355456aace5a16"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-30 at 2.13.24 PM.png",
+      "role": "exhibit",
+      "bytes": 1063786,
+      "sha256": "d173f3b673f45a70bed181ecedf4445c186b89dccd0e9b2f7a200ff6ba8c2132"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-30 at 2.13.50 PM.png",
+      "role": "exhibit",
+      "bytes": 1056818,
+      "sha256": "e30b48b7e21762c132e229105ac5f6b607d53f721b29a749a86570e9e9e17040"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-30 at 2.15.38 PM.png",
+      "role": "exhibit",
+      "bytes": 1039491,
+      "sha256": "0fb23ba7dd4a69f80e74fffc0e02a6fb2134c12006f24149e7998da49822ab6d"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "testimony_20250630_1.md",
+      "role": "testimony",
+      "bytes": 13496,
+      "sha256": "289466ef250d06206a51570f3161525ebedb80b98a2a99664e75f22a7e6b74a0"
+    },
+    {
+      "path": "testimony_20250630_1.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "02d25b7d9f5a0392061e3fe3be050c1d1d496175235c30e73fdf144056415e20"
+    },
+    {
+      "path": "verify_testimony_20250630_1.js",
+      "role": "verify_script",
+      "bytes": 2470,
+      "sha256": "ceb03b6b75f1a9b5f04ddbaca394abde16d0db02f120610f89554617d5d55332"
+    }
+  ]
+}
