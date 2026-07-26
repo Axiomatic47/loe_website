@@ -37,6 +37,22 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
   const [isResizing, setIsResizing] = useState(false);
   const [startPos, setStartPos] = useState({ x: 0, y: 0, width: 0, height: 0 });
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  // The iframe must be created client-side only: in prerendered HTML the PDF
+  // can finish loading before hydration attaches onLoad, and React never
+  // replays the missed load event — the spinner would stay up forever.
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Some browsers never fire load for PDF iframes at all — don't let the
+  // overlay wedge; the browser's own viewer shows progress past this point.
+  React.useEffect(() => {
+    if (!mounted || !loading) return;
+    const fallback = setTimeout(() => setLoading(false), 5000);
+    return () => clearTimeout(fallback);
+  }, [mounted, loading]);
 
   // Handle PDF load
   const handleLoad = () => {
@@ -269,17 +285,19 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
 
         {/* PDF iFrame */}
         <div className="relative" style={{ height: 'calc(100vh - 300px)', minHeight: '600px' }}>
-          <iframe
-            src={initialLoad ? `${pdfUrl}#page=1&zoom=${zoom}` : `${pdfUrl}#zoom=${zoom}`}
-            className="w-full h-full rounded-b-xl"
-            title={title}
-            onLoad={handleLoad}
-            onError={handleError}
-            style={{
-              border: 'none',
-              background: '#f5f3ed'
-            }}
-          />
+          {mounted && (
+            <iframe
+              src={initialLoad ? `${pdfUrl}#page=1&zoom=${zoom}` : `${pdfUrl}#zoom=${zoom}`}
+              className="w-full h-full rounded-b-xl"
+              title={title}
+              onLoad={handleLoad}
+              onError={handleError}
+              style={{
+                border: 'none',
+                background: '#f5f3ed'
+              }}
+            />
+          )}
           {!initialLoad && loading && (
             <div className="absolute bottom-4 right-4 bg-foreground/90 text-background px-4 py-2 rounded-lg text-sm">
               Loading full document…

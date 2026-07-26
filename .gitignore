@@ -41,3 +41,6 @@ dist-ssr
 # Next.js (Phase 2 port)
 /.next/
 next-env.d.ts
+
+# Netlify build/runtime artifacts (local `netlify build` output)
+/.netlify/
