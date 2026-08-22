@@ -1,22 +1,25 @@
 // app/page.tsx — editorial front page (server port of src/views/Index.tsx).
 //
-// Structure:
+// Structure (owner direction 2026-08-22 — the articles carry the page; no
+// featured case):
 //   1. Hero — plain-English statement of what this site is, two CTAs
-//   2. Featured case dossier — Kirchner v. Johnson (operative pleading, deadlines)
+//      (primary: the academic articles)
+//   2. Academic articles shelf — the manuscript collection, lead + grid
 //   3. Three-case status strip
-//   4. Featured work — full inline reading (CMS `featured` flags, same as ever:
-//      Declaration of Humanity first via featured_order)
+//   4. Featured work — full inline reading (CMS `featured` flags, same as
+//      ever: Declaration of Humanity first via featured_order)
 //
 // Case status lines are editorial content shared with the vite renderer —
-// update src/data/homeContent.ts as the dockets move. Document counts are
-// derived from the content manifest at build time.
+// update src/data/homeContent.ts as the dockets move. Document counts and
+// article counts are derived from the content manifest at build time.
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Reveal } from '@/components/Reveal';
-import { ArrowRight, Scale, CalendarClock } from 'lucide-react';
-import { FEATURED_CASE, CASE_STRIP } from '@/data/homeContent';
-import { getCollection } from '@/lib/content-manifest';
+import { ArrowRight, BookOpen } from 'lucide-react';
+import { ARTICLE_SHELF, CASE_STRIP } from '@/data/homeContent';
+import { getCollection, getComposition } from '@/lib/content-manifest';
+import { compositionUrl, sectionUrl } from '@/utils/urls';
 import { SitePageLayout } from './_components/SitePageLayout';
 import { FeaturedWork } from './_components/FeaturedWork';
 
@@ -42,6 +45,21 @@ export default function Home() {
   const totalCaseDocs = constitutional.reduce((sum, c) => sum + (c.sections?.length || 0), 0);
   const docCountFor = (match: string) =>
     constitutional.find(c => c.title.toLowerCase().includes(match))?.sections?.length || null;
+
+  // Articles shelf: editorial order + blurbs from ARTICLE_SHELF, everything
+  // else derived from the manuscript collection. Missing slugs drop out.
+  const shelf = ARTICLE_SHELF.map(entry => ({
+    entry,
+    comp: getComposition('manuscript', entry.slug),
+  })).filter((x): x is { entry: (typeof ARTICLE_SHELF)[number]; comp: NonNullable<ReturnType<typeof getComposition>> } => !!x.comp);
+  const [leadItem, ...shelfRest] = shelf;
+  const lead = leadItem?.entry;
+  const leadComp = leadItem?.comp;
+  const leadFeatured = leadComp
+    ? leadComp.sections
+        .filter(s => s.featured)
+        .sort((a, b) => (a.featured_order || 999) - (b.featured_order || 999))
+    : [];
 
   return (
     <SitePageLayout>
@@ -91,8 +109,8 @@ export default function Home() {
                 className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm hover:shadow-md"
                 asChild
               >
-                <Link href={FEATURED_CASE.operativeHref}>
-                  Read the operative complaint
+                <Link href="/composition/manuscript">
+                  Explore the academic articles
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
@@ -102,75 +120,93 @@ export default function Home() {
                 className="bg-card text-foreground border-border shadow-sm hover:shadow-md hover:bg-secondary/60"
                 asChild
               >
-                <Link href="/composition/manuscript">Explore the research</Link>
+                <Link href="/composition/constitutional">The litigation record</Link>
               </Button>
             </div>
           </Reveal>
         </section>
 
-        {/* ------------------------------------- 2. Featured case dossier */}
+        {/* ------------------------------------ 2. Academic articles shelf */}
         <section className="max-w-4xl mx-auto mb-16">
           <Reveal>
-            <Eyebrow>Featured case</Eyebrow>
-            <div className="bg-card border border-border rounded-xl shadow-sm p-8 md:p-10">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-lg bg-primary/15 flex-shrink-0 hidden sm:block">
-                  <Scale className="h-6 w-6 text-primary" />
-                </div>
-                <div className="min-w-0">
-                  <h2
-                    className="font-serif text-foreground"
-                    style={{ fontSize: '1.75rem', fontWeight: 580, letterSpacing: '-0.018em', lineHeight: 1.2 }}
-                  >
-                    {FEATURED_CASE.caption}
-                  </h2>
-                  <p className="text-sm text-muted-foreground mt-1 font-sans" style={{ fontVariantNumeric: 'tabular-nums' }}>
-                    {FEATURED_CASE.court} · {FEATURED_CASE.caseNo} · {FEATURED_CASE.judge}
-                  </p>
-                </div>
-              </div>
-
-              <p className="font-serif text-foreground/90 mt-5" style={{ fontSize: '1.0625rem', lineHeight: 1.65 }}>
-                A pro se constitutional action against {FEATURED_CASE.defendants} —
-                alleging coordinated constitutional violations across government and
-                the AI industry.
-              </p>
-
-              <div className="flex flex-wrap gap-x-6 gap-y-2 mt-5 text-sm text-muted-foreground font-sans">
-                <span>
-                  <span className="text-foreground/85" style={{ fontWeight: 600 }}>Operative pleading:</span>{' '}
-                  {FEATURED_CASE.operative}
-                </span>
-                {docCountFor('johnson') && (
-                  <span>
-                    <span className="text-foreground/85" style={{ fontWeight: 600 }}>Docket on this site:</span>{' '}
-                    {docCountFor('johnson')} documents
-                  </span>
-                )}
-              </div>
-
-              <div className="mt-5 bg-secondary border border-border border-l-2 border-l-primary rounded-md px-4 py-3 flex items-start gap-3">
-                <CalendarClock className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                <p className="text-sm text-foreground/85 font-sans">{FEATURED_CASE.deadline}</p>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-3 mt-6">
-                <Button
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm hover:shadow-md"
-                  asChild
-                >
-                  <Link href={FEATURED_CASE.operativeHref}>Read the complaint</Link>
-                </Button>
-                <Button
-                  variant="outline"
-                  className="bg-card text-foreground border-border shadow-sm hover:shadow-md hover:bg-secondary/60"
-                  asChild
-                >
-                  <Link href={FEATURED_CASE.href}>Case overview</Link>
-                </Button>
-              </div>
-            </div>
+            <Eyebrow>The academic articles</Eyebrow>
           </Reveal>
+          {lead && leadComp && (
+            <Reveal>
+              <div className="bg-card border border-border rounded-xl shadow-sm p-8 md:p-10">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-lg bg-primary/15 flex-shrink-0 hidden sm:block">
+                    <BookOpen className="h-6 w-6 text-primary" />
+                  </div>
+                  <div className="min-w-0">
+                    <h2
+                      className="font-serif text-foreground"
+                      style={{ fontSize: '1.75rem', fontWeight: 580, letterSpacing: '-0.018em', lineHeight: 1.2 }}
+                    >
+                      {leadComp.title}
+                    </h2>
+                    <p className="text-sm text-muted-foreground mt-1 font-sans" style={{ fontVariantNumeric: 'tabular-nums' }}>
+                      {leadComp.sections.length} articles
+                    </p>
+                  </div>
+                </div>
+
+                <p className="font-serif text-foreground/90 mt-5" style={{ fontSize: '1.0625rem', lineHeight: 1.65 }}>
+                  {lead.blurb}
+                </p>
+
+                <div className="mt-5">
+                  {leadFeatured.map(s => (
+                    <Link
+                      key={s.slug}
+                      href={sectionUrl(leadComp, s)}
+                      className="group flex items-start gap-2.5 rounded-md px-2.5 py-2 -mx-2.5 hover:bg-secondary transition-colors"
+                    >
+                      <BookOpen className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                      <p
+                        className="text-sm text-foreground group-hover:text-primary transition-colors leading-snug font-sans"
+                        style={{ fontWeight: 550 }}
+                      >
+                        {s.title}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-3 mt-6">
+                  <Button
+                    className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm hover:shadow-md"
+                    asChild
+                  >
+                    <Link href={compositionUrl(leadComp)}>Start reading</Link>
+                  </Button>
+                </div>
+              </div>
+            </Reveal>
+          )}
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            {shelfRest.map(({ entry, comp }, i) => (
+              <Reveal key={entry.slug} delay={i * 80}>
+                <Link
+                  href={compositionUrl(comp)}
+                  className="group bg-card border border-border rounded-lg p-5 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-200 flex flex-col h-full"
+                >
+                  <h3
+                    className="font-serif text-foreground group-hover:text-primary transition-colors"
+                    style={{ fontSize: '1.125rem', fontWeight: 580, letterSpacing: '-0.014em', lineHeight: 1.3 }}
+                  >
+                    {comp.title}
+                  </h3>
+                  <p className="text-sm text-foreground/85 mt-3 font-sans flex-grow">{entry.blurb}</p>
+                  <p className="text-sm text-primary mt-4 font-sans inline-flex items-center" style={{ fontWeight: 500 }}>
+                    {comp.sections.length > 1 ? `${comp.sections.length} articles` : 'Read'}
+                    <ArrowRight className="ml-1.5 h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+                  </p>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
         </section>
 
         {/* ------------------------------------------ 3. Three-case strip */}

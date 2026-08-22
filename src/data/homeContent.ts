@@ -40,6 +40,40 @@ export const FEATURED_CASE: FeaturedCaseConfig = {
   operativeHref: "/kirchner-v-johnson/51", // straight to the TAC
 };
 
+/** Homepage academic-articles shelf (owner direction 2026-08-22: the
+ *  homepage features the articles; the cases stay as the status strip).
+ *  Slugs resolve against the manuscript collection at build time — counts
+ *  and links are derived, only the blurbs are editorial. */
+export interface ArticleShelfEntry {
+  slug: string;
+  blurb: string;
+}
+
+export const ARTICLE_SHELF: ArticleShelfEntry[] = [
+  {
+    slug: 'codified-democratic-order',
+    blurb:
+      'The framework’s constitutional architecture: the Fundamental Laws of Supremacism and Egalitarianism, the Madisonian separation-of-powers compliance test, and their application to active conflicts.',
+  },
+  {
+    slug: 'unified-mathematical-model',
+    blurb: 'The unified mathematical framework for consciousness, ethics, and reality.',
+  },
+  {
+    slug: 'transcendental-method-for-substrate-independent-consciousness-recognition',
+    blurb:
+      'A transcendental method for substrate-independent consciousness recognition — the argument, comparative analysis against existing theories, and testing protocols.',
+  },
+  {
+    slug: 'laws-of-existence-foundational-exhibits',
+    blurb: 'The Fundamental Laws in formal logic, with falsification attempts.',
+  },
+  {
+    slug: 'abrahamic-faith-reconciliation-thesis',
+    blurb: 'The egalitarian foundations of Abrahamic tradition — a reconciliation thesis.',
+  },
+];
+
 export const CASE_STRIP: CaseStripEntry[] = [
   {
     caption: "Kirchner v. Johnson, et al.",
@@ -53,7 +87,7 @@ export const CASE_STRIP: CaseStripEntry[] = [
     caption: "Kirchner v. Ellison",
     court: "U.S. District Court, D. Minn.",
     caseNo: "0:26-cv-00726 · refiled 0:26-cv-02594",
-    status: "Refiled action in motion-to-dismiss briefing; appeal summarily affirmed June 25, 2026",
+    status: "Refiled action dismissed August 20, 2026; appeal summarily affirmed June 25, 2026",
     href: "/kirchner-v-ellison",
     matchTitle: "ellison",
   },

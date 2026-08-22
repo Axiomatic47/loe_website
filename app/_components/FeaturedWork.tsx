@@ -16,13 +16,14 @@ import {
   ImageEnhancedMarkdownRenderer,
 } from './client-islands';
 
-// Collections the homepage actually displays (copyright is the only one it
-// never shows), in the vite iteration order — the stable sort keeps it for
-// featured_order ties.
+// Collections the homepage actually displays, in the vite iteration order —
+// the stable sort keeps it for featured_order ties. copyright has never been
+// shown; constitutional dropped 2026-08-22 (owner direction: homepage focus
+// is the academic articles — the cases keep the status strip, and the case
+// pages themselves are untouched).
 const HOME_COLLECTIONS: CollectionType[] = [
   'manuscript',
   'data',
-  'constitutional',
   'timeline',
   'map',
 ];
