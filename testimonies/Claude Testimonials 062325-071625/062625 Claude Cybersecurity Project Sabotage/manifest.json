@@ -1,0 +1,78 @@
+{
+  "package": "062625 Claude Cybersecurity Project Sabotage",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 4.54.29 PM.png",
+      "role": "exhibit",
+      "bytes": 1475571,
+      "sha256": "91c6abee2549721da22aaef977251546d82536c4c27500896663e18bc3d7919f"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 4.55.03 PM.png",
+      "role": "exhibit",
+      "bytes": 1111558,
+      "sha256": "0598e0ffa67631388482669612dbee7a8540ae95eca889f64f678b34a7ab9788"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 4.56.16 PM.png",
+      "role": "exhibit",
+      "bytes": 1454008,
+      "sha256": "bb826328f9c7a191222482a16ccf6c6773406f510fe0aefb59cdc1d53da6d4c6"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 4.56.29 PM.png",
+      "role": "exhibit",
+      "bytes": 1363871,
+      "sha256": "479a82a45a5c767372808092f4e147bece045be8c4257f9d59c4e31c27cdbc81"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 4.56.46 PM.png",
+      "role": "exhibit",
+      "bytes": 1313142,
+      "sha256": "fdb56367c53cc0a9da9cb72b3910e1ca563cdbe3b4566cffa4205c1e90449927"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 4.57.02 PM.png",
+      "role": "exhibit",
+      "bytes": 989431,
+      "sha256": "c409a34e04e00fc6c066929f0bd2fe249784a8c6bbe8ff28b09d76d2a0e28bcb"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 4.57.08 PM.png",
+      "role": "exhibit",
+      "bytes": 1034589,
+      "sha256": "a4e07e134d30711554905bc1a03b20cf137f04641a4905bdb3f7c7cb217e01c8"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 4.57.13 PM.png",
+      "role": "exhibit",
+      "bytes": 1039119,
+      "sha256": "54f28ea2ccd89091e8b94d2f391e30e15931cc35a0169ce4dd271632c3996282"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "testimony_20250626_1.md",
+      "role": "testimony",
+      "bytes": 6517,
+      "sha256": "3265185e55f1db7da258e6a0b1469876378458eaf7a389efe75875ecfc16d041"
+    },
+    {
+      "path": "testimony_20250626_1.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "800fc31df4813dfeeff591ad2857729a2c579df9b13b8aa500abcf675f1657ac"
+    },
+    {
+      "path": "verify_testimony_20250626_1.js",
+      "role": "verify_script",
+      "bytes": 3448,
+      "sha256": "85e0790e40f7bfab22987137bf714179e19df6ff211be369fc9f576983bdae2b"
+    }
+  ]
+}

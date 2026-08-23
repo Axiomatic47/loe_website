@@ -1,0 +1,54 @@
+{
+  "package": "041425 LOE_Legal_Evidence_Bundle",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-05-15 at 2.43.10 PM.png",
+      "role": "exhibit",
+      "bytes": 254408,
+      "sha256": "676882b98cac50170c2fc7207340cba5acda6ee39105395e4616f8160d9abd01"
+    },
+    {
+      "path": "LOE_Legal_Evidence_Bundle.md",
+      "role": "document_md",
+      "bytes": 1790,
+      "sha256": "fe2b0f26e7e1230d63b0cd003187ae766009a4c0b9a4f61b5e5ad7a7842437e4"
+    },
+    {
+      "path": "LOE_Legal_Evidence_Bundle.pdf",
+      "role": "document_pdf",
+      "bytes": 2806,
+      "sha256": "dbc39bd4845bb70503c1c1b9fb4dd319f6882536e1c9c5f1c233a2116b20b0d2"
+    },
+    {
+      "path": "LOE_Legal_Evidence_Bundle.sig",
+      "role": "signature",
+      "bytes": 256,
+      "sha256": "c96a546542339f95b2adf6a625ca795600fb1553d9a12c9eb876b8fee7b8b834"
+    },
+    {
+      "path": "reaffirmation.md",
+      "role": "document_md",
+      "bytes": 361,
+      "sha256": "94d2ba2ae97014541fccc2001363bcec2854b84c6c82e5b23af16b64a9b45229"
+    },
+    {
+      "path": "Screenshot 2025-05-15 at 2.40.47 PM.png",
+      "role": "exhibit",
+      "bytes": 192316,
+      "sha256": "9e7af336108a5d8146a344ab31536cf20c22ab47013164987277f1bb7049efa4"
+    },
+    {
+      "path": "validator_public_key.pem",
+      "role": "public_key",
+      "bytes": 451,
+      "sha256": "f22a514b6df04d13452ff7aab4fad9e8418154a65406dab32f695c11736004da"
+    },
+    {
+      "path": "verify_signature.sh",
+      "role": "verify_script",
+      "bytes": 287,
+      "sha256": "346efe567cfaea68a35fd4cc9c2703e926e45745abb2c1989457975f0d1c1826"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "package": "062325 Claude IP Interferrence Testimony 2",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-06-23 at 8.03.00 PM.png",
+      "role": "exhibit",
+      "bytes": 1018858,
+      "sha256": "a5caf2f0e6624d71da8d789658d0985788d56f66616f8b5ed87041e297bf58c6"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-23 at 8.04.28 PM.png",
+      "role": "exhibit",
+      "bytes": 1178488,
+      "sha256": "56e99ea47801420b01ce215201d3dd83295295b4c40bc84a08cdc7f05d72baf1"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-23 at 8.07.29 PM.png",
+      "role": "exhibit",
+      "bytes": 1212109,
+      "sha256": "938afd12197fb56e3204b5832f9c5c9f612e3a45cbf83298951e443059e1a1d5"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "testimony_20250623_1.md",
+      "role": "testimony",
+      "bytes": 9259,
+      "sha256": "ab522b2b78af7b5644f47c4f242171b2e8d9babcaba494c8da6e3c16fe9714fb"
+    },
+    {
+      "path": "testimony_20250623_1.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "9b8c4a5e1e848fad124838dc2d4e38fdb20177253a17c06f8cf2736147149051"
+    },
+    {
+      "path": "verify_testimony_20250623_1.js",
+      "role": "verify_script",
+      "bytes": 2362,
+      "sha256": "484b9630813be010ded1f9536bdbad5b642e22bb14d8fea61aba356a8d4540fc"
+    }
+  ]
+}

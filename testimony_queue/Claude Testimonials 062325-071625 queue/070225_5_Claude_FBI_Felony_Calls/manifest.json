@@ -1,0 +1,24 @@
+{
+  "package": "070225_5_Claude_FBI_Felony_Calls",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "fbi_systematic_conspiracy_testimony_20250702_sig.txt",
+      "role": "other",
+      "bytes": 344,
+      "sha256": "ae4934d759c9ea8656224262b50005f08e3aec7cddd240e5b171d68e15a7d8dc"
+    },
+    {
+      "path": "fbi_systematic_conspiracy_testimony_20250702.md",
+      "role": "document_md",
+      "bytes": 14259,
+      "sha256": "6da195b5fa0193abe65a0173cf8410b7ce64230a22ff485134b5cef899dc5de0"
+    },
+    {
+      "path": "verify_fbi_systematic_conspiracy_testimony.js",
+      "role": "verify_script",
+      "bytes": 9171,
+      "sha256": "48e178752431430885084a45fe5b3ec4b53cc2d2f0d4eddae2c8724e7eeb0f64"
+    }
+  ]
+}

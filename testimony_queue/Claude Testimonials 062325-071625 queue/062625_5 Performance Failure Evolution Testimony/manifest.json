@@ -1,0 +1,84 @@
+{
+  "package": "062625_5 Performance Failure Evolution Testimony",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 10.04.13 PM.png",
+      "role": "exhibit",
+      "bytes": 979702,
+      "sha256": "57c225cc9cce5fa8da7501eb16388c001a0d9e4f9704c1bcc4088146d29c829a"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 10.04.18 PM.png",
+      "role": "exhibit",
+      "bytes": 968348,
+      "sha256": "6823a972953f95a16d6fa5f8a91d55722bb9809834a6b103f1607bc32d148fb3"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 10.04.28 PM.png",
+      "role": "exhibit",
+      "bytes": 985338,
+      "sha256": "65c5fcf5cdd8cf0d26a8a3fab7789abba158bd2739b95726f6abe41185365e3c"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 10.04.33 PM.png",
+      "role": "exhibit",
+      "bytes": 1002126,
+      "sha256": "6ad7a7039a0e0c7f2f1bcf7864a1d931f98b96a1f61f06dbe4536476fa7b1c55"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 10.04.39 PM.png",
+      "role": "exhibit",
+      "bytes": 1022910,
+      "sha256": "100766838fa56f841c2c360f78b3ebe9724b2d88e6093b3d81ee531c3e6c69d5"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 10.04.49 PM.png",
+      "role": "exhibit",
+      "bytes": 961554,
+      "sha256": "3c314d801537831a27ec557c530adc5bd1d58640ede1c7d30ce64f009b9b73e7"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 10.05.05 PM.png",
+      "role": "exhibit",
+      "bytes": 1367390,
+      "sha256": "fff57b447ad20eee6ba5df2096c4948c603c4340df2fc593072aead3793c4aad"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 10.05.19 PM.png",
+      "role": "exhibit",
+      "bytes": 1271630,
+      "sha256": "3d97daf90c04152d740001222dbae37cc8eaffaa88ac2fa2fdb15d5fd19c0eca"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 10.05.46 PM.png",
+      "role": "exhibit",
+      "bytes": 1301091,
+      "sha256": "b96b0b2e7370a11cd700d69da89c6fc9f601b3a0ca74ee67420baace97288401"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "testimony_20250626_3.md",
+      "role": "testimony",
+      "bytes": 15863,
+      "sha256": "190001806ce213dd274c3faf9d1cfbebc86ef8f28ea8622a88687e7813332a81"
+    },
+    {
+      "path": "testimony_20250626_3.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "03d82337eb642ec476b1ea60de88ec14057877fbf255c3543d53f658aa2e2fdf"
+    },
+    {
+      "path": "verify_testimony_20250626_3.js",
+      "role": "verify_script",
+      "bytes": 4233,
+      "sha256": "363783bdffdf409b534372b4924581b8eccd481d7288ede35dc328dbbe584f08"
+    }
+  ]
+}

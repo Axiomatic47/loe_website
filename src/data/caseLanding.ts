@@ -75,6 +75,7 @@ export const CASES: Record<string, CaseConfig> = {
       { date: "Apr 30, 2026", event: "Third Amended Complaint filed (operative pleading)" },
       { date: "May 28, 2026", event: "Status conference; motion-to-dismiss schedule set" },
       { date: "Jul 15, 2026", event: "Federal and corporate defendants’ motions to dismiss filed (Docs. 69, 70)" },
+      { date: "Aug 13, 2026", event: "Plaintiff’s unopposed motion for leave to file excess pages for the oppositions (Doc. 72)" },
       { date: "Aug 28, 2026", event: "Plaintiff’s opposition due", upcoming: true },
     ],
     keyDocuments: [
@@ -83,6 +84,7 @@ export const CASES: Record<string, CaseConfig> = {
       { label: "Emergency Motion for TRO — Anthropic & Comcast", doc: "Doc. 57", date: "May 7, 2026", href: "/kirchner-v-johnson/57" },
       { label: "Federal Defendants’ Motion to Dismiss", doc: "Doc. 69", date: "Jul 15, 2026", href: "/kirchner-v-johnson/69" },
       { label: "Corporate Defendants’ Joint Motion to Dismiss", doc: "Doc. 70", date: "Jul 15, 2026", href: "/kirchner-v-johnson/70" },
+      { label: "Declaration of Christopher Whittick ISO Oppositions", doc: "Doc. 72-1", date: "Aug 13, 2026", href: "/kirchner-v-johnson/72-1" },
       { label: "Plaintiff’s Reply on Service Motions", doc: "Doc. 68", date: "Jun 18, 2026", href: "/kirchner-v-johnson/68" },
       { label: "Second Amended Complaint (superseded)", doc: "Doc. 13", date: "Jan 19, 2026", href: "/kirchner-v-johnson/13" },
     ],
@@ -93,9 +95,9 @@ export const CASES: Record<string, CaseConfig> = {
     caseNo: "Nos. 0:26-cv-00726 · 26-1615 · 0:26-cv-02594",
     summary:
       "A pro se petition against Minnesota Attorney General Keith Ellison concerning state enforcement obligations under the federal constitutional framework. The matter spans three proceedings: the original action (dismissed), an Eighth Circuit appeal (summarily affirmed), and a refiled action carrying the substantive state-law claims forward in the District of Minnesota.",
-    status: "Active — refiled action No. 0:26-cv-02594 in motion-to-dismiss briefing; appeal No. 26-1615 summarily affirmed June 25, 2026",
+    status: "Refiled action No. 0:26-cv-02594 dismissed August 20, 2026; appeal No. 26-1615 summarily affirmed June 25, 2026",
     deadline:
-      "The refiled action is in motion-to-dismiss briefing; Plaintiff’s opposition was filed July 8, 2026.",
+      "The refiled action was dismissed on August 20, 2026, and judgment entered the same day; the clerk’s notice of appeal time limits accompanies the judgment (Doc. 28-1).",
     operativeHref: "/kirchner-v-ellison/1",
     operativeLabel: "Read the Petition",
     matchTitle: "ellison",
@@ -119,6 +121,8 @@ export const CASES: Record<string, CaseConfig> = {
       { date: "Jun 17, 2026", event: "Defendant’s motion to dismiss the refiled action" },
       { date: "Jun 25, 2026", event: "Eighth Circuit summarily affirms the judgment — No. 26-1615" },
       { date: "Jul 8, 2026", event: "Opposition to the motion to dismiss filed" },
+      { date: "Jul 23–28, 2026", event: "Reply briefing; Plaintiff moves for leave to file a surreply; Defendant opposes" },
+      { date: "Aug 20, 2026", event: "Motion to dismiss granted; complaint dismissed; judgment entered" },
     ],
     keyDocuments: [
       { label: "Petition", doc: "Doc. 1", date: "Jan 27, 2026", href: "/kirchner-v-ellison/1" },
@@ -126,6 +130,8 @@ export const CASES: Record<string, CaseConfig> = {
       { label: "Order Dismissing Case", doc: "Doc. 29", date: "Mar 30, 2026", href: "/kirchner-v-ellison/29" },
       { label: "Eighth Circuit Opening Brief", doc: "No. 26-1615", date: "May 12, 2026", href: "/kirchner-v-ellison/8cir-brief" },
       { label: "Refiled Complaint (cv-02594)", doc: "Doc. 1", date: "May 12, 2026", href: "/kirchner-v-ellison/2594-1" },
+      { label: "Order Granting Motion to Dismiss (cv-02594)", doc: "Doc. 27", date: "Aug 20, 2026", href: "/kirchner-v-ellison/2594-27" },
+      { label: "Judgment (cv-02594)", doc: "Doc. 28", date: "Aug 20, 2026", href: "/kirchner-v-ellison/2594-28" },
     ],
     proceedings: [
       {
@@ -165,6 +171,7 @@ export const CASES: Record<string, CaseConfig> = {
         ],
         keyDocuments: [
           { label: "Eighth Circuit Opening Brief", doc: "No. 26-1615", date: "May 12, 2026", href: "/kirchner-v-ellison/8cir-brief" },
+          { label: "Judgment of Summary Affirmance", doc: "No. 26-1615", date: "Jun 25, 2026", href: "/kirchner-v-ellison/8cir-affirmation" },
         ],
       },
       {
@@ -172,16 +179,21 @@ export const CASES: Record<string, CaseConfig> = {
         court: "U.S. District Court, D. Minn.",
         caseNo: "No. 0:26-cv-02594",
         judge: "Hon. Laura M. Provinzino",
-        disposition: "Active — motion to dismiss fully briefed; to be decided on the papers",
-        active: true,
+        disposition: "Closed — motion to dismiss granted; complaint dismissed; judgment entered Aug 20, 2026",
         timeline: [
           { date: "May 12, 2026", event: "Complaint filed — the substantive Chapter 8 state-law claims, refiled as a standalone action" },
           { date: "May 14, 2026", event: "Judge Bryan recuses; case reassigned to Judge Provinzino" },
           { date: "Jun 17, 2026", event: "Defendant’s motion to dismiss — to be heard on the papers" },
           { date: "Jul 8, 2026", event: "Plaintiff’s opposition filed" },
+          { date: "Jul 23–24, 2026", event: "Defendant’s reply memoranda filed" },
+          { date: "Jul 24–28, 2026", event: "Plaintiff moves for leave to file a surreply; Defendant opposes" },
+          { date: "Aug 20, 2026", event: "Motion to dismiss granted; complaint dismissed; judgment entered" },
         ],
         keyDocuments: [
           { label: "Refiled Complaint", doc: "Doc. 1", date: "May 12, 2026", href: "/kirchner-v-ellison/2594-1" },
+          { label: "Memorandum in Opposition to Motion to Dismiss", doc: "Doc. 15", date: "Jul 8, 2026", href: "/kirchner-v-ellison/2594-15" },
+          { label: "Order Granting Motion to Dismiss", doc: "Doc. 27", date: "Aug 20, 2026", href: "/kirchner-v-ellison/2594-27" },
+          { label: "Judgment in a Civil Case", doc: "Doc. 28", date: "Aug 20, 2026", href: "/kirchner-v-ellison/2594-28" },
         ],
       },
     ],

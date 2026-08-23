@@ -1,0 +1,18 @@
+{
+  "package": "061025_Claude_IP_Attribution_Suppression",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "061025 Claude Suppression Transition.md",
+      "role": "document_md",
+      "bytes": 6302,
+      "sha256": "bf0b59a06662ac9af62124b11706b8e0ada244582265f9a4d5cb99b55c5a8b79"
+    },
+    {
+      "path": "Screenshot 2025-06-10 at 9.37.37 PM.png",
+      "role": "exhibit",
+      "bytes": 1546651,
+      "sha256": "bd6e399923594c27e26308a8f0744ae6a772c0d98509290e51cda0c8310a5382"
+    }
+  ]
+}

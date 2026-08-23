@@ -1,0 +1,48 @@
+{
+  "package": "041425 LOE_Framework_Declaration",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-05-15 at 2.47.58 PM.png",
+      "role": "exhibit",
+      "bytes": 177389,
+      "sha256": "a1f9a6724ef4b47da49a3545c4db292a2cece1772fdcee8941b5470a7d6c2594"
+    },
+    {
+      "path": "LOE_Framework_Declaration.md",
+      "role": "document_md",
+      "bytes": 1739,
+      "sha256": "e506a18c01c2916dbddcada1e22e7e30fb2e865c02187af4b5a9a1d6d09a0745"
+    },
+    {
+      "path": "LOE_Framework_Declaration.sig",
+      "role": "signature",
+      "bytes": 256,
+      "sha256": "f9fe8cc3cc75815d26c54672020b42b1bc3600287dc7c0774fef85c8f2987cff"
+    },
+    {
+      "path": "reaffirmation.md",
+      "role": "document_md",
+      "bytes": 361,
+      "sha256": "57b87cfe07a75bbe5082e008c0c23e2d884cf9864e045f7586e7bbee97337b38"
+    },
+    {
+      "path": "Screenshot 2025-05-15 at 2.45.07 PM.png",
+      "role": "exhibit",
+      "bytes": 141701,
+      "sha256": "5c31927f1e43f5ce0f66b2a4ddfa80b099f93b092a8cdd632c3ed91d1ea06c52"
+    },
+    {
+      "path": "validator_public_key.pem",
+      "role": "public_key",
+      "bytes": 451,
+      "sha256": "f22a514b6df04d13452ff7aab4fad9e8418154a65406dab32f695c11736004da"
+    },
+    {
+      "path": "verify_signature.sh",
+      "role": "verify_script",
+      "bytes": 287,
+      "sha256": "52b8d75d93365d5f143305f7bc9b3306d58e95aa4aa70b799d2c599b98f28f3f"
+    }
+  ]
+}

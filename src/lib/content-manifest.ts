@@ -396,6 +396,27 @@ export function getSection(composition: Composition, sectionSlug: string): Secti
 }
 
 /**
+ * The most recently filed section of a composition: the latest MAIN docket
+ * entry. Attachments (slug = `<parent-slug>-<n>` where the parent is itself
+ * a section, e.g. 72-1 or 2594-28-1) never headline — they ride along in the
+ * reader. Latest `date` wins; within a same-day batch the later docket
+ * position (array order) wins, so a judgment headlines over its order.
+ */
+export function getLatestSection(composition: Composition): Section | undefined {
+  const slugs = new Set(composition.sections.map(s => s.slug));
+  const isAttachment = (slug: string) => {
+    const m = slug.match(/^(.+)-\d+$/);
+    return !!m && slugs.has(m[1]);
+  };
+  let latest: Section | undefined;
+  for (const s of composition.sections) {
+    if (isAttachment(s.slug)) continue;
+    if (!latest || (s.date || '') >= (latest.date || '')) latest = s;
+  }
+  return latest ?? composition.sections[composition.sections.length - 1];
+}
+
+/**
  * Resolve a raw :docId path segment against a case's sections using the same
  * normalization the vite router applies (doc-prefix drop, zero-stripping).
  * Unknown ids return undefined — callers 404 or land, never index-fallback.

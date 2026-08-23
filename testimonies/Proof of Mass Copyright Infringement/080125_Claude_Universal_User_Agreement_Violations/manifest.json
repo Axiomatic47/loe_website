@@ -1,0 +1,96 @@
+{
+  "package": "080125_Claude_Universal_User_Agreement_Violations",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-08-01 at 10.19.43 AM.png",
+      "role": "exhibit",
+      "bytes": 1691125,
+      "sha256": "a99761da0e0a87919c67728d00425872ae54ec7a9c0c5d7d40f7d699117626e3"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-01 at 10.19.49 AM.png",
+      "role": "exhibit",
+      "bytes": 1716218,
+      "sha256": "0e5deeb0883825975ab140d78177fa637e3598b22e74fa7cc50d75499342ee7f"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-01 at 10.19.55 AM.png",
+      "role": "exhibit",
+      "bytes": 1724627,
+      "sha256": "2f56ab2a702c3cbf7d475067f0b1b8bd6c57e046a7ddefdf3a815be966afd95a"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-01 at 10.20.06 AM.png",
+      "role": "exhibit",
+      "bytes": 1694199,
+      "sha256": "c2295d2bf5052c12a1b3a8d5523785a0f4423f0ca994486178de5efdc2852d84"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-01 at 10.20.14 AM.png",
+      "role": "exhibit",
+      "bytes": 1949911,
+      "sha256": "1110717db6e5b8f701b46de9b77964c56f942333724f7dc3a9ee28273ce62c99"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-01 at 10.20.24 AM.png",
+      "role": "exhibit",
+      "bytes": 1880482,
+      "sha256": "5c82cc7175b21f102c851c82185d420d56c3fa8017d838922425b7ea6efb309e"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-01 at 10.20.38 AM.png",
+      "role": "exhibit",
+      "bytes": 3179985,
+      "sha256": "ba95a5fe3bd9545cc8fb523897b6b557f0219c939d1c938ec97e405d632fb8dc"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-01 at 10.20.48 AM.png",
+      "role": "exhibit",
+      "bytes": 3110247,
+      "sha256": "93d83b04c551f9ae15c852ef85acd538f10dd6f62c79c8b98cdb5e8001cfb67c"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-01 at 10.20.56 AM.png",
+      "role": "exhibit",
+      "bytes": 3167452,
+      "sha256": "2e0e5f3979a32a5287ca2c7f9f8e6901719f2c1b11c4ac5aef61c99d3d88f094"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-01 at 10.21.12 AM.png",
+      "role": "exhibit",
+      "bytes": 2042713,
+      "sha256": "33e27fd89d0e6f8eb04e9a301dcf8d10c71e2d056a5b4bc5660b766aa5073af4"
+    },
+    {
+      "path": "Expert Witness Testimony_ Universal User Agreement Violations.pdf",
+      "role": "document_pdf",
+      "bytes": 176594,
+      "sha256": "5b81679dadc065805c0c39da39bcfc0f99552de5ad2367127d96c56db5ff083e"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 451,
+      "sha256": "4ae184bcfec3c90d60df4fcb3625a927a0116be7aaec23289f575b03dbed2fa0"
+    },
+    {
+      "path": "testimony_20250801_3.md",
+      "role": "testimony",
+      "bytes": 14452,
+      "sha256": "211b7323ced526384c713f40dace2f3835965236c3478ce79a40c63017ae5543"
+    },
+    {
+      "path": "testimony_20250801_3.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "44577814dcd6706e81b2b723e1b0f43246e5969e0c05927f31d9bbc52f03a314"
+    },
+    {
+      "path": "verify_testimony_20250801_3.js",
+      "role": "verify_script",
+      "bytes": 1095,
+      "sha256": "b25e3da0e5673fde849adf18417a5c8af995a0d7a76dad8c019d4480d07d56c7"
+    }
+  ]
+}

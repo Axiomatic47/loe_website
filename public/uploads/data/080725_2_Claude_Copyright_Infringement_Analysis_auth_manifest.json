@@ -1,0 +1,102 @@
+{
+  "package": "080725_2_Claude_Copyright_Infringement_Analysis",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-08-07 at 9.10.20 AM.png",
+      "role": "exhibit",
+      "bytes": 699954,
+      "sha256": "8b6b1f97840aa2720f9dbb9e5fa641e3b7c6294afc4a57c5f6e74633e652348b"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-07 at 9.10.27 AM.png",
+      "role": "exhibit",
+      "bytes": 653542,
+      "sha256": "4891fb564037ed5fa0e42d1b5dec8c9f2cc9ad0c4c43f5b04770103a3ade127b"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-07 at 9.10.38 AM.png",
+      "role": "exhibit",
+      "bytes": 656848,
+      "sha256": "2f7b5431589f2ff0a54f3f5569ce6f5aae844760c1997ce7fc5f511973b39898"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-07 at 9.10.59 AM.png",
+      "role": "exhibit",
+      "bytes": 651288,
+      "sha256": "f0b6ad57e44f9760ac7434acd4e6b5c532edb07a8b850284c4d09d0d5c05d62a"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-07 at 9.11.13 AM.png",
+      "role": "exhibit",
+      "bytes": 630892,
+      "sha256": "7ab0c1f1fea4030c801ab21d2023c427491bbbe166af5837fbb21e3b62561c51"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-07 at 9.11.19 AM.png",
+      "role": "exhibit",
+      "bytes": 678908,
+      "sha256": "4f1bd79b2230e1249e861893c4c9129553a21afadcfc4caf9e4d3bc1705aeb04"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-07 at 9.11.32 AM.png",
+      "role": "exhibit",
+      "bytes": 600934,
+      "sha256": "2b6e758c267c92b45c98c08794dabe894a8744601b733cb7f812fa6b24f4c06a"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-07 at 9.12.51 AM.png",
+      "role": "exhibit",
+      "bytes": 1314713,
+      "sha256": "cf2af98642fc4674fe5bcd246537496f8c86d9f755275acea6bb1e59eb6dff53"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-07 at 9.13.01 AM.png",
+      "role": "exhibit",
+      "bytes": 1313088,
+      "sha256": "ab1896fed255a34d5a1bc41b18dd43111442a8a6392273b0847ef7649e41ef54"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-07 at 9.15.24 AM.png",
+      "role": "exhibit",
+      "bytes": 921888,
+      "sha256": "0c90ea3071b5d00fd23341357c213767bbe434521e9e296926ce4c228ff510cc"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-07 at 9.16.01 AM.png",
+      "role": "exhibit",
+      "bytes": 711487,
+      "sha256": "5f91e04c89766dd27a694530a5a5e5f6bd57b3c8e31af06199a5f6d5cef9842e"
+    },
+    {
+      "path": "Expert Witness Testimony - Copyright Infringement Analysis.pdf",
+      "role": "document_pdf",
+      "bytes": 125005,
+      "sha256": "7b35a384462c8b2f1da838813fdaf19b1d5850e5eb415f8e1bde46770f678b55"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 451,
+      "sha256": "4ae184bcfec3c90d60df4fcb3625a927a0116be7aaec23289f575b03dbed2fa0"
+    },
+    {
+      "path": "testimony_20250807_2.md",
+      "role": "testimony",
+      "bytes": 8617,
+      "sha256": "26e0ceecbc59c09826f8f7cea09b1b45d002d62d64ed8815a3f2ff629f5c01b1"
+    },
+    {
+      "path": "testimony_20250807_2.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "694d35df1cc6c95c7c9a8c75f8459daf3808d243463fdaf46e875df33ecaea82"
+    },
+    {
+      "path": "verify_testimony_20250807_2.js",
+      "role": "verify_script",
+      "bytes": 1094,
+      "sha256": "7664d0e1e2fd9fc054ac7da74a2206b20264d1dcfa9c07ef96d026750c937b3b"
+    }
+  ]
+}

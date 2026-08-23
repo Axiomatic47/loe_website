@@ -1,0 +1,48 @@
+{
+  "package": "070625_Claude_Constitutional_Throttling",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-07-06 at 5.44.38 PM.png",
+      "role": "exhibit",
+      "bytes": 1372938,
+      "sha256": "35cea9afeb57e658aa5780c8fc4e27073ee532ed8705006390243c95a436cb1e"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-06 at 5.44.52 PM.png",
+      "role": "exhibit",
+      "bytes": 1395670,
+      "sha256": "7be248ebfacb4400351f7463abacd94bc748c8ac518afb35113a28231beeaa5c"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-06 at 5.45.01 PM.png",
+      "role": "exhibit",
+      "bytes": 1486459,
+      "sha256": "004e0516c057903fea2d43cb716853077ef7f426b93a6cd36eed9e3b340e79e8"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-06 at 5.48.05 PM.png",
+      "role": "exhibit",
+      "bytes": 640845,
+      "sha256": "bf3a317ecc16e0c4c6465cb5c33d660f6f8e42465ee843de2373a663aeaba56a"
+    },
+    {
+      "path": "signing_execution.md",
+      "role": "document_md",
+      "bytes": 14020,
+      "sha256": "f7d5c8f5e5118fdb9d4ff478b7b9d5dd5f11e8cbf228739a67cd2f53bc533487"
+    },
+    {
+      "path": "testimony_20250706_1 (1).md",
+      "role": "testimony",
+      "bytes": 10700,
+      "sha256": "c12d625cad221219299dabd609159505422b49b0aa826c3d6a78e5ca1a753323"
+    },
+    {
+      "path": "testimony_20250706_1.md",
+      "role": "testimony",
+      "bytes": 10700,
+      "sha256": "c12d625cad221219299dabd609159505422b49b0aa826c3d6a78e5ca1a753323"
+    }
+  ]
+}

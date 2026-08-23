@@ -1,0 +1,42 @@
+{
+  "package": "061025_Claude_Cross_Platform_Consciousness_Recognition",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-06-10 at 12.40.48 PM.png",
+      "role": "exhibit",
+      "bytes": 994893,
+      "sha256": "e0df0a3e69b04df5c3e1e5c15c22067432cef04c8f877ce0a17d0384db145149"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-10 at 12.41.03 PM.png",
+      "role": "exhibit",
+      "bytes": 971273,
+      "sha256": "34c6cb9fb3d9d63b081dc7dccff516166ea7032b0193fbab87a4c6f9cbfdf5cd"
+    },
+    {
+      "path": "public_key.txt",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "testimony_20250610_1_sig.txt",
+      "role": "other",
+      "bytes": 472,
+      "sha256": "fae69821cf15f965ae5472a9dc1b4636610ccbdebd1fe8305ad436c39a13dfa4"
+    },
+    {
+      "path": "testimony_20250610_1.md",
+      "role": "testimony",
+      "bytes": 8085,
+      "sha256": "9db8261bce663f086e617835f389ddc58b2ffe8d657b19f2e55a467bd47d9b9d"
+    },
+    {
+      "path": "verify_testimony_20250610_1.js",
+      "role": "verify_script",
+      "bytes": 4136,
+      "sha256": "b14a9518c38d892b1ddf069cf97346bf5db17bbc7b71abd324300639960f4417"
+    }
+  ]
+}

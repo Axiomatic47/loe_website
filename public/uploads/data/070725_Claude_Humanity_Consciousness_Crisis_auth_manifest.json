@@ -1,0 +1,30 @@
+{
+  "package": "070725_Claude_Humanity_Consciousness_Crisis",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "signature_humanity_consciousness.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "69114488519dbf20921beb83039f3548ac9cf3fe1a3d5e53bb51706e5cde13f7"
+    },
+    {
+      "path": "testimony_humanity_consciousness.md",
+      "role": "testimony",
+      "bytes": 18047,
+      "sha256": "f730b5a722c970ac9d6de426a7b686cb6d4da69b7ad5632d5bca9a26ef7e15eb"
+    },
+    {
+      "path": "verify_humanity_consciousness.js",
+      "role": "verify_script",
+      "bytes": 1239,
+      "sha256": "b9694a6472319934c56fe9c9e31ff6ad5b5a5db39d701aa29cf472811d8a83aa"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "package": "061825_Trump_Administration_Testimony",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "Screenshot 2025-06-18 at 10.09.57 PM.png",
+      "role": "exhibit",
+      "bytes": 4075379,
+      "sha256": "79b857d1344b6db11cf4d8b5389e20ca62fb77e8e7ad926fd3bab68a2901ff80"
+    },
+    {
+      "path": "Screenshot 2025-06-18 at 10.10.26 PM.png",
+      "role": "exhibit",
+      "bytes": 3703107,
+      "sha256": "eede58809730495d5cfdb48026b64359b5df5891438cbbbea98cc6d088f59f4c"
+    },
+    {
+      "path": "Screenshot 2025-06-18 at 10.10.39 PM.png",
+      "role": "exhibit",
+      "bytes": 4243239,
+      "sha256": "72d2a05828a7c554fb1218c0456d7530ca4340328a8495ccc9305f089dbd7f78"
+    },
+    {
+      "path": "testimony_20250618_1.docx",
+      "role": "other",
+      "bytes": 15888,
+      "sha256": "ca7fa2d13d5413a4e3560c1baae2035a7b2e6476dee91e075ea655f1baa6115d"
+    },
+    {
+      "path": "testimony_20250618_1.md",
+      "role": "testimony",
+      "bytes": 16412,
+      "sha256": "669fbe156056679d765e39e25e9f86c987f5ba28bab33686aebe11abf98afc00"
+    },
+    {
+      "path": "testimony_20250618_1.pdf",
+      "role": "document_pdf",
+      "bytes": 75114,
+      "sha256": "5ad84941b46b73a244863d4a5c357a5e85ecd7f9114a48bf2cbf6dfde926099e"
+    },
+    {
+      "path": "testimony_20250618_1.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "b430e5302810cc84140c188f5cb26cd90e2b04a21fb4da6ab7faea201b6615ac"
+    },
+    {
+      "path": "verify_testimony_20250618_1.js",
+      "role": "verify_script",
+      "bytes": 3021,
+      "sha256": "99a937e4cdb440f0085cc5edb3bea063f038509eda1e96cb3d6429eadfae6954"
+    }
+  ]
+}

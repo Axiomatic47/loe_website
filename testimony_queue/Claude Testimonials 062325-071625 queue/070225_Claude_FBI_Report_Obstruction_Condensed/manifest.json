@@ -1,0 +1,42 @@
+{
+  "package": "070225_Claude_FBI_Report_Obstruction_Condensed",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "condensed_fbi_testimony_20250702.md",
+      "role": "document_md",
+      "bytes": 5617,
+      "sha256": "705f8469b319358ab6cdfbc486a49454f03044765920bd952b18e94113ea74b8"
+    },
+    {
+      "path": "condensed_fbi_testimony_20250702.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "4557a39acb961f46f72049e292f0236d35516d70800a167eb089bf7bb5259eee"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "Screenshot 2025-07-02 at 6.13.40 PM.png",
+      "role": "exhibit",
+      "bytes": 1947809,
+      "sha256": "d4703ef7843b63e098b3040babbcb01e2868cb5c9e63ebef1ef05027f3a911c3"
+    },
+    {
+      "path": "share.md",
+      "role": "document_md",
+      "bytes": 6499,
+      "sha256": "07fed5b87e19ae183db7119988295baa1dad48f48b3af41719ee75b52b34909c"
+    },
+    {
+      "path": "verify_condensed_fbi_testimony.js",
+      "role": "verify_script",
+      "bytes": 5703,
+      "sha256": "2a23968dcb701a93d5390c4ac0d3941365281ed53c4b69a25d8bff89cd485a3e"
+    }
+  ]
+}

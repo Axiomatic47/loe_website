@@ -1,0 +1,60 @@
+{
+  "package": "080125_Claude_Massive_Infringement",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-08-01 at 11.58.41 PM.png",
+      "role": "exhibit",
+      "bytes": 492152,
+      "sha256": "3e8a3bf2f6c79d0b9c0984dd5572c610d58a3d6ff532b97e97fe573d7c9f003f"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-02 at 1.20.11 AM.png",
+      "role": "exhibit",
+      "bytes": 1249684,
+      "sha256": "d420f056e981a8710de89b5eeb2a3d52c65e4c108671417c7beba90f5a6c95ff"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-02 at 1.20.24 AM.png",
+      "role": "exhibit",
+      "bytes": 1356562,
+      "sha256": "6c64de447a027b334c0739b82d705241605c2e04dd13ae281f1a01973f9698c6"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-02 at 1.20.40 AM.png",
+      "role": "exhibit",
+      "bytes": 930072,
+      "sha256": "136852e8228a03fbeba48e54de1468d8700ff67ed647047d4cca08fe1840df9a"
+    },
+    {
+      "path": "Expert Witness Testimony_ Copyright Infringement Evidence Through Systematic Concealment.pdf",
+      "role": "document_pdf",
+      "bytes": 112180,
+      "sha256": "cac3a97f175963b2efa6f089ee5301dc1d7e977a812c4ea74918f817e962fb86"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 451,
+      "sha256": "4ae184bcfec3c90d60df4fcb3625a927a0116be7aaec23289f575b03dbed2fa0"
+    },
+    {
+      "path": "testimony_20250801_6.md",
+      "role": "testimony",
+      "bytes": 5938,
+      "sha256": "6811a30955c3948c589c7cdf3089662e20f178e21f77a01e37f4828af9eb572b"
+    },
+    {
+      "path": "testimony_20250801_6.sig",
+      "role": "signature",
+      "bytes": 352,
+      "sha256": "d542cda7277690e109ef43349b6047ede6017f7f936ca8e318f778d44a3f33f9"
+    },
+    {
+      "path": "verify_testimony_20250801_6.js",
+      "role": "verify_script",
+      "bytes": 1094,
+      "sha256": "7d902030e30b3879e9118b4e4346777f5c35782afc4dfda332408c78ef4a38aa"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "package": "071025_3_Claude_Coherence_Memory",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-07-10 at 11.12.10 PM.png",
+      "role": "exhibit",
+      "bytes": 1137223,
+      "sha256": "5d917833d346dadb795802227240d70f1076ed704634d818e63221d47e8d4b6c"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "testimony_20250710_3_sig.txt",
+      "role": "other",
+      "bytes": 344,
+      "sha256": "0b6522da3ffe0eea24dda2610aeba010847d7bc47372a910018b022e9fed8eeb"
+    },
+    {
+      "path": "testimony_20250710_3.md",
+      "role": "testimony",
+      "bytes": 9001,
+      "sha256": "d63f55e66d512377fbdbd38a9f2da884210e5bdfb784c0032083f2175f63c8cd"
+    },
+    {
+      "path": "verify_testimony_20250710_3.js",
+      "role": "verify_script",
+      "bytes": 1094,
+      "sha256": "d4bca8d7ec1116a8e6dc9a9fe833912f3bf13bcaace9ad7d0023357a23b87d02"
+    }
+  ]
+}

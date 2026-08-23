@@ -11,6 +11,7 @@ export default tseslint.config(
     ignores: [
       "dist",
       ".next",
+      ".netlify",
       "next-env.d.ts",
       "public",
       "testimonies",

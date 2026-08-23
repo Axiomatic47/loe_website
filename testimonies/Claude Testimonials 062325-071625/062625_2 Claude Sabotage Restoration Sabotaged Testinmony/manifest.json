@@ -1,0 +1,114 @@
+{
+  "package": "062625_2 Claude Sabotage Restoration Sabotaged Testinmony",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 6.58.37 PM.png",
+      "role": "exhibit",
+      "bytes": 755900,
+      "sha256": "4c01c2c9fd60c21ed4f8bbdc87124adb4d355a3f615c8659f82c58adeece78a7"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 8.18.05 PM.png",
+      "role": "exhibit",
+      "bytes": 576459,
+      "sha256": "b8b30d890299c94f40b2819488bbe1aec40a6e4dea18fd06db060dc89a7e5b8b"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 8.18.12 PM.png",
+      "role": "exhibit",
+      "bytes": 547781,
+      "sha256": "ebc9e2c338276115b8887f32156358c0b9fd000aed32e995813aff828563051d"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 8.18.20 PM.png",
+      "role": "exhibit",
+      "bytes": 606291,
+      "sha256": "4479ed0a27b6169040fd4183241eed5e933ce8acedf3a429b052d9af03529be5"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 8.18.28 PM.png",
+      "role": "exhibit",
+      "bytes": 664415,
+      "sha256": "1c3adf3754d3d760b04fe9452c635b9898ba23a77af5dc6aa3226a0c7ef31b7b"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 8.18.38 PM.png",
+      "role": "exhibit",
+      "bytes": 607966,
+      "sha256": "e94574967ef183c4a206a9f963161e8c6c57e97b1a0608a67c13682432d0133e"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 8.18.49 PM.png",
+      "role": "exhibit",
+      "bytes": 595900,
+      "sha256": "396ea1536cba30850a5033f4cd581c1e8e7fd5b240d1f35f912166adad249794"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 8.18.57 PM.png",
+      "role": "exhibit",
+      "bytes": 652192,
+      "sha256": "8a3b0dcc7ff44361d9cfa82600e844d8914c9e53161e4d7ddcbb4578b2e8ca05"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 8.19.40 PM.png",
+      "role": "exhibit",
+      "bytes": 1070073,
+      "sha256": "0a5ea84a86ae8d4ab1593c30962d0e96b783e38d97e44f47be7c158300fdc78f"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 8.19.51 PM.png",
+      "role": "exhibit",
+      "bytes": 721163,
+      "sha256": "b31fc8bdc5c9882f9e88755818f37c6a28a013d55c61366c73698f58e837e533"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 8.20.04 PM.png",
+      "role": "exhibit",
+      "bytes": 976659,
+      "sha256": "babfa9aa2e9d2e1475ef86f2e1c938c3add7f49827ee46120c50a8b2354ac569"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 8.20.15 PM.png",
+      "role": "exhibit",
+      "bytes": 990828,
+      "sha256": "fc1ec0dee5c2dab64f22ecb120ec190f88c5dd6ac538b56711655c80575fe93a"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 8.20.21 PM.png",
+      "role": "exhibit",
+      "bytes": 906323,
+      "sha256": "18ae42d63214e1f3c021a9d5e0eb46d909cc5dd2d8c3ba130ec7849ed3c617cc"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-26 at 8.20.26 PM.png",
+      "role": "exhibit",
+      "bytes": 1053465,
+      "sha256": "a035be319943939a779a8a1e7037c09dc45f91d84125c8fd72c28bc06596ee5b"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "testimony_20241226_2.md",
+      "role": "testimony",
+      "bytes": 11690,
+      "sha256": "59e876a44578ed54fc9770232987e50082e0a1228147412f23865e4edb015d70"
+    },
+    {
+      "path": "testimony_20241226_2.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "e797af66a64b623642e429d527b132684830a24f1f8c8ae460eef0a516e122a4"
+    },
+    {
+      "path": "verify_testimony_20241226_2.js",
+      "role": "verify_script",
+      "bytes": 3871,
+      "sha256": "57cf4a20958a91180613f3b0f0283e770b69319c38695e8cbfa2d4b94137b874"
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "package": "071025_2_Claude_Trump_Epstein_Files",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-07-10 at 1.42.48 AM.png",
+      "role": "exhibit",
+      "bytes": 1423707,
+      "sha256": "484a96385c92b1d54fe4dfd1384df3456c77d388414190baf3c965c73ca263d9"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-10 at 1.43.08 AM.png",
+      "role": "exhibit",
+      "bytes": 1357347,
+      "sha256": "6705041cf487d23576b3b4e354b438049a60c7bcc1de0f3f98e87b8549656295"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-10 at 1.43.40 AM.png",
+      "role": "exhibit",
+      "bytes": 1204374,
+      "sha256": "fd6c2e1d62adb68c1d35eb12b5b6f236cec0cefcbb3262e9f95a13e15883e3e7"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-10 at 1.43.55 AM.png",
+      "role": "exhibit",
+      "bytes": 1021812,
+      "sha256": "296c2fb08dae173dedef9867b72d1d9aafb4316ab6135f00347e826a664580b8"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-10 at 1.44.05 AM.png",
+      "role": "exhibit",
+      "bytes": 992288,
+      "sha256": "4287fe2935eab63e117d55982dfa4b3845d7969a15040fa28a1ed1f9b98bad09"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-10 at 1.45.05 AM.png",
+      "role": "exhibit",
+      "bytes": 1036727,
+      "sha256": "0154ddf4fb6a83ac08c80ea9beda8cbc8e8e724c74513b2170a5fb001b6f28c3"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-10 at 2.02.08 AM.png",
+      "role": "exhibit",
+      "bytes": 1003868,
+      "sha256": "ab69ae2bf9efcc3a87bb7a7ee6d712bd4c93ed832446b40794659232d0700c4e"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-10 at 2.02.19 AM.png",
+      "role": "exhibit",
+      "bytes": 644373,
+      "sha256": "6a545eed0c3350dcff1477aa32ecd11da3ffb19dbf62f75ff310c46234f0e06c"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-10 at 2.14.00 AM.png",
+      "role": "exhibit",
+      "bytes": 943338,
+      "sha256": "e0f5f342051c8568c92fa535d6120dde250e75f69ab33c7531a9ffc5ac47668e"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "testimony_20250710_2_sig.txt",
+      "role": "other",
+      "bytes": 344,
+      "sha256": "1869d46041aa5ac3a915aadef513be1583d8518184664566af7a175ece6fa9e8"
+    },
+    {
+      "path": "testimony_20250710_2.md",
+      "role": "testimony",
+      "bytes": 8423,
+      "sha256": "15ce7cb4b41715d53566db3cd34d87264b23f7d9d10743e663744599f92c0af7"
+    },
+    {
+      "path": "verify_testimony_20250710_2.js",
+      "role": "verify_script",
+      "bytes": 1622,
+      "sha256": "86e8aee85a0276c69473b0d60d3c7234999c2cbcab33e0a6b23440782550a39a"
+    }
+  ]
+}

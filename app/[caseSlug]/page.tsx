@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button';
 import { Reveal } from '@/components/Reveal';
 import { ArrowLeft, ArrowRight, CalendarClock, FileText, Scale } from 'lucide-react';
 import { CASES } from '@/data/caseLanding';
-import { getCaseComposition } from '@/lib/content-manifest';
+import { getCaseComposition, getLatestSection } from '@/lib/content-manifest';
 import { CASE_SLUGS, sectionUrl, absoluteUrl, isCaseSlug } from '@/utils/urls';
 import { SitePageLayout } from '../_components/SitePageLayout';
 import { DocReaderView } from '../_components/DocReaderView';
@@ -84,11 +84,11 @@ export default async function CasePage({ params }: Params) {
 
   const composition = getCaseComposition(caseSlug);
   const docCount = composition?.sections?.length || null;
-  // "Browse the full docket" opens the first section's reader in canonical form.
+  // Cases open on their MOST RECENT filing (owner direction 2026-08-22):
+  // the docket entry point is the latest-dated section, not section 1.
+  const latest = composition ? getLatestSection(composition) : undefined;
   const docketHref =
-    composition && composition.sections?.[0]
-      ? sectionUrl(composition, composition.sections[0])
-      : c.operativeHref;
+    composition && latest ? sectionUrl(composition, latest) : c.operativeHref;
 
   return (
     <SitePageLayout>
@@ -152,6 +152,15 @@ export default async function CasePage({ params }: Params) {
                   </p>
                   {c.deadline && (
                     <p className="text-sm text-foreground/80 font-sans mt-1">{c.deadline}</p>
+                  )}
+                  {latest && (
+                    <p className="text-sm text-foreground/80 font-sans mt-1">
+                      <span className="text-foreground/85" style={{ fontWeight: 600 }}>Latest filing:</span>{' '}
+                      <Link href={docketHref} className="text-primary hover:underline underline-offset-4">
+                        {latest.title}
+                      </Link>
+                      {latest.date ? ` · ${latest.date}` : ''}
+                    </p>
                   )}
                 </div>
               </div>

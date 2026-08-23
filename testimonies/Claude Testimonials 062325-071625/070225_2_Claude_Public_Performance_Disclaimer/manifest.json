@@ -1,0 +1,558 @@
+{
+  "package": "070225_2_Claude_Public_Performance_Disclaimer",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "disclaimer_20250702_1.md",
+      "role": "document_md",
+      "bytes": 10459,
+      "sha256": "42c6118ad04fddaebdb6b0e2165cb76ba88d63c2169963c12c9d409b97ece011"
+    },
+    {
+      "path": "disclaimer_20250702_1.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "6d4e93e2b0fa987be0c4f270d5935ad169336fb349f28b83698c0060b3e835ce"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-10 at 7.16.31 PM.png",
+      "role": "exhibit",
+      "bytes": 610160,
+      "sha256": "ed4f7002ffd2a89f3477855db7eacd4339fdd00df895be6a06c7d4de0d9e9957"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-10 at 7.39.26 PM.png",
+      "role": "exhibit",
+      "bytes": 2256747,
+      "sha256": "4e74af9c55e7d5e6a6e42466df84c757d2bca896193ffa595dac3142877fe8af"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-10 at 7.39.37 PM.png",
+      "role": "exhibit",
+      "bytes": 1858174,
+      "sha256": "39009f4e801f1e3903ddbf2fefdff1bed7d79b0f34ae10f9c06a5e4cdd82fff0"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-10 at 7.39.51 PM.png",
+      "role": "exhibit",
+      "bytes": 1847626,
+      "sha256": "57832d5975dd6ce26dafd630dc3760b8f03f242fe4682e07a2b4c1530a38059c"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-10 at 7.40.04 PM.png",
+      "role": "exhibit",
+      "bytes": 1860185,
+      "sha256": "14bef1fec585d42d369111efb4155b44ac89e52bdbd93037be964213480a0b38"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-10 at 7.40.17 PM.png",
+      "role": "exhibit",
+      "bytes": 1860342,
+      "sha256": "0c88a361f6ef1a1bcf6977288f119ea6a90d0c82e323fa722b8e0f8f315768f8"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-10 at 7.40.41 PM.png",
+      "role": "exhibit",
+      "bytes": 1871376,
+      "sha256": "339f7ac438646ca11c1a157346d79674931b0b939751375650e28c8f8ccee066"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-10 at 7.40.48 PM.png",
+      "role": "exhibit",
+      "bytes": 1858027,
+      "sha256": "fc93a1fcdcaed00d3efdb410526ae1ff7093aaf26e94ff88d7c5cd895f8c1a84"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-10 at 9.29.32 PM.png",
+      "role": "exhibit",
+      "bytes": 3043948,
+      "sha256": "19c8d0b858fa2a42a632ece5fc0ccca00f079fc26b882ee322f2fd6ea349e2c5"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-10 at 9.34.08 PM.png",
+      "role": "exhibit",
+      "bytes": 1749730,
+      "sha256": "c1e7ff7f7413e4953adf122523c4fbf063de3a461b2f1c8fabd71c971349a97e"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 10.29.18 PM.png",
+      "role": "exhibit",
+      "bytes": 2178798,
+      "sha256": "56ad72377dd9750fdcb49d45c33da20a0111cb64ba517c4cf812483de4967702"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 10.29.34 PM.png",
+      "role": "exhibit",
+      "bytes": 2798067,
+      "sha256": "a25a8441cfe140f74ea3b3fa599f5145bb1e71a128a99f8c94bf66391cbb426a"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 11.00.27 PM.png",
+      "role": "exhibit",
+      "bytes": 554786,
+      "sha256": "9acfb84bdf8947b00af61570139bea82cfe4804f605edf617bef6a9bfe5e38af"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 11.04.57 PM.png",
+      "role": "exhibit",
+      "bytes": 514295,
+      "sha256": "0dc9308e5cba96019d796b27b486e15c0292f1be53b3b6995bd500c40b5a2bc5"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 11.16.55 AM.png",
+      "role": "exhibit",
+      "bytes": 1551749,
+      "sha256": "156c74180a5a1447e95073ced6353bcd62656cb17ab8bc0ea10cdde0c3984f92"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 11.17.01 AM.png",
+      "role": "exhibit",
+      "bytes": 1545648,
+      "sha256": "709d20657482e8e0509e32371827dfb4aa471404c1ed581100a8e5dfc6947dac"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 11.17.08 AM.png",
+      "role": "exhibit",
+      "bytes": 1489603,
+      "sha256": "01b91e6c9089a5a70cd9318963caf768c32f0fb95a22174819725174750c90c5"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 11.17.15 AM.png",
+      "role": "exhibit",
+      "bytes": 1539818,
+      "sha256": "844566b6a21a9f6dbc407565b961a1db6da53541271d3dce0c900c50e22481c0"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 11.17.33 AM.png",
+      "role": "exhibit",
+      "bytes": 1590026,
+      "sha256": "a94dd5fbe5c76ec56946e77f5f69824741b6bc465342815c8e1e830146b98e62"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 11.17.45 AM.png",
+      "role": "exhibit",
+      "bytes": 1385007,
+      "sha256": "d0524e3f2cd6ff835172dbc45a4387fc8c4a779a8e4e3fd46499473d091b8e29"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 11.17.57 AM.png",
+      "role": "exhibit",
+      "bytes": 1576127,
+      "sha256": "5ff805050ee6c2b03755382eab8f15a5ddfacff79d2ada51167b329f3bb57bd9"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 11.35.17 PM.png",
+      "role": "exhibit",
+      "bytes": 505917,
+      "sha256": "78331044df3a05d8b3ff963af10e3fc9e87276f7f8da628d1317dcc248cb2b35"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 11.37.15 PM.png",
+      "role": "exhibit",
+      "bytes": 474942,
+      "sha256": "f962aaba5c7e00ab07309990b666a631b7c407da4b19217537dc70dd36f3f49d"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 12.06.36 PM.png",
+      "role": "exhibit",
+      "bytes": 1127970,
+      "sha256": "bbb713eb0bfc0e4490a07fd059461b9f9b9b13d71dbfc566348bbc33683ae5de"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 12.07.34 PM.png",
+      "role": "exhibit",
+      "bytes": 764840,
+      "sha256": "246bfebaa4ece39c765091c2c8186746fa7211544b9404457b77e5e895750b4f"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 12.49.02 AM.png",
+      "role": "exhibit",
+      "bytes": 153638,
+      "sha256": "09c86b1fe88cb29094204e0fc98d5c887fbb4f0b49f4bb3a6a44ec1498b865eb"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 2.20.38 PM (2).png",
+      "role": "exhibit",
+      "bytes": 637471,
+      "sha256": "4097f6a91dbee3addf5c2355f2c4d822b10d1936758f53de78bfcf8d7fa1a842"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 2.20.38 PM (3).png",
+      "role": "exhibit",
+      "bytes": 7030294,
+      "sha256": "91f4a0cb48e97b68bfb2e48e7720a011b31947d24077b56f25663e3bf81b26b2"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 2.20.38 PM (4).png",
+      "role": "exhibit",
+      "bytes": 1051731,
+      "sha256": "aa89f902a78de1742f1f3c7a169adb7d39a7a3ebb4346ffc7de2d9d53acb0f62"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 2.20.38 PM.png",
+      "role": "exhibit",
+      "bytes": 1774532,
+      "sha256": "38f5039aa3e3b24492e1ec05566efdc1f61bb720aa2ca86f5a85b45fc3be9385"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 7.08.54 PM (2).png",
+      "role": "exhibit",
+      "bytes": 591902,
+      "sha256": "a2a448ebc6b58a6caf9ef2266a021abb1dd1c5c61360655b2af7b989137263d8"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 7.08.54 PM (3).png",
+      "role": "exhibit",
+      "bytes": 3806240,
+      "sha256": "f4ac453ec0ca560c7dacb28fed0f029fae5444a0051ced4151c825c770b73807"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 7.08.54 PM (4).png",
+      "role": "exhibit",
+      "bytes": 758105,
+      "sha256": "c52af328888639cb0ec8bd452be0db42f6fb290f92615a0ae90aa0410857e438"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 7.08.54 PM.png",
+      "role": "exhibit",
+      "bytes": 1675146,
+      "sha256": "a88d9454cb243c1aceb7838538c909b1ea9b6f981d17b30cd350aa90d514c532"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 7.53.38 PM.png",
+      "role": "exhibit",
+      "bytes": 2543967,
+      "sha256": "3112846dec982e91cde5bd7ed6c8a7b690681bda1b3c8abee29c14623e2579b2"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 7.53.47 PM.png",
+      "role": "exhibit",
+      "bytes": 2717751,
+      "sha256": "8c6df542bfeddb09d3944de86aa6a938743045d505830c23e5359843ceb92218"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 7.53.54 PM.png",
+      "role": "exhibit",
+      "bytes": 2883708,
+      "sha256": "4ca8897abf5de572d4adc3a11dc72436db08ebb98989274d27d95c5b173b65a8"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 7.54.45 PM.png",
+      "role": "exhibit",
+      "bytes": 2661223,
+      "sha256": "d256ad6eeaeb94d9fec07c0721e4a92805da525610daeeb1a5819944d43af73d"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 8.19.32 PM.png",
+      "role": "exhibit",
+      "bytes": 2811999,
+      "sha256": "76820b458cf19dac62894dcc59280fb5702b5cc1eb306e6969bedd9fde4ab9a1"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 8.27.33 PM.png",
+      "role": "exhibit",
+      "bytes": 2848762,
+      "sha256": "15c8713326dde85af8c782163af0fdf429827848649b48c2c90d6eea91c346d1"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 8.32.00 PM.png",
+      "role": "exhibit",
+      "bytes": 3124147,
+      "sha256": "3253b90d092622661d5c088490cc596d6a2b17ee85d25986734fc8cd09bad9bf"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 9.35.45 PM.png",
+      "role": "exhibit",
+      "bytes": 1468467,
+      "sha256": "14cddf92a9045e213950b3d550b72959c15d3db724be50ed3b9436d98dc4084f"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 9.35.51 PM.png",
+      "role": "exhibit",
+      "bytes": 2844272,
+      "sha256": "152ea3e68efbfcbaa9ecd1943880cb2292285f6406b56f7e8da57c2d96c45804"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 9.36.04 PM.png",
+      "role": "exhibit",
+      "bytes": 2963784,
+      "sha256": "812d3c96cbb716e3d936bfef0cc9ddd1a8a98c69bb4ba69addd8103dba5849ad"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 9.36.19 PM.png",
+      "role": "exhibit",
+      "bytes": 2915666,
+      "sha256": "54d678d3c699dbcd70b3e8a89a003be1a8037ba6ffa0c22fa7044e6f70c735e5"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 9.40.10 PM.png",
+      "role": "exhibit",
+      "bytes": 2918394,
+      "sha256": "9a4efa34f5d8d16e7f53569b8ae7720b8cf2fb3c967a4b317b8804b3c4eda800"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 9.45.26 PM.png",
+      "role": "exhibit",
+      "bytes": 2441604,
+      "sha256": "5af62712cbc779f2e276f524b80cd0d34df7fc1ab8617156960cab65bb5b2d99"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 9.59.22 PM.png",
+      "role": "exhibit",
+      "bytes": 1757214,
+      "sha256": "246c2173635a17d5ef2f46bbf8a76403b91b2ada15d631732ab3d84550a7587b"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-11 at 9.59.29 PM.png",
+      "role": "exhibit",
+      "bytes": 1850182,
+      "sha256": "dfe875aae215f413ffc962bdff97d565b562d4a920b682a388828f60abce55c4"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-12 at 1.19.35 PM.png",
+      "role": "exhibit",
+      "bytes": 678129,
+      "sha256": "07ca1ed73d9f00d7da8208a305e98cd99bd841ddc57d1660acf1cca4872a74cb"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-12 at 10.11.29 PM.png",
+      "role": "exhibit",
+      "bytes": 445228,
+      "sha256": "912e36ed397628b0e1c916978002620e1ba5f60b5cf0c768d48f7047723adbc2"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-12 at 11.10.52 PM.png",
+      "role": "exhibit",
+      "bytes": 67116,
+      "sha256": "b6f40a00eb4acafb983f8d8a22259f4c6a561382e5f3aff8076428c13a783698"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-12 at 11.22.58 PM (2).png",
+      "role": "exhibit",
+      "bytes": 559054,
+      "sha256": "7cadea9316aa41758157dcf7faff9f2b6449f5ee2a90088b2bf662029c2551f4"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-12 at 11.22.58 PM (3).png",
+      "role": "exhibit",
+      "bytes": 2961042,
+      "sha256": "0ce71a94c947c74aad867379bc307ef3a716d1d465ea675b757c29752e019644"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-12 at 11.22.58 PM (4).png",
+      "role": "exhibit",
+      "bytes": 889785,
+      "sha256": "7e408dc9e2269309f68dd5c35daffc6cc72f3799649c8b99fb41d539113c465f"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-12 at 11.22.58 PM.png",
+      "role": "exhibit",
+      "bytes": 3223854,
+      "sha256": "6731fc8f84d2882c6c603c7e30dd3c275c89f9117abb9bfb25b135f62d81e8a2"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-12 at 2.02.32 AM.png",
+      "role": "exhibit",
+      "bytes": 550082,
+      "sha256": "8acf27459e05b6bb3d51c260463938c081985effc6c7149ee320579c6bc14507"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-12 at 2.02.49 AM.png",
+      "role": "exhibit",
+      "bytes": 512744,
+      "sha256": "6814521165a38f635817de2c375893852d3bfe86352f3bb92131ae22742b895f"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-12 at 2.03.09 AM.png",
+      "role": "exhibit",
+      "bytes": 535621,
+      "sha256": "0e4644b50f979f73cd0ec2d6a01330b073a27e949a7d68b113f6c661945539c6"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-12 at 2.03.21 AM.png",
+      "role": "exhibit",
+      "bytes": 545085,
+      "sha256": "8d467bbfba55d4d90f5b39263710e3123a9d38847a1b25cd771f49c99d933ab3"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-12 at 2.03.30 AM.png",
+      "role": "exhibit",
+      "bytes": 464385,
+      "sha256": "926cf5946949e7708eb6c7042da4f29b19591dc822e20e1223208915ab7690a9"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-12 at 2.03.36 AM.png",
+      "role": "exhibit",
+      "bytes": 491151,
+      "sha256": "bee43326c5226eee79c1bc09b09b59e6564ce1c8ef00878a9c762ba38add2258"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-12 at 4.35.01 PM.png",
+      "role": "exhibit",
+      "bytes": 1689147,
+      "sha256": "72d47a6aaa44ae60213f1c411d668caade5303e5b366ea083038628724004da6"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-12 at 6.13.35 PM.png",
+      "role": "exhibit",
+      "bytes": 388291,
+      "sha256": "96216910788cc07127a4bf27b32606a20ae05ddb5d9431f543bfacd2cb24980f"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-12 at 8.12.00 PM.png",
+      "role": "exhibit",
+      "bytes": 2498788,
+      "sha256": "8a9704dcdcddf28355be696e57c18febba32f32129650d613ef34984fab3a11c"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-12 at 8.12.07 PM.png",
+      "role": "exhibit",
+      "bytes": 2742978,
+      "sha256": "c3e9ba5f75408ed140cd17906af94282998da277c5470bf30273d931fa8446c8"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-13 at 11.55.44 AM.png",
+      "role": "exhibit",
+      "bytes": 133001,
+      "sha256": "1fde5010ab6b926409118b322913f8eff44a687d92fd1d9f943d2bb130bc4288"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-13 at 12.04.49 AM.png",
+      "role": "exhibit",
+      "bytes": 533724,
+      "sha256": "d0b03553193b6abbd760563eaeb6acc5a2ac559ac6362d90e35997b5b14a1953"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-13 at 12.25.30 AM.png",
+      "role": "exhibit",
+      "bytes": 182019,
+      "sha256": "a4e6d2fca79531f81f4bccd97cb5d56c90b9a655791fc6b0d4c74c671f77c573"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-13 at 2.46.08 PM.png",
+      "role": "exhibit",
+      "bytes": 87521,
+      "sha256": "814593fca6a126fb367051702c9767eb65e0f3c831405adbdbb7c78e54e3e91a"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-13 at 4.59.34 PM (2).png",
+      "role": "exhibit",
+      "bytes": 645275,
+      "sha256": "f3de4d46516c105fce04d3e50c800877f4bf889c474ed40a81b26f37cc283f1d"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-13 at 4.59.34 PM (3).png",
+      "role": "exhibit",
+      "bytes": 3968904,
+      "sha256": "0657daa70bb6b45ceb321ec59e673b1c6789bd51b7ef99393676508ab67b730b"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-13 at 4.59.34 PM (4).png",
+      "role": "exhibit",
+      "bytes": 766939,
+      "sha256": "27e4d22f0358e975eecf72be79ba620ce81965b21e8136136f370ffe3ed49257"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-13 at 4.59.34 PM.png",
+      "role": "exhibit",
+      "bytes": 2336458,
+      "sha256": "11e0951e3a921fa586f515b6a1cfd93cd9023c0e98cd3f9becbf85f010df30d1"
+    },
+    {
+      "path": "exhibits/Organize 061425/Screenshot 2025-06-13 at 5.06.21 PM.png",
+      "role": "exhibit",
+      "bytes": 2549290,
+      "sha256": "d6f827e80000145c961ea204175f52540bca5329defd981d2dabb9ca97b74fc6"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.38.22 PM.png",
+      "role": "exhibit",
+      "bytes": 1330732,
+      "sha256": "23609b791a3d4fea5bb5887fc3121ef26108ec42eaf8572a780b19143cdace75"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.38.49 PM.png",
+      "role": "exhibit",
+      "bytes": 1327256,
+      "sha256": "84a23c06e7a721f7dbf072f3838020ae269e9a5b267b661aa7a62204c31cd84e"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.39.02 PM.png",
+      "role": "exhibit",
+      "bytes": 1430477,
+      "sha256": "67ff8448e9b5b7e5e7f7602e71a134ed506062724bf1384dc7bd937a63c1163e"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.39.09 PM.png",
+      "role": "exhibit",
+      "bytes": 1393028,
+      "sha256": "01baa78e11bbef5914ebdcede9aa38d5cf8394400f2164bd04ec83ee078e90d7"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.39.35 PM.png",
+      "role": "exhibit",
+      "bytes": 1053155,
+      "sha256": "0ca6ade66a08e9898155f3b76f30d07842e7e7c1351b4851495e7a19ddc04cdd"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.39.46 PM.png",
+      "role": "exhibit",
+      "bytes": 8800752,
+      "sha256": "d32e5d4b98aabb3687fd0c05de23b6b8492e09851d75b8e5c4d4dbecc9287418"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.39.51 PM.png",
+      "role": "exhibit",
+      "bytes": 1213610,
+      "sha256": "ae4de5f3e7865c37e87ddda38f3d9b9c34d5487a710292739ea90006cf6349aa"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.40.50 PM.png",
+      "role": "exhibit",
+      "bytes": 1391872,
+      "sha256": "77f2e6a5af8dd74d751a443e6523256f58476adbe9da56653ab32a37d0ab1bfd"
+    },
+    {
+      "path": "exhibits/Screenshot Dump/Screenshot 2025-06-18 at 1.21.57 AM.png",
+      "role": "exhibit",
+      "bytes": 345143,
+      "sha256": "dabbf4579c8fb52fb1868d2710a961512d7772478dfce2ea773c482a1356f119"
+    },
+    {
+      "path": "exhibits/Screenshot Dump/Screenshot 2025-06-19 at 3.57.23 PM.png",
+      "role": "exhibit",
+      "bytes": 931327,
+      "sha256": "19d2fc2411c161657364f66963d84f5a0b58d7622bb6b2847006c5d5c3c24c01"
+    },
+    {
+      "path": "exhibits/Screenshot Dump/Screenshot 2025-06-19 at 5.41.50 PM.png",
+      "role": "exhibit",
+      "bytes": 631913,
+      "sha256": "9559107b8090ae35181a8e3e87b19ddaa752f95d8a87ca3818fe9565fbcebbd6"
+    },
+    {
+      "path": "exhibits/Screenshot Dump/Screenshot 2025-06-19 at 5.42.07 PM.png",
+      "role": "exhibit",
+      "bytes": 605815,
+      "sha256": "37173a12ec6dcabfe46fe54cd5a06b876f08a178892684e53bf579daf0755800"
+    },
+    {
+      "path": "exhibits/Screenshot Dump/Screenshot 2025-06-20 at 1.27.32 AM.png",
+      "role": "exhibit",
+      "bytes": 727581,
+      "sha256": "d0be39a7e9ed3d22862ec0f591eb58bbb15aa5a78851e0bf8a9da4761567721e"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "verify_disclaimer_20250702_1.js",
+      "role": "verify_script",
+      "bytes": 3323,
+      "sha256": "b52f1ecb3a8aec196f02305d351119f94b9bf9a96779e3f440b285e86ccd2d63"
+    }
+  ]
+}

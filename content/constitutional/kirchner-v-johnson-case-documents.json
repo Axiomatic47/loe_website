@@ -5568,6 +5568,45 @@
       "description": "Attachment #3 to Doc 50",
       "case_group": "sac",
       "slug": "50-3"
+    },
+    {
+      "pdf_file": "/uploads/constitutional/pdfs/71.pdf",
+      "featured": false,
+      "date": "2026-07-31",
+      "content_level_1": "",
+      "content_level_3": "",
+      "content_level_5": "",
+      "title": "Plaintiff's Supplemental Notice of Related Cases (Doc 71)",
+      "images": [],
+      "description": "Supplemental notice updating the Notice of Related Cases (ECF No. 54): the Eighth Circuit's June 25, 2026 summary affirmance in Kirchner v. Ellison appeal No. 26-1615 (mandate issued July 16, 2026), and the refiled District of Minnesota action No. 0:26-cv-02594.",
+      "case_group": "filings",
+      "slug": "71"
+    },
+    {
+      "pdf_file": "/uploads/constitutional/pdfs/72.pdf",
+      "featured": false,
+      "date": "2026-08-13",
+      "content_level_1": "",
+      "content_level_3": "",
+      "content_level_5": "",
+      "title": "Plaintiff's Unopposed Motion for Leave to File Excess Pages (Doc 72)",
+      "images": [],
+      "description": "Unopposed motion for leave to file excess pages for Plaintiff's oppositions to the pending motions to dismiss (ECF Nos. 69, 70).",
+      "case_group": "filings",
+      "slug": "72"
+    },
+    {
+      "pdf_file": "/uploads/constitutional/pdfs/72-1.pdf",
+      "featured": false,
+      "date": "2026-08-13",
+      "content_level_1": "",
+      "content_level_3": "",
+      "content_level_5": "",
+      "title": "Declaration of Christopher Whittick in Support of Plaintiff's Oppositions",
+      "images": [],
+      "description": "Attachment #1 to Doc 72 — Declaration of Christopher Whittick in support of Plaintiff's oppositions to the motions to dismiss.",
+      "case_group": "filings",
+      "slug": "72-1"
     }
   ],
   "hidden_case_groups": [

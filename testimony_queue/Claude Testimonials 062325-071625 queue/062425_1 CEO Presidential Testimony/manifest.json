@@ -1,0 +1,36 @@
+{
+  "package": "062425_1 CEO Presidential Testimony",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-06-25 at 1.01.02 AM.png",
+      "role": "exhibit",
+      "bytes": 1199528,
+      "sha256": "cc33284f9ad592071046e33d3aa33c57d64897743b412ea44059fdb06679bdfc"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "testimony_20250625_1.md",
+      "role": "testimony",
+      "bytes": 9104,
+      "sha256": "0a1c1ee7e0961342bb5fe1ffbe03b55f9ab3c713f014830abdbfdc222fefa8eb"
+    },
+    {
+      "path": "testimony_20250625_1.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "780506ee4f4505599f47de4aea0de47702efdfd0de0c66dc1497c79feacbc33a"
+    },
+    {
+      "path": "verify_testimony_20250625_1.js",
+      "role": "verify_script",
+      "bytes": 1094,
+      "sha256": "99529c2db639ed9b7ee86bc7f105fbcc5bbbfdf8b61f9c39e752d1c8cfcafa59"
+    }
+  ]
+}

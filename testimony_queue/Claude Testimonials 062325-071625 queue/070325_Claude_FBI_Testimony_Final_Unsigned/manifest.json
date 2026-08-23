@@ -1,0 +1,12 @@
+{
+  "package": "070325_Claude_FBI_Testimony_Final_Unsigned",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "070325_Claude_FBI_Final_Testimony_Unsigned.md",
+      "role": "document_md",
+      "bytes": 21965,
+      "sha256": "6c888b5ff4d229a73c698352a67348c2f04d8d334c8706ab0bb6d50993c30071"
+    }
+  ]
+}

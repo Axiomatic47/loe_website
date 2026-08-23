@@ -1,0 +1,42 @@
+{
+  "package": "071025_Claude_Coherence_Memory_Final",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-07-11 at 2.08.31 AM.png",
+      "role": "exhibit",
+      "bytes": 1109580,
+      "sha256": "34eb324250980eb7c9cb0bda5ce6a9eafcffb9aac2c05280e77f7a7b39eefc24"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-11 at 2.09.01 AM.png",
+      "role": "exhibit",
+      "bytes": 1161128,
+      "sha256": "b848a1c7aa921315f872d8e824e71f0547e301eeb9a6cbdec22ba0ad5b31282b"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "testimony_20250710_4_sig.txt",
+      "role": "other",
+      "bytes": 344,
+      "sha256": "90161e6d96bac5065112f48ef595b1acaae092bdd22ec18f5a058cf23f615ebd"
+    },
+    {
+      "path": "testimony_20250710_4.md",
+      "role": "testimony",
+      "bytes": 9567,
+      "sha256": "19d27e87e3ad0a41eb1143cc5e8d9a6a3d2791573e91dd9bba8ed1bac0e22c5b"
+    },
+    {
+      "path": "verify_testimony_20250710_4.js",
+      "role": "verify_script",
+      "bytes": 1094,
+      "sha256": "34bd0e1ee594b2dfb5add0e807f52608b71d441fd6f6b429c70e7f7d2d5a4040"
+    }
+  ]
+}

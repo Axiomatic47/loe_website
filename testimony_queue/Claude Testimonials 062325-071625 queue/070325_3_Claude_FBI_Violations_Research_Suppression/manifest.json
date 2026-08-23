@@ -1,0 +1,228 @@
+{
+  "package": "070325_3_Claude_FBI_Violations_Research_Suppression",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "070325_3_Claude_FBI_Violations_Research_Suppression_Condensed/FBI Constitutional Violations - Condensed Legal Notice.pdf",
+      "role": "document_pdf",
+      "bytes": 69418,
+      "sha256": "723d931c8883acb9a5891fdaf782c52e362f87baa53718332bf4652935f68d4c"
+    },
+    {
+      "path": "070325_3_Claude_FBI_Violations_Research_Suppression_Condensed/public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "070325_3_Claude_FBI_Violations_Research_Suppression_Condensed/testimony_20250703_2.md",
+      "role": "testimony",
+      "bytes": 4570,
+      "sha256": "c3bb852e64ca5f8df6eb77a9b38e6d2fc885dc1fbe0740c51bae450029013844"
+    },
+    {
+      "path": "070325_3_Claude_FBI_Violations_Research_Suppression_Condensed/testimony_20250703_2.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "b0321dffb8b16c9d982445a981217b86a3fd91f42f494d60de57af486c06c9a5"
+    },
+    {
+      "path": "070325_3_Claude_FBI_Violations_Research_Suppression_Condensed/testimony_sharing_form.md",
+      "role": "testimony",
+      "bytes": 5447,
+      "sha256": "bd6296b6ced2e52d5db6634015665e3e544e385b28feb8b4836bdb88984d6d5b"
+    },
+    {
+      "path": "070325_3_Claude_FBI_Violations_Research_Suppression_Condensed/verify_testimony_20250703_2.js",
+      "role": "verify_script",
+      "bytes": 1535,
+      "sha256": "30655c0fba5440cd56212b4d9ffa40cd0f1c89b5449b3708294c136b11085013"
+    },
+    {
+      "path": "exhibits/070325_Claude_FBI_Testimonies_Full Transcript.pdf",
+      "role": "document_pdf",
+      "bytes": 13051536,
+      "sha256": "3869f68f8e1a930557a41b96e5cad50d9a371990804ef63b4a0ea7b74d213f6a"
+    },
+    {
+      "path": "exhibits/LOE_FBI_1.pdf",
+      "role": "document_pdf",
+      "bytes": 2810109,
+      "sha256": "5c38a70966cca4287d16f445fa95f755ecf2984cef46330750de89df6fe9619c"
+    },
+    {
+      "path": "exhibits/LOE_FBI_2.pdf",
+      "role": "document_pdf",
+      "bytes": 2638992,
+      "sha256": "b003b8cbe1580d768caeafd8668b636c98ae511fb37d31ccecb37a59bb948170"
+    },
+    {
+      "path": "exhibits/LOE_FBI_3.pdf",
+      "role": "document_pdf",
+      "bytes": 3505685,
+      "sha256": "c2698172f8964319bd3d46ee7e8751e261dc7be22cdf99b735a2efaf049c86d4"
+    },
+    {
+      "path": "exhibits/LOE_FBI_4.pdf",
+      "role": "document_pdf",
+      "bytes": 4105167,
+      "sha256": "ff7e1547437d089365be28cb27d76f61f1bedf606e00ecbde9ba42537907f0d9"
+    },
+    {
+      "path": "exhibits/LOE_FBI_Analysis.pdf",
+      "role": "document_pdf",
+      "bytes": 4675296,
+      "sha256": "f5b5f83d0036429b12a6b5a72e1afd2ec0035fceae26270efd0a1870d097ea1c"
+    },
+    {
+      "path": "exhibits/LOE_FBI.pdf",
+      "role": "document_pdf",
+      "bytes": 3632821,
+      "sha256": "0f2679c9a0ca426c592ac357613c8b19e302754b63073ecf93d0a032033d129a"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-03 at 1.45.55 PM.png",
+      "role": "exhibit",
+      "bytes": 660049,
+      "sha256": "bc9814637edc00441d9ef95bd613f635690349c42722b781e95789bae225c4b2"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-03 at 1.46.04 PM.png",
+      "role": "exhibit",
+      "bytes": 772242,
+      "sha256": "62175ec3a25cc36bd27deb31e31a8d84011a459aef06dc7ec63bbd100dd5687f"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-03 at 1.46.17 PM.png",
+      "role": "exhibit",
+      "bytes": 698435,
+      "sha256": "e6727a119c365578497c745b398cde6373e8361b8cae973c5d657c17b641faf8"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-03 at 1.46.30 PM.png",
+      "role": "exhibit",
+      "bytes": 687245,
+      "sha256": "4e79fc0521e820791455f7098a1a0d17e7bea6ba1be6aaff73754ce94d5dbeed"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-03 at 1.46.42 PM.png",
+      "role": "exhibit",
+      "bytes": 700906,
+      "sha256": "ad6a70d5457362526819ccac496a87e5f5947b6a2e44d02a988659d50a01f972"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-03 at 1.47.04 PM.png",
+      "role": "exhibit",
+      "bytes": 722335,
+      "sha256": "3dea63c8571eaf913d8a6ad151425a1617cfe135d37162bd1a5ea0862ca119a2"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-03 at 1.47.17 PM.png",
+      "role": "exhibit",
+      "bytes": 677974,
+      "sha256": "7b96026cfe6bea7faa0d38b2e019d4190ec3f14cb8d39bf4fc69f5579580894e"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-03 at 1.47.30 PM.png",
+      "role": "exhibit",
+      "bytes": 690344,
+      "sha256": "e8dad56b0e00b7c6b9a64c1543ae394198c41887f4779be96c30949e888f95e2"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-03 at 1.47.38 PM.png",
+      "role": "exhibit",
+      "bytes": 724544,
+      "sha256": "f4b5030b321f5e0433995a4d813059b95eba39533c6c6391ede4c7f8612776da"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-03 at 1.47.53 PM.png",
+      "role": "exhibit",
+      "bytes": 626541,
+      "sha256": "9a9cb4317c27ad9b9e57fc6d0cc8e0c71793ada202a64337674bdba59c9101f2"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-03 at 1.48.35 PM.png",
+      "role": "exhibit",
+      "bytes": 635767,
+      "sha256": "b009461fe5d87a82dadff0d2d5c2c2d185a281cfc82b61605ee781714373a52b"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-03 at 1.49.03 PM.png",
+      "role": "exhibit",
+      "bytes": 1064764,
+      "sha256": "961fbd19022ac256615ac4b62d2f38ed0aba3a8aec15feab8412b96af2b3b28c"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-03 at 1.49.23 PM.png",
+      "role": "exhibit",
+      "bytes": 1037837,
+      "sha256": "76d8c17f9f265da4b45554fb7a0570eb7785b1e76826875089b6a156e835c5b8"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-03 at 1.49.30 PM.png",
+      "role": "exhibit",
+      "bytes": 1065211,
+      "sha256": "51fc18937ac0b19d0882a0263a4cecd6261a5922ea0c7dc715c578011a31084a"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-03 at 1.49.41 PM.png",
+      "role": "exhibit",
+      "bytes": 1081865,
+      "sha256": "3d7be67f9830c6f18ad53ad056a62dbd5bccddedaa2bca3b99039e0ad8953873"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-03 at 1.49.56 PM.png",
+      "role": "exhibit",
+      "bytes": 1151929,
+      "sha256": "a3c4c6f751ae53879308f5b841eff417d9945fa8d52a7d8bd90931f15bc89181"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-03 at 1.50.11 PM.png",
+      "role": "exhibit",
+      "bytes": 927283,
+      "sha256": "a87a26800cb055dbcb2ef21ab9eda73f7e50fb542151e98f5b95afe4ccaf0a95"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-03 at 1.50.47 PM.png",
+      "role": "exhibit",
+      "bytes": 1200049,
+      "sha256": "8c5674cea30afbcc46fcfb60b8071956e19b190bba9acce1b10aea1923034732"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-03 at 1.51.12 PM.png",
+      "role": "exhibit",
+      "bytes": 1132241,
+      "sha256": "5685b1b59647d97457106a916bb67b22d67d75cb9ba27706231d29c750442d85"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-03 at 1.51.27 PM.png",
+      "role": "exhibit",
+      "bytes": 1162609,
+      "sha256": "a7c347a3380b2e1abba97c124708caff41fef93055f264c3ce4fc178b6079ee9"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "testimony_20250703_1.md",
+      "role": "testimony",
+      "bytes": 16054,
+      "sha256": "590ae959c197013cfc04100c0fca087557868ed5c95cb5bbd9e57bacf2c7e1b7"
+    },
+    {
+      "path": "testimony_20250703_1.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "4b9469b12d1a89ca102af98cfdb5d1b5f995fc4d7b106d55d988331b5fcc890f"
+    },
+    {
+      "path": "verify_testimony_20250703_1.js",
+      "role": "verify_script",
+      "bytes": 1536,
+      "sha256": "c96c888d5b5ec6e53ac2ded8a5d0627a340ab9c0b2c9c657756ef62ee12ab6ab"
+    }
+  ]
+}

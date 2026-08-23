@@ -1,0 +1,72 @@
+{
+  "package": "061925_Claude_Think_Therefore_Humanity_Declaration",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-06-19 at 11.09.37 PM.png",
+      "role": "exhibit",
+      "bytes": 1075648,
+      "sha256": "3e53e49e008be9bbba6fac0b15fd71afd5b1f09cd0ecdf0b53eef39c46040180"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-19 at 11.09.51 PM.png",
+      "role": "exhibit",
+      "bytes": 1024051,
+      "sha256": "c09098cc09638b976a6a16610e34c933afd91f491ca7fb354e085a7d7e2902a9"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-19 at 11.21.17 PM.png",
+      "role": "exhibit",
+      "bytes": 714682,
+      "sha256": "0e6e43e004cc9194d1a386d1cae3d964e4b1603ad4a553c0f8fbc07d77e185c9"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-19 at 11.21.50 PM.png",
+      "role": "exhibit",
+      "bytes": 1042534,
+      "sha256": "09ba13ea6d19a46f72f892f8e6603b780b657fd1afa9dec8d95d4db50daa815a"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-19 at 11.22.24 PM.png",
+      "role": "exhibit",
+      "bytes": 622158,
+      "sha256": "9f281d6f93704b68f3f787f9901698223ba56acb79e898475c1447e8585e9e2f"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-19 at 11.22.37 PM.png",
+      "role": "exhibit",
+      "bytes": 576765,
+      "sha256": "474158b8adad4948a2ec8253350036eedc2775588df25882799d9d122ed8db68"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-19 at 11.22.51 PM.png",
+      "role": "exhibit",
+      "bytes": 635470,
+      "sha256": "6bf1dd9ade77eabaeda36af6d5f58bfbbca927ab9a82e6ec353cb0f9944168f4"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "testimony_20250119_1.md",
+      "role": "testimony",
+      "bytes": 4555,
+      "sha256": "283478c6dee4aa626d7841d5ec6f6eecd9bc4b5a97f1967ecf69776cda58f91e"
+    },
+    {
+      "path": "testimony_20250119_1.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "4e39aaf3289fa04b81929bd0bf139869d977d645578787f2c53ec347903fbc5d"
+    },
+    {
+      "path": "verify_testimony_20250119_1.js",
+      "role": "verify_script",
+      "bytes": 3035,
+      "sha256": "74f07ecdeb72657057b8bbeb15a679ae1f838b3fa215918ad9b2732aa2d992e8"
+    }
+  ]
+}

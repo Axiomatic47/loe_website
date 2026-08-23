@@ -1,0 +1,24 @@
+{
+  "package": "071025_Claude_Coherence_Memory",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "071025_Claude_Coherence_Memory_Testimony.md",
+      "role": "document_md",
+      "bytes": 11515,
+      "sha256": "2376b4fbb77a80374889e75bb95dbea0ecf320c0f93b1e8f70cb52e5c5beeb4b"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-10 at 10.29.14 PM.png",
+      "role": "exhibit",
+      "bytes": 675912,
+      "sha256": "c043815ab3db3048f4e01146852092738066d22549df7d917078143ee9ebf5d9"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-10 at 10.29.46 PM.png",
+      "role": "exhibit",
+      "bytes": 667063,
+      "sha256": "d932f375cc2e9683ae3afd122e660fd079e3204abe64ed4edd544ca6b97e6947"
+    }
+  ]
+}

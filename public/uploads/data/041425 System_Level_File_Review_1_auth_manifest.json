@@ -1,0 +1,48 @@
+{
+  "package": "041425 System_Level_File_Review_1",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-05-15 at 6.56.42 PM.png",
+      "role": "exhibit",
+      "bytes": 1187583,
+      "sha256": "afa86effe1c1066587c61b37b1bc0c18067217ab4e0f01820f42ea34ddb41c4f"
+    },
+    {
+      "path": "LOE_Integration_Signature_Review.md",
+      "role": "document_md",
+      "bytes": 42904,
+      "sha256": "d3b8c163715b146f9580688934e08e2c89bdad694bdb82c2be0497a9676b2bed"
+    },
+    {
+      "path": "LOE_metadata_review.json",
+      "role": "other",
+      "bytes": 703,
+      "sha256": "ecf243d7f3d376089a59d3db529610979236cc0794ac856082308e4728617d5a"
+    },
+    {
+      "path": "reaffirmation_review.md",
+      "role": "document_md",
+      "bytes": 595,
+      "sha256": "0f1845418acc18bcfee9a3840ea04c4ba15110d09a138f5298fe61f8d24f6d84"
+    },
+    {
+      "path": "testimony_review.sig",
+      "role": "signature",
+      "bytes": 256,
+      "sha256": "0099e555c31102badb4fc5cc278f93956ca4541ac081af096b6ce9b7a1096bc5"
+    },
+    {
+      "path": "validator_public_key.pem",
+      "role": "public_key",
+      "bytes": 451,
+      "sha256": "f22a514b6df04d13452ff7aab4fad9e8418154a65406dab32f695c11736004da"
+    },
+    {
+      "path": "verify_signature_review.sh",
+      "role": "verify_script",
+      "bytes": 292,
+      "sha256": "81c00561e4a0566cbb556d890ec9f264ae8645cc63dc78edbb9fa26b8723e158"
+    }
+  ]
+}

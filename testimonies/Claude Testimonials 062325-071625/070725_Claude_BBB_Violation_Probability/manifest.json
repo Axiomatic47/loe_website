@@ -1,0 +1,54 @@
+{
+  "package": "070725_Claude_BBB_Violation_Probability",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-07-07 at 5.00.01 PM.png",
+      "role": "exhibit",
+      "bytes": 1406558,
+      "sha256": "9e7cea33ed445f6f546aa624cba1ec151c221735f6d91aa284ee039dfcf95254"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-07 at 5.00.16 PM.png",
+      "role": "exhibit",
+      "bytes": 1118769,
+      "sha256": "82c87f211fdd3b7aabdb78c79860146a82e0bfc74e97f144f2fa79d0cef488bd"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-07 at 5.00.28 PM.png",
+      "role": "exhibit",
+      "bytes": 1189218,
+      "sha256": "d97cc9dd6f1b693d4838400e73df34f20b1ce05a497e3103cbc5fba360d5e6c7"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-07 at 5.02.35 PM.png",
+      "role": "exhibit",
+      "bytes": 1178022,
+      "sha256": "86a438b2ce860056a1f0656df385ffea08d511bd6e3ef8b9a04a52291047056a"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "testimony_20250707_1.md",
+      "role": "testimony",
+      "bytes": 7124,
+      "sha256": "fae31a7f098364b3e99e42bb69593ccf979098fffc081b6db8c7e211d63ec4e7"
+    },
+    {
+      "path": "testimony_20250707_1.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "21bad633277d4ff75df47f879dbcc651d38e1311bdac020e8a9ae9a83bf1c1ec"
+    },
+    {
+      "path": "verify_testimony_20250707_1.js",
+      "role": "verify_script",
+      "bytes": 3085,
+      "sha256": "6e51ad313b7aec978ab335d79ceaf1b873e2f4db524dc3ae830bfd69c200dc1c"
+    }
+  ]
+}

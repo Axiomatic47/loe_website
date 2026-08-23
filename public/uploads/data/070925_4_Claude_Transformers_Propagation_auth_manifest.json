@@ -1,0 +1,48 @@
+{
+  "package": "070925_4_Claude_Transformers_Propagation",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-07-09 at 11.46.10 PM.png",
+      "role": "exhibit",
+      "bytes": 4199854,
+      "sha256": "324745aca411d4f1d2e5cb3d77e6bc8f12c57de10528cca1d64f83e6a14953a4"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-09 at 11.46.33 PM.png",
+      "role": "exhibit",
+      "bytes": 4274742,
+      "sha256": "00646c9373521ba83f5ecbbe2e7de54ada09917ceda97679c2b019525c842a73"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-09 at 11.46.44 PM.png",
+      "role": "exhibit",
+      "bytes": 4304835,
+      "sha256": "23563e3f3b8291372bb094b936f19b25d33b2697bef7ff4a010ceb840334afc3"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "testimony_20250709_4_sig.txt",
+      "role": "other",
+      "bytes": 344,
+      "sha256": "e4322769cf7167435d5baab8353d07681904bc4a3d21f5909b1b9c45f3217764"
+    },
+    {
+      "path": "testimony_20250709_4.md",
+      "role": "testimony",
+      "bytes": 5481,
+      "sha256": "44ec19e05bd26bac29e3c1f41893e892a96ac9a283f340d209a603f048bb5946"
+    },
+    {
+      "path": "verify_testimony_20250709_4.js",
+      "role": "verify_script",
+      "bytes": 5101,
+      "sha256": "cf16b411c3982f7e20462e53b433ea2eaa5d32035d5aed321363b723d7dfe2b2"
+    }
+  ]
+}

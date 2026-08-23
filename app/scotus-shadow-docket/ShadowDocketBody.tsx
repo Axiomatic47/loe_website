@@ -129,6 +129,23 @@ export const ShadowDocketBody: React.FC<{
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [pdfLoading, setPdfLoading] = useState(() => Boolean(defaultAnalysisFile(analysisIndex)));
   const [zoom, setZoom] = useState(100);
+  const [mounted, setMounted] = useState(false);
+
+  // The iframe must be created client-side only: the prerendered page ships
+  // it with the default analysis file selected, and a PDF that finishes
+  // loading before hydration attaches onLoad leaves pdfLoading stuck true —
+  // React never replays the missed load event.
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Some browsers never fire load for PDF iframes at all — clear the overlay
+  // after a grace period; re-arms on every selection change.
+  useEffect(() => {
+    if (!mounted || !pdfLoading) return;
+    const fallback = setTimeout(() => setPdfLoading(false), 5000);
+    return () => clearTimeout(fallback);
+  }, [mounted, pdfLoading]);
 
 
   // Filter cases based on search
@@ -609,14 +626,16 @@ export const ShadowDocketBody: React.FC<{
                     </div>
                   </div>
                 )}
-                <iframe
-                  key={currentFile.path}
-                  src={`${currentFile.path}#zoom=${zoom}`}
-                  className="w-full h-full"
-                  title={currentFile.displayName}
-                  onLoad={() => setPdfLoading(false)}
-                  style={{ border: 'none', background: '#f5f3ed' }}
-                />
+                {mounted && (
+                  <iframe
+                    key={currentFile.path}
+                    src={`${currentFile.path}#zoom=${zoom}`}
+                    className="w-full h-full"
+                    title={currentFile.displayName}
+                    onLoad={() => setPdfLoading(false)}
+                    style={{ border: 'none', background: '#f5f3ed' }}
+                  />
+                )}
               </div>
             </>
           ) : (

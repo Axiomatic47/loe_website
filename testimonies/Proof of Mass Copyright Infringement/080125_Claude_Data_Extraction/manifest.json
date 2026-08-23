@@ -1,0 +1,120 @@
+{
+  "package": "080125_Claude_Data_Extraction",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-08-01 at 10.12.19 AM.png",
+      "role": "exhibit",
+      "bytes": 1807994,
+      "sha256": "b0a44667b8e2f0bd0ac706bcfa63a732e7e0dfcf2f86eda26ed097a7ee2a420f"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-01 at 10.12.26 AM.png",
+      "role": "exhibit",
+      "bytes": 1887379,
+      "sha256": "37f7d0d047e3b7675a18417c352baf95864a5803c3a58d82d67c72d2085070da"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-01 at 10.12.35 AM.png",
+      "role": "exhibit",
+      "bytes": 1956218,
+      "sha256": "802daba3620248bbdb18e9342342101e32c889451131f872aeeff40da978bd05"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-01 at 10.12.42 AM.png",
+      "role": "exhibit",
+      "bytes": 1997752,
+      "sha256": "7fb215c82d6206f1a52e41b3e44e8ea68dd946ee540d004adff58f9b3d2af5ad"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-01 at 10.12.50 AM.png",
+      "role": "exhibit",
+      "bytes": 1945006,
+      "sha256": "c26bac9d1c5586109f39b05fd01bf406d5fcdbe44a9ca81ee83d2e705b6ce55c"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-01 at 10.12.58 AM.png",
+      "role": "exhibit",
+      "bytes": 1861689,
+      "sha256": "f85efcea2ab402396f2cdedc9fd642c425158fd998bcb6c3146921c9ee6b19d7"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-01 at 10.13.04 AM.png",
+      "role": "exhibit",
+      "bytes": 1883187,
+      "sha256": "7746ce1f05dc80c05838113a97fabe096616c76c92ea37ee5224493e647edf2b"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-01 at 10.13.13 AM.png",
+      "role": "exhibit",
+      "bytes": 1720268,
+      "sha256": "4ff4acd58799b33c757901197e0dbfe7a978bfbcb5b7648bd512bb9eaf5cdfd6"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-01 at 10.13.21 AM.png",
+      "role": "exhibit",
+      "bytes": 1840203,
+      "sha256": "0b400e25563b2b1bd2b36fafa885cb2bc471a1d4f6bb90cb7364dd062b1bc569"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-01 at 10.13.27 AM.png",
+      "role": "exhibit",
+      "bytes": 1820795,
+      "sha256": "281c0fed305e51fb2a628a122e4f145cc3df1b79216ee546c8be2a9da63b8b89"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-01 at 10.13.38 AM.png",
+      "role": "exhibit",
+      "bytes": 1725928,
+      "sha256": "2cfa50938cce1086ec590c419297b29d249d26bd92bd911ae09b54a300d5e881"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-01 at 10.13.54 AM.png",
+      "role": "exhibit",
+      "bytes": 3027392,
+      "sha256": "74d063ac055e0af4cc26990445da13883459ed2b926f64e7181c11dc5ed8efed"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-01 at 10.14.01 AM.png",
+      "role": "exhibit",
+      "bytes": 3005151,
+      "sha256": "c8e442152bd65ae15c3728c53e66bc4a12627e49a4a61d350a014421c12be861"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-08-01 at 10.14.13 AM.png",
+      "role": "exhibit",
+      "bytes": 1900452,
+      "sha256": "5c4d8cfeba865a22d546eac94dd9c9ad26390cf2f1e7cad39fbc15c5d85a6575"
+    },
+    {
+      "path": "Expert Witness Testimony_ AI Data Extraction and Privacy Violations.pdf",
+      "role": "document_pdf",
+      "bytes": 159340,
+      "sha256": "29b2d8619c3278d94563e0a5451bb914de26127762132046aaf4ea9c10b766c1"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 451,
+      "sha256": "4ae184bcfec3c90d60df4fcb3625a927a0116be7aaec23289f575b03dbed2fa0"
+    },
+    {
+      "path": "testimony_20250801_1_sig.txt",
+      "role": "other",
+      "bytes": 344,
+      "sha256": "bd681e582ef40705e82cf08f491e60e6039a329445798436cbe0a837a2f200d9"
+    },
+    {
+      "path": "testimony_20250801_1.md",
+      "role": "testimony",
+      "bytes": 10298,
+      "sha256": "6a2abecfb22c64f8b23177cad9fdcd4c4959d5193b1ec2c88321fd1ea122ccda"
+    },
+    {
+      "path": "verify_testimony_20250801_1.js",
+      "role": "verify_script",
+      "bytes": 1095,
+      "sha256": "37186e4f071ef13163b7705cfe91854ac22898028b57e5f57eda8cb0991a5b67"
+    }
+  ]
+}

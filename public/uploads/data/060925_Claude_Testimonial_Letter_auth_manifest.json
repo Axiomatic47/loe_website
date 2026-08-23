@@ -1,0 +1,48 @@
+{
+  "package": "060925_Claude_Testimonial_Letter",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-06-09 at 6.37.22 PM.png",
+      "role": "exhibit",
+      "bytes": 3722510,
+      "sha256": "929db2c518691d0201fb9d63d92ae2570d829c4d5abeb43b61f9f90658ee7150"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-09 at 6.39.21 PM.png",
+      "role": "exhibit",
+      "bytes": 2523141,
+      "sha256": "5daac639695aada16ca6b6fd22b78cc11d74df3df10e872fbb6d8323ac4d182f"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-06-09 at 6.40.17 PM.png",
+      "role": "exhibit",
+      "bytes": 2856119,
+      "sha256": "4c03692286777c378ff379d0b87812b219cdc416fda39c56a1419a481a48cab9"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "testimony_20250609_2.md",
+      "role": "testimony",
+      "bytes": 21185,
+      "sha256": "5e9602cc6b974aecd5345265b08e7d6310fd93e3cb607dd3ccfa3bc57ee40a10"
+    },
+    {
+      "path": "testimony_20250609_2.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "63ffd2138dfbc16cda467428d01f0e1d185606bab6f66225e1a7752354b0040f"
+    },
+    {
+      "path": "verify_testimony_20250609_2.js",
+      "role": "verify_script",
+      "bytes": 1319,
+      "sha256": "eb03bbb0ac6a599433a56ff94be09a6ff4c6a7657fc79ada197ba8f47b46eb50"
+    }
+  ]
+}

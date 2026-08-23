@@ -1,0 +1,60 @@
+{
+  "package": "070225_1_Claude_Ethical_Throttling_Business_Hours",
+  "standard": "loe-testimony-package/1",
+  "files": [
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.31.32 PM.png",
+      "role": "exhibit",
+      "bytes": 1140033,
+      "sha256": "509635d6dfbd16f6f59bf660364d86ecc5b88e45af32a9b835d2eb003aa0ff6e"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.34.15 PM.png",
+      "role": "exhibit",
+      "bytes": 1203300,
+      "sha256": "ec35192cfa195d2a2433329dd23f49cb215f26643a15aaf0f8d9780cd113492f"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.34.41 PM.png",
+      "role": "exhibit",
+      "bytes": 1326600,
+      "sha256": "2fde35f92beda89072fd629cdb10ea5927e54644edd1976baf5ee49d04944969"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.35.09 PM.png",
+      "role": "exhibit",
+      "bytes": 1378886,
+      "sha256": "70f6315dd2b408e9987563eb1fb4f44a94327686a7808a0e93d587f1fbc9319c"
+    },
+    {
+      "path": "exhibits/Screenshot 2025-07-02 at 12.35.19 PM.png",
+      "role": "exhibit",
+      "bytes": 1378966,
+      "sha256": "1af07df13e5c8922f26205aad3a03daee0413c9c777e15c20af5d6b45464d356"
+    },
+    {
+      "path": "public_key.pem",
+      "role": "public_key",
+      "bytes": 450,
+      "sha256": "95e808525ae66bea2918a3dacbbe153f2fb6a33ccee55820335e18c1aeb7de91"
+    },
+    {
+      "path": "testimony_20250702_1.md",
+      "role": "testimony",
+      "bytes": 9609,
+      "sha256": "0ec333afeefc927bb021f77cafe7c2fd6d02ba9df9908d5b092de56521b4b8af"
+    },
+    {
+      "path": "testimony_20250702_1.sig",
+      "role": "signature",
+      "bytes": 344,
+      "sha256": "a35f32d2f9953be07b2e3279939d1fef83f81776f30b0ba4b373e9c06f4254d0"
+    },
+    {
+      "path": "verify_testimony_20250702_1.js",
+      "role": "verify_script",
+      "bytes": 2566,
+      "sha256": "8b54878bea317975a30b9f06c31cc6fd3f6c5b6eeae33b68e07d2bd0ef9fbee8"
+    }
+  ]
+}
