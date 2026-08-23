@@ -1,8 +1,11 @@
 // scripts/sync-archives.mjs — publish the primary-source research archives.
 //
-// PDF-first: the reviewer-facing documents are the docx-converter PDF exports
-// (<archive>/docx_exports/pdfs/*.pdf); markdown working files stay in
-// work_station and are NOT published. Only docs with a PDF are listed.
+// PDF-first: the reviewer-facing documents are the docx-converter PDF exports,
+// read from each archive's `pdfPools` (the 2026-07-16 source re-sort moved
+// them from a single docx_exports/pdfs into per-section docx/pdfs dirs);
+// markdown working files stay in work_station and are NOT published. Only
+// docs with a PDF are listed. 04_Whittick Deliverables and
+// WHITTICK_DECLARATION are correspondence/work-product and are NEVER pooled.
 //
 // IMAGE LICENSING (fail-closed, PER ARCHIVE via `imagesLicensed`):
 //  - hls-ms149-floyd: LICENSED — Harvard's 2014 PD-reproductions policy + HSC
@@ -10,9 +13,10 @@
 //    work_station/research_library/3_Transcription and Translation/
 //    01_HLS_MS149_Floyd_ff81r-83v/HLS Publication Rights/HLS_PUBLICATION_RIGHTS_MS149.md
 //    (2026-07-13). Credit per HSC convention is baked into each leaf entry.
-//  - stac-8-203-38: NOT licensed — TNA reproduction-licence application
-//    (order RC8368179) sent 2026-07-13, pending. Placeholders until granted;
-//    flip imagesLicensed to true when TNA answers.
+//  - stac-8-203-38: LICENSED — TNA reproduction licence GRANTED (application
+//    order RC8368179, sent 2026-07-13; owner confirmed the licence in hand
+//    2026-08-23 and directed publication). Real leaf images replace the
+//    placeholders as of that date.
 // Unlicensed archives get on-brand SVG placeholders and no crop imagery; the
 // manifest records images.published=false so the pages show a licensing notice.
 //
@@ -51,7 +55,12 @@ const ARCHIVES = [
     dated: 'Trinity term, 5 Jac. I (1607)',
     source: 'The National Archives (UK), Kew — series STAC 8 (Star Chamber Proceedings, James I)',
     rightsHolder: 'The National Archives (UK)',
-    imagesLicensed: false, // TNA licence application pending (order RC8368179)
+    imagesLicensed: true, // TNA reproduction licence granted (order RC8368179; owner word 2026-08-23)
+    rightsNote:
+      'Images reproduced by permission of The National Archives (UK) under its reproduction licence (order RC8368179).',
+    credit: (id) =>
+      `The National Archives, Kew, STAC 8/203/38, m. ${parseInt(id, 10)}. Reproduced by permission of The National Archives.`,
+    pdfPools: ['01_Transcripts/docx/pdfs', '02_Line Indexes/docx/pdfs', '03_Working Notes/docx/pdfs', 'docx/pdfs'],
     leafLabel: 'Membrane',
     leafRe: /^8368179_STAC_8_203_38_(\d{3})\.jpg$/,
     classify(stem) {
@@ -78,6 +87,7 @@ const ARCHIVES = [
     creditUrl: 'https://nrs.lib.harvard.edu/URN-3:HLS.LIBR:29137268',
     credit: (id) =>
       `Star Chamber collection, 1607–1623, HLS MS 149, fol. ${id.slice(1)}, Seq. ${MS149_SEQ[id]}, Harvard Law School Library, Historical & Special Collections`,
+    pdfPools: ['02_Line Indexes/docx/pdfs', '03_Working Notes/docx/pdfs', 'docx/pdfs'],
     leafLabel: 'Folio',
     leafRe: /^ms149_(f\d{2}[rv])\.jpg$/,
     classify(stem) {
@@ -107,10 +117,12 @@ const placeholderSvg = (A, id) => `<svg xmlns="http://www.w3.org/2000/svg" width
 </svg>
 `;
 
-const mdTitle = (archiveSrc, stem) => {
-  // titles come from the sibling working .md's first heading, when present
-  const mdPath = join(archiveSrc, `${stem}.md`);
-  if (existsSync(mdPath)) {
+const mdTitle = (searchDirs, stem) => {
+  // titles come from the working .md's first heading — the md sits in the
+  // pool's section dir since the 2026-07-16 re-sort (archive root as fallback)
+  for (const dir of searchDirs) {
+    const mdPath = join(dir, `${stem}.md`);
+    if (!existsSync(mdPath)) continue;
     const m = readFileSync(mdPath, 'utf8').match(/^#\s+(.+)$/m);
     if (m) return m[1].trim();
   }
@@ -164,24 +176,44 @@ for (const A of ARCHIVES) {
   }
   console.log(`  leaves: ${Object.keys(leaves).length} ${A.imagesLicensed ? 'images copied (licensed)' : 'PLACEHOLDERS written (licence pending)'}`);
 
-  // document PDFs (the published, reviewer-facing artifacts)
-  const pdfDir = join(A.src, 'docx_exports', 'pdfs');
+  // document PDFs (the published, reviewer-facing artifacts) — pooled from
+  // the per-section export dirs; a missing pool is loud, an empty total is
+  // fatal (it would silently wipe the published set).
   const workingPapers = [];
-  const pdfs = existsSync(pdfDir) ? readdirSync(pdfDir).filter((f) => f.endsWith('.pdf')).sort() : [];
-  for (const f of pdfs) {
-    copyFileSync(join(pdfDir, f), join(dst, 'pdfs', f));
-    const stem = f.replace(/\.pdf$/, '');
-    const entry = { title: mdTitle(A.src, stem), pdf: `pdfs/${f}` };
-    const c = A.classify(stem);
-    if (c) {
-      for (const id of c.leaves) {
-        if (leaves[id]) leaves[id].docs.push({ kind: c.kind, span: c.span, ...entry });
+  let pdfCount = 0;
+  const seenPdf = new Set();
+  for (const pool of A.pdfPools) {
+    const pdfDir = join(A.src, pool);
+    if (!existsSync(pdfDir)) {
+      console.error(`  POOL MISSING: ${pool} (source re-sorted again?)`);
+      continue;
+    }
+    const sectionDir = dirname(dirname(pdfDir)); // <section>/docx/pdfs -> <section>
+    for (const f of readdirSync(pdfDir).filter((x) => x.endsWith('.pdf')).sort()) {
+      if (seenPdf.has(f)) {
+        console.error(`  DUPLICATE PDF NAME across pools, keeping first: ${f} (${pool})`);
+        continue;
       }
-    } else {
-      workingPapers.push(entry);
+      seenPdf.add(f);
+      copyFileSync(join(pdfDir, f), join(dst, 'pdfs', f));
+      pdfCount += 1;
+      const stem = f.replace(/\.pdf$/, '');
+      const entry = { title: mdTitle([sectionDir, A.src], stem), pdf: `pdfs/${f}` };
+      const c = A.classify(stem);
+      if (c) {
+        for (const id of c.leaves) {
+          if (leaves[id]) leaves[id].docs.push({ kind: c.kind, span: c.span, ...entry });
+        }
+      } else {
+        workingPapers.push(entry);
+      }
     }
   }
-  console.log(`  pdfs: ${pdfs.length} copied (${workingPapers.length} working papers)`);
+  if (pdfCount === 0) {
+    console.error(`  FATAL: zero PDFs found across all pools for ${A.id} — aborting before the empty set replaces the published one.`);
+    process.exit(1);
+  }
+  console.log(`  pdfs: ${pdfCount} copied (${workingPapers.length} working papers)`);
 
   // crops (only for licensed archives, and only on request — large)
   if (A.imagesLicensed && WITH_CROPS && existsSync(join(A.src, 'crops'))) {

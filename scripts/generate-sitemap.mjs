@@ -10,7 +10,7 @@
 // this script does NOT compute positional indices. <lastmod> per section URL comes from
 // the content file's last git commit date (fallback: fs mtime), cached per file.
 // Run manually with `npm run generate-sitemap`; also runs as part of `npm run build`.
-import { writeFileSync, statSync } from 'node:fs';
+import { writeFileSync, statSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { execSync } from 'node:child_process';
 import { ROOT, READING_COLLECTIONS, loadCollection } from './lib/content-model.mjs';
@@ -42,10 +42,9 @@ const STATIC_ROUTES = [
 
 const xmlEscape = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-// Last-modified date for a content file: git commit date, fallback fs mtime. Cached.
+// Last-modified date for a repo file: git commit date, fallback fs mtime. Cached.
 const lastmodCache = new Map();
-function lastmodFor(collection, filename) {
-  const rel = `content/${collection}/${filename}`;
+function lastmodForPath(rel) {
   if (lastmodCache.has(rel)) return lastmodCache.get(rel);
   let iso;
   try {
@@ -67,6 +66,7 @@ function lastmodFor(collection, filename) {
   lastmodCache.set(rel, iso);
   return iso;
 }
+const lastmodFor = (collection, filename) => lastmodForPath(`content/${collection}/${filename}`);
 
 const urls = STATIC_ROUTES.map(([loc, priority]) => ({ loc: ORIGIN + loc, priority }));
 
@@ -92,6 +92,33 @@ for (const collection of READING_COLLECTIONS) {
     }
   }
 }
+
+// Research archives (published 2026-08-23 with the TNA reproduction licence):
+// archive landing + leaf pages, read from the published manifests. The
+// per-PDF /doc/ pages stay out (noindex viewer chrome).
+let researchTotal = 0;
+const researchRoot = join(ROOT, 'public', 'uploads', 'research');
+try {
+  for (const id of readdirSync(researchRoot).sort()) {
+    const manifestRel = `public/uploads/research/${id}/manifest.json`;
+    let manifest;
+    try {
+      manifest = JSON.parse(readFileSync(join(ROOT, manifestRel), 'utf8'));
+    } catch {
+      continue;
+    }
+    const lastmod = lastmodForPath(manifestRel);
+    urls.push({ loc: `${ORIGIN}/research/${id}`, priority: '0.7', lastmod });
+    researchTotal += 1;
+    for (const leaf of manifest.leaves || []) {
+      urls.push({ loc: `${ORIGIN}/research/${id}/leaf/${leaf.id}`, priority: '0.6', lastmod });
+      researchTotal += 1;
+    }
+  }
+} catch {
+  /* no research dir — nothing to list */
+}
+console.log(`\nresearch: ${researchTotal} URL(s)`);
 
 // Self-check: no legacy positional forms may leak into the canonical sitemap.
 const positional = urls.filter((u) => /\/composition\/[a-z]+\/composition\/\d+/.test(u.loc));

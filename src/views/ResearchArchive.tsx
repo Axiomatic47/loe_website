@@ -79,7 +79,7 @@ const ResearchArchive = () => {
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-5xl mx-auto">
           <Reveal>
-            <Eyebrow>Primary-source research · working draft — unlisted</Eyebrow>
+            <Eyebrow>Primary-source research · working transcription</Eyebrow>
             <h1
               className="font-serif text-foreground"
               style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 580, letterSpacing: "-0.02em", lineHeight: 1.12 }}
