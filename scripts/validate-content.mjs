@@ -11,9 +11,33 @@
 //     present: JSON parses, a top-level slug exists, and slugs are unique per collection.
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
+import { execFileSync } from 'node:child_process';
 import { ROOT, ALL_COLLECTIONS, READING_COLLECTIONS } from './lib/content-model.mjs';
 
 const errors = [];
+
+// Deployed-filename gate: Netlify rejects the whole deploy at the upload
+// stage when any published file's name contains '#' or '?' — verbatim from
+// the 2026-08-23 production failure: "Invalid filename 'uploads/data/…
+// Testimony #6 ….pdf'. Deployed filenames cannot contain # or ? characters."
+// The build stage is green either way (the rule is server-side), so this is
+// the only local gate that can catch it. Exactly those two characters; both
+// also break the URL itself (# = fragment delimiter, ? = query).
+// Scope: git-tracked paths under public/ (what actually deploys).
+try {
+  const tracked = execFileSync('git', ['ls-files', '-z', '--cached', '--', 'public/'], {
+    cwd: ROOT,
+    encoding: 'utf8',
+    maxBuffer: 64 * 1024 * 1024,
+  });
+  for (const p of tracked.split('\0')) {
+    if (p && /[#?]/.test(p)) {
+      errors.push(`deploy-fatal filename (contains # or ?): ${p}`);
+    }
+  }
+} catch (e) {
+  errors.push(`deployed-filename gate could not run (git ls-files failed): ${e.message}`);
+}
 
 function isNonEmptyString(v) {
   return typeof v === 'string' && v.length > 0;
