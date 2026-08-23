@@ -31,12 +31,13 @@ const FeaturedPanel = ({
 
 export const FeaturedWorkSection = () => {
   const navigate = useNavigate();
-  const { manuscript, data, constitutional, timeline, map, loadCollections, getComposition, getSection } = useCompositionStore();
+  const { manuscript, loadCollections, getComposition, getSection } = useCompositionStore();
 
-  // The homepage renders featured content inline, so it loads the collections
-  // it actually displays (copyright is the only one it never shows).
+  // The homepage's featured works are the Declaration of Humanity set —
+  // manuscript ONLY (owner direction 2026-08-23; mirrors app/_components/
+  // FeaturedWork.tsx). Other collections keep their own pages.
   useEffect(() => {
-    loadCollections(['manuscript', 'data', 'constitutional', 'timeline', 'map']);
+    loadCollections(['manuscript']);
   }, [loadCollections]);
 
   const getFeaturedSections = () => {
@@ -92,12 +93,8 @@ export const FeaturedWorkSection = () => {
       }
     };
 
-    // Process each collection type
+    // Manuscript only — see the collection note at the top of the component.
     processCompositions(manuscript, 'manuscript');
-    processCompositions(data, 'data');
-    processCompositions(constitutional, 'constitutional');
-    processCompositions(timeline, 'timeline');
-    processCompositions(map, 'map');
 
     // Debug logging in development
     if (process.env.NODE_ENV !== 'production') {
@@ -113,7 +110,7 @@ export const FeaturedWorkSection = () => {
 
       if (featured.length === 0) {
         console.log('No featured sections found. Checking all compositions...');
-        const allCompositions = [...manuscript, ...data, ...constitutional, ...timeline, ...map];
+        const allCompositions = [...manuscript];
         allCompositions.forEach((comp, index) => {
           console.log(`  Composition ${index + 1}: "${comp.title}"`);
           console.log(`    Composition featured: ${Boolean(comp?.featured)}`);

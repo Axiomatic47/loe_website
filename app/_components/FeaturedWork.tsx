@@ -16,17 +16,12 @@ import {
   ImageEnhancedMarkdownRenderer,
 } from './client-islands';
 
-// Collections the homepage actually displays, in the vite iteration order —
-// the stable sort keeps it for featured_order ties. copyright has never been
-// shown; constitutional dropped 2026-08-22 (owner direction: homepage focus
-// is the academic articles — the cases keep the status strip, and the case
-// pages themselves are untouched).
-const HOME_COLLECTIONS: CollectionType[] = [
-  'manuscript',
-  'data',
-  'timeline',
-  'map',
-];
+// Collections the homepage actually displays. Owner direction 2026-08-23:
+// the featured works are the Declaration of Humanity set — manuscript ONLY
+// (Declaration first via featured_order, then its companion framework
+// papers). constitutional dropped 8/22, data/timeline/map dropped 8/23;
+// case pages and collection grids are untouched.
+const HOME_COLLECTIONS: CollectionType[] = ['manuscript'];
 
 const COLLECTION_DISPLAY: Record<string, string> = {
   manuscript: 'Research',

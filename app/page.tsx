@@ -1,23 +1,22 @@
 // app/page.tsx — editorial front page (server port of src/views/Index.tsx).
 //
-// Structure (owner direction 2026-08-22 — the articles carry the page; no
-// featured case):
+// Structure (owner direction 2026-08-22/23 — the articles carry the page;
+// no featured case, no case strip):
 //   1. Hero — plain-English statement of what this site is, two CTAs
 //      (primary: the academic articles)
 //   2. Academic articles shelf — the manuscript collection, lead + grid
-//   3. Three-case status strip
-//   4. Featured work — full inline reading (CMS `featured` flags, same as
-//      ever: Declaration of Humanity first via featured_order)
+//   3. Featured works — full inline reading of the Declaration of Humanity
+//      set (manuscript `featured` flags; Declaration first via
+//      featured_order)
 //
-// Case status lines are editorial content shared with the vite renderer —
-// update src/data/homeContent.ts as the dockets move. Document counts and
-// article counts are derived from the content manifest at build time.
+// Article counts and the hero's document count are derived from the content
+// manifest at build time.
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Reveal } from '@/components/Reveal';
 import { ArrowRight, BookOpen } from 'lucide-react';
-import { ARTICLE_SHELF, CASE_STRIP } from '@/data/homeContent';
+import { ARTICLE_SHELF } from '@/data/homeContent';
 import { getCollection, getComposition } from '@/lib/content-manifest';
 import { compositionUrl, sectionUrl } from '@/utils/urls';
 import { SitePageLayout } from './_components/SitePageLayout';
@@ -41,10 +40,8 @@ const Eyebrow = ({ children }: { children: React.ReactNode }) => (
 export default function Home() {
   const constitutional = getCollection('constitutional');
 
-  // Live document count across the three cases
+  // Live document count across the three cases (hero line)
   const totalCaseDocs = constitutional.reduce((sum, c) => sum + (c.sections?.length || 0), 0);
-  const docCountFor = (match: string) =>
-    constitutional.find(c => c.title.toLowerCase().includes(match))?.sections?.length || null;
 
   // Articles shelf: editorial order + blurbs from ARTICLE_SHELF, everything
   // else derived from the manuscript collection. Missing slugs drop out.
@@ -209,47 +206,11 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ------------------------------------------ 3. Three-case strip */}
-        <section className="max-w-4xl mx-auto mb-20">
-          <Reveal>
-            <Eyebrow>The cases</Eyebrow>
-          </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {CASE_STRIP.map((c, i) => (
-              <Reveal key={c.caseNo} delay={i * 80}>
-                <Link
-                  href={c.href}
-                  className="group bg-card border border-border rounded-lg p-5 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-200 flex flex-col h-full"
-                >
-                  <h3
-                    className="font-serif text-foreground group-hover:text-primary transition-colors"
-                    style={{ fontSize: '1.125rem', fontWeight: 580, letterSpacing: '-0.014em', lineHeight: 1.3 }}
-                  >
-                    {c.caption}
-                  </h3>
-                  <p className="text-xs text-muted-foreground mt-1.5 font-sans" style={{ fontVariantNumeric: 'tabular-nums' }}>
-                    {c.court}
-                    <br />
-                    {c.caseNo}
-                  </p>
-                  <p className="text-sm text-foreground/85 mt-3 font-sans flex-grow">{c.status}</p>
-                  <p className="text-sm text-primary mt-4 font-sans inline-flex items-center" style={{ fontWeight: 500 }}>
-                    {docCountFor(c.matchTitle)
-                      ? `${docCountFor(c.matchTitle)} documents`
-                      : 'View documents'}
-                    <ArrowRight className="ml-1.5 h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
-                  </p>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        </section>
-
-        {/* ------------------------- 4. Featured work — full inline reading */}
+        {/* ------------------------ 3. Featured works — full inline reading */}
         <section className="mb-8">
           <Reveal>
             <div className="max-w-4xl mx-auto">
-              <Eyebrow>Featured research &amp; evidence</Eyebrow>
+              <Eyebrow>Featured works</Eyebrow>
             </div>
           </Reveal>
           <FeaturedWork />
