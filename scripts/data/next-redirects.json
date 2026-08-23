@@ -688,6 +688,438 @@
     "destination": "/kirchner-v-ellison/8cir-certificate"
   },
   {
+    "source": "/kirchner-v-ellison/section/55",
+    "destination": "/kirchner-v-ellison/8cir-affirmation"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc8cir-affirmation",
+    "destination": "/kirchner-v-ellison/8cir-affirmation"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/56",
+    "destination": "/kirchner-v-ellison/2594-7-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/2594-07-01",
+    "destination": "/kirchner-v-ellison/2594-7-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-7-1",
+    "destination": "/kirchner-v-ellison/2594-7-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-07-01",
+    "destination": "/kirchner-v-ellison/2594-7-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/57",
+    "destination": "/kirchner-v-ellison/2594-7-2"
+  },
+  {
+    "source": "/kirchner-v-ellison/2594-07-02",
+    "destination": "/kirchner-v-ellison/2594-7-2"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-7-2",
+    "destination": "/kirchner-v-ellison/2594-7-2"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-07-02",
+    "destination": "/kirchner-v-ellison/2594-7-2"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/58",
+    "destination": "/kirchner-v-ellison/2594-9"
+  },
+  {
+    "source": "/kirchner-v-ellison/2594-09",
+    "destination": "/kirchner-v-ellison/2594-9"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-9",
+    "destination": "/kirchner-v-ellison/2594-9"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-09",
+    "destination": "/kirchner-v-ellison/2594-9"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/59",
+    "destination": "/kirchner-v-ellison/2594-10"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-10",
+    "destination": "/kirchner-v-ellison/2594-10"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/60",
+    "destination": "/kirchner-v-ellison/2594-11"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-11",
+    "destination": "/kirchner-v-ellison/2594-11"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/61",
+    "destination": "/kirchner-v-ellison/2594-11-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/2594-11-01",
+    "destination": "/kirchner-v-ellison/2594-11-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-11-1",
+    "destination": "/kirchner-v-ellison/2594-11-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-11-01",
+    "destination": "/kirchner-v-ellison/2594-11-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/62",
+    "destination": "/kirchner-v-ellison/2594-12"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-12",
+    "destination": "/kirchner-v-ellison/2594-12"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/63",
+    "destination": "/kirchner-v-ellison/2594-13"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-13",
+    "destination": "/kirchner-v-ellison/2594-13"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/64",
+    "destination": "/kirchner-v-ellison/2594-15"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-15",
+    "destination": "/kirchner-v-ellison/2594-15"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/65",
+    "destination": "/kirchner-v-ellison/2594-15-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/2594-15-01",
+    "destination": "/kirchner-v-ellison/2594-15-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-15-1",
+    "destination": "/kirchner-v-ellison/2594-15-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-15-01",
+    "destination": "/kirchner-v-ellison/2594-15-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/66",
+    "destination": "/kirchner-v-ellison/2594-15-2"
+  },
+  {
+    "source": "/kirchner-v-ellison/2594-15-02",
+    "destination": "/kirchner-v-ellison/2594-15-2"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-15-2",
+    "destination": "/kirchner-v-ellison/2594-15-2"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-15-02",
+    "destination": "/kirchner-v-ellison/2594-15-2"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/67",
+    "destination": "/kirchner-v-ellison/2594-15-3"
+  },
+  {
+    "source": "/kirchner-v-ellison/2594-15-03",
+    "destination": "/kirchner-v-ellison/2594-15-3"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-15-3",
+    "destination": "/kirchner-v-ellison/2594-15-3"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-15-03",
+    "destination": "/kirchner-v-ellison/2594-15-3"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/68",
+    "destination": "/kirchner-v-ellison/2594-15-4"
+  },
+  {
+    "source": "/kirchner-v-ellison/2594-15-04",
+    "destination": "/kirchner-v-ellison/2594-15-4"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-15-4",
+    "destination": "/kirchner-v-ellison/2594-15-4"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-15-04",
+    "destination": "/kirchner-v-ellison/2594-15-4"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/69",
+    "destination": "/kirchner-v-ellison/2594-16"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-16",
+    "destination": "/kirchner-v-ellison/2594-16"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/70",
+    "destination": "/kirchner-v-ellison/2594-16-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/2594-16-01",
+    "destination": "/kirchner-v-ellison/2594-16-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-16-1",
+    "destination": "/kirchner-v-ellison/2594-16-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-16-01",
+    "destination": "/kirchner-v-ellison/2594-16-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/71",
+    "destination": "/kirchner-v-ellison/2594-17"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-17",
+    "destination": "/kirchner-v-ellison/2594-17"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/72",
+    "destination": "/kirchner-v-ellison/2594-17-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/2594-17-01",
+    "destination": "/kirchner-v-ellison/2594-17-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-17-1",
+    "destination": "/kirchner-v-ellison/2594-17-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-17-01",
+    "destination": "/kirchner-v-ellison/2594-17-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/73",
+    "destination": "/kirchner-v-ellison/2594-18"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-18",
+    "destination": "/kirchner-v-ellison/2594-18"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/74",
+    "destination": "/kirchner-v-ellison/2594-18-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/2594-18-01",
+    "destination": "/kirchner-v-ellison/2594-18-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-18-1",
+    "destination": "/kirchner-v-ellison/2594-18-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-18-01",
+    "destination": "/kirchner-v-ellison/2594-18-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/75",
+    "destination": "/kirchner-v-ellison/2594-18-2"
+  },
+  {
+    "source": "/kirchner-v-ellison/2594-18-02",
+    "destination": "/kirchner-v-ellison/2594-18-2"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-18-2",
+    "destination": "/kirchner-v-ellison/2594-18-2"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-18-02",
+    "destination": "/kirchner-v-ellison/2594-18-2"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/76",
+    "destination": "/kirchner-v-ellison/2594-19"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-19",
+    "destination": "/kirchner-v-ellison/2594-19"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/77",
+    "destination": "/kirchner-v-ellison/2594-19-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/2594-19-01",
+    "destination": "/kirchner-v-ellison/2594-19-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-19-1",
+    "destination": "/kirchner-v-ellison/2594-19-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-19-01",
+    "destination": "/kirchner-v-ellison/2594-19-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/78",
+    "destination": "/kirchner-v-ellison/2594-19-2"
+  },
+  {
+    "source": "/kirchner-v-ellison/2594-19-02",
+    "destination": "/kirchner-v-ellison/2594-19-2"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-19-2",
+    "destination": "/kirchner-v-ellison/2594-19-2"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-19-02",
+    "destination": "/kirchner-v-ellison/2594-19-2"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/79",
+    "destination": "/kirchner-v-ellison/2594-20"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-20",
+    "destination": "/kirchner-v-ellison/2594-20"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/80",
+    "destination": "/kirchner-v-ellison/2594-21"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-21",
+    "destination": "/kirchner-v-ellison/2594-21"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/81",
+    "destination": "/kirchner-v-ellison/2594-22"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-22",
+    "destination": "/kirchner-v-ellison/2594-22"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/82",
+    "destination": "/kirchner-v-ellison/2594-22-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/2594-22-01",
+    "destination": "/kirchner-v-ellison/2594-22-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-22-1",
+    "destination": "/kirchner-v-ellison/2594-22-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-22-01",
+    "destination": "/kirchner-v-ellison/2594-22-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/83",
+    "destination": "/kirchner-v-ellison/2594-23"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-23",
+    "destination": "/kirchner-v-ellison/2594-23"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/84",
+    "destination": "/kirchner-v-ellison/2594-23-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/2594-23-01",
+    "destination": "/kirchner-v-ellison/2594-23-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-23-1",
+    "destination": "/kirchner-v-ellison/2594-23-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-23-01",
+    "destination": "/kirchner-v-ellison/2594-23-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/85",
+    "destination": "/kirchner-v-ellison/2594-24"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-24",
+    "destination": "/kirchner-v-ellison/2594-24"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/86",
+    "destination": "/kirchner-v-ellison/2594-24-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/2594-24-01",
+    "destination": "/kirchner-v-ellison/2594-24-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-24-1",
+    "destination": "/kirchner-v-ellison/2594-24-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-24-01",
+    "destination": "/kirchner-v-ellison/2594-24-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/87",
+    "destination": "/kirchner-v-ellison/2594-26"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-26",
+    "destination": "/kirchner-v-ellison/2594-26"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/88",
+    "destination": "/kirchner-v-ellison/2594-27"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-27",
+    "destination": "/kirchner-v-ellison/2594-27"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/89",
+    "destination": "/kirchner-v-ellison/2594-28"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-28",
+    "destination": "/kirchner-v-ellison/2594-28"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/90",
+    "destination": "/kirchner-v-ellison/2594-28-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/2594-28-01",
+    "destination": "/kirchner-v-ellison/2594-28-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-28-1",
+    "destination": "/kirchner-v-ellison/2594-28-1"
+  },
+  {
+    "source": "/kirchner-v-ellison/doc2594-28-01",
+    "destination": "/kirchner-v-ellison/2594-28-1"
+  },
+  {
     "source": "/kirchner-v-johnson/section/1",
     "destination": "/kirchner-v-johnson/51"
   },
@@ -7586,6 +8018,50 @@
   {
     "source": "/kirchner-v-johnson/doc50-03",
     "destination": "/kirchner-v-johnson/50-3"
+  },
+  {
+    "source": "/kirchner-v-johnson/section/429",
+    "destination": "/kirchner-v-johnson/71"
+  },
+  {
+    "source": "/kirchner-v-trump/section/429",
+    "destination": "/kirchner-v-johnson/71"
+  },
+  {
+    "source": "/kirchner-v-johnson/doc71",
+    "destination": "/kirchner-v-johnson/71"
+  },
+  {
+    "source": "/kirchner-v-johnson/section/430",
+    "destination": "/kirchner-v-johnson/72"
+  },
+  {
+    "source": "/kirchner-v-trump/section/430",
+    "destination": "/kirchner-v-johnson/72"
+  },
+  {
+    "source": "/kirchner-v-johnson/doc72",
+    "destination": "/kirchner-v-johnson/72"
+  },
+  {
+    "source": "/kirchner-v-johnson/section/431",
+    "destination": "/kirchner-v-johnson/72-1"
+  },
+  {
+    "source": "/kirchner-v-trump/section/431",
+    "destination": "/kirchner-v-johnson/72-1"
+  },
+  {
+    "source": "/kirchner-v-johnson/72-01",
+    "destination": "/kirchner-v-johnson/72-1"
+  },
+  {
+    "source": "/kirchner-v-johnson/doc72-1",
+    "destination": "/kirchner-v-johnson/72-1"
+  },
+  {
+    "source": "/kirchner-v-johnson/doc72-01",
+    "destination": "/kirchner-v-johnson/72-1"
   },
   {
     "source": "/kirchner-v-acosta/section/1",
