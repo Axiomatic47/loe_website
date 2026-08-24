@@ -8,15 +8,16 @@
     "pieces": 10
   },
   "images": {
-    "published": false,
-    "rightsHolder": "The National Archives (UK)"
+    "published": true,
+    "rightsHolder": "The National Archives (UK)",
+    "rightsNote": "Images reproduced by permission of The National Archives (UK) under its reproduction licence (order RC8368179)."
   },
   "leaves": [
     {
       "id": "001",
-      "image": "leaves/placeholder_001.svg",
+      "image": "leaves/8368179_STAC_8_203_38_001.jpg",
       "sha256": "ee090a2477bd5098d71a4e915d4f9fed55c34aae489e35c1debecc459e658be0",
-      "credit": null,
+      "credit": "The National Archives, Kew, STAC 8/203/38, m. 1. Reproduced by permission of The National Archives.",
       "docs": [
         {
           "kind": "transcript",
@@ -38,9 +39,9 @@
     },
     {
       "id": "002",
-      "image": "leaves/placeholder_002.svg",
+      "image": "leaves/8368179_STAC_8_203_38_002.jpg",
       "sha256": "3e81992d0e6e50c135bc4940aa101e6c15904b645e40304565fdfb05e6d402aa",
-      "credit": null,
+      "credit": "The National Archives, Kew, STAC 8/203/38, m. 2. Reproduced by permission of The National Archives.",
       "docs": [
         {
           "kind": "transcript",
@@ -62,9 +63,9 @@
     },
     {
       "id": "003",
-      "image": "leaves/placeholder_003.svg",
+      "image": "leaves/8368179_STAC_8_203_38_003.jpg",
       "sha256": "9746f1142f1a979dca55ca42dca208e78a71d418a8f414f763ff5bb5ed6d97ba",
-      "credit": null,
+      "credit": "The National Archives, Kew, STAC 8/203/38, m. 3. Reproduced by permission of The National Archives.",
       "docs": [
         {
           "kind": "transcript",
@@ -92,9 +93,9 @@
     },
     {
       "id": "004",
-      "image": "leaves/placeholder_004.svg",
+      "image": "leaves/8368179_STAC_8_203_38_004.jpg",
       "sha256": "a94519159b28985360252e84154cc707918419ab8eb4944a83ec94e738266e38",
-      "credit": null,
+      "credit": "The National Archives, Kew, STAC 8/203/38, m. 4. Reproduced by permission of The National Archives.",
       "docs": [
         {
           "kind": "transcript",
@@ -116,9 +117,9 @@
     },
     {
       "id": "005",
-      "image": "leaves/placeholder_005.svg",
+      "image": "leaves/8368179_STAC_8_203_38_005.jpg",
       "sha256": "b0ce2627cd6240dd6e0cc9715f958eedad914941c332262a50467bd2ad93d364",
-      "credit": null,
+      "credit": "The National Archives, Kew, STAC 8/203/38, m. 5. Reproduced by permission of The National Archives.",
       "docs": [
         {
           "kind": "transcript",
@@ -140,9 +141,9 @@
     },
     {
       "id": "006",
-      "image": "leaves/placeholder_006.svg",
+      "image": "leaves/8368179_STAC_8_203_38_006.jpg",
       "sha256": "3c0577e937849ecc058338ad1044c5704455f1a454666c2ae2b3981662768910",
-      "credit": null,
+      "credit": "The National Archives, Kew, STAC 8/203/38, m. 6. Reproduced by permission of The National Archives.",
       "docs": [
         {
           "kind": "transcript",
@@ -164,9 +165,9 @@
     },
     {
       "id": "007",
-      "image": "leaves/placeholder_007.svg",
+      "image": "leaves/8368179_STAC_8_203_38_007.jpg",
       "sha256": "fb14e23bd7b6caa6def6ff0151ba8c8037f48759aaa1a5e303cd573ec88f3462",
-      "credit": null,
+      "credit": "The National Archives, Kew, STAC 8/203/38, m. 7. Reproduced by permission of The National Archives.",
       "docs": [
         {
           "kind": "transcript",
@@ -188,9 +189,9 @@
     },
     {
       "id": "008",
-      "image": "leaves/placeholder_008.svg",
+      "image": "leaves/8368179_STAC_8_203_38_008.jpg",
       "sha256": "d4d9c3e71ea834963436efa1794d72a9101426051d6a1b87575c563fa0268f92",
-      "credit": null,
+      "credit": "The National Archives, Kew, STAC 8/203/38, m. 8. Reproduced by permission of The National Archives.",
       "docs": [
         {
           "kind": "transcript",
@@ -212,9 +213,9 @@
     },
     {
       "id": "009",
-      "image": "leaves/placeholder_009.svg",
+      "image": "leaves/8368179_STAC_8_203_38_009.jpg",
       "sha256": "889cf85b563be6c1222d7c521f87af0c47f9a51b2392dd9a4d5866189db83d05",
-      "credit": null,
+      "credit": "The National Archives, Kew, STAC 8/203/38, m. 9. Reproduced by permission of The National Archives.",
       "docs": [
         {
           "kind": "transcript",
@@ -229,16 +230,16 @@
         {
           "kind": "transcription",
           "span": "009",
-          "title": "Working transcription — membrane 009 (Articles 13–16, the continuation leaf of the 008 instrument), precision-pass line-by-line sweep",
+          "title": "Working transcription — membrane 009",
           "pdf": "pdfs/_WORKING_009_TRANSCRIPTION.pdf"
         }
       ]
     },
     {
       "id": "010",
-      "image": "leaves/placeholder_010.svg",
+      "image": "leaves/8368179_STAC_8_203_38_010.jpg",
       "sha256": "ccbaf25b529dd3c036e6de44ecd1eec52b5a95cce8867536a98d9d895f12daab",
-      "credit": null,
+      "credit": "The National Archives, Kew, STAC 8/203/38, m. 10. Reproduced by permission of The National Archives.",
       "docs": [
         {
           "kind": "transcript",
@@ -255,6 +256,14 @@
     }
   ],
   "workingPapers": [
+    {
+      "title": "PHASE 4C AUDIT — completeness + fidelity closure, STAC 8/203/38 (2026-07-07)",
+      "pdf": "pdfs/_WORKING_P4C_AUDIT.pdf"
+    },
+    {
+      "title": "RE-ZOOM VERDICTS — 2026-07-02 (Fable-5 re-sweep, verification zooms)",
+      "pdf": "pdfs/_WORKING_REZOOM_VERDICTS_2026-07-02.pdf"
+    },
     {
       "title": "CORRECTIONS LOG — the transcription's record of catching its own errors",
       "pdf": "pdfs/CORRECTIONS_LOG.pdf"
@@ -274,14 +283,6 @@
     {
       "title": "PRECISION PASS (third pass) — master gap ledger — opened 2026-07-02",
       "pdf": "pdfs/_PRECISION_PASS_LEDGER.pdf"
-    },
-    {
-      "title": "PHASE 4C AUDIT — completeness + fidelity closure, STAC 8/203/38 (2026-07-07)",
-      "pdf": "pdfs/_WORKING_P4C_AUDIT.pdf"
-    },
-    {
-      "title": "RE-ZOOM VERDICTS — 2026-07-02 (Fable-5 re-sweep, verification zooms)",
-      "pdf": "pdfs/_WORKING_REZOOM_VERDICTS_2026-07-02.pdf"
     },
     {
       "title": "MARKDOWN FORMATTING GUIDE — authoring for the DOCX renderer",

@@ -1,6 +1,7 @@
-// app/research/[archiveId]/leaf/[leafId]/page.tsx — one leaf of an unlisted
-// research archive. Params enumerate from the manifests at build; unknown
-// leaves 404 (dynamicParams=false). Noindex, like every /research page.
+// app/research/[archiveId]/leaf/[leafId]/page.tsx — one leaf of a research
+// archive. Params enumerate from the manifests at build; unknown leaves 404
+// (dynamicParams=false). Indexable since 2026-08-23 (published with the TNA
+// licence); the per-PDF doc pages stay noindex (viewer chrome).
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { RESEARCH_ARCHIVES } from '@/data/researchArchives';
@@ -30,7 +31,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     title: `${config.leafLabel} ${leafId} — ${config.ref}`,
     description:
       'Working diplomatic transcription — leaf image, line index, and transcription (PDF).',
-    robots: { index: false, follow: false },
+    alternates: { canonical: `/research/${archiveId}/leaf/${leafId}` },
   };
 }
 

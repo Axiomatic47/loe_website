@@ -5,22 +5,25 @@
 //   1. Hero — plain-English statement of what this site is, two CTAs
 //      (primary: the academic articles)
 //   2. Academic articles shelf — the manuscript collection, lead + grid
-//   3. Featured works — full inline reading of the Declaration of Humanity
+//   3. From the archives — the two Star Chamber primary-source archives
+//      (published 2026-08-23 with the TNA reproduction licence in hand)
+//   4. Featured works — full inline reading of the Declaration of Humanity
 //      set (manuscript `featured` flags; Declaration first via
 //      featured_order)
 //
-// Article counts and the hero's document count are derived from the content
-// manifest at build time.
+// Article counts, the hero's document count, and archive leaf counts are
+// derived from the content/archive manifests at build time.
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Reveal } from '@/components/Reveal';
-import { ArrowRight, BookOpen } from 'lucide-react';
-import { ARTICLE_SHELF } from '@/data/homeContent';
+import { ArrowRight, BookOpen, ScrollText } from 'lucide-react';
+import { ARTICLE_SHELF, ARCHIVE_SHELF } from '@/data/homeContent';
 import { getCollection, getComposition } from '@/lib/content-manifest';
 import { compositionUrl, sectionUrl } from '@/utils/urls';
 import { SitePageLayout } from './_components/SitePageLayout';
 import { FeaturedWork } from './_components/FeaturedWork';
+import { readArchiveManifest } from './research/manifest-server';
 
 // Title/description/OG come from the root layout defaults (they ARE the
 // site defaults); the home page only pins its canonical.
@@ -206,7 +209,50 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ------------------------ 3. Featured works — full inline reading */}
+        {/* --------------------------------------- 3. From the archives */}
+        <section className="max-w-4xl mx-auto mb-16">
+          <Reveal>
+            <Eyebrow>From the archives</Eyebrow>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {ARCHIVE_SHELF.map((a, i) => {
+              const manifest = readArchiveManifest(a.id);
+              const leafCount = manifest?.leaves?.length || 0;
+              return (
+                <Reveal key={a.id} delay={i * 80}>
+                  <Link
+                    href={`/research/${a.id}`}
+                    className="group bg-card border border-border rounded-lg p-5 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-200 flex flex-col h-full"
+                  >
+                    <div className="flex items-start gap-3">
+                      <ScrollText className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                      <div className="min-w-0">
+                        <h3
+                          className="font-serif text-foreground group-hover:text-primary transition-colors"
+                          style={{ fontSize: '1.125rem', fontWeight: 580, letterSpacing: '-0.014em', lineHeight: 1.3 }}
+                        >
+                          {a.title}
+                        </h3>
+                        <p className="text-xs text-muted-foreground mt-1 font-sans" style={{ fontVariantNumeric: 'tabular-nums' }}>
+                          {a.ref}
+                          <br />
+                          {a.detail}
+                        </p>
+                      </div>
+                    </div>
+                    <p className="text-sm text-foreground/85 mt-3 font-sans flex-grow">{a.blurb}</p>
+                    <p className="text-sm text-primary mt-4 font-sans inline-flex items-center" style={{ fontWeight: 500 }}>
+                      {leafCount > 0 ? `Read the manuscript (${leafCount} leaves)` : 'Read the manuscript'}
+                      <ArrowRight className="ml-1.5 h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+                    </p>
+                  </Link>
+                </Reveal>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* ------------------------ 4. Featured works — full inline reading */}
         <section className="mb-8">
           <Reveal>
             <div className="max-w-4xl mx-auto">

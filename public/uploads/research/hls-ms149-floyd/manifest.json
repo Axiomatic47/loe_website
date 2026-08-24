@@ -95,6 +95,18 @@
   ],
   "workingPapers": [
     {
+      "title": "WORKING — MS 149 ff. 81r–83v PASS-4 COMPLETENESS AUDIT (#25)",
+      "pdf": "pdfs/_WORKING_MS149_P4C_AUDIT.pdf"
+    },
+    {
+      "title": "WORKING — MS 149 P4D: CONSOLIDATED DELTA + THE_TWO_LOCKS QUOTED-READINGS AUDIT (task #26)",
+      "pdf": "pdfs/_WORKING_MS149_P4D_DELTA_AND_QUOTED_AUDIT.pdf"
+    },
+    {
+      "title": "MS 149 ff. 81r–83v — SURVEY CENSUS + PRECISION LEDGER (pass-4-grade campaign, opened 2026-07-08)",
+      "pdf": "pdfs/_WORKING_MS149_SURVEY_AND_LEDGER.pdf"
+    },
+    {
       "title": "Reading Companion — HLS MS 149, ff. 81r–83v (*Floyd v. Barker*, the Second Account)",
       "pdf": "pdfs/READING_COMPANION_ff81r-83v.pdf"
     },
@@ -109,18 +121,6 @@
     {
       "title": "HAND ATLAS — MS 149 ff. 81r–83v (single later-17c round report hand)",
       "pdf": "pdfs/_HAND_ATLAS_ms149.pdf"
-    },
-    {
-      "title": "WORKING — MS 149 ff. 81r–83v PASS-4 COMPLETENESS AUDIT (#25)",
-      "pdf": "pdfs/_WORKING_MS149_P4C_AUDIT.pdf"
-    },
-    {
-      "title": "WORKING — MS 149 P4D: CONSOLIDATED DELTA + THE_TWO_LOCKS QUOTED-READINGS AUDIT (task #26)",
-      "pdf": "pdfs/_WORKING_MS149_P4D_DELTA_AND_QUOTED_AUDIT.pdf"
-    },
-    {
-      "title": "MS 149 ff. 81r–83v — SURVEY CENSUS + PRECISION LEDGER (pass-4-grade campaign, opened 2026-07-08)",
-      "pdf": "pdfs/_WORKING_MS149_SURVEY_AND_LEDGER.pdf"
     },
     {
       "title": "MARKDOWN FORMATTING GUIDE — authoring for the DOCX renderer",

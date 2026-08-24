@@ -1,7 +1,9 @@
-// app/research/[archiveId]/page.tsx — landing page for an unlisted
-// primary-source archive (server port of src/views/ResearchArchive.tsx).
-// Live by URL, not linked from navigation or the sitemap, and noindex while
-// under review. The manifest is read from public/uploads/research at build.
+// app/research/[archiveId]/page.tsx — landing page for a primary-source
+// archive (server port of src/views/ResearchArchive.tsx).
+// PUBLISHED 2026-08-23 (owner direction, TNA reproduction licence in hand):
+// linked from the homepage, in the sitemap, and indexable — the pre-licence
+// unlisted/noindex posture is retired. The manifest is read from
+// public/uploads/research at build.
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -34,7 +36,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   return {
     title: `${config.ref} — working transcription`,
     description: `Working diplomatic transcription of ${config.ref}: leaf images, line indexes, and transcriptions.`,
-    robots: { index: false, follow: false },
+    alternates: { canonical: `/research/${archiveId}` },
   };
 }
 
@@ -56,7 +58,7 @@ export default async function ResearchArchivePage({ params }: Params) {
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-5xl mx-auto">
           <Reveal>
-            <Eyebrow>Primary-source research · working draft — unlisted</Eyebrow>
+            <Eyebrow>Primary-source research · working transcription</Eyebrow>
             <h1
               className="font-serif text-foreground"
               style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 580, letterSpacing: "-0.02em", lineHeight: 1.12 }}
