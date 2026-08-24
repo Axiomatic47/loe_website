@@ -139,7 +139,7 @@ export const LeafBody = ({ archiveId, refLabel, leafLabel, manifest, leaf, prev,
           <div className={cn(layout === "side" && "lg:sticky lg:top-20")}>
             <MembraneViewer
               key={layout} // remount on layout change so the leaf re-fits the new pane width
-              src={`${archiveBase(archiveId)}/${leaf.image}`}
+              src={`${archiveBase(archiveId)}/${leaf.web ?? leaf.image}`}
               alt={`${refLabel} ${leafLabel.toLowerCase()} ${leaf.id}`}
               heightClass={layout === "stacked" ? "h-[56vh] lg:h-[64vh]" : "h-[62vh] lg:h-[74vh]"}
               fitMode={imagesPublished(manifest) ? "width" : "contain"}
@@ -170,6 +170,21 @@ export const LeafBody = ({ archiveId, refLabel, leafLabel, manifest, leaf, prev,
                         </a>
                       </>
                     )}
+                  </p>
+                )}
+                {leaf.web && (
+                  <p>
+                    Shown at web resolution.{" "}
+                    <a
+                      href={`${archiveBase(archiveId)}/${leaf.image}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline underline-offset-2 hover:text-foreground transition-colors"
+                    >
+                      Open the full-resolution original
+                      {leaf.imageBytes ? ` (${Math.round(leaf.imageBytes / 1e6)} MB)` : ""}
+                    </a>
+                    {" "}— the fixity hash below is the original's.
                   </p>
                 )}
                 {leaf.sha256 && <p className="font-mono break-all">sha256 {leaf.sha256}</p>}
