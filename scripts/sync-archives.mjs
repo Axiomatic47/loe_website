@@ -29,6 +29,24 @@
 import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync, copyFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { execFileSync } from 'node:child_process';
+
+// Downscaled renditions (macOS `sips`, no extra deps — this script is
+// manual-run-only on the Mac): every licensed leaf gets a ~600px grid
+// thumbnail; leaves whose original exceeds WEB_RENDITION_BYTES also get a
+// ~2000px web display rendition (the 45.6 MB STAC m.010 scan was unusable
+// inline). Originals are never modified — fixity rows keep verifying.
+const THUMB_MAX = 600;
+const WEB_MAX = 2000;
+const WEB_RENDITION_BYTES = 8_000_000;
+function sipsResample(src, dst, maxSide, quality) {
+  execFileSync('sips', [
+    '--resampleHeightWidthMax', String(maxSide),
+    '-s', 'format', 'jpeg',
+    '-s', 'formatOptions', String(quality),
+    src, '--out', dst,
+  ], { stdio: 'pipe' }); // throws on failure — a missing rendition must never ship silently
+}
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = '/Users/everest/Git/work_station/research_library/3_Transcription and Translation';
@@ -136,8 +154,8 @@ for (const A of ARCHIVES) {
     continue;
   }
   const dst = join(OUT, A.id);
-  // fresh leaves/ + pdfs/ so removed source files disappear
-  for (const d of ['leaves', 'pdfs']) {
+  // fresh leaves/ + renditions + pdfs/ so removed source files disappear
+  for (const d of ['leaves', 'thumbs', 'web', 'pdfs']) {
     rmSync(join(dst, d), { recursive: true, force: true });
     mkdirSync(join(dst, d), { recursive: true });
   }
@@ -157,24 +175,45 @@ for (const A of ARCHIVES) {
     copyFileSync(fixityFile, join(dst, '_FIXITY_SHA256_SOURCES.txt'));
   }
 
-  // leaves — real images for licensed archives; placeholders otherwise
+  // leaves — real images + renditions for licensed archives; placeholders otherwise
   const leaves = {};
+  let webCount = 0;
   for (const f of readdirSync(A.src).sort()) {
     const m = f.match(A.leafRe);
     if (!m) continue;
     const id = m[1];
-    let image;
+    let image, thumb, web, imageBytes;
     if (A.imagesLicensed) {
-      copyFileSync(join(A.src, f), join(dst, 'leaves', f));
+      const srcImg = join(A.src, f);
+      copyFileSync(srcImg, join(dst, 'leaves', f));
       image = `leaves/${f}`;
+      imageBytes = statSync(srcImg).size;
+      sipsResample(srcImg, join(dst, 'thumbs', f), THUMB_MAX, 75);
+      thumb = `thumbs/${f}`;
+      if (imageBytes > WEB_RENDITION_BYTES) {
+        sipsResample(srcImg, join(dst, 'web', f), WEB_MAX, 80);
+        web = `web/${f}`;
+        webCount += 1;
+      }
     } else {
       const ph = `placeholder_${id}.svg`;
       writeFileSync(join(dst, 'leaves', ph), placeholderSvg(A, id));
       image = `leaves/${ph}`;
     }
-    leaves[id] = { id, image, sha256: fixity[f] || null, credit: A.credit ? A.credit(id) : null, docs: [] };
+    leaves[id] = {
+      id,
+      image,
+      ...(thumb ? { thumb } : {}),
+      ...(web ? { web } : {}),
+      ...(imageBytes ? { imageBytes } : {}),
+      sha256: fixity[f] || null,
+      credit: A.credit ? A.credit(id) : null,
+      docs: [],
+    };
   }
-  console.log(`  leaves: ${Object.keys(leaves).length} ${A.imagesLicensed ? 'images copied (licensed)' : 'PLACEHOLDERS written (licence pending)'}`);
+  console.log(
+    `  leaves: ${Object.keys(leaves).length} ${A.imagesLicensed ? `images copied (licensed) + thumbs; ${webCount} web rendition(s) for oversized originals` : 'PLACEHOLDERS written (licence pending)'}`
+  );
 
   // document PDFs (the published, reviewer-facing artifacts) — pooled from
   // the per-section export dirs; a missing pool is loud, an empty total is

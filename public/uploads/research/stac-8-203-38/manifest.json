@@ -16,6 +16,8 @@
     {
       "id": "001",
       "image": "leaves/8368179_STAC_8_203_38_001.jpg",
+      "thumb": "thumbs/8368179_STAC_8_203_38_001.jpg",
+      "imageBytes": 1649090,
       "sha256": "ee090a2477bd5098d71a4e915d4f9fed55c34aae489e35c1debecc459e658be0",
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 1. Reproduced by permission of The National Archives.",
       "docs": [
@@ -40,6 +42,8 @@
     {
       "id": "002",
       "image": "leaves/8368179_STAC_8_203_38_002.jpg",
+      "thumb": "thumbs/8368179_STAC_8_203_38_002.jpg",
+      "imageBytes": 2543112,
       "sha256": "3e81992d0e6e50c135bc4940aa101e6c15904b645e40304565fdfb05e6d402aa",
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 2. Reproduced by permission of The National Archives.",
       "docs": [
@@ -64,6 +68,8 @@
     {
       "id": "003",
       "image": "leaves/8368179_STAC_8_203_38_003.jpg",
+      "thumb": "thumbs/8368179_STAC_8_203_38_003.jpg",
+      "imageBytes": 2398117,
       "sha256": "9746f1142f1a979dca55ca42dca208e78a71d418a8f414f763ff5bb5ed6d97ba",
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 3. Reproduced by permission of The National Archives.",
       "docs": [
@@ -94,6 +100,8 @@
     {
       "id": "004",
       "image": "leaves/8368179_STAC_8_203_38_004.jpg",
+      "thumb": "thumbs/8368179_STAC_8_203_38_004.jpg",
+      "imageBytes": 2602090,
       "sha256": "a94519159b28985360252e84154cc707918419ab8eb4944a83ec94e738266e38",
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 4. Reproduced by permission of The National Archives.",
       "docs": [
@@ -118,6 +126,8 @@
     {
       "id": "005",
       "image": "leaves/8368179_STAC_8_203_38_005.jpg",
+      "thumb": "thumbs/8368179_STAC_8_203_38_005.jpg",
+      "imageBytes": 2639609,
       "sha256": "b0ce2627cd6240dd6e0cc9715f958eedad914941c332262a50467bd2ad93d364",
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 5. Reproduced by permission of The National Archives.",
       "docs": [
@@ -142,6 +152,8 @@
     {
       "id": "006",
       "image": "leaves/8368179_STAC_8_203_38_006.jpg",
+      "thumb": "thumbs/8368179_STAC_8_203_38_006.jpg",
+      "imageBytes": 2587819,
       "sha256": "3c0577e937849ecc058338ad1044c5704455f1a454666c2ae2b3981662768910",
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 6. Reproduced by permission of The National Archives.",
       "docs": [
@@ -166,6 +178,8 @@
     {
       "id": "007",
       "image": "leaves/8368179_STAC_8_203_38_007.jpg",
+      "thumb": "thumbs/8368179_STAC_8_203_38_007.jpg",
+      "imageBytes": 1185353,
       "sha256": "fb14e23bd7b6caa6def6ff0151ba8c8037f48759aaa1a5e303cd573ec88f3462",
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 7. Reproduced by permission of The National Archives.",
       "docs": [
@@ -190,6 +204,8 @@
     {
       "id": "008",
       "image": "leaves/8368179_STAC_8_203_38_008.jpg",
+      "thumb": "thumbs/8368179_STAC_8_203_38_008.jpg",
+      "imageBytes": 2571361,
       "sha256": "d4d9c3e71ea834963436efa1794d72a9101426051d6a1b87575c563fa0268f92",
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 8. Reproduced by permission of The National Archives.",
       "docs": [
@@ -214,6 +230,8 @@
     {
       "id": "009",
       "image": "leaves/8368179_STAC_8_203_38_009.jpg",
+      "thumb": "thumbs/8368179_STAC_8_203_38_009.jpg",
+      "imageBytes": 2495156,
       "sha256": "889cf85b563be6c1222d7c521f87af0c47f9a51b2392dd9a4d5866189db83d05",
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 9. Reproduced by permission of The National Archives.",
       "docs": [
@@ -238,6 +256,9 @@
     {
       "id": "010",
       "image": "leaves/8368179_STAC_8_203_38_010.jpg",
+      "thumb": "thumbs/8368179_STAC_8_203_38_010.jpg",
+      "web": "web/8368179_STAC_8_203_38_010.jpg",
+      "imageBytes": 45575855,
       "sha256": "ccbaf25b529dd3c036e6de44ecd1eec52b5a95cce8867536a98d9d895f12daab",
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 10. Reproduced by permission of The National Archives.",
       "docs": [

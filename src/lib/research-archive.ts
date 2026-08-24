@@ -13,6 +13,12 @@ export interface ArchiveDoc {
 export interface ArchiveLeafEntry {
   id: string;
   image: string;
+  /** downscaled grid tile (~600px max side), generated at sync time; falls back to `image` */
+  thumb?: string;
+  /** web-sized display rendition (~2000px), generated only when the original is oversized — the full-resolution original stays at `image` */
+  web?: string;
+  /** byte size of the original image (drives the full-resolution download label) */
+  imageBytes?: number;
   sha256: string | null;
   /** rights-holder-preferred credit line for the leaf image, when published */
   credit?: string | null;

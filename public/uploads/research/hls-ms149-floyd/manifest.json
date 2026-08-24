@@ -17,6 +17,8 @@
     {
       "id": "f81r",
       "image": "leaves/ms149_f81r.jpg",
+      "thumb": "thumbs/ms149_f81r.jpg",
+      "imageBytes": 1224416,
       "sha256": "a68002de90b7a2bbc532fa720ea03bbf6ec479abd3b3916f6e0df6016fd4b334",
       "credit": "Star Chamber collection, 1607–1623, HLS MS 149, fol. 81r, Seq. 166, Harvard Law School Library, Historical & Special Collections",
       "docs": [
@@ -30,6 +32,8 @@
     {
       "id": "f81v",
       "image": "leaves/ms149_f81v.jpg",
+      "thumb": "thumbs/ms149_f81v.jpg",
+      "imageBytes": 1233366,
       "sha256": "7d96a0de91ffa5033f346a95ddad2e3be3eb49293fb2a9ee257e5fc1cf4693b2",
       "credit": "Star Chamber collection, 1607–1623, HLS MS 149, fol. 81v, Seq. 167, Harvard Law School Library, Historical & Special Collections",
       "docs": [
@@ -43,6 +47,8 @@
     {
       "id": "f82r",
       "image": "leaves/ms149_f82r.jpg",
+      "thumb": "thumbs/ms149_f82r.jpg",
+      "imageBytes": 1201727,
       "sha256": "f0089182866690e9eaace1e602fde1f0c6691d816198ed68e57dd05c177a274f",
       "credit": "Star Chamber collection, 1607–1623, HLS MS 149, fol. 82r, Seq. 168, Harvard Law School Library, Historical & Special Collections",
       "docs": [
@@ -56,6 +62,8 @@
     {
       "id": "f82v",
       "image": "leaves/ms149_f82v.jpg",
+      "thumb": "thumbs/ms149_f82v.jpg",
+      "imageBytes": 1209800,
       "sha256": "62245e0613c91ef0b2cd18a3027c7ba60fd78158280dfed6799c31751e1d2174",
       "credit": "Star Chamber collection, 1607–1623, HLS MS 149, fol. 82v, Seq. 169, Harvard Law School Library, Historical & Special Collections",
       "docs": [
@@ -69,6 +77,8 @@
     {
       "id": "f83r",
       "image": "leaves/ms149_f83r.jpg",
+      "thumb": "thumbs/ms149_f83r.jpg",
+      "imageBytes": 1127550,
       "sha256": "96747e7901a2798883f1022ffdcd43a6eccde63435a38cbf1705240acca979ad",
       "credit": "Star Chamber collection, 1607–1623, HLS MS 149, fol. 83r, Seq. 170, Harvard Law School Library, Historical & Special Collections",
       "docs": [
@@ -82,6 +92,8 @@
     {
       "id": "f83v",
       "image": "leaves/ms149_f83v.jpg",
+      "thumb": "thumbs/ms149_f83v.jpg",
+      "imageBytes": 1061451,
       "sha256": "769019420820148e73ab6753cf4eaa01cfc8d0103458257354a6d8ce926fcb4c",
       "credit": "Star Chamber collection, 1607–1623, HLS MS 149, fol. 83v, Seq. 171, Harvard Law School Library, Historical & Special Collections",
       "docs": [

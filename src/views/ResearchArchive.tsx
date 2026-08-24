@@ -176,7 +176,7 @@ const ResearchArchive = () => {
                   >
                     <div className="aspect-[3/4] bg-muted overflow-hidden">
                       <img
-                        src={`${archiveBase(archiveId)}/${leaf.image}`}
+                        src={`${archiveBase(archiveId)}/${leaf.thumb ?? leaf.image}`}
                         alt={`${config.leafLabel} ${leaf.id}`}
                         loading="lazy"
                         className="w-full h-full object-cover object-top group-hover:opacity-90 transition-opacity"
