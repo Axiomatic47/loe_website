@@ -4,7 +4,7 @@
 // arrives as server props; tab + layout state stays here.
 'use client';
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { MembraneViewer } from "@/components/MembraneViewer";
 import {
@@ -23,6 +23,12 @@ import { SitePageLayout } from "../../../../_components/SitePageLayout";
 // default — side-by-side only earns its keep on very wide screens.
 type LeafLayout = "stacked" | "side";
 const LAYOUT_KEY = "loe-archive-layout";
+// Side-by-side review mode (owner ask 2026-08-26): fill the whole screen on
+// large monitors — full-bleed width, both panes stretched to the viewport
+// bottom, and a draggable divider between them, Studio-style.
+const SPLIT_KEY = "loe-archive-split";
+const SPLIT_MIN = 25;
+const SPLIT_MAX = 75;
 
 interface LeafBodyProps {
   archiveId: string;
@@ -70,11 +76,69 @@ export const LeafBody = ({ archiveId, refLabel, leafLabel, manifest, leaf, prev,
     localStorage.setItem(LAYOUT_KEY, l);
   };
 
+  // Review-mode plumbing: split percentage (persisted), lg breakpoint state,
+  // measured fill-height for the pane row, and drag handling. All of it is
+  // inert in stacked mode and below lg.
+  const [split, setSplit] = useState(50);
+  const [isLg, setIsLg] = useState(false);
+  const [dragging, setDragging] = useState(false);
+  const [fillHeight, setFillHeight] = useState<number | null>(null);
+  const rowRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const stored = Number(localStorage.getItem(SPLIT_KEY));
+    if (stored >= SPLIT_MIN && stored <= SPLIT_MAX) setSplit(stored);
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const onMq = () => setIsLg(mq.matches);
+    onMq();
+    mq.addEventListener("change", onMq);
+    return () => mq.removeEventListener("change", onMq);
+  }, []);
+
+  const measure = useCallback(() => {
+    const el = rowRef.current;
+    if (!el) return;
+    // fill from the row's top edge to the viewport bottom, minus breathing room
+    setFillHeight(Math.max(480, window.innerHeight - el.getBoundingClientRect().top - 16));
+  }, []);
+  useEffect(() => {
+    if (!(layout === "side" && isLg)) return;
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [layout, isLg, measure]);
+
+  const review = layout === "side" && isLg;
+
+  const onHandleDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    (e.target as HTMLElement).setPointerCapture(e.pointerId);
+    setDragging(true);
+  };
+  const onHandleMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!dragging || !rowRef.current) return;
+    const rect = rowRef.current.getBoundingClientRect();
+    const pct = ((e.clientX - rect.left) / rect.width) * 100;
+    setSplit(Math.min(SPLIT_MAX, Math.max(SPLIT_MIN, pct)));
+  };
+  const onHandleUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    (e.target as HTMLElement).releasePointerCapture(e.pointerId);
+    setDragging(false);
+    setSplit((s) => {
+      localStorage.setItem(SPLIT_KEY, String(Math.round(s)));
+      return s;
+    });
+  };
+  const resetSplit = () => {
+    setSplit(50);
+    localStorage.setItem(SPLIT_KEY, "50");
+  };
+
   const pdfUrl = activeTab ? `${archiveBase(archiveId)}/${activeTab.doc.pdf}` : null;
 
   return (
     <SitePageLayout>
-      <main className="container mx-auto px-4 py-10">
+      <main className={cn(review ? "w-full max-w-none px-4 py-6" : "container mx-auto px-4 py-10")}>
         {/* header row */}
         <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
           <Link
@@ -128,22 +192,32 @@ export const LeafBody = ({ archiveId, refLabel, leafLabel, manifest, leaf, prev,
         </div>
 
         <div
+          ref={rowRef}
           className={cn(
-            "grid grid-cols-1 gap-6 items-start",
+            "grid grid-cols-1 gap-6",
             // stacked reads as one centered column (sitewide document width);
-            // side-by-side uses the full container
-            layout === "side" ? "lg:grid-cols-2" : "max-w-4xl mx-auto"
+            // review mode (side-by-side ≥lg) fills the viewport with a
+            // draggable divider between the panes
+            review ? "items-stretch lg:gap-0" : "items-start",
+            layout !== "side" && "max-w-4xl mx-auto"
           )}
+          style={
+            review && fillHeight
+              ? { height: fillHeight, gridTemplateColumns: `${split}% 14px minmax(0, 1fr)` }
+              : undefined
+          }
         >
           {/* leaf image */}
-          <div className={cn(layout === "side" && "lg:sticky lg:top-20")}>
-            <MembraneViewer
-              key={layout} // remount on layout change so the leaf re-fits the new pane width
-              src={`${archiveBase(archiveId)}/${leaf.web ?? leaf.image}`}
-              alt={`${refLabel} ${leafLabel.toLowerCase()} ${leaf.id}`}
-              heightClass={layout === "stacked" ? "h-[56vh] lg:h-[64vh]" : "h-[62vh] lg:h-[74vh]"}
-              fitMode={imagesPublished(manifest) ? "width" : "contain"}
-            />
+          <div className={cn(review && "h-full min-h-0 flex flex-col")}>
+            <div className={cn(review && "flex-1 min-h-0")}>
+              <MembraneViewer
+                key={`${layout}-${review ? "review" : "page"}`} // remount so the leaf re-fits the new pane geometry
+                src={`${archiveBase(archiveId)}/${leaf.web ?? leaf.image}`}
+                alt={`${refLabel} ${leafLabel.toLowerCase()} ${leaf.id}`}
+                heightClass={review ? "h-full" : layout === "stacked" ? "h-[56vh] lg:h-[64vh]" : "h-[62vh]"}
+                fitMode={imagesPublished(manifest) ? "width" : "contain"}
+              />
+            </div>
             {!imagesPublished(manifest) ? (
               <p className="mt-2 text-[11px] text-muted-foreground font-sans leading-relaxed">
                 Placeholder — the leaf image awaits a reproduction licence from{" "}
@@ -190,8 +264,33 @@ export const LeafBody = ({ archiveId, refLabel, leafLabel, manifest, leaf, prev,
             )}
           </div>
 
+          {/* divider — drag to resize the split (double-click to recenter) */}
+          {review && (
+            <div
+              role="separator"
+              aria-orientation="vertical"
+              aria-label="Resize the membrane/document split"
+              title="Drag to resize · double-click to recenter"
+              onPointerDown={onHandleDown}
+              onPointerMove={onHandleMove}
+              onPointerUp={onHandleUp}
+              onDoubleClick={resetSplit}
+              className={cn(
+                "h-full cursor-col-resize touch-none select-none flex items-center justify-center group",
+                dragging && "bg-primary/5"
+              )}
+            >
+              <div
+                className={cn(
+                  "w-1 h-16 rounded-full bg-border group-hover:bg-primary/50 transition-colors",
+                  dragging && "bg-primary"
+                )}
+              />
+            </div>
+          )}
+
           {/* documents (PDF) */}
-          <div className="min-w-0">
+          <div className={cn("min-w-0", review && "h-full min-h-0 flex flex-col")}>
             {tabs.length === 0 ? (
               <div className="bg-card border border-border rounded-xl shadow-sm p-8 text-sm font-sans text-muted-foreground">
                 No line index or transcription PDF has been published for this leaf yet.
@@ -232,9 +331,14 @@ export const LeafBody = ({ archiveId, refLabel, leafLabel, manifest, leaf, prev,
                   )}
                 </div>
 
-                <div className="bg-card border border-border rounded-xl shadow-sm overflow-hidden">
+                <div
+                  className={cn(
+                    "bg-card border border-border rounded-xl shadow-sm overflow-hidden",
+                    review && "flex-1 min-h-0 flex flex-col"
+                  )}
+                >
                   {activeTab && (
-                    <div className="px-4 py-2.5 border-b border-border">
+                    <div className="px-4 py-2.5 border-b border-border shrink-0">
                       <p className="text-sm text-foreground font-sans leading-snug line-clamp-2" style={{ fontWeight: 550 }}>
                         {activeTab.doc.title}
                       </p>
@@ -248,7 +352,12 @@ export const LeafBody = ({ archiveId, refLabel, leafLabel, manifest, leaf, prev,
                       key={`${pdfUrl}-${layout}`}
                       src={`${pdfUrl}${layout === "stacked" ? "#zoom=100&navpanes=0" : "#view=FitH&navpanes=0"}`}
                       title={activeTab?.doc.title || "document"}
-                      className={cn("w-full", layout === "stacked" ? "h-[80vh] lg:h-[85vh]" : "h-[62vh] lg:h-[72vh]")}
+                      className={cn(
+                        "w-full",
+                        review ? "flex-1 min-h-0" : layout === "stacked" ? "h-[80vh] lg:h-[85vh]" : "h-[62vh]",
+                        // the iframe must not swallow pointer events mid-drag
+                        dragging && "pointer-events-none"
+                      )}
                       style={{ border: "none", background: "#f5f3ed" }}
                     />
                   )}

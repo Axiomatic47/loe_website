@@ -161,7 +161,9 @@ export const MembraneViewer: React.FC<MembraneViewerProps> = ({
   };
 
   return (
-    <div ref={rootRef} className="relative bg-muted border border-border rounded-lg overflow-hidden" style={{ overscrollBehavior: 'contain' }}>
+    // h-full lets a fixed-height flex parent (the review layout) drive the
+    // viewer; with auto-height parents it resolves to content height.
+    <div ref={rootRef} className="relative h-full bg-muted border border-border rounded-lg overflow-hidden" style={{ overscrollBehavior: 'contain' }}>
       {/* controls */}
       <div className="absolute top-3 right-3 z-10 flex items-center gap-1 bg-card/95 border border-border rounded-md shadow-sm p-1">
         <Button variant="ghost" size="sm" className="h-8 w-8 p-0" onClick={() => zoomCenter(1 / 1.25)} aria-label="Zoom out">

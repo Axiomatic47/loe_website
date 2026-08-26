@@ -3,7 +3,7 @@
 // documents — the PDF exports of the line index and any transcriptions that
 // cover the leaf — as tabs.
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { PageLayout } from "@/components/PageLayout";
 import { MembraneViewer } from "@/components/MembraneViewer";
@@ -19,6 +19,11 @@ import { cn } from "@/lib/utils";
 // default — side-by-side only earns its keep on very wide screens.
 type LeafLayout = "stacked" | "side";
 const LAYOUT_KEY = "loe-archive-layout";
+// Side-by-side review mode (owner ask 2026-08-26; mirrors app LeafBody):
+// full-bleed width, panes filled to the viewport bottom, draggable divider.
+const SPLIT_KEY = "loe-archive-split";
+const SPLIT_MIN = 25;
+const SPLIT_MAX = 75;
 
 const ResearchLeaf = () => {
   const { archiveId = "", leafId = "" } = useParams();
@@ -68,6 +73,56 @@ const ResearchLeaf = () => {
     localStorage.setItem(LAYOUT_KEY, l);
   };
 
+  // review-mode plumbing — see app LeafBody for the annotated original
+  const [split, setSplit] = useState(() => {
+    const stored = Number(localStorage.getItem(SPLIT_KEY));
+    return stored >= SPLIT_MIN && stored <= SPLIT_MAX ? stored : 50;
+  });
+  const [isLg, setIsLg] = useState(() => window.matchMedia("(min-width: 1024px)").matches);
+  const [dragging, setDragging] = useState(false);
+  const [fillHeight, setFillHeight] = useState<number | null>(null);
+  const rowRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const onMq = () => setIsLg(mq.matches);
+    mq.addEventListener("change", onMq);
+    return () => mq.removeEventListener("change", onMq);
+  }, []);
+  const measure = useCallback(() => {
+    const el = rowRef.current;
+    if (!el) return;
+    setFillHeight(Math.max(480, window.innerHeight - el.getBoundingClientRect().top - 16));
+  }, []);
+  const review = layout === "side" && isLg;
+  useEffect(() => {
+    if (!review) return;
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [review, measure]);
+  const onHandleDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    (e.target as HTMLElement).setPointerCapture(e.pointerId);
+    setDragging(true);
+  };
+  const onHandleMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!dragging || !rowRef.current) return;
+    const rect = rowRef.current.getBoundingClientRect();
+    setSplit(Math.min(SPLIT_MAX, Math.max(SPLIT_MIN, ((e.clientX - rect.left) / rect.width) * 100)));
+  };
+  const onHandleUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    (e.target as HTMLElement).releasePointerCapture(e.pointerId);
+    setDragging(false);
+    setSplit((s) => {
+      localStorage.setItem(SPLIT_KEY, String(Math.round(s)));
+      return s;
+    });
+  };
+  const resetSplit = () => {
+    setSplit(50);
+    localStorage.setItem(SPLIT_KEY, "50");
+  };
+
   const ids = manifest?.leaves.map((l) => l.id) || [];
   const idx = ids.indexOf(leafId);
   const prev = idx > 0 ? ids[idx - 1] : null;
@@ -87,7 +142,7 @@ const ResearchLeaf = () => {
 
   return (
     <PageLayout>
-      <main className="container mx-auto px-4 py-10">
+      <main className={cn(review ? "w-full max-w-none px-4 py-6" : "container mx-auto px-4 py-10")}>
         {/* header row */}
         <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
           <Link
@@ -158,22 +213,32 @@ const ResearchLeaf = () => {
 
         {leaf && (
           <div
+            ref={rowRef}
             className={cn(
-              "grid grid-cols-1 gap-6 items-start",
+              "grid grid-cols-1 gap-6",
               // stacked reads as one centered column (sitewide document width);
-              // side-by-side uses the full container
-              layout === "side" ? "lg:grid-cols-2" : "max-w-4xl mx-auto"
+              // review mode (side-by-side ≥lg) fills the viewport with a
+              // draggable divider between the panes
+              review ? "items-stretch lg:gap-0" : "items-start",
+              layout !== "side" && "max-w-4xl mx-auto"
             )}
+            style={
+              review && fillHeight
+                ? { height: fillHeight, gridTemplateColumns: `${split}% 14px minmax(0, 1fr)` }
+                : undefined
+            }
           >
             {/* leaf image */}
-            <div className={cn(layout === "side" && "lg:sticky lg:top-20")}>
-              <MembraneViewer
-                key={layout} // remount on layout change so the leaf re-fits the new pane width
-                src={`${archiveBase(archiveId)}/${leaf.web ?? leaf.image}`}
-                alt={`${config.ref} ${leafLabel.toLowerCase()} ${leaf.id}`}
-                heightClass={layout === "stacked" ? "h-[56vh] lg:h-[64vh]" : "h-[62vh] lg:h-[74vh]"}
-                fitMode={imagesPublished(manifest) ? "width" : "contain"}
-              />
+            <div className={cn(review && "h-full min-h-0 flex flex-col")}>
+              <div className={cn(review && "flex-1 min-h-0")}>
+                <MembraneViewer
+                  key={`${layout}-${review ? "review" : "page"}`} // remount so the leaf re-fits the new pane geometry
+                  src={`${archiveBase(archiveId)}/${leaf.web ?? leaf.image}`}
+                  alt={`${config.ref} ${leafLabel.toLowerCase()} ${leaf.id}`}
+                  heightClass={review ? "h-full" : layout === "stacked" ? "h-[56vh] lg:h-[64vh]" : "h-[62vh]"}
+                  fitMode={imagesPublished(manifest) ? "width" : "contain"}
+                />
+              </div>
               {!imagesPublished(manifest) ? (
                 <p className="mt-2 text-[11px] text-muted-foreground font-sans leading-relaxed">
                   Placeholder — the leaf image awaits a reproduction licence from{" "}
@@ -220,8 +285,33 @@ const ResearchLeaf = () => {
               )}
             </div>
 
+            {/* divider — drag to resize the split (double-click to recenter) */}
+            {review && (
+              <div
+                role="separator"
+                aria-orientation="vertical"
+                aria-label="Resize the membrane/document split"
+                title="Drag to resize · double-click to recenter"
+                onPointerDown={onHandleDown}
+                onPointerMove={onHandleMove}
+                onPointerUp={onHandleUp}
+                onDoubleClick={resetSplit}
+                className={cn(
+                  "h-full cursor-col-resize touch-none select-none flex items-center justify-center group",
+                  dragging && "bg-primary/5"
+                )}
+              >
+                <div
+                  className={cn(
+                    "w-1 h-16 rounded-full bg-border group-hover:bg-primary/50 transition-colors",
+                    dragging && "bg-primary"
+                  )}
+                />
+              </div>
+            )}
+
             {/* documents (PDF) */}
-            <div className="min-w-0">
+            <div className={cn("min-w-0", review && "h-full min-h-0 flex flex-col")}>
               {tabs.length === 0 ? (
                 <div className="bg-card border border-border rounded-xl shadow-sm p-8 text-sm font-sans text-muted-foreground">
                   No line index or transcription PDF has been published for this leaf yet.
@@ -262,9 +352,14 @@ const ResearchLeaf = () => {
                     )}
                   </div>
 
-                  <div className="bg-card border border-border rounded-xl shadow-sm overflow-hidden">
+                  <div
+                    className={cn(
+                      "bg-card border border-border rounded-xl shadow-sm overflow-hidden",
+                      review && "flex-1 min-h-0 flex flex-col"
+                    )}
+                  >
                     {activeTab && (
-                      <div className="px-4 py-2.5 border-b border-border">
+                      <div className="px-4 py-2.5 border-b border-border shrink-0">
                         <p className="text-sm text-foreground font-sans leading-snug line-clamp-2" style={{ fontWeight: 550 }}>
                           {activeTab.doc.title}
                         </p>
@@ -278,7 +373,11 @@ const ResearchLeaf = () => {
                         key={`${pdfUrl}-${layout}`}
                         src={`${pdfUrl}${layout === "stacked" ? "#zoom=100&navpanes=0" : "#view=FitH&navpanes=0"}`}
                         title={activeTab?.doc.title || "document"}
-                        className={cn("w-full", layout === "stacked" ? "h-[80vh] lg:h-[85vh]" : "h-[62vh] lg:h-[72vh]")}
+                        className={cn(
+                          "w-full",
+                          review ? "flex-1 min-h-0" : layout === "stacked" ? "h-[80vh] lg:h-[85vh]" : "h-[62vh]",
+                          dragging && "pointer-events-none"
+                        )}
                         style={{ border: "none", background: "#f5f3ed" }}
                       />
                     )}
