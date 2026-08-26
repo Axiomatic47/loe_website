@@ -202,21 +202,19 @@ const ResearchLeaf = () => {
                       )}
                     </p>
                   )}
-                  {leaf.web && (
-                    <p>
-                      Shown at web resolution.{" "}
-                      <a
-                        href={`${archiveBase(archiveId)}/${leaf.image}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="underline underline-offset-2 hover:text-foreground transition-colors"
-                      >
-                        Open the full-resolution original
-                        {leaf.imageBytes ? ` (${Math.round(leaf.imageBytes / 1e6)} MB)` : ""}
-                      </a>
-                      {" "}— the fixity hash below is the original's.
-                    </p>
-                  )}
+                  {leaf.web && <p>Shown at web resolution — the fixity hash below is the original’s.</p>}
+                  <p>
+                    <a
+                      href={`${archiveBase(archiveId)}/${leaf.image}`}
+                      download
+                      className="underline underline-offset-2 text-primary hover:text-primary/80 transition-colors"
+                      style={{ fontWeight: 550 }}
+                    >
+                      Download the full-resolution original
+                      {leaf.imageBytes ? ` (${Math.round(leaf.imageBytes / 1e6)} MB)` : ""}
+                    </a>
+                    {" "}— for private study and non-commercial research.
+                  </p>
                   {leaf.sha256 && <p className="font-mono break-all">sha256 {leaf.sha256}</p>}
                 </div>
               )}

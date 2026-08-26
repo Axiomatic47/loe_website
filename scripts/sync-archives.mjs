@@ -76,6 +76,8 @@ const ARCHIVES = [
     imagesLicensed: true, // TNA reproduction licence granted (order RC8368179; owner word 2026-08-23)
     rightsNote:
       'Images reproduced by permission of The National Archives (UK) under its reproduction licence (order RC8368179).',
+    reuseNote:
+      'Full-resolution downloads are provided for private study and non-commercial research; republication of the images requires a licence from The National Archives Image Library. The transcription text is published under the Open Government Licence v3.0 — contains public sector information licensed under the Open Government Licence v3.0; cite the piece as “The National Archives, ref. STAC 8/203/38.”',
     credit: (id) =>
       `The National Archives, Kew, STAC 8/203/38, m. ${parseInt(id, 10)}. Reproduced by permission of The National Archives.`,
     pdfPools: ['01_Transcripts/docx/pdfs', '02_Line Indexes/docx/pdfs', '03_Working Notes/docx/pdfs', 'docx/pdfs'],
@@ -102,6 +104,8 @@ const ARCHIVES = [
     imagesLicensed: true, // Harvard 2014 PD policy + HSC Permission to Publish — no permission or fee required
     rightsNote:
       'Reproduced under Harvard Library’s Policy on Access to Digital Reproductions of Works in the Public Domain (2014) and HSC’s Permission to Publish policy — no permission or fee required.',
+    reuseNote:
+      'Full-resolution downloads are provided freely — the folios reproduce Harvard Law School Library’s open digital reproductions of public-domain material; credit as shown on each folio.',
     creditUrl: 'https://nrs.lib.harvard.edu/URN-3:HLS.LIBR:29137268',
     credit: (id) =>
       `Star Chamber collection, 1607–1623, HLS MS 149, fol. ${id.slice(1)}, Seq. ${MS149_SEQ[id]}, Harvard Law School Library, Historical & Special Collections`,
@@ -282,6 +286,7 @@ for (const A of ARCHIVES) {
           published: A.imagesLicensed,
           rightsHolder: A.rightsHolder,
           ...(A.rightsNote ? { rightsNote: A.rightsNote } : {}),
+          ...(A.reuseNote ? { reuseNote: A.reuseNote } : {}),
           ...(A.creditUrl ? { creditUrl: A.creditUrl } : {}),
         },
         leaves: leafList,

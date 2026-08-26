@@ -10,7 +10,8 @@
   "images": {
     "published": true,
     "rightsHolder": "The National Archives (UK)",
-    "rightsNote": "Images reproduced by permission of The National Archives (UK) under its reproduction licence (order RC8368179)."
+    "rightsNote": "Images reproduced by permission of The National Archives (UK) under its reproduction licence (order RC8368179).",
+    "reuseNote": "Full-resolution downloads are provided for private study and non-commercial research; republication of the images requires a licence from The National Archives Image Library. The transcription text is published under the Open Government Licence v3.0 — contains public sector information licensed under the Open Government Licence v3.0; cite the piece as “The National Archives, ref. STAC 8/203/38.”"
   },
   "leaves": [
     {
@@ -21,11 +22,6 @@
       "sha256": "ee090a2477bd5098d71a4e915d4f9fed55c34aae489e35c1debecc459e658be0",
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 1. Reproduced by permission of The National Archives.",
       "docs": [
-        {
-          "kind": "transcript",
-          "title": "CANONICAL TRANSCRIPT — MEMBRANE 001 (TNA STAC 8/203/38)",
-          "pdf": "pdfs/TRANSCRIPT_M001.pdf"
-        },
         {
           "kind": "index",
           "title": "MEMBRANE 001 — LINE-INDEXED RE-SWEEP (Phase 4D, Fable 5, first-hand)",
@@ -48,11 +44,6 @@
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 2. Reproduced by permission of The National Archives.",
       "docs": [
         {
-          "kind": "transcript",
-          "title": "CANONICAL TRANSCRIPT — MEMBRANE 002 (TNA STAC 8/203/38)",
-          "pdf": "pdfs/TRANSCRIPT_M002.pdf"
-        },
-        {
           "kind": "index",
           "title": "WORKING — MEMBRANE 002 LINE INDEX (Phase 4D-2)",
           "pdf": "pdfs/_WORKING_002_LINE_INDEX.pdf"
@@ -73,11 +64,6 @@
       "sha256": "9746f1142f1a979dca55ca42dca208e78a71d418a8f414f763ff5bb5ed6d97ba",
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 3. Reproduced by permission of The National Archives.",
       "docs": [
-        {
-          "kind": "transcript",
-          "title": "CANONICAL TRANSCRIPT — MEMBRANE 003 (TNA STAC 8/203/38)",
-          "pdf": "pdfs/TRANSCRIPT_M003.pdf"
-        },
         {
           "kind": "index",
           "title": "WORKING LINE INDEX — MEMBRANE 003 (P4D-3)",
@@ -106,11 +92,6 @@
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 4. Reproduced by permission of The National Archives.",
       "docs": [
         {
-          "kind": "transcript",
-          "title": "CANONICAL TRANSCRIPT — MEMBRANE 004 (TNA STAC 8/203/38)",
-          "pdf": "pdfs/TRANSCRIPT_M004.pdf"
-        },
-        {
           "kind": "index",
           "title": "WORKING LINE INDEX — MEMBRANE 004 (P4D-4)",
           "pdf": "pdfs/_WORKING_004_LINE_INDEX.pdf"
@@ -131,11 +112,6 @@
       "sha256": "b0ce2627cd6240dd6e0cc9715f958eedad914941c332262a50467bd2ad93d364",
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 5. Reproduced by permission of The National Archives.",
       "docs": [
-        {
-          "kind": "transcript",
-          "title": "CANONICAL TRANSCRIPT — MEMBRANE 005 (TNA STAC 8/203/38)",
-          "pdf": "pdfs/TRANSCRIPT_M005.pdf"
-        },
         {
           "kind": "index",
           "title": "WORKING LINE INDEX — MEMBRANE 005 (P4D-5)",
@@ -158,11 +134,6 @@
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 6. Reproduced by permission of The National Archives.",
       "docs": [
         {
-          "kind": "transcript",
-          "title": "CANONICAL TRANSCRIPT — MEMBRANE 006 (TNA STAC 8/203/38)",
-          "pdf": "pdfs/TRANSCRIPT_M006.pdf"
-        },
-        {
           "kind": "index",
           "title": "WORKING LINE INDEX — MEMBRANE 006 (P4D-6)",
           "pdf": "pdfs/_WORKING_006_LINE_INDEX.pdf"
@@ -183,11 +154,6 @@
       "sha256": "fb14e23bd7b6caa6def6ff0151ba8c8037f48759aaa1a5e303cd573ec88f3462",
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 7. Reproduced by permission of The National Archives.",
       "docs": [
-        {
-          "kind": "transcript",
-          "title": "CANONICAL TRANSCRIPT — MEMBRANE 007 (TNA STAC 8/203/38)",
-          "pdf": "pdfs/TRANSCRIPT_M007.pdf"
-        },
         {
           "kind": "index",
           "title": "MEMBRANE 007 — PHASE 4D-7 LINE INDEX (native+ sweep, 2026-07-08)",
@@ -210,11 +176,6 @@
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 8. Reproduced by permission of The National Archives.",
       "docs": [
         {
-          "kind": "transcript",
-          "title": "CANONICAL TRANSCRIPT — MEMBRANE 008 (TNA STAC 8/203/38)",
-          "pdf": "pdfs/TRANSCRIPT_M008.pdf"
-        },
-        {
           "kind": "index",
           "title": "Membrane 008 — LINE INDEX (Pass 4, native+ half-column re-sweep, 2026-07-07)",
           "pdf": "pdfs/_WORKING_008_LINE_INDEX.pdf"
@@ -235,11 +196,6 @@
       "sha256": "889cf85b563be6c1222d7c521f87af0c47f9a51b2392dd9a4d5866189db83d05",
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 9. Reproduced by permission of The National Archives.",
       "docs": [
-        {
-          "kind": "transcript",
-          "title": "CANONICAL TRANSCRIPT — MEMBRANE 009 (TNA STAC 8/203/38)",
-          "pdf": "pdfs/TRANSCRIPT_M009.pdf"
-        },
         {
           "kind": "index",
           "title": "Membrane 009 — LINE INDEX (Pass 4B, native+ half-column re-sweep, 2026-07-07)",
@@ -262,11 +218,6 @@
       "sha256": "ccbaf25b529dd3c036e6de44ecd1eec52b5a95cce8867536a98d9d895f12daab",
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 10. Reproduced by permission of The National Archives.",
       "docs": [
-        {
-          "kind": "transcript",
-          "title": "CANONICAL TRANSCRIPT — MEMBRANE 010 (TNA STAC 8/203/38)",
-          "pdf": "pdfs/TRANSCRIPT_M010.pdf"
-        },
         {
           "kind": "transcription",
           "span": "010",

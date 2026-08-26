@@ -236,6 +236,9 @@ const ResearchArchive = () => {
                   {config.source}.
                   {imagesPublished(manifest) && manifest?.images?.rightsNote && (
                     <> {manifest.images.rightsNote}</>
+                  )}
+                  {imagesPublished(manifest) && manifest?.images?.reuseNote && (
+                    <> {manifest.images.reuseNote}</>
                   )}{" "}
                   Each leaf's SHA-256 is recorded at sync time and shown on its
                   page, so any copy can be verified against the published hash. Crop tiles used
