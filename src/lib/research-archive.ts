@@ -27,7 +27,14 @@ export interface ArchiveLeafEntry {
 export interface ArchiveManifest {
   archive: { id: string; ref: string; title: string; dated: string; source: string; pieces: number };
   /** leaf-image licensing state; absent/false ⇒ placeholders are being shown */
-  images?: { published: boolean; rightsHolder?: string; rightsNote?: string; creditUrl?: string };
+  images?: {
+    published: boolean;
+    rightsHolder?: string;
+    rightsNote?: string;
+    /** downloads-and-reuse posture line (licensee's licence ≠ a visitor's republication licence) */
+    reuseNote?: string;
+    creditUrl?: string;
+  };
   leaves: ArchiveLeafEntry[];
   workingPapers: Array<{ title: string; pdf: string }>;
   crops: { count: number; index: Record<string, string> };
