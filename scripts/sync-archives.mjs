@@ -74,15 +74,36 @@ const ARCHIVES = [
     source: 'The National Archives (UK), Kew — series STAC 8 (Star Chamber Proceedings, James I)',
     rightsHolder: 'The National Archives (UK)',
     imagesLicensed: true, // TNA reproduction licence granted (order RC8368179; owner word 2026-08-23)
+    // FLAG (transcriber 2026-08-26, for the owner's push review): RC8368179
+    // is the record-COPYING order — the publication instrument is the TNA
+    // Image Library web licence the owner concluded on it (owner word
+    // 2026-08-23); the note cites the Library licence and names the order
+    // only as what it covers.
     rightsNote:
-      'Images reproduced by permission of The National Archives (UK) under its reproduction licence (order RC8368179).',
+      'Images reproduced by permission of The National Archives (UK) Image Library (web-publication licence; the underlying record copies were supplied under order RC8368179).',
     reuseNote:
       'Full-resolution downloads are provided for private study and non-commercial research; republication of the images requires a licence from The National Archives Image Library. The transcription text is published under the Open Government Licence v3.0 — contains public sector information licensed under the Open Government Licence v3.0; cite the piece as “The National Archives, ref. STAC 8/203/38.”',
     credit: (id) =>
       `The National Archives, Kew, STAC 8/203/38, m. ${parseInt(id, 10)}. Reproduced by permission of The National Archives.`,
-    // 01_Transcripts exports moved AGAIN (8/26: pdfs now sit at the section
-    // root beside their .md; the old docx/pdfs subdir survives but is empty)
-    pdfPools: ['01_Transcripts', '02_Line Indexes/docx/pdfs', '03_Working Notes/docx/pdfs', 'docx/pdfs'],
+    // Transcript pools, FRESH-FIRST (transcriber correction 2026-08-26): the
+    // current manuscript-edition exports live in 01_Transcripts/docx/ (the
+    // 14:30 generation — legend page, boxed META, banners, OGL rights row);
+    // the section-root copies are the SUPERSEDED exhibit-grammar builds and
+    // serve only as the M001 slot-holder until the owner's one-click refill
+    // regenerates TRANSCRIPT_M001.pdf (earlier pool wins on duplicate names).
+    pdfPools: ['01_Transcripts/docx', '01_Transcripts', '02_Line Indexes/docx/pdfs', '03_Working Notes/docx/pdfs', 'docx/pdfs'],
+    // Deliberately-published stale generations (each shows ALLOWED-STALE on
+    // every sync until its regeneration lands in the content lane):
+    allowStale: new Set([
+      'TRANSCRIPT_M001.pdf', // current edition pending owner PDF-button refill
+      // companions + working papers awaiting re-export after 8/10-8/26 md edits:
+      'CORRECTIONS_LOG.pdf', 'QUOTATION_CONCORDANCE.pdf', 'README_FOR_REVIEWERS.pdf',
+      'READING_COMPANION_STAC_8_203_38.pdf', '_PRECISION_PASS_LEDGER.pdf',
+      'markdown_formatting_guide.pdf',
+      '_WORKING_008_LINE_INDEX.pdf', '_WORKING_009_LINE_INDEX.pdf',
+      '_WORKING_008_TRANSCRIPTION.pdf', '_WORKING_009_TRANSCRIPTION.pdf',
+      '_WORKING_LLOYD_DEPOSITION_003R-007.pdf', '_WORKING_P4C_AUDIT.pdf',
+    ]),
     leafLabel: 'Membrane',
     leafRe: /^8368179_STAC_8_203_38_(\d{3})\.jpg$/,
     classify(stem) {
@@ -112,6 +133,11 @@ const ARCHIVES = [
     credit: (id) =>
       `Star Chamber collection, 1607–1623, HLS MS 149, fol. ${id.slice(1)}, Seq. ${MS149_SEQ[id]}, Harvard Law School Library, Historical & Special Collections`,
     pdfPools: ['02_Line Indexes/docx/pdfs', '03_Working Notes/docx/pdfs', 'docx/pdfs'],
+    // published-but-stale generations awaiting content-lane re-export:
+    allowStale: new Set([
+      'READING_COMPANION_ff81r-83v.pdf', 'README.pdf', 'README_FOR_REVIEWERS.pdf',
+      'markdown_formatting_guide.pdf', '_WORKING_MS149_SURVEY_AND_LEDGER.pdf',
+    ]),
     leafLabel: 'Folio',
     leafRe: /^ms149_(f\d{2}[rv])\.jpg$/,
     classify(stem) {
@@ -141,17 +167,44 @@ const placeholderSvg = (A, id) => `<svg xmlns="http://www.w3.org/2000/svg" width
 </svg>
 `;
 
-const mdTitle = (searchDirs, stem) => {
-  // titles come from the working .md's first heading — the md sits in the
-  // pool's section dir since the 2026-07-16 re-sort (archive root as fallback)
+const findMd = (searchDirs, stem) => {
   for (const dir of searchDirs) {
     const mdPath = join(dir, `${stem}.md`);
-    if (!existsSync(mdPath)) continue;
+    if (existsSync(mdPath)) return mdPath;
+  }
+  return null;
+};
+
+const mdTitle = (searchDirs, stem) => {
+  // titles come from the working .md's first heading — the md sits beside
+  // the pdf, one level up, or at the archive root, depending on the pool
+  const mdPath = findMd(searchDirs, stem);
+  if (mdPath) {
     const m = readFileSync(mdPath, 'utf8').match(/^#\s+(.+)$/m);
     if (m) return m[1].trim();
   }
   return stem.replace(/^_+/, '').replace(/_/g, ' ').trim();
 };
+
+// FRESHNESS GATE (transcriber protocol, 2026-08-26): every export carries
+// 'sha256 <12hex>' of its source md in the footer. A pooled PDF whose footer
+// hash mismatches its md is a SUPERSEDED generation — fatal unless that file
+// is deliberately registered in the archive's allowStale set. (The 8/26
+// transcript swap shipped a superseded set precisely because nothing
+// compared generations.) Requires pdftotext (homebrew poppler).
+import { createHash } from 'node:crypto';
+function pdfFooterSha12(pdf) {
+  const text = execFileSync('pdftotext', [pdf, '-'], {
+    encoding: 'utf8',
+    maxBuffer: 64 * 1024 * 1024,
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
+  const m = [...text.matchAll(/sha256\s+([0-9a-f]{12})/g)];
+  return m.length ? m[m.length - 1][1] : null;
+}
+function mdSha12(mdPath) {
+  return createHash('sha256').update(readFileSync(mdPath)).digest('hex').slice(0, 12);
+}
 
 for (const A of ARCHIVES) {
   console.log(`\n=== ${A.id} ===`);
@@ -226,6 +279,9 @@ for (const A of ARCHIVES) {
   // fatal (it would silently wipe the published set).
   const workingPapers = [];
   let pdfCount = 0;
+  let overlaid = 0;
+  let allowedStale = 0;
+  const staleViolations = [];
   const seenPdf = new Set();
   for (const pool of A.pdfPools) {
     const pdfDir = join(A.src, pool);
@@ -239,18 +295,32 @@ for (const A of ARCHIVES) {
       console.error(`  FATAL: pool ${poolPdfs ? 'EMPTY' : 'MISSING'}: ${pool} (source re-sorted again? update pdfPools)`);
       process.exit(1);
     }
-    // the sibling .md may sit beside the pdf (section-root pools) or two
-    // levels up (<section>/docx/pdfs pools)
-    const mdDirs = [...new Set([pdfDir, pdfDir.replace(/\/docx\/pdfs$/, ''), A.src])];
+    // the sibling .md may sit beside the pdf, one level up (docx pools),
+    // two levels up (docx/pdfs pools), or at the archive root
+    const mdDirs = [...new Set([pdfDir, dirname(pdfDir), pdfDir.replace(/\/docx\/pdfs$/, ''), A.src])];
     for (const f of poolPdfs) {
       if (seenPdf.has(f)) {
-        console.error(`  DUPLICATE PDF NAME across pools, keeping first: ${f} (${pool})`);
+        overlaid += 1; // earlier (fresher) pool already supplied this name
         continue;
       }
       seenPdf.add(f);
-      copyFileSync(join(pdfDir, f), join(dst, 'pdfs', f));
-      pdfCount += 1;
+      const srcPdf = join(pdfDir, f);
       const stem = f.replace(/\.pdf$/, '');
+      const mdPath = findMd(mdDirs, stem);
+      if (mdPath) {
+        const got = pdfFooterSha12(srcPdf);
+        const want = mdSha12(mdPath);
+        if (got !== want) {
+          if (A.allowStale?.has(f)) {
+            allowedStale += 1;
+            console.log(`    ALLOWED-STALE ${f} (footer ${got} ≠ md ${want}) — registered pending re-export`);
+          } else {
+            staleViolations.push(`${f} (pool ${pool}: footer ${got} ≠ md ${want})`);
+          }
+        }
+      }
+      copyFileSync(srcPdf, join(dst, 'pdfs', f));
+      pdfCount += 1;
       const entry = { title: mdTitle(mdDirs, stem), pdf: `pdfs/${f}` };
       const c = A.classify(stem);
       if (c) {
@@ -262,11 +332,17 @@ for (const A of ARCHIVES) {
       }
     }
   }
+  if (staleViolations.length > 0) {
+    console.error(`  FATAL: ${staleViolations.length} SUPERSEDED generation(s) not registered in allowStale:`);
+    for (const v of staleViolations) console.error(`    - ${v}`);
+    console.error('  Swap the pool to the current export, or register the file deliberately.');
+    process.exit(1);
+  }
   if (pdfCount === 0) {
     console.error(`  FATAL: zero PDFs found across all pools for ${A.id} — aborting before the empty set replaces the published one.`);
     process.exit(1);
   }
-  console.log(`  pdfs: ${pdfCount} copied (${workingPapers.length} working papers)`);
+  console.log(`  pdfs: ${pdfCount} copied (${workingPapers.length} working papers; ${overlaid} overlaid by earlier pools; ${allowedStale} allowed-stale)`);
 
   // crops (only for licensed archives, and only on request — large)
   if (A.imagesLicensed && WITH_CROPS && existsSync(join(A.src, 'crops'))) {
