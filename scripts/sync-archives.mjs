@@ -80,7 +80,9 @@ const ARCHIVES = [
       'Full-resolution downloads are provided for private study and non-commercial research; republication of the images requires a licence from The National Archives Image Library. The transcription text is published under the Open Government Licence v3.0 — contains public sector information licensed under the Open Government Licence v3.0; cite the piece as “The National Archives, ref. STAC 8/203/38.”',
     credit: (id) =>
       `The National Archives, Kew, STAC 8/203/38, m. ${parseInt(id, 10)}. Reproduced by permission of The National Archives.`,
-    pdfPools: ['01_Transcripts/docx/pdfs', '02_Line Indexes/docx/pdfs', '03_Working Notes/docx/pdfs', 'docx/pdfs'],
+    // 01_Transcripts exports moved AGAIN (8/26: pdfs now sit at the section
+    // root beside their .md; the old docx/pdfs subdir survives but is empty)
+    pdfPools: ['01_Transcripts', '02_Line Indexes/docx/pdfs', '03_Working Notes/docx/pdfs', 'docx/pdfs'],
     leafLabel: 'Membrane',
     leafRe: /^8368179_STAC_8_203_38_(\d{3})\.jpg$/,
     classify(stem) {
@@ -227,12 +229,20 @@ for (const A of ARCHIVES) {
   const seenPdf = new Set();
   for (const pool of A.pdfPools) {
     const pdfDir = join(A.src, pool);
-    if (!existsSync(pdfDir)) {
-      console.error(`  POOL MISSING: ${pool} (source re-sorted again?)`);
-      continue;
+    const poolPdfs = existsSync(pdfDir)
+      ? readdirSync(pdfDir).filter((x) => x.endsWith('.pdf')).sort()
+      : null;
+    if (!poolPdfs || poolPdfs.length === 0) {
+      // FATAL either way: a renamed/emptied pool must be conformed here
+      // deliberately — the 8/26 transcripts move shipped a silent 10-PDF
+      // shrink because an existing-but-empty pool only warned.
+      console.error(`  FATAL: pool ${poolPdfs ? 'EMPTY' : 'MISSING'}: ${pool} (source re-sorted again? update pdfPools)`);
+      process.exit(1);
     }
-    const sectionDir = dirname(dirname(pdfDir)); // <section>/docx/pdfs -> <section>
-    for (const f of readdirSync(pdfDir).filter((x) => x.endsWith('.pdf')).sort()) {
+    // the sibling .md may sit beside the pdf (section-root pools) or two
+    // levels up (<section>/docx/pdfs pools)
+    const mdDirs = [...new Set([pdfDir, pdfDir.replace(/\/docx\/pdfs$/, ''), A.src])];
+    for (const f of poolPdfs) {
       if (seenPdf.has(f)) {
         console.error(`  DUPLICATE PDF NAME across pools, keeping first: ${f} (${pool})`);
         continue;
@@ -241,7 +251,7 @@ for (const A of ARCHIVES) {
       copyFileSync(join(pdfDir, f), join(dst, 'pdfs', f));
       pdfCount += 1;
       const stem = f.replace(/\.pdf$/, '');
-      const entry = { title: mdTitle([sectionDir, A.src], stem), pdf: `pdfs/${f}` };
+      const entry = { title: mdTitle(mdDirs, stem), pdf: `pdfs/${f}` };
       const c = A.classify(stem);
       if (c) {
         for (const id of c.leaves) {
