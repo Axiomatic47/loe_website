@@ -111,22 +111,21 @@ export const MembraneViewer: React.FC<MembraneViewerProps> = ({
     [clampPos]
   );
 
-  // Native, NON-passive wheel listener. React's synthetic onWheel is attached
-  // passively, so preventDefault there is silently ignored — the page would
-  // scroll while zooming, which made the viewer feel broken. Attached to the
-  // whole widget (controls overlay and hint bar included), not just the pan
-  // area, so no part of the viewer lets a gesture fall through to the page.
+  // Native, NON-passive wheel listener — but PINCH-ONLY (owner 2026-08-26:
+  // plain scrolling over the leaf must scroll the PAGE, not zoom the image).
+  // Trackpad pinch reaches Chrome/Firefox/Edge as a ctrlKey wheel event, so
+  // only those zoom (which also gives deliberate ctrl/⌘-wheel zoom on a
+  // mouse); ordinary wheel/two-finger scroll falls through untouched.
+  // Safari's proprietary GestureEvents below cover its trackpad pinch.
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
     const onWheel = (e: WheelEvent) => {
+      if (!e.ctrlKey && !e.metaKey) return; // plain scroll → the page's
       e.preventDefault();
       const dy = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? 120 : 1);
-      // zoom proportional to the gesture, not a fixed step per event — smooth
-      // on trackpads AND mouse wheels; pinch arrives as ctrlKey-wheel with
-      // small deltas, so it gets a higher gain
-      const gain = e.ctrlKey ? 0.012 : 0.002;
-      const factor = Math.min(1.4, Math.max(1 / 1.4, Math.exp(-dy * gain)));
+      // zoom proportional to the gesture — pinch arrives as small deltas
+      const factor = Math.min(1.4, Math.max(1 / 1.4, Math.exp(-dy * 0.012)));
       zoomAt(e.clientX, e.clientY, factor);
     };
     root.addEventListener('wheel', onWheel, { passive: false });
@@ -228,7 +227,7 @@ export const MembraneViewer: React.FC<MembraneViewerProps> = ({
       </div>
 
       <div className="px-3 py-1.5 border-t border-border bg-card/60 text-[11px] text-muted-foreground font-sans shrink-0">
-        Scroll or pinch to zoom · double-click to zoom in (⇧-double-click out) · drag to pan · ⤢ refits the leaf
+        Pinch or ⌃-scroll to zoom · double-click to zoom in (⇧-double-click out) · drag to pan · ⤢ refits the leaf
       </div>
     </div>
   );
