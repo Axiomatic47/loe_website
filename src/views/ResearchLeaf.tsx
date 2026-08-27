@@ -7,6 +7,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { PageLayout } from "@/components/PageLayout";
 import { MembraneViewer } from "@/components/MembraneViewer";
+import { PdfScrollViewer } from "@/components/PdfScrollViewer";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 import { useNoIndex } from "@/hooks/useNoIndex";
 import { useArchiveManifest, archiveBase, imagesPublished, ArchiveDoc } from "@/views/ResearchArchive";
@@ -93,24 +94,12 @@ const ResearchLeaf = () => {
     if (!el) return;
     setFillHeight(Math.max(480, window.innerHeight - el.getBoundingClientRect().top - 16));
   }, []);
-  // paneEpoch remounts the PDF iframe after pane geometry settles — #view=FitH
-  // only applies at document load (see app LeafBody).
-  const [paneEpoch, setPaneEpoch] = useState(0);
   const review = layout === "side" && isLg;
   useEffect(() => {
     if (!review) return;
     measure();
-    let settle: ReturnType<typeof setTimeout>;
-    const onResize = () => {
-      measure();
-      clearTimeout(settle);
-      settle = setTimeout(() => setPaneEpoch((n) => n + 1), 300);
-    };
-    window.addEventListener("resize", onResize);
-    return () => {
-      clearTimeout(settle);
-      window.removeEventListener("resize", onResize);
-    };
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
   }, [review, measure]);
   const onHandleDown = (e: React.PointerEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -129,12 +118,10 @@ const ResearchLeaf = () => {
       localStorage.setItem(SPLIT_KEY, String(Math.round(s)));
       return s;
     });
-    setPaneEpoch((n) => n + 1);
   };
   const resetSplit = () => {
     setSplit(50);
     localStorage.setItem(SPLIT_KEY, "50");
-    setPaneEpoch((n) => n + 1);
   };
 
   const ids = manifest?.leaves.map((l) => l.id) || [];
@@ -380,19 +367,15 @@ const ResearchLeaf = () => {
                       </div>
                     )}
                     {pdfUrl && (
-                      <iframe
-                        // rendering params match the sitewide PDFViewer (#zoom=100);
-                        // the half-width side pane fits the page width instead.
-                        // key includes layout — fragment params only apply on load.
-                        key={`${pdfUrl}-${layout}-${paneEpoch}`}
-                        src={`${pdfUrl}${layout === "stacked" ? "#zoom=100&navpanes=0" : "#view=FitH&navpanes=0"}`}
-                        title={activeTab?.doc.title || "document"}
+                      // PDF.js canvas viewer — pages render at the pane's width
+                      // and follow it as the split or window moves (see app LeafBody)
+                      <PdfScrollViewer
+                        key={pdfUrl}
+                        src={pdfUrl}
                         className={cn(
                           "w-full",
-                          review ? "flex-1 min-h-0" : layout === "stacked" ? "h-[80vh] lg:h-[85vh]" : "h-[62vh]",
-                          dragging && "pointer-events-none"
+                          review ? "flex-1 min-h-0" : layout === "stacked" ? "h-[80vh] lg:h-[85vh]" : "h-[62vh]"
                         )}
-                        style={{ border: "none", background: "#f5f3ed" }}
                       />
                     )}
                   </div>
