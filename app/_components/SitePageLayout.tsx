@@ -1,9 +1,12 @@
 // app/_components/SitePageLayout.tsx — Next port of src/components/PageLayout.tsx
-// (same elastic-scroll signature behavior; Header/Footer swapped for the Next
-// ports). Delete the src copy at cutover.
+// (Header/Footer swapped for the Next ports. The elastic-scroll "signature"
+// this carried — content translating up to 800px past the page edges and
+// springing back — was RETIRED 2026-08-27 on owner direction: the stretch
+// read as exaggerated expansion, and on viewport-filling pages like the
+// archive review mode it hijacked every scroll. Native scrolling only.)
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
+import React from 'react';
 import { SiteHeader } from './SiteHeader';
 import { SiteFooter } from './SiteFooter';
 
@@ -13,128 +16,6 @@ interface SitePageLayoutProps {
 }
 
 export function SitePageLayout({ children, className = '' }: SitePageLayoutProps) {
-  const [pullDistance, setPullDistance] = useState(0);
-  const lastScrollY = useRef(0);
-  const isScrolling = useRef(false);
-  const animationFrame = useRef<number | undefined>(undefined);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const scrollTimeout = useRef<NodeJS.Timeout | undefined>(undefined);
-  const MAX_PULL_DISTANCE = 800;
-
-  useEffect(() => {
-    const handleWheel = (e: WheelEvent) => {
-      // Only apply the elastic effect to the main window scroll
-      // Skip if the event target is inside a scrollable sidebar or main content
-      if ((e.target as HTMLElement)?.closest('.main-content-area') ||
-          (e.target as HTMLElement)?.closest('.sidebar-scroll')) {
-        return;
-      }
-
-      if (scrollTimeout.current) {
-        clearTimeout(scrollTimeout.current);
-      }
-
-      const element = contentRef.current;
-      const isAtTop = window.scrollY === 0;
-      // Adjust bottom detection to account for viewport height
-      const isAtBottom = element &&
-        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 10; // Add small buffer
-
-      if ((isAtTop && e.deltaY < 0) || (isAtBottom && e.deltaY > 0)) {
-        e.preventDefault();
-        isScrolling.current = true;
-        setPullDistance(prev => Math.min(Math.max(prev - e.deltaY * 2, -MAX_PULL_DISTANCE), MAX_PULL_DISTANCE));
-
-        scrollTimeout.current = setTimeout(() => {
-          isScrolling.current = false;
-          startReturnAnimation();
-        }, 150);
-      }
-    };
-
-    const handleTouchStart = (e: TouchEvent) => {
-      // Skip if the event target is inside a scrollable sidebar or main content
-      if ((e.target as HTMLElement)?.closest('.main-content-area') ||
-          (e.target as HTMLElement)?.closest('.sidebar-scroll')) {
-        return;
-      }
-
-      lastScrollY.current = e.touches[0].clientY;
-      isScrolling.current = true;
-    };
-
-    const handleTouchMove = (e: TouchEvent) => {
-      // Skip if the event target is inside a scrollable sidebar or main content
-      if ((e.target as HTMLElement)?.closest('.main-content-area') ||
-          (e.target as HTMLElement)?.closest('.sidebar-scroll')) {
-        return;
-      }
-
-      const element = contentRef.current;
-      const isAtTop = window.scrollY === 0;
-      const isAtBottom = element &&
-        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight;
-
-      if (isAtTop || isAtBottom) {
-        const deltaY = e.touches[0].clientY - lastScrollY.current;
-        const direction = isAtTop ? 1 : -1;
-
-        if ((isAtTop && deltaY > 0) || (isAtBottom && deltaY < 0)) {
-          e.preventDefault();
-          setPullDistance(prev => Math.min(Math.max(prev + deltaY * direction * 1.5, -MAX_PULL_DISTANCE), MAX_PULL_DISTANCE));
-        }
-        lastScrollY.current = e.touches[0].clientY;
-      }
-    };
-
-    const handleTouchEnd = () => {
-      isScrolling.current = false;
-      startReturnAnimation();
-    };
-
-    const startReturnAnimation = () => {
-      if (!isScrolling.current) {
-        if (animationFrame.current) {
-          cancelAnimationFrame(animationFrame.current);
-        }
-
-        const animate = () => {
-          if (isScrolling.current) {
-            cancelAnimationFrame(animationFrame.current!);
-            return;
-          }
-
-          setPullDistance(prev => {
-            if (Math.abs(prev) < 0.1) return 0;
-            const newDistance = prev * 0.92;
-            animationFrame.current = requestAnimationFrame(animate);
-            return newDistance;
-          });
-        };
-
-        animationFrame.current = requestAnimationFrame(animate);
-      }
-    };
-
-    window.addEventListener('wheel', handleWheel, { passive: false });
-    window.addEventListener('touchstart', handleTouchStart);
-    window.addEventListener('touchmove', handleTouchMove, { passive: false });
-    window.addEventListener('touchend', handleTouchEnd);
-
-    return () => {
-      window.removeEventListener('wheel', handleWheel);
-      window.removeEventListener('touchstart', handleTouchStart);
-      window.removeEventListener('touchmove', handleTouchMove);
-      window.removeEventListener('touchend', handleTouchEnd);
-      if (animationFrame.current) {
-        cancelAnimationFrame(animationFrame.current);
-      }
-      if (scrollTimeout.current) {
-        clearTimeout(scrollTimeout.current);
-      }
-    };
-  }, []);
-
   return (
     <>
       {/* Warm cream surface — Claude-aesthetic preview */}
@@ -155,15 +36,7 @@ export function SitePageLayout({ children, className = '' }: SitePageLayoutProps
         <SiteHeader />
       </div>
 
-      {/* Elastic content */}
-      <div
-        ref={contentRef}
-        className="min-h-screen flex flex-col pt-16 pb-16"
-        style={{
-          transform: `translateY(${pullDistance}px)`,
-          transition: pullDistance === 0 && !isScrolling.current ? 'transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1)' : 'none',
-        }}
-      >
+      <div className="min-h-screen flex flex-col pt-16 pb-16">
         <main id="main-content" className={`${className} flex-grow relative z-10 pt-8`}>
           {children}
         </main>
