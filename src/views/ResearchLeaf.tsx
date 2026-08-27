@@ -93,12 +93,24 @@ const ResearchLeaf = () => {
     if (!el) return;
     setFillHeight(Math.max(480, window.innerHeight - el.getBoundingClientRect().top - 16));
   }, []);
+  // paneEpoch remounts the PDF iframe after pane geometry settles — #view=FitH
+  // only applies at document load (see app LeafBody).
+  const [paneEpoch, setPaneEpoch] = useState(0);
   const review = layout === "side" && isLg;
   useEffect(() => {
     if (!review) return;
     measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
+    let settle: ReturnType<typeof setTimeout>;
+    const onResize = () => {
+      measure();
+      clearTimeout(settle);
+      settle = setTimeout(() => setPaneEpoch((n) => n + 1), 300);
+    };
+    window.addEventListener("resize", onResize);
+    return () => {
+      clearTimeout(settle);
+      window.removeEventListener("resize", onResize);
+    };
   }, [review, measure]);
   const onHandleDown = (e: React.PointerEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -117,10 +129,12 @@ const ResearchLeaf = () => {
       localStorage.setItem(SPLIT_KEY, String(Math.round(s)));
       return s;
     });
+    setPaneEpoch((n) => n + 1);
   };
   const resetSplit = () => {
     setSplit(50);
     localStorage.setItem(SPLIT_KEY, "50");
+    setPaneEpoch((n) => n + 1);
   };
 
   const ids = manifest?.leaves.map((l) => l.id) || [];
@@ -232,10 +246,10 @@ const ResearchLeaf = () => {
             <div className={cn(review && "h-full min-h-0 flex flex-col")}>
               <div className={cn(review && "flex-1 min-h-0")}>
                 <MembraneViewer
-                  key={`${layout}-${review ? "review" : "page"}`} // remount so the leaf re-fits the new pane geometry
+                  key={`${layout}-${review ? "review" : "page"}`} // remount on mode change; within a mode the viewer re-fits itself (ResizeObserver)
                   src={`${archiveBase(archiveId)}/${leaf.web ?? leaf.image}`}
                   alt={`${config.ref} ${leafLabel.toLowerCase()} ${leaf.id}`}
-                  heightClass={review ? "h-full" : layout === "stacked" ? "h-[56vh] lg:h-[64vh]" : "h-[62vh]"}
+                  heightClass={review ? "flex-1 min-h-0" : layout === "stacked" ? "h-[56vh] lg:h-[64vh]" : "h-[62vh]"}
                   fitMode={imagesPublished(manifest) ? "width" : "contain"}
                 />
               </div>
@@ -370,7 +384,7 @@ const ResearchLeaf = () => {
                         // rendering params match the sitewide PDFViewer (#zoom=100);
                         // the half-width side pane fits the page width instead.
                         // key includes layout — fragment params only apply on load.
-                        key={`${pdfUrl}-${layout}`}
+                        key={`${pdfUrl}-${layout}-${paneEpoch}`}
                         src={`${pdfUrl}${layout === "stacked" ? "#zoom=100&navpanes=0" : "#view=FitH&navpanes=0"}`}
                         title={activeTab?.doc.title || "document"}
                         className={cn(

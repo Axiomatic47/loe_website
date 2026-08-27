@@ -35,6 +35,10 @@ export const MembraneViewer: React.FC<MembraneViewerProps> = ({
   const imgRef = useRef<HTMLImageElement>(null);
   const [t, setT] = useState({ scale: 0.28, x: 0, y: 0 });
   const drag = useRef<{ startX: number; startY: number; ox: number; oy: number } | null>(null);
+  // false while the leaf is just fitted to the pane — pane resizes (review-mode
+  // divider drags, window resizes) re-fit live. Any manual zoom/pan flips it,
+  // so a resize then preserves the reader's spot; the fit button resets it.
+  const userAdjusted = useRef(false);
 
   const clampScale = (s: number) => Math.min(MAX, Math.max(MIN, s));
 
@@ -59,6 +63,7 @@ export const MembraneViewer: React.FC<MembraneViewerProps> = ({
     const box = boxRef.current;
     const img = imgRef.current;
     if (!box || !img || !img.naturalWidth) return;
+    userAdjusted.current = false;
     const wScale = box.clientWidth / img.naturalWidth;
     const scale = clampScale(
       fitMode === 'contain' ? Math.min(wScale, box.clientHeight / img.naturalHeight, 1) : Math.min(wScale, 1)
@@ -70,10 +75,29 @@ export const MembraneViewer: React.FC<MembraneViewerProps> = ({
     });
   }, [fitMode]);
 
+  // Follow the pane: the review-mode divider and window resizes change the
+  // box without remounting the viewer. While unadjusted, re-fit live so the
+  // leaf tracks the divider; after a manual zoom, keep the reader's spot and
+  // only clamp it back on-screen.
+  useEffect(() => {
+    const box = boxRef.current;
+    if (!box || typeof ResizeObserver === 'undefined') return;
+    const ro = new ResizeObserver(() => {
+      if (userAdjusted.current) {
+        setT((prev) => ({ ...prev, ...clampPos(prev.x, prev.y, prev.scale) }));
+      } else {
+        fit();
+      }
+    });
+    ro.observe(box);
+    return () => ro.disconnect();
+  }, [fit, clampPos]);
+
   const zoomAt = useCallback(
     (clientX: number, clientY: number, factor: number) => {
       const box = boxRef.current;
       if (!box) return;
+      userAdjusted.current = true;
       const rect = box.getBoundingClientRect();
       const cx = clientX - rect.left;
       const cy = clientY - rect.top;
@@ -139,6 +163,7 @@ export const MembraneViewer: React.FC<MembraneViewerProps> = ({
   };
   const onPointerMove = (e: React.PointerEvent) => {
     if (!drag.current) return;
+    userAdjusted.current = true;
     const d = drag.current;
     setT((prev) => ({
       ...prev,
@@ -161,9 +186,11 @@ export const MembraneViewer: React.FC<MembraneViewerProps> = ({
   };
 
   return (
-    // h-full lets a fixed-height flex parent (the review layout) drive the
-    // viewer; with auto-height parents it resolves to content height.
-    <div ref={rootRef} className="relative h-full bg-muted border border-border rounded-lg overflow-hidden" style={{ overscrollBehavior: 'contain' }}>
+    // h-full + flex-col let a fixed-height flex parent (the review layout)
+    // drive the viewer: the pan box takes the slack (pass heightClass
+    // "flex-1 min-h-0") and the hint bar keeps its row. With auto-height
+    // parents everything resolves to content height as before.
+    <div ref={rootRef} className="relative h-full flex flex-col bg-muted border border-border rounded-lg overflow-hidden" style={{ overscrollBehavior: 'contain' }}>
       {/* controls */}
       <div className="absolute top-3 right-3 z-10 flex items-center gap-1 bg-card/95 border border-border rounded-md shadow-sm p-1">
         <Button variant="ghost" size="sm" className="h-8 w-8 p-0" onClick={() => zoomCenter(1 / 1.25)} aria-label="Zoom out">
@@ -200,7 +227,7 @@ export const MembraneViewer: React.FC<MembraneViewerProps> = ({
         />
       </div>
 
-      <div className="px-3 py-1.5 border-t border-border bg-card/60 text-[11px] text-muted-foreground font-sans">
+      <div className="px-3 py-1.5 border-t border-border bg-card/60 text-[11px] text-muted-foreground font-sans shrink-0">
         Scroll or pinch to zoom · double-click to zoom in (⇧-double-click out) · drag to pan · ⤢ refits the leaf
       </div>
     </div>

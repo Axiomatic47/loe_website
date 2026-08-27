@@ -95,6 +95,11 @@ export const LeafBody = ({ archiveId, refLabel, leafLabel, manifest, leaf, prev,
     return () => mq.removeEventListener("change", onMq);
   }, []);
 
+  // paneEpoch remounts the PDF iframe after pane geometry settles — its
+  // #view=FitH fragment only applies at document load, so a resized pane
+  // otherwise keeps the stale fit (clipped or letterboxed).
+  const [paneEpoch, setPaneEpoch] = useState(0);
+
   const measure = useCallback(() => {
     const el = rowRef.current;
     if (!el) return;
@@ -104,8 +109,17 @@ export const LeafBody = ({ archiveId, refLabel, leafLabel, manifest, leaf, prev,
   useEffect(() => {
     if (!(layout === "side" && isLg)) return;
     measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
+    let settle: ReturnType<typeof setTimeout>;
+    const onResize = () => {
+      measure();
+      clearTimeout(settle);
+      settle = setTimeout(() => setPaneEpoch((n) => n + 1), 300);
+    };
+    window.addEventListener("resize", onResize);
+    return () => {
+      clearTimeout(settle);
+      window.removeEventListener("resize", onResize);
+    };
   }, [layout, isLg, measure]);
 
   const review = layout === "side" && isLg;
@@ -128,10 +142,12 @@ export const LeafBody = ({ archiveId, refLabel, leafLabel, manifest, leaf, prev,
       localStorage.setItem(SPLIT_KEY, String(Math.round(s)));
       return s;
     });
+    setPaneEpoch((n) => n + 1);
   };
   const resetSplit = () => {
     setSplit(50);
     localStorage.setItem(SPLIT_KEY, "50");
+    setPaneEpoch((n) => n + 1);
   };
 
   const pdfUrl = activeTab ? `${archiveBase(archiveId)}/${activeTab.doc.pdf}` : null;
@@ -211,10 +227,10 @@ export const LeafBody = ({ archiveId, refLabel, leafLabel, manifest, leaf, prev,
           <div className={cn(review && "h-full min-h-0 flex flex-col")}>
             <div className={cn(review && "flex-1 min-h-0")}>
               <MembraneViewer
-                key={`${layout}-${review ? "review" : "page"}`} // remount so the leaf re-fits the new pane geometry
+                key={`${layout}-${review ? "review" : "page"}`} // remount on mode change; within a mode the viewer re-fits itself (ResizeObserver)
                 src={`${archiveBase(archiveId)}/${leaf.web ?? leaf.image}`}
                 alt={`${refLabel} ${leafLabel.toLowerCase()} ${leaf.id}`}
-                heightClass={review ? "h-full" : layout === "stacked" ? "h-[56vh] lg:h-[64vh]" : "h-[62vh]"}
+                heightClass={review ? "flex-1 min-h-0" : layout === "stacked" ? "h-[56vh] lg:h-[64vh]" : "h-[62vh]"}
                 fitMode={imagesPublished(manifest) ? "width" : "contain"}
               />
             </div>
@@ -349,7 +365,7 @@ export const LeafBody = ({ archiveId, refLabel, leafLabel, manifest, leaf, prev,
                       // rendering params match the sitewide PDFViewer (#zoom=100);
                       // the half-width side pane fits the page width instead.
                       // key includes layout — fragment params only apply on load.
-                      key={`${pdfUrl}-${layout}`}
+                      key={`${pdfUrl}-${layout}-${paneEpoch}`}
                       src={`${pdfUrl}${layout === "stacked" ? "#zoom=100&navpanes=0" : "#view=FitH&navpanes=0"}`}
                       title={activeTab?.doc.title || "document"}
                       className={cn(
