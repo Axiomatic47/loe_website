@@ -470,38 +470,8 @@ html.navigating .navigation-indicator {
   opacity: 0;
 }
 
-/* Reveal-on-enter (used via <Reveal/>): quiet 12px fade-up, expo ease-out. */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.reveal {
-  opacity: 0;
-}
-
-/* Fail-open: base opacity returns to 1 the moment the class lands, so content
-   is never lost if the animation is throttled or unsupported; the animation's
-   `both` fill still drives the visible fade-up when it runs. */
-.reveal.is-visible {
-  opacity: 1;
-  animation: fadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal {
-    opacity: 1 !important;
-  }
-  .reveal.is-visible {
-    animation: none !important;
-  }
-}
+/* Reveal-on-enter animation RETIRED 2026-08-26 (owner: the scroll-linked
+   fade-up read as exaggerated expansion) — <Reveal/> is now a plain wrapper. */
 
 /* Background texture — paper tooth. Three quiet layers:
    1. soft top glow (paper catching light), 2. fine dot grid, 3. grain noise.
