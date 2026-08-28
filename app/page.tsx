@@ -94,11 +94,11 @@ export default function Home() {
               }}
             >
               A unified mathematical framework for consciousness, ethics, and
-              reality — and the public record of the federal constitutional
-              litigation brought by its author, Joseph Kirchner.
+              reality — and the public record, from the Star Chamber
+              manuscripts of 1607 to the modern federal docket.
             </p>
             <p className="text-sm text-muted-foreground/80 mb-8 font-sans">
-              Three federal cases{totalCaseDocs > 0 ? ` · ${totalCaseDocs} court documents` : ''} · published for
+              Primary-source manuscripts{totalCaseDocs > 0 ? ` · ${totalCaseDocs} court documents` : ''} · published for
               journalists, attorneys, and the public
             </p>
           </Reveal>
