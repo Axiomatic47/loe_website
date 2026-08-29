@@ -19,6 +19,7 @@ import { useCompositionStore } from "@/utils/compositionData";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ScrollText } from "lucide-react";
 import { ARCHIVE_SHELF } from "@/data/homeContent";
+import { useArchiveManifest, archiveBase } from "@/views/ResearchArchive";
 
 const Eyebrow = ({ children }: { children: React.ReactNode }) => (
   <div
@@ -36,6 +37,16 @@ const Index = () => {
   useEffect(() => {
     loadCollections(['constitutional']);
   }, [loadCollections]);
+
+  // first-leaf thumbnails for the archive cards (owner 2026-08-29) — the
+  // two archives are a fixed pair, so two hook calls, not a loop
+  const stacManifest = useArchiveManifest(ARCHIVE_SHELF[0]?.id).manifest;
+  const hlsManifest = useArchiveManifest(ARCHIVE_SHELF[1]?.id).manifest;
+  const archiveThumb = (id: string) => {
+    const m = id === ARCHIVE_SHELF[0]?.id ? stacManifest : hlsManifest;
+    const leaf = m?.leaves?.[0];
+    return leaf?.thumb ? `${archiveBase(id)}/${leaf.thumb}` : null;
+  };
 
   // Live document count across the three cases (hero line)
   const totalCaseDocs = constitutional.reduce(
@@ -134,6 +145,16 @@ const Index = () => {
                       </p>
                     </div>
                   </div>
+                  {archiveThumb(a.id) && (
+                    <div className="mt-4 rounded-md border border-border overflow-hidden bg-muted">
+                      <img
+                        src={archiveThumb(a.id)!}
+                        alt={`${a.ref} — first leaf`}
+                        loading="lazy"
+                        className="w-full h-44 object-cover object-top group-hover:opacity-90 transition-opacity"
+                      />
+                    </div>
+                  )}
                   <p className="text-sm text-foreground/85 mt-3 font-sans flex-grow">{a.blurb}</p>
                   <p className="text-sm text-primary mt-4 font-sans inline-flex items-center" style={{ fontWeight: 500 }}>
                     Read the manuscript
