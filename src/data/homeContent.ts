@@ -46,28 +46,37 @@ export const ARCHIVE_SHELF: ArchiveShelfEntry[] = [
   },
 ];
 
-export const ARTICLE_SHELF: ArticleShelfEntry[] = [
+/** The lead card — The Codified Democratic Order composition. */
+export const ARTICLE_LEAD: ArticleShelfEntry = {
+  slug: 'codified-democratic-order',
+  blurb:
+    'The framework’s constitutional architecture: the Fundamental Laws of Supremacism and Egalitarianism, the Madisonian separation-of-powers compliance test, and their application to active conflicts.',
+};
+
+/** The grid — individual CDO articles (section slugs within the lead
+ *  composition; owner direction 2026-08-29: purely Codified Democratic
+ *  Order). The four FEATURED papers read in full in the Featured Works
+ *  stream below, so the grid carries four structural articles that are
+ *  not otherwise on the page. */
+export const CDO_ARTICLE_CARDS: ArticleShelfEntry[] = [
   {
-    slug: 'codified-democratic-order',
+    slug: 'the-fundamental-laws-of-supremacism-and-egalitarianism',
     blurb:
-      'The framework’s constitutional architecture: the Fundamental Laws of Supremacism and Egalitarianism, the Madisonian separation-of-powers compliance test, and their application to active conflicts.',
+      'The axioms of the framework: supremacism and egalitarianism as the two organizing laws of political order.',
   },
   {
-    slug: 'unified-mathematical-model',
-    blurb: 'The unified mathematical framework for consciousness, ethics, and reality.',
-  },
-  {
-    slug: 'transcendental-method-for-substrate-independent-consciousness-recognition',
+    // section slugs are data, capped at 60 chars by the enrich step
+    slug: 'the-madisonian-separation-of-powers-objective-compliance-tes',
     blurb:
-      'A transcendental method for substrate-independent consciousness recognition — the argument, comparative analysis against existing theories, and testing protocols.',
+      'An objective compliance test for separation-of-powers structures — whether a constitution actually checks power.',
   },
   {
-    slug: 'laws-of-existence-foundational-exhibits',
-    blurb: 'The Fundamental Laws in formal logic, with falsification attempts.',
+    slug: 'the-ratification-protocol-a-two-stage-architecture-for-membe',
+    blurb: 'A two-stage architecture for member commitment to the codified order.',
   },
   {
-    slug: 'abrahamic-faith-reconciliation-thesis',
-    blurb: 'The egalitarian foundations of Abrahamic tradition — a reconciliation thesis.',
+    slug: 'the-board-of-peace-an-operational-anatomy-of-usurpation-at-t',
+    blurb: 'An operational anatomy of usurpation at the international level.',
   },
 ];
 

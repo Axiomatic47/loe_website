@@ -18,7 +18,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Reveal } from '@/components/Reveal';
 import { ArrowRight, BookOpen, ScrollText } from 'lucide-react';
-import { ARTICLE_SHELF, ARCHIVE_SHELF } from '@/data/homeContent';
+import { ARTICLE_LEAD, CDO_ARTICLE_CARDS, ARCHIVE_SHELF } from '@/data/homeContent';
 import { getCollection, getComposition } from '@/lib/content-manifest';
 import { compositionUrl, sectionUrl } from '@/utils/urls';
 import { SitePageLayout } from './_components/SitePageLayout';
@@ -46,19 +46,21 @@ export default function Home() {
   // Live document count across the three cases (hero line)
   const totalCaseDocs = constitutional.reduce((sum, c) => sum + (c.sections?.length || 0), 0);
 
-  // Articles shelf: editorial order + blurbs from ARTICLE_SHELF, everything
-  // else derived from the manuscript collection. Missing slugs drop out.
-  const shelf = ARTICLE_SHELF.map(entry => ({
-    entry,
-    comp: getComposition('manuscript', entry.slug),
-  })).filter((x): x is { entry: (typeof ARTICLE_SHELF)[number]; comp: NonNullable<ReturnType<typeof getComposition>> } => !!x.comp);
-  const [leadItem, ...shelfRest] = shelf;
-  const lead = leadItem?.entry;
-  const leadComp = leadItem?.comp;
+  // Articles shelf (owner 2026-08-29: purely CDO): the lead card is the
+  // composition; the grid is individual CDO articles resolved by section
+  // slug. Blurbs are editorial; titles/links derive. Missing slugs drop out.
+  const lead = ARTICLE_LEAD;
+  const leadComp = getComposition('manuscript', ARTICLE_LEAD.slug);
   const leadFeatured = leadComp
     ? leadComp.sections
         .filter(s => s.featured)
         .sort((a, b) => (a.featured_order || 999) - (b.featured_order || 999))
+    : [];
+  const cdoCards = leadComp
+    ? CDO_ARTICLE_CARDS.map(entry => ({
+        entry,
+        section: leadComp.sections.find(s => s.slug === entry.slug),
+      })).filter((x): x is { entry: (typeof CDO_ARTICLE_CARDS)[number]; section: NonNullable<typeof x.section> } => !!x.section)
     : [];
 
   return (
@@ -186,26 +188,27 @@ export default function Home() {
           )}
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-            {shelfRest.map(({ entry, comp }, i) => (
-              <Reveal key={entry.slug} delay={i * 80}>
-                <Link
-                  href={compositionUrl(comp)}
-                  className="group bg-card border border-border rounded-lg p-5 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-200 flex flex-col h-full"
-                >
-                  <h3
-                    className="font-serif text-foreground group-hover:text-primary transition-colors"
-                    style={{ fontSize: '1.125rem', fontWeight: 580, letterSpacing: '-0.014em', lineHeight: 1.3 }}
+            {leadComp &&
+              cdoCards.map(({ entry, section }, i) => (
+                <Reveal key={entry.slug} delay={i * 80}>
+                  <Link
+                    href={sectionUrl(leadComp, section)}
+                    className="group bg-card border border-border rounded-lg p-5 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-200 flex flex-col h-full"
                   >
-                    {comp.title}
-                  </h3>
-                  <p className="text-sm text-foreground/85 mt-3 font-sans flex-grow">{entry.blurb}</p>
-                  <p className="text-sm text-primary mt-4 font-sans inline-flex items-center" style={{ fontWeight: 500 }}>
-                    {comp.sections.length > 1 ? `${comp.sections.length} articles` : 'Read'}
-                    <ArrowRight className="ml-1.5 h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
-                  </p>
-                </Link>
-              </Reveal>
-            ))}
+                    <h3
+                      className="font-serif text-foreground group-hover:text-primary transition-colors"
+                      style={{ fontSize: '1.125rem', fontWeight: 580, letterSpacing: '-0.014em', lineHeight: 1.3 }}
+                    >
+                      {section.title}
+                    </h3>
+                    <p className="text-sm text-foreground/85 mt-3 font-sans flex-grow">{entry.blurb}</p>
+                    <p className="text-sm text-primary mt-4 font-sans inline-flex items-center" style={{ fontWeight: 500 }}>
+                      Read the article
+                      <ArrowRight className="ml-1.5 h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+                    </p>
+                  </Link>
+                </Reveal>
+              ))}
           </div>
         </section>
 
@@ -218,6 +221,11 @@ export default function Home() {
             {ARCHIVE_SHELF.map((a, i) => {
               const manifest = readArchiveManifest(a.id);
               const leafCount = manifest?.leaves?.length || 0;
+              // first-leaf thumbnail (owner 2026-08-29) — sync-time rendition
+              const firstLeaf = manifest?.leaves?.[0];
+              const thumbSrc = firstLeaf?.thumb
+                ? `/uploads/research/${a.id}/${firstLeaf.thumb}`
+                : null;
               return (
                 <Reveal key={a.id} delay={i * 80}>
                   <Link
@@ -240,6 +248,16 @@ export default function Home() {
                         </p>
                       </div>
                     </div>
+                    {thumbSrc && (
+                      <div className="mt-4 rounded-md border border-border overflow-hidden bg-muted">
+                        <img
+                          src={thumbSrc}
+                          alt={`${a.ref} — first leaf`}
+                          loading="lazy"
+                          className="w-full h-44 object-cover object-top group-hover:opacity-90 transition-opacity"
+                        />
+                      </div>
+                    )}
                     <p className="text-sm text-foreground/85 mt-3 font-sans flex-grow">{a.blurb}</p>
                     <p className="text-sm text-primary mt-4 font-sans inline-flex items-center" style={{ fontWeight: 500 }}>
                       {leafCount > 0 ? `Read the manuscript (${leafCount} leaves)` : 'Read the manuscript'}
