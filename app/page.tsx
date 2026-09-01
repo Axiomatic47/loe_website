@@ -5,9 +5,10 @@
 //   1. Hero — plain-English statement of what this site is, two CTAs
 //      (primary: the academic articles)
 //   2. Academic articles shelf — the manuscript collection, lead + grid
-//   3. From the archives — the two Star Chamber primary-source archives
+//   3. Prynne epigraph — one quote summarizing why the originals are here
+//   4. From the archives — the two Star Chamber primary-source archives
 //      (published 2026-08-23 with the TNA reproduction licence in hand)
-//   4. Featured works — full inline reading of the Declaration of Humanity
+//   5. Featured works — full inline reading of the Declaration of Humanity
 //      set (manuscript `featured` flags; Declaration first via
 //      featured_order)
 //
@@ -212,7 +213,34 @@ export default function Home() {
           </div>
         </section>
 
-        {/* --------------------------------------- 3. From the archives */}
+        {/* --------------------------------------------- 3. Prynne epigraph */}
+        <section className="max-w-4xl mx-auto mb-16">
+          <Reveal>
+            <figure className="text-center px-4">
+              <blockquote>
+                <p
+                  className="font-serif italic text-foreground/90 mx-auto"
+                  style={{
+                    fontSize: 'clamp(19px, 2.4vw, 26px)',
+                    lineHeight: 1.5,
+                    letterSpacing: '-0.01em',
+                    maxWidth: '44rem',
+                  }}
+                >
+                  “how unsafe it is to take Records upon trust, from the
+                  reports of learned Judges, who never read nor perused their
+                  originals.”
+                </p>
+              </blockquote>
+              <figcaption className="text-sm text-muted-foreground mt-4 font-sans">
+                — William Prynne (1669), Keeper of His Majesties Records in the
+                Tower of London
+              </figcaption>
+            </figure>
+          </Reveal>
+        </section>
+
+        {/* --------------------------------------- 4. From the archives */}
         <section className="max-w-4xl mx-auto mb-16">
           <Reveal>
             <Eyebrow>From the archives</Eyebrow>
@@ -270,7 +298,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ------------------------ 4. Featured works — full inline reading */}
+        {/* ------------------------ 5. Featured works — full inline reading */}
         <section className="mb-8">
           <Reveal>
             <div className="max-w-4xl mx-auto">
