@@ -13,7 +13,7 @@ const MATTERS = [
     caption: "Kirchner v. Johnson, et al.",
     court: "U.S. District Court, D.D.C. (Hon. Ana C. Reyes)",
     caseNo: "1:25-cv-02735-ACR",
-    status: "Active — motions to dismiss due Jul 15, 2026; opposition due Aug 28, 2026",
+    status: "Active — motions to dismiss filed Jul 15, 2026; oppositions filed Aug 28, 2026 (Docs. 73, 74); replies due Sep 18, 2026",
     operative: { label: "Third Amended Complaint (Doc. 51)", href: "/kirchner-v-johnson/51" },
     landing: "/kirchner-v-johnson",
   },

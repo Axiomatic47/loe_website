@@ -8064,6 +8064,90 @@
     "destination": "/kirchner-v-johnson/72-1"
   },
   {
+    "source": "/kirchner-v-johnson/section/432",
+    "destination": "/kirchner-v-johnson/73"
+  },
+  {
+    "source": "/kirchner-v-trump/section/432",
+    "destination": "/kirchner-v-johnson/73"
+  },
+  {
+    "source": "/kirchner-v-johnson/doc73",
+    "destination": "/kirchner-v-johnson/73"
+  },
+  {
+    "source": "/kirchner-v-johnson/section/433",
+    "destination": "/kirchner-v-johnson/73-1"
+  },
+  {
+    "source": "/kirchner-v-trump/section/433",
+    "destination": "/kirchner-v-johnson/73-1"
+  },
+  {
+    "source": "/kirchner-v-johnson/73-01",
+    "destination": "/kirchner-v-johnson/73-1"
+  },
+  {
+    "source": "/kirchner-v-johnson/doc73-1",
+    "destination": "/kirchner-v-johnson/73-1"
+  },
+  {
+    "source": "/kirchner-v-johnson/doc73-01",
+    "destination": "/kirchner-v-johnson/73-1"
+  },
+  {
+    "source": "/kirchner-v-johnson/section/434",
+    "destination": "/kirchner-v-johnson/73-2"
+  },
+  {
+    "source": "/kirchner-v-trump/section/434",
+    "destination": "/kirchner-v-johnson/73-2"
+  },
+  {
+    "source": "/kirchner-v-johnson/73-02",
+    "destination": "/kirchner-v-johnson/73-2"
+  },
+  {
+    "source": "/kirchner-v-johnson/doc73-2",
+    "destination": "/kirchner-v-johnson/73-2"
+  },
+  {
+    "source": "/kirchner-v-johnson/doc73-02",
+    "destination": "/kirchner-v-johnson/73-2"
+  },
+  {
+    "source": "/kirchner-v-johnson/section/435",
+    "destination": "/kirchner-v-johnson/73-3"
+  },
+  {
+    "source": "/kirchner-v-trump/section/435",
+    "destination": "/kirchner-v-johnson/73-3"
+  },
+  {
+    "source": "/kirchner-v-johnson/73-03",
+    "destination": "/kirchner-v-johnson/73-3"
+  },
+  {
+    "source": "/kirchner-v-johnson/doc73-3",
+    "destination": "/kirchner-v-johnson/73-3"
+  },
+  {
+    "source": "/kirchner-v-johnson/doc73-03",
+    "destination": "/kirchner-v-johnson/73-3"
+  },
+  {
+    "source": "/kirchner-v-johnson/section/436",
+    "destination": "/kirchner-v-johnson/74"
+  },
+  {
+    "source": "/kirchner-v-trump/section/436",
+    "destination": "/kirchner-v-johnson/74"
+  },
+  {
+    "source": "/kirchner-v-johnson/doc74",
+    "destination": "/kirchner-v-johnson/74"
+  },
+  {
     "source": "/kirchner-v-acosta/section/1",
     "destination": "/kirchner-v-acosta/1"
   },
