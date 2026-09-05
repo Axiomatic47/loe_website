@@ -5607,6 +5607,71 @@
       "description": "Attachment #1 to Doc 72 — Declaration of Christopher Whittick in support of Plaintiff's oppositions to the motions to dismiss.",
       "case_group": "filings",
       "slug": "72-1"
+    },
+    {
+      "pdf_file": "/uploads/constitutional/pdfs/73.pdf",
+      "featured": false,
+      "date": "2026-08-28",
+      "content_level_1": "",
+      "content_level_3": "",
+      "content_level_5": "",
+      "title": "Plaintiff's Opposition to the Federal Defendants' Motion to Dismiss (Doc 73)",
+      "images": [],
+      "description": "60-page opposition to the Federal Defendants' motion to dismiss (ECF No. 69): Article III standing (concrete injury, traceability, redressability; the generalized-grievance bar and the \"patently insubstantial\" attack); sovereign immunity bars none of the claims actually asserted; the service and Rule 8 arguments; Bivens governs only a fraction of the claims; the Speech or Debate Clause and qualified immunity (Chairman Carr); the immunity doctrine the Government invokes fails at its modern apex and at its foundation (Floyd v. Barker, Star Chamber, 1607); the with-prejudice request is unsupported.",
+      "case_group": "filings",
+      "slug": "73"
+    },
+    {
+      "pdf_file": "/uploads/constitutional/pdfs/73-1.pdf",
+      "featured": false,
+      "date": "2026-08-28",
+      "content_level_1": "",
+      "content_level_3": "",
+      "content_level_5": "",
+      "title": "Plaintiff's Documentary Appendix of Historical Record Materials (Floyd v. Barker)",
+      "images": [],
+      "description": "Attachment #1 to Doc 73 — 78-page documentary appendix, Exhibits FL-1 through FL-10: The National Archives (U.K.) record copy RC8368179 of STAC 8/203/38 (Lloyde v. Lewys, Anglesey, 1607), the ten surviving membranes; the Discovery catalogue record C5573103; Christopher Whittick's professional transcription of STAC 8/203/38; Harvard Law School Library HLS MS 149, ff. 81r–83v (the contemporaneous second account) with transcription; Baker's Reports from the Notebooks of Edward Coke; Coke's Twelfth Part of the Reports (1656); Floyd v. Barker, 12 Co. Rep. 23, 77 Eng. Rep. 1305; the PRO List of Sheriffs; and the Habeas Corpus Act 1640.",
+      "case_group": "filings",
+      "slug": "73-1"
+    },
+    {
+      "pdf_file": "/uploads/constitutional/pdfs/73-2.pdf",
+      "featured": false,
+      "date": "2026-08-28",
+      "content_level_1": "",
+      "content_level_3": "",
+      "content_level_5": "",
+      "title": "Declaration of Joseph Kirchner in Support of Plaintiff's Oppositions",
+      "images": [],
+      "description": "Attachment #2 to Doc 73 — Plaintiff's declaration under 28 U.S.C. § 1746 in support of the oppositions to both motions to dismiss (ECF Nos. 69, 70): how the Star Chamber record underlying Floyd v. Barker was located, obtained from The National Archives and Harvard Law School Library, and professionally transcribed.",
+      "case_group": "filings",
+      "slug": "73-2"
+    },
+    {
+      "pdf_file": "/uploads/constitutional/pdfs/73-3.pdf",
+      "featured": false,
+      "date": "2026-08-28",
+      "content_level_1": "",
+      "content_level_3": "",
+      "content_level_5": "",
+      "title": "Declaration of Christopher Whittick in Support of Plaintiff's Oppositions",
+      "images": [],
+      "description": "Attachment #3 to Doc 73 — Declaration of Christopher Whittick, MA FSA, former County Archivist of East Sussex, on his verification transcription of the surviving documents in The National Archives (UK) file STAC 8/203/38 (Court of Star Chamber, 1607). Filed with the oppositions; an earlier copy was lodged with Doc 72.",
+      "case_group": "filings",
+      "slug": "73-3"
+    },
+    {
+      "pdf_file": "/uploads/constitutional/pdfs/74.pdf",
+      "featured": false,
+      "date": "2026-08-28",
+      "content_level_1": "",
+      "content_level_3": "",
+      "content_level_5": "",
+      "title": "Plaintiff's Opposition to the Corporate Defendants' Joint Motion to Dismiss (Doc 74)",
+      "images": [],
+      "description": "60-page opposition to the joint motion of Anthropic, OpenAI, Apple, Comcast, and METR (ECF No. 70): the exhibits are part of the pleading under Rule 10(c) and the motion's method is to decline to read them; the merits briefing refutes the companion motion; the complaint is not \"patently insubstantial\"; Plaintiff states each claim (Counts I–XVIII); no improper group pleading; dismissal with prejudice is unwarranted.",
+      "case_group": "filings",
+      "slug": "74"
     }
   ],
   "hidden_case_groups": [

@@ -60,9 +60,9 @@ export const CASES: Record<string, CaseConfig> = {
     judge: "Hon. Ana C. Reyes",
     summary:
       "A pro se constitutional action against the Speaker of the House, the President, the Attorney General, the FCC Chairman, the U.S. House of Representatives, Anthropic, OpenAI, Apple, Comcast, and METR — alleging coordinated constitutional violations across government and the AI industry.",
-    status: "Active — motion-to-dismiss briefing underway",
+    status: "Active — motions to dismiss fully opposed; replies due September 18, 2026",
     deadline:
-      "All defendants moved to dismiss on July 15, 2026 — the federal defendants (Doc. 69) and the corporate defendants jointly (Doc. 70); Plaintiff’s opposition is due August 28, 2026; replies September 18, 2026.",
+      "All defendants moved to dismiss on July 15, 2026 — the federal defendants (Doc. 69) and the corporate defendants jointly (Doc. 70). Plaintiff opposed both on August 28, 2026 (Docs. 73, 74) with a documentary appendix and declarations; replies are due September 18, 2026.",
     operativeHref: "/kirchner-v-johnson/51",
     operativeLabel: "Read the Third Amended Complaint",
     matchTitle: "johnson",
@@ -76,7 +76,8 @@ export const CASES: Record<string, CaseConfig> = {
       { date: "May 28, 2026", event: "Status conference; motion-to-dismiss schedule set" },
       { date: "Jul 15, 2026", event: "Federal and corporate defendants’ motions to dismiss filed (Docs. 69, 70)" },
       { date: "Aug 13, 2026", event: "Plaintiff’s unopposed motion for leave to file excess pages for the oppositions (Doc. 72)" },
-      { date: "Aug 28, 2026", event: "Plaintiff’s opposition due", upcoming: true },
+      { date: "Aug 28, 2026", event: "Plaintiff’s oppositions to both motions to dismiss filed (Docs. 73, 74), with the Documentary Appendix of Historical Record Materials and declarations (Docs. 73-1 to 73-3)" },
+      { date: "Sep 18, 2026", event: "Defendants’ replies due", upcoming: true },
     ],
     keyDocuments: [
       { label: "Third Amended Complaint (operative)", doc: "Doc. 51", date: "Apr 30, 2026", href: "/kirchner-v-johnson/51" },
@@ -84,7 +85,10 @@ export const CASES: Record<string, CaseConfig> = {
       { label: "Emergency Motion for TRO — Anthropic & Comcast", doc: "Doc. 57", date: "May 7, 2026", href: "/kirchner-v-johnson/57" },
       { label: "Federal Defendants’ Motion to Dismiss", doc: "Doc. 69", date: "Jul 15, 2026", href: "/kirchner-v-johnson/69" },
       { label: "Corporate Defendants’ Joint Motion to Dismiss", doc: "Doc. 70", date: "Jul 15, 2026", href: "/kirchner-v-johnson/70" },
-      { label: "Declaration of Christopher Whittick ISO Oppositions", doc: "Doc. 72-1", date: "Aug 13, 2026", href: "/kirchner-v-johnson/72-1" },
+      { label: "Plaintiff’s Opposition to the Federal Defendants’ Motion to Dismiss", doc: "Doc. 73", date: "Aug 28, 2026", href: "/kirchner-v-johnson/73" },
+      { label: "Plaintiff’s Opposition to the Corporate Defendants’ Joint Motion to Dismiss", doc: "Doc. 74", date: "Aug 28, 2026", href: "/kirchner-v-johnson/74" },
+      { label: "Documentary Appendix of Historical Record Materials (Floyd v. Barker)", doc: "Doc. 73-1", date: "Aug 28, 2026", href: "/kirchner-v-johnson/73-1" },
+      { label: "Declaration of Christopher Whittick ISO Oppositions", doc: "Doc. 73-3", date: "Aug 28, 2026", href: "/kirchner-v-johnson/73-3" },
       { label: "Plaintiff’s Reply on Service Motions", doc: "Doc. 68", date: "Jun 18, 2026", href: "/kirchner-v-johnson/68" },
       { label: "Second Amended Complaint (superseded)", doc: "Doc. 13", date: "Jan 19, 2026", href: "/kirchner-v-johnson/13" },
     ],
