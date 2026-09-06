@@ -14,14 +14,11 @@ export function SiteFooter({ className }: { className?: string }) {
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-          {/* Left side - Brand and Patent Notice */}
+          {/* Left side - Brand and copyright */}
           <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4">
             <div className="flex items-center space-x-2">
               <span className="text-surface-leather-foreground font-serif text-lg">
                 Laws of Existence Framework™
-              </span>
-              <span className="bg-card/80 text-primary border border-primary/40 px-2 py-0.5 rounded text-xs font-semibold uppercase tracking-wide">
-                Patent Pending
               </span>
             </div>
             {/* suppressHydrationWarning: prerendered year can lag the client's
