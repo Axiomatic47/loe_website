@@ -3,8 +3,7 @@
 // Structure (owner direction 2026-08-22/23 — the articles carry the page;
 // no featured case, no case strip):
 //   1. Hero — plain-English statement of what this site is, two CTAs
-//      (primary: the academic articles), then the rotating quote field
-//      (words of others, src/data/hero-quotes.json — owner 2026-09-05)
+//      (primary: the academic articles)
 //   2. Academic articles shelf — the manuscript collection, lead + grid
 //   3. Prynne epigraph — one quote summarizing why the originals are here
 //   4. From the archives — the two Star Chamber primary-source archives
@@ -12,6 +11,10 @@
 //   5. Featured works — full inline reading of the Declaration of Humanity
 //      set (manuscript `featured` flags; Declaration first via
 //      featured_order)
+//   6. Closing quote field — rotating words of others (src/data/hero-quotes
+//      .json), moved from the hero to the foot of the page (owner 2026-09-06:
+//      the work takes the visitor's attention, the quotes reward reaching
+//      the bottom)
 //
 // Article counts and archive leaf counts are derived from the content/archive
 // manifests at build time.
@@ -120,9 +123,6 @@ export default function Home() {
                 <Link href="/composition/constitutional">The litigation record</Link>
               </Button>
             </div>
-          </Reveal>
-          <Reveal delay={280}>
-            <HeroQuotes quotes={HERO_QUOTES} className="mt-10" />
           </Reveal>
         </section>
 
@@ -303,6 +303,13 @@ export default function Home() {
             </div>
           </Reveal>
           <FeaturedWork />
+        </section>
+
+        {/* ------------------------------ 6. Closing quote field (foot of page) */}
+        <section className="max-w-4xl mx-auto mt-16 mb-4 pt-10 border-t border-border">
+          <Reveal>
+            <HeroQuotes quotes={HERO_QUOTES} />
+          </Reveal>
         </section>
       </main>
     </SitePageLayout>
