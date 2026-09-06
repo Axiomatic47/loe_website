@@ -10,50 +10,15 @@
 // the testimony records. Patent language was removed with the footer badge;
 // governing-law and contract terms live in the Terms of Service.
 import React from 'react';
+import { H2, P, LegalPage, LEGAL_CONTACT_EMAIL, LEGAL_LINK_CLASS, type RenderLink } from './prose';
 
 export const LEGAL_NOTICES_UPDATED = 'September 6, 2026';
-export const LEGAL_CONTACT_EMAIL = 'contact@lawsofexistence.com';
-
-type RenderLink = (href: string, children: React.ReactNode) => React.ReactNode;
-
-const Eyebrow = ({ children }: { children: React.ReactNode }) => (
-  <div
-    className="text-xs uppercase tracking-[0.1em] text-muted-foreground font-sans mb-3"
-    style={{ fontWeight: 600 }}
-  >
-    {children}
-  </div>
-);
-
-const H2 = ({ children }: { children: React.ReactNode }) => (
-  <h2
-    className="font-serif text-foreground mt-12 mb-4"
-    style={{ fontSize: '1.5rem', fontWeight: 580, letterSpacing: '-0.018em', lineHeight: 1.2 }}
-  >
-    {children}
-  </h2>
-);
-
-const P = ({ children }: { children: React.ReactNode }) => (
-  <p className="font-serif text-foreground/90 mb-4" style={{ fontSize: '1.0625rem', lineHeight: 1.72, fontWeight: 430 }}>
-    {children}
-  </p>
-);
-
-const LINK_CLASS = 'text-primary underline underline-offset-4 decoration-primary/40 hover:decoration-primary transition-colors';
+export { LEGAL_CONTACT_EMAIL, LEGAL_LINK_CLASS };
 
 export function LegalNoticesBody({ renderLink }: { renderLink: RenderLink }) {
   const L = (href: string, text: string) => renderLink(href, text);
   return (
-    <div className="max-w-3xl mx-auto">
-      <Eyebrow>Legal notices</Eyebrow>
-      <h1
-        className="font-serif text-foreground"
-        style={{ fontSize: 'clamp(30px, 4.5vw, 44px)', fontWeight: 580, letterSpacing: '-0.02em', lineHeight: 1.1 }}
-      >
-        Legal Notices
-      </h1>
-      <p className="text-sm text-muted-foreground mt-4 mb-8 font-sans">Last updated {LEGAL_NOTICES_UPDATED}</p>
+    <LegalPage eyebrow="Legal notices" title="Legal Notices" updated={LEGAL_NOTICES_UPDATED}>
 
       <P>
         These notices explain what this website is, where its material comes from, and how that material may be
@@ -194,8 +159,6 @@ export function LegalNoticesBody({ renderLink }: { renderLink: RenderLink }) {
       <P>
         Joseph Kirchner · {L(`mailto:${LEGAL_CONTACT_EMAIL}`, LEGAL_CONTACT_EMAIL)} · {L('/contact', 'contact page')}
       </P>
-    </div>
+    </LegalPage>
   );
 }
-
-export { LINK_CLASS as LEGAL_LINK_CLASS };
