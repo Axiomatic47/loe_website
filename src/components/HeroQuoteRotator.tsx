@@ -8,7 +8,10 @@
 // Behaviour:
 //   - every quote is rendered into the same grid cell, so the block's height is
 //     the tallest quote and the layout below never jumps between rotations;
-//   - crossfade on a timer; paused while hovered/focused or the tab is hidden;
+//   - crossfade on a fixed timer that nothing on the page can reset. (v1 paused
+//     on hover/focus; every pause flip re-armed the timer, and the field sits
+//     right under the CTAs where the cursor rests — the owner saw it stationary,
+//     2026-09-06. Only a hidden tab now skips ticks, and it keeps the clock.)
 //   - prefers-reduced-motion: the swap is instant (no fade), still rotates;
 //   - SSR-safe: the first quote renders on the server and hydrates identically.
 // Shared by both renderers (vite Index.tsx and Next app/page.tsx).
@@ -30,12 +33,11 @@ interface Props {
 
 export function HeroQuoteRotator({
   quotes,
-  intervalMs = 9000,
+  intervalMs = 8000,
   className = '',
   renderLink,
 }: Props) {
   const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
   const reduced = useRef(false);
 
   useEffect(() => {
@@ -48,7 +50,7 @@ export function HeroQuoteRotator({
   }, []);
 
   useEffect(() => {
-    if (quotes.length < 2 || paused) return;
+    if (quotes.length < 2) return;
     let hidden = typeof document !== 'undefined' && document.visibilityState === 'hidden';
     const onVis = () => { hidden = document.visibilityState === 'hidden'; };
     document.addEventListener('visibilitychange', onVis);
@@ -60,7 +62,7 @@ export function HeroQuoteRotator({
       window.clearInterval(t);
       document.removeEventListener('visibilitychange', onVis);
     };
-  }, [quotes.length, intervalMs, paused]);
+  }, [quotes.length, intervalMs]);
 
   if (!quotes.length) return null;
 
@@ -70,10 +72,6 @@ export function HeroQuoteRotator({
     <div
       className={`mx-auto ${className}`}
       style={{ maxWidth: '40rem' }}
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)}
-      onBlur={() => setPaused(false)}
     >
       <div className="grid" style={{ gridTemplateAreas: '"q"' }}>
         {quotes.map((q, i) => {
