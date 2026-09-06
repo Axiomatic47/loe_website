@@ -3,7 +3,8 @@
 // Structure (owner direction 2026-08-22/23 — the articles carry the page;
 // no featured case, no case strip):
 //   1. Hero — plain-English statement of what this site is, two CTAs
-//      (primary: the academic articles)
+//      (primary: the academic articles), then the rotating quote field
+//      (words of others, src/data/hero-quotes.json — owner 2026-09-05)
 //   2. Academic articles shelf — the manuscript collection, lead + grid
 //   3. Prynne epigraph — one quote summarizing why the originals are here
 //   4. From the archives — the two Star Chamber primary-source archives
@@ -12,15 +13,17 @@
 //      set (manuscript `featured` flags; Declaration first via
 //      featured_order)
 //
-// Article counts, the hero's document count, and archive leaf counts are
-// derived from the content/archive manifests at build time.
+// Article counts and archive leaf counts are derived from the content/archive
+// manifests at build time.
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Reveal } from '@/components/Reveal';
 import { ArrowRight, BookOpen, ScrollText } from 'lucide-react';
 import { ARTICLE_LEAD, CDO_ARTICLE_CARDS, ARCHIVE_SHELF } from '@/data/homeContent';
-import { getCollection, getComposition } from '@/lib/content-manifest';
+import { getComposition } from '@/lib/content-manifest';
+import { HERO_QUOTES } from '@/data/heroQuotes';
+import { HeroQuotes } from './_components/HeroQuotes';
 import { compositionUrl, sectionUrl } from '@/utils/urls';
 import { SitePageLayout } from './_components/SitePageLayout';
 import { FeaturedWork } from './_components/FeaturedWork';
@@ -42,11 +45,6 @@ const Eyebrow = ({ children }: { children: React.ReactNode }) => (
 );
 
 export default function Home() {
-  const constitutional = getCollection('constitutional');
-
-  // Live document count across the three cases (hero line)
-  const totalCaseDocs = constitutional.reduce((sum, c) => sum + (c.sections?.length || 0), 0);
-
   // Articles shelf (owner 2026-08-29: purely CDO): the lead card is the
   // composition; the grid is individual CDO articles resolved by section
   // slug. Blurbs are editorial; titles/links derive. Missing slugs drop out.
@@ -93,16 +91,12 @@ export default function Home() {
                 fontSize: 'clamp(17px, 2vw, 21px)',
                 lineHeight: 1.55,
                 maxWidth: '46rem',
-                marginBottom: '12px',
+                marginBottom: '32px',
               }}
             >
               A unified mathematical framework for consciousness, ethics, and
               reality — and the public record, from the Star Chamber
               manuscripts of 1607 to the modern federal docket.
-            </p>
-            <p className="text-sm text-muted-foreground/80 mb-8 font-sans">
-              Primary-source manuscripts{totalCaseDocs > 0 ? ` · ${totalCaseDocs} court documents` : ''} · published for
-              journalists, attorneys, and the public
             </p>
           </Reveal>
           <Reveal delay={210}>
@@ -126,6 +120,9 @@ export default function Home() {
                 <Link href="/composition/constitutional">The litigation record</Link>
               </Button>
             </div>
+          </Reveal>
+          <Reveal delay={280}>
+            <HeroQuotes quotes={HERO_QUOTES} className="mt-10" />
           </Reveal>
         </section>
 

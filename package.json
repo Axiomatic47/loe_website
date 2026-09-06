@@ -20,7 +20,7 @@
     "typecheck": "tsc -p tsconfig.app.json --noEmit",
     "lint": "eslint .",
     "clean": "rimraf dist",
-    "validate-content": "node scripts/validate-content.mjs",
+    "validate-content": "node scripts/validate-content.mjs && node scripts/validate-quotes.mjs",
     "generate-nav-manifest": "node scripts/generate-nav-manifest.mjs",
     "enrich-content-slugs": "node scripts/enrich-content-slugs.mjs",
     "freeze-legacy-urls": "node scripts/freeze-legacy-urls.mjs",

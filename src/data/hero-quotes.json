@@ -1,0 +1,234 @@
+{
+  "_readme": "Rotating hero quotes. Words of OTHERS only, never the site author. Every entry must be verbatim from a public, filed, or public-domain source and must name where in the published work it appears (cited_in). Validated at build by scripts/validate-quotes.mjs. Lives in src/data (not content/) because vite.config special-cases content/*.json for the CMS loader. Submissions arrive through midesk/.claude/agent_notes/_shared/20260905_hero_quotes_submissions.md; website-developer wires them in.",
+  "quotes": [
+    {
+      "id": "coke-floyd-king-account",
+      "text": "There is great reason that the King himself shall take account of it, and no other.",
+      "attribution": "Sir Edward Coke",
+      "source": "Floyd v. Barker (Star Chamber, 1607), 12 Co. Rep. 23, 77 Eng. Rep. 1307",
+      "cited_in": "Plaintiff's Opposition to the Federal Defendants' Motion to Dismiss, Doc 73 ¶ 87",
+      "href": "/kirchner-v-johnson/73",
+      "submitted_by": "website-developer",
+      "added": "2026-09-05"
+    },
+    {
+      "id": "coke-floyd-drawn-in-question",
+      "text": "Shall not be drawn in question before any other Judge, for any surmise of corruption, except before the King himself.",
+      "attribution": "Sir Edward Coke",
+      "source": "Floyd v. Barker (Star Chamber, 1607), 12 Co. Rep. 23, 77 Eng. Rep. 1307",
+      "cited_in": "Plaintiff's Opposition to the Federal Defendants' Motion to Dismiss, Doc 73 ¶ 87",
+      "href": "/kirchner-v-johnson/73",
+      "submitted_by": "website-developer",
+      "added": "2026-09-05"
+    },
+    {
+      "id": "holloway-1688-birthright-to-petition",
+      "text": "It's the Birthright of the Subject to Petition.",
+      "attribution": "Mr. Justice Holloway, King's Bench",
+      "source": "The Trial of the Seven Bishops (King's Bench, 1688), 1739 print, p. 413",
+      "cited_in": "Research library: the Seven Bishops trial (1688), read at the 1739 print (forthcoming)",
+      "submitted_by": "manuscript-transcriber 193d2fb8",
+      "added": "2026-09-05"
+    },
+    {
+      "id": "powell-1688-libel-false-malicious-sedition",
+      "text": "To make it a Libel it must be False, it must be Malicious, and it must tend to Sedition.",
+      "attribution": "Mr. Justice Powell, King's Bench",
+      "source": "The Trial of the Seven Bishops (King's Bench, 1688), 1739 print, p. 422",
+      "cited_in": "Research library: the Seven Bishops trial (1688), read at the 1739 print (forthcoming)",
+      "submitted_by": "manuscript-transcriber 193d2fb8",
+      "added": "2026-09-05"
+    },
+    {
+      "id": "powell-1688-all-the-legislature-in-the-king",
+      "text": "If this be once allowed of, there will need no Parliament, all the Legislature will be in the King.",
+      "attribution": "Mr. Justice Powell, King's Bench",
+      "source": "The Trial of the Seven Bishops (King's Bench, 1688), 1739 print, p. 424",
+      "cited_in": "Research library: the Seven Bishops trial (1688), read at the 1739 print (forthcoming)",
+      "submitted_by": "manuscript-transcriber 193d2fb8",
+      "added": "2026-09-05"
+    },
+    {
+      "id": "wrenham-1618-access-to-the-sovereign",
+      "text": "Access to the sovereign must not be shut up in case of the subjects distresses.",
+      "attribution": "The Court of Star Chamber, resolution of the whole Court",
+      "source": "Wrenham's Case (Star Chamber, 1618), Hobart 220, 80 Eng. Rep. 367",
+      "cited_in": "Research library: the Coke–Bacon rivalry and the Star Chamber institution (forthcoming)",
+      "submitted_by": "manuscript-transcriber 193d2fb8",
+      "added": "2026-09-05"
+    },
+    {
+      "id": "lyndwood-nemo-iudex-in-causa-sua",
+      "text": "In causa sua propria nemo potest esse Judex.",
+      "attribution": "William Lyndwood, gloss on Stephen Langton's constitution (Oxford, 1222)",
+      "source": "Provinciale (Oxford, 1679), p. 312, gloss r. 'In his own cause no man can be judge.'",
+      "cited_in": "Research library: Roman, canon and biblical sources of the Floyd rule (forthcoming)",
+      "submitted_by": "manuscript-transcriber 193d2fb8",
+      "added": "2026-09-05"
+    },
+    {
+      "id": "geneva-1560-true-minister-of-god",
+      "text": "So long as he is the true minister of God, and pronounceth according to his worde.",
+      "attribution": "The Geneva Bible's annotators, note on Deuteronomy 17:12",
+      "source": "The Bible and Holy Scriptures (Geneva, 1560), fol. 88v, original spelling",
+      "cited_in": "Research library: Roman, canon and biblical sources of the Floyd rule (forthcoming)",
+      "submitted_by": "manuscript-transcriber 193d2fb8",
+      "added": "2026-09-05"
+    },
+    {
+      "id": "coke-4inst-metus-ad-omnes",
+      "text": "Ut poena ad paucos, metus ad omnes perveniat, without respect of persons, be they publique or private, great or small.",
+      "attribution": "Sir Edward Coke",
+      "source": "The Fourth Part of the Institutes of the Laws of England, cap. 5, The Court of Star-Chamber, p. 63 (London, 1797 ed.)",
+      "cited_in": "Research library: a restorative and comparative history of sovereign, absolute and qualified immunity (book manuscript, forthcoming)",
+      "submitted_by": "drafter feb2b780",
+      "added": "2026-09-05"
+    },
+    {
+      "id": "coverdale-1535-ecclus-11-8-no-sentence",
+      "text": "Geue no sentence before thou hast herde the cause, but first let men tell out their tayles.",
+      "attribution": "Ecclesiasticus 11:8, Coverdale Bible",
+      "source": "Biblia, the Bible (Myles Coverdale, 1535), Ecclus. xi, fo. xlij",
+      "cited_in": "Research library: a restorative and comparative history of sovereign, absolute and qualified immunity (book manuscript, forthcoming)",
+      "submitted_by": "drafter feb2b780",
+      "added": "2026-09-05"
+    },
+    {
+      "id": "great-bible-1540-ecclus-8-14-judge-honour",
+      "text": "Go not to lawe with the iudge: for he wyll iudge accordynge to hys awne honoure.",
+      "attribution": "Ecclesiasticus 8:14, Great Bible",
+      "source": "The Byble in Englyshe (Great Bible, Cranmer ed., 1540), Jesus the sonne of Syrach, fo. xxxix",
+      "cited_in": "Research library: a restorative and comparative history of sovereign, absolute and qualified immunity (book manuscript, forthcoming)",
+      "submitted_by": "drafter feb2b780",
+      "added": "2026-09-05"
+    },
+    {
+      "id": "great-bible-1540-deut-1-17-afraid-of-no-man",
+      "text": "Heare the small as well as the greate, and be afrayed of no man, for the iudgement is Gods.",
+      "attribution": "Deuteronomy 1:17, Great Bible",
+      "source": "The Byble in Englyshe (Great Bible, 1540), Deuteronomium, chapter 1",
+      "cited_in": "Research library: a restorative and comparative history of sovereign, absolute and qualified immunity (book manuscript, forthcoming)",
+      "submitted_by": "drafter feb2b780",
+      "added": "2026-09-05"
+    },
+    {
+      "id": "webster-fall-lurk",
+      "text": "Questions which merely lurk in the record, neither brought to the attention of the court nor ruled upon, are not to be considered as having been so decided as to constitute precedents.",
+      "attribution": "Justice George Sutherland, for the Court",
+      "source": "Webster v. Fall, 266 U.S. 507, 511 (1925)",
+      "cited_in": "Plaintiff's Opposition to the Federal Defendants' Motion to Dismiss, Doc 73 ¶ 94",
+      "href": "/kirchner-v-johnson/73",
+      "submitted_by": "drafter 753206ab",
+      "added": "2026-09-05"
+    },
+    {
+      "id": "white-nixon-king-no-wrong",
+      "text": "a reversion to the old notion that the King can do no wrong",
+      "attribution": "Justice Byron White, dissenting for four Justices",
+      "source": "Nixon v. Fitzgerald, 457 U.S. 731, 766 (1982)",
+      "cited_in": "Plaintiff's Opposition to the Federal Defendants' Motion to Dismiss, Doc 73 ¶ 91",
+      "href": "/kirchner-v-johnson/73",
+      "submitted_by": "drafter 753206ab",
+      "added": "2026-09-05"
+    },
+    {
+      "id": "marshall-little-barreme-plain-trespass",
+      "text": "the instructions cannot change the nature of the transaction, or legalize an act which without those instructions would have been a plain trespass",
+      "attribution": "Chief Justice John Marshall",
+      "source": "Little v. Barreme, 6 U.S. (2 Cranch) 170, 179 (1804)",
+      "cited_in": "Memorandum of Law B, Kirchner v. Ellison, D. Minn. No. 0:26-cv-00726, Doc. 26-14 ¶ 66",
+      "submitted_by": "drafter 753206ab",
+      "added": "2026-09-05"
+    },
+    {
+      "id": "declaration-mock-trial",
+      "text": "For protecting them, by a mock Trial, from punishment for any Murders which they should commit on the Inhabitants of these States",
+      "attribution": "The Declaration of Independence (1776), list of grievances",
+      "source": "Engrossed text, National Archives transcription",
+      "cited_in": "Plaintiff's Opposition to the Federal Defendants' Motion to Dismiss, Doc 73 ¶ 93",
+      "href": "/kirchner-v-johnson/73",
+      "submitted_by": "drafter 753206ab",
+      "added": "2026-09-05"
+    },
+    {
+      "id": "coke-notebook-deface-law-french",
+      "text": "serra prise del fyle et cancell et ousterment deface",
+      "attribution": "Sir Edward Coke, in his own notebook of Floyd v. Barker. Law French: be taken off the file, cancelled, and utterly defaced",
+      "source": "Reports from the Notebooks of Edward Coke, vol. VII, 142 Selden Soc. 1655–58 (Sir John Baker ed., 2025), as reproduced in the filed appendix",
+      "cited_in": "Doc 73 ¶ 85; Documentary Appendix, Doc 73-1 at 48–55",
+      "href": "/kirchner-v-johnson/73-1",
+      "submitted_by": "drafter 753206ab",
+      "added": "2026-09-05"
+    },
+    {
+      "id": "lee-no-man-so-high",
+      "text": "No man in this country is so high that he is above the law.",
+      "attribution": "Justice Samuel Miller, for the Court",
+      "source": "United States v. Lee, 106 U.S. 196, 220 (1882)",
+      "cited_in": "Plaintiff's Opposition to the Federal Defendants' Motion to Dismiss, Doc 73 ¶ 93",
+      "href": "/kirchner-v-johnson/73",
+      "submitted_by": "drafter 753206ab",
+      "added": "2026-09-05"
+    },
+    {
+      "id": "ms149-ground-of-all-justice",
+      "text": "if this might bee suffered ye ground of all Justice would bee overthrowne",
+      "attribution": "The Court of Star Chamber, giving the reason of its judgment in Floyd v. Barker, as reported by the anonymous manuscript reporter",
+      "source": "Harvard Law School Library, HLS MS 149, f. 83r, ll. 19–21 (transcription, long s normalised)",
+      "cited_in": "Doc 73 ¶ 86; archive leaf f. 83r",
+      "href": "/research/hls-ms149-floyd/leaf/f83r",
+      "submitted_by": "manuscript-transcriber cb73b301",
+      "added": "2026-09-05"
+    },
+    {
+      "id": "ms149-close-prisoner-abettors",
+      "text": "to remayne close prisoner vntill hee shall have confessed his abettors",
+      "attribution": "The Star Chamber's sentence on Rice ap Evan Lloyd for accusing the judge, as reported (1607)",
+      "source": "Harvard Law School Library, HLS MS 149, f. 83r, ll. 11–12 (transcription, long s normalised)",
+      "cited_in": "Doc 73 ¶ 86; archive leaf f. 83r",
+      "href": "/research/hls-ms149-floyd/leaf/f83r",
+      "submitted_by": "manuscript-transcriber cb73b301",
+      "added": "2026-09-05"
+    },
+    {
+      "id": "ms149-jury-asked-forgivenes",
+      "text": "The Jury asked forgivenes of William Aprice for the verdict / Aprice notwithstanding was condemned and executed",
+      "attribution": "Anonymous law reporter, HLS MS 149, on the Anglesey murder trial behind Floyd v. Barker",
+      "source": "Harvard Law School Library, HLS MS 149, f. 82r, ll. 12–15 (transcription; the virgule is the leaf's own paragraph mark)",
+      "cited_in": "Doc 73 ¶¶ 84–85; archive leaf f. 82r",
+      "href": "/research/hls-ms149-floyd/leaf/f82r",
+      "submitted_by": "manuscript-transcriber cb73b301",
+      "added": "2026-09-05"
+    },
+    {
+      "id": "ms149-witnesses-welsh-english",
+      "text": "The witnesses not capable of the English Tongue vttered their deposicons in welsh but written in Englishe contrary to their sayings in welsh",
+      "attribution": "Anonymous law reporter, HLS MS 149, on how the Welsh witnesses' evidence was recorded",
+      "source": "Harvard Law School Library, HLS MS 149, f. 81v, ll. 5–8 (transcription, long s normalised)",
+      "cited_in": "Doc 73 ¶ 85; archive leaf f. 81v",
+      "href": "/research/hls-ms149-floyd/leaf/f81v",
+      "submitted_by": "manuscript-transcriber cb73b301",
+      "added": "2026-09-05"
+    },
+    {
+      "id": "stac-innocent-as-the-childe-new-borne",
+      "text": "he was as innocent of the faulte whereof he was condemned as the childe new borne",
+      "attribution": "William ap Rees ap William, condemned at Beaumaris, as deposed by his kinsman Rees ap Jevan Lloyd, prisoner in the Fleet (Star Chamber, June 1607)",
+      "source": "The National Archives, STAC 8/203/38, m. 4, ll. 29–31 (transcription, expansions printed plain)",
+      "cited_in": "Archive leaf m. 004",
+      "href": "/research/stac-8-203-38/leaf/004",
+      "submitted_by": "manuscript-transcriber cb73b301",
+      "added": "2026-09-05"
+    },
+    {
+      "id": "stac-make-knowne-to-the-state",
+      "text": "I praie you make knowne to the state after I am dead as you are my kinsman",
+      "attribution": "William ap Rees ap William's dying charge to his kinsman, deposed by Rees ap Jevan Lloyd (Star Chamber, June 1607)",
+      "source": "The National Archives, STAC 8/203/38, m. 4, ll. 35–37 (transcription)",
+      "cited_in": "Archive leaf m. 004",
+      "href": "/research/stac-8-203-38/leaf/004",
+      "submitted_by": "manuscript-transcriber cb73b301",
+      "added": "2026-09-05"
+    }
+  ]
+}

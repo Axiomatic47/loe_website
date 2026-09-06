@@ -3,23 +3,22 @@
 // Structure (owner direction 2026-08-22/23 — the articles carry the page;
 // no featured case, no case strip; mirrors app/page.tsx):
 //   1. Hero — plain-English statement of what this site is, two CTAs
-//      (primary: the academic articles)
+//      (primary: the academic articles), then the rotating quote field
+//      (words of others, src/data/hero-quotes.json — owner 2026-09-05)
 //   2. Prynne epigraph — one quote summarizing why the originals are here
 //   3. From the archives — the two Star Chamber primary-source archives
 //   4. Featured works — full inline reading of the Declaration of Humanity
 //      set (manuscript `featured` flags; Declaration first)
-//
-// Document counts are derived live from the content store.
 
-import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { PageLayout } from "@/components/PageLayout";
 import { FeaturedWorkSection } from "@/components/sections/FeaturedWorkSection";
 import { Reveal } from "@/components/Reveal";
-import { useCompositionStore } from "@/utils/compositionData";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ScrollText } from "lucide-react";
 import { ARCHIVE_SHELF } from "@/data/homeContent";
+import { HERO_QUOTES } from "@/data/heroQuotes";
+import { HeroQuoteRotator } from "@/components/HeroQuoteRotator";
 import { useArchiveManifest, archiveBase } from "@/views/ResearchArchive";
 
 const Eyebrow = ({ children }: { children: React.ReactNode }) => (
@@ -33,11 +32,6 @@ const Eyebrow = ({ children }: { children: React.ReactNode }) => (
 
 const Index = () => {
   const navigate = useNavigate();
-  const { constitutional, loadCollections } = useCompositionStore();
-
-  useEffect(() => {
-    loadCollections(['constitutional']);
-  }, [loadCollections]);
 
   // first-leaf thumbnails for the archive cards (owner 2026-08-29) — the
   // two archives are a fixed pair, so two hook calls, not a loop
@@ -48,12 +42,6 @@ const Index = () => {
     const leaf = m?.leaves?.[0];
     return leaf?.thumb ? `${archiveBase(id)}/${leaf.thumb}` : null;
   };
-
-  // Live document count across the three cases (hero line)
-  const totalCaseDocs = constitutional.reduce(
-    (sum, c) => sum + (c.sections?.length || 0),
-    0
-  );
 
   return (
     <PageLayout>
@@ -84,16 +72,12 @@ const Index = () => {
                 fontSize: "clamp(17px, 2vw, 21px)",
                 lineHeight: 1.55,
                 maxWidth: "46rem",
-                marginBottom: "12px",
+                marginBottom: "32px",
               }}
             >
               A unified mathematical framework for consciousness, ethics, and
               reality — and the public record, from the Star Chamber
               manuscripts of 1607 to the modern federal docket.
-            </p>
-            <p className="text-sm text-muted-foreground/80 mb-8 font-sans">
-              Primary-source manuscripts{totalCaseDocs > 0 ? ` · ${totalCaseDocs} court documents` : ""} · published for
-              journalists, attorneys, and the public
             </p>
           </Reveal>
           <Reveal delay={210}>
@@ -115,6 +99,17 @@ const Index = () => {
                 The litigation record
               </Button>
             </div>
+          </Reveal>
+          <Reveal delay={280}>
+            <HeroQuoteRotator
+              quotes={HERO_QUOTES}
+              className="mt-10"
+              renderLink={(href, cls, children) => (
+                <Link to={href} className={cls}>
+                  {children}
+                </Link>
+              )}
+            />
           </Reveal>
         </section>
 
