@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation';
 import { RESEARCH_ARCHIVES } from '@/data/researchArchives';
 import { readArchiveManifest } from '../../../manifest-server';
 import { LeafBody } from './LeafBody';
+import { loadAllReadings } from '@/lib/open-readings';
 
 export const dynamicParams = false;
 
@@ -45,9 +46,16 @@ export default async function ResearchLeafPage({ params }: Params) {
   const ids = manifest.leaves.map((l) => l.id);
   const idx = ids.indexOf(leafId);
 
+  // Open readings that point at THIS leaf (source.kind = archive) — link them.
+  const openReadings = loadAllReadings().flatMap((c) =>
+    c.items.filter((it) => it.source.kind === 'archive' && it.source.archiveId === archiveId && it.source.leafId === leafId)
+      .map((it) => ({ collection: c.id, id: it.id }))
+  );
+
   return (
     <LeafBody
       archiveId={archiveId}
+      openReadings={openReadings}
       refLabel={config.ref}
       leafLabel={config.leafLabel}
       manifest={manifest}
