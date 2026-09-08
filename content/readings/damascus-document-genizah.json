@@ -1,6 +1,8 @@
 {
   "_generated": {
-    "note": "2026-09-08 by manuscript-transcriber 193d2fb8; contract = _shared/20260908_open_readings_build_plan.md §2.1; regions derived from the seat's crop geometry (source pixels of the 2000-px download), to be re-cut by scripts/build-reading-crops.mjs; comparison.page null pending page numbers from the edition; 2026-09-08 conform: `question` is now the single sentence ending in ?, the pointer sentences moved to `context` (710e489e's contract refinement, plan §2.1); three two-question items merged into one question each (xix-12, xix-32-33, xix-35)",
+    "exported_by": "manuscript-transcriber 193d2fb8",
+    "exported": "2026-09-08",
+    "contract": "Open Readings build plan §2.1",
     "site_import": "2026-09-08: collation_ref and image.note stripped at import (public repo); the shelf export keeps them"
   },
   "items": [
