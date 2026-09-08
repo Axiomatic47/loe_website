@@ -9,6 +9,7 @@
 import React from 'react';
 import { SiteHeader } from './SiteHeader';
 import { SiteFooter } from './SiteFooter';
+import { ClosingQuote } from './ClosingQuote';
 
 interface SitePageLayoutProps {
   children: React.ReactNode;
@@ -40,6 +41,8 @@ export function SitePageLayout({ children, className = '' }: SitePageLayoutProps
         <main id="main-content" className={`${className} flex-grow relative z-10 pt-8`}>
           {children}
         </main>
+        {/* Site-wide closing quote field — tail of the scrolling content, above the fixed footer (owner 2026-09-08) */}
+        <ClosingQuote />
       </div>
 
       {/* Fixed footer */}

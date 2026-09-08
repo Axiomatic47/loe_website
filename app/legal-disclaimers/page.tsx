@@ -6,7 +6,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SitePageLayout } from '../_components/SitePageLayout';
 import { Reveal } from '@/components/Reveal';
-import { LegalNoticesBody, LEGAL_LINK_CLASS } from '@/components/legal/LegalNoticesBody';
+import { LegalNoticesBody } from '@/components/legal/LegalNoticesBody';
+import { LEGAL_LINK_CLASS } from '@/components/legal/prose';
 
 export const metadata: Metadata = {
   title: 'Legal Notices',
