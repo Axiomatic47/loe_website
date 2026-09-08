@@ -8,10 +8,8 @@
 //   3. From the archives — the two Star Chamber primary-source archives
 //   4. Featured works — full inline reading of the Declaration of Humanity
 //      set (manuscript `featured` flags; Declaration first)
-//   5. Closing quote field — rotating words of others (src/data/hero-quotes
-//      .json), moved from the hero to the foot of the page (owner 2026-09-06:
-//      the work takes the visitor's attention, the quotes reward reaching
-//      the bottom)
+//   (The closing quote field is site-wide — rendered by PageLayout above the
+//   footer on every page, owner 2026-09-08.)
 
 import { Link, useNavigate } from "react-router-dom";
 import { PageLayout } from "@/components/PageLayout";
@@ -20,8 +18,6 @@ import { Reveal } from "@/components/Reveal";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ScrollText } from "lucide-react";
 import { ARCHIVE_SHELF } from "@/data/homeContent";
-import { HERO_QUOTES } from "@/data/heroQuotes";
-import { HeroQuoteRotator } from "@/components/HeroQuoteRotator";
 import { useArchiveManifest, archiveBase } from "@/views/ResearchArchive";
 
 const Eyebrow = ({ children }: { children: React.ReactNode }) => (
@@ -189,20 +185,6 @@ const Index = () => {
             </div>
           </Reveal>
           <FeaturedWorkSection />
-        </section>
-
-        {/* ------------------------------ 5. Closing quote field (foot of page) */}
-        <section className="max-w-4xl mx-auto mt-16 mb-4 pt-10 border-t border-border">
-          <Reveal>
-            <HeroQuoteRotator
-              quotes={HERO_QUOTES}
-              renderLink={(href, cls, children) => (
-                <Link to={href} className={cls}>
-                  {children}
-                </Link>
-              )}
-            />
-          </Reveal>
         </section>
       </main>
     </PageLayout>

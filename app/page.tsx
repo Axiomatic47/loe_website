@@ -11,10 +11,8 @@
 //   5. Featured works — full inline reading of the Declaration of Humanity
 //      set (manuscript `featured` flags; Declaration first via
 //      featured_order)
-//   6. Closing quote field — rotating words of others (src/data/hero-quotes
-//      .json), moved from the hero to the foot of the page (owner 2026-09-06:
-//      the work takes the visitor's attention, the quotes reward reaching
-//      the bottom)
+//   (The closing quote field is site-wide — rendered by SitePageLayout above
+//   the footer on every page, owner 2026-09-08.)
 //
 // Article counts and archive leaf counts are derived from the content/archive
 // manifests at build time.
@@ -25,8 +23,6 @@ import { Reveal } from '@/components/Reveal';
 import { ArrowRight, BookOpen, ScrollText } from 'lucide-react';
 import { ARTICLE_LEAD, CDO_ARTICLE_CARDS, ARCHIVE_SHELF } from '@/data/homeContent';
 import { getComposition } from '@/lib/content-manifest';
-import { HERO_QUOTES } from '@/data/heroQuotes';
-import { HeroQuotes } from './_components/HeroQuotes';
 import { compositionUrl, sectionUrl } from '@/utils/urls';
 import { SitePageLayout } from './_components/SitePageLayout';
 import { FeaturedWork } from './_components/FeaturedWork';
@@ -303,13 +299,6 @@ export default function Home() {
             </div>
           </Reveal>
           <FeaturedWork />
-        </section>
-
-        {/* ------------------------------ 6. Closing quote field (foot of page) */}
-        <section className="max-w-4xl mx-auto mt-16 mb-4 pt-10 border-t border-border">
-          <Reveal>
-            <HeroQuotes quotes={HERO_QUOTES} />
-          </Reveal>
         </section>
       </main>
     </SitePageLayout>

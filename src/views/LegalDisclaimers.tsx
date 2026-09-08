@@ -5,7 +5,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { PageLayout } from '@/components/PageLayout';
 import { Reveal } from '@/components/Reveal';
-import { LegalNoticesBody, LEGAL_LINK_CLASS } from '@/components/legal/LegalNoticesBody';
+import { LegalNoticesBody } from '@/components/legal/LegalNoticesBody';
+import { LEGAL_LINK_CLASS } from '@/components/legal/prose';
 
 const LegalDisclaimers: React.FC = () => (
   <PageLayout>

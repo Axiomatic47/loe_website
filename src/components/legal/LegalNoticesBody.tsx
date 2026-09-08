@@ -10,10 +10,9 @@
 // the testimony records. Patent language was removed with the footer badge;
 // governing-law and contract terms live in the Terms of Service.
 import React from 'react';
-import { H2, P, LegalPage, LEGAL_CONTACT_EMAIL, LEGAL_LINK_CLASS, type RenderLink } from './prose';
+import { H2, P, LegalPage, LEGAL_CONTACT_EMAIL, type RenderLink } from './prose';
 
 export const LEGAL_NOTICES_UPDATED = 'September 6, 2026';
-export { LEGAL_CONTACT_EMAIL, LEGAL_LINK_CLASS };
 
 export function LegalNoticesBody({ renderLink }: { renderLink: RenderLink }) {
   const L = (href: string, text: string) => renderLink(href, text);

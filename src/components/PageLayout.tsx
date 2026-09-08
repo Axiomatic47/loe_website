@@ -8,6 +8,7 @@
 import React from 'react';
 import { Header } from '@/components/Header';
 import Footer from '@/components/Footer';
+import { ClosingQuote } from '@/components/ClosingQuote';
 
 interface PageLayoutProps {
   children: React.ReactNode;
@@ -39,6 +40,8 @@ export const PageLayout = ({ children, className = '' }: PageLayoutProps) => {
         <main id="main-content" className={`${className} flex-grow relative z-10 pt-8`}>
           {children}
         </main>
+        {/* Site-wide closing quote field — tail of the scrolling content, above the fixed footer (owner 2026-09-08) */}
+        <ClosingQuote />
       </div>
 
       {/* Fixed footer */}
