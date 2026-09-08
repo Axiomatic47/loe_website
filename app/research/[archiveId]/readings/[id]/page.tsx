@@ -10,6 +10,8 @@ import { Reveal } from '@/components/Reveal';
 import { findReading, listReadingCollections, loadReadingsCollection } from '@/lib/open-readings';
 import { Eyebrow, LegibilityBadge, LicenceLine, StatusBadge, itemHref } from '../../../_readings/ui';
 import { ReadingText, renderBidi } from '../../../_readings/bidi';
+import { ReadingAnswerForm } from '../../../_readings/ReadingAnswerForm';
+import { LEGAL_CONTACT_EMAIL } from '@/components/legal/prose';
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -148,8 +150,25 @@ export default async function ReadingItemPage({ params }: Params) {
             </Reveal>
           )}
 
-          {/* answer form — phase three */}
-          <div id="answer" />
+          {/* answer form */}
+          <Reveal>
+            <section id="answer" className="mt-10 bg-card border border-border rounded-xl shadow-sm p-6 sm:p-8">
+              <Eyebrow>Answer this reading</Eyebrow>
+              <p className="font-serif text-foreground/90 mt-1 mb-6" style={{ fontSize: '1.0625rem', lineHeight: 1.68 }}>
+                If you read this hand, say which reading the detail supports. Give your credentials so the author can weigh the
+                answer and, if you agree, acknowledge you. Nothing is published until the author has read it.
+              </p>
+              <ReadingAnswerForm
+                collection={collection.id}
+                itemId={item.id}
+                ourReading={item.transcription.text}
+                comparisonReading={item.comparison.text}
+                language={item.language}
+                resolved={!!item.resolution}
+                contactEmail={LEGAL_CONTACT_EMAIL}
+              />
+            </section>
+          </Reveal>
 
           <Reveal>
             <div className="mt-10 pt-6 border-t border-border grid gap-4">

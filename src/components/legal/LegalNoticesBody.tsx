@@ -12,7 +12,7 @@
 import React from 'react';
 import { H2, P, LegalPage, LEGAL_CONTACT_EMAIL, type RenderLink } from './prose';
 
-export const LEGAL_NOTICES_UPDATED = 'September 6, 2026';
+export const LEGAL_NOTICES_UPDATED = 'September 8, 2026';
 
 export function LegalNoticesBody({ renderLink }: { renderLink: RenderLink }) {
   const L = (href: string, text: string) => renderLink(href, text);
@@ -92,7 +92,10 @@ export function LegalNoticesBody({ renderLink }: { renderLink: RenderLink }) {
       <P>
         Transcriptions, line indexes, and working papers on the research pages are the work of the author and the
         named contributors. They are offered for study and citation with attribution. Verification transcriptions
-        commissioned from professional archivists are credited by name where they appear.
+        commissioned from professional archivists are credited by name where they appear. Where a reading is in
+        dispute, the {L('/research/open-readings', 'Open Readings')} pages set the detail out for qualified readers to
+        answer; published answers appear with the credit each reader consented to, and the holding institution's
+        licence governs every reproduced detail.
       </P>
 
       <H2>The author's writings</H2>
