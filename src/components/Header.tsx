@@ -1,5 +1,6 @@
 // src/components/Header.tsx — leather header with dropdown navigation.
-// Desktop: Radix NavigationMenu dropdowns (Research / Evidence / Cases / More).
+// Desktop: Radix NavigationMenu dropdowns (Research / Cases / More — Evidence
+// moved into More on owner direction 2026-09-08).
 // Mobile: slide-out drawer (unchanged pattern).
 
 import React from 'react';
@@ -34,6 +35,7 @@ const CASE_LINKS = [
 ];
 
 const MORE_LINKS = [
+  { label: 'Evidence', sub: 'Testimonies, simulation records, and discovery documents', href: '/composition/data' },
   { label: 'For Journalists', sub: 'Case numbers, documents, and press contact', href: '/for-journalists' },
   { label: 'Video Evidence', sub: 'Screen recordings of AI system behavior', href: '/videos' },
   { label: 'Copyright Notifications', sub: 'Notices to copyright holders', href: '/composition/copyright' },
@@ -83,7 +85,7 @@ const MenuFooterLink = ({ href, label }: { href: string; label: string }) => (
 export const Header: React.FC<HeaderProps> = ({ className }) => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
-  const { manuscript, data } = navManifest;
+  const { manuscript } = navManifest;
 
   const isActive = (path: string) => location.pathname === path;
   const inSection = (prefix: string) => location.pathname.startsWith(prefix);
@@ -157,24 +159,6 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
                     </NavigationMenuContent>
                   </NavigationMenuItem>
 
-                  <NavigationMenuItem>
-                    <NavigationMenuTrigger className={triggerClass(inSection('/composition/data'))}>
-                      Evidence
-                    </NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                      <div className="w-[340px] p-2 bg-card">
-                        {data.map((item, i) => (
-                          <MenuRow
-                            key={i}
-                            href={item.url}
-                            label={item.title}
-                            sub={`${item.sectionCount} section${item.sectionCount === 1 ? '' : 's'}`}
-                          />
-                        ))}
-                        <MenuFooterLink href="/composition/data" label="All evidence" />
-                      </div>
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
 
                   <NavigationMenuItem>
                     <NavigationMenuTrigger className={triggerClass(inSection('/composition/constitutional'))}>
@@ -191,7 +175,7 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
                   </NavigationMenuItem>
 
                   <NavigationMenuItem>
-                    <NavigationMenuTrigger className={triggerClass(false)}>More</NavigationMenuTrigger>
+                    <NavigationMenuTrigger className={triggerClass(inSection('/composition/data'))}>More</NavigationMenuTrigger>
                     <NavigationMenuContent>
                       <div className="w-[360px] p-2 bg-card">
                         {MORE_LINKS.map((l) => (
