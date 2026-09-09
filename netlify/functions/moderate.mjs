@@ -7,10 +7,11 @@
 // Author only → kept privately for the owner to read; never published.
 // Reject      → removed from the queue; never re-appears.
 //
-// Access: MODERATION_KEY (a long random string, set in the Netlify dashboard as a
-// functions environment variable). The first visit with ?key= sets an HttpOnly
-// cookie so the buttons work without the key in every URL. The page is noindex
-// and linked from nowhere.
+// Access: MODERATION_KEY — a passphrase the owner chooses (16+ characters), set in
+// the Netlify dashboard as an environment variable. Opening the plain address
+// shows a sign-in form; the passphrase is checked in constant time and an
+// HttpOnly cookie keeps the owner signed in for 30 days. (?key= in the address
+// still works for a bookmark.) The page is noindex and linked from nowhere.
 //
 // Optional: NETLIFY_AUTH_TOKEN (functions scope) enables "Import from Netlify
 // Forms" — pulls submissions that arrived before this function existed.
@@ -20,17 +21,27 @@ import { FORM_NAME, toPending, toPublished, problems, today, escapeHtml as h } f
 
 const COOKIE = 'loe_moderate';
 
-function keyOk(req) {
+function keyMatches(cand) {
   const key = process.env.MODERATION_KEY;
-  if (!key || key.length < 16) return false;
+  if (!key || key.length < 16 || !cand) return false;
+  const a = Buffer.from(String(cand)), b = Buffer.from(key);
+  return a.length === b.length && timingSafeEqual(a, b);
+}
+
+function keyOk(req) {
   const url = new URL(req.url);
   const cookie = (req.headers.get('cookie') ?? '').split(/;\s*/).find(c => c.startsWith(COOKIE + '='))?.slice(COOKIE.length + 1);
-  for (const cand of [url.searchParams.get('key'), cookie]) {
-    if (!cand) continue;
-    const a = Buffer.from(cand), b = Buffer.from(key);
-    if (a.length === b.length && timingSafeEqual(a, b)) return true;
-  }
-  return false;
+  return keyMatches(url.searchParams.get('key')) || keyMatches(cookie && decodeURIComponent(cookie));
+}
+
+const cookieHeader = () => ({ 'set-cookie': `${COOKIE}=${encodeURIComponent(process.env.MODERATION_KEY)}; Path=/.netlify/functions/moderate; HttpOnly; Secure; SameSite=Strict; Max-Age=2592000` });
+
+function signIn(url, failed) {
+  return page('Open Readings — sign in', `<h1>Open Readings — moderation</h1><p class="sub">Enter the moderation passphrase to open the queue.</p>
+${failed ? '<p class="bad">That passphrase did not match.</p>' : ''}
+<form method="post" class="card" style="display:grid;gap:.75rem;max-width:28rem"><input type="hidden" name="action" value="signin">
+<label>Passphrase<br><input type="password" name="passphrase" autocomplete="current-password" autofocus required style="font:inherit;width:100%;padding:.5rem .6rem;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--fg)"></label>
+<div><button class="pub" type="submit">Sign in</button></div></form>`, failed ? 401 : 200);
 }
 
 function page(title, body, status = 200, extraHeaders = {}) {
@@ -102,9 +113,17 @@ async function importFromForms(store) {
 export default async req => {
   const url = new URL(req.url);
   if (!process.env.MODERATION_KEY || process.env.MODERATION_KEY.length < 16) return page('Not configured', '<h1>Moderation is not configured</h1><p class="sub">Set MODERATION_KEY (16+ random characters) as a functions environment variable in the Netlify dashboard, then redeploy.</p>', 503);
-  if (!keyOk(req)) return page('Not found', '<h1>Not found</h1>', 404);
+  if (!keyOk(req)) {
+    if (req.method === 'POST') {
+      const form = await req.formData();
+      if (form.get('action') === 'signin' && keyMatches(form.get('passphrase'))) return new Response(null, { status: 303, headers: { location: url.pathname, ...cookieHeader() } });
+      await new Promise(r => setTimeout(r, 800)); // slow down guessing
+      return signIn(url, true);
+    }
+    return signIn(url, false);
+  }
   const store = await openStore();
-  const setCookie = url.searchParams.get('key') ? { 'set-cookie': `${COOKIE}=${process.env.MODERATION_KEY}; Path=/.netlify/functions/moderate; HttpOnly; Secure; SameSite=Strict; Max-Age=2592000` } : {};
+  const setCookie = url.searchParams.get('key') ? cookieHeader() : {};
   let flash = '';
 
   if (req.method === 'POST') {
