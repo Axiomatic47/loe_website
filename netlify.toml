@@ -112,14 +112,16 @@
   status = 301
   force = true
 
-# Open Readings moderation (owner direction 2026-09-09): answers are queued
-# privately (Netlify Blobs) by netlify/functions/submission-created.mjs, the
-# owner signs in at /.netlify/functions/moderate with the MODERATION_KEY passphrase, and
-# `npm run readings:pull` (first step of build:next) folds every approved
-# answer into content/readings/*.answers.json at build time. Environment
-# variables (dashboard): MODERATION_KEY (required; an owner-chosen passphrase, 16+ chars), optional
-# BUILD_HOOK_URL ("Rebuild now" button), optional NETLIFY_AUTH_TOKEN (build +
-# functions: Blobs at build time if NETLIFY_BLOBS_CONTEXT is absent; dashboard
-# import). No agent holds any of them.
+# Owner console (/admin, owner word 2026-09-09): netlify/functions/admin.mjs,
+# signed in through Auth0 (OpenID Connect + PKCE; ID token verified in
+# netlify/lib/admin-auth.mjs; only ADMIN_EMAILS get a session). Open Readings:
+# answers are queued privately (Netlify Blobs) by submission-created.mjs, the
+# owner decides at /admin/readings, and `npm run readings:pull` (first step of
+# build:next) folds every approved answer into content/readings/*.answers.json
+# at build time. Environment variables (dashboard, functions read them at
+# deploy time): AUTH0_DOMAIN, AUTH0_CLIENT_ID, AUTH0_CLIENT_SECRET, ADMIN_EMAILS
+# (required); optional BUILD_HOOK_URL ("Rebuild now"), NETLIFY_AUTH_TOKEN
+# (Blobs at build time if NETLIFY_BLOBS_CONTEXT is absent; dashboard import),
+# MODERATION_KEY (emergency passphrase — delete to retire). No agent holds any.
 [functions]
   directory = "netlify/functions"
