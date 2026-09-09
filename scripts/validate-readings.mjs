@@ -103,7 +103,8 @@ for (const f of files.filter(f => f.endsWith('.answers.json'))) {
     if (!a.reader?.display) err(`${where}: reader.display required ("anonymous reader" for anonymity)`);
     if (!/^\d{4}-\d{2}-\d{2}$/.test(a.published || '')) err(`${where}: published must be YYYY-MM-DD`);
     if (a.note && a.note.length > 1000) err(`${where}: note exceeds 1000 chars`);
-    for (const k of Object.keys(a)) if (!['item_id', 'letter', 'reading', 'note', 'reader', 'published', 'ack'].includes(k)) err(`${where}: unknown field "${k}"`);
+    if (a.id !== undefined && !/^[A-Za-z0-9_-]{1,64}$/.test(String(a.id))) err(`${where}: id must be the submission id ([A-Za-z0-9_-])`);
+    for (const k of Object.keys(a)) if (!['id', 'item_id', 'letter', 'reading', 'note', 'reader', 'published', 'ack'].includes(k)) err(`${where}: unknown field "${k}"`);
   }
 }
 
