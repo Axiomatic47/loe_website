@@ -15,14 +15,14 @@
   "scripts": {
     "dev": "vite",
     "build": "npm run validate-content && npm run generate-nav-manifest && npm run generate-sitemap && npm run typecheck && vite build",
-    "build:next": "npm run validate-content && npm run generate-nav-manifest && npm run generate-sitemap && npm run generate-next-redirects && next build",
+    "build:next": "npm run readings:pull && npm run validate-content && npm run generate-nav-manifest && npm run generate-sitemap && npm run generate-next-redirects && next build",
     "preview": "vite preview",
     "typecheck": "tsc -p tsconfig.app.json --noEmit",
     "lint": "eslint .",
     "clean": "rimraf dist",
     "validate-content": "node scripts/validate-content.mjs && node scripts/validate-quotes.mjs && node scripts/validate-readings.mjs",
     "readings:crops": "node scripts/build-reading-crops.mjs",
-    "readings:moderate": "node scripts/readings-moderate.mjs",
+    "readings:pull": "node scripts/pull-reading-answers.mjs",
     "generate-nav-manifest": "node scripts/generate-nav-manifest.mjs",
     "enrich-content-slugs": "node scripts/enrich-content-slugs.mjs",
     "freeze-legacy-urls": "node scripts/freeze-legacy-urls.mjs",
@@ -38,6 +38,7 @@
     "scotus:clean": "rimraf public/scotus-cases"
   },
   "dependencies": {
+    "@netlify/blobs": "^11.0.3",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-aspect-ratio": "^1.0.3",
