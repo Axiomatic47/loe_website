@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-
 import { ThemeProvider } from "next-themes";
 import { lazy, Suspense, useMemo } from 'react';
 import { useNoIndex } from "./hooks/useNoIndex";
+import { PageLayout } from "@/components/PageLayout";
 import { useCollections } from "./hooks/useCollections";
 import { useCompositionStore, ALL_COLLECTIONS, type CollectionType } from "./utils/compositionData";
 import { normalizeDocId, sectionUrl, type CaseSlug } from "./utils/urls";
@@ -211,11 +212,14 @@ const TrumpSectionRedirect = () => {
 
 // 404 page — noindex'd so the SPA's soft-404 (HTTP 200 + shell) doesn't get
 // indexed as a duplicate of the site shell. Real 404 status arrives with the
-// framework migration.
+// framework migration. Rendered inside PageLayout so it carries the header,
+// the site-wide closing quote, and the footer like every other page
+// (owner 2026-09-08; mirrors app/not-found.tsx).
 const NotFound = () => {
   useNoIndex();
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-8">
+    <PageLayout className="flex flex-col">
+      <div className="container mx-auto px-4 py-12 flex-grow flex items-center justify-center">
       <div className="bg-card rounded-2xl p-8 border border-border shadow-sm text-center">
         <h1 className="text-2xl font-serif text-foreground mb-4">Page Not Found</h1>
         <p className="text-muted-foreground mb-6">The page you're looking for doesn't exist.</p>
@@ -234,7 +238,8 @@ const NotFound = () => {
           </div>
         )}
       </div>
-    </div>
+      </div>
+    </PageLayout>
   );
 };
 
