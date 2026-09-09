@@ -22,6 +22,7 @@
     "clean": "rimraf dist",
     "validate-content": "node scripts/validate-content.mjs && node scripts/validate-quotes.mjs && node scripts/validate-readings.mjs",
     "readings:crops": "node scripts/build-reading-crops.mjs",
+    "readings:moderate": "node scripts/readings-moderate.mjs",
     "generate-nav-manifest": "node scripts/generate-nav-manifest.mjs",
     "enrich-content-slugs": "node scripts/enrich-content-slugs.mjs",
     "freeze-legacy-urls": "node scripts/freeze-legacy-urls.mjs",
