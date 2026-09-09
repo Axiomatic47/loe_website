@@ -3,7 +3,7 @@
     "exported_by": "manuscript-transcriber 193d2fb8",
     "exported": "2026-09-08",
     "contract": "Open Readings build plan §2.1",
-    "site_import": "2026-09-08: collation_ref and image.note stripped at import (public repo); the shelf export keeps them"
+    "site_import": "2026-09-08: collation_ref and image.note stripped at import (public repo); the shelf export keeps them. Page numbers + images.lib.cam.ac.uk IIIF URLs re-imported 2026-09-08 (transcriber sig 301)."
   },
   "items": [
     {
@@ -18,7 +18,7 @@
         "holder": "Cambridge University Library"
       },
       "image": {
-        "url": "https://cudl.lib.cam.ac.uk/iiif/MS-TS-00010-K-00006/5/full/!2000,2000/0/default.jpg",
+        "url": "https://images.lib.cam.ac.uk/iiif/MS-TS-00010-K-00006-000-00005.jp2/full/!2000,2000/0/default.jpg",
         "sha256": "3339a22f993c8fe79356f968adad721d42b0c4ff21ccd8fdd05855bb06a0f51d"
       },
       "region": {
@@ -37,7 +37,7 @@
         "text": "{ויושע} cancelled",
         "lang": "he",
         "edition": "E. Qimron, The Dead Sea Scrolls: The Hebrew Writings, vol. 1 (2020 revision)",
-        "page": null
+        "page": 11
       },
       "question": "Is the mark above the second word a cancellation stroke, or a blemish?",
       "context": "The line reads ויהושע ויושע והזקנים.",
@@ -63,7 +63,7 @@
         "holder": "Cambridge University Library"
       },
       "image": {
-        "url": "https://cudl.lib.cam.ac.uk/iiif/MS-TS-00010-K-00006/7/full/!2000,2000/0/default.jpg",
+        "url": "https://images.lib.cam.ac.uk/iiif/MS-TS-00010-K-00006-000-00007.jp2/full/!2000,2000/0/default.jpg",
         "sha256": "35eec7aa15e32f33ba0140140b8acc474eb159fa2b2c2bcb83d68fd276cd61ad"
       },
       "region": {
@@ -82,7 +82,7 @@
         "text": "את כול בני שית — no cancellation reported for CDᵃ",
         "lang": "he",
         "edition": "E. Qimron, The Dead Sea Scrolls: The Hebrew Writings, vol. 1 (2020 revision)",
-        "page": null
+        "page": 16
       },
       "question": "Is the horizontal stroke through the letter-group a deletion by the scribe?",
       "context": "Qimron's base text is 4QDᵃ and his apparatus for CDᵃ notes only אלה מלטו.",
@@ -108,7 +108,7 @@
         "holder": "Cambridge University Library"
       },
       "image": {
-        "url": "https://cudl.lib.cam.ac.uk/iiif/MS-TS-00010-K-00006/8/full/!2000,2000/0/default.jpg",
+        "url": "https://images.lib.cam.ac.uk/iiif/MS-TS-00010-K-00006-000-00008.jp2/full/!2000,2000/0/default.jpg",
         "sha256": "042c0b6eceb229211546027c621b57a2cdc7e509a660658b69b663c2e080cea9"
       },
       "region": {
@@ -127,7 +127,7 @@
         "text": "*היעירו (CDᵇ העידו על העם)",
         "lang": "he",
         "edition": "E. Qimron, The Dead Sea Scrolls: The Hebrew Writings, vol. 1 (2020 revision)",
-        "page": null
+        "page": 18
       },
       "question": "Fourth letter: ד (squared head, foot at the right) or ר (rounded shoulder)?",
       "context": "The line reads הראשונים אשר היעידו אחרי.",
@@ -153,7 +153,7 @@
         "holder": "Cambridge University Library"
       },
       "image": {
-        "url": "https://cudl.lib.cam.ac.uk/iiif/MS-TS-00010-K-00006/14/full/!2000,2000/0/default.jpg",
+        "url": "https://images.lib.cam.ac.uk/iiif/MS-TS-00010-K-00006-000-00014.jp2/full/!2000,2000/0/default.jpg",
         "sha256": "1bba9663128936434cb4c29a7dc725c55bb10b11aefe6a5e4ccf924b0d23c496"
       },
       "region": {
@@ -172,7 +172,7 @@
         "text": "והאיש אשר ישקר בממון והוא יודע והבדילוהו מן הטהרה — base 4QDᵈ",
         "lang": "he",
         "edition": "E. Qimron, The Dead Sea Scrolls: The Hebrew Writings, vol. 1 (2020 revision)",
-        "page": null
+        "page": 54
       },
       "question": "Do the traces after בו read והוא יודע?",
       "context": "At the 2000-px download the line is beyond reading; the CUDL zoom is needed for a decision.",
@@ -198,7 +198,7 @@
         "holder": "Cambridge University Library"
       },
       "image": {
-        "url": "https://cudl.lib.cam.ac.uk/iiif/MS-TS-00010-K-00006/15/full/!2000,2000/0/default.jpg",
+        "url": "https://images.lib.cam.ac.uk/iiif/MS-TS-00010-K-00006-000-00015.jp2/full/!2000,2000/0/default.jpg",
         "sha256": "1d24d15e03cf2c75bdc732b728337bf829d7956cbee2b101b9950a6d1467f905"
       },
       "region": {
@@ -217,7 +217,7 @@
         "text": "הבנים — “the oath of the sons”, the youths' entry oath (his n. 146)",
         "lang": "he",
         "edition": "E. Qimron, The Dead Sea Scrolls: The Hebrew Writings, vol. 1 (2020 revision)",
-        "page": null
+        "page": 37
       },
       "question": "Third letter of the last word: א or נ?",
       "context": "The page shows הב◦◦ם after כי אם שבועת.",
@@ -243,7 +243,7 @@
         "holder": "Cambridge University Library"
       },
       "image": {
-        "url": "https://cudl.lib.cam.ac.uk/iiif/MS-TS-00010-K-00006/15/full/!2000,2000/0/default.jpg",
+        "url": "https://images.lib.cam.ac.uk/iiif/MS-TS-00010-K-00006-000-00015.jp2/full/!2000,2000/0/default.jpg",
         "sha256": "1d24d15e03cf2c75bdc732b728337bf829d7956cbee2b101b9950a6d1467f905"
       },
       "region": {
@@ -262,7 +262,7 @@
         "text": "CDᵃ בדורשו (his apparatus)",
         "lang": "he",
         "edition": "E. Qimron, The Dead Sea Scrolls: The Hebrew Writings, vol. 1 (2020 revision)",
-        "page": null
+        "page": 38
       },
       "question": "Is there a ו between ד and ר?",
       "context": "The word stands at the left end of the line; at 2000 px the line is barely legible.",
@@ -288,7 +288,7 @@
         "holder": "Cambridge University Library"
       },
       "image": {
-        "url": "https://cudl.lib.cam.ac.uk/iiif/MS-TS-00016-00311/1/full/!2000,2000/0/default.jpg",
+        "url": "https://images.lib.cam.ac.uk/iiif/MS-TS-00016-00311-000-00001.jp2/full/!2000,2000/0/default.jpg",
         "sha256": "2fc761bb000d8b136fcc16154a0a6b94760802cb96b10a84f392c76e76edc0f9"
       },
       "region": {
@@ -307,7 +307,7 @@
         "text": "לאהב",
         "lang": "he",
         "edition": "E. Qimron, The Dead Sea Scrolls: The Hebrew Writings, vol. 1 (2020 revision)",
-        "page": null
+        "page": 15
       },
       "question": "A stroke stands above the word between א and ה: a supralinear ו, or a stray mark?",
       "legibility": "readable",
@@ -332,7 +332,7 @@
         "holder": "Cambridge University Library"
       },
       "image": {
-        "url": "https://cudl.lib.cam.ac.uk/iiif/MS-TS-00016-00311/1/full/!2000,2000/0/default.jpg",
+        "url": "https://images.lib.cam.ac.uk/iiif/MS-TS-00016-00311-000-00001.jp2/full/!2000,2000/0/default.jpg",
         "sha256": "2fc761bb000d8b136fcc16154a0a6b94760802cb96b10a84f392c76e76edc0f9"
       },
       "region": {
@@ -351,7 +351,7 @@
         "text": "מצותי ׃",
         "lang": "he",
         "edition": "E. Qimron, The Dead Sea Scrolls: The Hebrew Writings, vol. 1 (2020 revision)",
-        "page": null
+        "page": 15
       },
       "question": "The last sign of מצותי: a final ו, or the scribe's colon-shaped section mark?",
       "legibility": "readable",
@@ -376,7 +376,7 @@
         "holder": "Cambridge University Library"
       },
       "image": {
-        "url": "https://cudl.lib.cam.ac.uk/iiif/MS-TS-00016-00311/1/full/!2000,2000/0/default.jpg",
+        "url": "https://images.lib.cam.ac.uk/iiif/MS-TS-00016-00311-000-00001.jp2/full/!2000,2000/0/default.jpg",
         "sha256": "2fc761bb000d8b136fcc16154a0a6b94760802cb96b10a84f392c76e76edc0f9"
       },
       "region": {
@@ -395,7 +395,7 @@
         "text": "(והתוי) להתות התיו",
         "lang": "he",
         "edition": "E. Qimron, The Dead Sea Scrolls: The Hebrew Writings, vol. 1 (2020 revision)",
-        "page": null
+        "page": 17
       },
       "question": "Is there a י between ת and ו in the last word, and are the smeared letters before להתות a cancelled והתוי?",
       "legibility": "readable",
@@ -420,7 +420,7 @@
         "holder": "Cambridge University Library"
       },
       "image": {
-        "url": "https://cudl.lib.cam.ac.uk/iiif/MS-TS-00016-00311/1/full/!2000,2000/0/default.jpg",
+        "url": "https://images.lib.cam.ac.uk/iiif/MS-TS-00016-00311-000-00001.jp2/full/!2000,2000/0/default.jpg",
         "sha256": "2fc761bb000d8b136fcc16154a0a6b94760802cb96b10a84f392c76e76edc0f9"
       },
       "region": {
@@ -439,7 +439,7 @@
         "text": "משפט",
         "lang": "he",
         "edition": "E. Qimron, The Dead Sea Scrolls: The Hebrew Writings, vol. 1 (2020 revision)",
-        "page": null
+        "page": 19
       },
       "question": "The blot before משפט: a ה, or ink without a letter?",
       "context": "The line reads וכן משפט לשבי ישראל.",
@@ -465,7 +465,7 @@
         "holder": "Cambridge University Library"
       },
       "image": {
-        "url": "https://cudl.lib.cam.ac.uk/iiif/MS-TS-00016-00311/1/full/!2000,2000/0/default.jpg",
+        "url": "https://images.lib.cam.ac.uk/iiif/MS-TS-00016-00311-000-00001.jp2/full/!2000,2000/0/default.jpg",
         "sha256": "2fc761bb000d8b136fcc16154a0a6b94760802cb96b10a84f392c76e76edc0f9"
       },
       "region": {
@@ -484,7 +484,7 @@
         "text": "המאס במצות אל ◦◦◦◦ ‖ l. 33 ויעזבם",
         "lang": "he",
         "edition": "E. Qimron, The Dead Sea Scrolls: The Hebrew Writings, vol. 1 (2020 revision)",
-        "page": null
+        "page": 19
       },
       "question": "Where does line 32 end: are the four traces after אל letters, and does ויעזבם begin line 33?",
       "context": "Both lines are in the crop.",
@@ -510,7 +510,7 @@
         "holder": "Cambridge University Library"
       },
       "image": {
-        "url": "https://cudl.lib.cam.ac.uk/iiif/MS-TS-00016-00311/1/full/!2000,2000/0/default.jpg",
+        "url": "https://images.lib.cam.ac.uk/iiif/MS-TS-00016-00311-000-00001.jp2/full/!2000,2000/0/default.jpg",
         "sha256": "2fc761bb000d8b136fcc16154a0a6b94760802cb96b10a84f392c76e76edc0f9"
       },
       "region": {
@@ -529,7 +529,7 @@
         "text": "מיום האסף (יור מורה — cancelled letters",
         "lang": "he",
         "edition": "E. Qimron, The Dead Sea Scrolls: The Hebrew Writings, vol. 1 (2020 revision)",
-        "page": null
+        "page": 20
       },
       "question": "Are there cancelled letters (יור) before מורה, so that the scribe corrected יורה to מורה, or is יורה the reading?",
       "legibility": "uncertain",
@@ -554,7 +554,7 @@
         "holder": "Cambridge University Library"
       },
       "image": {
-        "url": "https://cudl.lib.cam.ac.uk/iiif/MS-TS-00016-00311/2/full/!2000,2000/0/default.jpg",
+        "url": "https://images.lib.cam.ac.uk/iiif/MS-TS-00016-00311-000-00002.jp2/full/!2000,2000/0/default.jpg",
         "sha256": "465caaac9f26c23b6df87482842016de1a7d5adcd805ec64b202f93d29939a31"
       },
       "region": {
@@ -573,7 +573,7 @@
         "text": "(מיום) מורה *היחיד — “read היחד”",
         "lang": "he",
         "edition": "E. Qimron, The Dead Sea Scrolls: The Hebrew Writings, vol. 1 (2020 revision)",
-        "page": null
+        "page": 20
       },
       "question": "Is there a cancelled מיום at the head of the line before מורה?",
       "context": "היחיד itself is agreed at the page.",
@@ -599,7 +599,7 @@
         "holder": "Cambridge University Library"
       },
       "image": {
-        "url": "https://cudl.lib.cam.ac.uk/iiif/MS-TS-00016-00311/2/full/!2000,2000/0/default.jpg",
+        "url": "https://images.lib.cam.ac.uk/iiif/MS-TS-00016-00311-000-00002.jp2/full/!2000,2000/0/default.jpg",
         "sha256": "465caaac9f26c23b6df87482842016de1a7d5adcd805ec64b202f93d29939a31"
       },
       "region": {
@@ -618,7 +618,7 @@
         "text": "◦שנים ארבעים — “Rabin reads כשנים”",
         "lang": "he",
         "edition": "E. Qimron, The Dead Sea Scrolls: The Hebrew Writings, vol. 1 (2020 revision)",
-        "page": null
+        "page": 20
       },
       "question": "Is the first letter of the word before ארבעים a כ?",
       "legibility": "uncertain",
@@ -643,7 +643,7 @@
         "holder": "Cambridge University Library"
       },
       "image": {
-        "url": "https://cudl.lib.cam.ac.uk/iiif/MS-TS-00016-00311/2/full/!2000,2000/0/default.jpg",
+        "url": "https://images.lib.cam.ac.uk/iiif/MS-TS-00016-00311-000-00002.jp2/full/!2000,2000/0/default.jpg",
         "sha256": "465caaac9f26c23b6df87482842016de1a7d5adcd805ec64b202f93d29939a31"
       },
       "region": {
@@ -662,7 +662,7 @@
         "text": "ולא יעזבו — “Rabin reads ישיבו”",
         "lang": "he",
         "edition": "E. Qimron, The Dead Sea Scrolls: The Hebrew Writings, vol. 1 (2020 revision)",
-        "page": null
+        "page": 21
       },
       "question": "After the colon at the left end: ישיבו (ש, ב) or יעזבו (ע, ז)?",
       "context": "The word is the last on the line.",
