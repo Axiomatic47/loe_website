@@ -49,18 +49,24 @@ function indexSourceDir(dir) {
   return map;
 }
 
+// GEOMETRY (transcriber 2026-09-08): the shelf downloads are the served image
+// plus a 24-px CUDL footer strip; the top rows are pixel-identical, so regions
+// are valid against either file — but the served bytes hash differently. A
+// FETCHED source is checked by dimensions (must contain the region; must match
+// image.width/height when given), never against the shelf sha256; the manifest
+// records which kind of source cut each crop.
 async function getSource(item, shelf) {
   const want = item.image.sha256;
-  if (shelf.has(want)) return { buf: readFileSync(shelf.get(want)), from: shelf.get(want) };
+  if (shelf.has(want)) return { buf: readFileSync(shelf.get(want)), from: shelf.get(want), fetched: false };
   const cached = join(CACHE, `${want}.jpg`);
-  if (existsSync(cached)) return { buf: readFileSync(cached), from: cached };
+  if (existsSync(cached)) return { buf: readFileSync(cached), from: cached, fetched: true };
   if (NO_FETCH) throw new Error(`${item.id}: source ${want.slice(0, 12)}… not on disk and --no-fetch given`);
   const res = await fetch(item.image.url);
   if (!res.ok) throw new Error(`${item.id}: fetch ${item.image.url} → HTTP ${res.status}`);
   const buf = Buffer.from(await res.arrayBuffer());
   mkdirSync(CACHE, { recursive: true });
   writeFileSync(cached, buf);
-  return { buf, from: item.image.url };
+  return { buf, from: item.image.url, fetched: true };
 }
 
 const shelf = indexSourceDir(SOURCE_DIR);
@@ -83,11 +89,19 @@ for (const f of files) {
       skipped += 1;
       continue;
     }
-    const { buf, from } = await getSource(it, shelf);
+    const { buf, from, fetched } = await getSource(it, shelf);
     const got = sha256(buf);
-    if (got !== it.image.sha256) throw new Error(`${it.id}: source sha256 mismatch\n  export: ${it.image.sha256}\n  got:    ${got}\n  from:   ${from}`);
     const meta = await sharp(buf).metadata();
     const { x, y, w, h } = it.region;
+    if (!fetched && got !== it.image.sha256) throw new Error(`${it.id}: shelf source sha256 mismatch
+  export: ${it.image.sha256}
+  got:    ${got}
+  from:   ${from}`);
+    if (fetched) {
+      const W = it.image.width, H = it.image.height;
+      if ((W && meta.width !== W) || (H && meta.height !== H)) throw new Error(`${it.id}: fetched source is ${meta.width}×${meta.height}, export says ${W}×${H}`);
+      console.log(`  ${it.id}: cut from FETCHED source ${meta.width}×${meta.height} (dimension check only; sha ${got.slice(0, 12)}…)`);
+    }
     if (x + w > meta.width || y + h > meta.height) throw new Error(`${it.id}: region exceeds source ${meta.width}×${meta.height}`);
     const zoom = it.zoom || 4;
     const targetW = Math.min(Math.round(w * zoom), MAX_W);
@@ -96,7 +110,7 @@ for (const f of files) {
     writeFileSync(plate, plateBuf);
     writeFileSync(thumb, thumbBuf);
     const pm = await sharp(plateBuf).metadata();
-    manifest.crops[it.id] = { sha256: sha256(plateBuf), thumb_sha256: sha256(thumbBuf), source_sha256: it.image.sha256, region: it.region, zoom, width: pm.width, height: pm.height };
+    manifest.crops[it.id] = { sha256: sha256(plateBuf), thumb_sha256: sha256(thumbBuf), source_sha256: it.image.sha256, source_kind: fetched ? 'fetched' : 'shelf', source_actual_sha256: got, region: it.region, zoom, width: pm.width, height: pm.height };
     cut += 1;
   }
   writeFileSync(join(outDir, 'crops.manifest.json'), JSON.stringify(manifest, null, 2) + '\n');
