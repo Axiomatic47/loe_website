@@ -23,6 +23,7 @@ const store = await openStore();
 const keys = await store.list('approved/');
 const approved = (await Promise.all(keys.map(k => store.get(k)))).filter(Boolean);
 console.log(`pull-reading-answers: store=${store.kind} approved=${approved.length}${WRITE ? '' : ' (dry run — pass --write)'}`);
+if (process.env.NETLIFY === 'true' && store.kind !== 'blobs') console.warn('pull-reading-answers: WARNING — running on Netlify without Blobs access (no NETLIFY_BLOBS_CONTEXT; set NETLIFY_AUTH_TOKEN as a build variable). Approved answers are NOT being published by this build.');
 
 const byCollection = new Map();
 for (const a of approved) {
