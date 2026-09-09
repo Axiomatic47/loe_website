@@ -12,7 +12,7 @@
 import React from 'react';
 import { H2, P, UL, LegalPage, LEGAL_CONTACT_EMAIL, type RenderLink } from './prose';
 
-export const PRIVACY_UPDATED = 'September 6, 2026';
+export const PRIVACY_UPDATED = 'September 8, 2026';
 
 export function PrivacyBody({ renderLink }: { renderLink: RenderLink }) {
   const L = (href: string, text: string) => renderLink(href, text);
@@ -47,6 +47,16 @@ export function PrivacyBody({ renderLink }: { renderLink: RenderLink }) {
         {L(`mailto:${LEGAL_CONTACT_EMAIL}`, LEGAL_CONTACT_EMAIL)}. Email you send directly arrives the same way.
         Correspondence is kept as ordinary email for as long as it is needed to reply and to keep a record of the
         exchange.
+      </P>
+      <P>
+        <strong>Answering an open reading.</strong> The research pages invite qualified readers to answer disputed
+        manuscript readings. The answer form collects your answer, an optional note, your name and credentials, and an
+        email address unless you tick that you would rather not be contacted. Submissions are stored by Netlify, the
+        site's host, in its form service in the United States, and a copy is emailed to the author. Your email address is
+        never published. If you chose to have your answer published, the author reviews it first and then publishes the
+        answer with the name and credentials summary you consented to, or as "anonymous reader" if you asked. Answers
+        sent to the author only stay in the moderation record. Write to {L(`mailto:${LEGAL_CONTACT_EMAIL}`, LEGAL_CONTACT_EMAIL)}{' '}
+        to withdraw a published answer or to have your submission deleted.
       </P>
       <P>
         <strong>Contributions.</strong> Contributions on the {L('/donate', 'Support page')} are processed by PayPal.

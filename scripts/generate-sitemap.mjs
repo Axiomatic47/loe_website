@@ -120,6 +120,34 @@ try {
 }
 console.log(`\nresearch: ${researchTotal} URL(s)`);
 
+// Open Readings (owner direction 2026-09-08): index, per-collection lists,
+// item pages, acknowledgements — from content/readings/<collection>.json.
+let readingsTotal = 0;
+const readingsDir = join(ROOT, 'content', 'readings');
+try {
+  const files = readdirSync(readingsDir).filter((f) => f.endsWith('.json') && !f.endsWith('.answers.json') && !f.endsWith('.meta.json')).sort();
+  if (files.length) {
+    urls.push({ loc: `${ORIGIN}/research/open-readings`, priority: '0.7', lastmod: lastmodForPath('content/readings') });
+    urls.push({ loc: `${ORIGIN}/research/acknowledgements`, priority: '0.4', lastmod: lastmodForPath('content/readings') });
+    readingsTotal += 2;
+  }
+  for (const f of files) {
+    const id = f.replace(/\.json$/, '');
+    const rel = `content/readings/${f}`;
+    const items = JSON.parse(readFileSync(join(ROOT, rel), 'utf8')).items || [];
+    const lastmod = lastmodForPath(rel);
+    urls.push({ loc: `${ORIGIN}/research/${id}/readings`, priority: '0.6', lastmod });
+    readingsTotal += 1;
+    for (const it of items) {
+      urls.push({ loc: `${ORIGIN}/research/${id}/readings/${it.id}`, priority: '0.5', lastmod });
+      readingsTotal += 1;
+    }
+  }
+} catch {
+  /* no readings — nothing to list */
+}
+console.log(`open readings: ${readingsTotal} URL(s)`);
+
 // Self-check: no legacy positional forms may leak into the canonical sitemap.
 const positional = urls.filter((u) => /\/composition\/[a-z]+\/composition\/\d+/.test(u.loc));
 if (positional.length > 0) {
