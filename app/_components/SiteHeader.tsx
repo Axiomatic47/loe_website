@@ -30,6 +30,7 @@ const CASE_LINKS = [
 ];
 
 const MORE_LINKS = [
+  { label: 'Evidence', sub: 'Testimonies, simulation records, and discovery documents', href: '/composition/data' },
   { label: 'For Journalists', sub: 'Case numbers, documents, and press contact', href: '/for-journalists' },
   { label: 'Video Evidence', sub: 'Screen recordings of AI system behavior', href: '/videos' },
   { label: 'Copyright Notifications', sub: 'Notices to copyright holders', href: '/composition/copyright' },
@@ -79,7 +80,7 @@ const MenuFooterLink = ({ href, label }: { href: string; label: string }) => (
 export function SiteHeader({ className }: { className?: string }) {
   const pathname = usePathname() ?? '/';
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
-  const { manuscript, data } = navManifest;
+  const { manuscript } = navManifest;
 
   const isActive = (path: string) => pathname === path;
   const inSection = (prefix: string) => pathname.startsWith(prefix);
@@ -154,24 +155,6 @@ export function SiteHeader({ className }: { className?: string }) {
                     </NavigationMenuContent>
                   </NavigationMenuItem>
 
-                  <NavigationMenuItem>
-                    <NavigationMenuTrigger className={triggerClass(inSection('/composition/data'))}>
-                      Evidence
-                    </NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                      <div className="w-[340px] p-2 bg-card">
-                        {data.map((item, i) => (
-                          <MenuRow
-                            key={i}
-                            href={item.url}
-                            label={item.title}
-                            sub={`${item.sectionCount} section${item.sectionCount === 1 ? '' : 's'}`}
-                          />
-                        ))}
-                        <MenuFooterLink href="/composition/data" label="All evidence" />
-                      </div>
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
 
                   <NavigationMenuItem>
                     <NavigationMenuTrigger className={triggerClass(inSection('/composition/constitutional'))}>
@@ -188,7 +171,7 @@ export function SiteHeader({ className }: { className?: string }) {
                   </NavigationMenuItem>
 
                   <NavigationMenuItem>
-                    <NavigationMenuTrigger className={triggerClass(false)}>More</NavigationMenuTrigger>
+                    <NavigationMenuTrigger className={triggerClass(inSection('/composition/data'))}>More</NavigationMenuTrigger>
                     <NavigationMenuContent>
                       <div className="w-[360px] p-2 bg-card">
                         {MORE_LINKS.map((l) => (
