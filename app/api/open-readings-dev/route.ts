@@ -1,6 +1,6 @@
 // app/api/open-readings-dev/route.ts — LOCAL stand-in for Netlify Forms.
 //
-// Netlify Forms only exists on a Netlify deploy. For the local build the
+// In production the form posts natively to the FormSubmit relay. For the local build the
 // client form posts here instead (NEXT_PUBLIC_OPEN_READINGS_FORM_ENDPOINT set
 // at build time), and the submission is logged to the console and appended to
 // .cache/open-readings-dev-submissions.log (gitignored). In production this

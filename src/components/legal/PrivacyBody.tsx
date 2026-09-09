@@ -51,9 +51,9 @@ export function PrivacyBody({ renderLink }: { renderLink: RenderLink }) {
       <P>
         <strong>Answering an open reading.</strong> The research pages invite qualified readers to answer disputed
         manuscript readings. The answer form collects your answer, an optional note, your name and credentials, and an
-        email address unless you tick that you would rather not be contacted. Submissions are stored by Netlify, the
-        site's host, in its form service in the United States, and a copy is emailed to the author. Your email address is
-        never published. If you chose to have your answer published, the author reviews it first and then publishes the
+        email address unless you tick that you would rather not be contacted. Submissions are relayed by FormSubmit, the
+        same service as the contact form, to the author's mailbox, where they are kept as ordinary email; the site itself
+        stores nothing. Your email address is never published. If you chose to have your answer published, the author reviews it first and then publishes the
         answer with the name and credentials summary you consented to, or as "anonymous reader" if you asked. Answers
         sent to the author only stay in the moderation record. Write to {L(`mailto:${LEGAL_CONTACT_EMAIL}`, LEGAL_CONTACT_EMAIL)}{' '}
         to withdraw a published answer or to have your submission deleted.
