@@ -114,10 +114,10 @@
 
 # Open Readings moderation (owner direction 2026-09-09): answers are queued
 # privately (Netlify Blobs) by netlify/functions/submission-created.mjs, the
-# owner decides at /.netlify/functions/moderate?key=<MODERATION_KEY>, and
+# owner signs in at /.netlify/functions/moderate with the MODERATION_KEY passphrase, and
 # `npm run readings:pull` (first step of build:next) folds every approved
 # answer into content/readings/*.answers.json at build time. Environment
-# variables (dashboard): MODERATION_KEY (required, functions), optional
+# variables (dashboard): MODERATION_KEY (required; an owner-chosen passphrase, 16+ chars), optional
 # BUILD_HOOK_URL ("Rebuild now" button), optional NETLIFY_AUTH_TOKEN (build +
 # functions: Blobs at build time if NETLIFY_BLOBS_CONTEXT is absent; dashboard
 # import). No agent holds any of them.
