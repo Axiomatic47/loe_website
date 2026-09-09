@@ -49,10 +49,10 @@
     Cache-Control = "public, max-age=604800"
 
 # Unlisted research archives: server-enforced noindex (pages AND raw files)
-[[headers]]
-  for = "/research/*"
-    [headers.values]
-    X-Robots-Tag = "noindex, nofollow"
+# /research/* pages are INDEXABLE since the archives were published with the
+# TNA licence (2026-08-23): page metadata + sitemap govern. The pre-licence
+# noindex header that sat here overrode both at the HTTP layer (removed
+# 2026-09-08). The raw assets under /uploads/research/* stay noindex below.
 
 [[headers]]
   for = "/uploads/research/*"

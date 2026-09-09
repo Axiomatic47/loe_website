@@ -149,6 +149,7 @@ export function SiteHeader({ className }: { className?: string }) {
                           />
                         ))}
                         <MenuFooterLink href="/composition/manuscript" label="All research" />
+                        <MenuFooterLink href="/research/open-readings" label="Open readings — disputed transcriptions for review" />
                       </div>
                     </NavigationMenuContent>
                   </NavigationMenuItem>

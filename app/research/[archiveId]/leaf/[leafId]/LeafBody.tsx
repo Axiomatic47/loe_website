@@ -39,9 +39,11 @@ interface LeafBodyProps {
   leaf: ArchiveLeafEntry;
   prev: string | null;
   next: string | null;
+  /** open readings whose source is this leaf (plan §3) — rendered as a link when non-empty */
+  openReadings?: { collection: string; id: string }[];
 }
 
-export const LeafBody = ({ archiveId, refLabel, leafLabel, manifest, leaf, prev, next }: LeafBodyProps) => {
+export const LeafBody = ({ archiveId, refLabel, leafLabel, manifest, leaf, prev, next, openReadings = [] }: LeafBodyProps) => {
   const tabs = useMemo(() => {
     const t: Array<{ key: string; label: string; doc: ArchiveDoc }> = [];
     const seen = new Set<string>();
@@ -161,6 +163,15 @@ export const LeafBody = ({ archiveId, refLabel, leafLabel, manifest, leaf, prev,
             {next && (
               <Link href={`/research/${archiveId}/leaf/${next}`} className="text-sm text-primary hover:text-primary/80 inline-flex items-center transition-colors">
                 {next} <ArrowRight className="h-3.5 w-3.5 ml-1" />
+              </Link>
+            )}
+            {openReadings.length > 0 && (
+              <Link
+                href={openReadings.length === 1 ? `/research/${openReadings[0].collection}/readings/${openReadings[0].id}` : `/research/${openReadings[0].collection}/readings`}
+                className="ml-2 text-xs uppercase tracking-[0.06em] text-primary border border-primary/30 bg-primary/10 rounded-md px-2 py-0.5 hover:bg-primary/15 transition-colors"
+                style={{ fontWeight: 600 }}
+              >
+                {openReadings.length} open reading{openReadings.length === 1 ? "" : "s"} on this leaf
               </Link>
             )}
 
