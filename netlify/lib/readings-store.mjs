@@ -8,10 +8,18 @@
 //   decided/<id>     {decision, date, item_id} — what the owner decided and when
 //   author-only/<id> the full record of an answer the owner may read but must not publish
 //
-// On Netlify this is Netlify Blobs (auto-configured in functions; at build time it
-// reads NETLIFY_BLOBS_CONTEXT or falls back to SITE_ID + NETLIFY_AUTH_TOKEN). Off
-// Netlify it is a directory of JSON files under .cache/readings-store/, so the
-// functions and the build step can be exercised locally without an account.
+//   audit/<key>      append-only record of every action (netlify/lib/audit.mjs)
+//
+// WHERE IT LIVES
+//   In a Netlify function: Netlify Blobs, ALWAYS, through the credentials the
+//   runtime injects — never a token from the environment (a personal access token
+//   is account-wide; docs/ADMIN_CONSOLE_SECURITY_PLAN.md §2.1). If the runtime
+//   has not configured Blobs the error is rethrown with a plain message so it
+//   shows in the function log; never a silent local fallback (that lost
+//   submissions on 2026-09-09).
+//   In a Netlify build: Blobs via the injected NETLIFY_BLOBS_CONTEXT; failing that
+//   a WARNING and an empty read-only store (nothing publishes that build).
+//   Anywhere else (local dev, tests): .cache/readings-store/ as JSON files.
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync, rmSync } from 'node:fs';
 import { join, dirname } from 'node:path';
@@ -20,38 +28,51 @@ import { fileURLToPath } from 'node:url';
 export const STORE_NAME = 'open-readings';
 const LOCAL_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', '..', '.cache', 'readings-store');
 
-function onNetlify() {
-  return Boolean(process.env.NETLIFY_BLOBS_CONTEXT || globalThis.netlifyBlobsContext || (process.env.NETLIFY === 'true' && process.env.SITE_ID && process.env.NETLIFY_AUTH_TOKEN));
-}
+// Where are we? A Netlify FUNCTION (Lambda) must use Blobs — the runtime
+// configures it; if that fails the error must surface in the function log, not
+// vanish into a read-only local directory. A Netlify BUILD uses Blobs when the
+// runtime context or SITE_ID + NETLIFY_AUTH_TOKEN is present, and otherwise
+// warns and reads an empty local store so the build still succeeds.
+const inFunction = () => Boolean(process.env.AWS_LAMBDA_FUNCTION_NAME || process.env.NETLIFY_BLOBS_CONTEXT || globalThis.netlifyBlobsContext);
+const inBuild = () => process.env.NETLIFY === 'true' && !inFunction();
 
 async function blobStore() {
   const { getStore } = await import('@netlify/blobs');
-  if (process.env.NETLIFY_BLOBS_CONTEXT || globalThis.netlifyBlobsContext) return getStore(STORE_NAME);
-  return getStore({ name: STORE_NAME, siteID: process.env.SITE_ID, token: process.env.NETLIFY_AUTH_TOKEN });
+  return getStore(STORE_NAME); // the runtime's own credentials; throws a descriptive error when they are absent
 }
 
-/** returns { get(key), set(key, obj), del(key), list(prefix) → keys[] } */
-export async function openStore() {
-  if (onNetlify()) {
-    const s = await blobStore();
-    return {
-      kind: 'blobs',
-      async get(key) { return (await s.get(key, { type: 'json' })) ?? null; },
-      async set(key, obj) { await s.setJSON(key, obj); },
-      async del(key) { await s.delete(key); },
-      async list(prefix) { const { blobs } = await s.list({ prefix }); return blobs.map(b => b.key); },
-    };
-  }
-  const file = key => join(LOCAL_DIR, key.replace(/\//g, '__') + '.json');
+const wrapBlobs = s => ({
+  kind: 'blobs',
+  async get(key) { return (await s.get(key, { type: 'json' })) ?? null; },
+  async set(key, obj) { await s.setJSON(key, obj); },
+  async del(key) { await s.delete(key); },
+  async list(prefix) { const { blobs } = await s.list({ prefix }); return blobs.map(b => b.key); },
+});
+
+function localStore(dir = LOCAL_DIR, readonly = false) {
+  const file = key => join(dir, key.replace(/\//g, '__') + '.json');
   return {
-    kind: `local:${LOCAL_DIR}`,
-    async get(key) { return existsSync(file(key)) ? JSON.parse(readFileSync(file(key), 'utf8')) : null; },
-    async set(key, obj) { mkdirSync(LOCAL_DIR, { recursive: true }); writeFileSync(file(key), JSON.stringify(obj, null, 2) + '\n'); },
-    async del(key) { rmSync(file(key), { force: true }); },
+    kind: readonly ? 'local-empty' : `local:${dir}`,
+    async get(key) { return !readonly && existsSync(file(key)) ? JSON.parse(readFileSync(file(key), 'utf8')) : null; },
+    async set(key, obj) { if (readonly) throw new Error('the store is read-only here'); mkdirSync(dir, { recursive: true }); writeFileSync(file(key), JSON.stringify(obj, null, 2) + '\n'); },
+    async del(key) { if (!readonly) rmSync(file(key), { force: true }); },
     async list(prefix) {
-      if (!existsSync(LOCAL_DIR)) return [];
+      if (readonly || !existsSync(dir)) return [];
       const p = prefix.replace(/\//g, '__');
-      return readdirSync(LOCAL_DIR).filter(f => f.startsWith(p) && f.endsWith('.json')).map(f => f.slice(0, -5).replace(/__/g, '/')).sort();
+      return readdirSync(dir).filter(f => f.startsWith(p) && f.endsWith('.json')).map(f => f.slice(0, -5).replace(/__/g, '/')).sort();
     },
   };
+}
+
+/** returns { kind, get(key), set(key, obj), del(key), list(prefix) → keys[] } */
+export async function openStore() {
+  if (inFunction()) return wrapBlobs(await blobStore()); // throws with a plain message if unconfigured
+  if (inBuild()) {
+    try { return wrapBlobs(await blobStore()); }
+    catch (e) {
+      console.warn(`readings-store: WARNING — Netlify build without Blobs access (${e.message}). Approved answers are NOT available to this build.`);
+      return localStore(LOCAL_DIR, true);
+    }
+  }
+  return localStore(process.env.READINGS_STORE_DIR || LOCAL_DIR);
 }

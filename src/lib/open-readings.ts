@@ -101,7 +101,7 @@ export function listReadingCollections(): string[] {
   if (!fs.existsSync(ROOT)) return [];
   return fs
     .readdirSync(ROOT)
-    .filter(f => f.endsWith('.json') && !f.endsWith('.answers.json') && !f.endsWith('.meta.json'))
+    .filter(f => f.endsWith('.json') && !f.startsWith('_') && !f.endsWith('.answers.json') && !f.endsWith('.meta.json'))
     .map(f => f.replace(/\.json$/, ''))
     .sort();
 }
