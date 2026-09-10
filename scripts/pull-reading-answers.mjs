@@ -14,7 +14,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { openStore } from '../netlify/lib/readings-store.mjs';
-import { publicAudit } from '../netlify/lib/audit.mjs';
+import { publicAudit, actorHash } from '../netlify/lib/audit.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DIR = join(ROOT, 'content', 'readings');
@@ -53,8 +53,9 @@ console.log(`pull-reading-answers: ${added} answer(s) ${WRITE ? 'written' : 'wou
 
 // ---- store export (docs/ADMIN_CONSOLE_SECURITY_PLAN.md §2.4, §2.8): everything the
 // history needs to survive the store, minus what must stay private. Contact,
-// name-as-written and credentials never leave the store; audit records lose
-// their request origin. `pending/` is not exported (it is the private inbox).
+// name-as-written and credentials never leave the store; audit and decided
+// records lose their request origin and carry the actor as a hash, not an
+// e-mail (the repository may be public). `pending/` is not exported (it is the private inbox).
 // On Netlify this lands in the build's working copy only — to VERSION the
 // history, run `npm run readings:pull -- --write` locally now and then and
 // commit content/readings/_store-export.json.
@@ -70,7 +71,7 @@ const exported = {
   author_only: (await load('author-only/')).map(strip),
   audit: (await load('audit/')).map(publicAudit).sort((a, b) => a.at.localeCompare(b.at)),
 };
-for (const k of await store.list('decided/')) exported.decided[k.slice('decided/'.length)] = await store.get(k);
+for (const k of await store.list('decided/')) { const d = await store.get(k); if (d?.actor?.includes('@')) d.actor = `hash:${actorHash(d.actor)}`; exported.decided[k.slice('decided/'.length)] = d; }
 if (store.kind === 'local-empty' && previous.audit) { console.log('pull-reading-answers: store unavailable — keeping the previous export.'); }
 else {
   console.log(`pull-reading-answers: export — ${Object.keys(exported.decided).length} decided, ${exported.author_only.length} author-only, ${exported.audit.length} audit record(s)${WRITE ? ' written' : ' (dry run)'}.`);

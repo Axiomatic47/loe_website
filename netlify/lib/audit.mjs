@@ -40,8 +40,13 @@ export async function recentAudit(store, n = 20) {
   return (await Promise.all(keys.map(k => store.get(k)))).filter(Boolean);
 }
 
-/** the record as it may leave the store (no request origin) */
+/** a stable, non-reversible stand-in for an actor's e-mail (12 hex chars) */
+export const actorHash = actor => createHash('sha256').update(`actor:${actor}`).digest('hex').slice(0, 12);
+
+/** the record as it may leave the store: no request origin, no e-mail —
+ *  the actor becomes a hash, still distinguishable, never publishable */
 export function publicAudit(rec) {
   const rest = { ...rec }; delete rest.ip; delete rest.ua;
+  if (rest.actor && rest.actor.includes('@')) rest.actor = `hash:${actorHash(rest.actor)}`;
   return rest;
 }
