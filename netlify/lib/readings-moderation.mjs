@@ -30,7 +30,7 @@ function renderApproved(a, csrf) {
 <form method="post" class="actions"><input type="hidden" name="csrf" value="${h(csrf)}"><input type="hidden" name="id" value="${h(a.id)}"><button class="rej" name="decision" value="withdraw">Withdraw</button> <small>Withdrawing before the build keeps it off the site; after the build the page keeps the answer until the next build.</small></form></div>`;
 }
 
-async function importFromForms(store) {
+export async function importFromForms(store) {
   const token = process.env.NETLIFY_AUTH_TOKEN, siteId = process.env.SITE_ID;
   if (!token || !siteId) return 'Import is not configured (NETLIFY_AUTH_TOKEN + SITE_ID).';
   const api = async p => { const r = await fetch(`https://api.netlify.com/api/v1${p}`, { headers: { Authorization: `Bearer ${token}` } }); if (!r.ok) throw new Error(`${p} → ${r.status}`); return r.json(); };
@@ -50,8 +50,10 @@ async function importFromForms(store) {
 
 /** counts for the console home */
 export async function readingsCounts() {
-  const store = await openStore();
-  return { pending: (await store.list('pending/')).length, approved: (await store.list('approved/')).length };
+  try {
+    const store = await openStore();
+    return { pending: (await store.list('pending/')).length, approved: (await store.list('approved/')).length, store: store.kind };
+  } catch (e) { return { pending: '?', approved: '?', store: `ERROR: ${e.message}` }; }
 }
 
 /** GET/POST /admin/readings — `ctx` = { sess, csrf, csrfOk(given) } */
@@ -92,10 +94,15 @@ export async function handleReadings(req, url, ctx) {
     return redirect(url.pathname, { flash, bad });
   }
 
+  // Belt and braces: when the owner's token is present, pull anything the event
+  // function missed straight from Netlify Forms on every load (idempotent).
+  let synced = '';
+  if (process.env.NETLIFY_AUTH_TOKEN && process.env.SITE_ID) { try { synced = await importFromForms(store); } catch (e) { synced = `Forms sync failed: ${e.message}`; } }
   const pending = (await Promise.all((await store.list('pending/')).map(k => store.get(k)))).filter(Boolean).sort((a, b) => a.created.localeCompare(b.created));
   const approved = (await Promise.all((await store.list('approved/')).map(k => store.get(k)))).filter(Boolean).sort((a, b) => a.published.localeCompare(b.published));
   const authorOnly = await store.list('author-only/');
   const body = `<h1>Open Readings</h1><p class="sub">Publish queues an answer for the next build of main; nothing goes live until that build finishes. The reader's contact stays on this page and in the Netlify dashboard.</p>
+<p><small>Queue store: ${h(store.kind)}${synced ? ` · Netlify Forms sync: ${h(synced)}` : ' · Netlify Forms sync: off (set NETLIFY_AUTH_TOKEN in the Functions scope to read the dashboard directly)'}</small></p>
 <h2>Waiting for a decision (${pending.length})</h2>
 ${pending.length ? pending.map(p => renderPending(p, ctx.csrf)).join('') : '<p class="empty">Nothing waiting.</p>'}
 <h2>Approved, publishing at the next build (${approved.length})</h2>

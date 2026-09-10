@@ -30,6 +30,7 @@ ${process.env.MODERATION_KEY ? `<details style="margin-top:2rem"><summary><small
 async function home(url, sess, csrf) {
   const c = await readingsCounts();
   const body = `<h1>Console</h1><p class="sub">Signed in as ${h(sess.email)}. Sessions last eight hours.</p>
+<p><small>Queue store: ${h(String(c.store))} · Netlify Forms sync: ${process.env.NETLIFY_AUTH_TOKEN && process.env.SITE_ID ? 'on' : 'off'} · Build hook: ${process.env.BUILD_HOOK_URL ? 'set' : 'not set'}</small></p>
 <div class="grid">
 <div class="card"><div class="n">${c.pending}</div>Open Readings answers waiting<br><a class="btn" style="margin-top:.6rem" href="/admin/readings">Open the queue</a></div>
 <div class="card"><div class="n">${c.approved}</div>Approved, publishing at the next build${process.env.BUILD_HOOK_URL ? `<form method="post" action="/admin/rebuild" style="margin-top:.6rem"><input type="hidden" name="csrf" value="${h(csrf)}"><button name="action" value="rebuild">Rebuild now</button></form>` : '<br><small>Publishes with the next integrate.</small>'}</div>
