@@ -32,7 +32,14 @@ small{color:var(--muted)}
 export function page({ title, body, status = 200, headers = {}, sess = null, flash = '', flashBad = false }) {
   const nav = sess ? `<nav><span class="brand"><a href="/admin">Console</a></span><a href="/admin/readings">Open Readings</a><a href="/" target="_blank" rel="noopener">Site</a><span class="who">${h(sess.name || sess.email)} · <a href="/admin/logout">Sign out</a></span></nav>` : '';
   const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>${h(title)}</title><style>${CSS}</style></head><body><main>${nav}${flash ? `<div class="flash${flashBad ? ' bad' : ''}">${h(flash)}</div>` : ''}${body}</main></body></html>`;
-  const hs = new Headers({ 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store', 'x-robots-tag': 'noindex, nofollow' });
+  // The console is server-rendered HTML with one inline style block and no
+  // script, image or frame — the policy says exactly that. netlify.toml headers
+  // apply to static files only, so function responses carry their own.
+  const hs = new Headers({
+    'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store', 'x-robots-tag': 'noindex, nofollow',
+    'content-security-policy': "default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'",
+    'x-frame-options': 'DENY', 'referrer-policy': 'no-referrer', 'x-content-type-options': 'nosniff',
+  });
   for (const [k, v] of Object.entries(headers)) for (const vv of (Array.isArray(v) ? v : [v])) hs.append(k, vv);
   return new Response(html, { status, headers: hs });
 }

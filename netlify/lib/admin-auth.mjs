@@ -53,8 +53,14 @@ export function readCookie(req, name) {
   const raw = (req.headers.get('cookie') ?? '').split(/;\s*/).find(c => c.startsWith(name + '='));
   return raw ? decodeURIComponent(raw.slice(name.length + 1)) : null;
 }
-const setCookie = (name, value, maxAge, path = '/admin') => `${name}=${encodeURIComponent(value)}; Path=${path}; HttpOnly; Secure; SameSite=Lax; Max-Age=${maxAge}`;
-const clearCookie = (name, path = '/admin') => `${name}=; Path=${path}; HttpOnly; Secure; SameSite=Lax; Max-Age=0`;
+// The SESSION cookie is SameSite=Strict: no cross-site request ever carries it.
+// The FLOW cookie must be Lax — the Auth0 callback is a cross-site navigation and
+// has to read the state/nonce/verifier. Because Strict cookies also stay home on
+// the redirect that follows a cross-site navigation, the callback answers with a
+// same-site meta refresh (see admin.mjs) instead of a 303.
+const setCookie = (name, value, maxAge, sameSite = 'Strict', path = '/admin') => `${name}=${encodeURIComponent(value)}; Path=${path}; HttpOnly; Secure; SameSite=${sameSite}; Max-Age=${maxAge}`;
+const clearCookie = (name, path = '/admin') => `${name}=; Path=${path}; HttpOnly; Secure; SameSite=Strict; Max-Age=0`;
+export const sessionCookie = (cfg, sess, ttl = SESSION_TTL_S) => setCookie(SESSION_COOKIE, sign(cfg, sess), ttl);
 
 // ---------------------------------------------------------------- session
 export function session(req, cfg) {
@@ -77,7 +83,7 @@ export function beginLogin(cfg, redirectUri) {
   const challenge = b64u(createHash('sha256').update(verifier).digest());
   const flow = sign(cfg, { state, nonce, verifier, exp: Math.floor(Date.now() / 1000) + FLOW_TTL_S });
   const q = new URLSearchParams({ response_type: 'code', client_id: cfg.clientId, redirect_uri: redirectUri, scope: 'openid email profile', state, nonce, code_challenge: challenge, code_challenge_method: 'S256' });
-  return { location: `https://${cfg.domain}/authorize?${q}`, cookie: setCookie(FLOW_COOKIE, flow, FLOW_TTL_S) };
+  return { location: `https://${cfg.domain}/authorize?${q}`, cookie: setCookie(FLOW_COOKIE, flow, FLOW_TTL_S, 'Lax') };
 }
 
 /** step 2: callback → verified identity or {error} */
@@ -101,7 +107,7 @@ export async function completeLogin(cfg, req, redirectUri, fetchImpl = fetch) {
   if (!cfg.admins.includes(email)) return { error: `${email} is not on the console's allow-list.`, status: 403 };
   const iat = Math.floor(Date.now() / 1000);
   const sess = { email, name: claims.name || email, iat, exp: iat + SESSION_TTL_S };
-  return { session: sess, cookies: [setCookie(SESSION_COOKIE, sign(cfg, sess), SESSION_TTL_S), clearCookie(FLOW_COOKIE)] };
+  return { session: sess, cookies: [sessionCookie(cfg, sess), clearCookie(FLOW_COOKIE)] };
 }
 
 export function logoutLocation(cfg, returnTo) {

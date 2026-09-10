@@ -26,7 +26,7 @@ if (!existsSync(DIR)) {
   console.log('readings validation PASSED — no content/readings directory.');
   process.exit(0);
 }
-const files = readdirSync(DIR).filter(f => f.endsWith('.json'));
+const files = readdirSync(DIR).filter(f => f.endsWith('.json') && !f.startsWith('_')); // _store-export.json etc. are not content
 const itemFiles = files.filter(f => !f.endsWith('.answers.json') && !f.endsWith('.meta.json'));
 const allIds = new Map();
 let itemTotal = 0, answerTotal = 0;
