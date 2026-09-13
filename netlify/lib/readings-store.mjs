@@ -26,7 +26,18 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 export const STORE_NAME = 'open-readings';
-const LOCAL_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', '..', '.cache', 'readings-store');
+
+// The local directory is resolved LAZILY and defensively. Netlify bundles a
+// legacy handler(event) function to CommonJS, where `import.meta.url` is
+// undefined; a module-level fileURLToPath(import.meta.url) threw at load and the
+// function never ran (measured in the function log 2026-09-10 06:32: "The path
+// argument must be of type string or an instance of URL. Received undefined",
+// Phase: init). Nothing on Netlify ever needs this path.
+function localDir() {
+  if (process.env.READINGS_STORE_DIR) return process.env.READINGS_STORE_DIR;
+  const here = typeof import.meta !== 'undefined' && import.meta.url ? dirname(fileURLToPath(import.meta.url)) : process.cwd();
+  return join(here, import.meta.url ? '../../.cache/readings-store' : '.cache/readings-store');
+}
 
 // Where are we? A Netlify FUNCTION (Lambda) must use Blobs — the runtime
 // configures it; if that fails the error must surface in the function log, not
@@ -36,9 +47,22 @@ const LOCAL_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', '..', '.ca
 const inFunction = () => Boolean(process.env.AWS_LAMBDA_FUNCTION_NAME || process.env.NETLIFY_BLOBS_CONTEXT || globalThis.netlifyBlobsContext);
 const inBuild = () => process.env.NETLIFY === 'true' && !inFunction();
 
+function contextHasUncachedEdge() {
+  try {
+    const raw = process.env.NETLIFY_BLOBS_CONTEXT || globalThis.netlifyBlobsContext;
+    return raw ? Boolean(JSON.parse(Buffer.from(raw, 'base64').toString('utf8')).uncachedEdgeURL) : false;
+  } catch { return false; }
+}
+
 async function blobStore() {
   const { getStore } = await import('@netlify/blobs');
-  return getStore(STORE_NAME); // the runtime's own credentials; throws a descriptive error when they are absent
+  // Strong consistency where the runtime supports it: a moderation queue must list
+  // a record the moment the event function wrote it, and the default (eventual)
+  // may lag reads by up to a minute. Strong reads need the context's
+  // uncachedEdgeURL, which the modern (Request) runtime supplies and the legacy
+  // handler(event) context from connectLambda does NOT — asking for it there
+  // fails every read (measured 2026-09-10). So: strong when available, else default.
+  return getStore(contextHasUncachedEdge() ? { name: STORE_NAME, consistency: 'strong' } : STORE_NAME); // the runtime's own credentials; throws a descriptive error when they are absent
 }
 
 const wrapBlobs = s => ({
@@ -49,7 +73,7 @@ const wrapBlobs = s => ({
   async list(prefix) { const { blobs } = await s.list({ prefix }); return blobs.map(b => b.key); },
 });
 
-function localStore(dir = LOCAL_DIR, readonly = false) {
+function localStore(dir = localDir(), readonly = false) {
   const file = key => join(dir, key.replace(/\//g, '__') + '.json');
   return {
     kind: readonly ? 'local-empty' : `local:${dir}`,
@@ -71,8 +95,8 @@ export async function openStore() {
     try { return wrapBlobs(await blobStore()); }
     catch (e) {
       console.warn(`readings-store: WARNING — Netlify build without Blobs access (${e.message}). Approved answers are NOT available to this build.`);
-      return localStore(LOCAL_DIR, true);
+      return localStore(localDir(), true);
     }
   }
-  return localStore(process.env.READINGS_STORE_DIR || LOCAL_DIR);
+  return localStore(localDir());
 }
