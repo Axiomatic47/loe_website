@@ -18,6 +18,8 @@ interface PdfScrollViewerProps {
   src: string;
   /** sizing from the parent — e.g. "h-[80vh]" or "flex-1 min-h-0" */
   className?: string;
+  /** reports the page count once the document has loaded (pane footer) */
+  onPages?: (count: number) => void;
 }
 
 // cap the canvas backing width so huge panes on retina can't allocate
@@ -27,7 +29,10 @@ const SETTLE_MS = 150;
 
 type PageMeta = { num: number; aspect: number };
 
-export const PdfScrollViewer = ({ src, className }: PdfScrollViewerProps) => {
+export const PdfScrollViewer = ({ src, className, onPages }: PdfScrollViewerProps) => {
+  // latest callback without re-running the load effect when the parent re-renders
+  const onPagesRef = useRef(onPages);
+  onPagesRef.current = onPages;
   const scrollRef = useRef<HTMLDivElement>(null);
   const [pages, setPages] = useState<PageMeta[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -68,6 +73,7 @@ export const PdfScrollViewer = ({ src, className }: PdfScrollViewerProps) => {
           if (cancelled) return;
         }
         setPages(metas);
+        onPagesRef.current?.(metas.length);
       } catch (e) {
         if (!cancelled) setError(e instanceof Error ? e.message : String(e));
       }

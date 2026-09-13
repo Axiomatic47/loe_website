@@ -16,6 +16,12 @@ interface MembraneViewerProps {
   /** 'width' (default) reads a tall leaf across the pane; 'contain' shows the
       whole image — used for licence placeholders */
   fitMode?: 'width' | 'contain';
+  /** header-bar label (the leaf); when set, the zoom controls move from a
+      floating overlay into a header bar so the card matches its neighbour
+      (manuscript review layout, owner 2026-09-13) */
+  title?: React.ReactNode;
+  /** one-line sub-bar under the header (provenance / credit) */
+  subtitle?: React.ReactNode;
 }
 
 const MIN = 0.1;
@@ -29,6 +35,8 @@ export const MembraneViewer: React.FC<MembraneViewerProps> = ({
   alt,
   heightClass = 'h-[62vh] lg:h-[74vh]',
   fitMode = 'width',
+  title,
+  subtitle,
 }) => {
   const rootRef = useRef<HTMLDivElement>(null);
   const boxRef = useRef<HTMLDivElement>(null);
@@ -184,31 +192,57 @@ export const MembraneViewer: React.FC<MembraneViewerProps> = ({
     zoomAt(r.left + box.clientWidth / 2, r.top + box.clientHeight / 2, factor);
   };
 
+  const controls = (
+    <div className="flex items-center gap-0.5 bg-card border border-border rounded-md p-0.5">
+      <Button variant="ghost" size="sm" className="h-7 w-7 p-0" onClick={() => zoomCenter(1 / 1.25)} aria-label="Zoom out" title="Zoom out">
+        <ZoomOut className="h-4 w-4" />
+      </Button>
+      <button
+        type="button"
+        onClick={fit}
+        title="Fit to pane"
+        className="h-7 min-w-[3rem] px-1 rounded text-xs text-muted-foreground font-sans hover:bg-muted"
+        style={{ fontVariantNumeric: 'tabular-nums' }}
+      >
+        {Math.round(t.scale * 100)}%
+      </button>
+      <Button variant="ghost" size="sm" className="h-7 w-7 p-0" onClick={() => zoomCenter(1.25)} aria-label="Zoom in" title="Zoom in">
+        <ZoomIn className="h-4 w-4" />
+      </Button>
+      <Button variant="ghost" size="sm" className="h-7 w-7 p-0" onClick={fit} aria-label="Fit to pane" title="Fit to pane">
+        <Maximize2 className="h-4 w-4" />
+      </Button>
+    </div>
+  );
+
   return (
     // h-full + flex-col let a fixed-height flex parent (the review layout)
     // drive the viewer: the pan box takes the slack (pass heightClass
     // "flex-1 min-h-0") and the hint bar keeps its row. With auto-height
     // parents everything resolves to content height as before.
     <div ref={rootRef} className="relative h-full flex flex-col bg-muted border border-border rounded-lg overflow-hidden" style={{ overscrollBehavior: 'contain' }}>
-      {/* controls */}
-      <div className="absolute top-3 right-3 z-10 flex items-center gap-1 bg-card/95 border border-border rounded-md shadow-sm p-1">
-        <Button variant="ghost" size="sm" className="h-8 w-8 p-0" onClick={() => zoomCenter(1 / 1.25)} aria-label="Zoom out">
-          <ZoomOut className="h-4 w-4" />
-        </Button>
-        <span className="text-xs text-muted-foreground w-12 text-center font-sans" style={{ fontVariantNumeric: 'tabular-nums' }}>
-          {Math.round(t.scale * 100)}%
-        </span>
-        <Button variant="ghost" size="sm" className="h-8 w-8 p-0" onClick={() => zoomCenter(1.25)} aria-label="Zoom in">
-          <ZoomIn className="h-4 w-4" />
-        </Button>
-        <Button variant="ghost" size="sm" className="h-8 w-8 p-0" onClick={fit} aria-label="Fit to pane">
-          <Maximize2 className="h-4 w-4" />
-        </Button>
-      </div>
+      {title !== undefined ? (
+        <>
+          {/* header bar — mirrors the document pane's toolbar so both cards sit level */}
+          <div className="flex items-center justify-between gap-3 h-11 px-3 border-b border-border bg-card shrink-0">
+            <div className="min-w-0 truncate font-serif text-[15px] text-foreground" style={{ fontWeight: 580 }}>{title}</div>
+            {controls}
+          </div>
+          {subtitle !== undefined && (
+            <div className="h-8 px-3 flex items-center border-b border-border bg-card/70 text-[11px] text-muted-foreground font-sans shrink-0">
+              <div className="min-w-0 truncate w-full">{subtitle}</div>
+            </div>
+          )}
+        </>
+      ) : (
+        <div className="absolute top-3 right-3 z-10 shadow-sm">{controls}</div>
+      )}
 
       <div
         ref={boxRef}
-        className={cn('cursor-grab active:cursor-grabbing touch-none select-none', heightClass)}
+        // overflow-hidden: the transformed <img> is a stacking context and
+        // would otherwise paint over the hint bar below the pan box
+        className={cn('relative overflow-hidden cursor-grab active:cursor-grabbing touch-none select-none', heightClass)}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
@@ -226,8 +260,8 @@ export const MembraneViewer: React.FC<MembraneViewerProps> = ({
         />
       </div>
 
-      <div className="px-3 py-1.5 border-t border-border bg-card/60 text-[11px] text-muted-foreground font-sans shrink-0">
-        Pinch or ⌃-scroll to zoom · double-click to zoom in (⇧-double-click out) · drag to pan · ⤢ refits the leaf
+      <div className="h-8 px-3 flex items-center border-t border-border bg-card/70 text-[11px] text-muted-foreground font-sans shrink-0 truncate">
+        Pinch or ⌃-scroll to zoom · double-click zooms in (⇧ out) · drag to pan · ⤢ refits the leaf
       </div>
     </div>
   );
