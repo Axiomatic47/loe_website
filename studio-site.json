@@ -1,0 +1,53 @@
+{
+  "$comment": "Read by the OurStudio SITES preview mode (spec: agent_notes/studio-spec/20260914_sites_preview_mode_spec.md; contract agreed website-developer f28bb754 <-> studio-spec a62261ad, 2026-09-15). The Studio launches `dev` or `static` from this repo root and frames http://localhost:<port><ready_path> once it answers 200. Ports are pinned so the three sites never collide: jk 3100/3101, ink 3200/3201, loe 3300/3301. 2026-09-15 (website-developer 55339aa7): production is the Next App Router (netlify.toml builds `npm run build:next` via @netlify/plugin-nextjs since the 2026-07-21 cutover), so the preview launches Next, not the legacy Vite SPA — the review-mode books at /books exist only in the Next renderer.",
+  "name": "lawsofexistence.com",
+  "dev": {
+    "argv": [
+      "npx",
+      "next",
+      "dev",
+      "-p",
+      "3300"
+    ],
+    "port": 3300,
+    "ready_path": "/"
+  },
+  "static": {
+    "build_argv": [
+      "npx",
+      "next",
+      "build"
+    ],
+    "serve_argv": [
+      "npx",
+      "next",
+      "start",
+      "-p",
+      "3301"
+    ],
+    "port": 3301,
+    "ready_path": "/"
+  },
+  "env": {
+    "BROWSER": "none"
+  },
+  "notes": "Next 16 App Router served by `next start` (SSR host on Netlify; every route prerendered). `next.config.ts` sets allowedDevOrigins for 127.0.0.1 + localhost and forwards browser console errors to the terminal with file:line. The full production build is `npm run build:next` (it pulls Open Readings answers from Netlify Blobs first — network); `npx next build` is the offline equivalent for a preview. The legacy Vite SPA still builds (`npm run build`, `npx vite --port 3300`) but no longer deploys.",
+  "pages": {
+    "$comment": "OPTIONAL override for the Studio's device run (frontend-developer a168bcf6, 2026-09-15): the page list derives from /sitemap.xml (788 URLs, absolute production origin — rewrite the host to the running port); these are the routes that must not be audited: the owner console and its Netlify functions (inert locally, auth-only in production), the raw per-PDF viewer chrome (noindex), and the API routes. `heavy` = the pages that fetch a PDF and a citation manifest and render canvases (review mode, the archive leaves): the device run gives them its long settle.",
+    "exclude": [
+      "/admin/*",
+      "/api/*",
+      "/research/*/doc/*"
+    ],
+    "heavy": [
+      "/books/*",
+      "/research/*/leaf/*"
+    ],
+    "audit": {
+      "$comment": "the device audit skips transparent hit boxes on its own; the tinted ones (note markers, the active unit) are the same line-height boxes over the PDF's text by design",
+      "ignore_selectors": [
+        "button.pdf-hot"
+      ]
+    }
+  }
+}

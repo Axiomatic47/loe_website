@@ -27,6 +27,7 @@ import { compositionUrl, sectionUrl } from '@/utils/urls';
 import { SitePageLayout } from './_components/SitePageLayout';
 import { FeaturedWork } from './_components/FeaturedWork';
 import { readArchiveManifest } from './research/manifest-server';
+import { publishedBooks } from './books/review-server';
 
 // Title/description/OG come from the root layout defaults (they ARE the
 // site defaults); the home page only pins its canonical.
@@ -49,6 +50,8 @@ export default function Home() {
   // slug. Blurbs are editorial; titles/links derive. Missing slugs drop out.
   const lead = ARTICLE_LEAD;
   const leadComp = getComposition('manuscript', ARTICLE_LEAD.slug);
+  // the books published in review mode (import landed): a shelf between the archives and the featured works
+  const books = publishedBooks();
   const leadFeatured = leadComp
     ? leadComp.sections
         .filter(s => s.featured)
@@ -274,6 +277,9 @@ export default function Home() {
                         <img
                           src={thumbSrc}
                           alt={`${a.ref} — first leaf`}
+                          width={600}
+                          height={176}
+                          decoding="async"
                           loading="lazy"
                           className="w-full h-44 object-cover object-top group-hover:opacity-90 transition-opacity"
                         />
@@ -290,6 +296,43 @@ export default function Home() {
             })}
           </div>
         </section>
+
+        {/* ------------------------------------- 4b. Books in review mode */}
+        {books.length > 0 && (
+          <section className="max-w-4xl mx-auto mb-16">
+            <Reveal>
+              <Eyebrow>Books · review mode</Eyebrow>
+            </Reveal>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {books.map((b, i) => (
+                <Reveal key={b.slug} delay={i * 80}>
+                  <Link
+                    href={`/books/${b.slug}`}
+                    className="group bg-card border border-border rounded-lg p-5 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-200 flex flex-col h-full"
+                  >
+                    <div className="flex items-start gap-3">
+                      <BookOpen className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                      <div className="min-w-0">
+                        <h3
+                          className="font-serif text-foreground group-hover:text-primary transition-colors"
+                          style={{ fontSize: '1.125rem', fontWeight: 580, letterSpacing: '-0.014em', lineHeight: 1.3 }}
+                        >
+                          {b.title}
+                        </h3>
+                        <p className="text-xs text-muted-foreground mt-1 font-sans">{b.subtitle}</p>
+                      </div>
+                    </div>
+                    <p className="text-sm text-foreground/85 mt-3 font-sans flex-grow">{b.blurb}</p>
+                    <p className="text-sm text-primary mt-4 font-sans inline-flex items-center" style={{ fontWeight: 500 }}>
+                      Open in review mode — the book beside the pages it cites
+                      <ArrowRight className="ml-1.5 h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+                    </p>
+                  </Link>
+                </Reveal>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* ------------------------ 5. Featured works — full inline reading */}
         <section className="mb-8">

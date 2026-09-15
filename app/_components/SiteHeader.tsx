@@ -151,6 +151,7 @@ export function SiteHeader({ className }: { className?: string }) {
                         ))}
                         <MenuFooterLink href="/composition/manuscript" label="All research" />
                         <MenuFooterLink href="/research/open-readings" label="Open readings — disputed transcriptions for review" />
+                        <MenuFooterLink href="/books" label="Books in review mode — the text beside the pages it cites" />
                       </div>
                     </NavigationMenuContent>
                   </NavigationMenuItem>
