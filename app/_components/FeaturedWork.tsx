@@ -24,7 +24,7 @@ import {
 const HOME_COLLECTIONS: CollectionType[] = ['manuscript'];
 
 const COLLECTION_DISPLAY: Record<string, string> = {
-  manuscript: 'Research',
+  manuscript: 'Articles',
   data: 'Evidence',
   constitutional: 'Cases',
   timeline: 'Timeline',

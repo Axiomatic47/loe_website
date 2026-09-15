@@ -30,7 +30,7 @@ const COLLECTION_CONFIG: Record<
   }
 > = {
   manuscript: {
-    title: 'Research',
+    title: 'Articles',
     unit: 'Section',
     mediaLabel: 'Figures',
     contentMapping: {
