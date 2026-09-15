@@ -493,3 +493,21 @@ html.dark .bg-texture {
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
   opacity: 0.4;
 }
+
+/* ---------------------------------------------------------------------------
+   Review mode (/books/<slug>) — a book beside the pages it cites.
+   Tokens only: primary = terracotta in both modes, so a dark-mode check needs no
+   second palette. */
+/* a book's citation units link to the cited page (BookText `cite:`) */
+.cite-link { color: hsl(var(--primary)); text-decoration: none; border-bottom: 1px dotted hsl(var(--primary) / 0.7); transition: background-color 150ms; }
+.cite-link:hover { background-color: hsl(var(--primary) / 0.1); }
+.cite-link.cite-active { background-color: hsl(var(--primary) / 0.25); border-bottom-style: solid; border-bottom-color: hsl(var(--primary)); border-radius: 2px; }
+/* transparent hit boxes over the book PDF's citation lines (BookPdfViewer hotBoxes) */
+.pdf-hot { position: absolute; display: block; border-radius: 2px; background: transparent; padding: 0; border: 0; cursor: pointer; transition: background-color 150ms; }
+.pdf-hot:hover { background-color: hsl(var(--primary) / 0.2); }
+.pdf-hot-marker { background-color: hsl(var(--primary) / 0.1); }
+.pdf-hot.pdf-hot-active { background-color: hsl(var(--primary) / 0.3); box-shadow: 0 0 0 1px hsl(var(--primary) / 0.9); }
+/* cited pages inside a reading copy (BookPdfViewer markedPages / currentPage) */
+.pdf-page-cited { box-shadow: -4px 0 0 0 hsl(var(--primary) / 0.55), 0 1px 2px 0 rgb(0 0 0 / 0.05); }
+.pdf-page-current { box-shadow: -4px 0 0 0 hsl(var(--primary)), 0 0 0 1px hsl(var(--primary) / 0.6), 0 1px 2px 0 rgb(0 0 0 / 0.05); }
+.pdf-page-tag { position: absolute; top: 0; right: 0; z-index: 10; border-bottom-left-radius: 0.375rem; background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; padding: 2px 6px; pointer-events: none; font-weight: 600; font-family: Inter, system-ui, sans-serif; }

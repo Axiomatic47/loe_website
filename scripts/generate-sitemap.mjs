@@ -120,6 +120,27 @@ try {
 }
 console.log(`\nresearch: ${researchTotal} URL(s)`);
 
+// --- Books in review mode (/books, /books/<slug>, /books/<slug>/text) — read from the import's
+// manifests (content/review/<slug>.json, scripts/import-books.mjs); a slug without a manifest is not built.
+let booksTotal = 0;
+try {
+  const reviewDir = join(ROOT, 'content', 'review');
+  const slugs = readdirSync(reviewDir).filter((f) => f.endsWith('.json')).map((f) => f.slice(0, -5)).sort();
+  if (slugs.length) {
+    urls.push({ loc: `${ORIGIN}/books`, priority: '0.7', lastmod: lastmodForPath('content/review') });
+    booksTotal += 1;
+    for (const slug of slugs) {
+      const lastmod = lastmodForPath(`content/review/${slug}.json`);
+      urls.push({ loc: `${ORIGIN}/books/${slug}`, priority: '0.8', lastmod });
+      urls.push({ loc: `${ORIGIN}/books/${slug}/text`, priority: '0.6', lastmod });
+      booksTotal += 2;
+    }
+  }
+} catch {
+  /* no review dir — nothing to list */
+}
+console.log(`books: ${booksTotal} URL(s)`);
+
 // Open Readings (owner direction 2026-09-08): index, per-collection lists,
 // item pages, acknowledgements — from content/readings/<collection>.json.
 let readingsTotal = 0;

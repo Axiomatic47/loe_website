@@ -22,6 +22,18 @@ function loadRules(file: string): Array<{ source: string; destination: string }>
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  // The Studio's SITES preview opens the dev server by address; Next otherwise blocks its own
+  // dev resources cross-origin and the PDF viewer never receives its worker (dev only).
+  allowedDevOrigins: ['127.0.0.1', 'localhost'],
+  experimental: {
+    // forward browser console errors to the dev terminal WITH file:line, so the Studio's issue
+    // capture can route them to the website seat (studio-spec ask, 2026-09-15). Under
+    // `experimental` in Next 16.2 — `next build` rejects it at the top level — and it warns that
+    // the key "has moved to logging.browserToTerminal"; that successor is boolean | 'error' | 'warn'
+    // with NO source-location option (checked in the 16.2.10 schema), so the deprecated key stays
+    // until Next carries file:line elsewhere. The warning at build is expected.
+    browserDebugInfoInTerminal: { showSourceLocation: true },
+  },
   // Static corpus is served from public/ exactly as on the vite site;
   // next/image + Netlify image CDN adoption is Phase 4.
   images: { unoptimized: true },

@@ -60,6 +60,26 @@
     X-Robots-Tag = "noindex, nofollow"
     Cache-Control = "public, max-age=86400"
 
+# Review-mode files (the books and their cited pages) are addressed with
+# ?v=<sha12> by the app, so a re-render or re-cut is a new URL: the browser and
+# the CDN may keep a copy for a year. Netlify answers byte ranges on them (the
+# viewer range-loads linearized copies).
+[[headers]]
+  for = "/uploads/research/immunity-book/*"
+    [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/uploads/research/holy-seed/*"
+    [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# pdf.js decoders, CMaps and standard fonts (copied from pdfjs-dist; versioned with the package)
+[[headers]]
+  for = "/pdfjs/*"
+    [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
 # Development server configuration (Next dev; the vite server is still
 # available directly via `npm run dev` until the vite side is deleted)
 [dev]
