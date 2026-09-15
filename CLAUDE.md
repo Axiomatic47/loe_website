@@ -62,3 +62,22 @@ project registry as before.
   pages); pdf.js assets under `public/pdfjs/` are copied from `pdfjs-dist` — copy
   again on a version bump. State + numbers: midesk
   `.claude/agent_notes/website-developer/20260915_review_mode_on_lawsofexistence_both_books_55339aa7.md`.
+- **Review-mode UI (owner 2026-09-15, all landed):** the Review-mode badge is a switch to
+  READING MODE (book alone, no source pane; a citation click returns to review); the
+  badge + layout toggle sit over the left pane and the cited-pages strip over the source
+  pane on the panes' own column grid; zoom / Download / New tab live UNDER each viewer;
+  a filled well opens at fit-the-page when that keeps ≥ 72 % of the pane's width, else
+  fit-width. kirchner.ink mirrors every one of these — a change here is relayed to the
+  ink seat (f28bb754) as a spec, never edited across.
+- **Header (owner 2026-09-15):** Articles tab = the two books (The Subject's Unanswered
+  Plea first) then the academic compositions; Research tab = the archives first ("From
+  the archives"), then Open readings, Acknowledgements. The Abrahamic Faith
+  Reconciliation Thesis was removed the same day; its URLs redirect to `/composition/manuscript`.
+- **Research archives publish the TRANSCRIPTS ONLY (owner 2026-09-15, all three sites):**
+  `PUBLISHED_KINDS = {transcript}` in `src/lib/research-archive.ts`; line indexes, working
+  spans and working papers stay in the library; `scripts/sync-archives.mjs` skips them;
+  the per-PDF `/research/<id>/doc/` route is gone. HLS MS 149 has no transcripts yet, so
+  its folios are image-only until one lands.
+- **Device runs:** `studio-site.json` `pages.exclude` / `pages.heavy` / `pages.audit.ignore_selectors`
+  feed the Studio's device audit (midesk `docs/DEVICE_RUNS.md`); run it against a PRIVATE port
+  whose holder you have checked — 3999 is another seat's.
