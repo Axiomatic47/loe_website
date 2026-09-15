@@ -314,31 +314,16 @@ export function BookPdfViewer({ src, title, bytes, downloadSrc, downloadName, he
 
   return (
     <div className={cn('relative flex flex-col rounded-lg border border-border bg-card shadow-sm overflow-hidden font-sans', height === 'fill' && 'h-full')}>
-      {/* toolbar — the pane's controls left · zoom · Download · New tab */}
+      {/* header bar — the pane's own controls (citation stepper · text link); the document actions
+          sit UNDER the well (owner 2026-09-15) so the reading line starts higher */}
       <div className="flex items-center gap-2 px-3 bg-card border-b border-border h-11 shrink-0">
         {leading && <div className="flex-1 min-w-0 flex items-center">{leading}</div>}
-        <div className="inline-flex items-center rounded-md border border-border bg-muted shrink-0 ml-auto">
-          <button type="button" onClick={() => step(-1)} disabled={zoom === ZOOMS[0]} className={cn(ctl, 'rounded-l-md')} title="Zoom out" aria-label="Zoom out">
-            <ZoomOut className="h-4 w-4" />
-          </button>
-          <button type="button" onClick={() => setZoom(100)} className="h-7 min-w-[3rem] text-xs tabular-nums hover:bg-card" title="Fit to width">
-            {zoom}%
-          </button>
-          <button type="button" onClick={() => step(1)} disabled={zoom === ZOOMS[ZOOMS.length - 1]} className={cn(ctl, 'rounded-r-md')} title="Zoom in" aria-label="Zoom in">
-            <ZoomIn className="h-4 w-4" />
-          </button>
-        </div>
-        <a href={fileHref} download={downloadName} className={btn} title="Download the PDF" aria-label="Download the PDF">
-          <Download className="h-4 w-4" /> <span className="hidden xl:inline">Download</span>
-        </a>
-        <a href={fileHref} target="_blank" rel="noopener noreferrer" className={btn} title="Open in new tab" aria-label="Open in new tab">
-          <ExternalLink className="h-4 w-4" /> <span className="hidden xl:inline">New tab</span>
-        </a>
       </div>
       {/* sub-bar — the document's title */}
       <div className="h-8 px-3 flex items-center border-b border-border bg-card/70 text-xs lg:text-[11px] text-foreground/85 shrink-0" title={title}>
         <div className="min-w-0 truncate w-full" style={{ fontWeight: 550 }}>{title}</div>
       </div>
+
 
       {/* well */}
       {error ? (
@@ -385,12 +370,32 @@ export function BookPdfViewer({ src, title, bytes, downloadSrc, downloadName, he
         </div>
       )}
 
-      {/* hint bar */}
-      <div className="flex items-center gap-3 px-3 border-t border-border text-muted-foreground shrink-0 h-8 text-xs lg:text-[11px] bg-card/70">
-        <FileText className="h-3.5 w-3.5 text-primary" />
-        <span>PDF</span>
-        <span className="text-border">•</span>
-        <span>{pages.length ? `${pages.length} page${pages.length === 1 ? '' : 's'}` : 'Loading'}</span>
+      {/* footer bar — the document's record left · zoom · Download · New tab right (owner 2026-09-15:
+          the actions moved under the well; both panes share this component so their edges stay level) */}
+      <div className="flex items-center gap-2 px-3 border-t border-border bg-card/70 shrink-0 h-11">
+        <div className="flex items-center gap-3 text-muted-foreground text-xs lg:text-[11px] min-w-0 truncate">
+          <FileText className="h-3.5 w-3.5 text-primary shrink-0" />
+          <span>PDF</span>
+          <span className="text-border">•</span>
+          <span>{pages.length ? `${pages.length} page${pages.length === 1 ? '' : 's'}` : 'Loading'}</span>
+        </div>
+        <div className="inline-flex items-center rounded-md border border-border bg-muted shrink-0 ml-auto">
+          <button type="button" onClick={() => step(-1)} disabled={zoom === ZOOMS[0]} className={cn(ctl, 'rounded-l-md')} title="Zoom out" aria-label="Zoom out">
+            <ZoomOut className="h-4 w-4" />
+          </button>
+          <button type="button" onClick={() => setZoom(100)} className="h-7 min-w-[3rem] text-xs tabular-nums hover:bg-card" title="Fit to width">
+            {zoom}%
+          </button>
+          <button type="button" onClick={() => step(1)} disabled={zoom === ZOOMS[ZOOMS.length - 1]} className={cn(ctl, 'rounded-r-md')} title="Zoom in" aria-label="Zoom in">
+            <ZoomIn className="h-4 w-4" />
+          </button>
+        </div>
+        <a href={fileHref} download={downloadName} className={btn} title="Download the PDF" aria-label="Download the PDF">
+          <Download className="h-4 w-4" /> <span className="hidden xl:inline">Download</span>
+        </a>
+        <a href={fileHref} target="_blank" rel="noopener noreferrer" className={btn} title="Open in new tab" aria-label="Open in new tab">
+          <ExternalLink className="h-4 w-4" /> <span className="hidden xl:inline">New tab</span>
+        </a>
       </div>
     </div>
   );

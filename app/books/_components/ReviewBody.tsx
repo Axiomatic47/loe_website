@@ -86,6 +86,7 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
   const [dragging, setDragging] = useState(false);
   const [fillHeight, setFillHeight] = useState<number | null>(null);
   const rowRef = useRef<HTMLDivElement | null>(null);
+  const headRef = useRef<HTMLDivElement | null>(null);
   const belowRef = useRef<HTMLDivElement | null>(null);
   const bookRef = useRef<HTMLDivElement | null>(null);
   const sourceRef = useRef<HTMLDivElement | null>(null);
@@ -131,6 +132,14 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
     const t = setTimeout(measure, 0);
     window.addEventListener('resize', measure);
     return () => { clearTimeout(t); window.removeEventListener('resize', measure); };
+  }, [review, measure]);
+  // the header row carries the page strip in side-by-side: when it appears, changes or wraps, the
+  // panes' top edge moves and the fill height must follow
+  useEffect(() => {
+    if (!review || !headRef.current) return;
+    const ro = new ResizeObserver(() => measure());
+    ro.observe(headRef.current);
+    return () => ro.disconnect();
   }, [review, measure]);
 
   const onHandleDown = (e: React.PointerEvent<HTMLDivElement>) => { e.preventDefault(); (e.target as HTMLElement).setPointerCapture(e.pointerId); setDragging(true); };
@@ -260,7 +269,7 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
     if (!g || g.source !== src) { g = { source: src, title: (src && manifest.sources[src]?.title) || src || '', items: [] }; groups.push(g); }
     g.items.push({ i, label: p.label, file: p.file });
   });
-  const stripShell = 'shrink-0 mb-2 rounded-lg border border-border bg-card shadow-sm px-3 py-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 font-sans';
+  const stripShell = 'shrink-0 rounded-lg border border-border bg-card shadow-sm px-3 py-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 font-sans';
   const eyebrow = 'text-xs lg:text-[11px] uppercase tracking-[0.08em] text-muted-foreground';
   const pageStrip = active && active.pages.length > CHIP_MAX ? (
     <div className={stripShell}>
@@ -298,7 +307,7 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
 
   const sourcePane = (
     <div ref={sourceRef} className={cn('min-w-0 flex flex-col', review ? 'h-full min-h-0' : 'lg:sticky lg:top-20 z-10')}>
-      {pageStrip}
+      {!review && pageStrip && <div className="mb-2">{pageStrip}</div>}
       {paneSrc && page ? (
         <BookPdfViewer key={paneSrc} src={paneSrc} bytes={ctx?.bytes} title={ctx ? `${pageTitle} — reading copy, ${citedInCtx.length > 1 ? `${citedInCtx.length} cited pages marked` : 'the cited page marked'}` : pageTitle}
           downloadSrc={page.file ? v(page.file, page.sha256) : undefined} downloadName={(page.file ?? ctx?.file ?? '').split('/').pop()}
@@ -371,16 +380,22 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
   return (
     <SitePageLayout>
       <main className={cn('review-ui', review ? 'w-full max-w-none px-4 py-4' : 'container mx-auto px-4 py-6')}>
-        {/* header row — back link · review-mode badge · layout toggle */}
-        <div className="flex flex-wrap items-center justify-between gap-3 mb-3 font-sans">
-          <Link href="/books" className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors no-underline"><ArrowLeft className="h-4 w-4 mr-1.5" />Books</Link>
-          <div className="flex items-center gap-2">
+        {/* header row (owner 2026-09-15): back link · review-mode badge · layout toggle sit together
+            over the LEFT pane; in side-by-side the page strip takes the right half, over the source
+            pane, on the same column grid as the panes so the divider lines up */}
+        <div ref={headRef}
+          className={cn('mb-3 font-sans', review ? 'grid items-center' : 'flex flex-wrap items-center gap-3')}
+          style={review ? { gridTemplateColumns: `${split}% ${DIVIDER_PX}px minmax(0, 1fr)` } : undefined}>
+          <div className="flex flex-wrap items-center gap-2 min-w-0">
+            <Link href="/books" className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors no-underline mr-1"><ArrowLeft className="h-4 w-4 mr-1.5" />Books</Link>
             <span className="text-xs uppercase tracking-[0.06em] text-primary border border-primary/30 bg-primary/10 rounded-md px-2 py-0.5" style={{ fontWeight: 600 }}>Review mode</span>
             <span className="hidden lg:inline-flex items-center gap-0.5 bg-card border border-border rounded-md shadow-sm p-0.5">
               <button type="button" className={tog(layout === 'side')} onClick={() => changeLayout('side')} aria-pressed={layout === 'side'} title="Side by side — book beside the cited page" aria-label="Side-by-side layout"><Columns className="h-4 w-4" /></button>
               <button type="button" className={tog(layout === 'stacked')} onClick={() => changeLayout('stacked')} aria-pressed={layout === 'stacked'} title="Stacked — cited page above, book below" aria-label="Stacked layout"><Rows className="h-4 w-4" /></button>
             </span>
           </div>
+          {review && <div aria-hidden />}
+          {review && <div className="min-w-0">{pageStrip}</div>}
         </div>
 
         <div ref={rowRef}
