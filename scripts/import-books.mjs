@@ -27,7 +27,8 @@
 //      files maps lane sha → served sha;
 //      public/uploads/research/<id>/book.pdf (+ book_linked.pdf) — the render
 //      the overlay's boxes are bound to, linearized the same way;
-//   3. content/review/<slug>.json — the manifest: units in book order with
+//   3. content/review/<slug>.json (+ public/review/<slug>.<hash12>.json, the copy the
+//      browser fetches) — the manifest: units in book order with
 //      their pages, boxes, sources, rights and verified flags; a unit the lane
 //      could not cut, or could cut but must not publish, is carried with its
 //      status so the page shows the citation MARKED, never silently dropped.
@@ -308,6 +309,7 @@ function importOne(cfg) {
         ctxBytes += statSync(dst).size; ctxCopied.add(rel);
       } else if (!p.ctx.sha256) p.ctx.sha256 = sha256(src);
       p.ctx.served = ctxServed.get(rel) ?? null;
+      p.ctx.bytes = statSync(dst).size; // the served (linearized) size — the viewer fetches small files whole
       p.ctx.file = `/uploads/research/${cfg.id}/context/${rel.split('/').map(encodeURIComponent).join('/')}`;
     }
   }
@@ -386,11 +388,23 @@ function importOne(cfg) {
         // slim: this JSON travels to the reader's browser with the page
         id: u.id, note: u.note, seq: u.seq, source: u.source, status: u.status, rights: u.rights,
         pages: u.pages.map((p) => ({ label: p.label, file: p.file, verified: p.verified, sha256: p.sha256, source: p.source, rights: p.rights, ...(p.begins ? { begins: true } : {}),
-          ...(p.ctx?.file ? { context: { file: p.ctx.file, page: p.ctx.page, sha256: p.ctx.sha256, served: p.ctx.served } } : {}) })),
+          ...(p.ctx?.file ? { context: { file: p.ctx.file, page: p.ctx.page, sha256: p.ctx.sha256, served: p.ctx.served, bytes: p.ctx.bytes } } : {}) })),
         ...(boxes.has(u.id) ? { box: boxes.get(u.id) } : {}),
       };
     }),
   };
+  // The manifest is served to the browser as its own hashed, immutable JSON (public/review/<slug>.<hash>.json),
+  // fetched by the review page — never inlined in the page's HTML (inlined, the immunity book's 2.4 MB manifest
+  // rode in every page load). content/review/<slug>.json keeps the full manifest for the build (counts, static
+  // params) plus `publicUrl`/`publicBytes`. An older hash of the same slug is removed.
+  const body = JSON.stringify(manifest);
+  const hash = createHash('sha256').update(body).digest('hex').slice(0, 12);
+  const pubDir = join(ROOT, 'public', 'review');
+  mkdirSync(pubDir, { recursive: true });
+  for (const f of readdirSync(pubDir)) if (f.startsWith(`${cfg.slug}.`) && f.endsWith('.json') && f !== `${cfg.slug}.${hash}.json`) unlinkSync(join(pubDir, f));
+  writeFileSync(join(pubDir, `${cfg.slug}.${hash}.json`), body + '\n');
+  manifest.publicUrl = `/review/${cfg.slug}.${hash}.json`;
+  manifest.publicBytes = Buffer.byteLength(body);
   mkdirSync(join(ROOT, 'content', 'review'), { recursive: true });
   mkdirSync(join(ROOT, 'content', 'books'), { recursive: true });
   writeFileSync(join(ROOT, 'content', 'review', `${cfg.slug}.json`), JSON.stringify(manifest) + '\n');
@@ -403,6 +417,7 @@ function importOne(cfg) {
   if (pdf) console.log(`  book PDF: ${basename(pdf.file)} ${pdf.pages} pp. ${(pdf.bytes / 1e6).toFixed(1)} MB sha256 ${pdf.sha256.slice(0, 12)}… (${pdf.producer})${pdf.linked ? ' + linked copy' : ''}; boxes on ${counts.boxed} units, ${counts.unboxed.length} wrapped units without a box${counts.unboxed.length ? ': ' + counts.unboxed.join(', ') : ''}; ${markers.length} markers`);
   else console.log('  book PDF: none (no _WEB/overlay.json in the lane) — the review pane falls back to the rendered text');
   console.log(`  reading copies: ${ctxCopied.size} public-domain context documents (${(ctxBytes / 1e6).toFixed(1)} MB, linearized) — ${ctxNew} written, ${ctxKept} kept, ${ctxRemoved} removed; ${[...units.values()].reduce((n, u) => n + u.pages.filter((p) => p.ctx?.file).length, 0)} page links open in context`);
+  console.log(`  manifest: ${manifest.publicUrl} (${(manifest.publicBytes / 1e6).toFixed(2)} MB, fetched by the page)`);
   console.log(`  pages: ${copied.size} public-domain extracts (${(bytes / 1e6).toFixed(1)} MB) — ${copiedNew} copied, ${kept} kept, ${removed} removed; ${pageLinks} page links`);
   for (const w of warnings) console.log(`  ! ${w}`);
   console.log(`  ${((Date.now() - t0) / 1000).toFixed(1)}s`);

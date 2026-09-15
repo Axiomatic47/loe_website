@@ -34,6 +34,9 @@ export interface PdfFocus { page: number; y: number; nonce: number }
 interface Props {
   src: string;
   title: string;
+  /** the file's size when known: a file under RANGE_MIN_BYTES is fetched whole (one request beats a
+      dozen 0.3 s round trips), a larger one by 1 MB ranges */
+  bytes?: number;
   /** the file the Download / New-tab buttons serve when it differs from `src` (a copy with link annotations) */
   downloadSrc?: string;
   /** file name offered by the Download button */
@@ -56,7 +59,7 @@ interface Props {
   leading?: React.ReactNode;
 }
 
-const MAX_BACKING_WIDTH = 3000;
+const MAX_BACKING_WIDTH = 2400; // Safari's canvas-memory budget with two panes open
 type PdfjsModule = typeof import('pdfjs-dist');
 let workerSingleton: InstanceType<PdfjsModule['PDFWorker']> | null = null;
 function sharedWorker(pdfjs: PdfjsModule) {
@@ -64,10 +67,12 @@ function sharedWorker(pdfjs: PdfjsModule) {
   return workerSingleton;
 }
 const SETTLE_MS = 150;
+const RANGE_MIN_BYTES = 3 * 1024 * 1024;
+const RANGE_CHUNK = 1024 * 1024;
 const ZOOMS = [60, 75, 90, 100, 125, 150, 200];
 type PageMeta = { num: number; aspect: number; w: number; h: number };
 
-export function BookPdfViewer({ src, title, downloadSrc, downloadName, height = 'page', leading, hotBoxes, activeHot = null, onHot, focus = null, markedPages, currentPage = null, onPageInView }: Props) {
+export function BookPdfViewer({ src, title, bytes, downloadSrc, downloadName, height = 'page', leading, hotBoxes, activeHot = null, onHot, focus = null, markedPages, currentPage = null, onPageInView }: Props) {
   const marked = React.useMemo(() => new Set(markedPages ?? []), [markedPages]);
   const fileHref = downloadSrc ?? src;
   // hit boxes by page, positioned as percentages of the page box so they ride every zoom
@@ -88,6 +93,7 @@ export function BookPdfViewer({ src, title, downloadSrc, downloadName, height = 
   const visible = useRef(new Set<number>());
   const pending = useRef(new Map<number, Promise<void>>());
   const wanted = useRef(new Map<number, number>()); // page → the css width last asked for
+  const restarts = useRef(new Map<number, number>()); // page → chains restarted by the tail without a draw landing
 
   // page CSS width = pane width × zoom (100% = fit to width)
   const pageWidth = Math.max(0, Math.floor((paneWidth - 24) * (zoom / 100)));
@@ -98,7 +104,7 @@ export function BookPdfViewer({ src, title, downloadSrc, downloadName, height = 
   useEffect(() => {
     let cancelled = false;
     let loadingTask: { destroy(): Promise<void> } | null = null;
-    const taskMap = tasks.current, widthMap = renderedWidth.current, visibleSet = visible.current, pendingMap = pending.current, wantedMap = wanted.current;
+    const taskMap = tasks.current, widthMap = renderedWidth.current, visibleSet = visible.current, pendingMap = pending.current, wantedMap = wanted.current, restartMap = restarts.current;
     (async () => {
       // reset inside the async tick (no synchronous setState in an effect body)
       await Promise.resolve();
@@ -110,7 +116,11 @@ export function BookPdfViewer({ src, title, downloadSrc, downloadName, height = 
         pdfjs.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
         const task = pdfjs.getDocument({
           url: src, standardFontDataUrl: '/pdfjs/standard_fonts/', wasmUrl: '/pdfjs/wasm/', cMapUrl: '/pdfjs/cmaps/', cMapPacked: true,
-          disableAutoFetch: true, disableStream: true, rangeChunkSize: 256 * 1024,
+          // measured on the live CDN 2026-09-15 (kirchner.ink): ~0.3 s per range round trip, ~2.4 MB/s in
+          // one stream — so a file under 3 MB is fastest whole, and a big one in 1 MB chunks
+          ...(bytes !== undefined && bytes < RANGE_MIN_BYTES
+            ? { disableRange: true, disableStream: false, disableAutoFetch: false }
+            : { disableAutoFetch: true, disableStream: true, rangeChunkSize: RANGE_CHUNK }),
           worker: sharedWorker(pdfjs),
         });
         loadingTask = task;
@@ -132,11 +142,11 @@ export function BookPdfViewer({ src, title, downloadSrc, downloadName, height = 
     return () => {
       cancelled = true;
       taskMap.forEach((t) => t.cancel());
-      taskMap.clear(); widthMap.clear(); visibleSet.clear(); pendingMap.clear(); wantedMap.clear();
+      taskMap.clear(); widthMap.clear(); visibleSet.clear(); pendingMap.clear(); wantedMap.clear(); restartMap.clear();
       docRef.current = null;
       void loadingTask?.destroy();
     };
-  }, [src]);
+  }, [src, bytes]);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -154,17 +164,26 @@ export function BookPdfViewer({ src, title, downloadSrc, downloadName, height = 
   const renderPage = useCallback((num: number, cssWidth: number) => {
     const doc = docRef.current, canvas = canvasRefs.current.get(num);
     if (!doc || !canvas || cssWidth <= 0) return;
-    if (renderedWidth.current.get(num) === cssWidth && !tasks.current.has(num)) return;
+    if (renderedWidth.current.get(num) === cssWidth && canvas.width > 0 && !tasks.current.has(num)) return;
+    // A chain already drawing THIS width is left alone. Cancelling it was the owner's "the page you are
+    // viewing gets stuck until you scroll up and down" (2026-09-15): the IntersectionObserver is rebuilt
+    // whenever a page's true size corrects the layout, and a rebuilt observer reports every visible page
+    // again at the same width — the cancel then landed on a half-drawn canvas that nothing redrew until
+    // the page left the viewport and came back. Only a NEW width interrupts a draw in flight.
+    if (pending.current.has(num)) {
+      if (wanted.current.get(num) !== cssWidth) { wanted.current.set(num, cssWidth); tasks.current.get(num)?.cancel(); }
+      return; // the chain below re-reads `wanted`
+    }
     wanted.current.set(num, cssWidth);
-    if (pending.current.has(num)) { tasks.current.get(num)?.cancel(); return; } // the chain below re-reads `wanted`
     const run = (async () => {
-      let attempt = 0;
-      // loop while a newer width was requested during the render
+      let attempt = 0, blankRedraws = 0;
+      // loop while a newer width was requested during the render, or a draw was cancelled before it landed
       for (;;) {
         const width = wanted.current.get(num);
         const cv = canvasRefs.current.get(num);
         if (!docRef.current || !cv || !width) return;
-        if (renderedWidth.current.get(num) === width) return;
+        // a page marked rendered whose canvas is empty was cleared while it was off-screen: draw again
+        if (renderedWidth.current.get(num) === width && cv.width > 0) return;
         try {
           const page = await docRef.current.getPage(num);
           const base = page.getViewport({ scale: 1 });
@@ -182,19 +201,41 @@ export function BookPdfViewer({ src, title, downloadSrc, downloadName, height = 
           if (!ctx) return;
           const task = page.render({ canvas: cv, canvasContext: ctx, viewport: vp, transform: dpr !== 1 ? [dpr, 0, 0, dpr, 0, 0] : undefined });
           tasks.current.set(num, task);
-          try { await task.promise; renderedWidth.current.set(num, width); }
+          let landed = false;
+          try {
+            await task.promise;
+            // the page may have scrolled out (canvas cleared) while this drew — never mark a blank canvas
+            // as rendered, or it would stay blank when it scrolls back ("some pages give up", 2026-09-15)
+            if (visible.current.has(num) && cv.width > 0) { renderedWidth.current.set(num, width); landed = true; restarts.current.delete(num); }
+            else { renderedWidth.current.delete(num); if (!visible.current.has(num)) { cv.width = 0; cv.height = 0; } }
+          }
           catch (e) { if (!(e instanceof Error && e.name === 'RenderingCancelledException')) throw e; }
           finally { tasks.current.delete(num); }
+          if (!visible.current.has(num)) return; // scrolled away: the exit handler cleared the canvas; re-entry redraws
+          if (landed && wanted.current.get(num) === width) return; // drawn at the width still wanted
+          // cancelled before it landed (or a newer width arrived): draw again — a sized canvas with a
+          // half-finished draw on it is NOT a rendered page
         } catch (e) {
           if (++attempt > 1) { console.error('BookPdfViewer: page render failed', num, e); return; }
           await new Promise((r) => setTimeout(r, 120)); // let a colliding render settle, then try once more
           continue;
         }
-        if (wanted.current.get(num) === width) return; // nothing newer asked for
+        if (++blankRedraws > 4) return; // never spin on a canvas something keeps clearing
       }
     })();
     pending.current.set(num, run);
-    void run.finally(() => { if (pending.current.get(num) === run) pending.current.delete(num); });
+    void run.finally(() => {
+      if (pending.current.get(num) !== run) return;
+      pending.current.delete(num);
+      // the tail: a chain that ended while the page is on screen and not drawn at the wanted width
+      // (a re-entry that raced the chain's exit) starts one more, bounded so a failing page cannot spin
+      const w = wanted.current.get(num);
+      if (w && visible.current.has(num) && (renderedWidth.current.get(num) !== w || (canvasRefs.current.get(num)?.width ?? 0) === 0)) {
+        const n = (restarts.current.get(num) ?? 0) + 1;
+        restarts.current.set(num, n);
+        if (n <= 3) renderPage(num, w);
+      }
+    });
   }, []);
 
   useEffect(() => {
@@ -209,10 +250,14 @@ export function BookPdfViewer({ src, title, downloadSrc, downloadName, height = 
           void renderPage(num, pageWidth);
         } else {
           visible.current.delete(num);
+          tasks.current.get(num)?.cancel(); // a draw still in flight must not land on the cleared canvas
+          restarts.current.delete(num);
           if (canvas) { canvas.width = 0; canvas.height = 0; renderedWidth.current.delete(num); }
         }
       }
-    }, { root: rootEl, rootMargin: '100% 0px' });
+      // one screen of margin either side: enough to have the next page ready, few enough live
+      // canvases to stay inside Safari's canvas-memory budget with two panes open
+    }, { root: rootEl, rootMargin: '60% 0px' });
     canvasRefs.current.forEach((c) => io.observe(c.parentElement as Element));
     return () => io.disconnect();
   }, [pages, renderPage, pageWidth]);

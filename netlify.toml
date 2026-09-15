@@ -74,6 +74,12 @@
     [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# the citation manifests the review page fetches — hash-named, so immutable
+[[headers]]
+  for = "/review/*"
+    [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
 # pdf.js decoders, CMaps and standard fonts (copied from pdfjs-dist; versioned with the package)
 [[headers]]
   for = "/pdfjs/*"

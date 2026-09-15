@@ -5,9 +5,9 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { bookBySlug } from '@/data/books';
-import { publishedUnits } from '@/lib/review';
+import { reviewMeta } from '@/lib/review';
 import { publishedBooks, readBookText, readReview } from '../review-server';
-import { ReviewBody } from '../_components/ReviewBody';
+import { ReviewLoader } from '../_components/ReviewLoader';
 import { BookText } from '../_components/BookText';
 
 export const dynamicParams = false;
@@ -34,12 +34,13 @@ export default async function BookReviewPage({ params }: Params) {
   const manifest = b ? readReview(slug) : null;
   const text = b ? readBookText(slug) : null;
   if (!b || !manifest || !text) notFound();
-  // the book pane is the book's PDF whenever the lane has emitted the overlay; the rendered text
-  // is the fallback pane only, so it travels to the browser only when it will be shown (the
-  // immunity book's text is 880 KB — as RSC payload it tripled the page)
+  // The page ships only `reviewMeta` inline (counts + the PDF record): the 2.4 MB citation manifest is
+  // fetched by ReviewLoader from its hashed static JSON, and the rendered text travels only when there
+  // is no PDF pane to show instead (the immunity book's text is 880 KB — as RSC payload it tripled
+  // the page; kirchner.ink measured a 4.2 MB page as the owner's "loads very slowly", 2026-09-15).
   return (
-    <ReviewBody book={{ slug: b.slug, title: b.title, subtitle: b.subtitle, venue: b.venue }} manifest={manifest} published={publishedUnits(manifest).length}>
-      {manifest.pdf ? null : <BookText bare citeBase="">{text}</BookText>}
-    </ReviewBody>
+    <ReviewLoader book={{ slug: b.slug, title: b.title, subtitle: b.subtitle, venue: b.venue }} meta={reviewMeta(manifest)}>
+      {manifest.pdf ? undefined : <BookText bare citeBase="">{text}</BookText>}
+    </ReviewLoader>
   );
 }
