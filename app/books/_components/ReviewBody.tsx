@@ -33,11 +33,12 @@ const FIXED_FOOTER_PX = 64;
 const BOTTOM_PAD_PX = 4; // the panes run to the record line (owner 2026-09-15: "a little longer")
 // the book's rendered page (US Letter, 612 x 792 pt) and the viewer's chrome around its well:
 // h-11 header bar + h-8 title bar + h-11 footer bar + the well's 24 px padding + 2 px border.
-// The panes are at least as tall as one whole book page at fit width (owner 2026-09-15: "make the
-// actual view panes longer ... see a full page if you have the display size") — a tall display shows
-// the page whole; a short one scrolls the page down to its foot.
+// The panes reach HALF-WAY from the viewport fill to one whole book page at fit width (owner
+// 2026-09-15: "make the actual view panes longer", then "now it's too long, make it about half that
+// increase") — a tall display shows the page whole; a short one runs a little past the fold.
 const BOOK_PAGE_ASPECT = 792 / 612;
 const VIEWER_CHROME_PX = 44 + 32 + 44 + 24 + 2;
+const PAGE_REACH = 0.5;
 // a whole case can run to 160 pages (owner rule: a case cited by its first page is served whole):
 // past CHIP_MAX the page strip becomes a scrubber — first page · slider · last page · the page in hand
 const CHIP_MAX = 14;
@@ -147,7 +148,7 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
     // the book pane's width: its share of the row in side-by-side, the whole (max-w-5xl) row in reading
     const bookPane = review ? (el.clientWidth * split) / 100 : el.clientWidth;
     const wholePage = Math.round((bookPane - 24) * BOOK_PAGE_ASPECT) + VIEWER_CHROME_PX;
-    setFillHeight(Math.max(480, viewport, wholePage));
+    setFillHeight(Math.max(480, viewport + Math.max(0, wholePage - viewport) * PAGE_REACH));
   }, [review, split]);
   useEffect(() => {
     if (!fills) return;
