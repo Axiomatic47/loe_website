@@ -42,6 +42,12 @@
     "heavy": [
       "/books/*",
       "/research/*/leaf/*"
-    ]
+    ],
+    "audit": {
+      "$comment": "the device audit skips transparent hit boxes on its own; the tinted ones (note markers, the active unit) are the same line-height boxes over the PDF's text by design",
+      "ignore_selectors": [
+        "button.pdf-hot"
+      ]
+    }
   }
 }

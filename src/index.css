@@ -510,7 +510,7 @@ html.dark .bg-texture {
 /* cited pages inside a reading copy (BookPdfViewer markedPages / currentPage) */
 .pdf-page-cited { box-shadow: -4px 0 0 0 hsl(var(--primary) / 0.55), 0 1px 2px 0 rgb(0 0 0 / 0.05); }
 .pdf-page-current { box-shadow: -4px 0 0 0 hsl(var(--primary)), 0 0 0 1px hsl(var(--primary) / 0.6), 0 1px 2px 0 rgb(0 0 0 / 0.05); }
-.pdf-page-tag { position: absolute; top: 0; right: 0; z-index: 10; border-bottom-left-radius: 0.375rem; background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; padding: 2px 6px; pointer-events: none; font-weight: 600; font-family: Inter, system-ui, sans-serif; }
+.pdf-page-tag { position: absolute; top: 0; right: 0; z-index: 10; border-bottom-left-radius: 0.375rem; background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; padding: 2px 6px; pointer-events: none; /* 12 px: the device audit's legibility floor (was 10) */ font-weight: 600; font-family: Inter, system-ui, sans-serif; }
 
 /* Touch devices and small screens (the Studio's device run, 2026-09-15): every review-mode control
    grows to the 44 px target without changing the large-screen pointer design — the transparent
