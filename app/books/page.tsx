@@ -27,7 +27,7 @@ export default function BooksPage() {
   const books = publishedBooks();
   return (
     <SitePageLayout>
-      <main className="container mx-auto px-4 py-12">
+      <main className="review-ui container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
           <Reveal>
             <Eyebrow>Books · review mode</Eyebrow>
