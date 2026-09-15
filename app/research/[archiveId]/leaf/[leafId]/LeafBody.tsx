@@ -22,6 +22,7 @@ import {
   type ArchiveManifest,
   archiveBase,
   imagesPublished,
+  publishedDocs,
 } from "@/lib/research-archive";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, Columns, Download, ExternalLink, FileText, Rows } from "lucide-react";
@@ -54,7 +55,7 @@ export const LeafBody = ({ archiveId, refLabel, leafLabel, manifest, leaf, prev,
   const tabs = useMemo(() => {
     const t: Array<{ key: string; label: string; doc: ArchiveDoc }> = [];
     const seen = new Set<string>();
-    for (const d of leaf.docs) {
+    for (const d of publishedDocs(leaf)) {
       if (seen.has(d.pdf)) continue;
       seen.add(d.pdf);
       t.push({
@@ -269,7 +270,7 @@ export const LeafBody = ({ archiveId, refLabel, leafLabel, manifest, leaf, prev,
           <div className={cn("min-w-0", review && "h-full min-h-0 flex flex-col")}>
             {tabs.length === 0 || !pdfUrl || !activeTab ? (
               <div className="bg-card border border-border rounded-lg shadow-sm p-8 text-sm font-sans text-muted-foreground">
-                No line index or transcription PDF has been published for this leaf yet.
+                The transcript of this leaf is not yet published — the image stands alone until it is.
               </div>
             ) : (
               <div className={cn("bg-card border border-border rounded-lg shadow-sm overflow-hidden flex flex-col", review && "h-full min-h-0")}>
