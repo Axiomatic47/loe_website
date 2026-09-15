@@ -30,7 +30,7 @@ const SPLIT_MIN = 30, SPLIT_MAX = 70;
 const DIVIDER_PX = 14;
 // SitePageLayout's fixed footer (pb-16) + the slack under the below-panes row
 const FIXED_FOOTER_PX = 64;
-const BOTTOM_PAD_PX = 16;
+const BOTTOM_PAD_PX = 4; // the panes run to the record line (owner 2026-09-15: "a little longer")
 // a whole case can run to 160 pages (owner rule: a case cited by its first page is served whole):
 // past CHIP_MAX the page strip becomes a scrubber — first page · slider · last page · the page in hand
 const CHIP_MAX = 14;
@@ -135,7 +135,7 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
   const measure = useCallback(() => {
     const el = rowRef.current;
     if (!el) return;
-    const below = belowRef.current ? belowRef.current.offsetHeight + 12 : 48;
+    const below = belowRef.current ? belowRef.current.offsetHeight + 8 : 44;
     setFillHeight(Math.max(480, window.innerHeight - el.getBoundingClientRect().top - below - FIXED_FOOTER_PX - BOTTOM_PAD_PX));
   }, []);
   useEffect(() => {

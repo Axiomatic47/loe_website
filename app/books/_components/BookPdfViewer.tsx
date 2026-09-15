@@ -70,6 +70,7 @@ const SETTLE_MS = 150;
 const RANGE_MIN_BYTES = 3 * 1024 * 1024;
 const RANGE_CHUNK = 1024 * 1024;
 const ZOOMS = [60, 75, 90, 100, 125, 150, 200];
+const FIT_PAGE_MIN = 72; // fit-page is the default only while the page keeps ≥ 72 % of the pane's width
 type PageMeta = { num: number; aspect: number; w: number; h: number };
 
 export function BookPdfViewer({ src, title, bytes, downloadSrc, downloadName, height = 'page', leading, hotBoxes, activeHot = null, onHot, focus = null, markedPages, currentPage = null, onPageInView }: Props) {
@@ -85,7 +86,12 @@ export function BookPdfViewer({ src, title, bytes, downloadSrc, downloadName, he
   const [pages, setPages] = useState<PageMeta[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [paneWidth, setPaneWidth] = useState(0);
-  const [zoom, setZoom] = useState(100);
+  const [paneHeight, setPaneHeight] = useState(0);
+  // ZOOM (owner 2026-09-15: "see a full page if you have the display size"): until the reader
+  // chooses, a filled well opens at FIT-PAGE — the whole first page visible — when that keeps the
+  // page at least FIT_PAGE_MIN of the pane's width (a tall display); otherwise at fit-width (100 %).
+  // The % label toggles between the two; the − / + steps walk the fixed ladder from wherever it is.
+  const [zoomChoice, setZoomChoice] = useState<number | 'auto'>('auto');
   const docRef = useRef<PDFDocumentProxy | null>(null);
   const canvasRefs = useRef(new Map<number, HTMLCanvasElement>());
   const renderedWidth = useRef(new Map<number, number>());
@@ -96,6 +102,10 @@ export function BookPdfViewer({ src, title, bytes, downloadSrc, downloadName, he
   const restarts = useRef(new Map<number, number>()); // page → chains restarted by the tail without a draw landing
 
   // page CSS width = pane width × zoom (100% = fit to width)
+  const aspect = pages[0]?.aspect ?? 0;
+  // the zoom at which the first page stands whole in the well (its height less the 24 px of padding)
+  const fitPageZoom = height === 'fill' && aspect && paneWidth > 24 && paneHeight > 24 ? Math.floor(((paneHeight - 24) / aspect) / (paneWidth - 24) * 100) : 100;
+  const zoom = zoomChoice === 'auto' ? (fitPageZoom >= FIT_PAGE_MIN && fitPageZoom < 100 ? fitPageZoom : 100) : zoomChoice;
   const pageWidth = Math.max(0, Math.floor((paneWidth - 24) * (zoom / 100)));
   // the well is exactly one page tall at fit width so the page footer stays in
   // reach; the document scrolls inside the well
@@ -154,10 +164,11 @@ export function BookPdfViewer({ src, title, bytes, downloadSrc, downloadName, he
     let settle: ReturnType<typeof setTimeout>;
     const ro = new ResizeObserver(() => {
       clearTimeout(settle);
-      settle = setTimeout(() => setPaneWidth(el.clientWidth), SETTLE_MS);
+      settle = setTimeout(() => { setPaneWidth(el.clientWidth); setPaneHeight(el.clientHeight); }, SETTLE_MS);
     });
     ro.observe(el);
     setPaneWidth(el.clientWidth);
+    setPaneHeight(el.clientHeight);
     return () => { clearTimeout(settle); ro.disconnect(); };
   }, []);
 
@@ -303,9 +314,13 @@ export function BookPdfViewer({ src, title, bytes, downloadSrc, downloadName, he
   }, [focus, pages]);
 
   const step = (dir: 1 | -1) => {
-    const i = ZOOMS.indexOf(zoom);
-    setZoom(ZOOMS[Math.min(ZOOMS.length - 1, Math.max(0, i + dir))]);
+    // from a fit-page zoom that is not on the ladder, step to the nearest rung in that direction
+    const next = dir > 0 ? ZOOMS.find((z) => z > zoom) : [...ZOOMS].reverse().find((z) => z < zoom);
+    if (next !== undefined) setZoomChoice(next);
   };
+  const fitPageAvailable = height === 'fill' && fitPageZoom > 0 && fitPageZoom < 100;
+  // the % label: fit-width when zoomed elsewhere; from fit-width, fit-page when the well allows it
+  const toggleFit = () => setZoomChoice(zoom !== 100 ? 100 : fitPageAvailable ? fitPageZoom : 100);
 
   const ctl = 'h-7 w-7 inline-flex items-center justify-center hover:bg-card disabled:opacity-40';
   const btn = 'inline-flex items-center gap-1.5 rounded-md text-sm border border-border bg-card text-foreground hover:bg-muted transition-colors disabled:opacity-40 no-underline shrink-0 h-8 px-2.5';
@@ -380,13 +395,13 @@ export function BookPdfViewer({ src, title, bytes, downloadSrc, downloadName, he
           <span>{pages.length ? `${pages.length} page${pages.length === 1 ? '' : 's'}` : 'Loading'}</span>
         </div>
         <div className="inline-flex items-center rounded-md border border-border bg-muted shrink-0 ml-auto">
-          <button type="button" onClick={() => step(-1)} disabled={zoom === ZOOMS[0]} className={cn(ctl, 'rounded-l-md')} title="Zoom out" aria-label="Zoom out">
+          <button type="button" onClick={() => step(-1)} disabled={zoom <= ZOOMS[0]} className={cn(ctl, 'rounded-l-md')} title="Zoom out" aria-label="Zoom out">
             <ZoomOut className="h-4 w-4" />
           </button>
-          <button type="button" onClick={() => setZoom(100)} className="h-7 min-w-[3rem] text-xs tabular-nums hover:bg-card" title="Fit to width">
+          <button type="button" onClick={toggleFit} className="h-7 min-w-[3rem] text-xs tabular-nums hover:bg-card" title={zoom !== 100 ? 'Fit to width' : fitPageAvailable ? 'Fit the page — the whole page in view' : 'Fit to width'}>
             {zoom}%
           </button>
-          <button type="button" onClick={() => step(1)} disabled={zoom === ZOOMS[ZOOMS.length - 1]} className={cn(ctl, 'rounded-r-md')} title="Zoom in" aria-label="Zoom in">
+          <button type="button" onClick={() => step(1)} disabled={zoom >= ZOOMS[ZOOMS.length - 1]} className={cn(ctl, 'rounded-r-md')} title="Zoom in" aria-label="Zoom in">
             <ZoomIn className="h-4 w-4" />
           </button>
         </div>
