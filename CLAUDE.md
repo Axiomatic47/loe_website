@@ -65,10 +65,11 @@ project registry as before.
 - **Review-mode UI (owner 2026-09-15, all landed):** the Review-mode badge is a switch to
   READING MODE (book alone, no source pane; a citation click returns to review); the
   badge + layout toggle sit over the left pane and the cited-pages strip over the source
-  pane on the panes' own column grid; zoom / Download / New tab live UNDER each viewer;
-  a filled well opens at fit-the-page when that keeps ≥ 72 % of the pane's width, else
-  fit-width. kirchner.ink mirrors every one of these — a change here is relayed to the
-  ink seat (f28bb754) as a spec, never edited across.
+  pane on the panes' own column grid; zoom / Download / New tab live UNDER each viewer.
+  PANE HEIGHT is the viewport fill as first landed (460fdac): the owner tried a fit-page
+  zoom, a whole-page reach and a half reach the same day and had all three undone —
+  do not re-propose. kirchner.ink mirrors every one of these — a change here is relayed
+  to the ink seat (f28bb754) as a spec, never edited across.
 - **Header (owner 2026-09-15):** Articles tab = the two books (The Subject's Unanswered
   Plea first) then the academic compositions; Research tab = the archives first ("From
   the archives"), then Open readings, Acknowledgements. The Abrahamic Faith
