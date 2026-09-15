@@ -336,7 +336,7 @@ export function BookPdfViewer({ src, title, bytes, downloadSrc, downloadName, he
         </a>
       </div>
       {/* sub-bar — the document's title */}
-      <div className="h-8 px-3 flex items-center border-b border-border bg-card/70 text-[11px] text-foreground/85 shrink-0" title={title}>
+      <div className="h-8 px-3 flex items-center border-b border-border bg-card/70 text-xs lg:text-[11px] text-foreground/85 shrink-0" title={title}>
         <div className="min-w-0 truncate w-full" style={{ fontWeight: 550 }}>{title}</div>
       </div>
 
@@ -386,7 +386,7 @@ export function BookPdfViewer({ src, title, bytes, downloadSrc, downloadName, he
       )}
 
       {/* hint bar */}
-      <div className="flex items-center gap-3 px-3 border-t border-border text-muted-foreground shrink-0 h-8 text-[11px] bg-card/70">
+      <div className="flex items-center gap-3 px-3 border-t border-border text-muted-foreground shrink-0 h-8 text-xs lg:text-[11px] bg-card/70">
         <FileText className="h-3.5 w-3.5 text-primary" />
         <span>PDF</span>
         <span className="text-border">•</span>

@@ -277,6 +277,9 @@ export default function Home() {
                         <img
                           src={thumbSrc}
                           alt={`${a.ref} — first leaf`}
+                          width={600}
+                          height={176}
+                          decoding="async"
                           loading="lazy"
                           className="w-full h-44 object-cover object-top group-hover:opacity-90 transition-opacity"
                         />

@@ -261,7 +261,7 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
     g.items.push({ i, label: p.label, file: p.file });
   });
   const stripShell = 'shrink-0 mb-2 rounded-lg border border-border bg-card shadow-sm px-3 py-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 font-sans';
-  const eyebrow = 'text-[11px] uppercase tracking-[0.08em] text-muted-foreground';
+  const eyebrow = 'text-xs lg:text-[11px] uppercase tracking-[0.08em] text-muted-foreground';
   const pageStrip = active && active.pages.length > CHIP_MAX ? (
     <div className={stripShell}>
       <span className={eyebrow} style={{ fontWeight: 600 }}>{active.pages.length} pages · {active.pages.some((p) => p.begins) ? 'the whole case' : 'the cited range'}</span>
@@ -370,7 +370,7 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
 
   return (
     <SitePageLayout>
-      <main className={cn(review ? 'w-full max-w-none px-4 py-4' : 'container mx-auto px-4 py-6')}>
+      <main className={cn('review-ui', review ? 'w-full max-w-none px-4 py-4' : 'container mx-auto px-4 py-6')}>
         {/* header row — back link · review-mode badge · layout toggle */}
         <div className="flex flex-wrap items-center justify-between gap-3 mb-3 font-sans">
           <Link href="/books" className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors no-underline"><ArrowLeft className="h-4 w-4 mr-1.5" />Books</Link>
@@ -398,7 +398,7 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
         </div>
 
         {/* below the panes — the cited page's record (left) · the book's record (right) */}
-        <div ref={belowRef} className={cn('mt-3 flex flex-wrap items-start justify-between gap-x-6 gap-y-2 text-[11px] text-muted-foreground leading-relaxed font-sans', layout !== 'side' && 'max-w-5xl mx-auto')}>
+        <div ref={belowRef} className={cn('mt-3 flex flex-wrap items-start justify-between gap-x-6 gap-y-2 text-xs lg:text-[11px] text-muted-foreground leading-relaxed font-sans', layout !== 'side' && 'max-w-5xl mx-auto')}>
           <div className="min-w-0 space-y-0.5">
             {page ? (
               <>
