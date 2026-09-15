@@ -1,0 +1,36 @@
+{
+  "$comment": "Read by the OurStudio SITES preview mode (spec: agent_notes/studio-spec/20260914_sites_preview_mode_spec.md; contract agreed website-developer f28bb754 <-> studio-spec a62261ad, 2026-09-15). The Studio launches `dev` or `static` from this repo root and frames http://localhost:<port><ready_path> once it answers 200. Ports are pinned so the three sites never collide: jk 3100/3101, ink 3200/3201, loe 3300/3301.",
+  "name": "lawsofexistence.com",
+  "dev": {
+    "argv": [
+      "npx",
+      "vite",
+      "--port",
+      "3300",
+      "--strictPort"
+    ],
+    "port": 3300,
+    "ready_path": "/"
+  },
+  "static": {
+    "build_argv": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "serve_argv": [
+      "npx",
+      "vite",
+      "preview",
+      "--port",
+      "3301",
+      "--strictPort"
+    ],
+    "port": 3301,
+    "ready_path": "/"
+  },
+  "env": {
+    "BROWSER": "none"
+  },
+  "notes": "Vite + React SPA; `.env.production` is build-time only, dev needs no env. vite.config.ts adds Content-Type/Cache-Control/CORS headers for the served PDFs, no X-Frame-Options; no base path. The Netlify functions (forms, admin) are inert locally."
+}
