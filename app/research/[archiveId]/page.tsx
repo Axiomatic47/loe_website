@@ -17,7 +17,7 @@ import {
   leafStatus,
   CONVENTIONS,
 } from '@/lib/research-archive';
-import { ArrowRight, FileText, ScrollText } from 'lucide-react';
+import { FileText } from 'lucide-react';
 import { SitePageLayout } from '../../_components/SitePageLayout';
 import { readArchiveManifest } from '../manifest-server';
 
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   if (!config) return { robots: { index: false, follow: false } };
   return {
     title: `${config.ref} — working transcription`,
-    description: `Working diplomatic transcription of ${config.ref}: leaf images, line indexes, and transcriptions.`,
+    description: `Working diplomatic transcription of ${config.ref}: leaf images beside the transcripts.`,
     alternates: { canonical: `/research/${archiveId}` },
   };
 }
@@ -115,13 +115,13 @@ export default async function ResearchArchivePage({ params }: Params) {
                   <li>Open a {config.leafLabel.toLowerCase()} below — the leaf image sits beside its documents (PDF).</li>
                   <li>
                     Compare the image against the <strong>transcript</strong> (continuous text with
-                    editorial notes) and the <strong>line index</strong> (line-by-line census).
+                    editorial notes) — the author’s own transcription, which the commissioned
+                    professional transcription will replace.
                   </li>
                   <li>
                     Readings marked <code>[?]</code> are uncertain; <code>⟦…⟧</code> notes record
                     what later passes changed and why.
                   </li>
-                  <li>The working papers below track every open question and delta across passes.</li>
                 </ol>
               </div>
               <div className="bg-card border border-border rounded-xl shadow-sm p-6">
@@ -178,32 +178,6 @@ export default async function ResearchArchivePage({ params }: Params) {
             </div>
           </Reveal>
 
-          {/* Working papers */}
-          {manifest && manifest.workingPapers.length > 0 && (
-            <Reveal delay={200}>
-              <div className="mt-12">
-                <Eyebrow>Working papers</Eyebrow>
-                <div className="bg-card border border-border rounded-xl shadow-sm p-4">
-                  {manifest.workingPapers.map((p) => (
-                    <Link
-                      key={p.pdf}
-                      href={`/research/${archiveId}/doc/${encodeURIComponent(p.pdf.replace(/^pdfs\//, ""))}`}
-                      className="group flex items-start gap-3 rounded-md px-3 py-2.5 hover:bg-secondary transition-colors"
-                    >
-                      <ScrollText className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                      <span
-                        className="text-sm text-foreground group-hover:text-primary font-sans leading-snug transition-colors"
-                        style={{ fontWeight: 550 }}
-                      >
-                        {p.title}
-                      </span>
-                      <ArrowRight className="ml-auto h-3.5 w-3.5 text-muted-foreground group-hover:text-primary mt-0.5 flex-shrink-0 transition-colors" />
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-          )}
 
           {/* Provenance & fixity */}
           <Reveal delay={240}>

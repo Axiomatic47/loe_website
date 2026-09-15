@@ -15,7 +15,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
-import { AlignLeft, ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Columns, CornerLeftUp, ExternalLink, Loader2, Lock, Rows } from 'lucide-react';
+import { AlignLeft, ArrowLeft, ArrowRight, BookOpen, ChevronLeft, ChevronRight, Columns, CornerLeftUp, ExternalLink, Loader2, Lock, Rows } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { RIGHTS_LABEL, citeFromHash, hashForCite, versioned as v, type ReviewManifest, type ReviewUnit } from '@/lib/review';
 import { SitePageLayout } from '../../_components/SitePageLayout';
@@ -23,6 +23,8 @@ import { BookPdfViewer, type PdfFocus, type PdfHotBox } from './BookPdfViewer';
 
 type Layout = 'stacked' | 'side';
 const LAYOUT_KEY = 'loe-review-layout';
+const MODE_KEY = 'loe-review-mode';
+type Mode = 'review' | 'reading';
 const SPLIT_KEY = 'loe-review-split';
 const SPLIT_MIN = 30, SPLIT_MAX = 70;
 const DIVIDER_PX = 14;
@@ -80,12 +82,16 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
   const rights = page?.rights || active?.rights || '';
 
   // layout (LeafBody's pattern): side by side by default on large screens
+  // READING MODE (owner 2026-09-15): the badge is a switch — pressed, the source pane goes and the
+  // book has the row to itself; a click on a citation brings review mode back with that page open
+  const [mode, setMode] = useState<Mode>('review');
   const [layout, setLayout] = useState<Layout>('side');
   const [split, setSplit] = useState(50);
   const [isLg, setIsLg] = useState(false);
   const [dragging, setDragging] = useState(false);
   const [fillHeight, setFillHeight] = useState<number | null>(null);
   const rowRef = useRef<HTMLDivElement | null>(null);
+  const headRef = useRef<HTMLDivElement | null>(null);
   const belowRef = useRef<HTMLDivElement | null>(null);
   const bookRef = useRef<HTMLDivElement | null>(null);
   const sourceRef = useRef<HTMLDivElement | null>(null);
@@ -99,12 +105,14 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
         if (l === 'side' || l === 'stacked') setLayout(l);
         const stored = Number(localStorage.getItem(SPLIT_KEY));
         if (stored >= SPLIT_MIN && stored <= SPLIT_MAX) setSplit(stored);
+        if (localStorage.getItem(MODE_KEY) === 'reading') setMode('reading');
       } catch { /* storage unavailable */ }
       onMq();
-      // deep link: select the unit and bring its lines into view in the book
+      // deep link: select the unit and bring its lines into view in the book — in review mode
       const c = citeFromHash(window.location.hash);
       if (c && byId.has(c.id)) {
         const id = c.id;
+        setMode('review');
         setActiveId(id);
         setPageIdx(Math.min(c.page, Math.max(0, (byId.get(id)?.pages.length ?? 1) - 1)));
         if (pdf) setTimeout(() => focusUnit(byId.get(id)), 400); // after the PDF's pages exist
@@ -112,13 +120,17 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
       }
     }, 0);
     mq.addEventListener('change', onMq);
-    const onHash = () => { const c = citeFromHash(window.location.hash); if (c && byId.has(c.id)) { setActiveId(c.id); setPageIdx(Math.min(c.page, Math.max(0, (byId.get(c.id)?.pages.length ?? 1) - 1))); } };
+    const onHash = () => { const c = citeFromHash(window.location.hash); if (c && byId.has(c.id)) { setMode('review'); setActiveId(c.id); setPageIdx(Math.min(c.page, Math.max(0, (byId.get(c.id)?.pages.length ?? 1) - 1))); } };
     window.addEventListener('hashchange', onHash);
     return () => { clearTimeout(t); mq.removeEventListener('change', onMq); window.removeEventListener('hashchange', onHash); };
   }, [byId, pdf, focusUnit]);
 
   const changeLayout = (l: Layout) => { setLayout(l); try { localStorage.setItem(LAYOUT_KEY, l); } catch { /* ignore */ } };
-  const review = layout === 'side' && isLg;
+  const changeMode = (m: Mode) => { setMode(m); try { localStorage.setItem(MODE_KEY, m); } catch { /* ignore */ } };
+  const reading = mode === 'reading';
+  const review = !reading && layout === 'side' && isLg;
+  // the book fills the viewport in side-by-side review and in reading mode
+  const fills = review || (reading && isLg);
 
   const measure = useCallback(() => {
     const el = rowRef.current;
@@ -127,10 +139,18 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
     setFillHeight(Math.max(480, window.innerHeight - el.getBoundingClientRect().top - below - FIXED_FOOTER_PX - BOTTOM_PAD_PX));
   }, []);
   useEffect(() => {
-    if (!review) return;
+    if (!fills) return;
     const t = setTimeout(measure, 0);
     window.addEventListener('resize', measure);
     return () => { clearTimeout(t); window.removeEventListener('resize', measure); };
+  }, [fills, measure]);
+  // the header row carries the page strip in side-by-side: when it appears, changes or wraps, the
+  // panes' top edge moves and the fill height must follow
+  useEffect(() => {
+    if (!review || !headRef.current) return;
+    const ro = new ResizeObserver(() => measure());
+    ro.observe(headRef.current);
+    return () => ro.disconnect();
   }, [review, measure]);
 
   const onHandleDown = (e: React.PointerEvent<HTMLDivElement>) => { e.preventDefault(); (e.target as HTMLElement).setPointerCapture(e.pointerId); setDragging(true); };
@@ -161,6 +181,7 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
 
   // a hit box in the book PDF: a unit opens its page; a marker goes to its note
   const onHot = (b: PdfHotBox) => {
+    if (reading) changeMode('review'); // a citation asked for is a review
     if (b.kind === 'marker') {
       const note = b.id.slice('marker:'.length);
       const first = units.find((u) => u.note === note && u.box);
@@ -260,7 +281,7 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
     if (!g || g.source !== src) { g = { source: src, title: (src && manifest.sources[src]?.title) || src || '', items: [] }; groups.push(g); }
     g.items.push({ i, label: p.label, file: p.file });
   });
-  const stripShell = 'shrink-0 mb-2 rounded-lg border border-border bg-card shadow-sm px-3 py-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 font-sans';
+  const stripShell = 'shrink-0 rounded-lg border border-border bg-card shadow-sm px-3 py-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 font-sans';
   const eyebrow = 'text-xs lg:text-[11px] uppercase tracking-[0.08em] text-muted-foreground';
   const pageStrip = active && active.pages.length > CHIP_MAX ? (
     <div className={stripShell}>
@@ -298,7 +319,7 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
 
   const sourcePane = (
     <div ref={sourceRef} className={cn('min-w-0 flex flex-col', review ? 'h-full min-h-0' : 'lg:sticky lg:top-20 z-10')}>
-      {pageStrip}
+      {!review && pageStrip && <div className="mb-2">{pageStrip}</div>}
       {paneSrc && page ? (
         <BookPdfViewer key={paneSrc} src={paneSrc} bytes={ctx?.bytes} title={ctx ? `${pageTitle} — reading copy, ${citedInCtx.length > 1 ? `${citedInCtx.length} cited pages marked` : 'the cited page marked'}` : pageTitle}
           downloadSrc={page.file ? v(page.file, page.sha256) : undefined} downloadName={(page.file ?? ctx?.file ?? '').split('/').pop()}
@@ -348,19 +369,19 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
     </Link>
   );
   const bookPane = pdf ? (
-    <div className={cn('min-w-0', review && 'h-full min-h-0 flex flex-col')}>
-      <BookPdfViewer src={v(pdf.file, pdf.served ?? pdf.sha256)} bytes={pdf.bytes} downloadSrc={pdf.linked ? v(pdf.linked.file, pdf.linked.served ?? pdf.linked.sha256) : undefined} downloadName={`${book.slug}.pdf`} title={`${book.title}${book.subtitle ? `: ${book.subtitle}` : ''} — ${book.venue ?? 'working draft'}; the citations in the notes are clickable`}
-        height={review ? 'fill' : 'page'} leading={textLink} hotBoxes={hotBoxes} activeHot={activeId} onHot={onHot} focus={focus} />
+    <div className={cn('min-w-0', fills && 'h-full min-h-0 flex flex-col')}>
+      <BookPdfViewer src={v(pdf.file, pdf.served ?? pdf.sha256)} bytes={pdf.bytes} downloadSrc={pdf.linked ? v(pdf.linked.file, pdf.linked.served ?? pdf.linked.sha256) : undefined} downloadName={`${book.slug}.pdf`} title={`${book.title}${book.subtitle ? `: ${book.subtitle}` : ''} — ${book.venue ?? 'working draft'}; ${reading ? 'a click on a citation opens review mode at its page' : 'the citations in the notes are clickable'}`}
+        height={fills ? 'fill' : 'page'} leading={textLink} hotBoxes={hotBoxes} activeHot={activeId} onHot={onHot} focus={focus} />
     </div>
   ) : (
-    <div className={cn('min-w-0', review && 'h-full min-h-0 flex flex-col')}>
-      <div className={cn(paneShell, review && 'h-full')}>
+    <div className={cn('min-w-0', fills && 'h-full min-h-0 flex flex-col')}>
+      <div className={cn(paneShell, fills && 'h-full')}>
         <div className="h-11 px-4 flex items-center justify-between gap-3 border-b border-border">
           <span className="font-serif text-[15px] leading-none truncate" style={{ fontWeight: 600 }}>{book.title}{book.subtitle ? <span className="text-muted-foreground font-sans text-xs ml-2" style={{ fontWeight: 500 }}>{book.subtitle}</span> : null}</span>
           <span className="text-xs text-muted-foreground shrink-0 font-sans">{book.venue ?? 'Working draft'}</span>
         </div>
         <div className="h-8 px-4 flex items-center text-xs text-muted-foreground truncate border-b border-border font-sans">Citations in the notes are links — click one to open the cited page beside the text.</div>
-        <div ref={bookRef} onClick={onBookClick} className={cn('min-h-0', review ? 'flex-1 overflow-y-auto' : '')}>
+        <div ref={bookRef} onClick={onBookClick} className={cn('min-h-0', fills ? 'flex-1 overflow-y-auto' : '')}>
           {children ?? <p className="p-6 text-sm text-muted-foreground font-sans">The book’s text is at <Link href={textHref} className="underline underline-offset-2 text-primary">the text version</Link>.</p>}
         </div>
         <div className="h-8 border-t border-border" />
@@ -371,22 +392,35 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
   return (
     <SitePageLayout>
       <main className={cn('review-ui', review ? 'w-full max-w-none px-4 py-4' : 'container mx-auto px-4 py-6')}>
-        {/* header row — back link · review-mode badge · layout toggle */}
-        <div className="flex flex-wrap items-center justify-between gap-3 mb-3 font-sans">
-          <Link href="/books" className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors no-underline"><ArrowLeft className="h-4 w-4 mr-1.5" />Books</Link>
-          <div className="flex items-center gap-2">
-            <span className="text-xs uppercase tracking-[0.06em] text-primary border border-primary/30 bg-primary/10 rounded-md px-2 py-0.5" style={{ fontWeight: 600 }}>Review mode</span>
-            <span className="hidden lg:inline-flex items-center gap-0.5 bg-card border border-border rounded-md shadow-sm p-0.5">
+        {/* header row (owner 2026-09-15): back link · review-mode badge · layout toggle sit together
+            over the LEFT pane; in side-by-side the page strip takes the right half, over the source
+            pane, on the same column grid as the panes so the divider lines up */}
+        <div ref={headRef}
+          className={cn('mb-3 font-sans', review ? 'grid items-center' : 'flex flex-wrap items-center gap-3')}
+          style={review ? { gridTemplateColumns: `${split}% ${DIVIDER_PX}px minmax(0, 1fr)` } : undefined}>
+          <div className="flex flex-wrap items-center gap-2 min-w-0">
+            <Link href="/books" className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors no-underline mr-1"><ArrowLeft className="h-4 w-4 mr-1.5" />Books</Link>
+            <button type="button" onClick={() => changeMode(reading ? 'review' : 'reading')} aria-pressed={!reading}
+              title={reading ? 'Reading mode — press for review mode: the book beside the pages it cites' : 'Review mode — press for reading mode: the book alone, without the source pane'}
+              className={cn('inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.06em] rounded-md px-2 py-0.5 border transition-colors',
+                reading ? 'text-foreground/80 border-border bg-card hover:bg-muted' : 'text-primary border-primary/30 bg-primary/10 hover:bg-primary/15')}
+              style={{ fontWeight: 600 }}>
+              {reading ? <BookOpen className="h-3.5 w-3.5" aria-hidden /> : <Columns className="h-3.5 w-3.5" aria-hidden />}
+              {reading ? 'Reading mode' : 'Review mode'}
+            </button>
+            {!reading && <span className="hidden lg:inline-flex items-center gap-0.5 bg-card border border-border rounded-md shadow-sm p-0.5">
               <button type="button" className={tog(layout === 'side')} onClick={() => changeLayout('side')} aria-pressed={layout === 'side'} title="Side by side — book beside the cited page" aria-label="Side-by-side layout"><Columns className="h-4 w-4" /></button>
               <button type="button" className={tog(layout === 'stacked')} onClick={() => changeLayout('stacked')} aria-pressed={layout === 'stacked'} title="Stacked — cited page above, book below" aria-label="Stacked layout"><Rows className="h-4 w-4" /></button>
-            </span>
+            </span>}
           </div>
+          {review && <div aria-hidden />}
+          {review && <div className="min-w-0">{pageStrip}</div>}
         </div>
 
         <div ref={rowRef}
-          className={cn('grid grid-cols-1 gap-4', layout === 'side' ? 'lg:grid-cols-2 lg:items-stretch' : 'items-start max-w-5xl mx-auto', review && 'lg:gap-0')}
-          style={review && fillHeight ? { height: fillHeight, gridTemplateColumns: `${split}% ${DIVIDER_PX}px minmax(0, 1fr)` } : undefined}>
-          {review ? bookPane : sourcePane}
+          className={cn('grid grid-cols-1 gap-4', reading ? 'max-w-5xl mx-auto' : layout === 'side' ? 'lg:grid-cols-2 lg:items-stretch' : 'items-start max-w-5xl mx-auto', review && 'lg:gap-0')}
+          style={review && fillHeight ? { height: fillHeight, gridTemplateColumns: `${split}% ${DIVIDER_PX}px minmax(0, 1fr)` } : fills && fillHeight ? { height: fillHeight } : undefined}>
+          {reading ? bookPane : review ? bookPane : sourcePane}
           {review && (
             <div role="separator" aria-orientation="vertical" aria-label="Resize the book/source split" title="Drag to resize · double-click to recenter"
               onPointerDown={onHandleDown} onPointerMove={onHandleMove} onPointerUp={onHandleUp} onDoubleClick={resetSplit}
@@ -394,13 +428,15 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
               <div className={cn('w-1 h-16 rounded-full bg-border group-hover:bg-primary/50 transition-colors', dragging && 'bg-primary')} />
             </div>
           )}
-          {review ? sourcePane : bookPane}
+          {!reading && (review ? sourcePane : bookPane)}
         </div>
 
         {/* below the panes — the cited page's record (left) · the book's record (right) */}
-        <div ref={belowRef} className={cn('mt-3 flex flex-wrap items-start justify-between gap-x-6 gap-y-2 text-xs lg:text-[11px] text-muted-foreground leading-relaxed font-sans', layout !== 'side' && 'max-w-5xl mx-auto')}>
+        <div ref={belowRef} className={cn('mt-3 flex flex-wrap items-start justify-between gap-x-6 gap-y-2 text-xs lg:text-[11px] text-muted-foreground leading-relaxed font-sans', (reading || layout !== 'side') && 'max-w-5xl mx-auto')}>
           <div className="min-w-0 space-y-0.5">
-            {page ? (
+            {reading ? (
+              <p>Reading mode — the book alone. A click on a citation in the notes opens review mode at the page it cites.</p>
+            ) : page ? (
               <>
                 <p>
                   <span className="text-foreground/80" style={{ fontWeight: 550 }}>{pageTitle}</span>

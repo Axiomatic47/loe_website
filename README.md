@@ -5,15 +5,19 @@ three federal constitutional cases (Kirchner v. Johnson, v. Ellison, v. Acosta
 — filed ECF documents only), the research framework, testimony collections,
 SCOTUS shadow-docket analyses, and manuscript/timeline realms.
 
-**Stack:** React 18 + Vite 6 + TypeScript SPA · react-router v6 · Radix/shadcn
-UI · Tailwind · Netlify hosting (static — no serverless functions). Design
-system: `DESIGN.md` (read before any visual work).
+**Stack (since the 2026-07-21 cutover):** Next.js 16 App Router (`app/`) ·
+TypeScript · Radix/shadcn UI · Tailwind · Netlify via `@netlify/plugin-nextjs`
+(every route prerendered; the Netlify functions carry the owner console and
+the forms). The older React + Vite SPA (`src/views`, `index.html`) still builds
+as a gate but no longer deploys; new work goes in `app/`. Design system:
+`DESIGN.md` (read before any visual work).
 
 ## ⚠ Deploy model
 
 Netlify builds `main` on push — **a push to `main` is a production deploy.**
-Development happens on the local `preview` branch; nothing is pushed until the
-owner approves. The site carries **only public, FILED material** (ECF-filed
+Work lands on `device/<host>` (this Mac: `device/macbook`); agents never push
+`main`. The owner integrates device → main with their own credentials (the
+Studio's signed-push card). See `CLAUDE.md` for the branch law. The site carries **only public, FILED material** (ECF-filed
 documents, released testimony sets) — never drafts, sealed material, or
 strategy notes.
 
@@ -21,12 +25,27 @@ strategy notes.
 
 ```bash
 npm install
-npm run dev        # vite dev server → http://localhost:3000
-npm run build      # validate-content → nav manifest → sitemap → typecheck → vite build into dist/
-npm run preview    # serve the production build locally
-npm run typecheck  # real TS check (also runs inside build)
+npx next dev -p 3300   # the Next dev server (the Studio's SITES preview uses this port)
+npx next build         # the production renderer (offline; `npm run build:next` adds the Open Readings pull)
+npx next start -p 3301 # serve the production build locally
+npm run build          # the LEGACY gate chain: validate-content → nav manifest → sitemap → typecheck → vite build
 npm run lint
 ```
+
+Gates before "done": `npm run build`, `npx next build`, `npm run lint`, `tsc`.
+Never start servers on the Studio's pinned ports (3300/3301) from an agent
+shell — the Studio owns them; use a private port and check it is free first.
+
+## Books in review mode (`/books`)
+
+Two books from the research library are published beside the pages they
+cite: `/books/<slug>` opens the book's PDF with hit boxes over every citation;
+a click opens the cited page in a reading copy of the source, scrolled to the
+page. `node scripts/import-books.mjs <slug>` imports a book from its Pinned
+Citation Extracts lane on the drafter's "lane at <sha>" signal — public-domain
+pages only, sha-gated, linearized served copies. Contracts and state:
+`CLAUDE.md` § "Books from the research library" and the website-developer
+notes in midesk's `.claude/agent_notes/website-developer/`.
 
 ## Content model
 

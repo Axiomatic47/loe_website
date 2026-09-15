@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   return {
     title: `${config.leafLabel} ${leafId} — ${config.ref}`,
     description:
-      'Working diplomatic transcription — leaf image, line index, and transcription (PDF).',
+      'Working diplomatic transcription — the leaf image beside its transcript (PDF).',
     alternates: { canonical: `/research/${archiveId}/leaf/${leafId}` },
   };
 }

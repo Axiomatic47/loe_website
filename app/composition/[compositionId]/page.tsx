@@ -38,13 +38,13 @@ interface CollectionPageConfig {
 
 const COLLECTION_PAGES: Record<string, CollectionPageConfig> = {
   manuscript: {
-    eyebrow: 'Research library',
-    title: 'Research',
+    eyebrow: 'The academic articles',
+    title: 'Articles',
     lede:
       'The Laws of Existence manuscripts — a unified mathematical framework for consciousness, ethics, and reality — published here in full.',
-    itemNoun: ['manuscript', 'manuscripts'],
+    itemNoun: ['article', 'articles'],
     unitNoun: ['section', 'sections'],
-    cta: 'Read the manuscript',
+    cta: 'Read the article',
   },
   data: {
     eyebrow: 'Evidence collections',

@@ -62,3 +62,28 @@ project registry as before.
   pages); pdf.js assets under `public/pdfjs/` are copied from `pdfjs-dist` — copy
   again on a version bump. State + numbers: midesk
   `.claude/agent_notes/website-developer/20260915_review_mode_on_lawsofexistence_both_books_55339aa7.md`.
+- **Review-mode UI (owner 2026-09-15, all landed):** the Review-mode badge is a switch to
+  READING MODE (book alone, no source pane; a citation click returns to review); the
+  badge + layout toggle sit over the left pane and the cited-pages strip over the source
+  pane on the panes' own column grid; zoom / Download / New tab live UNDER each viewer;
+  each pane SEARCHES its own document (magnifier in the header bar → a search row under the
+  title: text-layer hits boxed on the pages, Enter / Shift+Enter or the arrows walk them, an
+  image-only scan says "no text layer in this document"). The text layer is read with
+  `streamTextContent()` + a reader loop — pdf.js's `getTextContent()` drives its stream with
+  `for await`, which WebKit (Safari, the Studio shell) cannot do; every page threw.
+  PANE HEIGHT is the viewport fill as first landed (460fdac): the owner tried a fit-page
+  zoom, a whole-page reach and a half reach the same day and had all three undone —
+  do not re-propose. kirchner.ink mirrors every one of these — a change here is relayed
+  to the ink seat (f28bb754) as a spec, never edited across.
+- **Header (owner 2026-09-15):** Articles tab = the two books (The Subject's Unanswered
+  Plea first) then the academic compositions; Research tab = the archives first ("From
+  the archives"), then Open readings, Acknowledgements. The Abrahamic Faith
+  Reconciliation Thesis was removed the same day; its URLs redirect to `/composition/manuscript`.
+- **Research archives publish the TRANSCRIPTS ONLY (owner 2026-09-15, all three sites):**
+  `PUBLISHED_KINDS = {transcript}` in `src/lib/research-archive.ts`; line indexes, working
+  spans and working papers stay in the library; `scripts/sync-archives.mjs` skips them;
+  the per-PDF `/research/<id>/doc/` route is gone. HLS MS 149 has no transcripts yet, so
+  its folios are image-only until one lands.
+- **Device runs:** `studio-site.json` `pages.exclude` / `pages.heavy` / `pages.audit.ignore_selectors`
+  feed the Studio's device audit (midesk `docs/DEVICE_RUNS.md`); run it against a PRIVATE port
+  whose holder you have checked — 3999 is another seat's.

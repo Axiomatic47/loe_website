@@ -64,6 +64,10 @@ const MS149_SEQ = { f81r: 166, f81v: 167, f82r: 168, f82v: 169, f83r: 170, f83v:
 // 'transcript' = the canonical per-leaf transcript (citation artifact);
 // 'transcription' = working assemblies/spans (deposition series etc.).
 const KIND_ORDER = { transcript: 0, index: 1, transcription: 2 };
+// What is PUBLISHED (owner 2026-09-15, all three sites): the transcripts only — the owner's own
+// transcription of each leaf, which the commissioned professional transcription will replace. Line
+// indexes, working spans and working papers stay in the library; their PDFs are not copied.
+const PUBLISHED_KINDS = new Set(['transcript']);
 const ARCHIVES = [
   {
     id: 'stac-8-203-38',
@@ -279,6 +283,7 @@ for (const A of ARCHIVES) {
   // fatal (it would silently wipe the published set).
   const workingPapers = [];
   let pdfCount = 0;
+  let unpublished = 0;
   let overlaid = 0;
   let allowedStale = 0;
   const staleViolations = [];
@@ -319,16 +324,13 @@ for (const A of ARCHIVES) {
           }
         }
       }
+      const c = A.classify(stem);
+      if (!c || !PUBLISHED_KINDS.has(c.kind)) { unpublished += 1; continue; } // audit stratum: stays in the library
       copyFileSync(srcPdf, join(dst, 'pdfs', f));
       pdfCount += 1;
       const entry = { title: mdTitle(mdDirs, stem), pdf: `pdfs/${f}` };
-      const c = A.classify(stem);
-      if (c) {
-        for (const id of c.leaves) {
-          if (leaves[id]) leaves[id].docs.push({ kind: c.kind, span: c.span, ...entry });
-        }
-      } else {
-        workingPapers.push(entry);
+      for (const id of c.leaves) {
+        if (leaves[id]) leaves[id].docs.push({ kind: c.kind, span: c.span, ...entry });
       }
     }
   }
@@ -342,7 +344,7 @@ for (const A of ARCHIVES) {
     console.error(`  FATAL: zero PDFs found across all pools for ${A.id} — aborting before the empty set replaces the published one.`);
     process.exit(1);
   }
-  console.log(`  pdfs: ${pdfCount} copied (${workingPapers.length} working papers; ${overlaid} overlaid by earlier pools; ${allowedStale} allowed-stale)`);
+  console.log(`  pdfs: ${pdfCount} transcripts copied (${unpublished} line-index / working-span / working-paper PDFs not published; ${overlaid} overlaid by earlier pools; ${allowedStale} allowed-stale)`);
 
   // crops (only for licensed archives, and only on request — large)
   if (A.imagesLicensed && WITH_CROPS && existsSync(join(A.src, 'crops'))) {

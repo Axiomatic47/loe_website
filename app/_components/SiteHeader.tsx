@@ -13,6 +13,11 @@ import ThemeToggle from '@/components/ThemeToggle';
 // Dropdown menus read the tiny build-time nav manifest instead of the content
 // store — the Header renders on every page and must not pull the corpus.
 import navManifest from '@/data/navManifest.json';
+// Articles = the books in review mode (The Subject's Unanswered Plea first) + the academic
+// compositions; Research = the primary-source archives first, then the open readings — the split and
+// the order the owner asked for 2026-09-15, as on the other sites. Both lists are tiny static data.
+import { BOOKS } from '@/data/books';
+import { ARCHIVE_SHELF } from '@/data/homeContent';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -92,7 +97,7 @@ export function SiteHeader({ className }: { className?: string }) {
 
   const mobileItems = [
     { path: '/', label: 'Home' },
-    { path: '/composition/manuscript', label: 'Research' },
+    { path: '/composition/manuscript', label: 'Articles' },
     { path: '/composition/data', label: 'Evidence' },
     { path: '/composition/constitutional', label: 'Cases' },
     { path: '/contact', label: 'Contact' },
@@ -136,11 +141,15 @@ export function SiteHeader({ className }: { className?: string }) {
                   </NavigationMenuItem>
 
                   <NavigationMenuItem>
-                    <NavigationMenuTrigger className={triggerClass(inSection('/composition/manuscript'))}>
-                      Research
+                    <NavigationMenuTrigger className={triggerClass(inSection('/composition/manuscript') || inSection('/books'))}>
+                      Articles
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
-                      <div className="w-[340px] p-2 bg-card">
+                      <div className="w-[360px] p-2 bg-card">
+                        {BOOKS.map((b) => (
+                          <MenuRow key={b.slug} href={`/books/${b.slug}`} label={b.title} sub={`${b.subtitle} · review mode`} />
+                        ))}
+                        <div className="my-1 border-t border-border" role="separator" />
                         {manuscript.map((item, i) => (
                           <MenuRow
                             key={i}
@@ -149,9 +158,27 @@ export function SiteHeader({ className }: { className?: string }) {
                             sub={`${item.sectionCount} section${item.sectionCount === 1 ? '' : 's'}`}
                           />
                         ))}
-                        <MenuFooterLink href="/composition/manuscript" label="All research" />
-                        <MenuFooterLink href="/research/open-readings" label="Open readings — disputed transcriptions for review" />
+                        <MenuFooterLink href="/composition/manuscript" label="All articles" />
                         <MenuFooterLink href="/books" label="Books in review mode — the text beside the pages it cites" />
+                      </div>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger className={triggerClass(inSection('/research'))}>
+                      Research
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <div className="w-[360px] p-2 bg-card">
+                        <div className="px-3 pt-1.5 pb-1 text-[11px] uppercase tracking-wider text-muted-foreground" style={{ fontWeight: 600 }}>
+                          From the archives
+                        </div>
+                        {ARCHIVE_SHELF.map((a) => (
+                          <MenuRow key={a.id} href={`/research/${a.id}`} label={a.title} sub={`${a.ref} · ${a.detail}`} />
+                        ))}
+                        <div className="my-1 border-t border-border" role="separator" />
+                        <MenuFooterLink href="/research/open-readings" label="Open readings — disputed transcriptions for review" />
+                        <MenuFooterLink href="/research/acknowledgements" label="Acknowledgements" />
                       </div>
                     </NavigationMenuContent>
                   </NavigationMenuItem>
@@ -267,6 +294,50 @@ export function SiteHeader({ className }: { className?: string }) {
                       {item.label}
                     </Link>
                   ))}
+                </div>
+
+                {/* Articles — the books in review mode */}
+                <div className="mt-6 pt-4 border-t border-border">
+                  <div className="px-4 text-[11px] uppercase tracking-wider text-muted-foreground mb-2" style={{ fontWeight: 600 }}>
+                    Books · review mode
+                  </div>
+                  {BOOKS.map((b) => (
+                    <Link
+                      key={b.slug}
+                      href={`/books/${b.slug}`}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="block px-4 py-2.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+                    >
+                      <span className="block text-sm" style={{ fontWeight: 550 }}>{b.title}</span>
+                      <span className="block text-xs text-muted-foreground/80">{b.subtitle}</span>
+                    </Link>
+                  ))}
+                </div>
+
+                {/* Research — the archives first, then the open readings */}
+                <div className="mt-6 pt-4 border-t border-border">
+                  <div className="px-4 text-[11px] uppercase tracking-wider text-muted-foreground mb-2" style={{ fontWeight: 600 }}>
+                    Research · from the archives
+                  </div>
+                  {ARCHIVE_SHELF.map((a) => (
+                    <Link
+                      key={a.id}
+                      href={`/research/${a.id}`}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="block px-4 py-2.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+                    >
+                      <span className="block text-sm" style={{ fontWeight: 550 }}>{a.title}</span>
+                      <span className="block text-xs text-muted-foreground/80">{a.ref}</span>
+                    </Link>
+                  ))}
+                  <Link
+                    href="/research/open-readings"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block px-4 py-2.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+                  >
+                    <span className="block text-sm" style={{ fontWeight: 550 }}>Open readings</span>
+                    <span className="block text-xs text-muted-foreground/80">Disputed transcriptions for review</span>
+                  </Link>
                 </div>
 
                 {/* Cases */}

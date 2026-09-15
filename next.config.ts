@@ -54,6 +54,11 @@ const nextConfig: NextConfig = {
       { source: '/kirchner-v-trump/section/:n', destination: '/kirchner-v-johnson/section/:n', permanent: true },
       { source: '/kirchner-v-trump/:docId', destination: '/kirchner-v-johnson/:docId', permanent: true },
       { source: '/copyright', destination: '/composition/copyright', permanent: true },
+      // Removed articles (owner 2026-09-15): the Abrahamic Faith Reconciliation Thesis left the site; its
+      // canonical URLs — and, through the frozen positional map below, its two legacy URLs — land on the
+      // Articles collection rather than a 404.
+      { source: '/composition/manuscript/abrahamic-faith-reconciliation-thesis', destination: '/composition/manuscript', permanent: true },
+      { source: '/composition/manuscript/abrahamic-faith-reconciliation-thesis/:path*', destination: '/composition/manuscript', permanent: true },
       ...loadRules('legacy-routes.json').map(r => ({ ...r, permanent: true })),
       ...loadRules('next-redirects.json').map(r => ({ ...r, permanent: true })),
     ];
