@@ -15,7 +15,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
-import { AlignLeft, ArrowLeft, ArrowRight, BookOpen, ChevronLeft, ChevronRight, Columns, CornerLeftUp, ExternalLink, Loader2, Lock, Rows } from 'lucide-react';
+import { AlignLeft, ArrowLeft, ArrowRight, BookOpen, ChevronDown, ChevronLeft, ChevronRight, Columns, CornerLeftUp, ExternalLink, Loader2, Lock, Rows } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { RIGHTS_LABEL, WORK_URL_KIND, citeFromHash, hashForCite, isExternalUrl, versioned as v, type ReviewManifest, type ReviewUnit, type ReviewWork } from '@/lib/review';
 import { SitePageLayout } from '../../_components/SitePageLayout';
@@ -120,6 +120,9 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
   const [split, setSplit] = useState(50);
   const [isLg, setIsLg] = useState(false);
   const [dragging, setDragging] = useState(false);
+  // the cited work's register record under the panes is a DROP-DOWN whose body renders OUTSIDE the measured block
+  // (owner 2026-09-16: "the pdf view panes shouldn't be affected by the data fields … MUST REMAIN the same size")
+  const [showWork, setShowWork] = useState(false);
   const [fillHeight, setFillHeight] = useState<number | null>(null);
   const rowRef = useRef<HTMLDivElement | null>(null);
   const headRef = useRef<HTMLDivElement | null>(null);
@@ -388,7 +391,12 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
                 <p className={cn('inline-flex items-center gap-1.5', eyebrow)} style={{ fontWeight: 600 }}>{active.status === 'EXTERNAL' ? <><ExternalLink className="h-3.5 w-3.5" /> Cited by the holder’s record, not held</> : <><Lock className="h-3.5 w-3.5" /> Held in the library, not published</>}</p>
                 <p className="font-serif text-lg text-foreground mt-3 leading-snug" style={{ fontWeight: 600 }}>{sourceTitle}</p>
                 {page ? <p className="mt-1 text-foreground/85">{page.label}</p> : active.pages.length > 0 && <p className="mt-1 text-foreground/85">{active.pages.map((p) => p.label).join(' · ')}</p>}
-                {works.map((w, i) => <WorkRecord key={workIds[i]} work={w} sourceHolderUrl={source?.holderUrl} />)}
+                {works.length > 0 && (
+                  <details className="mt-3 group">
+                    <summary className="cursor-pointer text-sm text-primary underline underline-offset-2 list-none inline-flex items-center gap-1">The work{works.length > 1 ? 's' : ''} cited <ChevronDown className="h-3.5 w-3.5 transition-transform group-open:rotate-180" aria-hidden /></summary>
+                    {works.map((w, i) => <WorkRecord key={workIds[i]} work={w} sourceHolderUrl={source?.holderUrl} />)}
+                  </details>
+                )}
                 <p className="mt-4 text-foreground/85">
                   {rights && RIGHTS_LABEL[rights] ? <>{RIGHTS_LABEL[rights]}. </> : null}
                   {active.status === 'NO_SOURCE' && 'The cited edition is not held in the library; nothing is shown that was not read.'}
@@ -504,9 +512,9 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
                   {page.file && <> · <a href={v(page.file, page.sha256)} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 text-primary">open the page PDF</a></>}
                   {ctx && <> · shown in its reading copy at page {ctx.page}{page.file ? '; the download is the single page' : ''}</>}
                   {rights && RIGHTS_LABEL[rights] && <> · {RIGHTS_LABEL[rights]}</>}
+                  {works.length > 0 && <> · <button type="button" onClick={() => setShowWork((x) => !x)} aria-expanded={showWork} className="underline underline-offset-2 text-primary inline-flex items-center gap-0.5">the work{works.length > 1 ? 's' : ''} cited <ChevronDown className={cn('h-3 w-3 transition-transform', showWork && 'rotate-180')} aria-hidden /></button></>}
                 </p>
                 {page.sha256 && <p className="font-mono break-all">sha256 {page.sha256}</p>}
-                {works.slice(0, 1).map((w, i) => <WorkRecord key={workIds[i]} work={w} compact sourceHolderUrl={source?.holderUrl} />)}
               </>
             ) : (
               <p>{manifest.rightsRule}</p>
@@ -517,6 +525,13 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
             text current to {manifest.generated.slice(0, 10)} (sha256 <span className="font-mono">{manifest.book.sha256.slice(0, 12)}…</span>{manifest.book.commit ? <>, blob {manifest.book.commit.slice(0, 8)}</> : null})
           </p>
         </div>
+        {/* the cited work's register record — a SIBLING of the measured block above, never inside the fill budget
+            (owner 2026-09-16: the panes must keep their size whatever the data fields show) */}
+        {showWork && !reading && page && works.length > 0 && (
+          <div className={cn('mt-2 rounded-md border border-border bg-card px-4 py-2 text-xs lg:text-[11px] text-muted-foreground leading-relaxed font-sans space-y-1', layout !== 'side' && 'max-w-5xl mx-auto')}>
+            {works.map((w, i) => <WorkRecord key={workIds[i]} work={w} compact sourceHolderUrl={source?.holderUrl} />)}
+          </div>
+        )}
       </main>
     </SitePageLayout>
   );

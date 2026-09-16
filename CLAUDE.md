@@ -75,8 +75,11 @@ project registry as before.
   preferred_citation, rights_statement, licence, holder …; never shelf_path / sha256 /
   notes). The card (`WorkRecord`) shows the full citation, "Full text:" with the kind in
   words (`WORK_URL_KIND`), "Cite as:", rights, and the holder when it differs from the
-  source's; the record line under the panes carries the compact form. Lanes without a
-  register import unchanged.
+  source's — in the held card as a <details>, CLOSED by default; under the panes as a
+  "the work cited ▾" toggle on the record line whose body renders as a SIBLING of the
+  measured block. Owner rule 2026-09-16: "the pdf view panes shouldn't be affected by the
+  data fields … MUST REMAIN the same size" — nothing that can grow lives inside the node
+  measure() subtracts from the viewport. Lanes without a register import unchanged.
 - Records: `src/data/books.ts` (presentation copy); code under `app/books/`;
   viewer `BookPdfViewer` (range-loading, shared worker, hit boxes, marked
   pages); pdf.js assets under `public/pdfjs/` are copied from `pdfjs-dist` — copy
