@@ -17,7 +17,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { AlignLeft, ArrowLeft, ArrowRight, BookOpen, ChevronLeft, ChevronRight, Columns, CornerLeftUp, ExternalLink, Loader2, Lock, Rows } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { RIGHTS_LABEL, citeFromHash, hashForCite, versioned as v, type ReviewManifest, type ReviewUnit } from '@/lib/review';
+import { RIGHTS_LABEL, citeFromHash, hashForCite, isExternalUrl, versioned as v, type ReviewManifest, type ReviewUnit } from '@/lib/review';
 import { SitePageLayout } from '../../_components/SitePageLayout';
 import { BookPdfViewer, type PdfFocus, type PdfHotBox } from './BookPdfViewer';
 
@@ -274,12 +274,12 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
 
   // the page strip: every page the unit cites, grouped by source when it draws on two,
   // the active page marked, a held page shown as a marked label rather than dropped
-  const groups: { source: string | null; title: string; items: { i: number; label: string; file: string | null }[] }[] = [];
+  const groups: { source: string | null; title: string; items: { i: number; label: string; file: string | null; url?: string }[] }[] = [];
   active?.pages.forEach((p, i) => {
     const src = p.source ?? active.source;
     let g = groups[groups.length - 1];
     if (!g || g.source !== src) { g = { source: src, title: (src && manifest.sources[src]?.title) || src || '', items: [] }; groups.push(g); }
-    g.items.push({ i, label: p.label, file: p.file });
+    g.items.push({ i, label: p.label, file: p.file, url: p.url });
   });
   const stripShell = 'shrink-0 rounded-lg border border-border bg-card shadow-sm px-3 py-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 font-sans';
   const eyebrow = 'text-xs lg:text-[11px] uppercase tracking-[0.08em] text-muted-foreground';
@@ -301,7 +301,7 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
       {groups.map((g, gi) => (
         <span key={`${g.source}-${gi}`} className="inline-flex flex-wrap items-center gap-1">
           {groups.length > 1 && <span className="text-xs text-muted-foreground mr-0.5 truncate max-w-[16rem]" title={g.title}>{g.title}</span>}
-          {g.items.map((it) => (
+          {g.items.map((it) => it.file || !it.url ? (
             <button key={it.i} type="button" role="tab" aria-selected={pageIdx === it.i} onClick={() => goPage(it.i)}
               title={it.file ? `Open ${it.label}` : `${it.label} — held in the library, not published`}
               className={cn('h-7 px-2 rounded-md text-xs tabular-nums transition-colors inline-flex items-center gap-1',
@@ -309,6 +309,16 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
               style={{ fontWeight: pageIdx === it.i ? 600 : 500 }}>
               {!it.file && <Lock className="h-3 w-3" aria-hidden />}{it.label}
             </button>
+          ) : (
+            // a held page that carries a link (lane contract 2026-09-15): the chip IS the link — the site's own leaf
+            // page (image + transcript) in this tab, or the holder's catalogue record in a new one
+            <a key={it.i} href={it.url} {...(isExternalUrl(it.url) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              title={isExternalUrl(it.url) ? `${it.label} — the holder’s own record (opens in a new tab)` : `${it.label} — open the leaf on this site: the image with its transcript`}
+              className={cn('h-7 px-2 rounded-md text-xs tabular-nums transition-colors inline-flex items-center gap-1 no-underline border border-dashed',
+                pageIdx === it.i ? 'border-primary text-primary bg-primary/10' : 'border-border text-foreground/85 hover:bg-muted')}
+              style={{ fontWeight: pageIdx === it.i ? 600 : 500 }}>
+              {isExternalUrl(it.url) ? <ExternalLink className="h-3 w-3" aria-hidden /> : <Lock className="h-3 w-3" aria-hidden />}{it.label}
+            </a>
           ))}
         </span>
       ))}
@@ -341,7 +351,7 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
               </>
             ) : (
               <>
-                <p className={cn('inline-flex items-center gap-1.5', eyebrow)} style={{ fontWeight: 600 }}><Lock className="h-3.5 w-3.5" /> Held in the library, not published</p>
+                <p className={cn('inline-flex items-center gap-1.5', eyebrow)} style={{ fontWeight: 600 }}>{active.status === 'EXTERNAL' ? <><ExternalLink className="h-3.5 w-3.5" /> Cited by the holder’s record, not held</> : <><Lock className="h-3.5 w-3.5" /> Held in the library, not published</>}</p>
                 <p className="font-serif text-lg text-foreground mt-3 leading-snug" style={{ fontWeight: 600 }}>{sourceTitle}</p>
                 {page ? <p className="mt-1 text-foreground/85">{page.label}</p> : active.pages.length > 0 && <p className="mt-1 text-foreground/85">{active.pages.map((p) => p.label).join(' · ')}</p>}
                 <p className="mt-4 text-foreground/85">
@@ -350,9 +360,23 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
                   {active.status === 'NO_PIN' && 'The note cites the work without a page, so no page is opened.'}
                   {active.status === 'UNMAPPED' && 'The cited page could not be located in the held scan.'}
                   {(active.status === 'CUT' || active.status === 'CUT_FIRST') && 'The page is held and was read for this book; its reproduction is not the author’s to publish.'}
+                  {active.status === 'EXTERNAL' && 'The note cites the item by the holder’s catalogue record; nothing of it is held in the library.'}
                 </p>
+                {/* the held page's own link (lane contract 2026-09-15): this site's leaf page, or the holder's record */}
+                {active.pages.filter((p) => !p.file && p.url).length > 0 && (
+                  <ul className="mt-3 space-y-1">
+                    {active.pages.filter((p) => !p.file && p.url).map((p) => (
+                      <li key={p.url}>
+                        <a href={p.url} {...(isExternalUrl(p.url!) ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="inline-flex items-center gap-1 underline underline-offset-2 text-primary break-all">
+                          {isExternalUrl(p.url!) ? <>The holder’s record: {p.label}</> : <>Open the leaf on this site: {p.label} — the image with its transcript</>}
+                          <ExternalLink className="h-3.5 w-3.5 shrink-0" />
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
                 {source?.holderUrl && (
-                  <p className="mt-3"><a href={source.holderUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 underline underline-offset-2 text-primary break-all">The holder’s copy <ExternalLink className="h-3.5 w-3.5 shrink-0" /></a></p>
+                  <p className="mt-3"><a href={source.holderUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 underline underline-offset-2 text-primary break-all">{rights === 'external-link' ? 'The holder’s collection record' : 'The holder’s copy'} <ExternalLink className="h-3.5 w-3.5 shrink-0" /></a></p>
                 )}
               </>
             )}
@@ -440,7 +464,7 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
               <>
                 <p>
                   <span className="text-foreground/80" style={{ fontWeight: 550 }}>{pageTitle}</span>
-                  {' · '}{page.verified === true ? 'page number read on the page' : page.verified === false ? 'page placed by the scan’s offset — the number was not read on it' : 'a verso with no number to read'}
+                  {active?.status === 'EXTERNAL' ? ' · the holder’s catalogue record, linked' : <>{' · '}{page.verified === true ? 'page number read on the page' : page.verified === false ? 'page placed by the scan’s offset — the number was not read on it' : 'a verso with no number to read'}</>}
                   {active?.status === 'CUT_FIRST' && (page?.begins ? ' · the note cites the case without a page: the whole case is served, from its first page' : ' · a page of the case, cited whole')}
                   {page.file && <> · <a href={v(page.file, page.sha256)} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 text-primary">open the page PDF</a></>}
                   {ctx && <> · shown in its reading copy at page {ctx.page}{page.file ? '; the download is the single page' : ''}</>}

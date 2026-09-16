@@ -28,6 +28,10 @@ export interface ReviewPage {
       1-based position inside it. The pane opens this, scrolled to `page`; `file` above stays the
       hash-verified single-page audit copy. */
   context?: { file: string; page: number; sha256: string | null; served?: string | null; bytes?: number };
+  /** where the chip LINKS when the page itself is not served (lane contract 2026-09-15): a site-relative
+      path = this site's own leaf page for a held membrane / folio (the image with its transcript tab);
+      an https URL = the holder's own catalogue record for a citation that names an item (status EXTERNAL) */
+  url?: string;
 }
 
 export interface ReviewUnit {
@@ -37,7 +41,7 @@ export interface ReviewUnit {
   seq: number;
   /** source key in `sources`, or null */
   source: string | null;
-  /** the lane's status: CUT · CUT_FIRST · UNMAPPED · NO_PIN · NO_SOURCE */
+  /** the lane's status: CUT · CUT_FIRST · UNMAPPED · NO_PIN · NO_SOURCE · EXTERNAL (a catalogue record, linked, nothing held) */
   status: string;
   rights: string;
   pages: ReviewPage[];
@@ -123,7 +127,10 @@ export const RIGHTS_LABEL: Record<string, string> = {
   'public-domain': 'Public domain',
   'in-copyright-owner-use': 'In copyright — held for the author’s own use',
   'licence-bound': 'Licence-bound reproduction',
+  'external-link': 'Linked to the holder’s own record — nothing is held in the library',
 };
+/** an https URL opens in a new tab; a site-relative path stays in this one */
+export const isExternalUrl = (u: string) => /^https?:\/\//i.test(u);
 
 /** the units that open a published page */
 export const publishedUnits = (m: ReviewManifest) => m.units.filter((u) => u.pages.some((p) => p.file));

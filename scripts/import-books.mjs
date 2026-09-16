@@ -64,6 +64,13 @@ const REVIEWS = [
     book: join(LIB, '13_Fall of Babylon and Jewish Identity', 'BOOK', 'THE_HOLY_SEED.md'),
     lane: join(LIB, '13_Fall of Babylon and Jewish Identity', 'BOOK', 'Pinned Citation Extracts'),
   },
+  {
+    // the third book (owner 2026-09-15, via drafter 60f85bca); slug = the drafter's lane.conf placeholder, confirmed
+    slug: 'a-restorative-reading-of-genesis-1-3',
+    id: 'genesis-1-3',
+    book: join(LIB, '14_Restorative Reading of Genesis 1-3', 'BOOK', 'A_Restorative_Reading_of_Genesis_1-3.md'),
+    lane: join(LIB, '14_Restorative Reading of Genesis 1-3', 'BOOK', 'Pinned Citation Extracts'),
+  },
 ];
 
 const PUBLISHABLE = new Set(['public-domain']);
@@ -92,6 +99,8 @@ const deployable = (rel) => !/[#?]/.test(rel);
 
 /** printed-page label from the pin kind and the extract's suffix letter */
 const pinLabel = (kind, pin, file, status, sourceKey) => {
+  // an item-level catalogue record (status EXTERNAL, pinkind item): the pin IS the holder's preferred citation, printed as written
+  if (kind === 'item' || status === 'EXTERNAL') return pin || '';
   const suf = file ? /_([a-z])[^_/]*\.pdf$/.exec(file)?.[1] : null;
   if (sourceKey === 'POLLARD_1911') return `1611 facsimile p. ${pin}`; // the reprint's PDF page: the 1611 is unpaginated
   // owner rule 2026-09-15: a case cited by its first page means the WHOLE case — the lane cuts every page of
@@ -216,7 +225,15 @@ function importOne(cfg) {
       // only the page's own rights decide whether it is published
       u.pages.push({ pin: r.pin, label: pinLabel(kind, r.pin, r.extract, r.status, r.source_key), extract: r.extract, source: r.source_key, rights: r.rights || sources[r.source_key]?.rights || '',
         verified: r.verified === 'Y' ? true : r.verified === '-' ? null : false, sha256: r.sha256 || null, ...(r.status === 'CUT_FIRST' ? { begins: true } : {}),
-        ...(r.context ? { ctx: { extract: r.context, page: Number(r.context_page) || 1, sha256: r.context_sha || null } } : {}) });
+        ...(r.context ? { ctx: { extract: r.context, page: Number(r.context_page) || 1, sha256: r.context_sha || null } } : {}),
+        // the index's `url` (lane contract 2026-09-15): the site's own leaf page for a held membrane / folio —
+        // the chip links there (the image with its transcript tab) instead of dead-ending on "held"
+        ...(r.url ? { url: r.url } : {}) });
+    } else if (r.status === 'EXTERNAL' && r.url) {
+      // a catalogue record the book cites (lane contract 2026-09-15): nothing is held in the lane — no extract,
+      // rights `external-link` — the chip carries the holder's own record as its link and the pin as its label
+      u.pages.push({ pin: r.pin, label: pinLabel('item', r.pin, '', r.status, r.source_key), extract: '', source: r.source_key, rights: r.rights || sources[r.source_key]?.rights || 'external-link',
+        verified: null, sha256: null, url: r.url });
     }
   }
 
@@ -268,7 +285,7 @@ function importOne(cfg) {
   const wanted = new Set();
   for (const u of units.values()) {
     for (const p of u.pages) {
-      if (!PUBLISHABLE.has(p.rights)) { p.file = null; continue; }
+      if (!p.extract || !PUBLISHABLE.has(p.rights)) { p.file = null; continue; }
       const src = join(cfg.lane, p.extract);
       const rel = p.extract.split('/').map(encodeURIComponent).join('/');
       const dst = join(outDir, p.extract);
@@ -387,7 +404,7 @@ function importOne(cfg) {
       return {
         // slim: this JSON travels to the reader's browser with the page
         id: u.id, note: u.note, seq: u.seq, source: u.source, status: u.status, rights: u.rights,
-        pages: u.pages.map((p) => ({ label: p.label, file: p.file, verified: p.verified, sha256: p.sha256, source: p.source, rights: p.rights, ...(p.begins ? { begins: true } : {}),
+        pages: u.pages.map((p) => ({ label: p.label, file: p.file, verified: p.verified, sha256: p.sha256, source: p.source, rights: p.rights, ...(p.begins ? { begins: true } : {}), ...(p.url ? { url: p.url } : {}),
           ...(p.ctx?.file ? { context: { file: p.ctx.file, page: p.ctx.page, sha256: p.ctx.sha256, served: p.ctx.served, bytes: p.ctx.bytes } } : {}) })),
         ...(boxes.has(u.id) ? { box: boxes.get(u.id) } : {}),
       };
@@ -413,6 +430,7 @@ function importOne(cfg) {
   const pageLinks = manifest.units.reduce((n, u) => n + u.pages.filter((p) => p.file).length, 0);
   console.log(`import-books: ${cfg.slug} ← ${feed}`);
   console.log(`  book ${basename(cfg.book)} sha256 ${bookSha.slice(0, 16)}…  ${lines.length} lines, ${defLine.size} notes`);
+  { let n = 0, ext = 0; for (const u of units.values()) for (const p of u.pages) { if (p.url) { n += 1; if (u.status === 'EXTERNAL') ext += 1; } } if (n) console.log(`  links: ${n} page chips carry a url (${n - ext} leaf pages on this site, ${ext} external catalogue records)`); }
   console.log(`  units: ${counts.wrapped} wrapped (${counts.published} open a published page, ${counts.held} marked held/uncut), ${counts.uncut} without a source left plain, ${counts.unwrappable} unwrappable, ${counts.noDef} with no definition`);
   if (pdf) console.log(`  book PDF: ${basename(pdf.file)} ${pdf.pages} pp. ${(pdf.bytes / 1e6).toFixed(1)} MB sha256 ${pdf.sha256.slice(0, 12)}… (${pdf.producer})${pdf.linked ? ' + linked copy' : ''}; boxes on ${counts.boxed} units, ${counts.unboxed.length} wrapped units without a box${counts.unboxed.length ? ': ' + counts.unboxed.join(', ') : ''}; ${markers.length} markers`);
   else console.log('  book PDF: none (no _WEB/overlay.json in the lane) — the review pane falls back to the rendered text');

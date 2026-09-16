@@ -30,7 +30,7 @@ export const BOOKS: BookRecord[] = [
     title: "The Subject's Unanswered Plea",
     subtitle: 'A Restorative and Comparative History of Immunity',
     date: '2026-09-15',
-    venue: 'Book · working draft',
+    venue: 'Book · pre-publishing edition',
     blurb:
       'The case that founded official immunity was a documented miscarriage of justice, a death by drowning recast as murder, a conviction on examinations taken down in a language the witnesses did not speak, and a court that answered the surviving kinsman’s sworn complaint against the trial judge by defacing it. Six Parts put the question the decree reserved to every order that has answered it, cited at the page.',
     collection: 'Immunity',
@@ -45,6 +45,18 @@ export const BOOKS: BookRecord[] = [
     blurb:
       'Ezra 9:2 calls the returned exiles “the holy seed” and says they have mingled it with the peoples of the lands. The phrase occurs nowhere else in the Hebrew Bible in that sense, and within a generation of its first use the community at Jerusalem had put away its foreign wives and their children and had begun to keep its membership by written pedigree. This book asks where the idiom and the programme came from.',
     collection: 'The Holy Seed',
+  },
+  {
+    // the third book in review mode (owner 2026-09-15, via drafter 60f85bca); slug and id as the lane names them
+    slug: 'a-restorative-reading-of-genesis-1-3',
+    id: 'genesis-1-3',
+    title: 'A Restorative Reading of Genesis 1–3',
+    subtitle: 'The Creation Narrative in the Hebrew and Its Versions',
+    date: '2026-09-15',
+    venue: 'Book · working draft',
+    blurb:
+      'This book began with one word in one verse: the “now” that opens the second chapter’s account of the making of man, read against the six days of the first, and the question whether the second chapter continued the first or went back over it. It is a reading, of three chapters of one book, and not a history of their interpretation. It is restorative because it restores the text’s own order against the versions that rearranged it, and its own words against the versions that dispersed them; and the versions are not obstacles between the reader and the text but witnesses, each faithful somewhere and unfaithful somewhere else.',
+    collection: 'Genesis 1–3',
   },
 ];
 
