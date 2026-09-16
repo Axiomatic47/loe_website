@@ -57,8 +57,10 @@ export interface ReviewUnit {
   /** the lane's status: CUT · CUT_FIRST · UNMAPPED · NO_PIN · NO_SOURCE · EXTERNAL (a catalogue record, linked, nothing held) */
   status: string;
   rights: string;
-  /** the register id of the work the unit's first row cites (a unit without pages still names its work) */
+  /** the register id of the work the unit's first row cites (the badge) */
   work?: string;
+  /** every work the unit's live rows cite, distinct, in row order — the card lists them so (contract refinement 2026-09-16) */
+  works?: string[];
   pages: ReviewPage[];
   /** where the unit stands in the book's PDF (absent for the units the overlay could not place) */
   box?: ReviewBox;

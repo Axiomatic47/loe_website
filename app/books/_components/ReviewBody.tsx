@@ -265,7 +265,7 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
   // to the cited page; the single-page extract stays the audit copy behind "open the page PDF"
   const ctx = page?.context ?? null;
   // the WORK(S) the unit cites (register contract): the page in hand's first, then any other its pages carry, then the unit's own
-  const workIds = active ? [...new Set([page?.work, ...active.pages.map((p) => p.work), active.work].filter((w): w is string => !!w))] : [];
+  const workIds = active ? [...new Set([...(active.works ?? []), active.work, ...active.pages.map((p) => p.work), page?.work].filter((w): w is string => !!w))] : [];
   const works = workIds.map((id) => manifest.works?.[id]).filter((w): w is ReviewWork => !!w);
   const paneSrc = ctx ? v(ctx.file, ctx.served ?? ctx.sha256) : page?.file ? v(page.file, page.sha256) : null;
   const citedInCtx: number[] = active && ctx ? active.pages.filter((p) => p.context?.file === ctx.file).map((p) => p.context!.page) : [];
