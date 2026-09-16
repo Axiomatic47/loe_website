@@ -54,9 +54,32 @@ project registry as before.
   browser's copy `public/review/<slug>.<hash>.json`. A citation whose page is
   held but not published is MARKED on the site, never dropped.
 - **Import only on a drafter's "lane at <sha>" send** (0b43895f: immunity;
-  60f85bca: Holy Seed) and answer with "imported at <loe sha>"; they run
+  60f85bca: Holy Seed and the Genesis reading) and answer with "imported at <loe sha>"; they run
   `check_links.py <lane> /Users/everest/Git/loe_website` against this checkout.
   The book text and the lane are never edited here.
+- **Lane contract, `url` column (2026-09-15/16):** an index row may carry `url` —
+  a site-relative path (this site's own leaf page for a held membrane / folio: STAC
+  `/research/stac-8-203-38/leaf/<n>`, HLS `/research/hls-ms149-floyd/leaf/<f>`) or an
+  https URL (status EXTERNAL: a catalogue record the book cites, rights
+  `external-link`, no extract, pin = the holder's preferred citation printed as written).
+  ONE rule: any row with `url` yields a page chip with `url`; a served chip keeps its
+  file; a held chip with `url` IS the link (site-relative in this tab, https in a new
+  tab with rel noopener); the held card lists the same links. `external-link` is not in
+  PUBLISHABLE, so nothing is served for it. check_links requires a chip's url to equal
+  its row's.
+- **Lane contract, `work` column + `_REGISTER.tsv` (2026-09-16, drafter 8a96daa3's register):**
+  an index row may name the WORK it cites (`work` = a register id; only `is_work` Y rows
+  are pointed at; split the register on tabs only). The importer copies `work` onto the
+  page and the unit (first row's), refuses an id the register lacks, and writes a manifest
+  `works` map (id → the card's fields: full_citation, full_work_url + kind, volume_url,
+  preferred_citation, rights_statement, licence, holder …; never shelf_path / sha256 /
+  notes). The card (`WorkRecord`) shows the full citation, "Full text:" with the kind in
+  words (`WORK_URL_KIND`), "Cite as:", rights, and the holder when it differs from the
+  source's — in the held card as a <details>, CLOSED by default; under the panes as a
+  "the work cited ▾" toggle on the record line whose body renders as a SIBLING of the
+  measured block. Owner rule 2026-09-16: "the pdf view panes shouldn't be affected by the
+  data fields … MUST REMAIN the same size" — nothing that can grow lives inside the node
+  measure() subtracts from the viewport. Lanes without a register import unchanged.
 - Records: `src/data/books.ts` (presentation copy); code under `app/books/`;
   viewer `BookPdfViewer` (range-loading, shared worker, hit boxes, marked
   pages); pdf.js assets under `public/pdfjs/` are copied from `pdfjs-dist` — copy
@@ -75,8 +98,8 @@ project registry as before.
   zoom, a whole-page reach and a half reach the same day and had all three undone —
   do not re-propose. kirchner.ink mirrors every one of these — a change here is relayed
   to the ink seat (f28bb754) as a spec, never edited across.
-- **Header (owner 2026-09-15):** Articles tab = the two books (The Subject's Unanswered
-  Plea first) then the academic compositions; Research tab = the archives first ("From
+- **Header (owner 2026-09-15):** Articles tab = the books (The Subject's Unanswered
+  Plea first, then The Holy Seed, then A Restorative Reading of Genesis 1–3) then the academic compositions; Research tab = the archives first ("From
   the archives"), then Open readings, Acknowledgements. The Abrahamic Faith
   Reconciliation Thesis was removed the same day; its URLs redirect to `/composition/manuscript`.
 - **Research archives publish the TRANSCRIPTS ONLY (owner 2026-09-15, all three sites):**

@@ -28,6 +28,23 @@ export interface ReviewPage {
       1-based position inside it. The pane opens this, scrolled to `page`; `file` above stays the
       hash-verified single-page audit copy. */
   context?: { file: string; page: number; sha256: string | null; served?: string | null; bytes?: number };
+  /** where the chip LINKS when the page itself is not served (lane contract 2026-09-15): a site-relative
+      path = this site's own leaf page for a held membrane / folio (the image with its transcript tab);
+      an https URL = the holder's own catalogue record for a citation that names an item (status EXTERNAL) */
+  url?: string;
+  /** the register id of the WORK this page cites (lane contract 2026-09-16) — a key of `works` */
+  work?: string;
+}
+
+/** one cited WORK from the lane's register (_REGISTER.tsv, drafter 8a96daa3): the fields the card shows; empty ones are dropped */
+export interface ReviewWork {
+  full_citation?: string; short_form?: string; type?: string; author?: string; title?: string; container?: string;
+  publisher?: string; place?: string; year?: string; edition?: string; isbn?: string; issn?: string; doi?: string;
+  /** the whole work online; `full_work_url_kind` names where (loc-usrep-pdf, internet-archive, cap-static, doi, govinfo, site-archive …) */
+  full_work_url?: string; full_work_url_kind?: string; volume_url?: string;
+  holder?: string; holder_url?: string;
+  preferred_citation?: string; preferred_citation_source?: string;
+  rights?: string; rights_statement?: string; rights_source_url?: string; licence?: string;
 }
 
 export interface ReviewUnit {
@@ -37,9 +54,13 @@ export interface ReviewUnit {
   seq: number;
   /** source key in `sources`, or null */
   source: string | null;
-  /** the lane's status: CUT · CUT_FIRST · UNMAPPED · NO_PIN · NO_SOURCE */
+  /** the lane's status: CUT · CUT_FIRST · UNMAPPED · NO_PIN · NO_SOURCE · EXTERNAL (a catalogue record, linked, nothing held) */
   status: string;
   rights: string;
+  /** the register id of the work the unit's first row cites (the badge) */
+  work?: string;
+  /** every work the unit's live rows cite, distinct, in row order — the card lists them so (contract refinement 2026-09-16) */
+  works?: string[];
   pages: ReviewPage[];
   /** where the unit stands in the book's PDF (absent for the units the overlay could not place) */
   box?: ReviewBox;
@@ -86,6 +107,8 @@ export interface ReviewManifest {
   book: { file: string; sha256: string; bytes: number; commit?: string; parsed?: string };
   rightsRule: string;
   sources: Record<string, ReviewSource>;
+  /** the cited works, by register id (absent on lanes without a register) */
+  works?: Record<string, ReviewWork>;
   /** the book as a PDF, bound to the boxes by sha256; null until the lane emits _WEB/overlay.json */
   pdf: ReviewPdf | null;
   /** in-text superscripts that were matched to their note */
@@ -116,14 +139,25 @@ export const reviewMeta = (m: ReviewManifest): ReviewMeta => ({
 /** an empty manifest carrying the pdf, so the book pane starts before the units arrive */
 export const stubManifest = (meta: ReviewMeta): ReviewManifest => ({
   slug: meta.slug, id: '', generated: meta.generated, feed: '', book: meta.book, rightsRule: meta.rightsRule,
-  sources: {}, pdf: meta.pdf, markers: [], units: [],
+  sources: {}, works: {}, pdf: meta.pdf, markers: [], units: [],
 });
 
 export const RIGHTS_LABEL: Record<string, string> = {
   'public-domain': 'Public domain',
   'in-copyright-owner-use': 'In copyright — held for the author’s own use',
   'licence-bound': 'Licence-bound reproduction',
+  'external-link': 'Linked to the holder’s own record — nothing is held in the library',
 };
+/** where a work's full text lives, from the register's `full_work_url_kind`, in words */
+export const WORK_URL_KIND: Record<string, string> = {
+  'loc-usrep-pdf': 'Library of Congress, U.S. Reports', 'internet-archive': 'Internet Archive', 'cap-static': 'Caselaw Access Project',
+  'doi': 'publisher (DOI)', 'govinfo': 'GovInfo', 'site-archive': 'this site’s archive', 'google-books': 'Google Books', 'hathitrust': 'HathiTrust',
+  'catalogue-record': 'catalogue record', 'acquisition-source': 'the source the library acquired it from', 'legislation-gov-uk': 'legislation.gov.uk',
+  'uscode-house-gov': 'uscode.house.gov', 'supremecourt-gov-slip': 'Supreme Court slip opinion', 'digital-bodleian': 'Digital Bodleian', 'bailii': 'BAILII',
+  'lii': 'Cornell LII', 'ecfr': 'eCFR', 'publisher-open': 'the publisher, open access',
+};
+/** an https URL opens in a new tab; a site-relative path stays in this one */
+export const isExternalUrl = (u: string) => /^https?:\/\//i.test(u);
 
 /** the units that open a published page */
 export const publishedUnits = (m: ReviewManifest) => m.units.filter((u) => u.pages.some((p) => p.file));

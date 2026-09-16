@@ -38,7 +38,7 @@ shell — the Studio owns them; use a private port and check it is free first.
 
 ## Books in review mode (`/books`)
 
-Two books from the research library are published beside the pages they
+Three books from the research library are published beside the pages they
 cite: `/books/<slug>` opens the book's PDF with hit boxes over every citation;
 a click opens the cited page in a reading copy of the source, scrolled to the
 page. `node scripts/import-books.mjs <slug>` imports a book from its Pinned

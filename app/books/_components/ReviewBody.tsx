@@ -15,9 +15,9 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
-import { AlignLeft, ArrowLeft, ArrowRight, BookOpen, ChevronLeft, ChevronRight, Columns, CornerLeftUp, ExternalLink, Loader2, Lock, Rows } from 'lucide-react';
+import { AlignLeft, ArrowLeft, ArrowRight, BookOpen, ChevronDown, ChevronLeft, ChevronRight, Columns, CornerLeftUp, ExternalLink, Loader2, Lock, Rows } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { RIGHTS_LABEL, citeFromHash, hashForCite, versioned as v, type ReviewManifest, type ReviewUnit } from '@/lib/review';
+import { RIGHTS_LABEL, WORK_URL_KIND, citeFromHash, hashForCite, isExternalUrl, versioned as v, type ReviewManifest, type ReviewUnit, type ReviewWork } from '@/lib/review';
 import { SitePageLayout } from '../../_components/SitePageLayout';
 import { BookPdfViewer, type PdfFocus, type PdfHotBox } from './BookPdfViewer';
 
@@ -47,6 +47,37 @@ interface Props {
   loadError?: string | null;
   /** source count for the intro card (the stub manifest has none) */
   sourceCount?: number;
+}
+
+/** *italics* in a register citation → <em> */
+const Cite = ({ text }: { text: string }) => <>{text.split(/(\*[^*]+\*)/g).map((part, i) => part.startsWith('*') && part.endsWith('*') ? <em key={i}>{part.slice(1, -1)}</em> : <span key={i}>{part}</span>)}</>;
+
+/** the cited WORK's register record (lane contract 2026-09-16): full citation · where the full text is · how the
+    holder asks to be cited · its rights; `compact` for the record line under the panes */
+function WorkRecord({ work, compact = false, sourceHolderUrl }: { work: ReviewWork; compact?: boolean; sourceHolderUrl?: string }) {
+  const ext = (u: string) => (isExternalUrl(u) ? { target: '_blank', rel: 'noopener noreferrer' } : {});
+  const link = 'underline underline-offset-2 text-primary';
+  const kind = work.full_work_url_kind ? WORK_URL_KIND[work.full_work_url_kind] ?? work.full_work_url_kind : 'the full work';
+  const holderDiffers = work.holder_url && work.holder_url !== sourceHolderUrl;
+  if (compact) return (
+    <p>
+      {work.full_citation && <span className="text-foreground/80"><Cite text={work.full_citation} /></span>}
+      {work.full_work_url && <> · full text: <a href={work.full_work_url} {...ext(work.full_work_url)} className={link}>{kind}</a></>}
+      {work.volume_url && work.volume_url !== work.full_work_url && <> · <a href={work.volume_url} {...ext(work.volume_url)} className={link}>the volume</a></>}
+      {work.preferred_citation && <> · cite as: {work.preferred_citation}</>}
+      {(work.rights_statement || work.licence) && <> · {work.rights_statement}{work.rights_statement && work.licence ? '; ' : ''}{work.licence && work.licence !== work.rights_statement ? `licence: ${work.licence}` : ''}</>}
+    </p>
+  );
+  return (
+    <div className="mt-3 text-sm text-foreground/85 space-y-1">
+      {work.full_citation && <p><Cite text={work.full_citation} /></p>}
+      {work.full_work_url && <p><span className="text-muted-foreground">Full text:</span> <a href={work.full_work_url} {...ext(work.full_work_url)} className={cn(link, 'inline-flex items-center gap-1')}>{kind}{isExternalUrl(work.full_work_url) && <ExternalLink className="h-3 w-3 shrink-0" />}</a>
+        {work.volume_url && work.volume_url !== work.full_work_url && <> · <a href={work.volume_url} {...ext(work.volume_url)} className={link}>the volume</a></>}</p>}
+      {work.preferred_citation && <p><span className="text-muted-foreground">Cite as:</span> {work.preferred_citation}{work.preferred_citation_source && <span className="text-muted-foreground"> ({work.preferred_citation_source})</span>}</p>}
+      {(work.rights_statement || work.licence) && <p><span className="text-muted-foreground">Rights:</span> {work.rights_statement}{work.rights_statement && work.licence ? '; ' : ''}{work.licence && work.licence !== work.rights_statement ? `licence: ${work.licence}` : ''}{work.rights_source_url && <> · <a href={work.rights_source_url} {...ext(work.rights_source_url)} className={link}>source</a></>}</p>}
+      {work.holder && holderDiffers && <p><span className="text-muted-foreground">Holder:</span> <a href={work.holder_url} {...ext(work.holder_url!)} className={link}>{work.holder}</a></p>}
+    </div>
+  );
 }
 
 export function ReviewBody({ book, manifest, published, children, loading = false, loadError = null, sourceCount }: Props) {
@@ -89,6 +120,9 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
   const [split, setSplit] = useState(50);
   const [isLg, setIsLg] = useState(false);
   const [dragging, setDragging] = useState(false);
+  // the cited work's register record under the panes is a DROP-DOWN whose body renders OUTSIDE the measured block
+  // (owner 2026-09-16: "the pdf view panes shouldn't be affected by the data fields … MUST REMAIN the same size")
+  const [showWork, setShowWork] = useState(false);
   const [fillHeight, setFillHeight] = useState<number | null>(null);
   const rowRef = useRef<HTMLDivElement | null>(null);
   const headRef = useRef<HTMLDivElement | null>(null);
@@ -233,6 +267,9 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
   // the reading copy (owner rule 2026-09-15): the pane opens the work's context document scrolled
   // to the cited page; the single-page extract stays the audit copy behind "open the page PDF"
   const ctx = page?.context ?? null;
+  // the WORK(S) the unit cites (register contract): the page in hand's first, then any other its pages carry, then the unit's own
+  const workIds = active ? [...new Set([...(active.works ?? []), active.work, ...active.pages.map((p) => p.work), page?.work].filter((w): w is string => !!w))] : [];
+  const works = workIds.map((id) => manifest.works?.[id]).filter((w): w is ReviewWork => !!w);
   const paneSrc = ctx ? v(ctx.file, ctx.served ?? ctx.sha256) : page?.file ? v(page.file, page.sha256) : null;
   const citedInCtx: number[] = active && ctx ? active.pages.filter((p) => p.context?.file === ctx.file).map((p) => p.context!.page) : [];
   const ctxFile = ctx?.file ?? null, ctxPage = ctx?.page ?? null;
@@ -274,12 +311,12 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
 
   // the page strip: every page the unit cites, grouped by source when it draws on two,
   // the active page marked, a held page shown as a marked label rather than dropped
-  const groups: { source: string | null; title: string; items: { i: number; label: string; file: string | null }[] }[] = [];
+  const groups: { source: string | null; title: string; items: { i: number; label: string; file: string | null; url?: string }[] }[] = [];
   active?.pages.forEach((p, i) => {
     const src = p.source ?? active.source;
     let g = groups[groups.length - 1];
     if (!g || g.source !== src) { g = { source: src, title: (src && manifest.sources[src]?.title) || src || '', items: [] }; groups.push(g); }
-    g.items.push({ i, label: p.label, file: p.file });
+    g.items.push({ i, label: p.label, file: p.file, url: p.url });
   });
   const stripShell = 'shrink-0 rounded-lg border border-border bg-card shadow-sm px-3 py-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 font-sans';
   const eyebrow = 'text-xs lg:text-[11px] uppercase tracking-[0.08em] text-muted-foreground';
@@ -301,7 +338,7 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
       {groups.map((g, gi) => (
         <span key={`${g.source}-${gi}`} className="inline-flex flex-wrap items-center gap-1">
           {groups.length > 1 && <span className="text-xs text-muted-foreground mr-0.5 truncate max-w-[16rem]" title={g.title}>{g.title}</span>}
-          {g.items.map((it) => (
+          {g.items.map((it) => it.file || !it.url ? (
             <button key={it.i} type="button" role="tab" aria-selected={pageIdx === it.i} onClick={() => goPage(it.i)}
               title={it.file ? `Open ${it.label}` : `${it.label} — held in the library, not published`}
               className={cn('h-7 px-2 rounded-md text-xs tabular-nums transition-colors inline-flex items-center gap-1',
@@ -309,6 +346,16 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
               style={{ fontWeight: pageIdx === it.i ? 600 : 500 }}>
               {!it.file && <Lock className="h-3 w-3" aria-hidden />}{it.label}
             </button>
+          ) : (
+            // a held page that carries a link (lane contract 2026-09-15): the chip IS the link — the site's own leaf
+            // page (image + transcript) in this tab, or the holder's catalogue record in a new one
+            <a key={it.i} href={it.url} {...(isExternalUrl(it.url) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              title={isExternalUrl(it.url) ? `${it.label} — the holder’s own record (opens in a new tab)` : `${it.label} — open the leaf on this site: the image with its transcript`}
+              className={cn('h-7 px-2 rounded-md text-xs tabular-nums transition-colors inline-flex items-center gap-1 no-underline border border-dashed',
+                pageIdx === it.i ? 'border-primary text-primary bg-primary/10' : 'border-border text-foreground/85 hover:bg-muted')}
+              style={{ fontWeight: pageIdx === it.i ? 600 : 500 }}>
+              {isExternalUrl(it.url) ? <ExternalLink className="h-3 w-3" aria-hidden /> : <Lock className="h-3 w-3" aria-hidden />}{it.label}
+            </a>
           ))}
         </span>
       ))}
@@ -341,18 +388,38 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
               </>
             ) : (
               <>
-                <p className={cn('inline-flex items-center gap-1.5', eyebrow)} style={{ fontWeight: 600 }}><Lock className="h-3.5 w-3.5" /> Held in the library, not published</p>
+                <p className={cn('inline-flex items-center gap-1.5', eyebrow)} style={{ fontWeight: 600 }}>{active.status === 'EXTERNAL' ? <><ExternalLink className="h-3.5 w-3.5" /> Cited by the holder’s record, not held</> : <><Lock className="h-3.5 w-3.5" /> Held in the library, not published</>}</p>
                 <p className="font-serif text-lg text-foreground mt-3 leading-snug" style={{ fontWeight: 600 }}>{sourceTitle}</p>
                 {page ? <p className="mt-1 text-foreground/85">{page.label}</p> : active.pages.length > 0 && <p className="mt-1 text-foreground/85">{active.pages.map((p) => p.label).join(' · ')}</p>}
+                {works.length > 0 && (
+                  <details className="mt-3 group">
+                    <summary className="cursor-pointer text-sm text-primary underline underline-offset-2 list-none inline-flex items-center gap-1">The work{works.length > 1 ? 's' : ''} cited <ChevronDown className="h-3.5 w-3.5 transition-transform group-open:rotate-180" aria-hidden /></summary>
+                    {works.map((w, i) => <WorkRecord key={workIds[i]} work={w} sourceHolderUrl={source?.holderUrl} />)}
+                  </details>
+                )}
                 <p className="mt-4 text-foreground/85">
                   {rights && RIGHTS_LABEL[rights] ? <>{RIGHTS_LABEL[rights]}. </> : null}
                   {active.status === 'NO_SOURCE' && 'The cited edition is not held in the library; nothing is shown that was not read.'}
                   {active.status === 'NO_PIN' && 'The note cites the work without a page, so no page is opened.'}
                   {active.status === 'UNMAPPED' && 'The cited page could not be located in the held scan.'}
                   {(active.status === 'CUT' || active.status === 'CUT_FIRST') && 'The page is held and was read for this book; its reproduction is not the author’s to publish.'}
+                  {active.status === 'EXTERNAL' && 'The note cites the item by the holder’s catalogue record; nothing of it is held in the library.'}
                 </p>
+                {/* the held page's own link (lane contract 2026-09-15): this site's leaf page, or the holder's record */}
+                {active.pages.filter((p) => !p.file && p.url).length > 0 && (
+                  <ul className="mt-3 space-y-1">
+                    {active.pages.filter((p) => !p.file && p.url).map((p) => (
+                      <li key={p.url}>
+                        <a href={p.url} {...(isExternalUrl(p.url!) ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="inline-flex items-center gap-1 underline underline-offset-2 text-primary break-all">
+                          {isExternalUrl(p.url!) ? <>The holder’s record: {p.label}</> : <>Open the leaf on this site: {p.label} — the image with its transcript</>}
+                          <ExternalLink className="h-3.5 w-3.5 shrink-0" />
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
                 {source?.holderUrl && (
-                  <p className="mt-3"><a href={source.holderUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 underline underline-offset-2 text-primary break-all">The holder’s copy <ExternalLink className="h-3.5 w-3.5 shrink-0" /></a></p>
+                  <p className="mt-3"><a href={source.holderUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 underline underline-offset-2 text-primary break-all">{rights === 'external-link' ? 'The holder’s collection record' : 'The holder’s copy'} <ExternalLink className="h-3.5 w-3.5 shrink-0" /></a></p>
                 )}
               </>
             )}
@@ -440,11 +507,12 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
               <>
                 <p>
                   <span className="text-foreground/80" style={{ fontWeight: 550 }}>{pageTitle}</span>
-                  {' · '}{page.verified === true ? 'page number read on the page' : page.verified === false ? 'page placed by the scan’s offset — the number was not read on it' : 'a verso with no number to read'}
+                  {active?.status === 'EXTERNAL' ? ' · the holder’s catalogue record, linked' : <>{' · '}{page.verified === true ? 'page number read on the page' : page.verified === false ? 'page placed by the scan’s offset — the number was not read on it' : 'a verso with no number to read'}</>}
                   {active?.status === 'CUT_FIRST' && (page?.begins ? ' · the note cites the case without a page: the whole case is served, from its first page' : ' · a page of the case, cited whole')}
                   {page.file && <> · <a href={v(page.file, page.sha256)} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 text-primary">open the page PDF</a></>}
                   {ctx && <> · shown in its reading copy at page {ctx.page}{page.file ? '; the download is the single page' : ''}</>}
                   {rights && RIGHTS_LABEL[rights] && <> · {RIGHTS_LABEL[rights]}</>}
+                  {works.length > 0 && <> · <button type="button" onClick={() => setShowWork((x) => !x)} aria-expanded={showWork} className="underline underline-offset-2 text-primary inline-flex items-center gap-0.5">the work{works.length > 1 ? 's' : ''} cited <ChevronDown className={cn('h-3 w-3 transition-transform', showWork && 'rotate-180')} aria-hidden /></button></>}
                 </p>
                 {page.sha256 && <p className="font-mono break-all">sha256 {page.sha256}</p>}
               </>
@@ -457,6 +525,13 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
             text current to {manifest.generated.slice(0, 10)} (sha256 <span className="font-mono">{manifest.book.sha256.slice(0, 12)}…</span>{manifest.book.commit ? <>, blob {manifest.book.commit.slice(0, 8)}</> : null})
           </p>
         </div>
+        {/* the cited work's register record — a SIBLING of the measured block above, never inside the fill budget
+            (owner 2026-09-16: the panes must keep their size whatever the data fields show) */}
+        {showWork && !reading && page && works.length > 0 && (
+          <div className={cn('mt-2 rounded-md border border-border bg-card px-4 py-2 text-xs lg:text-[11px] text-muted-foreground leading-relaxed font-sans space-y-1', layout !== 'side' && 'max-w-5xl mx-auto')}>
+            {works.map((w, i) => <WorkRecord key={workIds[i]} work={w} compact sourceHolderUrl={source?.holderUrl} />)}
+          </div>
+        )}
       </main>
     </SitePageLayout>
   );
