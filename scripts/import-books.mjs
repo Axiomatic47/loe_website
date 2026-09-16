@@ -74,6 +74,10 @@ const REVIEWS = [
 ];
 
 const PUBLISHABLE = new Set(['public-domain']);
+/** the register's per-WORK fields the card shows (lane contract 2026-09-16, drafter 8a96daa3's _REGISTER.tsv);
+    never shelf_path / sha256 / notes — those are the library's own */
+const WORK_FIELDS = ['full_citation', 'short_form', 'type', 'author', 'title', 'container', 'publisher', 'place', 'year', 'edition', 'isbn', 'issn', 'doi',
+  'full_work_url', 'full_work_url_kind', 'volume_url', 'holder', 'holder_url', 'preferred_citation', 'preferred_citation_source', 'rights', 'rights_statement', 'rights_source_url', 'licence'];
 const CUT = new Set(['CUT', 'CUT_FIRST', 'CUT_CASE']);
 const sha256 = (file) => createHash('sha256').update(readFileSync(file)).digest('hex');
 // PLAIN TSV (the data seat's contract): split on tabs only — no quoting, no
@@ -168,6 +172,14 @@ function importOne(cfg) {
   // ---- the lane ---------------------------------------------------------------
   const rows = tsv(join(cfg.lane, '_INDEX.tsv'));
   const sources = Object.fromEntries(tsv(join(cfg.lane, '_SOURCES.tsv')).map((s) => [s.key, s]));
+  // the works register (lane contract 2026-09-16): one row per cited WORK; only `is_work` Y rows are ever pointed at.
+  // Split on tabs only — one field opens with a straight quote, which a CSV reader would swallow.
+  const registerFile = join(cfg.lane, '_REGISTER.tsv');
+  const register = new Map();
+  if (existsSync(registerFile)) {
+    const [hdr, ...body] = readFileSync(registerFile, 'utf8').replace(/^\uFEFF/, '').split('\n').filter((l) => l.length).map((l) => l.split('\t'));
+    for (const cells of body) { const row = Object.fromEntries(hdr.map((h, i) => [h, cells[i] ?? ''])); if (row.is_work === 'Y' && row.id) register.set(row.id, row); }
+  }
   const bookJson = join(cfg.lane, '_BOOK.json');
   if (!existsSync(bookJson)) throw new Error('the lane has no _BOOK.json — nothing written');
   const bookMeta = JSON.parse(readFileSync(bookJson, 'utf8'));
@@ -218,6 +230,11 @@ function importOne(cfg) {
         start: r.unit_start === '' || r.unit_start == null ? null : Number(r.unit_start), end: r.unit_end === '' || r.unit_end == null ? null : Number(r.unit_end) };
       units.set(key, u);
     }
+    // the cited WORK (register contract): per row; the unit carries its first row's so a unit without pages still names its work
+    if (r.work) {
+      if (!register.has(r.work)) throw new Error(`${key}: work '${r.work}' is not an is_work row of _REGISTER.tsv — the lane is mid-write; nothing written`);
+      if (!u.work) u.work = r.work;
+    }
     if (r.extract && CUT.has(r.status)) {
       const kind = sources[r.source_key]?.pinkind || 'page';
       // verified: Y = the page number was read on the page · N = placed by the run's offset · '-' = a verso with nothing to read.
@@ -228,12 +245,12 @@ function importOne(cfg) {
         ...(r.context ? { ctx: { extract: r.context, page: Number(r.context_page) || 1, sha256: r.context_sha || null } } : {}),
         // the index's `url` (lane contract 2026-09-15): the site's own leaf page for a held membrane / folio —
         // the chip links there (the image with its transcript tab) instead of dead-ending on "held"
-        ...(r.url ? { url: r.url } : {}) });
+        ...(r.url ? { url: r.url } : {}), ...(r.work ? { work: r.work } : {}) });
     } else if (r.status === 'EXTERNAL' && r.url) {
       // a catalogue record the book cites (lane contract 2026-09-15): nothing is held in the lane — no extract,
       // rights `external-link` — the chip carries the holder's own record as its link and the pin as its label
       u.pages.push({ pin: r.pin, label: pinLabel('item', r.pin, '', r.status, r.source_key), extract: '', source: r.source_key, rights: r.rights || sources[r.source_key]?.rights || 'external-link',
-        verified: null, sha256: null, url: r.url });
+        verified: null, sha256: null, url: r.url, ...(r.work ? { work: r.work } : {}) });
     }
   }
 
@@ -395,6 +412,12 @@ function importOne(cfg) {
     rightsRule: 'Only public-domain pages are published; every other citation is marked as held in the library.',
     pdf,
     markers,
+    // the works the manifest's units cite, from the register (only those; the card reads full_citation,
+    // full_work_url (+ kind), volume_url, preferred_citation, rights_statement, licence, holder)
+    works: Object.fromEntries([...new Set([...units.values()].flatMap((u) => [u.work, ...u.pages.map((p) => p.work)]).filter(Boolean))].sort().map((id) => {
+      const row = register.get(id);
+      return [id, Object.fromEntries(WORK_FIELDS.filter((f) => row[f]).map((f) => [f, row[f]]))];
+    })),
     sources: Object.fromEntries([...usedSources].sort().map((k) => {
       const s = sources[k] ?? {};
       return [k, { title: s.title || k, rights: s.rights || '', pinkind: s.pinkind || 'page', ...(s.holder_url ? { holderUrl: s.holder_url } : {}) }];
@@ -403,8 +426,8 @@ function importOne(cfg) {
       const u = units.get(id);
       return {
         // slim: this JSON travels to the reader's browser with the page
-        id: u.id, note: u.note, seq: u.seq, source: u.source, status: u.status, rights: u.rights,
-        pages: u.pages.map((p) => ({ label: p.label, file: p.file, verified: p.verified, sha256: p.sha256, source: p.source, rights: p.rights, ...(p.begins ? { begins: true } : {}), ...(p.url ? { url: p.url } : {}),
+        id: u.id, note: u.note, seq: u.seq, source: u.source, status: u.status, rights: u.rights, ...(u.work ? { work: u.work } : {}),
+        pages: u.pages.map((p) => ({ label: p.label, file: p.file, verified: p.verified, sha256: p.sha256, source: p.source, rights: p.rights, ...(p.begins ? { begins: true } : {}), ...(p.url ? { url: p.url } : {}), ...(p.work ? { work: p.work } : {}),
           ...(p.ctx?.file ? { context: { file: p.ctx.file, page: p.ctx.page, sha256: p.ctx.sha256, served: p.ctx.served, bytes: p.ctx.bytes } } : {}) })),
         ...(boxes.has(u.id) ? { box: boxes.get(u.id) } : {}),
       };
@@ -430,6 +453,7 @@ function importOne(cfg) {
   const pageLinks = manifest.units.reduce((n, u) => n + u.pages.filter((p) => p.file).length, 0);
   console.log(`import-books: ${cfg.slug} ← ${feed}`);
   console.log(`  book ${basename(cfg.book)} sha256 ${bookSha.slice(0, 16)}…  ${lines.length} lines, ${defLine.size} notes`);
+  { const ids = new Set(); let uw = 0; for (const u of units.values()) { if (u.work) uw += 1; for (const w of [u.work, ...u.pages.map((p) => p.work)]) if (w) ids.add(w); } if (ids.size) console.log(`  works: ${ids.size} register works cited by ${uw} of ${units.size} units (register ${register.size} works)`); }
   { let n = 0, ext = 0; for (const u of units.values()) for (const p of u.pages) { if (p.url) { n += 1; if (u.status === 'EXTERNAL') ext += 1; } } if (n) console.log(`  links: ${n} page chips carry a url (${n - ext} leaf pages on this site, ${ext} external catalogue records)`); }
   console.log(`  units: ${counts.wrapped} wrapped (${counts.published} open a published page, ${counts.held} marked held/uncut), ${counts.uncut} without a source left plain, ${counts.unwrappable} unwrappable, ${counts.noDef} with no definition`);
   if (pdf) console.log(`  book PDF: ${basename(pdf.file)} ${pdf.pages} pp. ${(pdf.bytes / 1e6).toFixed(1)} MB sha256 ${pdf.sha256.slice(0, 12)}… (${pdf.producer})${pdf.linked ? ' + linked copy' : ''}; boxes on ${counts.boxed} units, ${counts.unboxed.length} wrapped units without a box${counts.unboxed.length ? ': ' + counts.unboxed.join(', ') : ''}; ${markers.length} markers`);

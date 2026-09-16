@@ -67,6 +67,16 @@ project registry as before.
   tab with rel noopener); the held card lists the same links. `external-link` is not in
   PUBLISHABLE, so nothing is served for it. check_links requires a chip's url to equal
   its row's.
+- **Lane contract, `work` column + `_REGISTER.tsv` (2026-09-16, drafter 8a96daa3's register):**
+  an index row may name the WORK it cites (`work` = a register id; only `is_work` Y rows
+  are pointed at; split the register on tabs only). The importer copies `work` onto the
+  page and the unit (first row's), refuses an id the register lacks, and writes a manifest
+  `works` map (id → the card's fields: full_citation, full_work_url + kind, volume_url,
+  preferred_citation, rights_statement, licence, holder …; never shelf_path / sha256 /
+  notes). The card (`WorkRecord`) shows the full citation, "Full text:" with the kind in
+  words (`WORK_URL_KIND`), "Cite as:", rights, and the holder when it differs from the
+  source's; the record line under the panes carries the compact form. Lanes without a
+  register import unchanged.
 - Records: `src/data/books.ts` (presentation copy); code under `app/books/`;
   viewer `BookPdfViewer` (range-loading, shared worker, hit boxes, marked
   pages); pdf.js assets under `public/pdfjs/` are copied from `pdfjs-dist` — copy

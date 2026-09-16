@@ -17,7 +17,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { AlignLeft, ArrowLeft, ArrowRight, BookOpen, ChevronLeft, ChevronRight, Columns, CornerLeftUp, ExternalLink, Loader2, Lock, Rows } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { RIGHTS_LABEL, citeFromHash, hashForCite, isExternalUrl, versioned as v, type ReviewManifest, type ReviewUnit } from '@/lib/review';
+import { RIGHTS_LABEL, WORK_URL_KIND, citeFromHash, hashForCite, isExternalUrl, versioned as v, type ReviewManifest, type ReviewUnit, type ReviewWork } from '@/lib/review';
 import { SitePageLayout } from '../../_components/SitePageLayout';
 import { BookPdfViewer, type PdfFocus, type PdfHotBox } from './BookPdfViewer';
 
@@ -47,6 +47,37 @@ interface Props {
   loadError?: string | null;
   /** source count for the intro card (the stub manifest has none) */
   sourceCount?: number;
+}
+
+/** *italics* in a register citation → <em> */
+const Cite = ({ text }: { text: string }) => <>{text.split(/(\*[^*]+\*)/g).map((part, i) => part.startsWith('*') && part.endsWith('*') ? <em key={i}>{part.slice(1, -1)}</em> : <span key={i}>{part}</span>)}</>;
+
+/** the cited WORK's register record (lane contract 2026-09-16): full citation · where the full text is · how the
+    holder asks to be cited · its rights; `compact` for the record line under the panes */
+function WorkRecord({ work, compact = false, sourceHolderUrl }: { work: ReviewWork; compact?: boolean; sourceHolderUrl?: string }) {
+  const ext = (u: string) => (isExternalUrl(u) ? { target: '_blank', rel: 'noopener noreferrer' } : {});
+  const link = 'underline underline-offset-2 text-primary';
+  const kind = work.full_work_url_kind ? WORK_URL_KIND[work.full_work_url_kind] ?? work.full_work_url_kind : 'the full work';
+  const holderDiffers = work.holder_url && work.holder_url !== sourceHolderUrl;
+  if (compact) return (
+    <p>
+      {work.full_citation && <span className="text-foreground/80"><Cite text={work.full_citation} /></span>}
+      {work.full_work_url && <> · full text: <a href={work.full_work_url} {...ext(work.full_work_url)} className={link}>{kind}</a></>}
+      {work.volume_url && work.volume_url !== work.full_work_url && <> · <a href={work.volume_url} {...ext(work.volume_url)} className={link}>the volume</a></>}
+      {work.preferred_citation && <> · cite as: {work.preferred_citation}</>}
+      {(work.rights_statement || work.licence) && <> · {work.rights_statement}{work.rights_statement && work.licence ? '; ' : ''}{work.licence && work.licence !== work.rights_statement ? `licence: ${work.licence}` : ''}</>}
+    </p>
+  );
+  return (
+    <div className="mt-3 text-sm text-foreground/85 space-y-1">
+      {work.full_citation && <p><Cite text={work.full_citation} /></p>}
+      {work.full_work_url && <p><span className="text-muted-foreground">Full text:</span> <a href={work.full_work_url} {...ext(work.full_work_url)} className={cn(link, 'inline-flex items-center gap-1')}>{kind}{isExternalUrl(work.full_work_url) && <ExternalLink className="h-3 w-3 shrink-0" />}</a>
+        {work.volume_url && work.volume_url !== work.full_work_url && <> · <a href={work.volume_url} {...ext(work.volume_url)} className={link}>the volume</a></>}</p>}
+      {work.preferred_citation && <p><span className="text-muted-foreground">Cite as:</span> {work.preferred_citation}{work.preferred_citation_source && <span className="text-muted-foreground"> ({work.preferred_citation_source})</span>}</p>}
+      {(work.rights_statement || work.licence) && <p><span className="text-muted-foreground">Rights:</span> {work.rights_statement}{work.rights_statement && work.licence ? '; ' : ''}{work.licence && work.licence !== work.rights_statement ? `licence: ${work.licence}` : ''}{work.rights_source_url && <> · <a href={work.rights_source_url} {...ext(work.rights_source_url)} className={link}>source</a></>}</p>}
+      {work.holder && holderDiffers && <p><span className="text-muted-foreground">Holder:</span> <a href={work.holder_url} {...ext(work.holder_url!)} className={link}>{work.holder}</a></p>}
+    </div>
+  );
 }
 
 export function ReviewBody({ book, manifest, published, children, loading = false, loadError = null, sourceCount }: Props) {
@@ -233,6 +264,9 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
   // the reading copy (owner rule 2026-09-15): the pane opens the work's context document scrolled
   // to the cited page; the single-page extract stays the audit copy behind "open the page PDF"
   const ctx = page?.context ?? null;
+  // the WORK(S) the unit cites (register contract): the page in hand's first, then any other its pages carry, then the unit's own
+  const workIds = active ? [...new Set([page?.work, ...active.pages.map((p) => p.work), active.work].filter((w): w is string => !!w))] : [];
+  const works = workIds.map((id) => manifest.works?.[id]).filter((w): w is ReviewWork => !!w);
   const paneSrc = ctx ? v(ctx.file, ctx.served ?? ctx.sha256) : page?.file ? v(page.file, page.sha256) : null;
   const citedInCtx: number[] = active && ctx ? active.pages.filter((p) => p.context?.file === ctx.file).map((p) => p.context!.page) : [];
   const ctxFile = ctx?.file ?? null, ctxPage = ctx?.page ?? null;
@@ -354,6 +388,7 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
                 <p className={cn('inline-flex items-center gap-1.5', eyebrow)} style={{ fontWeight: 600 }}>{active.status === 'EXTERNAL' ? <><ExternalLink className="h-3.5 w-3.5" /> Cited by the holder’s record, not held</> : <><Lock className="h-3.5 w-3.5" /> Held in the library, not published</>}</p>
                 <p className="font-serif text-lg text-foreground mt-3 leading-snug" style={{ fontWeight: 600 }}>{sourceTitle}</p>
                 {page ? <p className="mt-1 text-foreground/85">{page.label}</p> : active.pages.length > 0 && <p className="mt-1 text-foreground/85">{active.pages.map((p) => p.label).join(' · ')}</p>}
+                {works.map((w, i) => <WorkRecord key={workIds[i]} work={w} sourceHolderUrl={source?.holderUrl} />)}
                 <p className="mt-4 text-foreground/85">
                   {rights && RIGHTS_LABEL[rights] ? <>{RIGHTS_LABEL[rights]}. </> : null}
                   {active.status === 'NO_SOURCE' && 'The cited edition is not held in the library; nothing is shown that was not read.'}
@@ -471,6 +506,7 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
                   {rights && RIGHTS_LABEL[rights] && <> · {RIGHTS_LABEL[rights]}</>}
                 </p>
                 {page.sha256 && <p className="font-mono break-all">sha256 {page.sha256}</p>}
+                {works.slice(0, 1).map((w, i) => <WorkRecord key={workIds[i]} work={w} compact sourceHolderUrl={source?.holderUrl} />)}
               </>
             ) : (
               <p>{manifest.rightsRule}</p>
