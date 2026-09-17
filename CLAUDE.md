@@ -55,7 +55,7 @@ project registry as before.
   held but not published is MARKED on the site, never dropped.
 - **Import only on a drafter's "lane at <sha>" send** (0b43895f: immunity;
   60f85bca: Holy Seed, the Genesis reading and the Madisonian article — slug
-  the-madisonian-separation-of-powers-test, id madisonian-test, lane beside the article, no
+  madisonian-test (= kirchner.ink's existing /work/madisonian-test), id madisonian-test, lane beside the article, no
   BOOK/ folder; pre-wired 2026-09-16, first import on its "lane at <sha> + render" send) and
   answer with "imported at <loe sha>"; they run
   `check_links.py <lane> /Users/everest/Git/loe_website` against this checkout.

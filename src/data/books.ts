@@ -61,7 +61,7 @@ export const BOOKS: BookRecord[] = [
   {
     // the fourth title in review mode (owner 2026-09-16, via drafter 60f85bca): an article; renders only once
     // its lane has been imported (publishedBooks reads content/review)
-    slug: 'the-madisonian-separation-of-powers-test',
+    slug: 'madisonian-test',
     id: 'madisonian-test',
     title: 'The Madisonian Separation of Powers Objective Compliance Test',
     subtitle: 'Recovering Constitutional Structure Through Textual Analysis',
