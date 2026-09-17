@@ -58,6 +58,19 @@ export const BOOKS: BookRecord[] = [
       'This book began with one word in one verse: the “now” that opens the second chapter’s account of the making of man, read against the six days of the first, and the question whether the second chapter continued the first or went back over it. It is a reading, of three chapters of one book, and not a history of their interpretation. It is restorative because it restores the text’s own order against the versions that rearranged it, and its own words against the versions that dispersed them; and the versions are not obstacles between the reader and the text but witnesses, each faithful somewhere and unfaithful somewhere else.',
     collection: 'Genesis 1–3',
   },
+  {
+    // the fourth title in review mode (owner 2026-09-16, via drafter 60f85bca): an article; renders only once
+    // its lane has been imported (publishedBooks reads content/review)
+    slug: 'the-madisonian-separation-of-powers-test',
+    id: 'madisonian-test',
+    title: 'The Madisonian Separation of Powers Objective Compliance Test',
+    subtitle: 'Recovering Constitutional Structure Through Textual Analysis',
+    date: '2026-09-16',
+    venue: 'Article · working draft',
+    blurb:
+      'For 239 years the United States has lacked an objective legal definition of a separation-of-powers violation. This Article recovers what Madison actually wrote: he used “distribution”, not “separation”; “balance” and “check” are sequential operations, not synonyms; and non-delegation is not a separate doctrine. From that framework it derives a six-step compliance test any court can apply without policy judgment, validates it against 36 Supreme Court decisions across 154 years, and recovers the equity standing needed to enforce it.',
+    collection: 'Constitutional structure',
+  },
 ];
 
 export const bookBySlug = (slug: string) => BOOKS.find((b) => b.slug === slug) ?? null;

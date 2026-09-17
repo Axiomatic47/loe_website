@@ -84,6 +84,12 @@
 
 # the citation manifests the review page fetches — hash-named, so immutable
 [[headers]]
+  for = "/uploads/research/madisonian-test/*"
+    [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# the citation manifests the review page fetches — hash-named, so immutable
+[[headers]]
   for = "/review/*"
     [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"

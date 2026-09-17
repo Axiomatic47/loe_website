@@ -71,6 +71,14 @@ const REVIEWS = [
     book: join(LIB, '14_Restorative Reading of Genesis 1-3', 'BOOK', 'A_Restorative_Reading_of_Genesis_1-3.md'),
     lane: join(LIB, '14_Restorative Reading of Genesis 1-3', 'BOOK', 'Pinned Citation Extracts'),
   },
+  {
+    // the fourth title (owner 2026-09-16, via drafter 60f85bca): an ARTICLE, its lane beside it (no BOOK/ folder);
+    // slug shared with kirchner.ink's /work/<slug>/review so check_links joins both sites
+    slug: 'the-madisonian-separation-of-powers-test',
+    id: 'madisonian-test',
+    book: join(LIB, '2_Madisonian Separation of Powers Test Article', 'DRAFT_Madisonian_Separation_of_Powers_Test.md'),
+    lane: join(LIB, '2_Madisonian Separation of Powers Test Article', 'Pinned Citation Extracts'),
+  },
 ];
 
 const PUBLISHABLE = new Set(['public-domain']);

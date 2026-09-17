@@ -54,7 +54,10 @@ project registry as before.
   browser's copy `public/review/<slug>.<hash>.json`. A citation whose page is
   held but not published is MARKED on the site, never dropped.
 - **Import only on a drafter's "lane at <sha>" send** (0b43895f: immunity;
-  60f85bca: Holy Seed and the Genesis reading) and answer with "imported at <loe sha>"; they run
+  60f85bca: Holy Seed, the Genesis reading and the Madisonian article — slug
+  the-madisonian-separation-of-powers-test, id madisonian-test, lane beside the article, no
+  BOOK/ folder; pre-wired 2026-09-16, first import on its "lane at <sha> + render" send) and
+  answer with "imported at <loe sha>"; they run
   `check_links.py <lane> /Users/everest/Git/loe_website` against this checkout.
   The book text and the lane are never edited here.
 - **Lane contract, `url` column (2026-09-15/16):** an index row may carry `url` —
