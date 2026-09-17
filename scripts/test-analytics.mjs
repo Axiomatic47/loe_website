@@ -26,9 +26,10 @@ const SITE = 'https://lawsofexistence.com';
 
 // ---- 1. the beacon handler
 const blobs = memoryBlobs();
-let clock = T0;
+// every hit is one second after the last: raw keys sort by time, so the tests can address records by order
+let clock = T0 - 1000;
 const logs = [];
-const hit = createHandler({ getStore: () => blobs, env: { get: k => (k === 'ANALYTICS_TZ' ? TZ : undefined) }, now: () => clock, log: t => logs.push(t) });
+const hit = createHandler({ getStore: () => blobs, env: { get: k => (k === 'ANALYTICS_TZ' ? TZ : undefined) }, now: () => (clock += 1000), log: t => logs.push(t) });
 const req = (body, { method = 'POST', headers = {}, url = `${SITE}/api/hit` } = {}) =>
   new Request(url, { method, headers: { 'user-agent': UA, origin: SITE, 'content-type': 'text/plain', ...headers }, body: method === 'POST' ? (typeof body === 'string' ? body : JSON.stringify(body)) : undefined });
 const ctx = (ip = '203.0.113.9', country = 'US', deploy = 'production') => ({ ip, geo: { country: { code: country } }, deploy: { context: deploy } });
@@ -47,7 +48,6 @@ await check('hit: the record holds the normalized path, referrer host, country, 
 clock += 60_000;
 await hit(req({ p: '/bio', r: '', w: 390 }), ctx());
 await check('hit: the same visitor the same day gets the same hash (phone, direct)', async () => { const r = await blobs.get(rawKeys()[1], { type: 'json' }); assert.equal(r.u, rec1.u); assert.equal(r.v, 'phone'); assert.equal(r.r, ''); });
-clock += 60_000; // a later timestamp: raw keys sort by <ts>-<rand>, and two hits in one millisecond would order by the random suffix
 await hit(req({ p: '/bio', w: 1024 }), ctx('198.51.100.7', 'DE'));
 await check('hit: another visitor gets another hash', async () => { const r = await blobs.get(rawKeys()[2], { type: 'json' }); assert.notEqual(r.u, rec1.u); assert.equal(r.c, 'DE'); });
 await check('hit: a same-site referrer is dropped to direct', async () => { await hit(req({ p: '/contact', r: `${SITE}/bio`, w: 1200 }), ctx()); const r = await blobs.get(rawKeys().at(-1), { type: 'json' }); assert.equal(r.r, ''); });
@@ -121,7 +121,7 @@ await check('rollup: the day closes an hour into the next day — visitors gone,
   assert.equal(await blobs.get('salt/2026-09-16'), null); assert.doesNotMatch(JSON.stringify(d), new RegExp(rec1.u));
 });
 await check('rollup: a view landing on a closed day counts as a view, not a visitor', async () => {
-  clock = T0; await hit(req({ p: '/late', w: 1200 }), ctx());
+  clock = T0 + 5_000_000; await hit(req({ p: '/late', w: 1200 }), ctx()); // still the 16th in Chicago
   await rollup(store, Date.UTC(2026, 8, 17, 7, 0), { tz: TZ });
   const d = await store.get('day/2026-09-16.json'); assert.equal(d.views, rawCount + 2); assert.equal(d.uniques, 2); assert.equal(d.paths['/late'], 1);
 });
