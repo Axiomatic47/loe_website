@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import Script from 'next/script';
 import { Providers } from './providers';
+import { Analytics } from './_components/Analytics';
 import { SITE_ORIGIN } from '@/utils/urls';
 import '@/index.css';
 import './head-styles.css';
@@ -48,16 +48,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
         <Providers>{children}</Providers>
-        {/* Plausible analytics — same script + shim as the vite index.html. */}
-        <Script
-          defer
-          data-domain="lawsofexistence.com"
-          src="https://plausible.io/js/script.file-downloads.hash.outbound-links.pageview-props.tagged-events.js"
-          strategy="afterInteractive"
-        />
-        <Script id="plausible-shim" strategy="afterInteractive">
-          {`window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }`}
-        </Script>
+        {/* First-party page counter (owner 2026-09-16: "free, no subscriptions"): one beacon to
+            this site's own /api/hit per page shown, no cookie, no third party — Plausible left
+            with it. app/_components/Analytics.tsx; design in docs/ANALYTICS.md. */}
+        <Analytics />
       </body>
     </html>
   );
