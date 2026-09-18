@@ -5,16 +5,19 @@
 // contractors, multi-factor administrative access, network segmentation,
 // seven-year security logs and business transfers — none of which exist for
 // a personal static site. This version states the site's ACTUAL data flows:
-// Netlify hosting logs, cookieless Plausible analytics, the FormSubmit
+// Netlify hosting logs, the site's own first-party page counter (2026-09-16,
+// replacing Plausible), the FormSubmit
 // contact relay to the author's mailbox, PayPal for contributions, YouTube
 // embeds, and browser storage for display preferences. Keep it true: if a
 // service is added or removed, change this page in the same commit.
 import React from 'react';
 import { H2, P, UL, LegalPage, LEGAL_CONTACT_EMAIL, type RenderLink } from './prose';
 
-export const PRIVACY_UPDATED = 'September 8, 2026';
+export const PRIVACY_UPDATED = 'September 16, 2026';
 
-export function PrivacyBody({ renderLink }: { renderLink: RenderLink }) {
+/** `analyticsSwitch`: the per-browser off switch for the page counter (the Next page passes
+    app/_components/AnalyticsOptOut; the vite gate renders the text alone) */
+export function PrivacyBody({ renderLink, analyticsSwitch }: { renderLink: RenderLink; analyticsSwitch?: React.ReactNode }) {
   const L = (href: string, text: string) => renderLink(href, text);
   return (
     <LegalPage eyebrow="Privacy policy" title="Privacy Policy" updated={PRIVACY_UPDATED}>
@@ -32,9 +35,13 @@ export function PrivacyBody({ renderLink }: { renderLink: RenderLink }) {
         profiles from them.
       </P>
       <P>
-        <strong>Analytics.</strong> The site uses Plausible Analytics, which is cookieless and reports only aggregate
-        figures such as page views, referring sites, countries, and file downloads. It stores no personal identifier
-        and does not track you across sites. Plausible's servers are in the European Union.
+        <strong>Visit counts, first-party, no cookies.</strong> The site counts page views itself, on its own address:
+        the page you opened, the site you came from (its address only), your country, your screen size class and the
+        hour. To tell visitors apart within one day it keeps a hash made from a random daily value, your address and
+        your browser; the daily value is destroyed when the day closes, so the hash cannot be traced back to anyone
+        afterwards. No address is stored, nothing is sent to any other party, no cookie is set, and browsers that send
+        the Global Privacy Control signal are not counted at all. No third-party analytics script is loaded.
+        {analyticsSwitch ? <span className="block mt-3">{analyticsSwitch}</span> : null}
       </P>
       <P>
         <strong>Your browser's storage.</strong> The site keeps a few display preferences in your own browser, such as
@@ -89,8 +96,8 @@ export function PrivacyBody({ renderLink }: { renderLink: RenderLink }) {
 
       <H2>Retention</H2>
       <P>
-        Hosting logs are kept by Netlify under its own schedule. Plausible holds only aggregate statistics with no
-        personal data to retain. Correspondence is kept as long as needed for the purposes above, and is deleted on
+        Hosting logs are kept by Netlify under its own schedule. The page counter keeps daily aggregates only; the
+        daily value that tells visitors apart is destroyed when the day closes. Correspondence is kept as long as needed for the purposes above, and is deleted on
         request unless the law requires otherwise. Contribution records are kept as long as accounting rules require.
       </P>
 
@@ -113,7 +120,7 @@ export function PrivacyBody({ renderLink }: { renderLink: RenderLink }) {
 
       <H2>Where the information is processed</H2>
       <P>
-        The site is hosted in the United States. Plausible processes analytics in the European Union. FormSubmit and
+        The site is hosted in the United States, and its page counts are kept there by the same host. FormSubmit and
         PayPal process their parts under their own policies. If you visit from outside the United States, your
         requests are handled where these services operate.
       </P>

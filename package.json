@@ -24,6 +24,8 @@
     "readings:crops": "node scripts/build-reading-crops.mjs",
     "readings:pull": "node scripts/pull-reading-answers.mjs",
     "test:console": "node scripts/test-console.mjs",
+    "test:analytics": "node scripts/test-analytics.mjs",
+    "test:edge": "deno test scripts/analytics-hit_test.mjs",
     "generate-nav-manifest": "node scripts/generate-nav-manifest.mjs",
     "enrich-content-slugs": "node scripts/enrich-content-slugs.mjs",
     "freeze-legacy-urls": "node scripts/freeze-legacy-urls.mjs",

@@ -7,10 +7,11 @@ import { SitePageLayout } from '../_components/SitePageLayout';
 import { Reveal } from '@/components/Reveal';
 import { PrivacyBody } from '@/components/legal/PrivacyBody';
 import { LEGAL_LINK_CLASS } from '@/components/legal/prose';
+import { AnalyticsOptOut } from '../_components/AnalyticsOptOut';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
-  description: 'What information lawsofexistence.com handles — hosting logs, cookieless analytics, contact-form relay, PayPal contributions, embedded video, browser storage — and your rights over it.',
+  description: 'What information lawsofexistence.com handles — hosting logs, first-party visit counts, contact-form relay, PayPal contributions, embedded video, browser storage — and your rights over it.',
   alternates: { canonical: '/privacy-policy' },
 };
 
@@ -20,6 +21,7 @@ export default function PrivacyPolicy() {
       <main className="container mx-auto px-4 py-12">
         <Reveal>
           <PrivacyBody
+            analyticsSwitch={<AnalyticsOptOut />}
             renderLink={(href, children) =>
               href.startsWith('mailto:') ? (
                 <a href={href} className={LEGAL_LINK_CLASS}>

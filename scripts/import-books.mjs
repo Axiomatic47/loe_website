@@ -71,6 +71,14 @@ const REVIEWS = [
     book: join(LIB, '14_Restorative Reading of Genesis 1-3', 'BOOK', 'A_Restorative_Reading_of_Genesis_1-3.md'),
     lane: join(LIB, '14_Restorative Reading of Genesis 1-3', 'BOOK', 'Pinned Citation Extracts'),
   },
+  {
+    // the fourth title (owner 2026-09-16, via drafter 60f85bca): an ARTICLE, its lane beside it (no BOOK/ folder);
+    // slug = kirchner.ink's existing address for the article (/work/madisonian-test), one slug across both sites
+    slug: 'madisonian-test',
+    id: 'madisonian-test',
+    book: join(LIB, '2_Madisonian Separation of Powers Test Article', 'DRAFT_Madisonian_Separation_of_Powers_Test.md'),
+    lane: join(LIB, '2_Madisonian Separation of Powers Test Article', 'Pinned Citation Extracts'),
+  },
 ];
 
 const PUBLISHABLE = new Set(['public-domain']);
@@ -456,7 +464,7 @@ function importOne(cfg) {
   console.log(`import-books: ${cfg.slug} ← ${feed}`);
   console.log(`  book ${basename(cfg.book)} sha256 ${bookSha.slice(0, 16)}…  ${lines.length} lines, ${defLine.size} notes`);
   { const ids = new Set(); let uw = 0; for (const u of units.values()) { if (u.work) uw += 1; for (const w of [u.work, ...(u.works ?? []), ...u.pages.map((p) => p.work)]) if (w) ids.add(w); } if (ids.size) console.log(`  works: ${ids.size} register works cited by ${uw} of ${units.size} units (register ${register.size} works)`); }
-  { let n = 0, ext = 0; for (const u of units.values()) for (const p of u.pages) { if (p.url) { n += 1; if (u.status === 'EXTERNAL') ext += 1; } } if (n) console.log(`  links: ${n} page chips carry a url (${n - ext} leaf pages on this site, ${ext} external catalogue records)`); }
+  { let n = 0, ext = 0; for (const u of units.values()) for (const p of u.pages) { if (p.url) { n += 1; if (/^https?:\/\//i.test(p.url)) ext += 1; } } /* an https url = a holder's record; a path = this site's leaf */ if (n) console.log(`  links: ${n} page chips carry a url (${n - ext} leaf pages on this site, ${ext} external catalogue records)`); }
   console.log(`  units: ${counts.wrapped} wrapped (${counts.published} open a published page, ${counts.held} marked held/uncut), ${counts.uncut} without a source left plain, ${counts.unwrappable} unwrappable, ${counts.noDef} with no definition`);
   if (pdf) console.log(`  book PDF: ${basename(pdf.file)} ${pdf.pages} pp. ${(pdf.bytes / 1e6).toFixed(1)} MB sha256 ${pdf.sha256.slice(0, 12)}… (${pdf.producer})${pdf.linked ? ' + linked copy' : ''}; boxes on ${counts.boxed} units, ${counts.unboxed.length} wrapped units without a box${counts.unboxed.length ? ': ' + counts.unboxed.join(', ') : ''}; ${markers.length} markers`);
   else console.log('  book PDF: none (no _WEB/overlay.json in the lane) — the review pane falls back to the rendered text');

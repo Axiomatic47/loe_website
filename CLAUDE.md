@@ -54,7 +54,10 @@ project registry as before.
   browser's copy `public/review/<slug>.<hash>.json`. A citation whose page is
   held but not published is MARKED on the site, never dropped.
 - **Import only on a drafter's "lane at <sha>" send** (0b43895f: immunity;
-  60f85bca: Holy Seed and the Genesis reading) and answer with "imported at <loe sha>"; they run
+  60f85bca: Holy Seed, the Genesis reading and the Madisonian article — slug
+  madisonian-test (= kirchner.ink's existing /work/madisonian-test), id madisonian-test, lane beside the article, no
+  BOOK/ folder; pre-wired 2026-09-16, first import on its "lane at <sha> + render" send) and
+  answer with "imported at <loe sha>"; they run
   `check_links.py <lane> /Users/everest/Git/loe_website` against this checkout.
   The book text and the lane are never edited here.
 - **Lane contract, `url` column (2026-09-15/16):** an index row may carry `url` —
@@ -98,6 +101,25 @@ project registry as before.
   zoom, a whole-page reach and a half reach the same day and had all three undone —
   do not re-propose. kirchner.ink mirrors every one of these — a change here is relayed
   to the ink seat (f28bb754) as a spec, never edited across.
+- **Analytics — first-party, no third party (owner 2026-09-16, "free, no subscriptions"; f28bb754's
+  design, ported from ink_site e4b7cf5..a3951ff):** `app/_components/Analytics.tsx` (mounted once in
+  `app/layout.tsx`) posts `{p, r, w}` to this site's own `/api/hit` — the edge function
+  `netlify/edge-functions/hit.js` → `netlify/lib/analytics-hit.mjs` — one Blobs record per view;
+  `netlify/functions/analytics-rollup.mjs` (@hourly, published deploy only) folds them into
+  `day/<day>.json`; the console reads them at `/admin/analytics`. Design, store, gates:
+  `docs/ANALYTICS.md`. Plausible left with it (layout, index.html, CSP). Rules: recorded per view =
+  normalized path, referrer HOST (first load only), country, device class, hour (`ANALYTICS_TZ`),
+  and a visitor hash of `sha256(daily salt · host · ip · ua)` that dies with the salt at day close;
+  NEVER the IP, user agent, query, fragment, anything under `/admin` or `/api`; never counted = bots,
+  prefetches, `Sec-GPC: 1`, the Privacy page's switch (`localStorage loe-analytics`), localhost. The
+  store name follows the deploy context (`analytics` / `analytics-branch-deploy` /
+  `analytics-deploy-preview`). The roll-up is the only writer of `day/*.json`. `/api/hit` is an edge
+  function ahead of the Next handler — never add an `app/api/hit` route. The Privacy page
+  (`src/components/legal/PrivacyBody.tsx`, shared with the vite gate; the switch is passed in by the
+  Next page) states exactly what is recorded — a change to the counter is a change to that page in
+  the same commit. Gates: `npm run test:analytics` (Node, 39), `npm run test:edge` (Deno),
+  `npm run test:console`, lint, build; the edge and core modules are Web-standard (no `node:`
+  imports) — keep them so.
 - **Header (owner 2026-09-15):** Articles tab = the books (The Subject's Unanswered
   Plea first, then The Holy Seed, then A Restorative Reading of Genesis 1–3) then the academic compositions; Research tab = the archives first ("From
   the archives"), then Open readings, Acknowledgements. The Abrahamic Faith
