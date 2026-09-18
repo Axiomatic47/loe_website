@@ -50,7 +50,9 @@ const ResearchLeaf = () => {
       t.push({
         key: d.pdf,
         label:
-          d.kind === "transcript"
+          d.kind === "edition"
+            ? "Transcription"
+            : d.kind === "transcript"
             ? "Transcript"
             : d.kind === "index"
               ? "Line index"

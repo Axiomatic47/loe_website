@@ -7,6 +7,18 @@
 // docs with a PDF are listed. 04_Whittick Deliverables and
 // WHITTICK_DECLARATION are correspondence/work-product and are NEVER pooled.
 //
+// THE EDITION (owner 2026-09-18, all three sites): an archive may carry an
+// `edition` block — a professional transcription by another hand, read from
+// its own publication dir (STAC 8/203/38: 05_Whittick Edition/, banked by
+// admin 945fa9e3 from Christopher Whittick's own PDFs; the answer is the
+// owner's export of his docx). Edition files have no md sibling, so the
+// footer-freshness gate does not apply; the dir's _FIXITY_SHA256.txt is the
+// gate instead — a file whose sha256 differs from its fixity row is FATAL.
+// Each edition document is pushed onto every leaf it spans with the
+// author's credit line as he asked for it. PUBLISHED_KINDS = {edition}: the
+// owner's per-leaf transcripts are no longer copied (they stay in the
+// library as the working stratum).
+//
 // IMAGE LICENSING (fail-closed, PER ARCHIVE via `imagesLicensed`):
 //  - hls-ms149-floyd: LICENSED — Harvard's 2014 PD-reproductions policy + HSC
 //    Permission-to-Publish require no application or fee. Basis memo:
@@ -63,11 +75,12 @@ const MS149_SEQ = { f81r: 166, f81v: 167, f82r: 168, f82v: 169, f83r: 170, f83v:
 //   {kind:'transcript'|'index'|'transcription', leaves, span} | null (= working paper)
 // 'transcript' = the canonical per-leaf transcript (citation artifact);
 // 'transcription' = working assemblies/spans (deposition series etc.).
-const KIND_ORDER = { transcript: 0, index: 1, transcription: 2 };
-// What is PUBLISHED (owner 2026-09-15, all three sites): the transcripts only — the owner's own
-// transcription of each leaf, which the commissioned professional transcription will replace. Line
-// indexes, working spans and working papers stay in the library; their PDFs are not copied.
-const PUBLISHED_KINDS = new Set(['transcript']);
+const KIND_ORDER = { edition: 0, transcript: 1, index: 2, transcription: 3 };
+// What is PUBLISHED (owner 2026-09-18, all three sites): the EDITION only — Christopher Whittick's
+// professional verification transcription, which replaced the owner's own per-leaf transcripts
+// (published 2026-09-15 until it arrived). The owner's transcripts, line indexes, working spans and
+// working papers stay in the library; their PDFs are not copied.
+const PUBLISHED_KINDS = new Set(['edition']);
 const ARCHIVES = [
   {
     id: 'stac-8-203-38',
@@ -85,8 +98,24 @@ const ARCHIVES = [
     // only as what it covers.
     rightsNote:
       'Images reproduced by permission of The National Archives (UK) Image Library (web-publication licence; the underlying record copies were supplied under order RC8368179).',
+    // The transcription sentence names HIS text and HIS licence (drafter 8a96daa3's caution: the OGL is
+    // the basis for the OWNER's transcription and covers the record — never print it over his text).
     reuseNote:
-      'Full-resolution downloads are provided for private study and non-commercial research; republication of the images requires a licence from The National Archives Image Library. The transcription text is published under the Open Government Licence v3.0 — contains public sector information licensed under the Open Government Licence v3.0; cite the piece as “The National Archives, ref. STAC 8/203/38.”',
+      'Full-resolution downloads are provided for private study and non-commercial research; republication of the images requires a licence from The National Archives Image Library. The transcription text is the professional verification transcription by Christopher Whittick (2026), published in full with the author’s agreement; credit him as its author and cite the record as “The National Archives, ref. STAC 8/203/38.”',
+    // THE EDITION — Christopher Whittick's verification transcription (his 4 Aug 2026 texts, by hash;
+    // owner's GO 2026-09-18, his written agreement of 18 Sep 2026, research_library 6f70fa6e). Spans
+    // confirmed by drafter 8a96daa3 against the canonical transcript headers (05_Whittick Edition/README.md).
+    edition: {
+      dir: '05_Whittick Edition',
+      fixity: '_FIXITY_SHA256.txt',
+      author: 'Christopher Whittick',
+      credit: 'Professional verification transcription by Christopher Whittick',
+      docs: [
+        { file: 'WHITTICK_DEPOSITIONS_M001-M007.pdf', leaves: pad3range(1, 7), span: '001–007', title: 'The depositions of John Towneley and Rees ap Jevan Lloyd, taken 15 June 1607' },
+        { file: 'WHITTICK_INTERROGATORIES_M008-M009.pdf', leaves: pad3range(8, 9), span: '008–009', title: 'The interrogatories — articles ministered against Rees ap Jevan Lloyd, 15 June 1607' },
+        { file: 'WHITTICK_ANSWER_M010.pdf', leaves: ['010'], span: '010', title: 'The answer of John Lewis, esquire, to the bill of Rees ap Jevan Lloyd, sworn 11 March 1608' },
+      ],
+    },
     credit: (id) =>
       `The National Archives, Kew, STAC 8/203/38, m. ${parseInt(id, 10)}. Reproduced by permission of The National Archives.`,
     // Transcript pools, FRESH-FIRST (transcriber correction 2026-08-26): the
@@ -217,6 +246,11 @@ for (const A of ARCHIVES) {
     continue;
   }
   const dst = join(OUT, A.id);
+  // did the published set carry PDFs before this run? (the empty-set guard
+  // below fires only when a run would WIPE a set that had documents — an
+  // image-only archive such as HLS MS 149, with no transcript published yet,
+  // is a legitimate state and must not abort the sync of the archives after it)
+  const hadPdfs = existsSync(join(dst, 'pdfs')) && readdirSync(join(dst, 'pdfs')).some((x) => x.endsWith('.pdf'));
   // fresh leaves/ + renditions + pdfs/ so removed source files disappear
   for (const d of ['leaves', 'thumbs', 'web', 'pdfs']) {
     rmSync(join(dst, d), { recursive: true, force: true });
@@ -340,11 +374,58 @@ for (const A of ARCHIVES) {
     console.error('  Swap the pool to the current export, or register the file deliberately.');
     process.exit(1);
   }
-  if (pdfCount === 0) {
-    console.error(`  FATAL: zero PDFs found across all pools for ${A.id} — aborting before the empty set replaces the published one.`);
-    process.exit(1);
+  console.log(`  pdfs: ${pdfCount} pooled PDF(s) copied (${unpublished} transcript / line-index / working-span / working-paper PDFs not published; ${overlaid} overlaid by earlier pools; ${allowedStale} allowed-stale)`);
+
+  // THE EDITION — copied by hash from its publication dir. The fixity file is
+  // the gate: every configured file must have a row, and the bytes on disk
+  // must hash to it (a re-export or a swapped file is FATAL, never silent).
+  let editionCount = 0;
+  if (A.edition) {
+    const edDir = join(A.src, A.edition.dir);
+    const fixPath = join(edDir, A.edition.fixity);
+    if (!existsSync(edDir) || !existsSync(fixPath)) {
+      console.error(`  FATAL: edition dir or fixity file missing: ${edDir} / ${A.edition.fixity}`);
+      process.exit(1);
+    }
+    const edFixity = {};
+    for (const line of readFileSync(fixPath, 'utf8').split('\n')) {
+      const m = line.trim().match(/^([0-9a-f]{64})\s+(\S+)$/);
+      if (m) edFixity[m[2]] = m[1];
+    }
+    for (const d of A.edition.docs) {
+      const srcPdf = join(edDir, d.file);
+      if (!existsSync(srcPdf)) {
+        console.error(`  FATAL: edition file missing: ${srcPdf}`);
+        process.exit(1);
+      }
+      const want = edFixity[d.file];
+      const got = createHash('sha256').update(readFileSync(srcPdf)).digest('hex');
+      if (!want || got !== want) {
+        console.error(`  FATAL: edition fixity ${want ? 'MISMATCH' : 'ROW MISSING'} for ${d.file}: disk ${got}${want ? ` ≠ fixity ${want}` : ''}`);
+        process.exit(1);
+      }
+      copyFileSync(srcPdf, join(dst, 'pdfs', d.file));
+      editionCount += 1;
+      for (const id of d.leaves) {
+        if (!leaves[id]) {
+          console.error(`  FATAL: edition ${d.file} spans ${A.leafLabel.toLowerCase()} ${id}, which has no leaf image`);
+          process.exit(1);
+        }
+        leaves[id].docs.push({
+          kind: 'edition', span: d.span, title: d.title, pdf: `pdfs/${d.file}`,
+          author: A.edition.author, credit: A.edition.credit, sha256: got,
+        });
+      }
+      console.log(`    EDITION ${d.file} → ${A.leafLabel.toLowerCase()}s ${d.span} (sha256 ${got.slice(0, 12)} verified against ${A.edition.fixity})`);
+    }
   }
-  console.log(`  pdfs: ${pdfCount} transcripts copied (${unpublished} line-index / working-span / working-paper PDFs not published; ${overlaid} overlaid by earlier pools; ${allowedStale} allowed-stale)`);
+  if (pdfCount + editionCount === 0) {
+    if (hadPdfs) {
+      console.error(`  FATAL: zero published PDFs for ${A.id} but the published set had documents — aborting before the empty set replaces it.`);
+      process.exit(1);
+    }
+    console.log(`  pdfs: none published for ${A.id} (image-only archive; unchanged)`);
+  }
 
   // crops (only for licensed archives, and only on request — large)
   if (A.imagesLicensed && WITH_CROPS && existsSync(join(A.src, 'crops'))) {
@@ -362,7 +443,7 @@ for (const A of ARCHIVES) {
   };
   walk(join(dst, 'crops'));
 
-  // manifest — canonical transcript first, then line index, then working spans
+  // manifest — the edition first, then the transcript, line index, working spans
   const leafList = Object.values(leaves);
   for (const l of leafList) l.docs.sort((a, b) => KIND_ORDER[a.kind] - KIND_ORDER[b.kind]);
   writeFileSync(
@@ -387,10 +468,11 @@ for (const A of ARCHIVES) {
   );
 
   for (const l of leafList) {
+    const ed = l.docs.filter((d) => d.kind === 'edition').map((d) => `EDITION ${d.span}`).join(', ');
     const canon = l.docs.some((d) => d.kind === 'transcript') ? 'TRANSCRIPT' : '—';
     const idx = l.docs.some((d) => d.kind === 'index') ? 'index' : '—';
     const tr = l.docs.filter((d) => d.kind === 'transcription').map((d) => d.span).join(', ') || 'no working spans';
-    console.log(`    ${l.id}: ${canon} · ${idx} · ${tr}`);
+    console.log(`    ${l.id}: ${ed || 'no edition'} · ${canon} · ${idx} · ${tr}`);
   }
   console.log(`  MODE: ${A.imagesLicensed ? 'REAL IMAGES (licensed)' : 'placeholders — leaf images withheld pending licence'}`);
 }
