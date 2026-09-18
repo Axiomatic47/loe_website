@@ -34,7 +34,7 @@ export const ARCHIVE_SHELF: ArchiveShelfEntry[] = [
     title: 'Lloyd v. Barker (Star Chamber, 1607)',
     detail: 'The National Archives (UK), Kew · Trinity term, 5 Jac. I (1607)',
     blurb:
-      'The original Star Chamber proceedings — leaf images reproduced by permission of The National Archives, with diplomatic transcriptions, line indexes, and working papers.',
+      'The original Star Chamber proceedings — leaf images reproduced by permission of The National Archives, beside the professional verification transcription by Christopher Whittick.',
   },
   {
     id: 'hls-ms149-floyd',

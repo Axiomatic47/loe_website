@@ -15,6 +15,7 @@ import {
   imagesPublished,
   archiveBase,
   leafStatus,
+  creditInline,
   CONVENTIONS,
 } from '@/lib/research-archive';
 import { FileText } from 'lucide-react';
@@ -34,8 +35,10 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const config = RESEARCH_ARCHIVES[archiveId];
   if (!config) return { robots: { index: false, follow: false } };
   return {
-    title: `${config.ref} — working transcription`,
-    description: `Working diplomatic transcription of ${config.ref}: leaf images beside the transcripts.`,
+    title: `${config.ref} — ${config.edition ? 'the record and its transcription' : 'working transcription'}`,
+    description: config.edition
+      ? `${config.ref}: the ${config.leafLabel.toLowerCase()} images beside the ${creditInline(config.edition.credit)}.`
+      : `Working diplomatic transcription of ${config.ref}: leaf images beside the transcripts.`,
     alternates: { canonical: `/research/${archiveId}` },
   };
 }
@@ -58,7 +61,7 @@ export default async function ResearchArchivePage({ params }: Params) {
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-5xl mx-auto">
           <Reveal>
-            <Eyebrow>Primary-source research · working transcription</Eyebrow>
+            <Eyebrow>Primary-source research · {config.edition ? 'verification transcription' : 'working transcription'}</Eyebrow>
             <h1
               className="font-serif text-foreground"
               style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 580, letterSpacing: "-0.02em", lineHeight: 1.12 }}
@@ -80,13 +83,21 @@ export default async function ResearchArchivePage({ params }: Params) {
                   {para}
                 </ReactMarkdown>
               ))}
-              <p>
-                <strong>Every reading here is provisional.</strong> These are working papers:
-                uncertainty is marked rather than resolved, deltas between passes are logged, and
-                unresolved readings are flagged for professional arbitration against the original.
-                Corrections and collaboration are welcome —{" "}
-                <a href="mailto:contact@lawsofexistence.com">contact@lawsofexistence.com</a>.
-              </p>
+              {config.edition ? (
+                <p>
+                  <strong>{config.edition.credit}.</strong> {config.edition.note} Corrections and
+                  collaboration are welcome —{" "}
+                  <a href="mailto:contact@lawsofexistence.com">contact@lawsofexistence.com</a>.
+                </p>
+              ) : (
+                <p>
+                  <strong>Every reading here is provisional.</strong> These are working papers:
+                  uncertainty is marked rather than resolved, deltas between passes are logged, and
+                  unresolved readings are flagged for professional arbitration against the original.
+                  Corrections and collaboration are welcome —{" "}
+                  <a href="mailto:contact@lawsofexistence.com">contact@lawsofexistence.com</a>.
+                </p>
+              )}
             </div>
           </Reveal>
 
@@ -113,30 +124,73 @@ export default async function ResearchArchivePage({ params }: Params) {
                 <Eyebrow>How to review</Eyebrow>
                 <ol className="text-sm font-sans text-foreground/85 space-y-2 list-decimal ml-4 leading-relaxed">
                   <li>Open a {config.leafLabel.toLowerCase()} below — the leaf image sits beside its documents (PDF).</li>
-                  <li>
-                    Compare the image against the <strong>transcript</strong> (continuous text with
-                    editorial notes) — the author’s own transcription, which the commissioned
-                    professional transcription will replace.
-                  </li>
-                  <li>
-                    Readings marked <code>[?]</code> are uncertain; <code>⟦…⟧</code> notes record
-                    what later passes changed and why.
-                  </li>
+                  {config.edition ? (
+                    <>
+                      <li>
+                        Compare the image against the <strong>transcription</strong> —{" "}
+                        the {creditInline(config.edition.credit)}; the depositions, the interrogatories and the
+                        answer each run across the {config.leafLabel.toLowerCase()}s they occupy, so the same
+                        document opens on each of them.
+                      </li>
+                      <li>
+                        Angle brackets in the transcription mark the scribe’s insertions; square brackets
+                        carry the transcriber’s foliation and translations.
+                      </li>
+                    </>
+                  ) : (
+                    <>
+                      <li>
+                        Compare the image against the <strong>transcript</strong> (continuous text with
+                        editorial notes) — the author’s own transcription, which the commissioned
+                        professional transcription will replace.
+                      </li>
+                      <li>
+                        Readings marked <code>[?]</code> are uncertain; <code>⟦…⟧</code> notes record
+                        what later passes changed and why.
+                      </li>
+                    </>
+                  )}
                 </ol>
               </div>
-              <div className="bg-card border border-border rounded-xl shadow-sm p-6">
-                <Eyebrow>Diplomatic conventions</Eyebrow>
-                <dl className="text-sm font-sans space-y-1.5">
-                  {CONVENTIONS.map(([sym, meaning]) => (
-                    <div key={sym} className="flex gap-3">
-                      <dt className="w-24 flex-shrink-0">
-                        <code className="text-primary">{sym}</code>
-                      </dt>
-                      <dd className="text-muted-foreground">{meaning}</dd>
+              {config.edition ? (
+                <div className="bg-card border border-border rounded-xl shadow-sm p-6">
+                  <Eyebrow>The edition</Eyebrow>
+                  <dl className="text-sm font-sans space-y-1.5">
+                    <div className="flex gap-3">
+                      <dt className="w-24 flex-shrink-0 text-muted-foreground">Author</dt>
+                      <dd>{config.edition.author}</dd>
                     </div>
-                  ))}
-                </dl>
-              </div>
+                    <div className="flex gap-3">
+                      <dt className="w-24 flex-shrink-0 text-muted-foreground">Credit</dt>
+                      <dd>{config.edition.credit}</dd>
+                    </div>
+                    <div className="flex gap-3">
+                      <dt className="w-24 flex-shrink-0 text-muted-foreground">Rights</dt>
+                      <dd className="text-muted-foreground">{config.edition.cite}</dd>
+                    </div>
+                    <div className="flex gap-3">
+                      <dt className="w-24 flex-shrink-0 text-muted-foreground">Images</dt>
+                      <dd className="text-muted-foreground">
+                        {manifest?.images?.rightsNote || `Reproduced by permission of ${manifest?.images?.rightsHolder || "the rights holder"}.`}
+                      </dd>
+                    </div>
+                  </dl>
+                </div>
+              ) : (
+                <div className="bg-card border border-border rounded-xl shadow-sm p-6">
+                  <Eyebrow>Diplomatic conventions</Eyebrow>
+                  <dl className="text-sm font-sans space-y-1.5">
+                    {CONVENTIONS.map(([sym, meaning]) => (
+                      <div key={sym} className="flex gap-3">
+                        <dt className="w-24 flex-shrink-0">
+                          <code className="text-primary">{sym}</code>
+                        </dt>
+                        <dd className="text-muted-foreground">{meaning}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              )}
             </div>
           </Reveal>
 

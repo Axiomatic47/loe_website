@@ -61,11 +61,13 @@ export const LeafBody = ({ archiveId, refLabel, leafLabel, manifest, leaf, prev,
       t.push({
         key: d.pdf,
         label:
-          d.kind === "transcript"
-            ? "Transcript"
-            : d.kind === "index"
-              ? "Line index"
-              : `Transcription ${d.span || ""}`.trim(),
+          d.kind === "edition"
+            ? "Transcription"
+            : d.kind === "transcript"
+              ? "Transcript"
+              : d.kind === "index"
+                ? "Line index"
+                : `Transcription ${d.span || ""}`.trim(),
         doc: d,
       });
     }
@@ -270,7 +272,7 @@ export const LeafBody = ({ archiveId, refLabel, leafLabel, manifest, leaf, prev,
           <div className={cn("min-w-0", review && "h-full min-h-0 flex flex-col")}>
             {tabs.length === 0 || !pdfUrl || !activeTab ? (
               <div className="bg-card border border-border rounded-lg shadow-sm p-8 text-sm font-sans text-muted-foreground">
-                The transcript of this leaf is not yet published — the image stands alone until it is.
+                The transcription of this leaf is not yet published — the image stands alone until it is.
               </div>
             ) : (
               <div className={cn("bg-card border border-border rounded-lg shadow-sm overflow-hidden flex flex-col", review && "h-full min-h-0")}>
@@ -372,6 +374,27 @@ export const LeafBody = ({ archiveId, refLabel, leafLabel, manifest, leaf, prev,
               </>
             ) : (
               leaf.sha256 && <p className="font-mono break-all">Source-image sha256 (recorded fixity): {leaf.sha256}</p>
+            )}
+            {/* the edition's record line (owner 2026-09-18): the author's credit as he asked for it, the
+                span, his agreement, the record's reference — never the OGL sentence over his text */}
+            {activeTab?.doc.credit && (
+              <p className="pt-1">
+                <span className="text-foreground/80" style={{ fontWeight: 550 }}>{activeTab.doc.credit}</span>
+                {activeTab.doc.span && (
+                  <>
+                    {" · "}
+                    {leafLabel.toLowerCase()}
+                    {activeTab.doc.span.includes("–") ? "s" : ""} {activeTab.doc.span.replace(/^0+/, "").replace(/–0+/, "–")}
+                  </>
+                )}
+                {" · "}published in full with the author’s agreement · the record: The National Archives, ref. {refLabel}
+                {activeTab.doc.sha256 && (
+                  <>
+                    {" · "}
+                    <span className="font-mono">sha256 {activeTab.doc.sha256.slice(0, 12)}…</span>
+                  </>
+                )}
+              </p>
             )}
           </div>
           <nav aria-label="Leaf navigation" className="ml-auto inline-flex items-center gap-0.5 bg-card border border-border rounded-md shadow-sm p-0.5">

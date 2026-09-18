@@ -124,11 +124,26 @@ project registry as before.
   Plea first, then The Holy Seed, then A Restorative Reading of Genesis 1–3) then the academic compositions; Research tab = the archives first ("From
   the archives"), then Open readings, Acknowledgements. The Abrahamic Faith
   Reconciliation Thesis was removed the same day; its URLs redirect to `/composition/manuscript`.
-- **Research archives publish the TRANSCRIPTS ONLY (owner 2026-09-15, all three sites):**
-  `PUBLISHED_KINDS = {transcript}` in `src/lib/research-archive.ts`; line indexes, working
-  spans and working papers stay in the library; `scripts/sync-archives.mjs` skips them;
-  the per-PDF `/research/<id>/doc/` route is gone. HLS MS 149 has no transcripts yet, so
-  its folios are image-only until one lands.
+- **Research archives publish the EDITION ONLY — Whittick's verification transcription
+  (owner 2026-09-18, all three sites; supersedes the 2026-09-15 transcripts-only rule):**
+  `PUBLISHED_KINDS = {edition}` in `src/lib/research-archive.ts`. `scripts/sync-archives.mjs`
+  is the DURABLE BUILDER for all three sites (ink and jk copy `public/uploads/research/<id>/`
+  verbatim): the STAC config's `edition` block reads the library's
+  `02_STAC_8_203_38/05_Whittick Edition/` (his 4 Aug 2026 texts by hash — depositions mm. 1–7,
+  interrogatories mm. 8–9, the answer m. 10 as the owner's export of his docx); the dir's
+  `_FIXITY_SHA256.txt` is the gate (sha mismatch or missing row = FATAL); no md sibling, so
+  the footer-freshness gate does not apply to edition files. Each edition doc is pushed onto
+  every leaf it spans with `author`, `credit`, `sha256`. The owner's transcripts, line indexes,
+  working spans and working papers stay in the library, unserved; the per-PDF
+  `/research/<id>/doc/` route is gone. Rules: the credit reads exactly "Professional
+  verification transcription by Christopher Whittick" wherever his text shows (leaf record
+  line, archive page, shelf blurb, metadata; `researchArchives.ts` `edition` block); his
+  licence (written agreement 18 Sep 2026, research_library 6f70fa6e) is the basis for his
+  text — never print the Open Government Licence over it (that covers the record; cite it as
+  "The National Archives, ref. STAC 8/203/38"). An image-only archive (HLS MS 149, no
+  edition) syncs unchanged; the empty-set guard fires only when a run would wipe a set that
+  had documents. A change to what is served is a change to the archive page's words in the
+  same commit.
 - **Device runs:** `studio-site.json` `pages.exclude` / `pages.heavy` / `pages.audit.ignore_selectors`
   feed the Studio's device audit (midesk `docs/DEVICE_RUNS.md`); run it against a PRIVATE port
   whose holder you have checked — 3999 is another seat's.

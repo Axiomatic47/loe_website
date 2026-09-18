@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation';
 import { RESEARCH_ARCHIVES } from '@/data/researchArchives';
 import { readArchiveManifest } from '../../../manifest-server';
 import { LeafBody } from './LeafBody';
+import { creditInline } from '@/lib/research-archive';
 import { loadAllReadings } from '@/lib/open-readings';
 
 export const dynamicParams = false;
@@ -30,8 +31,9 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   if (!config) return { robots: { index: false, follow: false } };
   return {
     title: `${config.leafLabel} ${leafId} — ${config.ref}`,
-    description:
-      'Working diplomatic transcription — the leaf image beside its transcript (PDF).',
+    description: config.edition
+      ? `The ${config.leafLabel.toLowerCase()} image beside its transcription (PDF) — the ${creditInline(config.edition.credit)}.`
+      : `The ${config.leafLabel.toLowerCase()} image; the transcription follows.`,
     alternates: { canonical: `/research/${archiveId}/leaf/${leafId}` },
   };
 }
