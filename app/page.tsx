@@ -4,11 +4,16 @@
 // no featured case, no case strip):
 //   1. Hero — plain-English statement of what this site is, two CTAs
 //      (primary: the academic articles)
-//   2. Academic articles shelf — the manuscript collection, lead + grid
+//   2. The book — The Subject's Unanswered Plea in the review-mode PDF viewer,
+//      read here under the hero buttons (owner 2026-09-18), with the link
+//      into review mode
 //   3. Prynne epigraph — one quote summarizing why the originals are here
 //   4. From the archives — the two Star Chamber primary-source archives
 //      (published 2026-08-23 with the TNA reproduction licence in hand)
-//   5. Featured works — full inline reading of the Declaration of Humanity
+//   5. Academic articles shelf — the manuscript collection, lead + grid
+//      (moved below the archives 2026-09-18, owner's order of the page)
+//   6. Books in review mode — the shelf of every imported book
+//   7. Featured works — full inline reading of the Declaration of Humanity
 //      set (manuscript `featured` flags; Declaration first via
 //      featured_order)
 //   (The closing quote field is site-wide — rendered by SitePageLayout above
@@ -27,7 +32,9 @@ import { compositionUrl, sectionUrl } from '@/utils/urls';
 import { SitePageLayout } from './_components/SitePageLayout';
 import { FeaturedWork } from './_components/FeaturedWork';
 import { readArchiveManifest } from './research/manifest-server';
-import { publishedBooks } from './books/review-server';
+import { publishedBooks, readReview } from './books/review-server';
+import { BookPdfViewer } from './books/_components/BookPdfViewer';
+import { versioned } from '@/lib/review';
 
 // Title/description/OG come from the root layout defaults (they ARE the
 // site defaults); the home page only pins its canonical.
@@ -52,6 +59,10 @@ export default function Home() {
   const leadComp = getComposition('manuscript', ARTICLE_LEAD.slug);
   // the books published in review mode (import landed): a shelf between the archives and the featured works
   const books = publishedBooks();
+  // The Subject's Unanswered Plea read on the home page (owner 2026-09-18): the review-mode PDF
+  // in the same viewer as /books/<slug>, one page tall at fit width, under the hero buttons
+  const plea = books.find((b) => b.slug === 'the-subjects-unanswered-plea') ?? null;
+  const pleaReview = plea ? readReview(plea.slug) : null;
   const leadFeatured = leadComp
     ? leadComp.sections
         .filter(s => s.featured)
@@ -125,89 +136,43 @@ export default function Home() {
           </Reveal>
         </section>
 
-        {/* ------------------------------------ 2. Academic articles shelf */}
-        <section className="max-w-4xl mx-auto mb-16">
-          <Reveal>
-            <Eyebrow>The academic articles</Eyebrow>
-          </Reveal>
-          {lead && leadComp && (
+        {/* ------------------------------ 2. The book — the PDF, read here (owner 2026-09-18) */}
+        {plea && pleaReview && (
+          <section className="max-w-4xl mx-auto mb-16 -mt-4">
             <Reveal>
-              <div className="bg-card border border-border rounded-xl shadow-sm p-8 md:p-10">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-lg bg-primary/15 flex-shrink-0 hidden sm:block">
-                    <BookOpen className="h-6 w-6 text-primary" />
-                  </div>
-                  <div className="min-w-0">
-                    <h2
-                      className="font-serif text-foreground"
-                      style={{ fontSize: '1.75rem', fontWeight: 580, letterSpacing: '-0.018em', lineHeight: 1.2 }}
-                    >
-                      {leadComp.title}
-                    </h2>
-                    <p className="text-sm text-muted-foreground mt-1 font-sans" style={{ fontVariantNumeric: 'tabular-nums' }}>
-                      {leadComp.sections.length} articles
-                    </p>
-                  </div>
-                </div>
-
-                <p className="font-serif text-foreground/90 mt-5" style={{ fontSize: '1.0625rem', lineHeight: 1.65 }}>
-                  {lead.blurb}
-                </p>
-
-                <div className="mt-5">
-                  {leadFeatured.map(s => (
-                    <Link
-                      key={s.slug}
-                      href={sectionUrl(leadComp, s)}
-                      className="group flex items-start gap-2.5 rounded-md px-2.5 py-2 -mx-2.5 hover:bg-secondary transition-colors"
-                    >
-                      <BookOpen className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                      <p
-                        className="text-sm text-foreground group-hover:text-primary transition-colors leading-snug font-sans"
-                        style={{ fontWeight: 550 }}
-                      >
-                        {s.title}
-                      </p>
-                    </Link>
-                  ))}
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-3 mt-6">
-                  <Button
-                    className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm hover:shadow-md"
-                    asChild
+              <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-2 mb-4">
+                <div className="min-w-0">
+                  <Eyebrow>The book</Eyebrow>
+                  <h2
+                    className="font-serif text-foreground"
+                    style={{ fontSize: 'clamp(22px, 2.6vw, 28px)', fontWeight: 580, letterSpacing: '-0.018em', lineHeight: 1.2 }}
                   >
-                    <Link href={compositionUrl(leadComp)}>Start reading</Link>
-                  </Button>
+                    {plea.title}
+                  </h2>
+                  {plea.subtitle && <p className="text-sm text-muted-foreground mt-1 font-sans">{plea.subtitle} · {plea.venue}</p>}
                 </div>
+                <Link
+                  href={`/books/${plea.slug}`}
+                  className="text-sm text-primary font-sans inline-flex items-center hover:text-primary/80 transition-colors"
+                  style={{ fontWeight: 500 }}
+                >
+                  Open in review mode — the book beside the pages it cites
+                  <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+                </Link>
               </div>
             </Reveal>
-          )}
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-            {leadComp &&
-              cdoCards.map(({ entry, section }, i) => (
-                <Reveal key={entry.slug} delay={i * 80}>
-                  <Link
-                    href={sectionUrl(leadComp, section)}
-                    className="group bg-card border border-border rounded-lg p-5 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-200 flex flex-col h-full"
-                  >
-                    <h3
-                      className="font-serif text-foreground group-hover:text-primary transition-colors"
-                      style={{ fontSize: '1.125rem', fontWeight: 580, letterSpacing: '-0.014em', lineHeight: 1.3 }}
-                    >
-                      {section.title}
-                    </h3>
-                    <p className="text-sm text-foreground/85 mt-3 font-sans flex-grow">{entry.blurb}</p>
-                    <p className="text-sm text-primary mt-4 font-sans inline-flex items-center" style={{ fontWeight: 500 }}>
-                      Read the article
-                      <ArrowRight className="ml-1.5 h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
-                    </p>
-                  </Link>
-                </Reveal>
-              ))}
-          </div>
-        </section>
+            <Reveal delay={80}>
+              <BookPdfViewer
+                src={versioned(pleaReview.pdf.file, pleaReview.pdf.served ?? pleaReview.pdf.sha256)}
+                bytes={pleaReview.pdf.bytes}
+                downloadSrc={pleaReview.pdf.linked ? versioned(pleaReview.pdf.linked.file, pleaReview.pdf.linked.served ?? pleaReview.pdf.linked.sha256) : undefined}
+                downloadName={`${plea.slug}.pdf`}
+                title={`${plea.title}${plea.subtitle ? `: ${plea.subtitle}` : ''} — ${plea.venue ?? 'working draft'}; ${pleaReview.pdf.pages} pages`}
+                height="page"
+              />
+            </Reveal>
+          </section>
+        )}
 
         {/* --------------------------------------------- 3. Prynne epigraph */}
         <section className="max-w-4xl mx-auto mb-16">
@@ -297,7 +262,91 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ------------------------------------- 4b. Books in review mode */}
+        {/* ------------------------------------ 5. Academic articles shelf */}
+        <section className="max-w-4xl mx-auto mb-16">
+          <Reveal>
+            <Eyebrow>The academic articles</Eyebrow>
+          </Reveal>
+          {lead && leadComp && (
+            <Reveal>
+              <div className="bg-card border border-border rounded-xl shadow-sm p-8 md:p-10">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-lg bg-primary/15 flex-shrink-0 hidden sm:block">
+                    <BookOpen className="h-6 w-6 text-primary" />
+                  </div>
+                  <div className="min-w-0">
+                    <h2
+                      className="font-serif text-foreground"
+                      style={{ fontSize: '1.75rem', fontWeight: 580, letterSpacing: '-0.018em', lineHeight: 1.2 }}
+                    >
+                      {leadComp.title}
+                    </h2>
+                    <p className="text-sm text-muted-foreground mt-1 font-sans" style={{ fontVariantNumeric: 'tabular-nums' }}>
+                      {leadComp.sections.length} articles
+                    </p>
+                  </div>
+                </div>
+
+                <p className="font-serif text-foreground/90 mt-5" style={{ fontSize: '1.0625rem', lineHeight: 1.65 }}>
+                  {lead.blurb}
+                </p>
+
+                <div className="mt-5">
+                  {leadFeatured.map(s => (
+                    <Link
+                      key={s.slug}
+                      href={sectionUrl(leadComp, s)}
+                      className="group flex items-start gap-2.5 rounded-md px-2.5 py-2 -mx-2.5 hover:bg-secondary transition-colors"
+                    >
+                      <BookOpen className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                      <p
+                        className="text-sm text-foreground group-hover:text-primary transition-colors leading-snug font-sans"
+                        style={{ fontWeight: 550 }}
+                      >
+                        {s.title}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-3 mt-6">
+                  <Button
+                    className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm hover:shadow-md"
+                    asChild
+                  >
+                    <Link href={compositionUrl(leadComp)}>Start reading</Link>
+                  </Button>
+                </div>
+              </div>
+            </Reveal>
+          )}
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            {leadComp &&
+              cdoCards.map(({ entry, section }, i) => (
+                <Reveal key={entry.slug} delay={i * 80}>
+                  <Link
+                    href={sectionUrl(leadComp, section)}
+                    className="group bg-card border border-border rounded-lg p-5 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-200 flex flex-col h-full"
+                  >
+                    <h3
+                      className="font-serif text-foreground group-hover:text-primary transition-colors"
+                      style={{ fontSize: '1.125rem', fontWeight: 580, letterSpacing: '-0.014em', lineHeight: 1.3 }}
+                    >
+                      {section.title}
+                    </h3>
+                    <p className="text-sm text-foreground/85 mt-3 font-sans flex-grow">{entry.blurb}</p>
+                    <p className="text-sm text-primary mt-4 font-sans inline-flex items-center" style={{ fontWeight: 500 }}>
+                      Read the article
+                      <ArrowRight className="ml-1.5 h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+                    </p>
+                  </Link>
+                </Reveal>
+              ))}
+          </div>
+        </section>
+
+        {/* ------------------------------------- 6. Books in review mode */}
         {books.length > 0 && (
           <section className="max-w-4xl mx-auto mb-16">
             <Reveal>
@@ -334,7 +383,7 @@ export default function Home() {
           </section>
         )}
 
-        {/* ------------------------ 5. Featured works — full inline reading */}
+        {/* ------------------------ 7. Featured works — full inline reading */}
         <section className="mb-8">
           <Reveal>
             <div className="max-w-4xl mx-auto">
