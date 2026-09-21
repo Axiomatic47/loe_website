@@ -143,7 +143,13 @@ project registry as before.
   "The National Archives, ref. STAC 8/203/38"). An image-only archive (HLS MS 149, no
   edition) syncs unchanged; the empty-set guard fires only when a run would wipe a set that
   had documents. A change to what is served is a change to the archive page's words in the
-  same commit.
+  same commit. **Right folio, right page (owner 2026-09-21):** a document spanning several
+  membranes opens on each membrane at the page where THAT membrane's text begins — the
+  builder reads `05_Whittick Edition/_PAGE_MAP.tsv` (`leaf	file	page	folio	note`, the
+  manuscript seat's table; a leaf outside its document's span or a page past the PDF's last is
+  FATAL) into each edition doc's `page`; `PdfScrollViewer` takes `page` and scrolls there once
+  laid out; a leaf URL's `#page=N` fragment overrides it, so a citation can land on an exact
+  page (`/research/stac-8-203-38/leaf/009#page=5`). No map = page 1, said aloud in the log.
 - **Device runs:** `studio-site.json` `pages.exclude` / `pages.heavy` / `pages.audit.ignore_selectors`
   feed the Studio's device audit (midesk `docs/DEVICE_RUNS.md`); run it against a PRIVATE port
   whose holder you have checked — 3999 is another seat's.

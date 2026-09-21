@@ -20,6 +20,10 @@ interface PdfScrollViewerProps {
   className?: string;
   /** reports the page count once the document has loaded (pane footer) */
   onPages?: (count: number) => void;
+  /** open scrolled to this page (1-based) once the pages are laid out; a new value scrolls again.
+      A membrane's edition document opens at the page where that membrane's text begins
+      (owner 2026-09-21: every transcription linked to the right folio, every citation to its page). */
+  page?: number;
 }
 
 // cap the canvas backing width so huge panes on retina can't allocate
@@ -29,7 +33,7 @@ const SETTLE_MS = 150;
 
 type PageMeta = { num: number; aspect: number };
 
-export const PdfScrollViewer = ({ src, className, onPages }: PdfScrollViewerProps) => {
+export const PdfScrollViewer = ({ src, className, onPages, page }: PdfScrollViewerProps) => {
   // latest callback without re-running the load effect when the parent re-renders
   const onPagesRef = useRef(onPages);
   onPagesRef.current = onPages;
@@ -186,6 +190,22 @@ export const PdfScrollViewer = ({ src, className, onPages }: PdfScrollViewerProp
     if (width <= 0) return;
     visible.current.forEach((num) => void renderPage(num, width));
   }, [width, renderPage]);
+
+  // ---- open at a page ------------------------------------------------------
+  // once per (document, page): after the pages are laid out at a real width,
+  // put the requested page's top edge at the top of the well (the aspect-ratio
+  // placeholders give every page its height before any canvas has drawn)
+  const openedFor = useRef<string | null>(null);
+  useEffect(() => {
+    const root = scrollRef.current;
+    if (!root || !page || page < 1 || pages.length === 0 || width <= 0) return;
+    const key = `${src}|${page}`;
+    if (openedFor.current === key) return;
+    const target = root.querySelector<HTMLElement>(`[data-page="${Math.min(page, pages.length)}"]`);
+    if (!target) return;
+    openedFor.current = key;
+    root.scrollTop = target.getBoundingClientRect().top - root.getBoundingClientRect().top + root.scrollTop - 12;
+  }, [src, page, pages, width]);
 
   if (error) {
     return (

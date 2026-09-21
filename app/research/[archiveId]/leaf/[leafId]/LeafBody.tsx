@@ -79,6 +79,21 @@ export const LeafBody = ({ archiveId, refLabel, leafLabel, manifest, leaf, prev,
   const activeTab = tabs.find((t) => t.key === active) || tabs[0] || null;
   const [pageCount, setPageCount] = useState(0);
 
+  // the page the document opens at: a `#page=N` fragment on the leaf URL (a citation that lands
+  // on an exact page) wins; otherwise the manifest's per-leaf page (where this membrane's text
+  // begins in a document spanning several); otherwise the first page
+  const [hashPage, setHashPage] = useState<number | null>(null);
+  useEffect(() => {
+    const read = () => {
+      const m = window.location.hash.match(/(?:^#|[#&])page=(\d+)/);
+      setHashPage(m ? Number(m[1]) : null);
+    };
+    read();
+    window.addEventListener("hashchange", read);
+    return () => window.removeEventListener("hashchange", read);
+  }, [leaf.id]);
+  const openAt = hashPage ?? activeTab?.doc.page ?? null;
+
   // side by side is the default; a stored choice (either way) wins after
   // hydration (a localStorage read in the initializer would mismatch)
   const [layout, setLayout] = useState<LeafLayout>("side");
@@ -324,6 +339,7 @@ export const LeafBody = ({ archiveId, refLabel, leafLabel, manifest, leaf, prev,
                 <PdfScrollViewer
                   key={pdfUrl}
                   src={pdfUrl}
+                  page={openAt ?? undefined}
                   onPages={setPageCount}
                   className={cn("w-full", review ? "flex-1 min-h-0" : "h-[80vh] lg:h-[85vh]")}
                 />
@@ -333,6 +349,14 @@ export const LeafBody = ({ archiveId, refLabel, leafLabel, manifest, leaf, prev,
                   <span>PDF</span>
                   <span className="text-border">•</span>
                   <span>{pageCount ? `${pageCount} page${pageCount === 1 ? "" : "s"}` : "Loading"}</span>
+                  {openAt && openAt > 1 && pageCount > 0 && (
+                    <>
+                      <span className="text-border">•</span>
+                      <span title={hashPage ? "Opened at the page the citation names" : `${leafLabel} ${leaf.id} begins on this page of the document`}>
+                        opened at page {Math.min(openAt, pageCount)}
+                      </span>
+                    </>
+                  )}
                 </div>
               </div>
             )}
