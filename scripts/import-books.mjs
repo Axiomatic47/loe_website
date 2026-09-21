@@ -48,6 +48,36 @@ import { homedir } from 'node:os';
 import { execFileSync } from 'node:child_process';
 
 const ROOT = resolve(new URL('..', import.meta.url).pathname);
+
+// the leaf-url gate's caches: archive manifests and served-PDF page counts (pdfinfo, homebrew poppler)
+const archiveManifests = new Map();
+const pdfPageCounts = new Map();
+function checkLeafUrl(url, key) {
+  const m = url.match(/^\/research\/([^/]+)\/leaf\/([^/#?]+)(?:#(.*))?$/);
+  if (!m) return; // an https catalogue record, or another path of this site — not a leaf link
+  const [, archiveId, leafId, frag] = m;
+  if (!archiveManifests.has(archiveId)) {
+    const f = join(ROOT, 'public', 'uploads', 'research', archiveId, 'manifest.json');
+    archiveManifests.set(archiveId, existsSync(f) ? JSON.parse(readFileSync(f, 'utf8')) : null);
+  }
+  const am = archiveManifests.get(archiveId);
+  if (!am) throw new Error(`${key}: url ${url} names archive '${archiveId}', which this site does not serve — nothing written`);
+  const leaf = am.leaves.find((l) => l.id === leafId);
+  if (!leaf) throw new Error(`${key}: url ${url} names leaf '${leafId}', which ${archiveId}'s manifest does not list — nothing written`);
+  if (!frag) return;
+  const pm = frag.match(/(?:^|&)page=(\d+)(?:&|$)/);
+  if (!pm) throw new Error(`${key}: url ${url} carries a fragment that is not page=N — nothing written`);
+  const page = Number(pm[1]);
+  const doc = leaf.docs.find((d) => d.kind === 'edition');
+  if (!doc) throw new Error(`${key}: url ${url} asks for page ${page} but leaf ${leafId} serves no edition document — nothing written`);
+  const pdfPath = join(ROOT, 'public', 'uploads', 'research', archiveId, doc.pdf);
+  if (!pdfPageCounts.has(pdfPath)) {
+    const out = execFileSync('pdfinfo', [pdfPath], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+    pdfPageCounts.set(pdfPath, Number((out.match(/^Pages:\s+(\d+)/m) || [])[1]) || 0);
+  }
+  const pages = pdfPageCounts.get(pdfPath);
+  if (page < 1 || page > pages) throw new Error(`${key}: url ${url} asks for page ${page} but ${basename(doc.pdf)} has ${pages} pages — nothing written`);
+}
 const LIB = join(homedir(), 'Git', 'work_station', 'research_library', '2_Academic Articles');
 
 /** one entry per reviewed book; `slug` and `id` are the site's (src/data/books.ts) — the same as kirchner.ink's */
@@ -263,6 +293,11 @@ function importOne(cfg) {
         verified: null, sha256: null, url: r.url, ...(r.work ? { work: r.work } : {}) });
     }
   }
+
+  // LEAF-URL GATE (f28bb754's rule, carried 2026-09-21): a chip url of this site's leaf-page form must name a leaf the
+  // archive's manifest lists, and its #page=N must be a page the leaf's served edition PDF has — a fragment on a leaf
+  // with no edition, or past the PDF's last page, would open nothing; refuse naming the row, nothing written
+  for (const u of units.values()) for (const p of u.pages) if (p.url) checkLeafUrl(p.url, `${u.note}/${u.seq}`);
 
   const counts = { wrapped: 0, unwrappable: 0, noDef: 0, published: 0, held: 0, uncut: 0 };
   const warnings = [];
