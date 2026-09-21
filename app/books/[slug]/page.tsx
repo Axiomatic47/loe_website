@@ -6,7 +6,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { bookBySlug } from '@/data/books';
 import { reviewMeta } from '@/lib/review';
-import { publishedBooks, readBookText, readReview } from '../review-server';
+import { editionLeaves, publishedBooks, readBookText, readReview } from '../review-server';
 import { ReviewLoader } from '../_components/ReviewLoader';
 import { BookText } from '../_components/BookText';
 
@@ -39,7 +39,7 @@ export default async function BookReviewPage({ params }: Params) {
   // is no PDF pane to show instead (the immunity book's text is 880 KB — as RSC payload it tripled
   // the page; kirchner.ink measured a 4.2 MB page as the owner's "loads very slowly", 2026-09-15).
   return (
-    <ReviewLoader book={{ slug: b.slug, title: b.title, subtitle: b.subtitle, venue: b.venue }} meta={reviewMeta(manifest)}>
+    <ReviewLoader book={{ slug: b.slug, title: b.title, subtitle: b.subtitle, venue: b.venue }} meta={reviewMeta(manifest)} editions={editionLeaves()}>
       {manifest.pdf ? undefined : <BookText bare citeBase="">{text}</BookText>}
     </ReviewLoader>
   );

@@ -8,12 +8,14 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { stubManifest, type ReviewManifest, type ReviewMeta } from '@/lib/review';
+import { stubManifest, type EditionMap, type ReviewManifest, type ReviewMeta } from '@/lib/review';
 import { ReviewBody } from './ReviewBody';
 
 interface Props {
   book: { slug: string; title: string; subtitle?: string; venue?: string };
   meta: ReviewMeta;
+  /** the archive leaves that serve an edition (a held page whose chip links to one opens it in the pane) */
+  editions?: EditionMap;
   children?: React.ReactNode;
 }
 

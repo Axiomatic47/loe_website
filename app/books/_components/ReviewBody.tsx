@@ -15,10 +15,11 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
-import { AlignLeft, ArrowLeft, ArrowRight, BookOpen, ChevronDown, ChevronLeft, ChevronRight, Columns, CornerLeftUp, ExternalLink, Loader2, Lock, Rows } from 'lucide-react';
+import { AlignLeft, ArrowLeft, ArrowRight, BookOpen, ChevronDown, ChevronLeft, ChevronRight, Columns, CornerLeftUp, ExternalLink, FileText, Image as ImageIcon, Loader2, Lock, Rows } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { RIGHTS_LABEL, WORK_URL_KIND, citeFromHash, hashForCite, isExternalUrl, versioned as v, type ReviewManifest, type ReviewUnit, type ReviewWork } from '@/lib/review';
+import { RIGHTS_LABEL, WORK_URL_KIND, citeFromHash, hashForCite, isExternalUrl, leafFromUrl, versioned as v, type EditionMap, type ReviewManifest, type ReviewUnit, type ReviewWork } from '@/lib/review';
 import { SitePageLayout } from '../../_components/SitePageLayout';
+import { MembraneViewer } from '@/components/MembraneViewer';
 import { BookPdfViewer, type PdfFocus, type PdfHotBox } from './BookPdfViewer';
 
 type Layout = 'stacked' | 'side';
@@ -31,6 +32,12 @@ const DIVIDER_PX = 14;
 // SitePageLayout's fixed footer (pb-16) + the slack under the below-panes row
 const FIXED_FOOTER_PX = 64;
 const BOTTOM_PAD_PX = 16;
+// THE PANES NEVER CHANGE SIZE (owner 2026-09-21: "the pdf viewers should never change size and should remain the
+// larger size"): the fill height is computed from CONSTANTS plus the panes' top edge, never from what the header
+// or the record line happen to hold — the header row is a fixed h-10 whose page strip scrolls sideways instead of
+// wrapping, and the record line under the panes gets a fixed two-line budget (it may run a line long on a long
+// title; the page then scrolls a little, the panes do not shrink).
+const BELOW_PX = 48;
 // a whole case can run to 160 pages (owner rule: a case cited by its first page is served whole):
 // past CHIP_MAX the page strip becomes a scrubber — first page · slider · last page · the page in hand
 const CHIP_MAX = 14;
@@ -47,6 +54,8 @@ interface Props {
   loadError?: string | null;
   /** source count for the intro card (the stub manifest has none) */
   sourceCount?: number;
+  /** the archive leaves serving an EDITION: a held page whose chip links to one opens the transcription here */
+  editions?: EditionMap;
 }
 
 /** *italics* in a register citation → <em> */
@@ -80,7 +89,7 @@ function WorkRecord({ work, compact = false, sourceHolderUrl }: { work: ReviewWo
   );
 }
 
-export function ReviewBody({ book, manifest, published, children, loading = false, loadError = null, sourceCount }: Props) {
+export function ReviewBody({ book, manifest, published, children, loading = false, loadError = null, sourceCount, editions }: Props) {
   const textHref = `/books/${book.slug}/text`;
   const units = manifest.units;
   const byId = useMemo(() => new Map(units.map((u) => [u.id, u])), [units]);
@@ -169,8 +178,8 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
   const measure = useCallback(() => {
     const el = rowRef.current;
     if (!el) return;
-    const below = belowRef.current ? belowRef.current.offsetHeight + 12 : 48;
-    setFillHeight(Math.max(480, window.innerHeight - el.getBoundingClientRect().top - below - FIXED_FOOTER_PX - BOTTOM_PAD_PX));
+    // constants only (BELOW_PX, never belowRef's live height): a picked citation must not move the panes' edges
+    setFillHeight(Math.max(480, window.innerHeight - el.getBoundingClientRect().top - BELOW_PX - FIXED_FOOTER_PX - BOTTOM_PAD_PX));
   }, []);
   useEffect(() => {
     if (!fills) return;
@@ -178,8 +187,8 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
     window.addEventListener('resize', measure);
     return () => { clearTimeout(t); window.removeEventListener('resize', measure); };
   }, [fills, measure]);
-  // the header row carries the page strip in side-by-side: when it appears, changes or wraps, the
-  // panes' top edge moves and the fill height must follow
+  // the header row is a fixed h-10 in side-by-side (its strip scrolls, never wraps), so this observer
+  // is a guard only: should the header ever change height, the panes' top edge moves and the fill follows
   useEffect(() => {
     if (!review || !headRef.current) return;
     const ro = new ResizeObserver(() => measure());
@@ -271,6 +280,21 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
   const workIds = active ? [...new Set([...(active.works ?? []), active.work, ...active.pages.map((p) => p.work), page?.work].filter((w): w is string => !!w))] : [];
   const works = workIds.map((id) => manifest.works?.[id]).filter((w): w is ReviewWork => !!w);
   const paneSrc = ctx ? v(ctx.file, ctx.served ?? ctx.sha256) : page?.file ? v(page.file, page.sha256) : null;
+  // THE EDITION (owner 2026-09-21): a held page whose chip links to one of this site's leaves that serves a
+  // professional transcription opens THAT transcription here, at the leaf's page (or the exact page the chip's
+  // url names with page=N) — never the held card. The folio image is a toggle; the leaf page (image beside
+  // transcription) opens side by side in a new tab.
+  const editionFor = (url: string | null | undefined) => { const r = leafFromUrl(url); return r && editions?.[r.key] ? { ...editions[r.key], page: r.page ?? editions[r.key].page } : null; };
+  const edition = page && !page.file && !ctx ? editionFor(page.url) : null;
+  const [showFolio, setShowFolio] = useState(false);
+  const [edFocus, setEdFocus] = useState<PdfFocus | null>(null);
+  const edPdf = edition?.pdf ?? null, edPage = edition?.page ?? null;
+  useEffect(() => { setShowFolio(false); }, [edPdf, edPage]);
+  useEffect(() => {
+    if (!edPdf || !edPage) return;
+    const t = setTimeout(() => setEdFocus({ page: edPage, y: 0, nonce: Date.now() }), 250);
+    return () => clearTimeout(t);
+  }, [edPdf, edPage]);
   const citedInCtx: number[] = active && ctx ? active.pages.filter((p) => p.context?.file === ctx.file).map((p) => p.context!.page) : [];
   const ctxFile = ctx?.file ?? null, ctxPage = ctx?.page ?? null;
   const [ctxFocus, setCtxFocus] = useState<PdfFocus | null>(null);
@@ -306,6 +330,18 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
       {active && (
         <button type="button" className={cn(ctl, 'ml-1')} onClick={toNote} title={`Show note ${active.note} in the book`}><CornerLeftUp className="h-3.5 w-3.5" /> n. {active.note}</button>
       )}
+      {edition && (
+        <>
+          <button type="button" className={cn(ctl, 'ml-1', showFolio && 'bg-primary/15')} onClick={() => setShowFolio((x) => !x)} aria-pressed={showFolio}
+            title={showFolio ? 'Back to the transcription' : `See the folio image — ${edition.leafLabel.toLowerCase()} ${edition.leafId}`}>
+            {showFolio ? <FileText className="h-3.5 w-3.5" /> : <ImageIcon className="h-3.5 w-3.5" />} {showFolio ? 'Transcription' : 'Folio image'}
+          </button>
+          <a href={`${edition.leafUrl}#page=${edition.page}`} target="_blank" rel="noopener noreferrer" className={cn(ctl, 'no-underline')}
+            title={`Open ${edition.leafLabel.toLowerCase()} ${edition.leafId} in a new tab — the folio image beside the transcription`}>
+            <Columns className="h-3.5 w-3.5" /> Side by side <ExternalLink className="h-3 w-3" />
+          </a>
+        </>
+      )}
     </div>
   );
 
@@ -318,7 +354,10 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
     if (!g || g.source !== src) { g = { source: src, title: (src && manifest.sources[src]?.title) || src || '', items: [] }; groups.push(g); }
     g.items.push({ i, label: p.label, file: p.file, url: p.url });
   });
-  const stripShell = 'shrink-0 rounded-lg border border-border bg-card shadow-sm px-3 py-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 font-sans';
+  // in side-by-side the strip is ONE fixed-height line that scrolls sideways (the panes never move for it)
+  const stripShell = cn('shrink-0 rounded-lg border border-border bg-card shadow-sm px-3 flex items-center gap-x-3 font-sans',
+    review ? 'h-10 flex-nowrap overflow-x-auto whitespace-nowrap' : 'py-2 flex-wrap gap-y-1.5');
+  const hasEdition = (url?: string) => !!editionFor(url);
   const eyebrow = 'text-xs lg:text-[11px] uppercase tracking-[0.08em] text-muted-foreground';
   const pageStrip = active && active.pages.length > CHIP_MAX ? (
     <div className={stripShell}>
@@ -336,15 +375,16 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
     <div className={stripShell} role="tablist" aria-label="Pages cited by this citation">
       <span className={eyebrow} style={{ fontWeight: 600 }}>{active.pages.length} pages cited</span>
       {groups.map((g, gi) => (
-        <span key={`${g.source}-${gi}`} className="inline-flex flex-wrap items-center gap-1">
+        <span key={`${g.source}-${gi}`} className={cn('inline-flex items-center gap-1', review ? 'flex-nowrap' : 'flex-wrap')}>
           {groups.length > 1 && <span className="text-xs text-muted-foreground mr-0.5 truncate max-w-[16rem]" title={g.title}>{g.title}</span>}
-          {g.items.map((it) => it.file || !it.url ? (
+          {g.items.map((it) => it.file || !it.url || hasEdition(it.url) ? (
+            // a served page, a held page with no link, or a held leaf whose EDITION this site serves: the chip opens it HERE
             <button key={it.i} type="button" role="tab" aria-selected={pageIdx === it.i} onClick={() => goPage(it.i)}
-              title={it.file ? `Open ${it.label}` : `${it.label} — held in the library, not published`}
+              title={it.file ? `Open ${it.label}` : hasEdition(it.url) ? `Open ${it.label} — the transcription at its page` : `${it.label} — held in the library, not published`}
               className={cn('h-7 px-2 rounded-md text-xs tabular-nums transition-colors inline-flex items-center gap-1',
-                pageIdx === it.i ? 'bg-primary text-primary-foreground' : it.file ? 'border border-border text-foreground/85 hover:bg-muted' : 'border border-dashed border-border text-muted-foreground hover:bg-muted')}
+                pageIdx === it.i ? 'bg-primary text-primary-foreground' : it.file || hasEdition(it.url) ? 'border border-border text-foreground/85 hover:bg-muted' : 'border border-dashed border-border text-muted-foreground hover:bg-muted')}
               style={{ fontWeight: pageIdx === it.i ? 600 : 500 }}>
-              {!it.file && <Lock className="h-3 w-3" aria-hidden />}{it.label}
+              {!it.file && !hasEdition(it.url) && <Lock className="h-3 w-3" aria-hidden />}{it.label}
             </button>
           ) : (
             // a held page that carries a link (lane contract 2026-09-15): the chip IS the link — the site's own leaf
@@ -367,7 +407,19 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
   const sourcePane = (
     <div ref={sourceRef} className={cn('min-w-0 flex flex-col', review ? 'h-full min-h-0' : 'lg:sticky lg:top-20 z-10')}>
       {!review && pageStrip && <div className="mb-2">{pageStrip}</div>}
-      {paneSrc && page ? (
+      {edition && page ? (
+        showFolio ? (
+          <div className={cn(paneShell, review ? 'h-full' : 'min-h-[24rem]')}>
+            <div className="h-11 px-3 flex items-center justify-between gap-3 border-b border-border font-sans">{controls}</div>
+            <div className="h-8 px-4 flex items-center text-xs text-muted-foreground truncate border-b border-border font-sans" title={edition.imageCredit ?? undefined}>{edition.leafLabel} {edition.leafId} · {edition.imageCredit ?? pageTitle}</div>
+            <MembraneViewer src={edition.image} alt={`${pageTitle} — the folio image`} heightClass={review ? 'flex-1 min-h-0' : 'h-[70vh]'} fitMode="width" />
+          </div>
+        ) : (
+          <BookPdfViewer key={edition.pdf} src={v(edition.pdf, edition.sha256)} title={`${edition.title} — ${edition.credit}; ${edition.leafLabel.toLowerCase()} ${edition.leafId} begins at page ${edition.page}`}
+            downloadSrc={v(edition.pdf, edition.sha256)} downloadName={edition.pdf.split('/').pop()}
+            height={review ? 'fill' : 'page'} leading={controls} focus={edFocus} markedPages={[edition.page]} currentPage={edition.page} />
+        )
+      ) : paneSrc && page ? (
         <BookPdfViewer key={paneSrc} src={paneSrc} bytes={ctx?.bytes} title={ctx ? `${pageTitle} — reading copy, ${citedInCtx.length > 1 ? `${citedInCtx.length} cited pages marked` : 'the cited page marked'}` : pageTitle}
           downloadSrc={page.file ? v(page.file, page.sha256) : undefined} downloadName={(page.file ?? ctx?.file ?? '').split('/').pop()}
           height={review ? 'fill' : 'page'} leading={controls}
@@ -463,7 +515,7 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
             over the LEFT pane; in side-by-side the page strip takes the right half, over the source
             pane, on the same column grid as the panes so the divider lines up */}
         <div ref={headRef}
-          className={cn('mb-3 font-sans', review ? 'grid items-center' : 'flex flex-wrap items-center gap-3')}
+          className={cn('mb-3 font-sans', review ? 'grid items-center h-10' : 'flex flex-wrap items-center gap-3')}
           style={review ? { gridTemplateColumns: `${split}% ${DIVIDER_PX}px minmax(0, 1fr)` } : undefined}>
           <div className="flex flex-wrap items-center gap-2 min-w-0">
             <Link href="/books" className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors no-underline mr-1"><ArrowLeft className="h-4 w-4 mr-1.5" />Books</Link>
@@ -481,7 +533,7 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
             </span>}
           </div>
           {review && <div aria-hidden />}
-          {review && <div className="min-w-0">{pageStrip}</div>}
+          {review && <div className="min-w-0 h-10">{pageStrip}</div>}
         </div>
 
         <div ref={rowRef}
@@ -499,7 +551,7 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
         </div>
 
         {/* below the panes — the cited page's record (left) · the book's record (right) */}
-        <div ref={belowRef} className={cn('mt-3 flex flex-wrap items-start justify-between gap-x-6 gap-y-2 text-xs lg:text-[11px] text-muted-foreground leading-relaxed font-sans', (reading || layout !== 'side') && 'max-w-5xl mx-auto')}>
+        <div ref={belowRef} className={cn('mt-3 min-h-9 flex flex-wrap items-start justify-between gap-x-6 gap-y-2 text-xs lg:text-[11px] text-muted-foreground leading-relaxed font-sans', (reading || layout !== 'side') && 'max-w-5xl mx-auto')}>
           <div className="min-w-0 space-y-0.5">
             {reading ? (
               <p>Reading mode — the book alone. A click on a citation in the notes opens review mode at the page it cites.</p>
@@ -511,6 +563,7 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
                   {active?.status === 'CUT_FIRST' && (page?.begins ? ' · the note cites the case without a page: the whole case is served, from its first page' : ' · a page of the case, cited whole')}
                   {page.file && <> · <a href={v(page.file, page.sha256)} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 text-primary">open the page PDF</a></>}
                   {ctx && <> · shown in its reading copy at page {ctx.page}{page.file ? '; the download is the single page' : ''}</>}
+                  {edition && <> · shown in the transcription ({edition.credit}) at page {edition.page} · <a href={`${edition.leafUrl}#page=${edition.page}`} className="underline underline-offset-2 text-primary">the leaf page</a>: the folio image beside it</>}
                   {rights && RIGHTS_LABEL[rights] && <> · {RIGHTS_LABEL[rights]}</>}
                   {works.length > 0 && <> · <button type="button" onClick={() => setShowWork((x) => !x)} aria-expanded={showWork} className="underline underline-offset-2 text-primary inline-flex items-center gap-0.5">the work{works.length > 1 ? 's' : ''} cited <ChevronDown className={cn('h-3 w-3 transition-transform', showWork && 'rotate-180')} aria-hidden /></button></>}
                 </p>
