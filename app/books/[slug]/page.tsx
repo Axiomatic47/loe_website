@@ -9,6 +9,7 @@ import { reviewMeta } from '@/lib/review';
 import { editionLeaves, publishedBooks, readBookText, readReview } from '../review-server';
 import { ReviewLoader } from '../_components/ReviewLoader';
 import { BookText } from '../_components/BookText';
+import { ogImages } from '../../_lib/og-server';
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -20,11 +21,14 @@ type Params = { params: Promise<{ slug: string }> };
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const b = bookBySlug((await params).slug);
   if (!b) return { robots: { index: false, follow: false } };
+  // the social card is the book PDF's first page (scripts/build_og_images.py)
+  const og = ogImages(`books-${b.slug}`, `${b.title} — the first page`);
   return {
     title: `${b.title} — review mode`,
     description: `${b.title}: ${b.subtitle}. The book beside the pages it cites, one citation at a time.`,
     alternates: { canonical: `/books/${b.slug}` },
-    openGraph: { title: `${b.title} — review mode`, description: b.blurb, type: 'book' },
+    openGraph: { title: `${b.title} — review mode`, description: b.blurb, type: 'book', url: `/books/${b.slug}`, ...og.openGraph },
+    twitter: og.twitter,
   };
 }
 

@@ -21,6 +21,7 @@ import {
 import { FileText } from 'lucide-react';
 import { SitePageLayout } from '../../_components/SitePageLayout';
 import { readArchiveManifest } from '../manifest-server';
+import { ogImages } from '../../_lib/og-server';
 
 export const dynamicParams = false;
 
@@ -34,12 +35,18 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { archiveId } = await params;
   const config = RESEARCH_ARCHIVES[archiveId];
   if (!config) return { robots: { index: false, follow: false } };
+  const title = `${config.ref} — ${config.edition ? 'the record and its transcription' : 'working transcription'}`;
+  const description = config.edition
+    ? `${config.ref}: the ${config.leafLabel.toLowerCase()} images beside the ${creditInline(config.edition.credit)}.`
+    : `Working diplomatic transcription of ${config.ref}: leaf images beside the transcripts.`;
+  // the social card is the archive's first leaf (scripts/build_og_images.py)
+  const og = ogImages(`research-${archiveId}`, `${config.ref} — the first ${config.leafLabel.toLowerCase()}`);
   return {
-    title: `${config.ref} — ${config.edition ? 'the record and its transcription' : 'working transcription'}`,
-    description: config.edition
-      ? `${config.ref}: the ${config.leafLabel.toLowerCase()} images beside the ${creditInline(config.edition.credit)}.`
-      : `Working diplomatic transcription of ${config.ref}: leaf images beside the transcripts.`,
+    title,
+    description,
     alternates: { canonical: `/research/${archiveId}` },
+    openGraph: { title, description, type: 'article', url: `/research/${archiveId}`, ...og.openGraph },
+    twitter: og.twitter,
   };
 }
 

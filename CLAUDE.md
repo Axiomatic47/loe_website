@@ -150,6 +150,13 @@ project registry as before.
   FATAL) into each edition doc's `page`; `PdfScrollViewer` takes `page` and scrolls there once
   laid out; a leaf URL's `#page=N` fragment overrides it, so a citation can land on an exact
   page (`/research/stac-8-203-38/leaf/009#page=5`). No map = page 1, said aloud in the log.
+- **Social cards are per page (owner 2026-09-21):** `npm run og:build` (manual-run: Pillow, poppler,
+  the Mac's fonts) writes `public/og/<key>.jpg`, 1200×630 — the archive page and every leaf show the
+  manuscript (a band of the first leaf / that leaf), a book its PDF's first page letterboxed on the site's
+  paper, an academic article its PDF's first page or, with no PDF, a rendered title page in Georgia on
+  the same paper; `app/_lib/og-server.ts` `ogImages(key, alt)` puts the card (or `/og-image.png` when
+  missing) into openGraph + twitter. Re-run after a new leaf, book render, article PDF or new article;
+  commit `public/og/`. Case documents and letters keep the default card by scope.
 - **Device runs:** `studio-site.json` `pages.exclude` / `pages.heavy` / `pages.audit.ignore_selectors`
   feed the Studio's device audit (midesk `docs/DEVICE_RUNS.md`); run it against a PRIVATE port
   whose holder you have checked — 3999 is another seat's.
