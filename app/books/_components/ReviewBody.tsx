@@ -564,7 +564,7 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
                   {page.file && <> · <a href={v(page.file, page.sha256)} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 text-primary">open the page PDF</a></>}
                   {ctx && <> · shown in its reading copy at page {ctx.page}{page.file ? '; the download is the single page' : ''}</>}
                   {edition && <> · shown in the transcription ({edition.credit}) at page {edition.page} · <a href={`${edition.leafUrl}#page=${edition.page}`} className="underline underline-offset-2 text-primary">the leaf page</a>: the folio image beside it</>}
-                  {rights && RIGHTS_LABEL[rights] && <> · {RIGHTS_LABEL[rights]}</>}
+                  {edition ? <> · the images by permission of the holder; the transcription published in full with its author’s agreement</> : rights && RIGHTS_LABEL[rights] && <> · {RIGHTS_LABEL[rights]}</>}
                   {works.length > 0 && <> · <button type="button" onClick={() => setShowWork((x) => !x)} aria-expanded={showWork} className="underline underline-offset-2 text-primary inline-flex items-center gap-0.5">the work{works.length > 1 ? 's' : ''} cited <ChevronDown className={cn('h-3 w-3 transition-transform', showWork && 'rotate-180')} aria-hidden /></button></>}
                 </p>
                 {page.sha256 && <p className="font-mono break-all">sha256 {page.sha256}</p>}
