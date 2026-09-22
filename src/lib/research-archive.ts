@@ -16,6 +16,10 @@ export interface ArchiveDoc {
   credit?: string;
   /** sha256 of the served PDF, verified against the library's fixity file at sync time */
   sha256?: string;
+  /** the PDF page (1-based) where THIS leaf's text begins in a document that spans several leaves —
+      from the library's page map (05_Whittick Edition/_PAGE_MAP.tsv, the manuscript seat's table);
+      absent = the document opens at its first page */
+  page?: number;
 }
 export interface ArchiveLeafEntry {
   id: string;

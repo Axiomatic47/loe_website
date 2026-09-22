@@ -11,6 +11,7 @@ import { getCollection, getComposition, getSection } from '@/lib/content-manifes
 import type { CollectionType } from '@/lib/content-types';
 import { absoluteUrl, sectionUrl } from '@/utils/urls';
 import { DocReaderView } from '../../../../_components/DocReaderView';
+import { ogImages } from '../../../../_lib/og-server';
 
 export const dynamicParams = false;
 
@@ -49,16 +50,20 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
   const canonical = sectionUrl(composition, section);
   const description = section.description || `${section.title} — ${composition.title}`;
+  const og = ogImages(`article-${composition.slug}-${section.slug}`, `${section.title} — the first page`);
   return {
     title: `${section.title} — ${composition.title}`,
     description,
     alternates: { canonical },
+    // the social card is the article's first page — its PDF's, or a rendered title page (scripts/build_og_images.py)
     openGraph: {
       title: section.title,
       description,
       url: absoluteUrl(canonical),
       type: 'article',
+      ...og.openGraph,
     },
+    twitter: og.twitter,
   };
 }
 

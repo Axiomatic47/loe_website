@@ -108,6 +108,11 @@ const ARCHIVES = [
     edition: {
       dir: '05_Whittick Edition',
       fixity: '_FIXITY_SHA256.txt',
+      // PAGE MAP (owner 2026-09-21, manuscript seat 152ee375's table, tracked beside the PDFs):
+      // tab-separated, header `leaf<TAB>file<TAB>page<TAB>folio<TAB>note` — the PDF page (1-based)
+      // where each membrane's text begins in the document that spans it. Read when present; a
+      // row naming a leaf outside its document's span, or a page past the PDF's last, is FATAL.
+      pageMap: '_PAGE_MAP.tsv',
       author: 'Christopher Whittick',
       credit: 'Professional verification transcription by Christopher Whittick',
       docs: [
@@ -392,6 +397,32 @@ for (const A of ARCHIVES) {
       const m = line.trim().match(/^([0-9a-f]{64})\s+(\S+)$/);
       if (m) edFixity[m[2]] = m[1];
     }
+    // the page map: { file: { leaf: page } }
+    const pageMap = {};
+    const mapPath = A.edition.pageMap ? join(edDir, A.edition.pageMap) : null;
+    if (mapPath && existsSync(mapPath)) {
+      const rows = readFileSync(mapPath, 'utf8').split('\n').filter((l) => l.trim() && !l.startsWith('#'));
+      const header = rows.shift().split('\t').map((h) => h.trim());
+      const col = (name) => header.indexOf(name);
+      if (col('leaf') < 0 || col('file') < 0 || col('page') < 0) {
+        console.error(`  FATAL: ${A.edition.pageMap} header must carry leaf, file, page (got: ${header.join(', ')})`);
+        process.exit(1);
+      }
+      for (const r of rows) {
+        const c = r.split('\t');
+        const leaf = c[col('leaf')].trim().padStart(3, '0');
+        const file = c[col('file')].trim();
+        const page = Number(c[col('page')].trim());
+        if (!Number.isInteger(page) || page < 1) {
+          console.error(`  FATAL: ${A.edition.pageMap}: bad page for leaf ${leaf}: ${JSON.stringify(c[col('page')])}`);
+          process.exit(1);
+        }
+        (pageMap[file] ||= {})[leaf] = page;
+      }
+      console.log(`    page map: ${rows.length} row(s) from ${A.edition.pageMap}`);
+    } else {
+      console.log(`    NOTE: no ${A.edition.pageMap} in ${A.edition.dir} — every edition document opens at page 1 on every leaf`);
+    }
     for (const d of A.edition.docs) {
       const srcPdf = join(edDir, d.file);
       if (!existsSync(srcPdf)) {
@@ -406,6 +437,18 @@ for (const A of ARCHIVES) {
       }
       copyFileSync(srcPdf, join(dst, 'pdfs', d.file));
       editionCount += 1;
+      const pdfPages = Number((execFileSync('pdfinfo', [srcPdf], { encoding: 'utf8' }).match(/^Pages:\s+(\d+)/m) || [])[1]);
+      const mapped = pageMap[d.file] || {};
+      for (const leaf of Object.keys(mapped)) {
+        if (!d.leaves.includes(leaf)) {
+          console.error(`  FATAL: ${A.edition.pageMap} maps ${d.file} to leaf ${leaf}, outside its span ${d.span}`);
+          process.exit(1);
+        }
+        if (pdfPages && mapped[leaf] > pdfPages) {
+          console.error(`  FATAL: ${A.edition.pageMap}: leaf ${leaf} → page ${mapped[leaf]} but ${d.file} has ${pdfPages} pages`);
+          process.exit(1);
+        }
+      }
       for (const id of d.leaves) {
         if (!leaves[id]) {
           console.error(`  FATAL: edition ${d.file} spans ${A.leafLabel.toLowerCase()} ${id}, which has no leaf image`);
@@ -414,8 +457,11 @@ for (const A of ARCHIVES) {
         leaves[id].docs.push({
           kind: 'edition', span: d.span, title: d.title, pdf: `pdfs/${d.file}`,
           author: A.edition.author, credit: A.edition.credit, sha256: got,
+          ...(mapped[id] ? { page: mapped[id] } : {}),
         });
       }
+      const unmapped = d.leaves.filter((id) => !mapped[id]);
+      if (d.leaves.length > 1 && unmapped.length) console.log(`    NOTE: ${d.file} spans ${d.leaves.length} leaves; no page for ${unmapped.join(', ')} (open at page 1)`);
       console.log(`    EDITION ${d.file} → ${A.leafLabel.toLowerCase()}s ${d.span} (sha256 ${got.slice(0, 12)} verified against ${A.edition.fixity})`);
     }
   }
