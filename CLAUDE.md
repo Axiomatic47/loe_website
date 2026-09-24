@@ -150,6 +150,12 @@ project registry as before.
   FATAL) into each edition doc's `page`; `PdfScrollViewer` takes `page` and scrolls there once
   laid out; a leaf URL's `#page=N` fragment overrides it, so a citation can land on an exact
   page (`/research/stac-8-203-38/leaf/009#page=5`). No map = page 1, said aloud in the log.
+- **A book's VERSION log (owner 2026-09-24):** `content/versions/<slug>.json` — one entry per uploaded
+  version (number, ISO date, the text and PDF sha prefixes the import printed, a concise note of what
+  changed), newest last in the file; `VersionMenu.tsx` shows it as a drop-down in the review page's
+  footer (opens upward as a popover, never inside the panes' height budget) and in the text page's
+  side panel. On a new render or text landing, add the entry in the same commit as the import; the
+  immunity book's version 1 is the eighteenth lane state of 2026-09-22.
 - **Social cards are per page (owner 2026-09-21):** `npm run og:build` (manual-run: Pillow, poppler,
   the Mac's fonts) writes `public/og/<key>.jpg`, 1200×630 — the archive page and every leaf show the
   manuscript (a band of the first leaf / that leaf), a book its PDF's first page letterboxed on the site's

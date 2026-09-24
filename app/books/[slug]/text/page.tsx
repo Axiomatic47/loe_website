@@ -7,8 +7,9 @@ import { notFound } from 'next/navigation';
 import { ArrowLeft, Columns } from 'lucide-react';
 import { bookBySlug } from '@/data/books';
 import { publishedUnits } from '@/lib/review';
-import { publishedBooks, readBookText, readReview } from '../../review-server';
+import { publishedBooks, readBookText, readReview, readVersions } from '../../review-server';
 import { BookText } from '../../_components/BookText';
+import { VersionMenu } from '../../_components/VersionMenu';
 import { SitePageLayout } from '../../../_components/SitePageLayout';
 
 export const dynamicParams = false;
@@ -33,6 +34,7 @@ export default async function BookTextPage({ params }: Params) {
   const text = b ? readBookText(slug) : null;
   if (!b || !manifest || !text) notFound();
   const opens = publishedUnits(manifest).length;
+  const versions = readVersions(slug);
   return (
     <SitePageLayout>
       <main className="container mx-auto px-4 py-6">
@@ -52,6 +54,7 @@ export default async function BookTextPage({ params }: Params) {
               </span>
             </Link>
             <p className="text-xs text-muted-foreground mt-4">Part of <Link href="/books" className="text-primary underline underline-offset-2">Books · review mode</Link>.</p>
+            {versions.length > 0 && <VersionMenu versions={versions} align="left" up={false} className="mt-3" />}
           </aside>
           <section className="min-w-0">
             <BookText citeBase={`/books/${b.slug}`}>{text}</BookText>

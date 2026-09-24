@@ -17,7 +17,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { AlignLeft, ArrowLeft, ArrowRight, BookOpen, ChevronDown, ChevronLeft, ChevronRight, Columns, CornerLeftUp, ExternalLink, FileText, Image as ImageIcon, Loader2, Lock, Rows } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { RIGHTS_LABEL, WORK_URL_KIND, citeFromHash, hashForCite, isExternalUrl, leafFromUrl, versioned as v, type EditionMap, type ReviewManifest, type ReviewUnit, type ReviewWork } from '@/lib/review';
+import { RIGHTS_LABEL, WORK_URL_KIND, citeFromHash, hashForCite, isExternalUrl, leafFromUrl, versioned as v, type BookVersion, type EditionMap, type ReviewManifest, type ReviewUnit, type ReviewWork } from '@/lib/review';
+import { VersionMenu } from './VersionMenu';
 import { SitePageLayout } from '../../_components/SitePageLayout';
 import { MembraneViewer } from '@/components/MembraneViewer';
 import { BookPdfViewer, type PdfFocus, type PdfHotBox } from './BookPdfViewer';
@@ -56,6 +57,8 @@ interface Props {
   sourceCount?: number;
   /** the archive leaves serving an EDITION: a held page whose chip links to one opens the transcription here */
   editions?: EditionMap;
+  /** the book's version log, newest first — the footer's version drop-down (owner 2026-09-24) */
+  versions?: BookVersion[];
 }
 
 /** *italics* in a register citation → <em> */
@@ -89,7 +92,7 @@ function WorkRecord({ work, compact = false, sourceHolderUrl }: { work: ReviewWo
   );
 }
 
-export function ReviewBody({ book, manifest, published, children, loading = false, loadError = null, sourceCount, editions }: Props) {
+export function ReviewBody({ book, manifest, published, children, loading = false, loadError = null, sourceCount, editions, versions = [] }: Props) {
   const textHref = `/books/${book.slug}/text`;
   const units = manifest.units;
   const byId = useMemo(() => new Map(units.map((u) => [u.id, u])), [units]);
@@ -573,10 +576,14 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
               <p>{manifest.rightsRule}</p>
             )}
           </div>
-          <p className="ml-auto text-right">
-            {pdf ? <>PDF rendered {pdf.rendered} ({pdf.pages} pp.; sha256 <span className="font-mono">{pdf.sha256.slice(0, 12)}…</span>) · </> : null}
-            text current to {manifest.generated.slice(0, 10)} (sha256 <span className="font-mono">{manifest.book.sha256.slice(0, 12)}…</span>{manifest.book.commit ? <>, blob {manifest.book.commit.slice(0, 8)}</> : null})
-          </p>
+          <div className="ml-auto text-right">
+            <p>
+              {pdf ? <>PDF rendered {pdf.rendered} ({pdf.pages} pp.; sha256 <span className="font-mono">{pdf.sha256.slice(0, 12)}…</span>) · </> : null}
+              text current to {manifest.generated.slice(0, 10)} (sha256 <span className="font-mono">{manifest.book.sha256.slice(0, 12)}…</span>{manifest.book.commit ? <>, blob {manifest.book.commit.slice(0, 8)}</> : null})
+            </p>
+            {/* the version drop-down opens UPWARD over the page — a popover, never a change to the panes' budget */}
+            {versions.length > 0 && <VersionMenu versions={versions} align="right" up className="mt-1" />}
+          </div>
         </div>
         {/* the cited work's register record — a SIBLING of the measured block above, never inside the fill budget
             (owner 2026-09-16: the panes must keep their size whatever the data fields show) */}

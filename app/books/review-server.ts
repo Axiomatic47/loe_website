@@ -3,7 +3,7 @@
 // scripts/import-books.mjs; nothing here is fetched at runtime.
 import fs from 'node:fs';
 import path from 'node:path';
-import type { EditionMap, ReviewManifest } from '@/lib/review';
+import type { BookVersion, EditionMap, ReviewManifest } from '@/lib/review';
 import { BOOKS, type BookRecord } from '@/data/books';
 import { RESEARCH_ARCHIVES } from '@/data/researchArchives';
 import { archiveBase, publishedDocs } from '@/lib/research-archive';
@@ -42,6 +42,14 @@ export function editionLeaves(): EditionMap {
     }
   }
   return out;
+}
+
+/** the book's version log, newest first (content/versions/<slug>.json; none = no menu) */
+export function readVersions(slug: string): BookVersion[] {
+  const file = path.join(process.cwd(), 'content', 'versions', `${slug}.json`);
+  if (!fs.existsSync(file)) return [];
+  const v = (JSON.parse(fs.readFileSync(file, 'utf8')) as { versions: BookVersion[] }).versions ?? [];
+  return [...v].sort((a, b) => b.version - a.version);
 }
 
 /** the book's text with the citation units wrapped as `cite:` links */
