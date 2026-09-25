@@ -189,10 +189,15 @@ export interface BookVersion {
   version: number;
   /** ISO date the version landed on the site */
   date: string;
-  /** sha256 prefixes of the text and the PDF as the import printed them */
+  /** FULL sha256 of the committed book (= _BOOK.json) and of the owner's render (= overlay.json pdf) — the gate's two equalities */
   text?: string;
   pdf?: string;
   note: string;
+  /** informational, the drafter's: file names, the RL commit, the lane state */
+  book?: string;
+  book_commit?: string;
+  render?: string;
+  lane_state?: string;
 }
 /** a chip url of this site's leaf-page form, with an optional `page=N` (the citation's exact page in the edition) */
 export const leafFromUrl = (url: string | null | undefined): { key: string; page: number | null } | null => {

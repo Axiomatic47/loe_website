@@ -239,6 +239,29 @@ function importOne(cfg) {
     if (!existsSync(rsrc)) throw new Error(`overlay.json names a render that is not in the lane: ${basename(overlay.pdf.path)}; nothing written`);
     if (sha256(rsrc) !== overlay.pdf.sha256) throw new Error('the book render on disk is not the one overlay.json was built on; nothing written');
   }
+  // THE VERSION LOG (owner 2026-09-24; the procedure in the website-developer and drafter orientations): the
+  // lane's _VERSIONS.json is the DRAFTER'S — every field theirs — and is published VERBATIM to
+  // content/versions/<slug>.json. The gate is two equalities the lane already keeps (drafter 0b43895f's
+  // amendments A–C): the newest entry's `text` == _BOOK.json's sha256 (the COMMITTED book, never the
+  // worktree) and its `pdf` == overlay.json's pdf.sha256 (the OWNER'S render, not the served linked copy
+  // whose hash moves with every row-only state). A text or render change with no new entry, an entry
+  // whose shas are not those, or an incomplete entry is a REFUSED SIGNAL back to the drafter — never a
+  // note typed here. A lane that has never carried a log publishes none (the drop-down stays hidden).
+  const versionsFile = join(cfg.lane, '_VERSIONS.json');
+  const versionsRaw = existsSync(versionsFile) ? readFileSync(versionsFile, 'utf8') : null;
+  let versionNewest = null;
+  if (versionsRaw) {
+    const vlog = JSON.parse(versionsRaw);
+    if (vlog.slug && vlog.slug !== cfg.slug) throw new Error(`REFUSED SIGNAL (version gate): _VERSIONS.json is for '${vlog.slug}', this lane is '${cfg.slug}'; nothing written`);
+    const list = Array.isArray(vlog.versions) ? vlog.versions : [];
+    if (!list.length) throw new Error('REFUSED SIGNAL (version gate): _VERSIONS.json carries no versions; nothing written');
+    versionNewest = [...list].sort((a, b) => Number(b.version) - Number(a.version))[0];
+    for (const k of ['version', 'date', 'text', 'pdf', 'note']) if (versionNewest[k] === undefined || versionNewest[k] === null || versionNewest[k] === '') throw new Error(`REFUSED SIGNAL (version gate): version ${versionNewest.version ?? '?'} lacks '${k}'; nothing written`);
+    if (versionNewest.text !== bookMeta.sha256) throw new Error(`REFUSED SIGNAL (version gate): the text changed without a new version entry — _BOOK.json ${bookMeta.sha256.slice(0, 12)} ≠ version ${versionNewest.version}'s text ${String(versionNewest.text).slice(0, 12)}; nothing written`);
+    if (overlay?.pdf?.sha256 && versionNewest.pdf !== overlay.pdf.sha256) throw new Error(`REFUSED SIGNAL (version gate): the render changed without a new version entry — overlay.json pdf ${overlay.pdf.sha256.slice(0, 12)} ≠ version ${versionNewest.version}'s pdf ${String(versionNewest.pdf).slice(0, 12)}; nothing written`);
+  } else if (existsSync(join(ROOT, 'content', 'versions', `${cfg.slug}.json`))) {
+    throw new Error('REFUSED SIGNAL (version gate): the site publishes a version log for this book but the lane carries no _VERSIONS.json; nothing written');
+  }
   for (const r of rows) {
     if (!PUBLISHABLE.has(r.rights)) continue;
     if (r.extract && CUT.has(r.status)) {
@@ -494,10 +517,15 @@ function importOne(cfg) {
   mkdirSync(join(ROOT, 'content', 'books'), { recursive: true });
   writeFileSync(join(ROOT, 'content', 'review', `${cfg.slug}.json`), JSON.stringify(manifest) + '\n');
   writeFileSync(join(ROOT, 'content', 'books', `${cfg.slug}.md`), md);
+  if (versionsRaw) {
+    mkdirSync(join(ROOT, 'content', 'versions'), { recursive: true });
+    writeFileSync(join(ROOT, 'content', 'versions', `${cfg.slug}.json`), versionsRaw); // the drafter's file, byte for byte
+  }
 
   const pageLinks = manifest.units.reduce((n, u) => n + u.pages.filter((p) => p.file).length, 0);
   console.log(`import-books: ${cfg.slug} ← ${feed}`);
   console.log(`  book ${basename(cfg.book)} sha256 ${bookSha.slice(0, 16)}…  ${lines.length} lines, ${defLine.size} notes`);
+  if (versionNewest) console.log(`  versions: ${JSON.parse(versionsRaw).versions.length} in the lane's log — version ${versionNewest.version} (${versionNewest.date}) is current; text and render match; published verbatim`);
   { const ids = new Set(); let uw = 0; for (const u of units.values()) { if (u.work) uw += 1; for (const w of [u.work, ...(u.works ?? []), ...u.pages.map((p) => p.work)]) if (w) ids.add(w); } if (ids.size) console.log(`  works: ${ids.size} register works cited by ${uw} of ${units.size} units (register ${register.size} works)`); }
   { let n = 0, ext = 0; for (const u of units.values()) for (const p of u.pages) { if (p.url) { n += 1; if (/^https?:\/\//i.test(p.url)) ext += 1; } } /* an https url = a holder's record; a path = this site's leaf */ if (n) console.log(`  links: ${n} page chips carry a url (${n - ext} leaf pages on this site, ${ext} external catalogue records)`); }
   console.log(`  units: ${counts.wrapped} wrapped (${counts.published} open a published page, ${counts.held} marked held/uncut), ${counts.uncut} without a source left plain, ${counts.unwrappable} unwrappable, ${counts.noDef} with no definition`);
