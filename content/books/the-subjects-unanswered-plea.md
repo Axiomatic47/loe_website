@@ -1481,7 +1481,9 @@ On the two axes, then: the de jure text gives the subject a damages action again
 
 The mechanism appears again in American law outside the judicial line, in the one setting where the Constitution's text is said to commit the question to the political branches. When a foreign official is sued in an American court for acts done in office, the foreign state may ask the Department of State to recognize his immunity; if the Department agrees, the Department of Justice files a suggestion of immunity, and the court, on the Executive's own account of the law, "surrendered its jurisdiction."[^si1] In 2016 the United States filed such a suggestion for Israel's former Minister of Defense, sued by the parents of an American citizen killed by Israeli forces at sea. It told the court that "the Department of State has determined that Barak is immune from suit" and that "[t]he Court must defer to that determination"; that the United States "expresses no view on the merits of Plaintiffs' claims"; and that "it is for the Executive Branch, not the courts, to determine whether the conduct alleged was taken in a foreign official's official capacity," a fact the foreign state's diplomatic note supplied.[^si2] The court dismissed, and the court of appeals affirmed because to judge the minister "would be to enforce a rule of law against the sovereign state of Israel," declining to say whether the Executive's letter bound it or only weighed with it.[^si3]
 
-The three bars of 1607 are in that record, relabelled. The plea is routed to the sovereign alone: the foreign state asks, the Executive determines, the court surrenders. The forum that receives it does not adjudicate: the branch whose word closes the courthouse disclaims the merits. And no proof is heard against the record: the one fact on which the immunity turns is taken from the court and the jury and answered by the accused sovereign's own note, with the gravest wrongs known to the law of nations expressly no exception.[^si4] The origin is the one this book has traced. Marshall's first case of exemption in 1812 was "the exemption of the person of the sovereign," because a sovereign "is not understood as intending to subject himself to a jurisdiction incompatible with his dignity," and the receiver he named was "the sovereign power of the nation," which "is alone competent to avenge wrongs committed by a sovereign," in questions "for diplomatic, rather than legal discussion."[^si5] The servant took the sovereign's status in 1895, when "the acts of the official representatives of the state" became "those of the state itself," the reverse of the eighteenth-century configuration chapter 4.3 records, in which the sovereign's immunity was paid for by the servant's exposure.[^si6] What reached the killing of a citizen in 2016 came by citation. The sentence that the courts "will not embarrass" the political branch "by assuming an antagonistic jurisdiction" was written in 1882 of claims settled by "negotiation" or "war," was applied in 1943 and 1945 to the seizure of foreign ships, and was applied to a former minister accused of an extrajudicial killing without any court adjudicating the step.[^si7] Whether an Executive letter binds a court on a question of law the Supreme Court has never decided; one circuit holds that it does not, the Executive calls that holding legal error, and the Solicitor General has twice asked the Court not to resolve it.[^si8] This is the only line of the doctrine in which a receiver is named at all, and the receiver is diplomacy. The application differs from the judicial line in one respect. Congress holds the repair, and used it for foreign states in 1976. It did not use it for their servants, and it could not use it, by statute, to take from a citizen the court and the jury the Constitution gives him (chapter 3.2 § B).
+The three bars of 1607 are in that record, relabelled. The plea is routed to the sovereign alone: the foreign state asks, the Executive determines, the court surrenders. The forum that receives it does not adjudicate: the branch whose word closes the courthouse disclaims the merits. And no proof is heard against the record: the one fact on which the immunity turns is taken from the court and the jury and answered by the accused sovereign's own note, with the gravest wrongs known to the law of nations expressly no exception.[^si4] The origin is the one this book has traced. Marshall's first case of exemption in 1812 was "the exemption of the person of the sovereign," because a sovereign "is not understood as intending to subject himself to a jurisdiction incompatible with his dignity," and the receiver he named was "the sovereign power of the nation," which "is alone competent to avenge wrongs committed by a sovereign," in questions "for diplomatic, rather than legal discussion."[^si5] The servant took the sovereign's status in 1895, when "the acts of the official representatives of the state" became "those of the state itself," the reverse of the eighteenth-century configuration chapter 4.3 records, in which the sovereign's immunity was paid for by the servant's exposure.[^si6] What reached the killing of a citizen in 2016 came by citation. The sentence that the courts "will not embarrass" the political branch "by assuming an antagonistic jurisdiction" was written in 1882 of claims settled by "negotiation" or "war," was applied in 1943 and 1945 to the seizure of foreign ships, and was applied to a former minister accused of an extrajudicial killing without any court adjudicating the step.[^si7] Whether an Executive letter binds a court on a question of law the Supreme Court has never decided; one circuit holds that it does not, the Executive calls that holding legal error, and the Solicitor General has twice asked the Court not to resolve it.[^si8] This is the only line of the doctrine in which a receiver is named at all, and the receiver is diplomacy. The application differs from the judicial line in two respects. The first is the relation. Every immunity this book has traced sits inside one bond, sovereign and subject: the subject owes allegiance, the sovereign owes protection, and the immunity is the sovereign refusing its own subject's plea in a cause where the sovereign is the accused. The parents owed Israel nothing and Israel owed them nothing; there was no bond for a plea of immunity to breach. The bond that existed ran between the citizen and the United States, and it was the United States that closed its court, not because it was the accused but because it preferred its relations with the accused, on the ground that its courts "will not embarrass" the political branch. A foreign sovereign has no immunity of its own in an American court. Marshall grounded every exemption on "the consent of the nation itself," a consent the forum implies and may withdraw, so the immunity the court of appeals gave was not Israel's act but the forum's, a standing waiver made on the citizen's behalf without asking him, and the reason it is given is reciprocity: each sovereign keeps its officials out of the others' courts, and each pays its share with its subjects' remedies. The clause the court rested on, that to judge the minister "would be to enforce a rule of law against the sovereign state of Israel," is a real-party test taken from the American Law Institute's Restatement, and it attributes to the state exactly what the domestic line refuses to attribute. *Ex parte Young* holds that an officer acting against the supreme law is "stripped of his official or representative character," because "[t]he State has no power to impart to him any immunity from responsibility"; the foreign line holds that the unlawful act is the state's own, and that is why no one answers for it.[^si11] The second is the repair. Congress holds it, and used it for foreign states in 1976. It did not use it for their servants, and it could not use it, by statute, to take from a citizen the court and the jury the Constitution gives him (chapter 3.2 § B).
+
+What the second respect leaves open, the first closes, and what it costs is the record. A judgment is a record, and the record is what the third bar denies. The dismissal means that no court has found that a citizen was killed, by whom, or under what authority; in law the killing has not happened, and the one fact the immunity turned on rests on the accused state's note.[^si4] The declaration is the justice a payment cannot supply, and the law knows it: the Court holds that nominal damages redress "a completed violation of a legal right," because "every violation [of a right] imports damage," so a dollar and a finding is a judgment where a letter and a dismissal is not.[^si12] The record is also how this law has grown. In 1980 the Second Circuit held a Paraguayan police official answerable in an American court for torture, with the United States as friend of the court on the plaintiffs' side, and Congress answered the judgment in 1992 with the statute the parents sued under, which the House report described as establishing "an unambiguous and modern basis for" claims of torture and extrajudicial killing.[^si13] In 1964 the Court held that "the Judicial Branch will not examine the validity of a taking of property within its own territory by a foreign sovereign government," and Congress answered within the year that "no court in the United States shall decline on the ground of the federal act of state doctrine to make a determination on the merits," beside the suspension of aid it had already enacted for the citizens whose property was taken.[^si14] Holders of terrorism judgments against Iran could not reach its assets until Congress made the assets reachable, twice, and the Court upheld the second act; a statute reaching back to the attacks of September 11, 2001 passed over the President's objections.[^si15] In each the court's record came first and the political branches acted on it. Hamilton gave the federal courts the causes of foreigners for the stated reason that "the denial or perversion of justice by the sentences of courts" is "with reason classed among the just causes of war": adjudication was the alternative to vengeance, and a judgment in hand is what lets the Executive negotiate from a finding rather than avenge an allegation.[^si16] The Suggestion of Immunity removes the record, and with it the receiver the Constitution names, the justice the parents came for, and the thing on which repair depends.
 
 ## 4.7 Two Axes: Who Pays for the Wrong, Who May Punish the Judge, and Where England Sits
 
@@ -1634,6 +1636,18 @@ The thesis therefore stands on a wider record: the rule's reserved forum was nev
 [^si7]: [*United States v. Lee*, 106 U.S. 196, 209 (1882)](cite:si7/1); [*Hoffman*, 324 U.S. at 35 (quoting *Lee* at 209)](cite:si7/2); [*Peru*, 318 U.S. at 588](cite:si7/3); [*Ye v. Zemin*, 383 F.3d 620, 626 (7th Cir. 2004), and *Matar v. Dichter*, 563 F.3d 9, 15 (2d Cir. 2009), as cited in the Suggestion of Immunity at 4, 11 (not read for this book).](cite:si7/4)
 
 [^si8]: [*Yousuf v. Samantar*, 699 F.3d 763, 773 (4th Cir. 2012), as quoted in the Suggestion of Immunity at 6, which calls the holding "legal error"](cite:si8/1); *id.* at 8 n.5 (the Solicitor General's two briefs); [*Doğan*, slip op. 12.](cite:si8/3)
+
+[^si11]: [*The Schooner Exchange v. McFaddon*, 11 U.S. (7 Cranch) 116, 136 (1812) (the nation's jurisdiction "necessarily exclusive and absolute"; every exception "traced up to the consent of the nation itself")](cite:si11/1); [*Doğan v. Barak*, 932 F.3d 888 (9th Cir. 2019) (slip op. 12) (quoting Restatement (Second) of Foreign Relations Law § 66(f) (1965))](cite:si11/2); [*Ex parte Young*, 209 U.S. 123, 160 (1908). The premise that sovereigns toward one another stand outside law is Hobbes's: kings, "because of their Independency, are in continuall jealousies, and in the state and posture of Gladiators," *Leviathan* ch. 13, at 63 (London 1651). Marshall did not adopt it](cite:si11/3); consent is a legal act, and what a nation consents to it may refuse.
+
+[^si12]: *Uzuegbunam v. Preczewski*, 592 U.S. 279 (2021) (slip op. 12) ("nominal damages provide the necessary redress for a completed violation of a legal right"; "every violation [of a right] imports damage," quoting *Webb v. Portland Manufacturing Co.*, 29 F. Cas. 506, 509 (No. 17,322) (CC Me. 1838)).
+
+[^si13]: *Filártiga v. Peña-Irala*, 630 F.2d 876, 878, 884, 890 (2d Cir. 1980) (the plaintiffs "citizens of the Republic of Paraguay" at 878; "official torture is now prohibited by the law of nations" at 884, quoting the Memorandum of the United States as Amicus Curiae; the torturer "an enemy of all mankind" at 890); Torture Victim Protection Act of 1991, Pub. L. No. 102-256, 106 Stat. 73 (1992); [*Sosa v. Alvarez-Machain*, 542 U.S. 692, 728, 731 (2004) (the Act "establish\[es\] an unambiguous and modern basis for" the claims, quoting H.R. Rep. No. 102-367, pt. 1, at 3 (1991); the position "assumed by some federal courts for 24 years, ever since the Second Circuit decided *Filartiga*").](cite:si13/3)
+
+[^si14]: [*Banco Nacional de Cuba v. Sabbatino*, 376 U.S. 398, 428 (1964)](cite:si14/1); 22 U.S.C. § 2370(e)(1) (the President "shall suspend assistance to the government of any country" that has expropriated a citizen's property without compensation), (e)(2) (the courts' sentence), added by Pub. L. No. 87-565, § 301(d), 76 Stat. 260 (1962), and Pub. L. No. 88-633, § 301(d), 78 Stat. 1013 (1964).
+
+[^si15]: [*Bank Markazi v. Peterson*, 578 U.S. 212, 217–18, 225–36 (2016) (the Terrorism Risk Insurance Act of 2002 and 22 U.S.C. § 8772, the assets in *Peterson v. Islamic Republic of Iran* made available to the judgment holders; the Act held not to violate the separation of powers)](cite:si15/1); Justice Against Sponsors of Terrorism Act, Pub. L. No. 114-222, 130 Stat. 852, 855–56 (2016) (applicable to injuries "on or after September 11, 2001"; passed on reconsideration after the bill was "returned by the President of the United States with his objections," "two-thirds of the Senators present having voted in the affirmative").
+
+[^si16]: [The Federalist No. 80 (Alexander Hamilton), in *The Federalist: A Collection of Essays, Written in Favour of the New Constitution* (J. & A. M'Lean, New York 1788), vol. II, at 304.](cite:si16/1)
 
 # Part 5 — The Older Record: Remedies Against the Judge before 1607
 
@@ -1832,6 +1846,8 @@ What remains is the observation on which the American Conclusion closed, now wit
 - *Arizona v. Youngblood*, 488 U.S. 51 (1988).
 - *Awodiya v. Ministry of Justice*, [2025] EWHC 49 (KB).
 - *Bagg's Case*, 11 Co. Rep. 93b, 77 Eng. Rep. 1271 (K.B. 1615).
+- *Banco Nacional de Cuba v. Sabbatino*, 376 U.S. 398 (1964).
+- *Bank Markazi v. Peterson*, 578 U.S. 212 (2016).
 - *Beacon Theatres, Inc. v. Westover*, 359 U.S. 500 (1959).
 - *Beers v. Arkansas*, 61 U.S. (20 How.) 527 (1858).
 - *Bell v. Milwaukee*, 746 F.2d 1205 (7th Cir. 1984).
@@ -1878,6 +1894,7 @@ What remains is the observation on which the American Conclusion closed, now wit
 - *Ex parte Young*, 209 U.S. 123 (1908).
 - *Ferri v. Ackerman*, 444 U.S. 193 (1979).
 - *Filarsky v. Delia*, 566 U.S. 377 (2012).
+- *Filártiga v. Peña-Irala*, 630 F.2d 876 (2d Cir. 1980).
 - *Floyd v. Barker*, 77 Eng. Rep. 1305 (Star Chamber 1607) (12 Co. Rep. 23).
 - *Forrester v. White*, 484 U.S. 219 (1988).
 - *Franchise Tax Board of California v. Hyatt*, 587 U.S. 230 (2019).
@@ -1965,6 +1982,7 @@ What remains is the observation on which the American Conclusion closed, now wit
 - *Sirros v. Moore*, [1975] Q.B. 118, [1974] 3 W.L.R. 459 (C.A.).
 - *Smith v. Bouchier*, 2 Stra. 993, 93 Eng. Rep. 989 (K.B. 1734).
 - *Snyder v. Phelps*, 562 U.S. 443 (2011).
+- *Sosa v. Alvarez-Machain*, 542 U.S. 692 (2004).
 - *Spalding v. Vilas*, 161 U.S. 483 (1896).
 - *Sparkman v. McFarlin*, 552 F.2d 172 (7th Cir. 1977).
 - *Stump v. Sparkman*, 435 U.S. 349 (1978).
@@ -1981,8 +1999,10 @@ What remains is the observation on which the American Conclusion closed, now wit
 - *United States v. Lee*, 106 U.S. 196 (1882).
 - *United States v. Nixon*, 418 U.S. 683 (1974).
 - *U.S. Bank N.A. v. Village at Lakeridge, LLC*, 583 U.S. 387 (2018).
+- *Uzuegbunam v. Preczewski*, 592 U.S. 279 (2021).
 - *Van Ness v. Pacard*, 27 U.S. (2 Pet.) 137 (1829).
 - *Washington v. Glucksberg*, 521 U.S. 702 (1997).
+- *Webb v. Portland Manufacturing Co.*, 29 F. Cas. 506 (No. 17,322) (C.C.D. Me. 1838).
 - *Webster v. Fall*, 266 U.S. 507 (1925).
 - *Williamson v. United States*, 207 U.S. 425 (1908).
 - *Willis v. Gipps*, 5 Moo. P.C. 379, 13 Eng. Rep. 536 (P.C. 1846).
@@ -1997,6 +2017,7 @@ What remains is the observation on which the American Conclusion closed, now wit
 **Constitutional Provisions, Statutes, and Rules**
 
 - 18 U.S.C. §§ 242, 2071.
+- 22 U.S.C. §§ 2370(e), 8772.
 - 28 C.F.R. § 0.25.
 - 28 U.S.C. §§ 351, 352, 354, 503, 511, 1602, 1604, 2513, 2680.
 - 42 U.S.C. § 1983.
@@ -2016,6 +2037,7 @@ What remains is the observation on which the American Conclusion closed, now wit
 - Federal Courts Improvement Act of 1996, Pub. L. No. 104-317 (as codified at 42 U.S.C. §§ 1983, 1988(b)).
 - Ill. Rev. Stat. ch. 110, ¶¶ 19-101 to 19-128 (1985) (replevin).
 - Judges Act, R.S.C. 1985, c. J-1, and S.C. 2023, c. 18 (Canada).
+- Justice Against Sponsors of Terrorism Act, Pub. L. No. 114-222, 130 Stat. 852 (2016).
 - Konstitutsiya Rossiiskoi Federatsii; Zakon RF N 3132-1 "O statuse sudei v Rossiiskoi Federatsii" (1992); Grazhdanskii kodeks RF; Postanovlenie Konstitutsionnogo Suda RF N 1-P (2001).
 - Law of the Judiciary, Royal Decree No. M/78 (Saudi Arabia, 2007), Bureau of Experts official translation (2008).
 - Ley Orgánica 6/1985 and Ley Orgánica 7/2015 (Spain).
@@ -2024,6 +2046,7 @@ What remains is the observation on which the American Conclusion closed, now wit
 - Rev. Stat. §§ 5403, 5408 (1874), 18 Stat. pt. 1, at 1052–53.
 - Socialist Constitution of the D.P.R.K. (2016; 2026); Criminal Law of the D.P.R.K. (2012); Law on Compensation for Damage (2001, as amended).
 - The Declaration of Independence (U.S. 1776).
+- Torture Victim Protection Act of 1991, Pub. L. No. 102-256, 106 Stat. 73 (1992).
 - U.S. Const. art. I, § 1; art. I, § 6, cl. 1; art. I, § 9, cl. 2; art. II, § 1, cl. 8; art. II, § 2, cl. 1; art. II, § 3; art. II, § 4; art. III; art. III, § 1; art. IV, § 1; art. VI, cls. 2–3; amends. V, VI, VII, VIII, IX, X, XI, XIV, XXV.
 - Wet op de rechterlijke organisatie (Netherlands).
 
@@ -2118,7 +2141,7 @@ What remains is the observation on which the American Conclusion closed, now wit
 - *The Bible and Holy Scriptures Conteyned in the Olde and Newe Testament* (Rouland Hall, Geneva 1560).
 - *The Book of the Popes (Liber Pontificalis)*, vol. I (Louise Ropes Loomis trans., Records of Civilization, New York 1916).
 - *The Byble in Englyshe* (Great Bible, Cranmer edition, 1540).
-- *The Federalist* Nos. 70, 77, 78, 84 (Alexander Hamilton), in *The Federalist: A Collection of Essays, Written in Favour of the New Constitution*, 2 vols. (J. & A. M'Lean, New York 1788).
+- *The Federalist* Nos. 70, 77, 78, 80, 84 (Alexander Hamilton), in *The Federalist: A Collection of Essays, Written in Favour of the New Constitution*, 2 vols. (J. & A. M'Lean, New York 1788).
 - *The holie Bible conteynyng the olde Testament and the newe* (Richard Jugge, London 1568).
 - *The Holy Bible, Conteyning the Old Testament, and the New* (Robert Barker, London 1611).
 - *The Holy Bible: An Exact Reprint in Roman Type, Page for Page, of the Authorized Version Published in the Year 1611* (A. W. Pollard ed., Clarendon Press, Oxford 1911).
