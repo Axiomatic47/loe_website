@@ -257,6 +257,15 @@ function importOne(cfg) {
     if (!list.length) throw new Error('REFUSED SIGNAL (version gate): _VERSIONS.json carries no versions; nothing written');
     versionNewest = [...list].sort((a, b) => Number(b.version) - Number(a.version))[0];
     for (const k of ['version', 'date', 'text', 'pdf', 'note']) if (versionNewest[k] === undefined || versionNewest[k] === null || versionNewest[k] === '') throw new Error(`REFUSED SIGNAL (version gate): version ${versionNewest.version ?? '?'} lacks '${k}'; nothing written`);
+    // shape (f28bb754's checks on ink, carried so both sites apply one rule): every entry a unique positive
+    // integer version, an ISO date, full-hex shas
+    const seen = new Set();
+    for (const e of list) {
+      if (!Number.isInteger(e.version) || e.version < 1 || seen.has(e.version)) throw new Error(`REFUSED SIGNAL (version gate): version '${e.version}' is not a unique positive integer; nothing written`);
+      seen.add(e.version);
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(String(e.date))) throw new Error(`REFUSED SIGNAL (version gate): version ${e.version}'s date '${e.date}' is not YYYY-MM-DD; nothing written`);
+      for (const k of ['text', 'pdf']) if (!/^[0-9a-f]{64}$/.test(String(e[k]))) throw new Error(`REFUSED SIGNAL (version gate): version ${e.version}'s ${k} is not a full sha256 hex; nothing written`);
+    }
     if (versionNewest.text !== bookMeta.sha256) throw new Error(`REFUSED SIGNAL (version gate): the text changed without a new version entry — _BOOK.json ${bookMeta.sha256.slice(0, 12)} ≠ version ${versionNewest.version}'s text ${String(versionNewest.text).slice(0, 12)}; nothing written`);
     if (overlay?.pdf?.sha256 && versionNewest.pdf !== overlay.pdf.sha256) throw new Error(`REFUSED SIGNAL (version gate): the render changed without a new version entry — overlay.json pdf ${overlay.pdf.sha256.slice(0, 12)} ≠ version ${versionNewest.version}'s pdf ${String(versionNewest.pdf).slice(0, 12)}; nothing written`);
   } else if (existsSync(join(ROOT, 'content', 'versions', `${cfg.slug}.json`))) {
