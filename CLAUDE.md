@@ -160,6 +160,19 @@ project registry as before.
   the drafter. `VersionMenu.tsx` shows the log as a drop-down in the review page's footer (upward
   popover, never inside the panes' height budget) and the text page's side panel. Version 1 of the
   immunity book = the eighteenth lane state (2026-09-22).
+- **Completed is not published (owner 2026-09-26, "none were published until September 26, which is
+  information that needs to be available to the reviewer"):** the lane's `date` is when the drafter
+  completed the version; publication is the owner's integration of device/macbook → main (Netlify
+  deploys main). `npm run versions:stamp` (`scripts/stamp-published.mjs`; run after EVERY integration,
+  then commit) reads main's first-parent history and records, per version, the date in the owner's
+  zone and the short sha of the first main commit that carried it →
+  `content/versions/<slug>.published.json` — the site's record, never the lane's; a recorded date is
+  never rewritten (a disagreement with main is printed, not applied). `readVersions` merges it; a
+  production build (`CONTEXT=production`) dates a version the record lacks by the commit it is
+  building — the deploy that publishes it — so the live site is never behind the record; any other
+  build shows such a version as **not yet published**. The menu prints both per version:
+  "completed … · published …". The immunity book's versions 1–4 and 6–10 were all published
+  2026-09-26 (main 4c8eca8). Same script and shape on kirchner.ink (e15c37f).
 - **Social cards are per page (owner 2026-09-21):** `npm run og:build` (manual-run: Pillow, poppler,
   the Mac's fonts) writes `public/og/<key>.jpg`, 1200×630 — the archive page and every leaf show the
   manuscript (a band of the first leaf / that leaf), a book its PDF's first page letterboxed on the site's

@@ -1,6 +1,7 @@
 // app/books/review-server.ts — build-time readers for the reviewed books
 // (server only: node:fs). The manifests and the linked text are written by
 // scripts/import-books.mjs; nothing here is fetched at runtime.
+import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { BookVersion, EditionMap, ReviewManifest } from '@/lib/review';
@@ -44,12 +45,40 @@ export function editionLeaves(): EditionMap {
   return out;
 }
 
-/** the book's version log, newest first (content/versions/<slug>.json; none = no menu) */
+const OWNER_TZ = 'America/Chicago';
+const localDate = (iso: string) => new Intl.DateTimeFormat('en-CA', { timeZone: OWNER_TZ, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(iso));
+
+/** the date, in the owner's zone, of the commit this build is building — on a production build (Netlify sets
+    CONTEXT=production) that commit is the deploy, so a version the publish record does not carry yet is published
+    by it (the build clock when git is unavailable; null outside a production build) */
+let deployDay: string | null | undefined;
+function deployDate(): string | null {
+  if (process.env.CONTEXT !== 'production') return null;
+  if (deployDay !== undefined) return deployDay;
+  try { deployDay = localDate(execFileSync('git', ['log', '-1', '--format=%cI'], { cwd: process.cwd(), encoding: 'utf8' }).trim()); }
+  catch { deployDay = localDate(new Date().toISOString()); }
+  return deployDay;
+}
+
+type PublishRecord = Record<string, { date: string; commit: string }>;
+
+/** the book's version log, newest first (content/versions/<slug>.json; none = no menu), each version carrying
+    its publish date from content/versions/<slug>.published.json (scripts/stamp-published.mjs: the first main
+    commit that carried it — the owner's integration, the deploy) — owner 2026-09-26: completion and
+    publication are two dates, and the reviewer sees both */
 export function readVersions(slug: string): BookVersion[] {
-  const file = path.join(process.cwd(), 'content', 'versions', `${slug}.json`);
+  const dir = path.join(process.cwd(), 'content', 'versions');
+  const file = path.join(dir, `${slug}.json`);
   if (!fs.existsSync(file)) return [];
   const v = (JSON.parse(fs.readFileSync(file, 'utf8')) as { versions: BookVersion[] }).versions ?? [];
-  return [...v].sort((a, b) => b.version - a.version);
+  const recFile = path.join(dir, `${slug}.published.json`);
+  const record: PublishRecord = fs.existsSync(recFile) ? (JSON.parse(fs.readFileSync(recFile, 'utf8')) as { published?: PublishRecord }).published ?? {} : {};
+  return [...v].sort((a, b) => b.version - a.version).map((x) => {
+    const rec = record[String(x.version)];
+    if (rec) return { ...x, published: rec.date, publishedBy: rec.commit };
+    const day = deployDate();
+    return day ? { ...x, published: day, publishedBy: 'this deploy' } : x;
+  });
 }
 
 /** the book's text with the citation units wrapped as `cite:` links */
