@@ -277,7 +277,8 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
   const sourceTitle = source?.title ?? sourceKey ?? '';
   const pageTitle = page ? `${sourceTitle}, ${page.label}` : sourceTitle;
   // the reading copy (owner rule 2026-09-15): the pane opens the work's context document scrolled
-  // to the cited page; the single-page extract stays the audit copy behind "open the page PDF"
+  // to the cited page; the page extract stays the audit copy behind "open the page PDF" (one scan per pin, or two or
+  // three where a printed page runs across scans — Coke's 4th Institute since the thirty-seventh lane state, 2026-09-28)
   const ctx = page?.context ?? null;
   // the WORK(S) the unit cites (register contract): the page in hand's first, then any other its pages carry, then the unit's own
   const workIds = active ? [...new Set([...(active.works ?? []), active.work, ...active.pages.map((p) => p.work), page?.work].filter((w): w is string => !!w))] : [];
@@ -565,7 +566,7 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
                   {active?.status === 'EXTERNAL' ? ' · the holder’s catalogue record, linked' : <>{' · '}{page.verified === true ? 'page number read on the page' : page.verified === false ? 'page placed by the scan’s offset — the number was not read on it' : 'a verso with no number to read'}</>}
                   {active?.status === 'CUT_FIRST' && (page?.begins ? ' · the note cites the case without a page: the whole case is served, from its first page' : ' · a page of the case, cited whole')}
                   {page.file && <> · <a href={v(page.file, page.sha256)} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 text-primary">open the page PDF</a></>}
-                  {ctx && <> · shown in its reading copy at page {ctx.page}{page.file ? '; the download is the single page' : ''}</>}
+                  {ctx && <> · shown in its reading copy at page {ctx.page}{page.file ? '; the download is the extract of the cited page' : ''}</>}
                   {edition && <> · shown in the transcription ({edition.credit}) at page {edition.page} · <a href={`${edition.leafUrl}#page=${edition.page}`} className="underline underline-offset-2 text-primary">the leaf page</a>: the folio image beside it</>}
                   {edition ? <> · the images by permission of the holder; the transcription published in full with its author’s agreement</> : rights && RIGHTS_LABEL[rights] && <> · {RIGHTS_LABEL[rights]}</>}
                   {works.length > 0 && <> · <button type="button" onClick={() => setShowWork((x) => !x)} aria-expanded={showWork} className="underline underline-offset-2 text-primary inline-flex items-center gap-0.5">the work{works.length > 1 ? 's' : ''} cited <ChevronDown className={cn('h-3 w-3 transition-transform', showWork && 'rotate-180')} aria-hidden /></button></>}
