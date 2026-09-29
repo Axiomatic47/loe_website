@@ -11,8 +11,11 @@
 export interface ReviewPage {
   /** the cited page as a label: "p. 705" · "col. 529" · "f. 81v" · "m. 8" · "sig. E4v" · "first page" */
   label: string;
-  /** site path of the one-page PDF, or null when the page is held but not published */
+  /** site path of the extract PDF — one page, or the two or three scans a printed page runs across (the
+      1797 Coke's 1644 pagination) — or null when the page is held but not published */
   file: string | null;
+  /** the extract's page count when it exceeds one: the printed page runs across that many scans (lane state 2026-09-28) */
+  pages?: number;
   /** true: the page number was read on the cut page · false: placed by the
       run's offset · null: a verso with nothing to read */
   verified: boolean | null;
