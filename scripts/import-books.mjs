@@ -375,6 +375,8 @@ function importOne(cfg) {
   const outDir = join(uploads, 'sources');
   mkdirSync(outDir, { recursive: true });
   const copied = new Set();
+  const extractPages = new Map(); // extract → page count when it exceeds one (a printed page cut across its scans, e.g. the 1797 Coke)
+  const pagesOf = (pdf) => Number(execFileSync('qpdf', ['--show-npages', pdf], { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim()) || 0;
   let bytes = 0, copiedNew = 0, kept = 0;
   const wanted = new Set();
   for (const u of units.values()) {
@@ -392,7 +394,10 @@ function importOne(cfg) {
         else { mkdirSync(dirname(dst), { recursive: true }); copyFileSync(src, dst); copiedNew += 1; }
         bytes += statSync(dst).size;
         copied.add(p.extract);
+        const np = pagesOf(dst); // an extract is one page unless the printed page runs across scans (ink 18fd115)
+        if (np > 1) extractPages.set(p.extract, np);
       } else if (!p.sha256) p.sha256 = sha256(src);
+      if (extractPages.has(p.extract)) p.pages = extractPages.get(p.extract);
       p.file = `/uploads/research/${cfg.id}/sources/${rel}`;
     }
     if (u.pages.some((p) => p.file)) counts.published += 1;
@@ -504,7 +509,7 @@ function importOne(cfg) {
       return {
         // slim: this JSON travels to the reader's browser with the page
         id: u.id, note: u.note, seq: u.seq, source: u.source, status: u.status, rights: u.rights, ...(u.work ? { work: u.work } : {}), ...(u.works?.length ? { works: u.works } : {}),
-        pages: u.pages.map((p) => ({ label: p.label, file: p.file, verified: p.verified, sha256: p.sha256, source: p.source, rights: p.rights, ...(p.begins ? { begins: true } : {}), ...(p.url ? { url: p.url } : {}), ...(p.work ? { work: p.work } : {}),
+        pages: u.pages.map((p) => ({ label: p.label, file: p.file, verified: p.verified, sha256: p.sha256, source: p.source, rights: p.rights, ...(p.begins ? { begins: true } : {}), ...(p.pages ? { pages: p.pages } : {}), ...(p.url ? { url: p.url } : {}), ...(p.work ? { work: p.work } : {}),
           ...(p.ctx?.file ? { context: { file: p.ctx.file, page: p.ctx.page, sha256: p.ctx.sha256, served: p.ctx.served, bytes: p.ctx.bytes } } : {}) })),
         ...(boxes.has(u.id) ? { box: boxes.get(u.id) } : {}),
       };
@@ -542,7 +547,7 @@ function importOne(cfg) {
   else console.log('  book PDF: none (no _WEB/overlay.json in the lane) — the review pane falls back to the rendered text');
   console.log(`  reading copies: ${ctxCopied.size} public-domain context documents (${(ctxBytes / 1e6).toFixed(1)} MB, linearized) — ${ctxNew} written, ${ctxKept} kept, ${ctxRemoved} removed; ${[...units.values()].reduce((n, u) => n + u.pages.filter((p) => p.ctx?.file).length, 0)} page links open in context`);
   console.log(`  manifest: ${manifest.publicUrl} (${(manifest.publicBytes / 1e6).toFixed(2)} MB, fetched by the page)`);
-  console.log(`  pages: ${copied.size} public-domain extracts (${(bytes / 1e6).toFixed(1)} MB) — ${copiedNew} copied, ${kept} kept, ${removed} removed; ${pageLinks} page links`);
+  console.log(`  pages: ${copied.size} public-domain extracts (${(bytes / 1e6).toFixed(1)} MB) — ${copiedNew} copied, ${kept} kept, ${removed} removed; ${pageLinks} page links${extractPages.size ? `; ${extractPages.size} extract${extractPages.size === 1 ? '' : 's'} of two or more scans` : ''}`);
   for (const w of warnings) console.log(`  ! ${w}`);
   console.log(`  ${((Date.now() - t0) / 1000).toFixed(1)}s`);
 }

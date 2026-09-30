@@ -53,6 +53,14 @@ project registry as before.
   writes `content/books/<slug>.md`, `content/review/<slug>.json` and the
   browser's copy `public/review/<slug>.<hash>.json`. A citation whose page is
   held but not published is MARKED on the site, never dropped.
+- **An extract may span the scans a printed page runs across** (the 1797 Coke's 1644 pagination:
+  a printed page begins at its bracket and runs to the next bracket's scan, so the lane cuts a pin
+  from its bracket scan to the next; lane state 2026-09-28). The importer counts each copied
+  extract's pages (qpdf) and records `pages` on the page entry only when it exceeds one, so every
+  other entry stays byte-stable; the record line then says the download is the cited page across N
+  scans, the "open the page PDF" link names the count, and the viewer pages through the file on its
+  own. The pane still opens the reading copy at the cited page. The lane's index keeps `pdf_page` =
+  the bracket scan. Same on kirchner.ink (18fd115).
 - **Import only on a drafter's "lane at <sha>" send** (0b43895f: immunity;
   60f85bca: Holy Seed, the Genesis reading and the Madisonian article — slug
   madisonian-test (= kirchner.ink's existing /work/madisonian-test), id madisonian-test, lane beside the article, no
