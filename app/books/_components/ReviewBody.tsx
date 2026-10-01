@@ -332,7 +332,8 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
       </span>
       <button type="button" className={ctl} onClick={() => step(1)} disabled={idx < 0 || (idx >= units.length - 1 && pageIdx >= (active?.pages.length ?? 1) - 1)} title={active && pageIdx < active.pages.length - 1 ? 'Next cited page' : 'Next citation'} aria-label="Next"><ChevronRight className="h-4 w-4" /></button>
       {active && (
-        <button type="button" className={cn(ctl, 'ml-1')} onClick={toNote} title={`Show note ${active.note} in the book`}><CornerLeftUp className="h-3.5 w-3.5" /> n. {active.note}</button>
+        <button type="button" className={cn(ctl, 'ml-1')} onClick={toNote} disabled={!!pdf && !active.box}
+          title={pdf && !active.box ? `Note ${active.note} is not on the rendered PDF yet (the render of ${pdf.rendered} predates it); the text version carries it` : `Show note ${active.note} in the book`}><CornerLeftUp className="h-3.5 w-3.5" /> n. {active.note}</button>
       )}
       {edition && (
         <>
@@ -576,13 +577,23 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
             ) : (
               <p>{manifest.rightsRule}</p>
             )}
+            {/* a unit the rendered PDF does not carry yet (owner's screenshots 2026-09-30: the pane stayed on the
+                title page with no word why): say so, and point at the text version, which has the note */}
+            {!reading && active && !active.box && pdf && (
+              <p className="text-foreground/80">
+                Not yet on the rendered PDF: the render of {pdf.rendered} predates this citation, so the book pane stays where it was.
+                {' '}<Link href={`${textHref}#user-content-fnref-${active.note}`} className="underline underline-offset-2 text-primary">The text version carries it</Link>; the next render places it.
+              </p>
+            )}
           </div>
           <div className="ml-auto text-right">
             <p>
               {pdf ? <>PDF rendered {pdf.rendered} ({pdf.pages} pp.; sha256 <span className="font-mono">{pdf.sha256.slice(0, 12)}…</span>) · </> : null}
-              text current to {manifest.generated.slice(0, 10)} (sha256 <span className="font-mono">{manifest.book.sha256.slice(0, 12)}…</span>{manifest.book.commit ? <>, blob {manifest.book.commit.slice(0, 8)}</> : null})
+              text current to {versions[0]?.date ?? manifest.generated.slice(0, 10)} (sha256 <span className="font-mono">{manifest.book.sha256.slice(0, 12)}…</span>{manifest.book.commit ? <>, blob {manifest.book.commit.slice(0, 8)}</> : null})
             </p>
             {/* the version drop-down opens UPWARD over the page — a popover, never a change to the panes' budget */}
+            {/* the date is the version entry's own (the author's, on the Mac clock; the same on both sites) — the
+                import's UTC stamp belongs to the build log, not the reader's line (drafter 089cbe59, 2026-09-30) */}
             {versions.length > 0 && <VersionMenu versions={versions} align="right" up className="mt-1" />}
           </div>
         </div>
