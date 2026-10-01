@@ -57,7 +57,16 @@ const nextConfig: NextConfig = {
     ];
     try {
       const files = JSON.parse(readFileSync(join(process.cwd(), 'public', 'casereview', 'data', 'files.json'), 'utf8')) as Record<string, { path: string | null }>;
-      for (const [id, f] of Object.entries(files)) if (f.path && /^[A-Za-z0-9._-]+$/.test(id)) rules.push({ source: `/api/casereview/file/${id}`, destination: f.path });
+      // the window requests /api/casereview/file/<encodeURIComponent(id)>; Next matches a rewrite against the request
+      // path AS SENT (the compiled regex is tested on the undecoded pathname — measured 2026-10-01), so a case-law id
+      // with spaces, commas or parentheses gets its rule in the two encoded forms public/_redirects carries for Netlify
+      // (encodeURIComponent, and encodeURI when a browser would normalise to it), path-to-regexp's syntax characters escaped
+      const p2r = (s: string) => s.replace(/[()[\]{}*+?:$|^\\]/g, '\\$&');
+      for (const [id, f] of Object.entries(files)) {
+        if (!f.path) continue;
+        const forms = /^[A-Za-z0-9._-]+$/.test(id) ? [id] : [...new Set([encodeURIComponent(id), encodeURI(id)])].map(p2r);
+        for (const src of forms) rules.push({ source: `/api/casereview/file/${src}`, destination: f.path });
+      }
     } catch { /* no bundle yet: the two JSON routes alone */ }
     return rules;
   },

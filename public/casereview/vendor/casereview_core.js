@@ -1685,6 +1685,26 @@ export function targetPages(t, doc) {
   return { pdfPage, pdfEnd, viaMap, marked };
 }
 
+/** WHERE A ROW OPENS (P87, the owner's three words of 2026-10-01 — spec
+ *  7d866ecf 22721a7/ebacd4e, ruling fbf555d9: logic, so core's; both panes
+ *  and both shells print this). A TOC entry — every target kind `internal`
+ *  AND target_doc == the row's own document (the whole same-document class,
+ *  1,074 rows lane-wide; no `toc` kind) — navigates the pane it was clicked
+ *  in. A citation or reference in the LEFT opens in the RIGHT; THE EXCEPTION,
+ *  a citation in the RIGHT opens in the RIGHT, so the left pane never moves
+ *  and the way back is the left's unmoved citation. `unit` = unitsOf's unit
+ *  (its targets are the rows, src_doc on each); `pane` = 'left' | 'right'
+ *  where the click was. → { where: 'same' | 'right', pane: the pane that
+ *  changes, toc }. */
+export function isTocUnit(unit) {
+  const ts = unit && unit.targets || [];
+  return ts.length > 0 && ts.every((t) => t.kind === 'internal' && t.target_doc && t.target_doc === (t.src_doc || unit.srcDoc));
+}
+export function opensWhere(unit, pane = 'left') {
+  const toc = isTocUnit(unit);
+  return toc ? { where: 'same', pane, toc: true } : { where: 'right', pane: 'right', toc: false };
+}
+
 /** A registry row a HOST does not serve (docs.json v0.25 `publish`, README
  *  2026-10-01 — admin 69183d38 on studio-spec fbf555d9's R3; the site export
  *  applies it: link = path null + the official URL, hold = path null, the
@@ -1715,12 +1735,30 @@ export function publishedAway(doc, side = 'right') {
  *  span), words (passageWordsPresent on the span). Lifted from the Studio
  *  shell for the websites' shell (f28bb754, 2026-10-01); the words are the
  *  Studio's, unchanged. */
+/** Does the folded printed text already carry the folded pin — at its end, or anywhere at token bounds when the pin is more
+ *  than a bare number (a bare '3' inside 'ECF 51-54 at 3' is the end case; inside '13 Cl. Ct. 486' it is not the pin)? */
+export function textCarries(text, label) {
+  if (!label) return true;
+  if (text.endsWith(label)) return true;
+  if (/^\d+$/.test(label)) return false;
+  let i = text.indexOf(label);
+  while (i >= 0) { if (atTokenBoundary(text, i, label.length)) return true; i = text.indexOf(label, i + 1); }
+  return false;
+}
+
 export function saysFor(u, k, t, doc, resolved = null) {
   const parts = [];
   const say = (text) => { if (text) parts.push({ text }); };
   const warn = (text) => parts.push({ text, warn: true });
   // N2 (b0d76502): the printed text often ends with the pin ("ECF 51-54 at 3") — say it once
-  const pin = t.target_label && !foldText(u.text).endsWith(foldText(t.target_label)) ? ` ${t.target_label}` : '';
+  // … and not one the printed text already CARRIES anywhere at token bounds ('Adler v. Loyd, 496 F. Supp. 3d 269 (D.D.C. 2020)'
+  // pinned '496 F. Supp. 3d 269' printed the reporter twice — f28bb754's proof on the site, 2026-10-01); a bare page pin ('3') is said
+  // a unit with SEVERAL targets keeps the pin — it is the chooser, naming which of the list opened ('Fed. R. Civ. P. 19(a),
+  // 19(c), 20(a)(2), 21' → target 1 of 4 is '19(a)'; 'TAC ¶¶ 321, 325-326' at k = 2 → '¶ 325-326') — UNLESS the text ends
+  // with it, the N2 case as it always was (the '· target k of N' suffix names the choice; 'ECF 51-54 at 3 at 3' is the repeat
+  // the owner's word forbids): N2a, spec 62cab44 on b0d76502's 25-table census (552 + 294 dropped, the choosers kept)
+  const fl = foldText(t.target_label || '');
+  const pin = t.target_label && !(u.targets.length > 1 ? foldText(u.text).endsWith(fl) : textCarries(foldText(u.text), fl)) ? ` ${t.target_label}` : '';
   const unfound = () => { if (u.missing) warn(` (box not located on the left: ${u.missing})`); };
   const head = `${u.text}${pin}`;
   if (t.status === 'unresolved') { say(`${head} — UNRESOLVED: ${t.note || 'no file on any shelf'}. Nothing opened; the reference pane is as it was.`); unfound(); return { kind: 'dead', opens: false, locate: false, parts }; }
@@ -1743,13 +1781,19 @@ export function saysFor(u, k, t, doc, resolved = null) {
     : pp.by === 'range head' ? `the range's head § ${pp.key} in ${pp.file || 'the title'} by its section map`
     : pp.by === 'chapter' ? `chapter ${pp.key} of ${pp.file || 'the title'} (the section is not in its map; the pin is the locator from there)`
     : `the target's own chapter ${pp.key} of ${pp.file || 'the title'} (no section or chapter in the pin resolved; the pin is the locator from there)`;
-  const suffix = (t.target_quote ? ' · quote boxed' : '') + (u.targets.length > 1 ? ` · target ${k} of ${u.targets.length}` : '') + (t.status === 'mapped' ? ' · mapped, not yet read at the target' : '');
+  // THE CHOOSER BY ORDINAL on EVERY opening line (b0d76502's measure over 2,227 multi-target opening lines, 2026-10-01: two
+  // unpinned Elrod targets printed the same sentence for k = 1 and k = 2 — six of the eight branches returned without it);
+  // 'quote boxed' only where a page was opened to box it on
+  const suffix = (t.target_quote && pdfPage ? ' · quote boxed' : '') + (u.targets.length > 1 ? ` · target ${k} of ${u.targets.length}` : '') + (t.status === 'mapped' ? ' · mapped, not yet read at the target' : '');
   let kind;
   if (viaMap) { kind = 'ok'; say(`${head} — ${how}, PDF page ${pdfPage}${suffix}`); unfound(); }
-  else if (stamped == null && (t.kind === 'statute' || t.kind === 'rule') && isSectionMap(doc.pagemap)) { kind = 'bad'; say(`${head} — the pin${pin ? '' : ' (none given)'} locates nothing in ${(doc.pagemap && doc.pagemap.file) || 'the title'}'s section map (the checker warns on this row); opened at page 1 and saying so.`); }
-  else if (stamped == null && (t.kind === 'statute' || t.kind === 'rule')) { kind = 'docket'; say(`${head} — opened at page 1; the pin${pin ? '' : ' (none given)'} is the locator against the pamphlet (no page in the row).`); }
-  else if (stamped == null) { kind = 'docket'; say(`${head} — cited without a page: opened at page 1 (a bare docket reference).`); unfound(); }
-  else if (!pdfPage) { kind = 'bad'; say(`${head} — the registry maps no PDF page for ${own ? 'printed' : 'stamped'} page ${stamped} (${doc.pagemap && !isSectionMap(doc.pagemap) ? 'not in its pagemap and no offset' : doc.offset == null ? 'no offset yet' : 'unstamped'}); opened at page 1 and saying so.`); }
+  else if (stamped == null && (t.kind === 'statute' || t.kind === 'rule') && isSectionMap(doc.pagemap)) { kind = 'bad'; say(`${head} — the pin${pin ? '' : ' (none given)'} locates nothing in ${(doc.pagemap && doc.pagemap.file) || 'the title'}'s section map (the checker warns on this row); opened at page 1 and saying so${suffix}`); }
+  else if (stamped == null && (t.kind === 'statute' || t.kind === 'rule')) { kind = 'docket'; say(`${head} — opened at page 1; the pin${pin ? '' : ' (none given)'} is the locator against the pamphlet (no page in the row)${suffix}`); }
+  // a target cited without a page: the words by what it is (f28bb754's read of Adler v. Loyd on the site, 2026-10-01 — a case cited whole is not a docket reference)
+  else if (stamped == null && (t.kind === 'case' || own)) { kind = 'docket'; say(`${head} — cited whole, no page: opened at its first page${suffix}`); unfound(); }
+  else if (stamped == null && (t.kind === 'ecf' || t.kind === 'docket' || t.kind === 'exhibit-usb')) { kind = 'docket'; say(`${head} — cited without a page: opened at page 1 (a bare docket reference)${suffix}`); unfound(); }
+  else if (stamped == null) { kind = 'docket'; say(`${head} — cited without a page: opened at page 1${suffix}`); unfound(); }
+  else if (!pdfPage) { kind = 'bad'; say(`${head} — the registry maps no PDF page for ${own ? 'printed' : 'stamped'} page ${stamped} (${doc.pagemap && !isSectionMap(doc.pagemap) ? 'not in its pagemap and no offset' : doc.offset == null ? 'no offset yet' : 'unstamped'}); opened at page 1 and saying so${suffix}`); }
   else { kind = 'ok'; say(`${head} — ${own ? 'printed' : 'stamped'} page ${stamped}${endStamped ? `–${endStamped}` : ''}, PDF page ${pdfPage}${pdfEnd && pdfEnd !== pdfPage ? `–${pdfEnd}` : ''}${doc.offset ? ` (offset ${doc.offset})` : ''}${suffix}`); unfound(); }
   const q = t.target_quote;
   const quoted = q ? `; the quoted matter: “${q}”` : '';

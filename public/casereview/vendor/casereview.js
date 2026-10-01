@@ -37,7 +37,7 @@
 // <base>/<id>_LINKS.tsv and <base>/<id>.pdf (tests/fixtures/casereview).
 import { $, esc } from './base.js';
 import { createPdfPane, orderByPosition } from './casereview_pdf.js';
-import { buildHash, filterNav, foldText, gapPage, hideRows, navRows, navView, parseHash, parseLinksTsv, pdfPageFor, publishedAway, saysFor, targetPages, unitForCite, unitStatus, unitsOf, urlForState } from './casereview_core.js';
+import { buildHash, filterNav, foldText, gapPage, hideRows, navRows, navView, opensWhere, parseHash, parseLinksTsv, pdfPageFor, publishedAway, saysFor, targetPages, unitForCite, unitStatus, unitsOf, urlForState } from './casereview_core.js';
 import { showCtx } from '../filing/ctxmenu.js';
 import { openReview } from './reviews.js';
 
@@ -53,7 +53,9 @@ const SPLIT_MIN = 28, SPLIT_MAX = 72;
 const st = {
   mounted: false, source: null, docs: [], byId: new Map(),
   left: { id: null, pane: null, links: null, units: null, doc: null, page: 1, problems: [], coverage: [], coverageAnswered: [], here: [], showProblems: false },
-  right: { id: null, pane: null, doc: null, page: 1, marked: [], reviewable: false },
+  // P87 (owner 2026-10-01): the right pane draws its OWN citation boxes when its document has a table (links/units/boxesByPage),
+  // merged per page with the passage highlight the left's citation pinned (passage: page → box)
+  right: { id: null, pane: null, doc: null, page: 1, marked: [], reviewable: false, links: null, units: null, boxesByPage: new Map(), passage: new Map(), stale: false },
   active: null,            // {unit, k}
   split: 50, navW: 260,
   // THE TREE (owner 2026-09-29 22:05 CDT): which parents are expanded, which
@@ -272,8 +274,8 @@ export function mountCaseReview() {
       </section>
     </div>
   </div>`;
-  st.left.pane = createPdfPane($('#crLeftWell'), { onPage: (p) => { st.left.page = p; renderCites(); pushHash(); }, onBoxClick: (b) => openUnit(b.unit, 1) });
-  st.right.pane = createPdfPane($('#crRightWell'), { onPage: (p) => { st.right.page = p; pushHash(); } });
+  st.left.pane = createPdfPane($('#crLeftWell'), { onPage: (p) => { st.left.page = p; renderCites(); pushHash(); }, onBoxClick: (b) => openFrom('left', b.unit, 1) });
+  st.right.pane = createPdfPane($('#crRightWell'), { onPage: (p) => { st.right.page = p; pushHash(); }, onBoxClick: (b) => openFrom('right', b.unit, 1) });
   bindSplitters(root);
   bindNavTree();
   bindSearch('left'); bindSearch('right');
@@ -557,15 +559,17 @@ async function openLeft(id, opts = {}) {
     const hit = unitForCite(st.left.units, opts.cite);
     if (hit) {
       if (hit.assumed) setStatus(`the link named stamped page ${opts.cite.page} without its citation's text — opened the first citation on that page (${hit.unit.text})`);
-      openUnit(hit.unit, opts.cite.k || 1, { step: true });
+      openFrom('left', hit.unit, opts.cite.k || 1, { step: true });
     } else setStatus(`the link's citation (page ${opts.cite.page}, n ${opts.cite.n}${opts.cite.q ? `, "${opts.cite.q}"` : ''}) is not in this document's link map`);
   }
   pushHash();
 }
 
-/** Locate and paint every unit's box on its page (one text read per page). */
-async function boxAllUnits(id) {
-  const { byPage } = st.left.units;
+/** Locate and paint every unit's box on its page (one text read per page). `side` = the pane whose table it is (P87: the right
+ *  pane draws its own citation boxes too; its missing units are not listed — the problems list is the left document's). */
+async function boxAllUnits(id, side = 'left') {
+  const S = side === 'left' ? st.left : st.right, pane = S.pane;
+  const { byPage } = S.units;
   // FINDING 6 (b0d76502's live read of the nine smaller renders, 2026-09-29;
   // admins' README clause (3), work_station 63ba0ec3): an IMAGE-ONLY filing
   // under review (text_layer: false — the Whittick declarations, ECF 72-1
@@ -573,8 +577,9 @@ async function boxAllUnits(id) {
   // them and says ok, the window lists the citations, boxes none, says so
   // ONCE at the top of the list and keeps stepping — never a per-unit "not
   // located" (the window said it three hundred times per declaration).
-  if (st.left.doc && st.left.doc.text_layer === false) {
-    const n = st.left.units.units.length;
+  if (S.doc && S.doc.text_layer === false) {
+    if (side !== 'left') return;
+    const n = S.units.units.length;
     st.left.problems.unshift(`an image-only scan: its ${n} citation${n === 1 ? '' : 's'} are listed from the OCR mirror and none can be boxed on the page — step through them with ‹ ›, each still opens its source`);
     renderProblems();
     return;
@@ -582,17 +587,17 @@ async function boxAllUnits(id) {
   const boxesByPage = new Map();
   const touched = new Set();
   for (const [stamped, units] of byPage) {
-    const pdfPage = pdfPageFor(stamped, st.left.doc.offset, st.left.doc.pagemap);
+    const pdfPage = pdfPageFor(stamped, S.doc.offset, S.doc.pagemap);
     if (!pdfPage) { for (const u of units) u.missing = 'unstamped document — no page mapping'; continue; }
     for (const u of units) {
       let parts = null;
-      try { parts = await st.left.pane.locateParts(pdfPage, u.text, u.n); } catch {}
-      if (st.left.id !== id) return;
+      try { parts = await pane.locateParts(pdfPage, u.text, u.n); } catch {}
+      if (S.id !== id) return;
       if (!parts || !parts.length) { u.missing = `"${u.text}" (occurrence ${u.n}) was not found on stamped page ${stamped}`; continue; }
       // a unit is ONE box in parts-per-page: focus and the stepper use parts[0]
       u.parts = parts; u.pdfPage = parts[0].page; u.rects = parts[0].rects;
       const wrapped = parts.some(p => p.wrapped);
-      const box = { id: u.key, unit: u, status: unitStatus(u), approx: !!st.left.stale, title: `${u.text} → ${u.targets.map(t => `${t.target_doc || '?'} ${t.target_label || ''}`).join(' · ')}` + (wrapped ? ' — wraps to the next page past the footnotes' : '') + (st.left.stale ? ' — approximate: the map was cut against an earlier render' : '') };
+      const box = { id: u.key, unit: u, status: unitStatus(u), approx: !!S.stale, title: `${u.text} → ${u.targets.map(t => `${t.target_doc || '?'} ${t.target_label || ''}`).join(' · ')}` + (wrapped ? ' — wraps to the next page past the footnotes' : '') + (S.stale ? ' — approximate: the map was cut against an earlier render' : '') };
       for (const part of parts) {
         if (!boxesByPage.has(part.page)) boxesByPage.set(part.page, []);
         boxesByPage.get(part.page).push({ ...box, rects: part.rects, span: part.span });
@@ -602,18 +607,32 @@ async function boxAllUnits(id) {
     // INCREMENTAL (measured on the real ECF 74, 2026-09-29: 588 units over 60
     // pages took 8.8 s to the first box when every page painted at the end):
     // a page's boxes paint as soon as its units are located
-    for (const pg of touched) st.left.pane.setBoxes(pg, boxesByPage.get(pg));
+    for (const pg of touched) paintSideBoxes(side, pg, boxesByPage.get(pg));
     touched.clear();
   }
   // N3's remainder (f28bb754): once boxes exist, the units walk in the order
   // they SIT on the page — box top, then left — not the file's row order; a
   // unit without a box follows the located ones of its page in row order
-  const pageOf = (u) => pdfPageFor(u.page, st.left.doc.offset, st.left.doc.pagemap);
-  st.left.units.units = orderByPosition(st.left.units.units, pageOf);
-  for (const [pg, arr] of st.left.units.byPage) st.left.units.byPage.set(pg, orderByPosition(arr, pageOf));
-  for (const [pg, boxes] of boxesByPage) st.left.pane.setBoxes(pg, boxes);
+  const pageOf = (u) => pdfPageFor(u.page, S.doc.offset, S.doc.pagemap);
+  S.units.units = orderByPosition(S.units.units, pageOf);
+  for (const [pg, arr] of S.units.byPage) S.units.byPage.set(pg, orderByPosition(arr, pageOf));
+  for (const [pg, boxes] of boxesByPage) paintSideBoxes(side, pg, boxes);
+  if (side !== 'left') return;
   const missing = st.left.units.units.filter(u => u.missing);
   if (missing.length) { st.left.problems.push(...missing.map(u => `not located: ${u.missing}`)); renderProblems(); }
+}
+/** Paint a page's boxes on a pane: the left's are its units'; the RIGHT's are its units' MERGED with the passage highlight the
+ *  left's citation pinned on that page (setBoxes replaces a page's boxes, so the pane's boxes-by-page carry both; P87). */
+function paintSideBoxes(side, page, unitBoxes) {
+  if (side === 'left') { st.left.pane.setBoxes(page, unitBoxes); return; }
+  if (unitBoxes) st.right.boxesByPage.set(page, unitBoxes);
+  const own = st.right.boxesByPage.get(page) || [], q = st.right.passage.get(page);
+  st.right.pane.setBoxes(page, q ? [...own, q] : own);
+}
+/** The right pane's passage highlight: cleared whole, or set on one page — the citation boxes of that page stay. */
+function setRightPassage(page, box) {
+  if (page == null) { const pages = [...st.right.passage.keys()]; st.right.passage.clear(); for (const p of pages) paintSideBoxes('right', p); return; }
+  st.right.passage.set(page, box); paintSideBoxes('right', page);
 }
 
 async function openRight(id, opts = {}) {
@@ -628,14 +647,68 @@ async function openRight(id, opts = {}) {
   notesOnDoc('right');
   renderNav();
   if (!same) {
+    st.right.links = null; st.right.units = null; st.right.boxesByPage = new Map(); st.right.passage = new Map(); st.right.stale = false;
     try { const o = await st.right.pane.open(st.source.fileUrl(id)); if (!o || st.right.id !== id) return false; }
     catch (e) { says(`${doc.label || id}: could not open — ${e.message || e}`, 'bad'); return false; }
   }
   const pages = opts.marked || [];
   st.right.pane.setMarked(pages);
   if (opts.page) st.right.pane.focus(opts.page, 0);
+  // P87 (the owner's word 2026-10-01): a right document WITH a table draws its own citation boxes — the same units, statuses,
+  // highlights toggle and locate as the left — so its citations open in the right and the left never moves. A document
+  // without a table draws the passage highlight alone. The table loads once per document, after the pane has it.
+  if (!same && doc.has_links && !st.right.units) {
+    let answer = null;
+    try { answer = await st.source.links(id); } catch {}
+    if (st.right.id !== id) return false;
+    if (answer) {
+      const links = normaliseLinks(answer);
+      st.right.links = links; st.right.stale = links.problems.some(p => /cut against an earlier render/.test(String(p)));
+      st.right.units = unitsOf(links.rows);
+      boxAllUnits(id, 'right');   // paints as pages locate; never awaited — the passage below lands first
+    }
+  }
   return true;
 }
+
+/** WHERE A ROW OPENS — a box clicked in `side` (P87; core.opensWhere decides, this shell prints): a TOC entry scrolls its own
+ *  pane to the section and the other pane keeps its place; a citation in the LEFT opens in the RIGHT (openUnit, the anchor's
+ *  path: active unit, stepper, the left's words); a citation in the RIGHT opens in the RIGHT with nothing of the left's changed. */
+async function openFrom(side, u, k = 1, opts = {}) {
+  if (!u) return;
+  const w = opensWhere(u, side);
+  if (w.where === 'same') return openToc(side, u, k);
+  if (side === 'left') return openUnit(u, k, opts);
+  return openUnitFromRight(u, k);
+}
+/** A TOC entry: scroll the pane it was clicked in to the section's page — the located heading when it is found (the heading
+ *  row is the quote, README l.34 (TOC)), the page's top otherwise; nothing opens in the other pane. The pane's own chip says it. */
+async function openToc(side, u, k) {
+  const S = side === 'left' ? st.left : st.right, pane = S.pane, doc = S.doc;
+  const t = u.targets[Math.min(u.targets.length, Math.max(1, k)) - 1];
+  if (side === 'left') { st.active = { unit: u, k }; markActiveBox(u); renderCites(); }
+  const tp = targetPages(t, doc);
+  if (!tp.pdfPage) { const r = saysFor(u, k, t, doc, tp); sayTo(side, r); return; }
+  let parts = null;
+  try { parts = t.target_quote ? await pane.locatePassage(tp.pdfPage, tp.pdfEnd || tp.pdfPage, t.target_quote) : null; } catch {}
+  if (S.id !== doc.id) return;
+  if (parts && parts.length) pane.focus(parts[0].page, (parts[0].rects[0].top / 100) * (pane.vp1.get(parts[0].page) || { height: 792 }).height);
+  else pane.focus(tp.pdfPage, 0);
+  sayTo(side, saysFor(u, k, t, doc, { ...tp, passage: parts && parts.length ? parts : null, hasText: true, words: null }));
+  pushHash();
+}
+/** THE EXCEPTION: a citation in the RIGHT document opens in the RIGHT — the same open path as the left's citation, with the
+ *  right as the source: the left's document, page, active unit and stepper do not change; the way back is the left's citation. */
+async function openUnitFromRight(u, k) {
+  const t = u.targets[Math.min(u.targets.length, Math.max(1, k)) - 1];
+  const doc = st.byId.get(t.target_doc) || null;
+  const pre = saysFor(u, k, t, doc);
+  if (!pre.opens) { sayParts(pre); pushHash(); return; }
+  await openTarget(u, k, t, doc);
+  pushHash();
+}
+/** Print a says result in a pane's own chip: the left's status line (text), the right's chip (markup). */
+function sayTo(side, res) { if (side === 'left') setStatus(res.parts.map((p) => p.text).join('')); else sayParts(res); }
 
 /** Open a unit's k-th target in the right pane; the left pane keeps its place
  *  (a citation changes the RIGHT pane only). */
@@ -658,12 +731,17 @@ async function openUnit(u, k = 1, opts = {}) {
   const doc = st.byId.get(t.target_doc) || null;
   const pre = saysFor(u, k, t, doc);
   if (!pre.opens) { sayParts(pre); pushHash(); return; }
+  await openTarget(u, k, t, doc);
+  pushHash();
+}
+/** Open a unit's target in the RIGHT pane and box its passage — the one path for a citation from either pane (P87). */
+async function openTarget(u, k, t, doc) {
   const tp = targetPages(t, doc);
   const ok = await openRight(t.target_doc, { page: tp.pdfPage || 1, marked: tp.marked });
   if (!ok) return;
   const head = saysFor(u, k, t, doc, tp);
   sayParts(head);
-  st.right.pane.clearBoxes();
+  setRightPassage(null);   // the former passage goes; the right document's own citation boxes stay
   if (head.locate) {
     // THE PASSAGE, WHOLE (README l.34, the owner's word 2026-09-30): the row's
     // quote is located over target_page … target_page_end (the page after for
@@ -674,7 +752,7 @@ async function openUnit(u, k = 1, opts = {}) {
     try {
       const parts = await st.right.pane.locatePassage(tp.pdfPage, tp.pdfEnd || tp.pdfPage, t.target_quote);
       if (parts) {
-        for (const part of parts) st.right.pane.setBoxes(part.page, [{ id: 'q', rects: part.rects, status: 'verified', title: t.target_quote }]);
+        for (const part of parts) setRightPassage(part.page, { id: 'q', rects: part.rects, status: 'verified', title: t.target_quote });
         sayParts(saysFor(u, k, t, doc, { ...tp, passage: parts }));
       } else {
         // an image-only PAGE inside a text document, or a scrambled layer: core says which from the span's answers
@@ -684,7 +762,6 @@ async function openUnit(u, k = 1, opts = {}) {
       }
     } catch {}
   }
-  pushHash();
 }
 /** Print core's parts in this shell's markup: a live link, a warning span, plain text — escaped here. */
 function sayParts(res) {
@@ -704,7 +781,7 @@ function step(dir) {
   if (!units || !units.length) return;
   let i = st.active ? units.indexOf(st.active.unit) : -1;
   i = i < 0 ? (dir > 0 ? 0 : units.length - 1) : (i + dir + units.length) % units.length;
-  openUnit(units[i], 1, { step: true });
+  openFrom('left', units[i], 1, { step: true });
 }
 function renderCites() {
   // the citations on this page are the ⋯ menu's list now (the owner's word 2026-09-30 ~04:5x CDT: the details above the
@@ -772,7 +849,7 @@ function openMore(side, ev, btn) {
       items.push({ label: `citations on this page (${here.length})`, disabled: true });
       for (const u of here.slice(0, CAP)) {
         const targets = u.targets.map(t => `${t.target_doc || '?'}${t.target_label ? ' ' + t.target_label : ''}`).join(', ');
-        items.push({ label: clip(`${u.text}${u.n > 1 ? ` ×${u.n}` : ''} → ${targets}${u.missing ? ' (not boxed)' : ''}`), run: () => openUnit(u, 1, { step: true }) });
+        items.push({ label: clip(`${u.text}${u.n > 1 ? ` ×${u.n}` : ''} → ${targets}${u.missing ? ' (not boxed)' : ''}`), run: () => openFrom('left', u, 1, { step: true }) });
       }
       if (here.length > CAP) items.push({ label: `… ${here.length - CAP} more — step with ‹ ›`, disabled: true });
     } else items.push({ label: st.left.units && st.left.units.units.length ? 'no citations on this page' : 'no link map for this document yet', disabled: true });
@@ -954,7 +1031,7 @@ function onClick(ev) {
     if (a === 'cite') {
       const u = st.left.units && st.left.units.byKey.get(act.dataset.key);
       const tg = ev.target.closest('.cr-tgt');
-      if (u) return openUnit(u, tg ? +tg.dataset.k : 1, { step: true });
+      if (u) return openFrom('left', u, tg ? +tg.dataset.k : 1, { step: true });
       return;
     }
   }
