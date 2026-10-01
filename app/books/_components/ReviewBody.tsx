@@ -332,7 +332,8 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
       </span>
       <button type="button" className={ctl} onClick={() => step(1)} disabled={idx < 0 || (idx >= units.length - 1 && pageIdx >= (active?.pages.length ?? 1) - 1)} title={active && pageIdx < active.pages.length - 1 ? 'Next cited page' : 'Next citation'} aria-label="Next"><ChevronRight className="h-4 w-4" /></button>
       {active && (
-        <button type="button" className={cn(ctl, 'ml-1')} onClick={toNote} title={`Show note ${active.note} in the book`}><CornerLeftUp className="h-3.5 w-3.5" /> n. {active.note}</button>
+        <button type="button" className={cn(ctl, 'ml-1')} onClick={toNote} disabled={!!pdf && !active.box}
+          title={pdf && !active.box ? `Note ${active.note} is not on the rendered PDF yet (the render of ${pdf.rendered} predates it); the text version carries it` : `Show note ${active.note} in the book`}><CornerLeftUp className="h-3.5 w-3.5" /> n. {active.note}</button>
       )}
       {edition && (
         <>
