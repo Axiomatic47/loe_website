@@ -1,0 +1,1839 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/api/casereview/docs",
+      "destination": "/casereview/data/docs.json"
+    },
+    {
+      "source": "/api/casereview/links/:id",
+      "destination": "/casereview/data/links/:id.json"
+    },
+    {
+      "source": "/api/casereview/file/DDC-001",
+      "destination": "/uploads/constitutional/pdfs/1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002",
+      "destination": "/uploads/constitutional/pdfs/2.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-003",
+      "destination": "/uploads/constitutional/pdfs/3.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-004",
+      "destination": "/uploads/constitutional/pdfs/4.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005",
+      "destination": "/uploads/constitutional/pdfs/5.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-006",
+      "destination": "/uploads/constitutional/pdfs/6.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-007",
+      "destination": "/uploads/constitutional/pdfs/7.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-008",
+      "destination": "/uploads/constitutional/pdfs/8.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-011",
+      "destination": "/uploads/constitutional/pdfs/11.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-012",
+      "destination": "/uploads/constitutional/pdfs/12.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013",
+      "destination": "/uploads/constitutional/pdfs/13.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-014",
+      "destination": "/uploads/constitutional/pdfs/14.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-015",
+      "destination": "/uploads/constitutional/pdfs/15.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-016",
+      "destination": "/uploads/constitutional/pdfs/16.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-017",
+      "destination": "/uploads/constitutional/pdfs/17.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-018",
+      "destination": "/uploads/constitutional/pdfs/18.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-019",
+      "destination": "/uploads/constitutional/pdfs/19.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-020",
+      "destination": "/uploads/constitutional/pdfs/20.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-021",
+      "destination": "/uploads/constitutional/pdfs/21.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-022",
+      "destination": "/uploads/constitutional/pdfs/22.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-023",
+      "destination": "/uploads/constitutional/pdfs/23.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-024",
+      "destination": "/uploads/constitutional/pdfs/24.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-025",
+      "destination": "/uploads/constitutional/pdfs/25.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-026",
+      "destination": "/uploads/constitutional/pdfs/26.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-027",
+      "destination": "/uploads/constitutional/pdfs/27.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-028",
+      "destination": "/uploads/constitutional/pdfs/28.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-029",
+      "destination": "/uploads/constitutional/pdfs/29.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-030",
+      "destination": "/uploads/constitutional/pdfs/30.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-031",
+      "destination": "/uploads/constitutional/pdfs/31.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-032",
+      "destination": "/uploads/constitutional/pdfs/32.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-033",
+      "destination": "/uploads/constitutional/pdfs/33.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-034",
+      "destination": "/uploads/constitutional/pdfs/34.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-035",
+      "destination": "/uploads/constitutional/pdfs/35.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-036",
+      "destination": "/uploads/constitutional/pdfs/36.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-037",
+      "destination": "/uploads/constitutional/pdfs/37.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-038",
+      "destination": "/uploads/constitutional/pdfs/38.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-039",
+      "destination": "/uploads/constitutional/pdfs/39.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-040",
+      "destination": "/uploads/constitutional/pdfs/40.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-041",
+      "destination": "/uploads/constitutional/pdfs/41.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-042",
+      "destination": "/uploads/constitutional/pdfs/42.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-043",
+      "destination": "/uploads/constitutional/pdfs/43.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-044",
+      "destination": "/uploads/constitutional/pdfs/44.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-045",
+      "destination": "/uploads/constitutional/pdfs/45.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-046",
+      "destination": "/uploads/constitutional/pdfs/46.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-047",
+      "destination": "/uploads/constitutional/pdfs/47.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-049",
+      "destination": "/uploads/constitutional/pdfs/49.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-050",
+      "destination": "/uploads/constitutional/pdfs/50.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051",
+      "destination": "/uploads/constitutional/pdfs/51.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-052",
+      "destination": "/uploads/constitutional/pdfs/52.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-053",
+      "destination": "/uploads/constitutional/pdfs/53.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-054",
+      "destination": "/uploads/constitutional/pdfs/54.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-055",
+      "destination": "/uploads/constitutional/pdfs/55.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-056",
+      "destination": "/uploads/constitutional/pdfs/56.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-057",
+      "destination": "/uploads/constitutional/pdfs/57.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-059",
+      "destination": "/uploads/constitutional/pdfs/59.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-060",
+      "destination": "/uploads/constitutional/pdfs/60.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-061",
+      "destination": "/uploads/constitutional/pdfs/61.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-062",
+      "destination": "/uploads/constitutional/pdfs/62.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-063",
+      "destination": "/uploads/constitutional/pdfs/63.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-064",
+      "destination": "/uploads/constitutional/pdfs/64.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-065",
+      "destination": "/uploads/constitutional/pdfs/65.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-066",
+      "destination": "/uploads/constitutional/pdfs/66.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-067",
+      "destination": "/uploads/constitutional/pdfs/67.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-068",
+      "destination": "/uploads/constitutional/pdfs/68.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-069",
+      "destination": "/uploads/constitutional/pdfs/69.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-070",
+      "destination": "/uploads/constitutional/pdfs/70.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-071",
+      "destination": "/uploads/constitutional/pdfs/71.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-072",
+      "destination": "/uploads/constitutional/pdfs/72.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-073",
+      "destination": "/uploads/constitutional/pdfs/73.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-074",
+      "destination": "/uploads/constitutional/pdfs/74.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-075",
+      "destination": "/uploads/constitutional/pdfs/75.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-076",
+      "destination": "/uploads/constitutional/pdfs/76.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-077",
+      "destination": "/uploads/constitutional/pdfs/77.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-MO",
+      "destination": "/uploads/constitutional/pdfs/mo-stay.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-001-01",
+      "destination": "/uploads/constitutional/pdfs/1-1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-01",
+      "destination": "/uploads/constitutional/pdfs/2-1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-02",
+      "destination": "/uploads/constitutional/pdfs/2-2.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-03",
+      "destination": "/uploads/constitutional/pdfs/2-3.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-04",
+      "destination": "/uploads/constitutional/pdfs/2-4.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-05",
+      "destination": "/uploads/constitutional/pdfs/2-5.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-06",
+      "destination": "/uploads/constitutional/pdfs/2-6.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-07",
+      "destination": "/uploads/constitutional/pdfs/2-7.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-08",
+      "destination": "/uploads/constitutional/pdfs/2-8.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-09",
+      "destination": "/uploads/constitutional/pdfs/2-9.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-10",
+      "destination": "/uploads/constitutional/pdfs/2-10.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-11",
+      "destination": "/uploads/constitutional/pdfs/2-11.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-12",
+      "destination": "/uploads/constitutional/pdfs/2-12.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-13",
+      "destination": "/uploads/constitutional/pdfs/2-13.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-14",
+      "destination": "/uploads/constitutional/pdfs/2-14.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-15",
+      "destination": "/uploads/constitutional/pdfs/2-15.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-16",
+      "destination": "/uploads/constitutional/pdfs/2-16.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-17",
+      "destination": "/uploads/constitutional/pdfs/2-17.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-18",
+      "destination": "/uploads/constitutional/pdfs/2-18.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-19",
+      "destination": "/uploads/constitutional/pdfs/2-19.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-20",
+      "destination": "/uploads/constitutional/pdfs/2-20.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-21",
+      "destination": "/uploads/constitutional/pdfs/2-21.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-22",
+      "destination": "/uploads/constitutional/pdfs/2-22.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-23",
+      "destination": "/uploads/constitutional/pdfs/2-23.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-24",
+      "destination": "/uploads/constitutional/pdfs/2-24.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-25",
+      "destination": "/uploads/constitutional/pdfs/2-25.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-26",
+      "destination": "/uploads/constitutional/pdfs/2-26.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-27",
+      "destination": "/uploads/constitutional/pdfs/2-27.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-28",
+      "destination": "/uploads/constitutional/pdfs/2-28.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-29",
+      "destination": "/uploads/constitutional/pdfs/2-29.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-30",
+      "destination": "/uploads/constitutional/pdfs/2-30.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-31",
+      "destination": "/uploads/constitutional/pdfs/2-31.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-32",
+      "destination": "/uploads/constitutional/pdfs/2-32.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-33",
+      "destination": "/uploads/constitutional/pdfs/2-33.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-002-34",
+      "destination": "/uploads/constitutional/pdfs/2-34.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-01",
+      "destination": "/uploads/constitutional/pdfs/5-1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-02",
+      "destination": "/uploads/constitutional/pdfs/5-2.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-03",
+      "destination": "/uploads/constitutional/pdfs/5-3.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-04",
+      "destination": "/uploads/constitutional/pdfs/5-4.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-05",
+      "destination": "/uploads/constitutional/pdfs/5-5.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-06",
+      "destination": "/uploads/constitutional/pdfs/5-6.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-07",
+      "destination": "/uploads/constitutional/pdfs/5-7.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-08",
+      "destination": "/uploads/constitutional/pdfs/5-8.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-09",
+      "destination": "/uploads/constitutional/pdfs/5-9.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-10",
+      "destination": "/uploads/constitutional/pdfs/5-10.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-11",
+      "destination": "/uploads/constitutional/pdfs/5-11.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-12",
+      "destination": "/uploads/constitutional/pdfs/5-12.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-13",
+      "destination": "/uploads/constitutional/pdfs/5-13.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-14",
+      "destination": "/uploads/constitutional/pdfs/5-14.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-15",
+      "destination": "/uploads/constitutional/pdfs/5-15.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-16",
+      "destination": "/uploads/constitutional/pdfs/5-16.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-17",
+      "destination": "/uploads/constitutional/pdfs/5-17.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-18",
+      "destination": "/uploads/constitutional/pdfs/5-18.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-19",
+      "destination": "/uploads/constitutional/pdfs/5-19.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-20",
+      "destination": "/uploads/constitutional/pdfs/5-20.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-21",
+      "destination": "/uploads/constitutional/pdfs/5-21.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-22",
+      "destination": "/uploads/constitutional/pdfs/5-22.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-23",
+      "destination": "/uploads/constitutional/pdfs/5-23.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-24",
+      "destination": "/uploads/constitutional/pdfs/5-24.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-25",
+      "destination": "/uploads/constitutional/pdfs/5-25.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-26",
+      "destination": "/uploads/constitutional/pdfs/5-26.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-27",
+      "destination": "/uploads/constitutional/pdfs/5-27.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-28",
+      "destination": "/uploads/constitutional/pdfs/5-28.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-29",
+      "destination": "/uploads/constitutional/pdfs/5-29.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-30",
+      "destination": "/uploads/constitutional/pdfs/5-30.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-31",
+      "destination": "/uploads/constitutional/pdfs/5-31.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-32",
+      "destination": "/uploads/constitutional/pdfs/5-32.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-33",
+      "destination": "/uploads/constitutional/pdfs/5-33.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-34",
+      "destination": "/uploads/constitutional/pdfs/5-34.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-35",
+      "destination": "/uploads/constitutional/pdfs/5-35.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-36",
+      "destination": "/uploads/constitutional/pdfs/5-36.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-37",
+      "destination": "/uploads/constitutional/pdfs/5-37.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-38",
+      "destination": "/uploads/constitutional/pdfs/5-38.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-39",
+      "destination": "/uploads/constitutional/pdfs/5-39.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-40",
+      "destination": "/uploads/constitutional/pdfs/5-40.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-41",
+      "destination": "/uploads/constitutional/pdfs/5-41.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-42",
+      "destination": "/uploads/constitutional/pdfs/5-42.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-43",
+      "destination": "/uploads/constitutional/pdfs/5-43.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-44",
+      "destination": "/uploads/constitutional/pdfs/5-44.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-45",
+      "destination": "/uploads/constitutional/pdfs/5-45.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-46",
+      "destination": "/uploads/constitutional/pdfs/5-46.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-47",
+      "destination": "/uploads/constitutional/pdfs/5-47.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-48",
+      "destination": "/uploads/constitutional/pdfs/5-48.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-49",
+      "destination": "/uploads/constitutional/pdfs/5-49.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-50",
+      "destination": "/uploads/constitutional/pdfs/5-50.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-51",
+      "destination": "/uploads/constitutional/pdfs/5-51.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-52",
+      "destination": "/uploads/constitutional/pdfs/5-52.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-53",
+      "destination": "/uploads/constitutional/pdfs/5-53.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-54",
+      "destination": "/uploads/constitutional/pdfs/5-54.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-55",
+      "destination": "/uploads/constitutional/pdfs/5-55.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-56",
+      "destination": "/uploads/constitutional/pdfs/5-56.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-57",
+      "destination": "/uploads/constitutional/pdfs/5-57.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-58",
+      "destination": "/uploads/constitutional/pdfs/5-58.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-59",
+      "destination": "/uploads/constitutional/pdfs/5-59.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-60",
+      "destination": "/uploads/constitutional/pdfs/5-60.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-61",
+      "destination": "/uploads/constitutional/pdfs/5-61.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-62",
+      "destination": "/uploads/constitutional/pdfs/5-62.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-63",
+      "destination": "/uploads/constitutional/pdfs/5-63.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-64",
+      "destination": "/uploads/constitutional/pdfs/5-64.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-65",
+      "destination": "/uploads/constitutional/pdfs/5-65.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-66",
+      "destination": "/uploads/constitutional/pdfs/5-66.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-67",
+      "destination": "/uploads/constitutional/pdfs/5-67.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-68",
+      "destination": "/uploads/constitutional/pdfs/5-68.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-69",
+      "destination": "/uploads/constitutional/pdfs/5-69.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-70",
+      "destination": "/uploads/constitutional/pdfs/5-70.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-71",
+      "destination": "/uploads/constitutional/pdfs/5-71.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-72",
+      "destination": "/uploads/constitutional/pdfs/5-72.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-73",
+      "destination": "/uploads/constitutional/pdfs/5-73.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-74",
+      "destination": "/uploads/constitutional/pdfs/5-74.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-75",
+      "destination": "/uploads/constitutional/pdfs/5-75.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-76",
+      "destination": "/uploads/constitutional/pdfs/5-76.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-77",
+      "destination": "/uploads/constitutional/pdfs/5-77.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-78",
+      "destination": "/uploads/constitutional/pdfs/5-78.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-79",
+      "destination": "/uploads/constitutional/pdfs/5-79.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-80",
+      "destination": "/uploads/constitutional/pdfs/5-80.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-81",
+      "destination": "/uploads/constitutional/pdfs/5-81.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-82",
+      "destination": "/uploads/constitutional/pdfs/5-82.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-83",
+      "destination": "/uploads/constitutional/pdfs/5-83.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-84",
+      "destination": "/uploads/constitutional/pdfs/5-84.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-85",
+      "destination": "/uploads/constitutional/pdfs/5-85.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-86",
+      "destination": "/uploads/constitutional/pdfs/5-86.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-005-87",
+      "destination": "/uploads/constitutional/pdfs/5-87.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-006-01",
+      "destination": "/uploads/constitutional/pdfs/6-1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-006-02",
+      "destination": "/uploads/constitutional/pdfs/6-2.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-006-03",
+      "destination": "/uploads/constitutional/pdfs/6-3.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-006-04",
+      "destination": "/uploads/constitutional/pdfs/6-4.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-006-05",
+      "destination": "/uploads/constitutional/pdfs/6-5.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-006-06",
+      "destination": "/uploads/constitutional/pdfs/6-6.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-006-07",
+      "destination": "/uploads/constitutional/pdfs/6-7.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-006-08",
+      "destination": "/uploads/constitutional/pdfs/6-8.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-006-09",
+      "destination": "/uploads/constitutional/pdfs/6-9.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-006-10",
+      "destination": "/uploads/constitutional/pdfs/6-10.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-006-11",
+      "destination": "/uploads/constitutional/pdfs/6-11.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-006-12",
+      "destination": "/uploads/constitutional/pdfs/6-12.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-006-13",
+      "destination": "/uploads/constitutional/pdfs/6-13.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-006-14",
+      "destination": "/uploads/constitutional/pdfs/6-14.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-006-15",
+      "destination": "/uploads/constitutional/pdfs/6-15.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-006-16",
+      "destination": "/uploads/constitutional/pdfs/6-16.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-006-17",
+      "destination": "/uploads/constitutional/pdfs/6-17.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-006-18",
+      "destination": "/uploads/constitutional/pdfs/6-18.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-006-19",
+      "destination": "/uploads/constitutional/pdfs/6-19.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-006-20",
+      "destination": "/uploads/constitutional/pdfs/6-20.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-006-21",
+      "destination": "/uploads/constitutional/pdfs/6-21.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-012-01",
+      "destination": "/uploads/constitutional/pdfs/12-1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-01",
+      "destination": "/uploads/constitutional/pdfs/13-1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-02",
+      "destination": "/uploads/constitutional/pdfs/13-2.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-03",
+      "destination": "/uploads/constitutional/pdfs/13-3.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-04",
+      "destination": "/uploads/constitutional/pdfs/13-4.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-05",
+      "destination": "/uploads/constitutional/pdfs/13-5.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-06",
+      "destination": "/uploads/constitutional/pdfs/13-6.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-07",
+      "destination": "/uploads/constitutional/pdfs/13-7.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-08",
+      "destination": "/uploads/constitutional/pdfs/13-8.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-09",
+      "destination": "/uploads/constitutional/pdfs/13-9.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-10",
+      "destination": "/uploads/constitutional/pdfs/13-10.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-11",
+      "destination": "/uploads/constitutional/pdfs/13-11.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-12",
+      "destination": "/uploads/constitutional/pdfs/13-12.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-13",
+      "destination": "/uploads/constitutional/pdfs/13-13.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-14",
+      "destination": "/uploads/constitutional/pdfs/13-14.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-15",
+      "destination": "/uploads/constitutional/pdfs/13-15.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-16",
+      "destination": "/uploads/constitutional/pdfs/13-16.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-17",
+      "destination": "/uploads/constitutional/pdfs/13-17.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-18",
+      "destination": "/uploads/constitutional/pdfs/13-18.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-19",
+      "destination": "/uploads/constitutional/pdfs/13-19.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-20",
+      "destination": "/uploads/constitutional/pdfs/13-20.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-21",
+      "destination": "/uploads/constitutional/pdfs/13-21.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-22",
+      "destination": "/uploads/constitutional/pdfs/13-22.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-23",
+      "destination": "/uploads/constitutional/pdfs/13-23.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-24",
+      "destination": "/uploads/constitutional/pdfs/13-24.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-25",
+      "destination": "/uploads/constitutional/pdfs/13-25.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-26",
+      "destination": "/uploads/constitutional/pdfs/13-26.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-27",
+      "destination": "/uploads/constitutional/pdfs/13-27.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-28",
+      "destination": "/uploads/constitutional/pdfs/13-28.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-29",
+      "destination": "/uploads/constitutional/pdfs/13-29.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-30",
+      "destination": "/uploads/constitutional/pdfs/13-30.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-31",
+      "destination": "/uploads/constitutional/pdfs/13-31.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-32",
+      "destination": "/uploads/constitutional/pdfs/13-32.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-33",
+      "destination": "/uploads/constitutional/pdfs/13-33.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-34",
+      "destination": "/uploads/constitutional/pdfs/13-34.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-35",
+      "destination": "/uploads/constitutional/pdfs/13-35.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-36",
+      "destination": "/uploads/constitutional/pdfs/13-36.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-37",
+      "destination": "/uploads/constitutional/pdfs/13-37.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-38",
+      "destination": "/uploads/constitutional/pdfs/13-38.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-39",
+      "destination": "/uploads/constitutional/pdfs/13-39.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-40",
+      "destination": "/uploads/constitutional/pdfs/13-40.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-41",
+      "destination": "/uploads/constitutional/pdfs/13-41.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-42",
+      "destination": "/uploads/constitutional/pdfs/13-42.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-43",
+      "destination": "/uploads/constitutional/pdfs/13-43.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-44",
+      "destination": "/uploads/constitutional/pdfs/13-44.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-45",
+      "destination": "/uploads/constitutional/pdfs/13-45.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-46",
+      "destination": "/uploads/constitutional/pdfs/13-46.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-47",
+      "destination": "/uploads/constitutional/pdfs/13-47.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-48",
+      "destination": "/uploads/constitutional/pdfs/13-48.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-49",
+      "destination": "/uploads/constitutional/pdfs/13-49.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-50",
+      "destination": "/uploads/constitutional/pdfs/13-50.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-51",
+      "destination": "/uploads/constitutional/pdfs/13-51.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-52",
+      "destination": "/uploads/constitutional/pdfs/13-52.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-53",
+      "destination": "/uploads/constitutional/pdfs/13-53.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-54",
+      "destination": "/uploads/constitutional/pdfs/13-54.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-55",
+      "destination": "/uploads/constitutional/pdfs/13-55.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-56",
+      "destination": "/uploads/constitutional/pdfs/13-56.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-57",
+      "destination": "/uploads/constitutional/pdfs/13-57.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-58",
+      "destination": "/uploads/constitutional/pdfs/13-58.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-59",
+      "destination": "/uploads/constitutional/pdfs/13-59.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-60",
+      "destination": "/uploads/constitutional/pdfs/13-60.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-61",
+      "destination": "/uploads/constitutional/pdfs/13-61.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-62",
+      "destination": "/uploads/constitutional/pdfs/13-62.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-63",
+      "destination": "/uploads/constitutional/pdfs/13-63.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-64",
+      "destination": "/uploads/constitutional/pdfs/13-64.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-65",
+      "destination": "/uploads/constitutional/pdfs/13-65.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-66",
+      "destination": "/uploads/constitutional/pdfs/13-66.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-67",
+      "destination": "/uploads/constitutional/pdfs/13-67.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-68",
+      "destination": "/uploads/constitutional/pdfs/13-68.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-69",
+      "destination": "/uploads/constitutional/pdfs/13-69.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-70",
+      "destination": "/uploads/constitutional/pdfs/13-70.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-71",
+      "destination": "/uploads/constitutional/pdfs/13-71.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-72",
+      "destination": "/uploads/constitutional/pdfs/13-72.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-73",
+      "destination": "/uploads/constitutional/pdfs/13-73.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-74",
+      "destination": "/uploads/constitutional/pdfs/13-74.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-75",
+      "destination": "/uploads/constitutional/pdfs/13-75.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-76",
+      "destination": "/uploads/constitutional/pdfs/13-76.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-77",
+      "destination": "/uploads/constitutional/pdfs/13-77.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-78",
+      "destination": "/uploads/constitutional/pdfs/13-78.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-79",
+      "destination": "/uploads/constitutional/pdfs/13-79.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-80",
+      "destination": "/uploads/constitutional/pdfs/13-80.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-81",
+      "destination": "/uploads/constitutional/pdfs/13-81.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-82",
+      "destination": "/uploads/constitutional/pdfs/13-82.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-83",
+      "destination": "/uploads/constitutional/pdfs/13-83.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-84",
+      "destination": "/uploads/constitutional/pdfs/13-84.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-85",
+      "destination": "/uploads/constitutional/pdfs/13-85.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-013-86",
+      "destination": "/uploads/constitutional/pdfs/13-86.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-016-01",
+      "destination": "/uploads/constitutional/pdfs/16-1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-017-01",
+      "destination": "/uploads/constitutional/pdfs/17-1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-019-01",
+      "destination": "/uploads/constitutional/pdfs/19-1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-019-02",
+      "destination": "/uploads/constitutional/pdfs/19-2.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-021-01",
+      "destination": "/uploads/constitutional/pdfs/21-1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-021-02",
+      "destination": "/uploads/constitutional/pdfs/21-2.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-021-03",
+      "destination": "/uploads/constitutional/pdfs/21-3.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-021-04",
+      "destination": "/uploads/constitutional/pdfs/21-4.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-021-05",
+      "destination": "/uploads/constitutional/pdfs/21-5.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-021-06",
+      "destination": "/uploads/constitutional/pdfs/21-6.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-021-07",
+      "destination": "/uploads/constitutional/pdfs/21-7.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-021-08",
+      "destination": "/uploads/constitutional/pdfs/21-8.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-021-09",
+      "destination": "/uploads/constitutional/pdfs/21-9.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-021-10",
+      "destination": "/uploads/constitutional/pdfs/21-10.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-026-01",
+      "destination": "/uploads/constitutional/pdfs/26-1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-038-01",
+      "destination": "/uploads/constitutional/pdfs/38-1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-038-02",
+      "destination": "/uploads/constitutional/pdfs/38-2.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-039-01",
+      "destination": "/uploads/constitutional/pdfs/39-1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-039-02",
+      "destination": "/uploads/constitutional/pdfs/39-2.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-042-01",
+      "destination": "/uploads/constitutional/pdfs/42-1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-049-01",
+      "destination": "/uploads/constitutional/pdfs/49-1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-050-01",
+      "destination": "/uploads/constitutional/pdfs/50-1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-050-02",
+      "destination": "/uploads/constitutional/pdfs/50-2.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-050-03",
+      "destination": "/uploads/constitutional/pdfs/50-3.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-01",
+      "destination": "/uploads/constitutional/pdfs/51-1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-02",
+      "destination": "/uploads/constitutional/pdfs/51-2.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-03",
+      "destination": "/uploads/constitutional/pdfs/51-3.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-04",
+      "destination": "/uploads/constitutional/pdfs/51-4.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-05",
+      "destination": "/uploads/constitutional/pdfs/51-5.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-06",
+      "destination": "/uploads/constitutional/pdfs/51-6.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-07",
+      "destination": "/uploads/constitutional/pdfs/51-7.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-08",
+      "destination": "/uploads/constitutional/pdfs/51-8.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-09",
+      "destination": "/uploads/constitutional/pdfs/51-9.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-10",
+      "destination": "/uploads/constitutional/pdfs/51-10.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-11",
+      "destination": "/uploads/constitutional/pdfs/51-11.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-12",
+      "destination": "/uploads/constitutional/pdfs/51-12.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-13",
+      "destination": "/uploads/constitutional/pdfs/51-13.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-14",
+      "destination": "/uploads/constitutional/pdfs/51-14.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-15",
+      "destination": "/uploads/constitutional/pdfs/51-15.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-16",
+      "destination": "/uploads/constitutional/pdfs/51-16.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-17",
+      "destination": "/uploads/constitutional/pdfs/51-17.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-18",
+      "destination": "/uploads/constitutional/pdfs/51-18.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-19",
+      "destination": "/uploads/constitutional/pdfs/51-19.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-20",
+      "destination": "/uploads/constitutional/pdfs/51-20.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-21",
+      "destination": "/uploads/constitutional/pdfs/51-21.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-22",
+      "destination": "/uploads/constitutional/pdfs/51-22.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-23",
+      "destination": "/uploads/constitutional/pdfs/51-23.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-24",
+      "destination": "/uploads/constitutional/pdfs/51-24.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-25",
+      "destination": "/uploads/constitutional/pdfs/51-25.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-26",
+      "destination": "/uploads/constitutional/pdfs/51-26.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-27",
+      "destination": "/uploads/constitutional/pdfs/51-27.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-28",
+      "destination": "/uploads/constitutional/pdfs/51-28.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-29",
+      "destination": "/uploads/constitutional/pdfs/51-29.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-30",
+      "destination": "/uploads/constitutional/pdfs/51-30.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-31",
+      "destination": "/uploads/constitutional/pdfs/51-31.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-32",
+      "destination": "/uploads/constitutional/pdfs/51-32.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-33",
+      "destination": "/uploads/constitutional/pdfs/51-33.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-34",
+      "destination": "/uploads/constitutional/pdfs/51-34.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-35",
+      "destination": "/uploads/constitutional/pdfs/51-35.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-36",
+      "destination": "/uploads/constitutional/pdfs/51-36.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-37",
+      "destination": "/uploads/constitutional/pdfs/51-37.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-38",
+      "destination": "/uploads/constitutional/pdfs/51-38.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-39",
+      "destination": "/uploads/constitutional/pdfs/51-39.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-40",
+      "destination": "/uploads/constitutional/pdfs/51-40.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-41",
+      "destination": "/uploads/constitutional/pdfs/51-41.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-42",
+      "destination": "/uploads/constitutional/pdfs/51-42.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-43",
+      "destination": "/uploads/constitutional/pdfs/51-43.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-44",
+      "destination": "/uploads/constitutional/pdfs/51-44.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-45",
+      "destination": "/uploads/constitutional/pdfs/51-45.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-46",
+      "destination": "/uploads/constitutional/pdfs/51-46.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-47",
+      "destination": "/uploads/constitutional/pdfs/51-47.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-48",
+      "destination": "/uploads/constitutional/pdfs/51-48.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-49",
+      "destination": "/uploads/constitutional/pdfs/51-49.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-50",
+      "destination": "/uploads/constitutional/pdfs/51-50.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-51",
+      "destination": "/uploads/constitutional/pdfs/51-51.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-52",
+      "destination": "/uploads/constitutional/pdfs/51-52.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-53",
+      "destination": "/uploads/constitutional/pdfs/51-53.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-54",
+      "destination": "/uploads/constitutional/pdfs/51-54.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-55",
+      "destination": "/uploads/constitutional/pdfs/51-55.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-56",
+      "destination": "/uploads/constitutional/pdfs/51-56.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-57",
+      "destination": "/uploads/constitutional/pdfs/51-57.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-58",
+      "destination": "/uploads/constitutional/pdfs/51-58.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-59",
+      "destination": "/uploads/constitutional/pdfs/51-59.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-60",
+      "destination": "/uploads/constitutional/pdfs/51-60.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-61",
+      "destination": "/uploads/constitutional/pdfs/51-61.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-62",
+      "destination": "/uploads/constitutional/pdfs/51-62.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-63",
+      "destination": "/uploads/constitutional/pdfs/51-63.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-64",
+      "destination": "/uploads/constitutional/pdfs/51-64.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-65",
+      "destination": "/uploads/constitutional/pdfs/51-65.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-66",
+      "destination": "/uploads/constitutional/pdfs/51-66.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-67",
+      "destination": "/uploads/constitutional/pdfs/51-67.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-68",
+      "destination": "/uploads/constitutional/pdfs/51-68.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-69",
+      "destination": "/uploads/constitutional/pdfs/51-69.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-70",
+      "destination": "/uploads/constitutional/pdfs/51-70.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-71",
+      "destination": "/uploads/constitutional/pdfs/51-71.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-72",
+      "destination": "/uploads/constitutional/pdfs/51-72.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-73",
+      "destination": "/uploads/constitutional/pdfs/51-73.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-74",
+      "destination": "/uploads/constitutional/pdfs/51-74.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-75",
+      "destination": "/uploads/constitutional/pdfs/51-75.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-051-76",
+      "destination": "/uploads/constitutional/pdfs/51-76.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-052-01",
+      "destination": "/uploads/constitutional/pdfs/52-1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-052-02",
+      "destination": "/uploads/constitutional/pdfs/52-2.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-052-03",
+      "destination": "/uploads/constitutional/pdfs/52-3.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-052-04",
+      "destination": "/uploads/constitutional/pdfs/52-4.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-052-05",
+      "destination": "/uploads/constitutional/pdfs/52-5.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-053-01",
+      "destination": "/uploads/constitutional/pdfs/53-1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-055-01",
+      "destination": "/uploads/constitutional/pdfs/55-1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-055-02",
+      "destination": "/uploads/constitutional/pdfs/55-2.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-055-03",
+      "destination": "/uploads/constitutional/pdfs/55-3.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-055-04",
+      "destination": "/uploads/constitutional/pdfs/55-4.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-055-05",
+      "destination": "/uploads/constitutional/pdfs/55-5.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-055-06",
+      "destination": "/uploads/constitutional/pdfs/55-6.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-055-07",
+      "destination": "/uploads/constitutional/pdfs/55-7.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-055-08",
+      "destination": "/uploads/constitutional/pdfs/55-8.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-055-09",
+      "destination": "/uploads/constitutional/pdfs/55-9.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-055-10",
+      "destination": "/uploads/constitutional/pdfs/55-10.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-055-11",
+      "destination": "/uploads/constitutional/pdfs/55-11.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-055-12",
+      "destination": "/uploads/constitutional/pdfs/55-12.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-055-13",
+      "destination": "/uploads/constitutional/pdfs/55-13.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-055-14",
+      "destination": "/uploads/constitutional/pdfs/55-14.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-055-15",
+      "destination": "/uploads/constitutional/pdfs/55-15.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-056-01",
+      "destination": "/uploads/constitutional/pdfs/56-1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-057-01",
+      "destination": "/uploads/constitutional/pdfs/57-1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-057-02",
+      "destination": "/uploads/constitutional/pdfs/57-2.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-064-01",
+      "destination": "/uploads/constitutional/pdfs/64-1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-064-02",
+      "destination": "/uploads/constitutional/pdfs/64-2.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-064-03",
+      "destination": "/uploads/constitutional/pdfs/64-3.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-068-01",
+      "destination": "/uploads/constitutional/pdfs/68-1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-068-02",
+      "destination": "/uploads/constitutional/pdfs/68-2.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-068-03",
+      "destination": "/uploads/constitutional/pdfs/68-3.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-068-04",
+      "destination": "/uploads/constitutional/pdfs/68-4.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-068-05",
+      "destination": "/uploads/constitutional/pdfs/68-5.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-068-06",
+      "destination": "/uploads/constitutional/pdfs/68-6.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-068-07",
+      "destination": "/uploads/constitutional/pdfs/68-7.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-068-08",
+      "destination": "/uploads/constitutional/pdfs/68-8.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-068-09",
+      "destination": "/uploads/constitutional/pdfs/68-9.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-068-10",
+      "destination": "/uploads/constitutional/pdfs/68-10.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-070-01",
+      "destination": "/uploads/constitutional/pdfs/70-1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-070-02",
+      "destination": "/uploads/constitutional/pdfs/70-2.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-072-01",
+      "destination": "/uploads/constitutional/pdfs/72-1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-073-01",
+      "destination": "/uploads/constitutional/pdfs/73-1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-073-02",
+      "destination": "/uploads/constitutional/pdfs/73-2.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-073-03",
+      "destination": "/uploads/constitutional/pdfs/73-3.pdf"
+    },
+    {
+      "source": "/api/casereview/file/DDC-076-01",
+      "destination": "/uploads/constitutional/pdfs/76-1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/:id",
+      "destination": "/uploads/constitutional/pdfs/:id.pdf"
+    }
+  ],
+  "headers": [
+    {
+      "source": "**/*.json",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ]
+    },
+    {
+      "source": "**/*.pdf",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/pdf"
+        }
+      ]
+    },
+    {
+      "source": "**/*.mjs",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/javascript; charset=utf-8"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "case": "kirchner-v-johnson",
+  "imported": "2026-10-01T13:11:18.094Z",
+  "source": "the Studio API at http://127.0.0.1:8765",
+  "export_stamp": null,
+  "registry_version": "v0.25b",
+  "documents": 1049,
+  "tables": 25,
+  "rows": 7981,
+  "publication": {
+    "serve": 448,
+    "link": 7,
+    "hold": 594
+  },
+  "dev_override": false,
+  "default_doc": "DDC-077",
+  "vendored_studio_commit": "d6ea105a745ec63a7325951faa0d4109a93952dc",
+  "host_policy": {
+    "serve_groups": [
+      "Filings"
+    ],
+    "not_hosted_here": 537
+  }
+}
