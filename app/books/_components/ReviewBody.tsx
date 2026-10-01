@@ -576,6 +576,14 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
             ) : (
               <p>{manifest.rightsRule}</p>
             )}
+            {/* a unit the rendered PDF does not carry yet (owner's screenshots 2026-09-30: the pane stayed on the
+                title page with no word why): say so, and point at the text version, which has the note */}
+            {!reading && active && !active.box && pdf && (
+              <p className="text-foreground/80">
+                Not yet on the rendered PDF: the render of {pdf.rendered} predates this citation, so the book pane stays where it was.
+                {' '}<Link href={`${textHref}#user-content-fnref-${active.note}`} className="underline underline-offset-2 text-primary">The text version carries it</Link>; the next render places it.
+              </p>
+            )}
           </div>
           <div className="ml-auto text-right">
             <p>
