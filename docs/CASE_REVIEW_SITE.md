@@ -58,7 +58,7 @@ This site already held the docket as `74.pdf`, `51-54.pdf`, `mo-stay.pdf` under 
 ```
 npm run casereview:import
 # = node scripts/import-casereview.mjs --uploads-dir uploads/constitutional/pdfs --names docket \
-#     --name-map scripts/casereview-name-map.json --serve-groups Filings
+#     --name-map scripts/casereview-name-map.json
 ```
 
 from the running Studio (`http://127.0.0.1:8765`, the work_station project) or `--from <export dir>`. It names the
@@ -70,11 +70,23 @@ the block in turn).
 
 **Publication is the registry's word; hosting is the owner's per site.** docs.json carries a per-row `publish` field
 (v0.25: serve | link | hold; `publish_url` for link); the importer fails closed — a row without the field is `hold`.
-**Host policy (`--serve-groups Filings`, 2026-10-01):** until the owner's hosting word, only the Filings group is hosted
-here; a `serve` row of another group is `link` when the registry names an http(s) URL, else `hold` — kept, and the
-window says "not published on this site yet" (`publishedAway`) before any fetch. The non-filing serve set is 537
-documents, 735 MB (case law 318 MB, statutes 214 MB, USB exhibits 156 MB, …); the owner decides whether it is hosted in
-this repository, and the flag is dropped when it is. Today: serve 448 · link 7 · hold 594; default document DDC-077.
+**Hosting (the owner's word, 2026-10-01 09:1x CDT):** the registry's `publish` word alone decides what this site hosts —
+every `serve` row is a PDF in this repository (serve 985 · link 7 · hold 57 at registry v0.25b; default document
+DDC-077). The import of 2026-10-01 morning had narrowed hosting to the Filings group (`--serve-groups Filings`, 448
+served, 594 held) and the owner read the result on the live site as a defect: the United States Code pages and the case
+law "appear linked but nothing is pulled up in the other viewer when clicked" — the window was obeying `hold`. The
+narrowing came off the same morning (+537 PDFs, 701 MB: case law, statutes, USB exhibits, secondary sources, rules; the
+largest single file 76.9 MB, Peters' Statutes at Large vol. I). `--serve-groups` remains a host narrowing a site may
+make (`link` when the registry names an http(s) URL, else `hold`, stamped in `_IMPORT.json.host_policy`), never a
+widening.
+
+**Unsafe ids.** A case-law id carries spaces, commas and parentheses; the host file is the id's URL-safe slug and the
+window requests `/api/casereview/file/<encodeURIComponent(id)>`. Each such id gets its own rule in BOTH encoded forms
+(encodeURIComponent; encodeURI where a browser would normalise to it): in `public/_redirects` (Netlify) and in
+`next.config.ts` `rewrites()` — Next tests the compiled regex against the request path AS SENT, not the decoded path
+(a rule on the raw id matched nothing, measured 2026-10-01), so the config emits the encoded forms with path-to-regexp's
+syntax characters escaped. Proof on the private port: every served id answers 200 `application/pdf` through the route,
+bytes identical to disk (985/985).
 
 **What the bundle leaves out** (the author's voice everywhere the reader reads; record and links only): seat fields,
 working notes, the checker's passage texts (the window boxes passages from the PDF's own text layer), filesystem and

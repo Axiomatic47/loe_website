@@ -188,9 +188,12 @@ project registry as before.
   file — a rule change lands in the Studio (studio-spec + frontend review) and arrives by `npm run casereview:sync`
   (which runs the Studio harness against the copy); the skin is `app/casereview/casereview.css` (the Studio's class
   names on this site's tokens — mirror the Studio's sheet changes there). The data is a bundle of the served API
-  (`npm run casereview:import`, the Studio on 8765; `public/casereview/data/`), never hand-edited; the site HOSTS the
-  Filings group only (`--serve-groups Filings`, a narrowing the host may make, never a widening) until the owner's
-  hosting word on the 735 MB non-filing serve set — the window says "not published on this site yet" for the rest.
+  (`npm run casereview:import`, the Studio on 8765; `public/casereview/data/`), never hand-edited; the registry's
+  `publish` word alone decides what this site hosts (owner's word 2026-10-01 09:1x CDT, lifting the filings-only
+  narrowing: every `serve` row — case law, statutes, rules, exhibits — is a PDF in this repository; `--serve-groups`
+  stays available as a host narrowing, never a widening). A case-law id carries spaces and commas: its file route has
+  per-id rules in BOTH encoded forms (`public/_redirects` for Netlify; `next.config.ts` rewrites, which Next matches
+  against the request path as sent, not decoded).
   Deep link = the Studio's `?casereview=…` query form, written by the window itself. The per-document pages stay and
   link into the mode; Ellison and Acosta keep their landings until a lane exists. Recipe + verification:
   `docs/CASE_REVIEW_SITE.md`. Private port 3998 only; 3301 is the Studio's SITES preview of this build — never touch it.
