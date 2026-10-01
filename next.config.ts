@@ -47,6 +47,20 @@ const nextConfig: NextConfig = {
   outputFileTracingExcludes: {
     '*': ['./public/**', 'public/**'],
   },
+  // the Case Review window (public/casereview/vendor, the Studio's) reads the Studio's three API routes; the site serves
+  // them static — public/_redirects carries the same rules for Netlify, these make `next start` answer them too. The
+  // file route needs one rule per served document because the host file is the docket slug (74.pdf), not <id>.pdf.
+  async rewrites() {
+    const rules = [
+      { source: '/api/casereview/docs', destination: '/casereview/data/docs.json' },
+      { source: '/api/casereview/links/:id', destination: '/casereview/data/links/:id.json' },
+    ];
+    try {
+      const files = JSON.parse(readFileSync(join(process.cwd(), 'public', 'casereview', 'data', 'files.json'), 'utf8')) as Record<string, { path: string | null }>;
+      for (const [id, f] of Object.entries(files)) if (f.path && /^[A-Za-z0-9._-]+$/.test(id)) rules.push({ source: `/api/casereview/file/${id}`, destination: f.path });
+    } catch { /* no bundle yet: the two JSON routes alone */ }
+    return rules;
+  },
   async redirects() {
     return [
       // Statics (mirror public/_redirects' hand rules + vite client redirects)

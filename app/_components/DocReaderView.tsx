@@ -16,6 +16,7 @@ import { CaseSidebar, type SidebarSection } from './CaseSidebar';
 import { SectionContent, type ContentLevel } from './SectionContent';
 import { PDFViewer, CollapsibleSummary, MediaGallery } from './client-islands';
 import { displayTitle } from './presentation';
+import { reviewHref } from '../casereview/review-link';
 
 // Collection config — server copy of the vite reader's getCollectionConfig
 // (icons live in the sidebar island, keyed by collection). `unit` names one
@@ -190,6 +191,8 @@ export function DocReaderView({
     Boolean(section.pdf_file);
   const isAcosta = collection === 'constitutional' && composition.title.toLowerCase().includes('acosta');
 
+  // the DDC case is reviewed in the Case Review window (owner 2026-10-01): a filing's reader page points into it
+  const reviewLink = collection === 'constitutional' ? reviewHref(compositionSlug, section.slug) : null;
   const mediaItems = convertImagesToMediaItems(section.images || [], section, collection);
   const hasImages = mediaItems.length > 0;
 
@@ -241,6 +244,9 @@ export function DocReaderView({
                   style={{ fontVariantNumeric: 'tabular-nums' }}
                 >
                   {config.unit} {index + 1} of {totalSections}
+                  {reviewLink && (
+                    <> · <Link href={reviewLink} className="text-primary underline underline-offset-2 hover:text-foreground" title="Open this filing in the case's review mode: every citation linked to its source, in two panes">review with its citations →</Link></>
+                  )}
                 </span>
               </div>
 
