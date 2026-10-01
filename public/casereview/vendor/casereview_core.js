@@ -1735,12 +1735,30 @@ export function publishedAway(doc, side = 'right') {
  *  span), words (passageWordsPresent on the span). Lifted from the Studio
  *  shell for the websites' shell (f28bb754, 2026-10-01); the words are the
  *  Studio's, unchanged. */
+/** Does the folded printed text already carry the folded pin — at its end, or anywhere at token bounds when the pin is more
+ *  than a bare number (a bare '3' inside 'ECF 51-54 at 3' is the end case; inside '13 Cl. Ct. 486' it is not the pin)? */
+export function textCarries(text, label) {
+  if (!label) return true;
+  if (text.endsWith(label)) return true;
+  if (/^\d+$/.test(label)) return false;
+  let i = text.indexOf(label);
+  while (i >= 0) { if (atTokenBoundary(text, i, label.length)) return true; i = text.indexOf(label, i + 1); }
+  return false;
+}
+
 export function saysFor(u, k, t, doc, resolved = null) {
   const parts = [];
   const say = (text) => { if (text) parts.push({ text }); };
   const warn = (text) => parts.push({ text, warn: true });
   // N2 (b0d76502): the printed text often ends with the pin ("ECF 51-54 at 3") — say it once
-  const pin = t.target_label && !foldText(u.text).endsWith(foldText(t.target_label)) ? ` ${t.target_label}` : '';
+  // … and not one the printed text already CARRIES anywhere at token bounds ('Adler v. Loyd, 496 F. Supp. 3d 269 (D.D.C. 2020)'
+  // pinned '496 F. Supp. 3d 269' printed the reporter twice — f28bb754's proof on the site, 2026-10-01); a bare page pin ('3') is said
+  // a unit with SEVERAL targets keeps the pin — it is the chooser, naming which of the list opened ('Fed. R. Civ. P. 19(a),
+  // 19(c), 20(a)(2), 21' → target 1 of 4 is '19(a)'; 'TAC ¶¶ 321, 325-326' at k = 2 → '¶ 325-326') — UNLESS the text ends
+  // with it, the N2 case as it always was (the '· target k of N' suffix names the choice; 'ECF 51-54 at 3 at 3' is the repeat
+  // the owner's word forbids): N2a, spec 62cab44 on b0d76502's 25-table census (552 + 294 dropped, the choosers kept)
+  const fl = foldText(t.target_label || '');
+  const pin = t.target_label && !(u.targets.length > 1 ? foldText(u.text).endsWith(fl) : textCarries(foldText(u.text), fl)) ? ` ${t.target_label}` : '';
   const unfound = () => { if (u.missing) warn(` (box not located on the left: ${u.missing})`); };
   const head = `${u.text}${pin}`;
   if (t.status === 'unresolved') { say(`${head} — UNRESOLVED: ${t.note || 'no file on any shelf'}. Nothing opened; the reference pane is as it was.`); unfound(); return { kind: 'dead', opens: false, locate: false, parts }; }
