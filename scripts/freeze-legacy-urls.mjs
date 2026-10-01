@@ -14,7 +14,7 @@
 //
 // Cross-checks every positional URL in the CURRENT public/sitemap.xml against the
 // mapping and aborts if any is unmapped (must be 100% coverage).
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { ROOT, READING_COLLECTIONS, loadCollection, legacySort } from './lib/content-model.mjs';
 
@@ -84,7 +84,17 @@ const lines = [
 ];
 for (const [from, to] of STATIC_REDIRECTS) lines.push(`${from} ${to} 301!`);
 for (const { from, to } of routes) lines.push(`${from} ${to} 301!`);
-writeFileSync(join(ROOT, 'public', '_redirects'), `${lines.join('\n')}\n`);
+// the Case Review API rewrites (scripts/import-casereview.mjs) live in a marked block of the same file: keep it
+{
+  const file = join(ROOT, 'public', '_redirects');
+  let keep = '';
+  if (existsSync(file)) {
+    const prior = readFileSync(file, 'utf8');
+    const i0 = prior.indexOf('# casereview BEGIN'), i1 = prior.indexOf('# casereview END');
+    if (i0 >= 0 && i1 > i0) keep = `\n${prior.slice(i0, i1 + '# casereview END'.length)}\n`;
+  }
+  writeFileSync(file, `${lines.join('\n')}\n${keep}`);
+}
 
 const ruleCount = STATIC_REDIRECTS.length + routes.length;
 console.log(
