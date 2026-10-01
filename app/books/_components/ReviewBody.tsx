@@ -589,9 +589,11 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
           <div className="ml-auto text-right">
             <p>
               {pdf ? <>PDF rendered {pdf.rendered} ({pdf.pages} pp.; sha256 <span className="font-mono">{pdf.sha256.slice(0, 12)}…</span>) · </> : null}
-              text current to {manifest.generated.slice(0, 10)} (sha256 <span className="font-mono">{manifest.book.sha256.slice(0, 12)}…</span>{manifest.book.commit ? <>, blob {manifest.book.commit.slice(0, 8)}</> : null})
+              text current to {versions[0]?.date ?? manifest.generated.slice(0, 10)} (sha256 <span className="font-mono">{manifest.book.sha256.slice(0, 12)}…</span>{manifest.book.commit ? <>, blob {manifest.book.commit.slice(0, 8)}</> : null})
             </p>
             {/* the version drop-down opens UPWARD over the page — a popover, never a change to the panes' budget */}
+            {/* the date is the version entry's own (the author's, on the Mac clock; the same on both sites) — the
+                import's UTC stamp belongs to the build log, not the reader's line (drafter 089cbe59, 2026-09-30) */}
             {versions.length > 0 && <VersionMenu versions={versions} align="right" up className="mt-1" />}
           </div>
         </div>
