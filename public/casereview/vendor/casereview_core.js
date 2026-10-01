@@ -1768,7 +1768,10 @@ export function saysFor(u, k, t, doc, resolved = null) {
   if (viaMap) { kind = 'ok'; say(`${head} — ${how}, PDF page ${pdfPage}${suffix}`); unfound(); }
   else if (stamped == null && (t.kind === 'statute' || t.kind === 'rule') && isSectionMap(doc.pagemap)) { kind = 'bad'; say(`${head} — the pin${pin ? '' : ' (none given)'} locates nothing in ${(doc.pagemap && doc.pagemap.file) || 'the title'}'s section map (the checker warns on this row); opened at page 1 and saying so.`); }
   else if (stamped == null && (t.kind === 'statute' || t.kind === 'rule')) { kind = 'docket'; say(`${head} — opened at page 1; the pin${pin ? '' : ' (none given)'} is the locator against the pamphlet (no page in the row).`); }
-  else if (stamped == null) { kind = 'docket'; say(`${head} — cited without a page: opened at page 1 (a bare docket reference).`); unfound(); }
+  // a target cited without a page: the words by what it is (f28bb754's read of Adler v. Loyd on the site, 2026-10-01 — a case cited whole is not a docket reference)
+  else if (stamped == null && (t.kind === 'case' || own)) { kind = 'docket'; say(`${head} — cited whole, no page: opened at its first page.`); unfound(); }
+  else if (stamped == null && (t.kind === 'ecf' || t.kind === 'docket' || t.kind === 'exhibit-usb')) { kind = 'docket'; say(`${head} — cited without a page: opened at page 1 (a bare docket reference).`); unfound(); }
+  else if (stamped == null) { kind = 'docket'; say(`${head} — cited without a page: opened at page 1.`); unfound(); }
   else if (!pdfPage) { kind = 'bad'; say(`${head} — the registry maps no PDF page for ${own ? 'printed' : 'stamped'} page ${stamped} (${doc.pagemap && !isSectionMap(doc.pagemap) ? 'not in its pagemap and no offset' : doc.offset == null ? 'no offset yet' : 'unstamped'}); opened at page 1 and saying so.`); }
   else { kind = 'ok'; say(`${head} — ${own ? 'printed' : 'stamped'} page ${stamped}${endStamped ? `–${endStamped}` : ''}, PDF page ${pdfPage}${pdfEnd && pdfEnd !== pdfPage ? `–${pdfEnd}` : ''}${doc.offset ? ` (offset ${doc.offset})` : ''}${suffix}`); unfound(); }
   const q = t.target_quote;
