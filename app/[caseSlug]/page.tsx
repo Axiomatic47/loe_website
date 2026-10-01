@@ -1,7 +1,12 @@
 // app/[caseSlug]/page.tsx — bare case URLs.
 //
-// /kirchner-v-johnson|-ellison|-acosta → landing dossier (server port of the
-// vite CaseLandingPage; editorial content shared via src/data/caseLanding.ts).
+// /kirchner-v-johnson → the CASE IN REVIEW MODE (owner 2026-10-01): the Studio's Case Review window, vendored byte for
+//   byte (public/casereview/vendor), under the site's header and a one-row head — the filings listed as the Studio
+//   lists them, the document under review on the left, the cited source at its page on the right. The landing
+//   dossier (summary, status, timeline, key documents) is gone from this case. Deep link = the Studio's exact form,
+//   ?casereview=doc=<id>&cite=…&page=…&right=…; a URL without one opens the newest filing with a link table.
+// /kirchner-v-ellison|-acosta → landing dossier (server port of the vite CaseLandingPage; editorial content shared
+//   via src/data/caseLanding.ts) — until a review lane exists for them.
 // /scotus-amicus → renders part 1 directly (published URL — no redirect),
 // exactly like the vite ScotusAmicusIndex.
 import type { Metadata } from 'next';
@@ -15,6 +20,9 @@ import { getCaseComposition, getLatestSection } from '@/lib/content-manifest';
 import { CASE_SLUGS, sectionUrl, absoluteUrl, isCaseSlug } from '@/utils/urls';
 import { SitePageLayout } from '../_components/SitePageLayout';
 import { DocReaderView } from '../_components/DocReaderView';
+import { CaseReviewMount } from '../casereview/CaseReviewMount';
+import { readImportStamp } from '../casereview/review-link';
+import '../casereview/casereview.css';
 
 export const dynamicParams = false;
 
@@ -81,6 +89,25 @@ export default async function CasePage({ params }: Params) {
   const caseKey = caseSlug.replace('kirchner-v-', '');
   const c = CASES[caseKey];
   if (!c) notFound();
+
+  // the DDC case is the review mode (owner 2026-10-01); the window is the Studio's, this is its host
+  if (caseSlug === 'kirchner-v-johnson') {
+    const stamp = readImportStamp();
+    return (
+      <SitePageLayout>
+        <main className="cr-host">
+          <header className="cr-head">
+            <Link href="/composition/constitutional" className="cr-back" aria-label="All cases">All cases</Link>
+            <span className="cr-caption">Kirchner <span className="v">v.</span> Johnson</span>
+            <span className="cr-no">{c.caseNo} · D.D.C.</span>
+            <span className="cr-mode">Case review</span>
+            {stamp.registry_version && <span className="cr-stamp">registry {stamp.registry_version}</span>}
+          </header>
+          <CaseReviewMount defaultDoc={stamp.default_doc ?? null} />
+        </main>
+      </SitePageLayout>
+    );
+  }
 
   const composition = getCaseComposition(caseSlug);
   const docCount = composition?.sections?.length || null;
