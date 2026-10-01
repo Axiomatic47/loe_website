@@ -1781,16 +1781,19 @@ export function saysFor(u, k, t, doc, resolved = null) {
     : pp.by === 'range head' ? `the range's head § ${pp.key} in ${pp.file || 'the title'} by its section map`
     : pp.by === 'chapter' ? `chapter ${pp.key} of ${pp.file || 'the title'} (the section is not in its map; the pin is the locator from there)`
     : `the target's own chapter ${pp.key} of ${pp.file || 'the title'} (no section or chapter in the pin resolved; the pin is the locator from there)`;
-  const suffix = (t.target_quote ? ' · quote boxed' : '') + (u.targets.length > 1 ? ` · target ${k} of ${u.targets.length}` : '') + (t.status === 'mapped' ? ' · mapped, not yet read at the target' : '');
+  // THE CHOOSER BY ORDINAL on EVERY opening line (b0d76502's measure over 2,227 multi-target opening lines, 2026-10-01: two
+  // unpinned Elrod targets printed the same sentence for k = 1 and k = 2 — six of the eight branches returned without it);
+  // 'quote boxed' only where a page was opened to box it on
+  const suffix = (t.target_quote && pdfPage ? ' · quote boxed' : '') + (u.targets.length > 1 ? ` · target ${k} of ${u.targets.length}` : '') + (t.status === 'mapped' ? ' · mapped, not yet read at the target' : '');
   let kind;
   if (viaMap) { kind = 'ok'; say(`${head} — ${how}, PDF page ${pdfPage}${suffix}`); unfound(); }
-  else if (stamped == null && (t.kind === 'statute' || t.kind === 'rule') && isSectionMap(doc.pagemap)) { kind = 'bad'; say(`${head} — the pin${pin ? '' : ' (none given)'} locates nothing in ${(doc.pagemap && doc.pagemap.file) || 'the title'}'s section map (the checker warns on this row); opened at page 1 and saying so.`); }
-  else if (stamped == null && (t.kind === 'statute' || t.kind === 'rule')) { kind = 'docket'; say(`${head} — opened at page 1; the pin${pin ? '' : ' (none given)'} is the locator against the pamphlet (no page in the row).`); }
+  else if (stamped == null && (t.kind === 'statute' || t.kind === 'rule') && isSectionMap(doc.pagemap)) { kind = 'bad'; say(`${head} — the pin${pin ? '' : ' (none given)'} locates nothing in ${(doc.pagemap && doc.pagemap.file) || 'the title'}'s section map (the checker warns on this row); opened at page 1 and saying so.${suffix}`); }
+  else if (stamped == null && (t.kind === 'statute' || t.kind === 'rule')) { kind = 'docket'; say(`${head} — opened at page 1; the pin${pin ? '' : ' (none given)'} is the locator against the pamphlet (no page in the row).${suffix}`); }
   // a target cited without a page: the words by what it is (f28bb754's read of Adler v. Loyd on the site, 2026-10-01 — a case cited whole is not a docket reference)
-  else if (stamped == null && (t.kind === 'case' || own)) { kind = 'docket'; say(`${head} — cited whole, no page: opened at its first page.`); unfound(); }
-  else if (stamped == null && (t.kind === 'ecf' || t.kind === 'docket' || t.kind === 'exhibit-usb')) { kind = 'docket'; say(`${head} — cited without a page: opened at page 1 (a bare docket reference).`); unfound(); }
-  else if (stamped == null) { kind = 'docket'; say(`${head} — cited without a page: opened at page 1.`); unfound(); }
-  else if (!pdfPage) { kind = 'bad'; say(`${head} — the registry maps no PDF page for ${own ? 'printed' : 'stamped'} page ${stamped} (${doc.pagemap && !isSectionMap(doc.pagemap) ? 'not in its pagemap and no offset' : doc.offset == null ? 'no offset yet' : 'unstamped'}); opened at page 1 and saying so.`); }
+  else if (stamped == null && (t.kind === 'case' || own)) { kind = 'docket'; say(`${head} — cited whole, no page: opened at its first page.${suffix}`); unfound(); }
+  else if (stamped == null && (t.kind === 'ecf' || t.kind === 'docket' || t.kind === 'exhibit-usb')) { kind = 'docket'; say(`${head} — cited without a page: opened at page 1 (a bare docket reference).${suffix}`); unfound(); }
+  else if (stamped == null) { kind = 'docket'; say(`${head} — cited without a page: opened at page 1.${suffix}`); unfound(); }
+  else if (!pdfPage) { kind = 'bad'; say(`${head} — the registry maps no PDF page for ${own ? 'printed' : 'stamped'} page ${stamped} (${doc.pagemap && !isSectionMap(doc.pagemap) ? 'not in its pagemap and no offset' : doc.offset == null ? 'no offset yet' : 'unstamped'}); opened at page 1 and saying so.${suffix}`); }
   else { kind = 'ok'; say(`${head} — ${own ? 'printed' : 'stamped'} page ${stamped}${endStamped ? `–${endStamped}` : ''}, PDF page ${pdfPage}${pdfEnd && pdfEnd !== pdfPage ? `–${pdfEnd}` : ''}${doc.offset ? ` (offset ${doc.offset})` : ''}${suffix}`); unfound(); }
   const q = t.target_quote;
   const quoted = q ? `; the quoted matter: “${q}”` : '';
