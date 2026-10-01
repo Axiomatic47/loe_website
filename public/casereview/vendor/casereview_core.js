@@ -1685,6 +1685,26 @@ export function targetPages(t, doc) {
   return { pdfPage, pdfEnd, viaMap, marked };
 }
 
+/** WHERE A ROW OPENS (P87, the owner's three words of 2026-10-01 — spec
+ *  7d866ecf 22721a7/ebacd4e, ruling fbf555d9: logic, so core's; both panes
+ *  and both shells print this). A TOC entry — every target kind `internal`
+ *  AND target_doc == the row's own document (the whole same-document class,
+ *  1,074 rows lane-wide; no `toc` kind) — navigates the pane it was clicked
+ *  in. A citation or reference in the LEFT opens in the RIGHT; THE EXCEPTION,
+ *  a citation in the RIGHT opens in the RIGHT, so the left pane never moves
+ *  and the way back is the left's unmoved citation. `unit` = unitsOf's unit
+ *  (its targets are the rows, src_doc on each); `pane` = 'left' | 'right'
+ *  where the click was. → { where: 'same' | 'right', pane: the pane that
+ *  changes, toc }. */
+export function isTocUnit(unit) {
+  const ts = unit && unit.targets || [];
+  return ts.length > 0 && ts.every((t) => t.kind === 'internal' && t.target_doc && t.target_doc === (t.src_doc || unit.srcDoc));
+}
+export function opensWhere(unit, pane = 'left') {
+  const toc = isTocUnit(unit);
+  return toc ? { where: 'same', pane, toc: true } : { where: 'right', pane: 'right', toc: false };
+}
+
 /** A registry row a HOST does not serve (docs.json v0.25 `publish`, README
  *  2026-10-01 — admin 69183d38 on studio-spec fbf555d9's R3; the site export
  *  applies it: link = path null + the official URL, hold = path null, the
