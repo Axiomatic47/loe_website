@@ -248,11 +248,6 @@ export function mountCaseReview() {
             <span class="cr-stepn" id="crStepN" title="the citation under the stepper, of every citation the link map rows">—</span>
             <button class="cr-btn" data-act="next" title="next citation (⌥→)">›</button>
           </span>
-          <span class="cr-pager" role="group" aria-label="page">
-            <button class="cr-btn" data-act="pageprev" data-pane="left" title="previous page">◂</button>
-            <span class="cr-pagen">p. <input class="cr-pagein" id="crLeftPageIn" type="number" min="1" aria-label="go to a PDF page (enter)" disabled> / <span id="crLeftPages">–</span></span>
-            <button class="cr-btn" data-act="pagenext" data-pane="left" title="next page">▸</button>
-          </span>
         </footer>
       </section>
       <div class="cr-split" id="crSplit" role="separator" aria-orientation="vertical" title="drag to resize the panes"></div>
@@ -273,22 +268,16 @@ export function mountCaseReview() {
           <span class="cr-footchip cr-panetitle" id="crRightTitle">reference pane</span>
           <button class="cr-btn cr-morebtn" data-act="more" data-pane="right" title="the reference — its name, what opened, notes, the highlights, review it on the left">⋯</button>
           <span class="cr-says" id="crSays" title="Click a boxed citation on the left, or step through them with ‹ ›, to open its primary source here at the cited page.">Click a boxed citation on the left, or step through them with ‹ ›, to open its primary source here at the cited page.</span>
-          <span class="cr-pager" role="group" aria-label="page">
-            <button class="cr-btn" data-act="pageprev" data-pane="right" title="previous page">◂</button>
-            <span class="cr-pagen">p. <input class="cr-pagein" id="crRightPageIn" type="number" min="1" aria-label="go to a PDF page (enter)" disabled> / <span id="crRightPages">–</span></span>
-            <button class="cr-btn" data-act="pagenext" data-pane="right" title="next page">▸</button>
-          </span>
         </footer>
       </section>
     </div>
   </div>`;
-  st.left.pane = createPdfPane($('#crLeftWell'), { onPage: (p) => { st.left.page = p; paintLeftPage(); renderCites(); pushHash(); }, onBoxClick: (b) => openUnit(b.unit, 1) });
-  st.right.pane = createPdfPane($('#crRightWell'), { onPage: (p) => { st.right.page = p; paintRightPage(); pushHash(); } });
+  st.left.pane = createPdfPane($('#crLeftWell'), { onPage: (p) => { st.left.page = p; renderCites(); pushHash(); }, onBoxClick: (b) => openUnit(b.unit, 1) });
+  st.right.pane = createPdfPane($('#crRightWell'), { onPage: (p) => { st.right.page = p; pushHash(); } });
   bindSplitters(root);
   bindNavTree();
   bindSearch('left'); bindSearch('right');
-  bindPagers(); bindNotes('left'); bindNotes('right');
-  paintLeftPage(); paintRightPage();
+  bindNotes('left'); bindNotes('right');
   window.addEventListener('pagehide', () => { notesFlush('left'); notesFlush('right'); });
   root.addEventListener('click', onClick);
   root.addEventListener('keydown', onKey);
@@ -563,7 +552,7 @@ async function openLeft(id, opts = {}) {
   setStatus(links.absent ? `${doc.label || id}: no link map yet` : '');
   await boxAllUnits(id);
   if (opts.page) st.left.pane.focus(opts.page, 0);
-  paintLeftPage(); renderCites();
+  renderCites();
   if (opts.cite) {
     const hit = unitForCite(st.left.units, opts.cite);
     if (hit) {
@@ -645,7 +634,6 @@ async function openRight(id, opts = {}) {
   const pages = opts.marked || [];
   st.right.pane.setMarked(pages);
   if (opts.page) st.right.pane.focus(opts.page, 0);
-  paintRightPage();
   return true;
 }
 
@@ -752,36 +740,9 @@ function renderProblems() {
 
 // ---------------------------------------------------------------- chrome
 function nameOf(doc) { return `${doc.label || doc.id} — ${doc.title || ''}`; }
-/** The footer's page buttons: ◂ p. [N] / M ▸ — the input jumps on enter and never fights the scroll while it has focus. */
-function paintPager(side) {
-  const p = paneOf(side), on = !!p.doc, page = (side === 'left' ? st.left.page : st.right.page) || 1;
-  const inp = $(side === 'left' ? '#crLeftPageIn' : '#crRightPageIn'), n = $(side === 'left' ? '#crLeftPages' : '#crRightPages');
-  if (!inp || !n) return;
-  if (document.activeElement !== inp) inp.value = on ? String(page) : '';
-  inp.max = on ? String(p.pageCount()) : ''; inp.disabled = !on;
-  n.textContent = on ? String(p.pageCount()) : '–';
-  for (const b of inp.closest('.cr-pager').querySelectorAll('button')) b.disabled = !on;
-}
-function paintLeftPage() { paintPager('left'); }
-function paintRightPage() { paintPager('right'); }
-function pageStep(side, dir) {
-  const p = paneOf(side); if (!p.doc) return;
-  const cur = (side === 'left' ? st.left.page : st.right.page) || 1;
-  const to = Math.min(p.pageCount(), Math.max(1, cur + dir));
-  if (to !== cur) p.focus(to, 0);
-}
-function bindPagers() {
-  for (const side of ['left', 'right']) {
-    const inp = $(side === 'left' ? '#crLeftPageIn' : '#crRightPageIn');
-    inp.addEventListener('keydown', (ev) => {
-      if (ev.key === 'Escape') { ev.preventDefault(); inp.blur(); return; }
-      if (ev.key !== 'Enter') return;
-      ev.preventDefault(); const p = paneOf(side); if (!p.doc) return;
-      p.focus(Math.min(p.pageCount(), Math.max(1, Math.round(+inp.value) || 1)), 0); inp.blur();
-    });
-    inp.addEventListener('blur', () => paintPager(side));
-  }
-}
+// THE PAGE BOX IS GONE (owner 2026-10-01 08:38 CDT, on the site's footers: "each has two page selectors — we only need
+// the ‹ › selector"): the citation stepper is the footer's one control; pages turn by scrolling and the reference pane's
+// sentence names the page it opened. The ⋯ menu still says the page under "this document".
 function says(html, cls) { const el = $('#crSays'); el.innerHTML = html; el.className = 'cr-says' + (cls ? ` is-${cls}` : ''); el.title = el.textContent; }
 function toggleProblems() { st.left.showProblems = !st.left.showProblems; renderProblems(); }
 
@@ -987,8 +948,6 @@ function onClick(ev) {
     if (a === 'boxes') return toggleBoxes();
     // the footer and the corner (the owner's word 2026-09-30 ~04:5x CDT)
     if (a === 'more') return openMore(act.dataset.pane, ev, act);
-    if (a === 'pageprev') return pageStep(act.dataset.pane, -1);
-    if (a === 'pagenext') return pageStep(act.dataset.pane, 1);
     if (a === 'problems') return toggleProblems();
     if (a === 'notesdispatch') return notesDispatch(act.dataset.pane);
     if (a === 'notesclose') return notesSetOpen(act.dataset.pane, false);

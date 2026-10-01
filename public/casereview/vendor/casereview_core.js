@@ -1735,7 +1735,8 @@ export function saysFor(u, k, t, doc, resolved = null) {
   const { pdfPage, pdfEnd, viaMap } = r;
   const stamped = rowPage(t.target_page), endStamped = rowPage(t.target_page_end);   // the row as served: '' is blank
   const own = doc.kind === 'caselaw' || doc.kind === 'statute';   // the target's OWN numbering (README amendment b)
-  const label = doc.label || doc.id;
+  // THE LABEL IS NOT SAID (owner 2026-10-01 08:38 CDT: 'we dont need to display the filenames twice'): the pane's title chip
+  // names the document that opened; the sentence says the page and how. publishedAway keeps its label — nothing opened there.
   const pp = t.target_pin_page;
   const how = !pp ? 'the pin resolved through the title\'s section map'
     : pp.by === 'section' ? `§ ${pp.key} in ${pp.file || 'the title'} by its section map`
@@ -1744,12 +1745,12 @@ export function saysFor(u, k, t, doc, resolved = null) {
     : `the target's own chapter ${pp.key} of ${pp.file || 'the title'} (no section or chapter in the pin resolved; the pin is the locator from there)`;
   const suffix = (t.target_quote ? ' · quote boxed' : '') + (u.targets.length > 1 ? ` · target ${k} of ${u.targets.length}` : '') + (t.status === 'mapped' ? ' · mapped, not yet read at the target' : '');
   let kind;
-  if (viaMap) { kind = 'ok'; say(`${head} — ${label}: ${how}, PDF page ${pdfPage}${suffix}`); unfound(); }
-  else if (stamped == null && (t.kind === 'statute' || t.kind === 'rule') && isSectionMap(doc.pagemap)) { kind = 'bad'; say(`${head} — ${label}: the pin${pin ? '' : ' (none given)'} locates nothing in ${(doc.pagemap && doc.pagemap.file) || 'the title'}'s section map (the checker warns on this row); opened at page 1 and saying so.`); }
-  else if (stamped == null && (t.kind === 'statute' || t.kind === 'rule')) { kind = 'docket'; say(`${head} — ${label} opened at page 1; the pin${pin ? '' : ' (none given)'} is the locator against the pamphlet (no page in the row).`); }
-  else if (stamped == null) { kind = 'docket'; say(`${head} — cited without a page: ${label} opened at page 1 (a bare docket reference).`); unfound(); }
-  else if (!pdfPage) { kind = 'bad'; say(`${head} — ${label}: the registry maps no PDF page for ${own ? 'printed' : 'stamped'} page ${stamped} (${doc.pagemap && !isSectionMap(doc.pagemap) ? 'not in its pagemap and no offset' : doc.offset == null ? 'no offset yet' : 'unstamped'}); opened at page 1 and saying so.`); }
-  else { kind = 'ok'; say(`${head} — ${label} ${own ? 'printed' : 'stamped'} page ${stamped}${endStamped ? `–${endStamped}` : ''}, PDF page ${pdfPage}${pdfEnd && pdfEnd !== pdfPage ? `–${pdfEnd}` : ''}${doc.offset ? ` (offset ${doc.offset})` : ''}${suffix}`); unfound(); }
+  if (viaMap) { kind = 'ok'; say(`${head} — ${how}, PDF page ${pdfPage}${suffix}`); unfound(); }
+  else if (stamped == null && (t.kind === 'statute' || t.kind === 'rule') && isSectionMap(doc.pagemap)) { kind = 'bad'; say(`${head} — the pin${pin ? '' : ' (none given)'} locates nothing in ${(doc.pagemap && doc.pagemap.file) || 'the title'}'s section map (the checker warns on this row); opened at page 1 and saying so.`); }
+  else if (stamped == null && (t.kind === 'statute' || t.kind === 'rule')) { kind = 'docket'; say(`${head} — opened at page 1; the pin${pin ? '' : ' (none given)'} is the locator against the pamphlet (no page in the row).`); }
+  else if (stamped == null) { kind = 'docket'; say(`${head} — cited without a page: opened at page 1 (a bare docket reference).`); unfound(); }
+  else if (!pdfPage) { kind = 'bad'; say(`${head} — the registry maps no PDF page for ${own ? 'printed' : 'stamped'} page ${stamped} (${doc.pagemap && !isSectionMap(doc.pagemap) ? 'not in its pagemap and no offset' : doc.offset == null ? 'no offset yet' : 'unstamped'}); opened at page 1 and saying so.`); }
+  else { kind = 'ok'; say(`${head} — ${own ? 'printed' : 'stamped'} page ${stamped}${endStamped ? `–${endStamped}` : ''}, PDF page ${pdfPage}${pdfEnd && pdfEnd !== pdfPage ? `–${pdfEnd}` : ''}${doc.offset ? ` (offset ${doc.offset})` : ''}${suffix}`); unfound(); }
   const q = t.target_quote;
   const quoted = q ? `; the quoted matter: “${q}”` : '';
   // P57 (README 8d361802): a registry row for an image-only scan carries text_layer: false — nothing to box, said with the quote

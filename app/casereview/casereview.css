@@ -182,17 +182,11 @@
 /* --- the pane FOOTER: 32 px, one non-wrapping row; the elastic chips ellipsize --- */
 .cr-foot { flex: none; display: flex; align-items: center; gap: 6px; height: 32px; padding: 0 6px 0 9px; background: var(--panel); border-top: 1px solid var(--line); font: 12px var(--sans); color: var(--dim); user-select: none; overflow: hidden; min-width: 0; }
 .cr-footchip { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; font: 11.5px var(--mono); color: var(--dim); }
-.cr-foot .cr-panetitle { flex: 0 1 auto; max-width: 45%; color: var(--ink); }
+.cr-foot .cr-panetitle { flex: 0 1 auto; max-width: 60%; color: var(--ink); }
 .cr-foot .cr-status { flex: 1 1 auto; }
 .cr-foot .cr-status:empty, .cr-foot .cr-probn[hidden] { display: none; }
 .cr-probn { flex: none; border: 1px solid var(--yellow); color: var(--yellow); background: transparent; border-radius: 9px; padding: 1px 7px; font: 11px/1.3 var(--mono); cursor: pointer; white-space: nowrap; }
 .cr-probn.is-on { background: color-mix(in srgb, var(--yellow) 18%, transparent); }
-.cr-pager { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; flex: none; }
-.cr-pagen { color: var(--dim); font: 11.5px/1 var(--mono); display: inline-flex; align-items: center; gap: 3px; }
-.cr-pagein { width: 4.2em; border: 1px solid var(--line-strong); background: var(--bg); color: var(--ink); font: 11.5px/1.2 var(--mono); border-radius: 4px; padding: 2px 4px; text-align: right; -moz-appearance: textfield; appearance: textfield; }
-.cr-pagein::-webkit-outer-spin-button, .cr-pagein::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-.cr-pagein:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
-.cr-pagein[disabled] { opacity: .4; }
 .cr-foot .cr-btn { width: 26px; height: 24px; padding: 0; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; }
 .cr-foot .cr-btn[disabled] { opacity: .3; cursor: default; }
 .cr-foot .cr-stepper { flex: none; }

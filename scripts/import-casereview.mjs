@@ -13,6 +13,7 @@
 //   node scripts/import-casereview.mjs --check                # the bundle on disk is whole (runs in every build)
 //   node scripts/import-casereview.mjs --out <dir>            # write the bundle under <dir> instead of public/ (a dry run)
 //   --uploads-dir <dir under public/> --names id|docket --name-map <json>   # a host's own PDF layout (lawsofexistence.com)
+//   --serve-groups Filings[,…]                                 # a HOST policy: registry serve rows of other groups are not hosted here (link if a url, else hold), stamped
 //   node scripts/import-casereview.mjs --dev-serve-filings    # DEVELOPMENT ONLY — see PUBLICATION below
 //
 // PUBLICATION (studio-spec fbf555d9's R3, 2026-10-01; the owner's content gates of 2026-09-30): a per-row `publish`
@@ -173,6 +174,12 @@ function check() {
   bad += missing + wrong;
   for (const id of Object.keys(docs.links || {})) if (!fs.existsSync(path.join(LINKS, `${id}.json`))) { console.error(`  missing  links/${id}.json`); bad++; }
   for (const f of ['_redirects', 'serve.json']) if (!fs.existsSync(path.join(PUBLIC, f))) { console.error(`  missing  public/${f} (the API rewrites)`); bad++; }
+  // the stamp names the vendored Studio commit it was imported under; a sync after the import leaves it stale — a warning, the bundle itself is unaffected
+  try {
+    const rec = JSON.parse(fs.readFileSync(path.join(PUBLIC, 'casereview', 'vendor', 'VENDOR.json'), 'utf8'));
+    if (imp.vendored_studio_commit && rec.source && rec.source.commit && imp.vendored_studio_commit !== rec.source.commit) console.warn(`  WARNING  the stamp was imported under Studio ${String(imp.vendored_studio_commit).slice(0, 8)}, the vendor record is at ${String(rec.source.commit).slice(0, 8)} — re-run the importer after a sync to re-stamp (the bundle's bytes do not depend on it)`);
+  } catch { /* no record: the vendor check says so */ }
+  if (imp.host_policy) console.log(`  host policy: only ${(imp.host_policy.serve_groups || []).join(', ')} hosted here — ${imp.host_policy.not_hosted_here} registry serve row(s) said, not fetched`);
   if (bad) fail(`${bad} problem(s) in the bundle`);
   console.log(`bundle ok: ${docs.docs.length} documents (${served} served, ${docs.docs.filter(d => d.publish === 'link').length} linked, ${docs.docs.filter(d => d.publish === 'hold').length} held), ${Object.keys(docs.links || {}).length} link tables; imported ${imp.imported} from ${imp.source}`);
 }
