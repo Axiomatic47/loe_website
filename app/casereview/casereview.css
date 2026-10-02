@@ -155,8 +155,8 @@
 .cr-tabs { display: flex; align-items: stretch; gap: 2px; height: 32px; padding: 3px 6px 0; background: var(--panel); border-bottom: 1px solid var(--line); min-width: 0; overflow: hidden; user-select: none; }
 .cr-tabs[hidden] { display: none; }
 .cr-tab { flex: 1 1 0; min-width: 0; max-width: 240px; display: inline-flex; align-items: center; gap: 5px; padding: 0 9px; border: 1px solid var(--line); border-bottom: none; border-radius: 6px 6px 0 0; background: var(--panel-2); color: var(--dim); font: 11.5px var(--mono); cursor: pointer; text-align: left; }
-.cr-tab .cr-tabtext { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 1 1 auto; }
-.cr-tab .cr-tabpage { white-space: nowrap; flex: none; color: var(--dim); }   /* P88a: the page never gives way to the ellipsis */
+.cr-tab .cr-tabtext { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 6ch; flex: 1 1 auto; }   /* P88b: a FLOOR on the title ('ECF 74', '496 F.') */
+.cr-tab .cr-tabpage { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 0 1 auto; color: var(--dim); }   /* the page yields only below the title's floor */
 .cr-tab.is-active .cr-tabpage { color: var(--ink); }
 .cr-tab .cr-tablock { font-style: normal; font-size: 11px; flex: none; opacity: .85; }
 .cr-tab.is-exploring { border-style: dashed; font-style: italic; }
