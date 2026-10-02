@@ -37,7 +37,7 @@
 // <base>/<id>_LINKS.tsv and <base>/<id>.pdf (tests/fixtures/casereview).
 import { $, esc } from './base.js';
 import { createPdfPane, orderByPosition } from './casereview_pdf.js';
-import { buildHash, filterNav, foldText, gapPage, hideRows, navRows, navView, opensWhere, parseHash, parseLinksTsv, pdfPageFor, publishedAway, saysFor, targetPages, unitForCite, unitStatus, unitsOf, urlForState } from './casereview_core.js';
+import { buildHash, filterNav, foldText, gapPage, hideRows, navRows, navView, opensWhere, parseHash, parseLinksTsv, pdfPageFor, publishedAway, saysFor, tabsActivate, tabsClose, tabsEmpty, tabsExploring, tabsFind, tabsLock, tabsOpen, tabsRestore, tabsSerialize, tabsSetPage, tabsShown, tabsUnlock, tabsView, targetPages, unitForCite, unitStatus, unitsOf, urlForState } from './casereview_core.js';
 import { showCtx } from '../filing/ctxmenu.js';
 import { openReview } from './reviews.js';
 
@@ -53,9 +53,11 @@ const SPLIT_MIN = 28, SPLIT_MAX = 72;
 const st = {
   mounted: false, source: null, docs: [], byId: new Map(),
   left: { id: null, pane: null, links: null, units: null, doc: null, page: 1, problems: [], coverage: [], coverageAnswered: [], here: [], showProblems: false },
-  // P87 (owner 2026-10-01): the right pane draws its OWN citation boxes when its document has a table (links/units/boxesByPage),
-  // merged per page with the passage highlight the left's citation pinned (passage: page → box)
-  right: { id: null, pane: null, doc: null, page: 1, marked: [], reviewable: false, links: null, units: null, boxesByPage: new Map(), passage: new Map(), stale: false },
+  // P88 THE TAB BAR (owner 2026-10-02): the right pane is up to five TABS, each its own pane and state — st.right is the ACTIVE
+  // tab's state object (id, doc, page, pane, links, units, boxesByPage, passage, stale, reviewable, says, host, tabId); the
+  // bar's model is core's (tabs.bar), the states live in tabs.states by tab id. P87's right-pane boxes and passage are per tab.
+  right: null,
+  tabs: { bar: null, states: new Map(), stored: null, linkCache: new Map() },
   active: null,            // {unit, k}
   split: 50, navW: 260,
   // THE TREE (owner 2026-09-29 22:05 CDT): which parents are expanded, which
@@ -258,6 +260,7 @@ export function mountCaseReview() {
           <div class="cr-noteshead"><span class="cr-noteslabel">notes</span><span class="cr-notesstatus"></span><span class="cr-spacer"></span><button class="cr-btn" data-act="notesdispatch" data-pane="right" title="send this note (the selection, else the whole of it) to a seat or a team through the deck's review composer">dispatch…</button><button class="cr-btn" data-act="notesclose" data-pane="right" title="close the notes (they save as you type)">×</button></div>
           <textarea class="cr-notestext" spellcheck="true" aria-label="notes for the reference"></textarea>
         </div>
+        <div class="cr-tabs" id="crTabs" role="tablist" aria-label="the reference pane's tabs" hidden></div>
         <div class="cr-viewer">
           <div class="cr-well" id="crRightWell"></div>
           <div class="cr-corner" id="crCornerRight">
@@ -275,7 +278,8 @@ export function mountCaseReview() {
     </div>
   </div>`;
   st.left.pane = createPdfPane($('#crLeftWell'), { onPage: (p) => { st.left.page = p; renderCites(); pushHash(); }, onBoxClick: (b) => openFrom('left', b.unit, 1) });
-  st.right.pane = createPdfPane($('#crRightWell'), { onPage: (p) => { st.right.page = p; pushHash(); }, onBoxClick: (b) => openFrom('right', b.unit, 1) });
+  st.tabs.bar = tabsEmpty(); activateTab(st.tabs.bar.active, { save: false });
+  bindTabs();
   bindSplitters(root);
   bindNavTree();
   bindSearch('left'); bindSearch('right');
@@ -306,6 +310,7 @@ async function loadDocs() {
     const lk = (d && d.links) || {};
     for (const x of st.docs) { const c = lk[x.id]; if (c && (c.rows || 0) > 0) x.has_links = true; if (c) x.link_counts = c; }
     st.byId = new Map(st.docs.map(x => [x.id, x]));
+    restoreTabs();
     setStatus('');
     renderNav();
   } catch (e) {
@@ -345,13 +350,15 @@ function loadTree() {
       if (Number.isFinite(+j.hideBefore) && +j.hideBefore > 0) st.nav.hideBefore = +j.hideBefore;
       if (typeof j.hideOn === 'boolean') st.nav.hideOn = j.hideOn;
       if (typeof j.boxes === 'boolean') st.nav.boxes = j.boxes;
+      st.tabs.stored = j.tabs || null;   // the bar (P88): applied once the registry is known — restoreTabs()
     }
   } catch {}
   applyRail(); syncNavOpts(); applyBoxes();
 }
 function saveTree() {
   try { localStorage.setItem(st.nav.key, JSON.stringify({ open: [...st.nav.open], groups: [...st.nav.groups], rail: st.nav.rail,
-    hidden: [...st.nav.hidden], pins: [...st.nav.pins], hideBefore: st.nav.hideBefore, hideOn: st.nav.hideOn, boxes: st.nav.boxes })); } catch {}
+    hidden: [...st.nav.hidden], pins: [...st.nav.pins], hideBefore: st.nav.hideBefore, hideOn: st.nav.hideOn, boxes: st.nav.boxes,
+    tabs: st.tabs.bar ? tabsSerialize(st.tabs.bar) : null })); } catch {}
 }
 /** The options row above the list reflects the store (per case root). */
 function syncNavOpts() {
@@ -567,8 +574,8 @@ async function openLeft(id, opts = {}) {
 
 /** Locate and paint every unit's box on its page (one text read per page). `side` = the pane whose table it is (P87: the right
  *  pane draws its own citation boxes too; its missing units are not listed — the problems list is the left document's). */
-async function boxAllUnits(id, side = 'left') {
-  const S = side === 'left' ? st.left : st.right, pane = S.pane;
+async function boxAllUnits(id, side = 'left', S = side === 'left' ? st.left : st.right) {
+  const pane = S.pane;
   const { byPage } = S.units;
   // FINDING 6 (b0d76502's live read of the nine smaller renders, 2026-09-29;
   // admins' README clause (3), work_station 63ba0ec3): an IMAGE-ONLY filing
@@ -607,7 +614,7 @@ async function boxAllUnits(id, side = 'left') {
     // INCREMENTAL (measured on the real ECF 74, 2026-09-29: 588 units over 60
     // pages took 8.8 s to the first box when every page painted at the end):
     // a page's boxes paint as soon as its units are located
-    for (const pg of touched) paintSideBoxes(side, pg, boxesByPage.get(pg));
+    for (const pg of touched) paintSideBoxes(side, pg, boxesByPage.get(pg), S);
     touched.clear();
   }
   // N3's remainder (f28bb754): once boxes exist, the units walk in the order
@@ -616,59 +623,167 @@ async function boxAllUnits(id, side = 'left') {
   const pageOf = (u) => pdfPageFor(u.page, S.doc.offset, S.doc.pagemap);
   S.units.units = orderByPosition(S.units.units, pageOf);
   for (const [pg, arr] of S.units.byPage) S.units.byPage.set(pg, orderByPosition(arr, pageOf));
-  for (const [pg, boxes] of boxesByPage) paintSideBoxes(side, pg, boxes);
+  for (const [pg, boxes] of boxesByPage) paintSideBoxes(side, pg, boxes, S);
   if (side !== 'left') return;
   const missing = st.left.units.units.filter(u => u.missing);
   if (missing.length) { st.left.problems.push(...missing.map(u => `not located: ${u.missing}`)); renderProblems(); }
 }
 /** Paint a page's boxes on a pane: the left's are its units'; the RIGHT's are its units' MERGED with the passage highlight the
  *  left's citation pinned on that page (setBoxes replaces a page's boxes, so the pane's boxes-by-page carry both; P87). */
-function paintSideBoxes(side, page, unitBoxes) {
+function paintSideBoxes(side, page, unitBoxes, S = side === 'left' ? st.left : st.right) {
   if (side === 'left') { st.left.pane.setBoxes(page, unitBoxes); return; }
-  if (unitBoxes) st.right.boxesByPage.set(page, unitBoxes);
-  const own = st.right.boxesByPage.get(page) || [], q = st.right.passage.get(page);
-  st.right.pane.setBoxes(page, q ? [...own, q] : own);
+  if (unitBoxes) S.boxesByPage.set(page, unitBoxes);
+  const own = S.boxesByPage.get(page) || [], q = S.passage.get(page);
+  S.pane.setBoxes(page, q ? [...own, q] : own);
 }
-/** The right pane's passage highlight: cleared whole, or set on one page — the citation boxes of that page stay. */
-function setRightPassage(page, box) {
-  if (page == null) { const pages = [...st.right.passage.keys()]; st.right.passage.clear(); for (const p of pages) paintSideBoxes('right', p); return; }
-  st.right.passage.set(page, box); paintSideBoxes('right', page);
+/** A right TAB's passage highlight (its state S): cleared whole, or set on one page — the citation boxes of that page stay. */
+function setRightPassage(S, page, box) {
+  if (page == null) { const pages = [...S.passage.keys()]; S.passage.clear(); for (const p of pages) paintSideBoxes('right', p, null, S); return; }
+  S.passage.set(page, box); paintSideBoxes('right', page, null, S);
 }
 
+/** Open a document in the RIGHT pane = in the EXPLORING tab (P88, invariant 3: every link lands there; a document already
+ *  locked in a tab gets a second view here and the locked view stays at its page). The bar records the open. */
 async function openRight(id, opts = {}) {
   const doc = st.byId.get(id);
   if (!doc) { says(`${id} is not in the registry — nothing opened.`, 'bad'); return false; }
   // a row this host does not serve (publish link | hold, path null — the site bundle): core's words, no fetch (the Studio's rows carry paths)
   { const away = publishedAway(doc); if (away) { sayParts(away); return false; } }
-  const same = st.right.id === id && st.right.pane.doc;
-  st.right.id = id; st.right.doc = doc;
-  { const el = $('#crRightTitle'); el.textContent = nameOf(doc); el.title = nameOf(doc); }
-  st.right.reviewable = !!(doc.has_links || st.source.kind === 'fixture');
-  notesOnDoc('right');
+  let x = tabsExploring(st.tabs.bar);
+  if (!x) { st.tabs.bar = tabsOpen(st.tabs.bar, { doc: null }); x = tabsExploring(st.tabs.bar); }
+  activateTab(x.id, { save: false });
+  const S = st.right;
+  const ok = await openInto(S, id, opts);
+  if (!ok) return false;
+  st.tabs.bar = tabsOpen(st.tabs.bar, { doc: id, page: S.page || opts.page || 1 });
+  renderTabs(); saveTree();
+  return true;
+}
+/** Open document `id` into tab state S (the pane, the title chip when S is active, the marked pages, the focus) and load its
+ *  own citation table (P87). The same path for the exploring tab's open and a locked tab's lazy restore after a reload. */
+async function openInto(S, id, opts = {}) {
+  const doc = st.byId.get(id);
+  if (!doc) return false;
+  const same = S.id === id && S.pane.doc;
+  S.id = id; S.doc = doc;
+  if (S === st.right) { const el = $('#crRightTitle'); el.textContent = nameOf(doc); el.title = nameOf(doc); }
+  S.reviewable = !!(doc.has_links || st.source.kind === 'fixture');
+  if (S === st.right) notesOnDoc('right');
   renderNav();
   if (!same) {
-    st.right.links = null; st.right.units = null; st.right.boxesByPage = new Map(); st.right.passage = new Map(); st.right.stale = false;
-    try { const o = await st.right.pane.open(st.source.fileUrl(id)); if (!o || st.right.id !== id) return false; }
-    catch (e) { says(`${doc.label || id}: could not open — ${e.message || e}`, 'bad'); return false; }
+    S.links = null; S.units = null; S.boxesByPage = new Map(); S.passage = new Map(); S.stale = false;
+    try { const o = await S.pane.open(st.source.fileUrl(id)); if (!o || S.id !== id) return false; }
+    catch (e) { if (S === st.right) says(`${doc.label || id}: could not open — ${e.message || e}`, 'bad'); return false; }
   }
   const pages = opts.marked || [];
-  st.right.pane.setMarked(pages);
-  if (opts.page) st.right.pane.focus(opts.page, 0);
+  S.pane.setMarked(pages);
+  if (opts.page) { S.pane.focus(opts.page, 0); S.page = opts.page; }
   // P87 (the owner's word 2026-10-01): a right document WITH a table draws its own citation boxes — the same units, statuses,
   // highlights toggle and locate as the left — so its citations open in the right and the left never moves. A document
-  // without a table draws the passage highlight alone. The table loads once per document, after the pane has it.
-  if (!same && doc.has_links && !st.right.units) {
-    let answer = null;
-    try { answer = await st.source.links(id); } catch {}
-    if (st.right.id !== id) return false;
+  // without a table draws the passage highlight alone. The table loads once per document, after the pane has it, through
+  // the SAME st.source.links path (a 404 is null → nothing drawn — the sites' static route).
+  if (!same && doc.has_links && !S.units) {
+    let answer = st.tabs.linkCache.get(id);
+    if (answer === undefined) { try { answer = await st.source.links(id); } catch { answer = null; } st.tabs.linkCache.set(id, answer); }   // P88: one fetch per document across tabs
+    if (S.id !== id) return false;
     if (answer) {
       const links = normaliseLinks(answer);
-      st.right.links = links; st.right.stale = links.problems.some(p => /cut against an earlier render/.test(String(p)));
-      st.right.units = unitsOf(links.rows);
-      boxAllUnits(id, 'right');   // paints as pages locate; never awaited — the passage below lands first
+      S.links = links; S.stale = links.problems.some(p => /cut against an earlier render/.test(String(p)));
+      S.units = unitsOf(links.rows);
+      boxAllUnits(id, 'right', S);   // paints as pages locate; never awaited — the passage below lands first
     }
   }
   return true;
+}
+
+// ---------------------------------------------------------------- the tab bar (P88): the shell prints core's bar
+/** The state object of a tab, made on first need: its own host inside the right well, its own pane (the page it is left at is
+ *  the page it keeps — the pane itself remembers), its own P87 table/boxes/passage, its own chip words. */
+function tabState(id) {
+  let S = st.tabs.states.get(id);
+  if (S) return S;
+  const host = document.createElement('div'); host.className = 'cr-tabwell'; host.dataset.tab = id; host.hidden = true;
+  $('#crRightWell').appendChild(host);
+  S = { tabId: id, host, id: null, doc: null, page: 1, pane: null, links: null, units: null, boxesByPage: new Map(), passage: new Map(), stale: false, reviewable: false, says: null, opening: null };
+  S.pane = createPdfPane(host, {
+    onPage: (p) => { S.page = p; st.tabs.bar = tabsSetPage(st.tabs.bar, id, p); renderTabs(); saveTree(); pushHash(); },
+    onBoxClick: (b) => openFrom('right', b.unit, 1, { tab: S }) });
+  st.tabs.states.set(id, S);
+  return S;
+}
+function disposeTab(id) {
+  const S = st.tabs.states.get(id); if (!S) return;
+  try { S.pane.destroy(); } catch {}
+  S.host.remove(); st.tabs.states.delete(id);
+}
+/** Show tab `id`: its pane, its title, its chip words; the leaving tab keeps everything. A tab restored from the store opens
+ *  its document lazily here, at its remembered page. */
+function activateTab(id, { save = true } = {}) {
+  const tab = tabsFind(st.tabs.bar, id); if (!tab) return;
+  const cur = st.right;
+  if (cur && cur.host) { cur.host.hidden = true; const el = $('#crSays'); cur.says = { html: el.innerHTML, cls: el.className, title: el.title }; }
+  const S = tabState(id); st.right = S; S.host.hidden = false;
+  st.tabs.bar = tabsActivate(st.tabs.bar, id);
+  { const el = $('#crRightTitle'); const n = S.doc ? nameOf(S.doc) : 'reference pane'; el.textContent = n; el.title = n; }
+  { const el = $('#crSays'); if (S.says) { el.innerHTML = S.says.html; el.className = S.says.cls; el.title = S.says.title; } else { el.className = 'cr-says'; el.textContent = tab.doc ? `${(st.byId.get(tab.doc) || {}).label || tab.doc} · page ${tab.page || 1}` : 'Click a boxed citation on the left, or step through them with ‹ ›, to open its primary source here at the cited page.'; el.title = el.textContent; } }
+  notesOnDoc('right'); renderNav(); renderTabs();
+  if (tab.doc && !S.pane.doc && !S.opening && st.byId.has(tab.doc)) {
+    S.opening = openInto(S, tab.doc, { page: tab.page || 1 }).finally(() => { S.opening = null; });
+  }
+  if (save) saveTree();
+}
+function renderTabs() {
+  const bar = $('#crTabs'); if (!bar || !st.tabs.bar) return;
+  const shown = tabsShown(st.tabs.bar);
+  bar.hidden = !shown;
+  if (!shown) { bar.innerHTML = ''; return; }
+  const view = tabsView(st.tabs.bar, (d) => (st.byId.get(d) || {}).label || d);
+  bar.innerHTML = view.map((v) => {
+    const cls = ['cr-tab', v.locked ? 'is-locked' : 'is-exploring', v.active ? 'is-active' : '', v.empty ? 'is-empty' : ''].filter(Boolean).join(' ');
+    const text = v.empty ? 'exploring — pick a citation in the left' : `${esc(v.label)}${v.page ? ` · p. ${v.page}` : ''}`;
+    const title = v.empty ? 'the exploring tab: the next citation opens here' : `${esc(v.label)} at PDF page ${v.page || 1} — ${v.locked ? 'locked to the bar: stays here while the left explores' : 'the exploring tab: the next citation replaces it'} · right-click: ${v.locked ? 'unlock, close' : 'lock to tab bar, close'}`;
+    return `<button class="${cls}" role="tab" aria-selected="${v.active}" data-act="tab" data-tab="${esc(v.id)}" title="${title}">${v.locked ? '<i class="cr-tablock" aria-label="locked">🔒</i>' : ''}<span class="cr-tabtext">${text}</span></button>`;
+  }).join('');
+}
+function bindTabs() {
+  const bar = $('#crTabs'); if (!bar) return;
+  bar.addEventListener('contextmenu', onTabMenu);
+}
+function onTabMenu(ev) {
+  const el = ev.target.closest('.cr-tab[data-tab]'); if (!el) return;
+  ev.preventDefault(); ev.stopPropagation();   // the deck's menu hides on the document's click; this click is the one that opens it
+  const id = el.dataset.tab, tab = tabsFind(st.tabs.bar, id); if (!tab) return;
+  const items = [];
+  if (tab.locked) items.push({ label: 'unlock — this becomes the exploring tab; the exploring tab closes', run: () => unlockTab(id) });
+  else items.push({ label: 'lock to tab bar — keep this document at this page while the left explores', disabled: !tab.doc, run: () => lockTab(id) });
+  items.push({ sep: true });
+  items.push({ label: tab.locked ? 'close tab' : (tab.doc ? 'close tab (the slot stays for the next citation)' : 'close tab'), disabled: !tab.doc && !tab.locked, run: () => closeTab(id) });
+  showCtx(ev.clientX, ev.clientY, items);
+}
+function lockTab(id) {
+  const r = tabsLock(st.tabs.bar, id);
+  if (r.refused) { says(esc(r.refused), 'bad'); return; }
+  st.tabs.bar = r.bar; renderTabs(); saveTree();
+}
+function unlockTab(id) {
+  const x = tabsExploring(st.tabs.bar);
+  st.tabs.bar = tabsUnlock(st.tabs.bar, id);
+  if (x && x.id !== id) disposeTab(x.id);
+  activateTab(id);
+}
+function closeTab(id) {
+  const tab = tabsFind(st.tabs.bar, id); if (!tab) return;
+  st.tabs.bar = tabsClose(st.tabs.bar, id);
+  disposeTab(id);   // a locked tab goes whole; the exploring slot gets a fresh empty state on activation
+  activateTab(st.tabs.bar.active);
+}
+/** After the registry is known: the bar from the store (per case root), tabs on documents no longer served dropped. */
+function restoreTabs() {
+  const bar = tabsRestore(st.tabs.stored, (id) => st.byId.has(id));
+  st.tabs.stored = null;
+  for (const id of [...st.tabs.states.keys()]) if (!tabsFind(bar, id)) disposeTab(id);
+  st.tabs.bar = bar;
+  activateTab(bar.active, { save: false });
 }
 
 /** WHERE A ROW OPENS — a box clicked in `side` (P87; core.opensWhere decides, this shell prints): a TOC entry scrolls its own
@@ -677,14 +792,14 @@ async function openRight(id, opts = {}) {
 async function openFrom(side, u, k = 1, opts = {}) {
   if (!u) return;
   const w = opensWhere(u, side);
-  if (w.where === 'same') return openToc(side, u, k);
+  if (w.where === 'same') return openToc(side, u, k, opts.tab || null);
   if (side === 'left') return openUnit(u, k, opts);
   return openUnitFromRight(u, k);
 }
 /** A TOC entry: scroll the pane it was clicked in to the section's page — the located heading when it is found (the heading
  *  row is the quote, README l.34 (TOC)), the page's top otherwise; nothing opens in the other pane. The pane's own chip says it. */
-async function openToc(side, u, k) {
-  const S = side === 'left' ? st.left : st.right, pane = S.pane, doc = S.doc;
+async function openToc(side, u, k, tab = null) {
+  const S = side === 'left' ? st.left : (tab || st.right), pane = S.pane, doc = S.doc;   // P88: a right TOC entry scrolls ITS OWN tab
   const t = u.targets[Math.min(u.targets.length, Math.max(1, k)) - 1];
   if (side === 'left') { st.active = { unit: u, k }; markActiveBox(u); renderCites(); }
   const tp = targetPages(t, doc);
@@ -694,7 +809,7 @@ async function openToc(side, u, k) {
   if (S.id !== doc.id) return;
   if (parts && parts.length) pane.focus(parts[0].page, (parts[0].rects[0].top / 100) * (pane.vp1.get(parts[0].page) || { height: 792 }).height);
   else pane.focus(tp.pdfPage, 0);
-  sayTo(side, saysFor(u, k, t, doc, { ...tp, passage: parts && parts.length ? parts : null, hasText: true, words: null }));
+  if (side === 'left' || S === st.right) sayTo(side, saysFor(u, k, t, doc, { ...tp, passage: parts && parts.length ? parts : null, hasText: true, words: null }));
   pushHash();
 }
 /** THE EXCEPTION: a citation in the RIGHT document opens in the RIGHT — the same open path as the left's citation, with the
@@ -739,9 +854,10 @@ async function openTarget(u, k, t, doc) {
   const tp = targetPages(t, doc);
   const ok = await openRight(t.target_doc, { page: tp.pdfPage || 1, marked: tp.marked });
   if (!ok) return;
+  const R = st.right;   // the exploring tab's state (P88): the passage and the words are its
   const head = saysFor(u, k, t, doc, tp);
   sayParts(head);
-  setRightPassage(null);   // the former passage goes; the right document's own citation boxes stay
+  setRightPassage(R, null);   // the former passage goes; the right document's own citation boxes stay
   if (head.locate) {
     // THE PASSAGE, WHOLE (README l.34, the owner's word 2026-09-30): the row's
     // quote is located over target_page … target_page_end (the page after for
@@ -750,15 +866,16 @@ async function openTarget(u, k, t, doc) {
     // (d) as the checker reads them (core.locatePassage, the fixture's
     // `passage` cases). The citation locate (locateParts) is the LEFT pane's.
     try {
-      const parts = await st.right.pane.locatePassage(tp.pdfPage, tp.pdfEnd || tp.pdfPage, t.target_quote);
+      const parts = await R.pane.locatePassage(tp.pdfPage, tp.pdfEnd || tp.pdfPage, t.target_quote);
+      if (R.id !== t.target_doc) return;   // the exploring tab moved on under the locate
       if (parts) {
-        for (const part of parts) setRightPassage(part.page, { id: 'q', rects: part.rects, status: 'verified', title: t.target_quote });
-        sayParts(saysFor(u, k, t, doc, { ...tp, passage: parts }));
+        for (const part of parts) setRightPassage(R, part.page, { id: 'q', rects: part.rects, status: 'verified', title: t.target_quote });
+        if (R === st.right) sayParts(saysFor(u, k, t, doc, { ...tp, passage: parts }));
       } else {
         // an image-only PAGE inside a text document, or a scrambled layer: core says which from the span's answers
-        const hasText = await st.right.pane.spanHasText(tp.pdfPage, tp.pdfEnd || tp.pdfPage);
-        const words = hasText === false ? null : await st.right.pane.passageWords(tp.pdfPage, tp.pdfEnd || tp.pdfPage, t.target_quote);
-        sayParts(saysFor(u, k, t, doc, { ...tp, passage: null, hasText, words }));
+        const hasText = await R.pane.spanHasText(tp.pdfPage, tp.pdfEnd || tp.pdfPage);
+        const words = hasText === false ? null : await R.pane.passageWords(tp.pdfPage, tp.pdfEnd || tp.pdfPage, t.target_quote);
+        if (R === st.right) sayParts(saysFor(u, k, t, doc, { ...tp, passage: null, hasText, words }));
       }
     } catch {}
   }
@@ -839,6 +956,10 @@ function openMore(side, ev, btn) {
   items.push({ label: st.nav.boxes ? 'hide the highlights (h)' : 'show the highlights (h)', run: toggleBoxes });
   if (side === 'left' && doc) items.push({ label: `open ${doc.label || doc.id} in the reference pane →`, run: () => openRight(doc.id, { page: st.left.page || 1 }) });
   if (side === 'right' && doc && st.right.reviewable) items.push({ label: `review ${doc.label || doc.id} on the left ⇤`, run: () => openLeft(doc.id) });
+  if (side === 'right' && st.tabs.bar) {   // P88: the active tab's bar actions, as the tab's right-click has them
+    const tab = tabsFind(st.tabs.bar, st.tabs.bar.active);
+    if (tab) { items.push({ sep: true }); if (tab.locked) items.push({ label: 'unlock this tab', run: () => unlockTab(tab.id) }); else items.push({ label: 'lock this tab to the tab bar', disabled: !tab.doc, run: () => lockTab(tab.id) }); if (tab.doc || tab.locked) items.push({ label: 'close this tab', run: () => closeTab(tab.id) }); }
+  }
   if (side === 'left' && doc) {
     const p = st.left.problems || [], g = st.left.coverage || [], ga = st.left.coverageAnswered || [];
     if (p.length || g.length || ga.length) items.push({ label: `${st.left.showProblems ? 'hide' : 'show'} the link map's ${p.length} problem${p.length === 1 ? '' : 's'}${g.length || ga.length ? ` · ${g.length} form${g.length === 1 ? '' : 's'} with no row` : ''}`, run: toggleProblems });
@@ -947,9 +1068,10 @@ function pushHash() {
   // here again (the owner's word 2026-10-01). Off-surface, the state is the pane's own
   // until the owner returns; setMode restores the parked key then.
   if (document.body.dataset.mode !== 'casereview') return;
+  const xr = st.tabs.bar ? tabsExploring(st.tabs.bar) : null;   // P88: right= names the EXPLORING tab; the locked tabs ride the store
   const url = urlForState(location.href, { doc: st.left.id,
     cite: st.active ? { page: st.active.unit.page, n: st.active.unit.n, k: st.active.k, q: st.active.unit.q } : null,
-    page: st.left.page, right: st.right.id, rpage: st.right.id ? st.right.page : null });
+    page: st.left.page, right: xr && xr.doc ? xr.doc : null, rpage: xr && xr.doc ? (xr.page || 1) : null });
   if (url !== location.href) { try { history.replaceState(null, '', url); } catch {} }
 }
 async function restoreFromHash(h) {
@@ -1015,6 +1137,7 @@ function onClick(ev) {
       if (pg) st.left.pane.focus(pg, 0); else setStatus(`stamped page ${act.dataset.page}: the registry maps no PDF page for it`);
       return;
     }
+    if (a === 'tab') { ev.stopPropagation(); return activateTab(act.dataset.tab); }
     if (a === 'toright') { ev.stopPropagation(); return openRight(act.dataset.id, { page: 1 }).then(() => says(`${esc(act.dataset.id)} opened at page 1 from the list.`, 'ok')); }
     // the tree: a chevron folds one parent, a group heading folds its group, ⊟ closes everything, ◂ folds the nav to a rail
     if (a === 'fold') { ev.stopPropagation(); return toggleFold(act.dataset.id); }
@@ -1051,6 +1174,9 @@ function onKey(ev) {
   if (ev.target.closest('input, textarea')) return;
   if (ev.key === 'h' && !ev.metaKey && !ev.ctrlKey && !ev.altKey) { ev.preventDefault(); toggleBoxes(); return; }   // the owner's button, on a key
   if (!ev.altKey && !ev.metaKey && !ev.ctrlKey && navKey(ev)) { ev.preventDefault(); return; }
+  if (ev.altKey && !ev.metaKey && !ev.ctrlKey && /^Digit[1-5]$/.test(ev.code) && st.tabs.bar) {   // ⌥1–⌥5: the tabs in bar order
+    const v = st.tabs.bar.tabs[+ev.code.slice(5) - 1]; if (v) { ev.preventDefault(); activateTab(v.id); } return;
+  }
   if (ev.key === 'ArrowRight' && ev.altKey) { ev.preventDefault(); step(1); }
   else if (ev.key === 'ArrowLeft' && ev.altKey) { ev.preventDefault(); step(-1); }
   else if ((ev.key === 'Enter' || ev.key === ' ') && ev.target.classList.contains('cr-row')) { ev.preventDefault(); if (ev.target.dataset.series) toggleFold(ev.target.dataset.id); else openLeft(ev.target.dataset.id); }

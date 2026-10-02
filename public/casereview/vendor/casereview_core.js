@@ -1685,6 +1685,99 @@ export function targetPages(t, doc) {
   return { pdfPage, pdfEnd, viaMap, marked };
 }
 
+// ---------------------------------------------------------------- the right pane's TAB BAR (P88)
+// The owner's word 2026-10-02 (spec fbf555d9 3f7b616): up to FIVE tabs on the RIGHT pane; "lock to tab bar" holds a tab at
+// its document AND page, left-aligned in lock order, stationary while the left explores; at most FOUR locked; exactly ONE
+// exploring tab, rightmost, which EVERY link opens into. The model is pure and pinned; the shell prints tabsView.
+// A bar: { seq, active, tabs: [{ id, doc (a registry id or null = the empty exploring slot), page, unit, locked }] }.
+const TABS_MAX_LOCKED = 4;
+function tabsClone(bar) { return { seq: bar.seq || 0, active: bar.active, tabs: bar.tabs.map((t) => ({ ...t })) }; }
+function tabsFresh(bar) { bar.seq = (bar.seq || 0) + 1; return { id: `t${bar.seq}`, doc: null, page: null, unit: null, locked: false }; }
+/** The bar before anything opened: one empty exploring slot (the invariant holds from the first moment). */
+export function tabsEmpty() { const b = { seq: 0, active: null, tabs: [] }; const x = tabsFresh(b); b.tabs.push(x); b.active = x.id; return b; }
+export function tabsExploring(bar) { return bar.tabs.find((t) => !t.locked) || null; }
+export function tabsLocked(bar) { return bar.tabs.filter((t) => t.locked); }
+export function tabsFind(bar, id) { return bar.tabs.find((t) => t.id === id) || null; }
+/** The bar is shown when any tab holds a document. */
+export function tabsShown(bar) { return bar.tabs.some((t) => t.doc); }
+/** Every open from a link lands in the EXPLORING tab, replacing its document and page (invariant 3); it becomes active. */
+export function tabsOpen(bar, { doc, page = 1, unit = null }) {
+  const b = tabsClone(bar); let x = tabsExploring(b);
+  if (!x) { x = tabsFresh(b); b.tabs.push(x); }
+  x.doc = doc; x.page = page || 1; x.unit = unit || null; b.active = x.id; return b;
+}
+/** "lock to tab bar": the exploring tab is locked at its document and page and a new empty exploring slot appears at the
+ *  right; refused IN WORDS at four locked, on a locked tab, or on an empty slot — nothing changes then. → { bar, refused }. */
+export function tabsLock(bar, id) {
+  const t = tabsFind(bar, id);
+  if (!t) return { bar, refused: 'no such tab' };
+  if (t.locked) return { bar, refused: 'this tab is already locked' };
+  if (!t.doc) return { bar, refused: 'nothing to lock — open a citation in this tab first' };
+  if (tabsLocked(bar).length >= TABS_MAX_LOCKED) return { bar, refused: 'four tabs are locked — unlock one to lock this' };
+  const b = tabsClone(bar); const u = tabsFind(b, id); u.locked = true;
+  b.tabs = [...b.tabs.filter((v) => v.locked), ...b.tabs.filter((v) => !v.locked)];   // the locked run left, in lock order
+  b.tabs.push(tabsFresh(b)); b.active = id; return { bar: b, refused: null };
+}
+/** "unlock": the tab becomes the exploring tab at its document and page; the former exploring tab closes (the throwaway;
+ *  the decision the owner may flip — the alternative loses the view the reviewer deliberately unlocked). */
+export function tabsUnlock(bar, id) {
+  const t = tabsFind(bar, id); if (!t || !t.locked) return bar;
+  const b = tabsClone(bar); const x = tabsExploring(b);
+  b.tabs = b.tabs.filter((v) => v.id !== id && (!x || v.id !== x.id));
+  const u = { ...t, locked: false }; b.tabs.push(u); b.active = id; return b;
+}
+/** "close tab": a locked tab closes and the run shifts left; closing the exploring tab empties the slot (never a bar
+ *  without an exploring slot). The active tab, if closed, becomes the exploring slot. */
+export function tabsClose(bar, id) {
+  const t = tabsFind(bar, id); if (!t) return bar;
+  const b = tabsClone(bar);
+  if (t.locked) { b.tabs = b.tabs.filter((v) => v.id !== id); if (b.active === id) b.active = tabsExploring(b).id; return b; }
+  const x = tabsFind(b, id); x.doc = null; x.page = null; x.unit = null; b.active = id; return b;
+}
+/** Click a tab: show it at ITS page; nothing else moves (a locked tab activated is still not the exploring tab). */
+export function tabsActivate(bar, id) { if (!tabsFind(bar, id)) return bar; const b = tabsClone(bar); b.active = id; return b; }
+/** A page change inside a tab is remembered on that tab. */
+export function tabsSetPage(bar, id, page) { const t = tabsFind(bar, id); if (!t || !t.doc || !(page >= 1)) return bar; const b = tabsClone(bar); tabsFind(b, id).page = page; return b; }
+/** The drawn row — the shell prints this. `labelOf(docId)` names a document. */
+export function tabsView(bar, labelOf = (d) => d) {
+  return bar.tabs.map((t) => ({ id: t.id, doc: t.doc, label: t.doc ? labelOf(t.doc) : 'exploring', page: t.doc ? t.page : null, locked: t.locked, exploring: !t.locked, active: bar.active === t.id, empty: !t.doc }));
+}
+/** The invariants, as a list of breaches (empty = sound): ≤ 4 locked, ≤ 5 tabs, exactly one exploring tab and it is
+ *  rightmost, the locked run left of it, the active tab present, ids unique. */
+export function tabsInvariants(bar) {
+  const out = [];
+  const locked = tabsLocked(bar), open = bar.tabs.filter((t) => !t.locked);
+  if (locked.length > TABS_MAX_LOCKED) out.push(`${locked.length} locked (at most ${TABS_MAX_LOCKED})`);
+  if (bar.tabs.length > TABS_MAX_LOCKED + 1) out.push(`${bar.tabs.length} tabs (at most ${TABS_MAX_LOCKED + 1})`);
+  if (open.length !== 1) out.push(`${open.length} exploring tabs (exactly one)`);
+  if (open.length === 1 && bar.tabs[bar.tabs.length - 1] !== open[0]) out.push('the exploring tab is not rightmost');
+  if (bar.active && !tabsFind(bar, bar.active)) out.push('the active tab is not in the bar');
+  if (new Set(bar.tabs.map((t) => t.id)).size !== bar.tabs.length) out.push('tab ids repeat');
+  return out;
+}
+/** For the tree's localStorage store (per case root): docs by id, pages, the locked flags, the active tab. */
+export function tabsSerialize(bar) { return { seq: bar.seq || 0, active: bar.active, tabs: bar.tabs.map((t) => ({ id: t.id, doc: t.doc, page: t.page, locked: !!t.locked })) }; }
+/** From the store: tabs whose document the registry no longer knows are dropped; the invariants re-established (one
+ *  exploring slot, rightmost; an active tab). A bad or missing record is the empty bar. */
+export function tabsRestore(j, known = () => true) {
+  if (!j || typeof j !== 'object' || !Array.isArray(j.tabs)) return tabsEmpty();
+  const b = { seq: Number.isFinite(+j.seq) ? +j.seq : 0, active: null, tabs: [] };
+  const seen = new Set();
+  for (const t of j.tabs) {
+    if (!t || typeof t.id !== 'string' || seen.has(t.id)) continue;
+    const doc = typeof t.doc === 'string' && known(t.doc) ? t.doc : null;
+    if (!doc && t.locked) continue;   // a locked tab on a document no longer served is gone
+    seen.add(t.id); b.tabs.push({ id: t.id, doc, page: doc && +t.page >= 1 ? +t.page : (doc ? 1 : null), unit: null, locked: !!t.locked && !!doc });
+    const n = parseInt(String(t.id).replace(/^t/, ''), 10); if (Number.isFinite(n) && n > b.seq) b.seq = n;
+  }
+  let locked = b.tabs.filter((t) => t.locked).slice(0, TABS_MAX_LOCKED);
+  const open = b.tabs.filter((t) => !t.locked);
+  const x = open.find((t) => t.doc) || open[0] || tabsFresh(b);
+  b.tabs = [...locked, x];
+  b.active = typeof j.active === 'string' && tabsFind(b, j.active) ? j.active : x.id;
+  return b;
+}
+
 /** WHERE A ROW OPENS (P87, the owner's three words of 2026-10-01 — spec
  *  7d866ecf 22721a7/ebacd4e, ruling fbf555d9: logic, so core's; both panes
  *  and both shells print this). A TOC entry — every target kind `internal`
