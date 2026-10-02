@@ -740,9 +740,11 @@ function renderTabs() {
   const view = tabsView(st.tabs.bar, (d) => (st.byId.get(d) || {}).label || d);
   bar.innerHTML = view.map((v) => {
     const cls = ['cr-tab', v.locked ? 'is-locked' : 'is-exploring', v.active ? 'is-active' : '', v.empty ? 'is-empty' : ''].filter(Boolean).join(' ');
-    const text = v.empty ? 'exploring — pick a citation in the left' : `${esc(v.label)}${v.page ? ` · p. ${v.page}` : ''}`;
+    // two spans (7d866ecf's frame at a 490-px pane, 2026-10-02): the LABEL truncates, the PAGE stays — the page a tab is kept at is
+    // the point of the bar and must never be hover-only ('ECF … · p. 12', not 'ECF 74 · p…')
+    const text = v.empty ? '<span class="cr-tabtext">exploring — pick a citation in the left</span>' : `<span class="cr-tabtext">${esc(v.label)}</span>${v.page ? `<span class="cr-tabpage">· p. ${v.page}</span>` : ''}`;
     const title = v.empty ? 'the exploring tab: the next citation opens here' : `${esc(v.label)} at PDF page ${v.page || 1} — ${v.locked ? 'locked to the bar: stays here while the left explores' : 'the exploring tab: the next citation replaces it'} · right-click: ${v.locked ? 'unlock, close' : 'lock to tab bar, close'}`;
-    return `<button class="${cls}" role="tab" aria-selected="${v.active}" data-act="tab" data-tab="${esc(v.id)}" title="${title}">${v.locked ? '<i class="cr-tablock" aria-label="locked">🔒</i>' : ''}<span class="cr-tabtext">${text}</span></button>`;
+    return `<button class="${cls}" role="tab" aria-selected="${v.active}" data-act="tab" data-tab="${esc(v.id)}" title="${title}">${v.locked ? '<i class="cr-tablock" aria-label="locked">🔒</i>' : ''}${text}</button>`;
   }).join('');
 }
 function bindTabs() {
