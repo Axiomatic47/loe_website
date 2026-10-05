@@ -37,7 +37,7 @@
 // <base>/<id>_LINKS.tsv and <base>/<id>.pdf (tests/fixtures/casereview).
 import { $, esc } from './base.js';
 import { createPdfPane, orderByPosition } from './casereview_pdf.js';
-import { buildHash, filterNav, foldText, gapPage, hideRows, navRows, navView, opensWhere, parseHash, parseLinksTsv, pdfPageFor, publishedAway, saysFor, tabsActivate, tabsClose, tabsEmpty, tabsExploring, tabsFind, tabsLock, tabsOpen, tabsRestore, tabsSerialize, tabsSetPage, tabsShown, tabsUnlock, tabsView, targetPages, unitForCite, unitStatus, unitsOf, urlForState } from './casereview_core.js';
+import { buildHash, filterNav, foldText, gapPage, hideRows, navRows, navView, opensWhere, parseHash, parseLinksTsv, pdfPageFor, publishedAway, saysFor, servedColumns, tabsActivate, tabsClose, tabsEmpty, tabsExploring, tabsFind, tabsLock, tabsOpen, tabsRestore, tabsSerialize, tabsSetPage, tabsShown, tabsUnlock, tabsView, targetPages, unitForCite, unitStatus, unitsOf, urlForState } from './casereview_core.js';
 import { showCtx } from '../filing/ctxmenu.js';
 import { openReview } from './reviews.js';
 
@@ -184,6 +184,8 @@ function rowFromJson(j) {
     // the registry's own mapping when the server did it (pdf = own page + offset; pagemap wins)
     src_pdf_page: j.src_pdf_page ?? null, target_pdf_page: j.target_pdf_page ?? null, target_pdf_page_end: j.target_pdf_page_end ?? null,
     target_known: j.target_known,
+    // P89 (studio-spec 7d866ecf 694d1680): the target pages of this row's span the checker's P83 detector reads as two-column — [] none, null not measured, absent (a served process before the landing) → null
+    target_columns: Array.isArray(j.target_columns) ? j.target_columns.map(Number).filter(Number.isFinite) : null,
     // P66: how a statute pin resolved through the target's SECTION map, when the registry did ({pdf, by, key, file})
     target_pin_page: j.target_pin_page && typeof j.target_pin_page === 'object' ? j.target_pin_page : null,
   };
@@ -880,7 +882,9 @@ async function openTarget(u, k, t, doc) {
         // N3: the words of a miss name what was measured — the ORDER of the present words and whether the fold found a gutter
         const present = !!(words && words.total >= 5 && words.present >= 0.8 * words.total);
         const order = present ? await R.pane.passageOrder(tp.pdfPage, tp.pdfEnd || tp.pdfPage, t.target_quote) : null;
-        const columns = present ? await R.pane.spanColumns(tp.pdfPage, tp.pdfEnd || tp.pdfPage) : null;
+        // P89: the pane's own gutter read first; when it is false the SERVED fact — target_columns, the span pages the checker's
+        // P83 detector reads as two-column (a West raw layer glues words across the gutter the pane cannot see; pdftotext's boxes can)
+        const columns = present ? ((await R.pane.spanColumns(tp.pdfPage, tp.pdfEnd || tp.pdfPage)) || servedColumns(t, tp.pdfPage, tp.pdfEnd || tp.pdfPage)) : null;
         if (R === st.right) sayParts(saysFor(u, k, t, doc, { ...tp, passage: null, hasText, words, order, columns }));
       }
     } catch {}

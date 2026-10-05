@@ -1676,6 +1676,16 @@ export function passageOrder(pages, quote, min = 4) {
   }
   return { covered, total: w.length, runs, longest, mean: runs ? covered / runs : 0 };
 }
+/** P89 (7d866ecf 694d1680): the row's served `target_columns` — the pdf pages of its span the checker's P83 detector reads as
+ *  two-column over pdftotext's word boxes — asked for the span [pdfPage, pdfEnd]: true when a span page is named, false when
+ *  the field is a list naming none, null when not measured (null, or absent from a served process before the landing). The
+ *  pane's own gutter read comes first; this is the fact it cannot see when a layer glues words across the gutter. */
+export function servedColumns(t, pdfPage, pdfEnd = pdfPage) {
+  const cols = t && t.target_columns;
+  if (!Array.isArray(cols)) return null;
+  const lo = Math.min(pdfPage, pdfEnd), hi = Math.max(pdfPage, pdfEnd);
+  return cols.some((p) => Number.isFinite(+p) && +p >= lo && +p <= hi);
+}
 export function passageInOrder(order) { return !!order && order.runs > 0 && order.mean >= ORDERED_MEAN_RUN; }
 
 // ---------------------------------------------------------------- coverage
