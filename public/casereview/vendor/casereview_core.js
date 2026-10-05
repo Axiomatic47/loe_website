@@ -994,23 +994,36 @@ export function pageColumns(items, lines) {
   for (const r of rows) for (const [a, b] of r.gaps) { const mid = Math.round((a + b) / 2); if (mid >= lo && mid <= hi) cands.add(mid); }
   let best = null;
   for (const x of cands) {
-    let open = 0, cross = 0, near = 0, h = 0;
+    let joined = 0, cross = 0, near = 0, h = 0, leftOnly = 0, rightOnly = 0;
     for (const r of rows) {
       const tol = 0.25 * Math.max(r.h, 1);
       const gap = r.gaps.find(([a, b]) => x >= a && x <= b);
-      if (gap) { open++; h += r.h; if (x - gap[0] <= 2 * Math.max(r.h, 1)) near++; }
+      if (gap) { joined++; h += r.h; if (x - gap[0] <= 2 * Math.max(r.h, 1)) near++; }
       else if (r.pieces.some(g => g.x0 + tol < x && x < g.x1 - tol)) cross++;
+      // P91 (studio-spec 7d866ecf, measured on the regeneration set and the lane, 2026-10-05): a multi line ENTIRELY on one side of
+      // x is consistent with a gutter there — the layer joined only a fifth to a quarter of the lines across it and left the rest
+      // one-sided (Butera's 17 pages; the lane's Abdurrahman 1, 28 CFR 0.114 1). It counts as OPEN evidence when six or more
+      // one-sided lines stand on EACH side (B′: a caption first page — 41 left-only, 4 right-only — is not two columns); the
+      // cross test still refuses single-column prose; near is judged on the joined lines alone. Constant for constant with the
+      // checker's columns_page.
+      else if (r.pieces.every(g => g.x1 <= x)) leftOnly++;
+      else if (r.pieces.every(g => g.x0 >= x)) rightOnly++;
     }
-    if (!best || open > best.open) best = { x, open, cross, near, h: open ? h / open : 0 };
+    const sided = leftOnly >= 6 && rightOnly >= 6 ? leftOnly + rightOnly : 0;
+    const open = joined + sided;
+    // the best candidate by (open + side, −cross) — the checker's order
+    if (!best || open > best.open || (open === best.open && cross < best.cross)) best = { x, open, joined, cross, near, h: joined ? h / joined : 0 };
   }
-  if (!best || best.open < 6 || best.open < 0.25 * multi.length || best.cross > 0.2 * multi.length) return null;
+  // the gate: JOINED evidence still required (six lines with a gap at x), the one-sided lines counting toward the quarter floor
+  if (!best || best.joined < 6 || best.open < 0.25 * multi.length || best.cross > 0.2 * multi.length) return null;
   // TEXT COLUMNS, NOT A TABLE: a column of running text fills its lines to
   // the gutter (justified; the left column's last piece ends within two
   // line heights of the channel on most lines); a two-column TABLE's left
   // cells end wherever the cell's words end (ECF 51 stamped 9, the statute
   // table: 'Cal. Civ. Code § 1798.150' | 'CCPA Private Right of Action'),
-  // and a table reads row by row as the mirror reads it
-  if (best.near < 0.5 * best.open) return null;
+  // and a table reads row by row as the mirror reads it — judged on the
+  // JOINED lines (a one-sided line has no channel to fill to)
+  if (best.near < 0.5 * best.joined) return null;
   return { x: best.x, lines: best.open, tol: 0.5 * Math.max(best.h, 1) };
 }
 function splitColumns(items, lines) {
