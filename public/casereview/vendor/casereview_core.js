@@ -1911,7 +1911,12 @@ export function saysFor(u, k, t, doc, resolved = null) {
   // THE CHOOSER BY ORDINAL on EVERY opening line (b0d76502's measure over 2,227 multi-target opening lines, 2026-10-01: two
   // unpinned Elrod targets printed the same sentence for k = 1 and k = 2 — six of the eight branches returned without it);
   // 'quote boxed' only where a page was opened to box it on
-  const suffix = (t.target_quote && pdfPage ? ' · quote boxed' : '') + (u.targets.length > 1 ? ` · target ${k} of ${u.targets.length}` : '') + (t.status === 'mapped' ? ' · mapped, not yet read at the target' : '');
+  // the quote's token says what is TRUE at this call (f28bb754's read of the Floyd and Butera miss lines on the site, 2026-10-05: 'quote
+  // boxed … nothing to box' on one line): before the locate — 'a quote to box'; after it — 'quote boxed' on a find, nothing on a miss
+  // (the miss saying follows); never on a layer the pane cannot read (text_layer false / rtl) or a line that opened no page
+  const willLocate = !!(t.target_quote && pdfPage && doc.text_layer !== false && doc.text_layer !== 'rtl');
+  const quoteTok = !willLocate ? '' : r.passage === undefined ? ' · a quote to box' : r.passage ? ' · quote boxed' : '';
+  const suffix = quoteTok + (u.targets.length > 1 ? ` · target ${k} of ${u.targets.length}` : '') + (t.status === 'mapped' ? ' · mapped, not yet read at the target' : '');
   let kind;
   if (viaMap) { kind = 'ok'; say(`${head} — ${how}, PDF page ${pdfPage}${suffix}`); unfound(); }
   else if (stamped == null && (t.kind === 'statute' || t.kind === 'rule') && isSectionMap(doc.pagemap)) { kind = 'bad'; say(`${head} — the pin${pin ? '' : ' (none given)'} locates nothing in ${(doc.pagemap && doc.pagemap.file) || 'the title'}'s section map (the checker warns on this row); opened at page 1 and saying so${suffix}`); }
