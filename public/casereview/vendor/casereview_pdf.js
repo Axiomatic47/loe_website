@@ -17,7 +17,7 @@
 // Text-layer discipline (memory, WebKit): streamTextContent().getReader()
 // loops, never getTextContent() / for-await; the items are cached per page
 // once read (with their geometry) so a locate is one read per page ever.
-import { chromeItems, foldMap, locateInItems, locatePassage, mergeLineRects, pageOccurrences, passageWordsPresent, rawRange } from './casereview_core.js';
+import { chromeItems, foldMap, locateInItems, locatePassage, mergeLineRects, pageColumns, pageLines, pageOccurrences, passageOrder, passageWordsPresent, rawRange } from './casereview_core.js';
 
 // THE HOST'S pdf.js (f28bb754's site port, 2026-10-01): the pane is vendored
 // VERBATIM by the websites, so the three Studio paths are DEFAULTS a host
@@ -469,6 +469,22 @@ export function createPdfPane(host, opts = {}) {
 
   /** The share of the quote's words the span carries at all (the pane's
    *  "scrambled" test after a miss: every word there, none in order). */
+  /** The ORDER of the quote's words on the span (core.passageOrder) — the saying of a miss names what was measured (N3). */
+  pane.passageOrder = async (page, end, quote) => {
+    if (!pane.doc) return null;
+    const gen = pane.gen;
+    const first = Math.max(1, page | 0), last = Math.min(Math.max(first, end | 0 || first), pane.numPages);
+    const list = []; for (let p = first; p <= last; p++) { const items = await itemsOf(p, gen); if (!items) return null; list.push(items); }
+    return passageOrder(list, quote);
+  };
+  /** Did the fold find a GUTTER (two text columns) on any page of the span? The two-column clause of a miss rides this alone. */
+  pane.spanColumns = async (page, end) => {
+    if (!pane.doc) return null;
+    const gen = pane.gen;
+    const first = Math.max(1, page | 0), last = Math.min(Math.max(first, end | 0 || first), pane.numPages);
+    for (let p = first; p <= last; p++) { const items = await itemsOf(p, gen); if (!items) return null; if (pageColumns(items, pageLines(items, chromeItems(items)))) return true; }
+    return false;
+  };
   pane.passageWords = async (page, end, quote) => {
     if (!pane.doc) return null;
     const gen = pane.gen;

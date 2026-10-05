@@ -877,7 +877,11 @@ async function openTarget(u, k, t, doc) {
         // an image-only PAGE inside a text document, or a scrambled layer: core says which from the span's answers
         const hasText = await R.pane.spanHasText(tp.pdfPage, tp.pdfEnd || tp.pdfPage);
         const words = hasText === false ? null : await R.pane.passageWords(tp.pdfPage, tp.pdfEnd || tp.pdfPage, t.target_quote);
-        if (R === st.right) sayParts(saysFor(u, k, t, doc, { ...tp, passage: null, hasText, words }));
+        // N3: the words of a miss name what was measured — the ORDER of the present words and whether the fold found a gutter
+        const present = !!(words && words.total >= 5 && words.present >= 0.8 * words.total);
+        const order = present ? await R.pane.passageOrder(tp.pdfPage, tp.pdfEnd || tp.pdfPage, t.target_quote) : null;
+        const columns = present ? await R.pane.spanColumns(tp.pdfPage, tp.pdfEnd || tp.pdfPage) : null;
+        if (R === st.right) sayParts(saysFor(u, k, t, doc, { ...tp, passage: null, hasText, words, order, columns }));
       }
     } catch {}
   }

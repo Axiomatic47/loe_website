@@ -1658,6 +1658,26 @@ export function passageWordsPresent(pages, quote) {
   return { present, total: words.size };
 }
 
+/** THE ORDER of the quote's words on the span, after a miss (N3, studio-spec 7d866ecf's ruling b65e1e1, 2026-10-05: a saying names
+ *  only what was measured). Greedy left to right over the quote's folded words: a run is the longest stretch the span carries
+ *  as one string; a run of four words or more counts, a shorter one is a break. → { covered, total, runs, longest, mean }.
+ *  Measured: a single-column OCR layer with a word misread every forty words (Floyd pdf 3) reads 94 % covered in 5 runs, mean
+ *  25 words; a West raw layer interleaving its two columns inside the lines (Butera pdf 6) reads 95 % covered in 20 runs,
+ *  mean 6 — a half-line each; the Floyd rows that box, 3–5 runs, mean 27–55. ORDERED = mean ≥ 12 words (a line's worth). */
+export const ORDERED_MEAN_RUN = 12;
+export function passageOrder(pages, quote, min = 4) {
+  const w = foldQuery(quote).replace(/ … /g, ' ').split(/\s+/).filter(Boolean);
+  const text = foldPageList((pages || []).map(p => p || [])).text;
+  let i = 0, covered = 0, runs = 0, longest = 0;
+  while (i < w.length) {
+    let j = i; while (j < w.length && text.includes(w.slice(i, j + 1).join(' '))) j++;
+    const n = j - i;
+    if (n >= min) { covered += n; runs++; longest = Math.max(longest, n); i = j; } else i++;
+  }
+  return { covered, total: w.length, runs, longest, mean: runs ? covered / runs : 0 };
+}
+export function passageInOrder(order) { return !!order && order.runs > 0 && order.mean >= ORDERED_MEAN_RUN; }
+
 // ---------------------------------------------------------------- coverage
 /** P53 (studio-spec's coverage census, the rows that do NOT exist): a line
  *  of the links answer's `coverage` names the stamped page it is about —
@@ -1838,7 +1858,8 @@ export function publishedAway(doc, side = 'right') {
  *  each shell escapes in its own markup. `resolved` = targetPages(t, doc)
  *  plus, once known: passage (the located parts, [] of { retry, headToTail }
  *  per page, or null for a miss), hasText (false = no text layer on the
- *  span), words (passageWordsPresent on the span). Lifted from the Studio
+ *  span), words (passageWordsPresent on the span), order (passageOrder on the span, read only when the words are present),
+ *  columns (the fold found a gutter on a span page — pageColumns). Lifted from the Studio
  *  shell for the websites' shell (f28bb754, 2026-10-01); the words are the
  *  Studio's, unchanged. */
 /** Does the folded printed text already carry the folded pin — at its end, or anywhere at token bounds when the pin is more
@@ -1920,8 +1941,12 @@ export function saysFor(u, k, t, doc, resolved = null) {
   say(' · ');
   // an image-only PAGE inside a text document (the registry marks whole files only, P57)
   if (r.hasText === false) warn(`no text layer on ${pdfEnd && pdfEnd !== pdfPage ? 'these pages' : 'this page'} (a scan): nothing to box${quoted}`);
-  // a West print's raw layer that interleaves the columns INSIDE its lines carries every word and none in order (admin 69183d38's read of Brown v. Chiappetta pdf 13, Butera pdf 6)
-  else if (r.words && r.words.total >= 5 && r.words.present >= 0.8 * r.words.total) warn(`the page's text layer is scrambled (a two-column print read across the columns): nothing to box${quoted}`);
+  // N3 (7d866ecf's ruling b65e1e1): a saying names only what was MEASURED. The words present (≥ 80 %) and IN ORDER (passageOrder,
+  // mean run ≥ 12 words) — a single-column layer with a word misread (Floyd pdf 3, 'reasou'); present and OUT OF ORDER — a layer
+  // whose order differs from the print (Butera pdf 6, Brown v. Chiappetta pdf 13: a West raw layer interleaving its columns inside
+  // the lines), the two-column clause ONLY when the fold found a gutter on the span (r.columns); fewer words — not found.
+  else if (r.words && r.words.total >= 5 && r.words.present >= 0.8 * r.words.total && passageInOrder(r.order)) warn(`the quote's words are on the page in order, but it does not read whole on this layer (a word misread): nothing to box${quoted}`);
+  else if (r.words && r.words.total >= 5 && r.words.present >= 0.8 * r.words.total) warn(`the layer's order differs from the print${r.columns ? ' (a two-column print read across the columns)' : ''}: nothing to box${quoted}`);
   else warn('quote not found at the target');
   return { kind, opens: true, locate: false, parts };
 }
