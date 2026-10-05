@@ -1575,8 +1575,21 @@ export function locatePassage(pages, spanCount, quote) {
   const found = [];
   let wrapped = false, headToTail = false;
   for (const frag of frags) {
-    const hit = locateFragment(folded, frag, cursor, limit) || locateFragmentWrapped(folded, list, span, frag, cursor, limit);
-    if (!hit) { found.length = 0; break; }
+    let hit = locateFragment(folded, frag, cursor, limit) || locateFragmentWrapped(folded, list, span, frag, cursor, limit);
+    if (!hit && frags.length > 1) {
+      // RETRY (f) PER FRAGMENT (the viewer's own; 2026-10-05, the re-OCR'd Floyd v. Barker — admin 2ee3c4f8's read): an ELIDED
+      // quote's fragment that misses whole on this layer is boxed from ITS head to ITS tail, in order after the previous
+      // fragment, its run bounded by its OWN length. The whole-run retry below measured the elided matter too — Floyd 1305
+      // over pdf 1–2: three fragments each located alone (f, whole, whole), the whole run 2.02× the quote, refused by eleven
+      // characters. Census on six tables, 1,542 quoted rows: +2 (both Floyd), 0 lost, 0 moved. The checker reads the mirror whole.
+      const ht = headAndTail([frag]);
+      if (ht) {
+        const head = locateFragment(folded, ht.head, cursor, limit) || locateFragmentWrapped(folded, list, span, ht.head, cursor, limit);
+        const tail = head ? (locateFragment(folded, ht.tail, head.to, folded.text.length) || locateFragmentWrapped(folded, list, span, ht.tail, head.to, folded.text.length)) : null;
+        if (head && tail && tail.to - head.from <= 2 * frag.length) { hit = { from: head.from, to: tail.to, retry: (head.retry || '') + (tail.retry || '') + 'f', wrapped: !!(head.wrapped || tail.wrapped) }; headToTail = true; }
+      }
+    }
+    if (!hit) { found.length = 0; headToTail = false; break; }
     found.push(hit); cursor = hit.to;
     if (hit.wrapped) wrapped = true;
     for (const ch of hit.retry || '') letters.add(ch);
