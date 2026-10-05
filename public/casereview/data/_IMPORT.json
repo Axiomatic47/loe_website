@@ -1,8 +1,386 @@
 {
   "case": "kirchner-v-johnson",
-  "imported": "2026-10-05T18:16:45.742Z",
-  "source": "the Studio API at http://127.0.0.1:8765",
-  "export_stamp": null,
+  "imported": "2026-10-05T18:21:03.363Z",
+  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/cr_export",
+  "export_stamp": {
+    "lane_signature": {
+      "sha256": "fddde70649f3e40438222e93f632e2f004d8a73d2541fe53bf8ba96a54e46862",
+      "files": [
+        {
+          "path": "_admin/case_review/docs.json",
+          "bytes": 1082401,
+          "sha256": "6952f9a8177c28fd8b5fb35b7351c5615fe8782ca749eb3362b49ec4455c7192"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-051.meta.json",
+          "bytes": 68872,
+          "sha256": "24eb0596e7d804cef785b1026d7e960c2ca9e8649a190d726509325dc7a46c1a"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-051.tsv",
+          "bytes": 1112087,
+          "sha256": "99d3ceadcbc9325fc021959ee90ef5bb95c51b9a6f03d44059701adc2191f8d8"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-052.meta.json",
+          "bytes": 6622,
+          "sha256": "6703bd77eec03e8167a95acbbe25955a44696da6dfc24eb6283c215f708a4411"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-052.tsv",
+          "bytes": 41808,
+          "sha256": "b922920dd1d11f20f491c7a92d46ce18e899d24aff96b7ea25165f2e8e004e4f"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-053.meta.json",
+          "bytes": 4145,
+          "sha256": "30b37b64bf137e4290cc2a2a23a5addd008f2628e53115be6f3ce3b8d5cb4c1e"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-053.tsv",
+          "bytes": 26930,
+          "sha256": "1adb6b33ae49b3205df82fc5b79064bb2c46be2fbc32d6137627cb21d32f27cc"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-054.meta.json",
+          "bytes": 7228,
+          "sha256": "62353fe85673714b992569dc59094ff0e27eab59bdad593eee29bf971836dcb8"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-054.tsv",
+          "bytes": 23248,
+          "sha256": "946bdbb9b4a0463e75fd256c5ef7c01d4d120b03400a31fb06880a2781374515"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-055.meta.json",
+          "bytes": 7871,
+          "sha256": "61c775effa1d22ee3899507d85603062740ebd1af29ea56fc77cc24f3b54adf9"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-055.tsv",
+          "bytes": 98567,
+          "sha256": "d02c6f6d9865017845b00cf07d61fc0c28b7eb3c8be1ca35b31a742235058191"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-056.meta.json",
+          "bytes": 1458,
+          "sha256": "4f8002f0bc92e9cd3de444807967a87a1c0bab8d45342748b493a10e41d6cd1d"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-056.tsv",
+          "bytes": 4439,
+          "sha256": "783e51bf4e5ffb49181844a8f321be3e2c0385311bfdd0b4685d412703e5ca6c"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-057.meta.json",
+          "bytes": 8362,
+          "sha256": "1c63f39942f8793e9b07a091ce81652c2af7fdb1b60fd22eb520cd50c8074ae9"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-057.tsv",
+          "bytes": 107536,
+          "sha256": "138689f07e7c1c8b4420c770a208715c170b58c8cbf8acdd9217e02ee6e43fcd"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-059.meta.json",
+          "bytes": 1383,
+          "sha256": "9e76c30045096fb182a2e4661267780680eb8e597e20a0ff9ec2aa56486df5b3"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-059.tsv",
+          "bytes": 5908,
+          "sha256": "00e5df6b6b613e809ab1e5f880b24d7ae27ae9e6e7319adaa721b0b0fa04a907"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-062.meta.json",
+          "bytes": 4790,
+          "sha256": "e7fb0da9f16060fc9a8050a53afbd18386120356a461e32827c0f71141d24c5b"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-062.tsv",
+          "bytes": 49257,
+          "sha256": "5b58ce817e3f62371889ea47cfdc313e12ca5dc5ea96178e89ca76cf2f2fedc0"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-067.meta.json",
+          "bytes": 5027,
+          "sha256": "3e8bf82ae65346bc82aad491acc6985d7640fe65161269bd334e6cdccc64f0d3"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-067.tsv",
+          "bytes": 49355,
+          "sha256": "52e82904be69e626147de88044b1c7e4e157cdb03a7cc7260a4cf9b7c3d6ec1c"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-068.meta.json",
+          "bytes": 7295,
+          "sha256": "72de436446b0fd8d8fa6cfe4d7ec8de9b7d6b549659f69ca7acd15f63eea023d"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-068.tsv",
+          "bytes": 121727,
+          "sha256": "afd80e11dceb7e33833a6fa47fca99cc024feb9a6ceceb837edd433f1dbfb8e9"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-069.meta.json",
+          "bytes": 14452,
+          "sha256": "ce4e3342e1d557e278691615393f897885e15083fa5a20a73e35fd258ec50d11"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-069.tsv",
+          "bytes": 249657,
+          "sha256": "54bd146201ef95e85dc177f947fe0ae47f42ffa34448053cf3e90e4075e48c0c"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-070-01.meta.json",
+          "bytes": 12793,
+          "sha256": "c4815ac10f5ce1e72bf2f254b3cca50fa382efd759a4bb03da8c0d09344f603d"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-070-01.tsv",
+          "bytes": 336351,
+          "sha256": "d964bfed71b98eaf103f106d35cc4b2736cbb293f127a9b627739caae25c0ee6"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-070.meta.json",
+          "bytes": 1463,
+          "sha256": "2a310ebeab5b9d69b588bc003b23e380514533d416c45e2af08470ece1fe8c84"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-070.tsv",
+          "bytes": 1882,
+          "sha256": "9fc4c992c553ec813e9a1392f32dccd2687b812d15dd7dc5aef679fd096612a4"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-071.meta.json",
+          "bytes": 1339,
+          "sha256": "df4a0de91e1baee3b0c0fb38fcda77b4fa12f70054c111912c0bd60d84ce87b8"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-071.tsv",
+          "bytes": 1873,
+          "sha256": "67dd8368f45489974e9ecebfef4beb5f2fac69f4fbb7e19f592df1e244a983f8"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-072-01.meta.json",
+          "bytes": 1854,
+          "sha256": "1b0d49a4d6b6a809b369c1ff7a0a1429b18c035f80179e45b80b9b82e4d5a142"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-072-01.tsv",
+          "bytes": 3465,
+          "sha256": "097453010e6e13a73e9dee944637724bc194bfa2b950ee144ce193ee0bdd7d66"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-072.meta.json",
+          "bytes": 4721,
+          "sha256": "ace0a2a0813e9c6749eff1d1ff1eb804f648adee83e58eb7095dc9e1f02c0385"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-072.tsv",
+          "bytes": 28325,
+          "sha256": "0fff242e791fcd690c033d4ddfccc46e0187177693bb2da10730ae41e507d339"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-073-01.meta.json",
+          "bytes": 5708,
+          "sha256": "96b541fbb1d76a56e358657c430e01a4edcfb6ff14d17252cfd9cb5cf39c1bf1"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-073-01.tsv",
+          "bytes": 36921,
+          "sha256": "3955fef149c17582e14cd534c0a8f630f25416046495e6e3fc631d10067eda4e"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-073-02.meta.json",
+          "bytes": 3638,
+          "sha256": "22e766f4f732e5bb3ff8be35271f1c31bd3b685dc41e2c9e9236566127d5d83d"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-073-02.tsv",
+          "bytes": 16903,
+          "sha256": "7fd5316a569e1464b9eda2042399c7a486290b4b63d0be18d33782d77a3d900d"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-073-03.meta.json",
+          "bytes": 1924,
+          "sha256": "84454e5c0af329ba2442d3986162431f9926af8e401d5a6be8154d15abf3a015"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-073-03.tsv",
+          "bytes": 2623,
+          "sha256": "b0805988de1eeee625d3f7d7782304f71b5a36098d65f6cf0fbf72cd82397693"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-073.meta.json",
+          "bytes": 21221,
+          "sha256": "a9c5a1cf04accaa2c5c9e1c6e06013544d0492826d8b833859d6937457538064"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-073.tsv",
+          "bytes": 379561,
+          "sha256": "b2d5f219eac407cc27f4f5e1e3e8ef5536d515fa969f219d5c50b9c7b8a32b68"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-074.meta.json",
+          "bytes": 18859,
+          "sha256": "daaba329f46c9802d2636f753d9f3a2a38a4980eb794a6e0b780ecef3fcaa5bb"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-074.tsv",
+          "bytes": 320169,
+          "sha256": "293a1d6ef180383c61644c4e05e5be65cd60ef1c299c8128e78f9301dff3d675"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-075.meta.json",
+          "bytes": 11537,
+          "sha256": "c01fc4af873b7f1909a8691eff0fc852676c3191fdaf07f8c6b795fad5533251"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-075.tsv",
+          "bytes": 142716,
+          "sha256": "6eda6e69282bd080f9b3fa2a54c11e1d423dc764370f5bba90d7d791e54d2885"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-076.meta.json",
+          "bytes": 3798,
+          "sha256": "24c1f1e1771b0cd0ae70bc4c0849fc03235ca5edae891796082a2995ec5fc362"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-076.tsv",
+          "bytes": 16137,
+          "sha256": "2c8c5b74c69790baa5cb3efd0d5c872644ace049c3719185d690a790390f632c"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-077.meta.json",
+          "bytes": 4001,
+          "sha256": "771558e7df6554516fac41b1d2a855315bfca699696e2e25cb6443239cc851a5"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-077.tsv",
+          "bytes": 23683,
+          "sha256": "9b1d52a8bedec6a202b347f05dca2a2d6be3cefce6aa5ee445d5b7c639df510f"
+        },
+        {
+          "path": "../research_library/2_Academic Articles/11_Immunity and Standing Doctrine Geneology/BOOK/Pinned Citation Extracts/_pagemaps/US_596_EGBERT.json",
+          "bytes": 2694,
+          "sha256": "625da1870ae53449edae8bdefd56c5de3c623b111e58c3e8232d3b6c248c7df6"
+        },
+        {
+          "path": "_admin/case_review/_paramaps/usc/usc05@119-111.json",
+          "bytes": 18867,
+          "sha256": "51b346915c072926ce9943c70ee0b1db38b96ce2a549cb92a161a90878d6481e"
+        },
+        {
+          "path": "_admin/case_review/_paramaps/usc/usc17@119-111.json",
+          "bytes": 2897,
+          "sha256": "ca8e8d7bb369d254df04e06b7cd926accc5b0a9c685cb7dd606f593782a0ef95"
+        },
+        {
+          "path": "_admin/case_review/_paramaps/usc/usc18@119-111.json",
+          "bytes": 23715,
+          "sha256": "5f969434109eec7c05cf37a64589783e7c344523f03b4b08a3e6a92e7394e8fc"
+        },
+        {
+          "path": "_admin/case_review/_paramaps/usc/usc26@119-111.json",
+          "bytes": 29727,
+          "sha256": "040d43594d63a4e3f25bb41fa90ee241746645c63b66b0d70b7ad40249530b67"
+        },
+        {
+          "path": "_admin/case_review/_paramaps/usc/usc28@119-111.json",
+          "bytes": 13491,
+          "sha256": "bfab07965a5c16b95120415b198f7390918b312c179c832afeb3e0f0b0bc2711"
+        },
+        {
+          "path": "_admin/case_review/_paramaps/usc/usc35@119-111.json",
+          "bytes": 3397,
+          "sha256": "31f4ef55854589044f705c49b9eac41402298b2e188e2e7d82d41b9ab6f8487f"
+        },
+        {
+          "path": "_admin/case_review/_paramaps/usc/usc42_ch8to39_Secs1401to3259@119-111.json",
+          "bytes": 24216,
+          "sha256": "0b9027b57ce498e57e73fc45a2fb21c29cf6f125c54e837a90803b36cb9c2f80"
+        },
+        {
+          "path": "_admin/case_review/_paramaps/usc/usc44@119-111.json",
+          "bytes": 5832,
+          "sha256": "17c63139225b97971226c842283a92f188a0c35d54a9a3991b8640fe7f039237"
+        },
+        {
+          "path": "_admin/case_review/_paramaps/usc/usc47@119-111.json",
+          "bytes": 6037,
+          "sha256": "496ef16e994456ce38abc9d4c52114b5bf9d274ef09bd8a1b3e9f67045098d73"
+        }
+      ]
+    },
+    "ourstudio_commit": "1f732688",
+    "checker": "P89",
+    "exported": "2026-10-05T18:20:44+00:00",
+    "case_root": "/Users/everest/Git/work_station/1_DCC_1-25-cv-02735-ACR",
+    "project_root": "/Users/everest/Git/work_station",
+    "registry_version": "v0.25e",
+    "tables": [
+      "DDC-051",
+      "DDC-052",
+      "DDC-053",
+      "DDC-054",
+      "DDC-055",
+      "DDC-056",
+      "DDC-057",
+      "DDC-059",
+      "DDC-062",
+      "DDC-067",
+      "DDC-068",
+      "DDC-069",
+      "DDC-070",
+      "DDC-070-01",
+      "DDC-071",
+      "DDC-072",
+      "DDC-072-01",
+      "DDC-073",
+      "DDC-073-01",
+      "DDC-073-02",
+      "DDC-073-03",
+      "DDC-074",
+      "DDC-075",
+      "DDC-076",
+      "DDC-077"
+    ],
+    "publish_applied": true,
+    "publish": {
+      "serve": 985,
+      "link": 7,
+      "hold": 57
+    },
+    "pdfjs": {
+      "version": "4.10.38",
+      "files": {
+        "pdf.min.mjs": "27fc2a057a00f92a4334ad06e17dbd7259912954e9fb7f76400bcca5fd190a9c",
+        "pdf.worker.min.mjs": "1baa1844c89c80a5b2797c916e75ab29254be46d8e9cb53cb6364d7aad84be36"
+      },
+      "standard_fonts": {
+        "FoxitDingbats.pfb": "845c752392b6c914fb989c75a08b7792b88f542d2499042ef2889f8c814a16ed",
+        "FoxitFixed.pfb": "b6c8fe53f134b8b6d4578cd2d544df4cee9624c4efa8d51a560fb40ea296101b",
+        "FoxitFixedBold.pfb": "f1b7159702973f54fc86254ea38bcf3712b2a736eb3a0995751e9f4bb45ad603",
+        "FoxitFixedBoldItalic.pfb": "8a000945843bd31add06aee63bf9fd41b7578b4f3242a4b7cd46349ad9d24d4d",
+        "FoxitFixedItalic.pfb": "5007faf8320fa1fcc08b8894b356ad976f60b992ba29ee5272578bbdebaf3876",
+        "FoxitSerif.pfb": "4f57d2b9d884af8f907bf22df6019b52d86cbf6214fdbd02b1ae05472a543f35",
+        "FoxitSerifBold.pfb": "0bdf4b04e964139818d51eda03d566ba999fc3ba2421b1c6c51f9dc969022e80",
+        "FoxitSerifBoldItalic.pfb": "a406cac82583bf98175cb62c87ed5e95c45fbb34eece63a10b0a13e793cb2e10",
+        "FoxitSerifItalic.pfb": "610ae0687198045c4db5d1a6650fd5e92536631706382eb8b72e38df578d0ae9",
+        "FoxitSymbol.pfb": "47967d055530e7357088a08403115425643ec2cdfd6201ba8af0fbd7116c1539",
+        "LiberationSans-Bold.ttf": "361c61b82d575c5c35fd9157fda8b0194bcfcd0d88ea8521a4fb5dd53d33dddc",
+        "LiberationSans-BoldItalic.ttf": "a224075ac17495ad0a3af3bc0a419ac0704a8b3fd1095456201fb9b095fc281d",
+        "LiberationSans-Italic.ttf": "832b4406dbef23628800d3aaad21048534ac84d7e3ad955be83b8172ed8ef512",
+        "LiberationSans-Regular.ttf": "f8ace1f892b2bd9dc1792ba7f097fa7588f84fed48321480e04de5390828221f"
+      }
+    },
+    "files": {
+      "docs": "docs.json",
+      "links": "links/<id>.json",
+      "manifest": "files.json"
+    }
+  },
   "registry_version": "v0.25e",
   "documents": 1049,
   "tables": 25,
