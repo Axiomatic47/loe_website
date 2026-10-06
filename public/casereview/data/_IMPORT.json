@@ -1,15 +1,15 @@
 {
   "case": "kirchner-v-johnson",
-  "imported": "2026-10-05T23:46:37.791Z",
-  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/cr_export_p91a",
+  "imported": "2026-10-06T00:08:34.743Z",
+  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/cr_export_v25f",
   "export_stamp": {
     "lane_signature": {
-      "sha256": "fddde70649f3e40438222e93f632e2f004d8a73d2541fe53bf8ba96a54e46862",
+      "sha256": "c05882079968cd40d1f5b65b1a8432df5a32c4f8466c5bb415d7e848911706ef",
       "files": [
         {
           "path": "_admin/case_review/docs.json",
-          "bytes": 1082401,
-          "sha256": "6952f9a8177c28fd8b5fb35b7351c5615fe8782ca749eb3362b49ec4455c7192"
+          "bytes": 1084233,
+          "sha256": "160e00b14650cc06958044cbf64f95f544c067ca621a1e59f0349b30b1f80784"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-051.meta.json",
@@ -313,13 +313,13 @@
         }
       ]
     },
-    "ourstudio_commit": "36c41c9b",
+    "ourstudio_commit": "2f51decf",
     "checker": "P91",
     "checker_source_sha256": "d74fb5a712e803d67dd1c55de64857e432ad4d8112a113289c6d5ce64f9c9bac",
-    "exported": "2026-10-05T23:46:24+00:00",
+    "exported": "2026-10-06T00:08:14+00:00",
     "case_root": "/Users/everest/Git/work_station/1_DCC_1-25-cv-02735-ACR",
     "project_root": "/Users/everest/Git/work_station",
-    "registry_version": "v0.25e",
+    "registry_version": "v0.25f",
     "tables": [
       "DDC-051",
       "DDC-052",
@@ -382,7 +382,7 @@
       "manifest": "files.json"
     }
   },
-  "registry_version": "v0.25e",
+  "registry_version": "v0.25f",
   "documents": 1049,
   "tables": 25,
   "rows": 7981,
@@ -393,6 +393,6 @@
   },
   "dev_override": false,
   "default_doc": "DDC-077",
-  "vendored_studio_commit": "36c41c9b8600d3ccc520fc27ebba8b55f0754533",
+  "vendored_studio_commit": "2f51decf9e0d46dde60b9729293a1705c401523c",
   "host_policy": null
 }
