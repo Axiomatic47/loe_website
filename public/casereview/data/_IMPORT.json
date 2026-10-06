@@ -1,7 +1,7 @@
 {
   "case": "kirchner-v-johnson",
-  "imported": "2026-10-06T00:08:34.743Z",
-  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/cr_export_v25f",
+  "imported": "2026-10-06T18:42:06.963Z",
+  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/cr_export_p93",
   "export_stamp": {
     "lane_signature": {
       "sha256": "c05882079968cd40d1f5b65b1a8432df5a32c4f8466c5bb415d7e848911706ef",
@@ -313,10 +313,10 @@
         }
       ]
     },
-    "ourstudio_commit": "2f51decf",
-    "checker": "P91",
-    "checker_source_sha256": "d74fb5a712e803d67dd1c55de64857e432ad4d8112a113289c6d5ce64f9c9bac",
-    "exported": "2026-10-06T00:08:14+00:00",
+    "ourstudio_commit": "28b42a4a",
+    "checker": "P93",
+    "checker_source_sha256": "d75246ea558d0d7029553873fc3732446dfac6436cad8258b3bc7cd363cd2081",
+    "exported": "2026-10-06T18:41:49+00:00",
     "case_root": "/Users/everest/Git/work_station/1_DCC_1-25-cv-02735-ACR",
     "project_root": "/Users/everest/Git/work_station",
     "registry_version": "v0.25f",
@@ -393,6 +393,6 @@
   },
   "dev_override": false,
   "default_doc": "DDC-077",
-  "vendored_studio_commit": "2f51decf9e0d46dde60b9729293a1705c401523c",
+  "vendored_studio_commit": "28b42a4ad320ebfe9c86e311b30bd847d6567270",
   "host_policy": null
 }
