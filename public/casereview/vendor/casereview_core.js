@@ -994,23 +994,36 @@ export function pageColumns(items, lines) {
   for (const r of rows) for (const [a, b] of r.gaps) { const mid = Math.round((a + b) / 2); if (mid >= lo && mid <= hi) cands.add(mid); }
   let best = null;
   for (const x of cands) {
-    let open = 0, cross = 0, near = 0, h = 0;
+    let joined = 0, cross = 0, near = 0, h = 0, leftOnly = 0, rightOnly = 0;
     for (const r of rows) {
       const tol = 0.25 * Math.max(r.h, 1);
       const gap = r.gaps.find(([a, b]) => x >= a && x <= b);
-      if (gap) { open++; h += r.h; if (x - gap[0] <= 2 * Math.max(r.h, 1)) near++; }
+      if (gap) { joined++; h += r.h; if (x - gap[0] <= 2 * Math.max(r.h, 1)) near++; }
       else if (r.pieces.some(g => g.x0 + tol < x && x < g.x1 - tol)) cross++;
+      // P91 (studio-spec 7d866ecf, measured on the regeneration set and the lane, 2026-10-05): a multi line ENTIRELY on one side of
+      // x is consistent with a gutter there — the layer joined only a fifth to a quarter of the lines across it and left the rest
+      // one-sided (Butera's 17 pages; the lane's Abdurrahman 1, 28 CFR 0.114 1). It counts as OPEN evidence when six or more
+      // one-sided lines stand on EACH side (B′: a caption first page — 41 left-only, 4 right-only — is not two columns); the
+      // cross test still refuses single-column prose; near is judged on the joined lines alone. Constant for constant with the
+      // checker's columns_page.
+      else if (r.pieces.every(g => g.x1 <= x)) leftOnly++;
+      else if (r.pieces.every(g => g.x0 >= x)) rightOnly++;
     }
-    if (!best || open > best.open) best = { x, open, cross, near, h: open ? h / open : 0 };
+    const sided = leftOnly >= 6 && rightOnly >= 6 ? leftOnly + rightOnly : 0;
+    const open = joined + sided;
+    // the best candidate by (open + side, −cross) — the checker's order
+    if (!best || open > best.open || (open === best.open && cross < best.cross)) best = { x, open, joined, cross, near, h: joined ? h / joined : 0 };
   }
-  if (!best || best.open < 6 || best.open < 0.25 * multi.length || best.cross > 0.2 * multi.length) return null;
+  // the gate: JOINED evidence still required (six lines with a gap at x), the one-sided lines counting toward the quarter floor
+  if (!best || best.joined < 6 || best.open < 0.25 * multi.length || best.cross > 0.2 * multi.length) return null;
   // TEXT COLUMNS, NOT A TABLE: a column of running text fills its lines to
   // the gutter (justified; the left column's last piece ends within two
   // line heights of the channel on most lines); a two-column TABLE's left
   // cells end wherever the cell's words end (ECF 51 stamped 9, the statute
   // table: 'Cal. Civ. Code § 1798.150' | 'CCPA Private Right of Action'),
-  // and a table reads row by row as the mirror reads it
-  if (best.near < 0.5 * best.open) return null;
+  // and a table reads row by row as the mirror reads it — judged on the
+  // JOINED lines (a one-sided line has no channel to fill to)
+  if (best.near < 0.5 * best.joined) return null;
   return { x: best.x, lines: best.open, tol: 0.5 * Math.max(best.h, 1) };
 }
 function splitColumns(items, lines) {
@@ -1575,8 +1588,21 @@ export function locatePassage(pages, spanCount, quote) {
   const found = [];
   let wrapped = false, headToTail = false;
   for (const frag of frags) {
-    const hit = locateFragment(folded, frag, cursor, limit) || locateFragmentWrapped(folded, list, span, frag, cursor, limit);
-    if (!hit) { found.length = 0; break; }
+    let hit = locateFragment(folded, frag, cursor, limit) || locateFragmentWrapped(folded, list, span, frag, cursor, limit);
+    if (!hit && frags.length > 1) {
+      // RETRY (f) PER FRAGMENT (the viewer's own; 2026-10-05, the re-OCR'd Floyd v. Barker — admin 2ee3c4f8's read): an ELIDED
+      // quote's fragment that misses whole on this layer is boxed from ITS head to ITS tail, in order after the previous
+      // fragment, its run bounded by its OWN length. The whole-run retry below measured the elided matter too — Floyd 1305
+      // over pdf 1–2: three fragments each located alone (f, whole, whole), the whole run 2.02× the quote, refused by eleven
+      // characters. Census on six tables, 1,542 quoted rows: +2 (both Floyd), 0 lost, 0 moved. The checker reads the mirror whole.
+      const ht = headAndTail([frag]);
+      if (ht) {
+        const head = locateFragment(folded, ht.head, cursor, limit) || locateFragmentWrapped(folded, list, span, ht.head, cursor, limit);
+        const tail = head ? (locateFragment(folded, ht.tail, head.to, folded.text.length) || locateFragmentWrapped(folded, list, span, ht.tail, head.to, folded.text.length)) : null;
+        if (head && tail && tail.to - head.from <= 2 * frag.length) { hit = { from: head.from, to: tail.to, retry: (head.retry || '') + (tail.retry || '') + 'f', wrapped: !!(head.wrapped || tail.wrapped) }; headToTail = true; }
+      }
+    }
+    if (!hit) { found.length = 0; headToTail = false; break; }
     found.push(hit); cursor = hit.to;
     if (hit.wrapped) wrapped = true;
     for (const ch of hit.retry || '') letters.add(ch);
@@ -1645,6 +1671,36 @@ export function passageWordsPresent(pages, quote) {
   return { present, total: words.size };
 }
 
+/** THE ORDER of the quote's words on the span, after a miss (N3, studio-spec 7d866ecf's ruling b65e1e1, 2026-10-05: a saying names
+ *  only what was measured). Greedy left to right over the quote's folded words: a run is the longest stretch the span carries
+ *  as one string; a run of four words or more counts, a shorter one is a break. → { covered, total, runs, longest, mean }.
+ *  Measured: a single-column OCR layer with a word misread every forty words (Floyd pdf 3) reads 94 % covered in 5 runs, mean
+ *  25 words; a West raw layer interleaving its two columns inside the lines (Butera pdf 6) reads 95 % covered in 20 runs,
+ *  mean 6 — a half-line each; the Floyd rows that box, 3–5 runs, mean 27–55. ORDERED = mean ≥ 12 words (a line's worth). */
+export const ORDERED_MEAN_RUN = 12;
+export function passageOrder(pages, quote, min = 4) {
+  const w = foldQuery(quote).replace(/ … /g, ' ').split(/\s+/).filter(Boolean);
+  const text = foldPageList((pages || []).map(p => p || [])).text;
+  let i = 0, covered = 0, runs = 0, longest = 0;
+  while (i < w.length) {
+    let j = i; while (j < w.length && text.includes(w.slice(i, j + 1).join(' '))) j++;
+    const n = j - i;
+    if (n >= min) { covered += n; runs++; longest = Math.max(longest, n); i = j; } else i++;
+  }
+  return { covered, total: w.length, runs, longest, mean: runs ? covered / runs : 0 };
+}
+/** P89 (7d866ecf 694d1680): the row's served `target_columns` — the pdf pages of its span the checker's P83 detector reads as
+ *  two-column over pdftotext's word boxes — asked for the span [pdfPage, pdfEnd]: true when a span page is named, false when
+ *  the field is a list naming none, null when not measured (null, or absent from a served process before the landing). The
+ *  pane's own gutter read comes first; this is the fact it cannot see when a layer glues words across the gutter. */
+export function servedColumns(t, pdfPage, pdfEnd = pdfPage) {
+  const cols = t && t.target_columns;
+  if (!Array.isArray(cols)) return null;
+  const lo = Math.min(pdfPage, pdfEnd), hi = Math.max(pdfPage, pdfEnd);
+  return cols.some((p) => Number.isFinite(+p) && +p >= lo && +p <= hi);
+}
+export function passageInOrder(order) { return !!order && order.runs > 0 && order.mean >= ORDERED_MEAN_RUN; }
+
 // ---------------------------------------------------------------- coverage
 /** P53 (studio-spec's coverage census, the rows that do NOT exist): a line
  *  of the links answer's `coverage` names the stamped page it is about —
@@ -1683,6 +1739,99 @@ export function targetPages(t, doc) {
   const marked = [];
   if (pdfPage && pdfEnd) for (let p = pdfPage; p <= (viaMap ? pdfPage : pdfEnd); p++) marked.push(p);
   return { pdfPage, pdfEnd, viaMap, marked };
+}
+
+// ---------------------------------------------------------------- the right pane's TAB BAR (P88)
+// The owner's word 2026-10-02 (spec fbf555d9 3f7b616): up to FIVE tabs on the RIGHT pane; "lock to tab bar" holds a tab at
+// its document AND page, left-aligned in lock order, stationary while the left explores; at most FOUR locked; exactly ONE
+// exploring tab, rightmost, which EVERY link opens into. The model is pure and pinned; the shell prints tabsView.
+// A bar: { seq, active, tabs: [{ id, doc (a registry id or null = the empty exploring slot), page, unit, locked }] }.
+const TABS_MAX_LOCKED = 4;
+function tabsClone(bar) { return { seq: bar.seq || 0, active: bar.active, tabs: bar.tabs.map((t) => ({ ...t })) }; }
+function tabsFresh(bar) { bar.seq = (bar.seq || 0) + 1; return { id: `t${bar.seq}`, doc: null, page: null, unit: null, locked: false }; }
+/** The bar before anything opened: one empty exploring slot (the invariant holds from the first moment). */
+export function tabsEmpty() { const b = { seq: 0, active: null, tabs: [] }; const x = tabsFresh(b); b.tabs.push(x); b.active = x.id; return b; }
+export function tabsExploring(bar) { return bar.tabs.find((t) => !t.locked) || null; }
+export function tabsLocked(bar) { return bar.tabs.filter((t) => t.locked); }
+export function tabsFind(bar, id) { return bar.tabs.find((t) => t.id === id) || null; }
+/** The bar is shown when any tab holds a document. */
+export function tabsShown(bar) { return bar.tabs.some((t) => t.doc); }
+/** Every open from a link lands in the EXPLORING tab, replacing its document and page (invariant 3); it becomes active. */
+export function tabsOpen(bar, { doc, page = 1, unit = null }) {
+  const b = tabsClone(bar); let x = tabsExploring(b);
+  if (!x) { x = tabsFresh(b); b.tabs.push(x); }
+  x.doc = doc; x.page = page || 1; x.unit = unit || null; b.active = x.id; return b;
+}
+/** "lock to tab bar": the exploring tab is locked at its document and page and a new empty exploring slot appears at the
+ *  right; refused IN WORDS at four locked, on a locked tab, or on an empty slot — nothing changes then. → { bar, refused }. */
+export function tabsLock(bar, id) {
+  const t = tabsFind(bar, id);
+  if (!t) return { bar, refused: 'no such tab' };
+  if (t.locked) return { bar, refused: 'this tab is already locked' };
+  if (!t.doc) return { bar, refused: 'nothing to lock — open a citation in this tab first' };
+  if (tabsLocked(bar).length >= TABS_MAX_LOCKED) return { bar, refused: 'four tabs are locked — unlock one to lock this' };
+  const b = tabsClone(bar); const u = tabsFind(b, id); u.locked = true;
+  b.tabs = [...b.tabs.filter((v) => v.locked), ...b.tabs.filter((v) => !v.locked)];   // the locked run left, in lock order
+  b.tabs.push(tabsFresh(b)); b.active = id; return { bar: b, refused: null };
+}
+/** "unlock": the tab becomes the exploring tab at its document and page; the former exploring tab closes (the throwaway;
+ *  the decision the owner may flip — the alternative loses the view the reviewer deliberately unlocked). */
+export function tabsUnlock(bar, id) {
+  const t = tabsFind(bar, id); if (!t || !t.locked) return bar;
+  const b = tabsClone(bar); const x = tabsExploring(b);
+  b.tabs = b.tabs.filter((v) => v.id !== id && (!x || v.id !== x.id));
+  const u = { ...t, locked: false }; b.tabs.push(u); b.active = id; return b;
+}
+/** "close tab": a locked tab closes and the run shifts left; closing the exploring tab empties the slot (never a bar
+ *  without an exploring slot). The active tab, if closed, becomes the exploring slot. */
+export function tabsClose(bar, id) {
+  const t = tabsFind(bar, id); if (!t) return bar;
+  const b = tabsClone(bar);
+  if (t.locked) { b.tabs = b.tabs.filter((v) => v.id !== id); if (b.active === id) b.active = tabsExploring(b).id; return b; }
+  const x = tabsFind(b, id); x.doc = null; x.page = null; x.unit = null; b.active = id; return b;
+}
+/** Click a tab: show it at ITS page; nothing else moves (a locked tab activated is still not the exploring tab). */
+export function tabsActivate(bar, id) { if (!tabsFind(bar, id)) return bar; const b = tabsClone(bar); b.active = id; return b; }
+/** A page change inside a tab is remembered on that tab. */
+export function tabsSetPage(bar, id, page) { const t = tabsFind(bar, id); if (!t || !t.doc || !(page >= 1)) return bar; const b = tabsClone(bar); tabsFind(b, id).page = page; return b; }
+/** The drawn row — the shell prints this. `labelOf(docId)` names a document. */
+export function tabsView(bar, labelOf = (d) => d) {
+  return bar.tabs.map((t) => ({ id: t.id, doc: t.doc, label: t.doc ? labelOf(t.doc) : 'exploring', page: t.doc ? t.page : null, locked: t.locked, exploring: !t.locked, active: bar.active === t.id, empty: !t.doc }));
+}
+/** The invariants, as a list of breaches (empty = sound): ≤ 4 locked, ≤ 5 tabs, exactly one exploring tab and it is
+ *  rightmost, the locked run left of it, the active tab present, ids unique. */
+export function tabsInvariants(bar) {
+  const out = [];
+  const locked = tabsLocked(bar), open = bar.tabs.filter((t) => !t.locked);
+  if (locked.length > TABS_MAX_LOCKED) out.push(`${locked.length} locked (at most ${TABS_MAX_LOCKED})`);
+  if (bar.tabs.length > TABS_MAX_LOCKED + 1) out.push(`${bar.tabs.length} tabs (at most ${TABS_MAX_LOCKED + 1})`);
+  if (open.length !== 1) out.push(`${open.length} exploring tabs (exactly one)`);
+  if (open.length === 1 && bar.tabs[bar.tabs.length - 1] !== open[0]) out.push('the exploring tab is not rightmost');
+  if (bar.active && !tabsFind(bar, bar.active)) out.push('the active tab is not in the bar');
+  if (new Set(bar.tabs.map((t) => t.id)).size !== bar.tabs.length) out.push('tab ids repeat');
+  return out;
+}
+/** For the tree's localStorage store (per case root): docs by id, pages, the locked flags, the active tab. */
+export function tabsSerialize(bar) { return { seq: bar.seq || 0, active: bar.active, tabs: bar.tabs.map((t) => ({ id: t.id, doc: t.doc, page: t.page, locked: !!t.locked })) }; }
+/** From the store: tabs whose document the registry no longer knows are dropped; the invariants re-established (one
+ *  exploring slot, rightmost; an active tab). A bad or missing record is the empty bar. */
+export function tabsRestore(j, known = () => true) {
+  if (!j || typeof j !== 'object' || !Array.isArray(j.tabs)) return tabsEmpty();
+  const b = { seq: Number.isFinite(+j.seq) ? +j.seq : 0, active: null, tabs: [] };
+  const seen = new Set();
+  for (const t of j.tabs) {
+    if (!t || typeof t.id !== 'string' || seen.has(t.id)) continue;
+    const doc = typeof t.doc === 'string' && known(t.doc) ? t.doc : null;
+    if (!doc && t.locked) continue;   // a locked tab on a document no longer served is gone
+    seen.add(t.id); b.tabs.push({ id: t.id, doc, page: doc && +t.page >= 1 ? +t.page : (doc ? 1 : null), unit: null, locked: !!t.locked && !!doc });
+    const n = parseInt(String(t.id).replace(/^t/, ''), 10); if (Number.isFinite(n) && n > b.seq) b.seq = n;
+  }
+  let locked = b.tabs.filter((t) => t.locked).slice(0, TABS_MAX_LOCKED);
+  const open = b.tabs.filter((t) => !t.locked);
+  const x = open.find((t) => t.doc) || open[0] || tabsFresh(b);
+  b.tabs = [...locked, x];
+  b.active = typeof j.active === 'string' && tabsFind(b, j.active) ? j.active : x.id;
+  return b;
 }
 
 /** WHERE A ROW OPENS (P87, the owner's three words of 2026-10-01 — spec
@@ -1732,7 +1881,8 @@ export function publishedAway(doc, side = 'right') {
  *  each shell escapes in its own markup. `resolved` = targetPages(t, doc)
  *  plus, once known: passage (the located parts, [] of { retry, headToTail }
  *  per page, or null for a miss), hasText (false = no text layer on the
- *  span), words (passageWordsPresent on the span). Lifted from the Studio
+ *  span), words (passageWordsPresent on the span), order (passageOrder on the span, read only when the words are present),
+ *  columns (the fold found a gutter on a span page — pageColumns). Lifted from the Studio
  *  shell for the websites' shell (f28bb754, 2026-10-01); the words are the
  *  Studio's, unchanged. */
 /** Does the folded printed text already carry the folded pin — at its end, or anywhere at token bounds when the pin is more
@@ -1784,7 +1934,12 @@ export function saysFor(u, k, t, doc, resolved = null) {
   // THE CHOOSER BY ORDINAL on EVERY opening line (b0d76502's measure over 2,227 multi-target opening lines, 2026-10-01: two
   // unpinned Elrod targets printed the same sentence for k = 1 and k = 2 — six of the eight branches returned without it);
   // 'quote boxed' only where a page was opened to box it on
-  const suffix = (t.target_quote && pdfPage ? ' · quote boxed' : '') + (u.targets.length > 1 ? ` · target ${k} of ${u.targets.length}` : '') + (t.status === 'mapped' ? ' · mapped, not yet read at the target' : '');
+  // the quote's token says what is TRUE at this call (f28bb754's read of the Floyd and Butera miss lines on the site, 2026-10-05: 'quote
+  // boxed … nothing to box' on one line): before the locate — 'a quote to box'; after it — 'quote boxed' on a find, nothing on a miss
+  // (the miss saying follows); never on a layer the pane cannot read (text_layer false / rtl) or a line that opened no page
+  const willLocate = !!(t.target_quote && pdfPage && doc.text_layer !== false && doc.text_layer !== 'rtl');
+  const quoteTok = !willLocate ? '' : r.passage === undefined ? ' · a quote to box' : r.passage ? ' · quote boxed' : '';
+  const suffix = quoteTok + (u.targets.length > 1 ? ` · target ${k} of ${u.targets.length}` : '') + (t.status === 'mapped' ? ' · mapped, not yet read at the target' : '');
   let kind;
   if (viaMap) { kind = 'ok'; say(`${head} — ${how}, PDF page ${pdfPage}${suffix}`); unfound(); }
   else if (stamped == null && (t.kind === 'statute' || t.kind === 'rule') && isSectionMap(doc.pagemap)) { kind = 'bad'; say(`${head} — the pin${pin ? '' : ' (none given)'} locates nothing in ${(doc.pagemap && doc.pagemap.file) || 'the title'}'s section map (the checker warns on this row); opened at page 1 and saying so${suffix}`); }
@@ -1814,8 +1969,12 @@ export function saysFor(u, k, t, doc, resolved = null) {
   say(' · ');
   // an image-only PAGE inside a text document (the registry marks whole files only, P57)
   if (r.hasText === false) warn(`no text layer on ${pdfEnd && pdfEnd !== pdfPage ? 'these pages' : 'this page'} (a scan): nothing to box${quoted}`);
-  // a West print's raw layer that interleaves the columns INSIDE its lines carries every word and none in order (admin 69183d38's read of Brown v. Chiappetta pdf 13, Butera pdf 6)
-  else if (r.words && r.words.total >= 5 && r.words.present >= 0.8 * r.words.total) warn(`the page's text layer is scrambled (a two-column print read across the columns): nothing to box${quoted}`);
+  // N3 (7d866ecf's ruling b65e1e1): a saying names only what was MEASURED. The words present (≥ 80 %) and IN ORDER (passageOrder,
+  // mean run ≥ 12 words) — a single-column layer with a word misread (Floyd pdf 3, 'reasou'); present and OUT OF ORDER — a layer
+  // whose order differs from the print (Butera pdf 6, Brown v. Chiappetta pdf 13: a West raw layer interleaving its columns inside
+  // the lines), the two-column clause ONLY when the fold found a gutter on the span (r.columns); fewer words — not found.
+  else if (r.words && r.words.total >= 5 && r.words.present >= 0.8 * r.words.total && passageInOrder(r.order)) warn(`the quote's words are on the page in order, but it does not read whole on this layer (a word misread): nothing to box${quoted}`);
+  else if (r.words && r.words.total >= 5 && r.words.present >= 0.8 * r.words.total) warn(`the layer's order differs from the print${r.columns ? ' (a two-column print read across the columns)' : ''}: nothing to box${quoted}`);
   else warn('quote not found at the target');
   return { kind, opens: true, locate: false, parts };
 }

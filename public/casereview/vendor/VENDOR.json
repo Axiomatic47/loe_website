@@ -2,22 +2,22 @@
   "what": "The Studio's Case Review WINDOW, vendored byte for byte — the window itself (casereview.js), its pure core (casereview_core.js), its PDF pane (casereview_pdf.js) and the pdf.js build they were tuned on. The site runs them as native ES modules from public/ — never bundled, never edited here; the three Studio modules the window imports (base.js, ../filing/ctxmenu.js, reviews.js) are the site's SHIMS beside it, the only host code. A rule change lands in the Studio first (studio-spec + frontend review) and syncs out with scripts/sync-casereview.mjs; `npm run casereview:check` refuses a build whose files drift from this record or from the Studio fixture's pdf.js pin.",
   "source": {
     "repo": "git@github.com:Axiomatic47/ourstudio.git",
-    "commit": "4d92676563fbd699caae56b4d5a452d194c1418d",
-    "files_last_changed": "4d92676563fbd699caae56b4d5a452d194c1418d",
-    "vendored": "2026-10-01T15:19:55.000Z"
+    "commit": "2f51decf9e0d46dde60b9729293a1705c401523c",
+    "files_last_changed": "d0576791278abc8d5cfe9e5463dbeb7084102778",
+    "vendored": "2026-10-06T00:08:33.649Z"
   },
   "files": {
     "casereview/vendor/casereview.js": {
       "from": "ourstudio_frontend/ui/js/deck/casereview.js",
-      "sha256": "9cf77ddab6f013d33dbf140ad9df5742a96e30b6e2fdde327e5189b7ca9cb558"
+      "sha256": "ff9ac8a15049f768215e7b8eb096215cb977db317090b7daaec4d3a240ee652d"
     },
     "casereview/vendor/casereview_core.js": {
       "from": "ourstudio_frontend/ui/js/deck/casereview_core.js",
-      "sha256": "5bef0607df77d16d39fc34703f907f47dceed2b417d21ef0ff1397e185cd0697"
+      "sha256": "9a9b3a202b1dd1fa913a5d6ed9412317df7f21a008cb9d388dd5fa1c6992b7f0"
     },
     "casereview/vendor/casereview_pdf.js": {
       "from": "ourstudio_frontend/ui/js/deck/casereview_pdf.js",
-      "sha256": "650cbf828e68771961353edfcf14f1a64c2b0cd26b53beacf5048848299ba6d5"
+      "sha256": "98031cfd87cf936c72df581430775b991a4a3f6bbad00081fa1e1bf51bc3021e"
     },
     "lib/pdfjs/pdf.min.mjs": {
       "from": "ourstudio_frontend/ui/lib/pdfjs/pdf.min.mjs",
