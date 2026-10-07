@@ -35,6 +35,9 @@ import { readArchiveManifest } from './research/manifest-server';
 import { publishedBooks, readReview } from './books/review-server';
 import { BookPdfViewer } from './books/_components/BookPdfViewer';
 import { versioned } from '@/lib/review';
+import { loadImmunityTimeline } from '@/lib/immunity-timeline.server';
+import { TIMELINE_PAGE_PATH, yearLabel, CATEGORY_LABEL, KIND_LABEL } from '@/lib/immunity-timeline';
+import { Md } from './_components/Markdown';
 
 // Title/description/OG come from the root layout defaults (they ARE the
 // site defaults); the home page only pins its canonical.
@@ -63,6 +66,11 @@ export default function Home() {
   // in the same viewer as /books/<slug>, one page tall at fit width, under the hero buttons
   const plea = books.find((b) => b.slug === 'the-subjects-unanswered-plea') ?? null;
   const pleaReview = plea ? readReview(plea.slug) : null;
+  // the timeline read from the book (owner 2026-10-07: "a section below the Subject's Unanswered Plea PDF pane"):
+  // its title, standfirst and a spread of its entries, when its content is published and names this book
+  const tl = loadImmunityTimeline();
+  const timeline = plea && tl && tl.provenance.book_slug === plea.slug && tl.entries.length > 0 ? tl : null;
+  const spread = timeline ? Array.from({ length: Math.min(6, timeline.entries.length) }, (_, i) => timeline.entries[Math.round((i * (timeline.entries.length - 1)) / 5)]) : [];
   const leadFeatured = leadComp
     ? leadComp.sections
         .filter(s => s.featured)
@@ -170,6 +178,52 @@ export default function Home() {
                 title={`${plea.title}${plea.subtitle ? `: ${plea.subtitle}` : ''} — ${plea.venue ?? 'working draft'}; ${pleaReview.pdf.pages} pages`}
                 height="page"
               />
+            </Reveal>
+          </section>
+        )}
+
+        {/* --------------------------------------------- 2b. The timeline read from the book (owner 2026-10-07) */}
+        {timeline && (
+          <section className="max-w-4xl mx-auto mb-16 -mt-6">
+            <Reveal>
+              <div className="rounded-xl border border-border bg-card shadow-sm p-6 sm:p-8">
+                <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
+                  <div className="min-w-0">
+                    <Eyebrow>The timeline, read from the book</Eyebrow>
+                    <h2
+                      className="font-serif text-foreground"
+                      style={{ fontSize: 'clamp(22px, 2.6vw, 28px)', fontWeight: 580, letterSpacing: '-0.018em', lineHeight: 1.2 }}
+                    >
+                      <Link href={TIMELINE_PAGE_PATH} className="no-underline hover:underline underline-offset-4">{timeline.title}</Link>
+                    </h2>
+                  </div>
+                  <Link
+                    href={TIMELINE_PAGE_PATH}
+                    className="text-sm text-primary font-sans inline-flex items-center hover:text-primary/80 transition-colors"
+                    style={{ fontWeight: 500 }}
+                  >
+                    Read the timeline — {timeline.entries.length} entries, {yearLabel(timeline.entries[0])} to {yearLabel(timeline.entries[timeline.entries.length - 1])}
+                    <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+                  </Link>
+                </div>
+                <div className="font-serif text-foreground/90 mt-4 [&_p]:m-0 [&_p+p]:mt-2" style={{ fontSize: '1.0625rem', lineHeight: 1.65 }}>
+                  <Md>{timeline.standfirst}</Md>
+                </div>
+                <ol className="mt-5 grid gap-1.5 list-none p-0 m-0 sm:grid-cols-2">
+                  {spread.map((e) => (
+                    <li key={e.id} className="text-sm font-sans leading-snug">
+                      <Link href={`${TIMELINE_PAGE_PATH}#${e.id}`} className="text-foreground hover:text-primary no-underline">
+                        <span className="font-serif text-foreground" style={{ fontWeight: 600 }}>{yearLabel(e)}</span>
+                        <span className="text-muted-foreground"> · {e.kind ? KIND_LABEL[e.kind] : CATEGORY_LABEL[e.category]} · </span>
+                        {e.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ol>
+                <p className="mt-4 text-xs text-muted-foreground font-sans">
+                  Every entry is read at its own page and names the section and note of the book it rests on; the page can be filtered by type and category, and the data is served beside it as a file.
+                </p>
+              </div>
             </Reveal>
           </section>
         )}

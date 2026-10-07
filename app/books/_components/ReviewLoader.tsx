@@ -18,6 +18,7 @@ interface Props {
   editions?: EditionMap;
   /** the book's version log, newest first (the footer's version drop-down) */
   versions?: BookVersion[];
+  related?: { href: string; label: string; sub?: string };
   children?: React.ReactNode;
 }
 

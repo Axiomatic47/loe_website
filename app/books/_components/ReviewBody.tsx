@@ -59,6 +59,8 @@ interface Props {
   editions?: EditionMap;
   /** the book's version log, newest first — the footer's version drop-down (owner 2026-09-24) */
   versions?: BookVersion[];
+  /** a page built from this book (the immunity timeline), offered under the panes — never inside the fill budget */
+  related?: { href: string; label: string; sub?: string };
 }
 
 /** *italics* in a register citation → <em> */
@@ -92,7 +94,7 @@ function WorkRecord({ work, compact = false, sourceHolderUrl }: { work: ReviewWo
   );
 }
 
-export function ReviewBody({ book, manifest, published, children, loading = false, loadError = null, sourceCount, editions, versions = [] }: Props) {
+export function ReviewBody({ book, manifest, published, children, loading = false, loadError = null, sourceCount, editions, versions = [], related }: Props) {
   const textHref = `/books/${book.slug}/text`;
   const units = manifest.units;
   const byId = useMemo(() => new Map(units.map((u) => [u.id, u])), [units]);
@@ -583,6 +585,14 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
               <p className="text-foreground/80">
                 Not yet on the rendered PDF: the render of {pdf.rendered} predates this citation, so the book pane stays where it was.
                 {' '}<Link href={`${textHref}#user-content-fnref-${active.note}`} className="underline underline-offset-2 text-primary">The text version carries it</Link>; the next render places it.
+              </p>
+            )}
+            {/* a page read from this book (owner 2026-10-07: a link to the timeline below the PDF) — a line of the
+                record row, inside its budget, never a block of its own under the fixed footer */}
+            {related && (
+              <p>
+                <Link href={related.href} className="underline underline-offset-2 text-primary" style={{ fontWeight: 500 }}>{related.label}</Link>
+                {related.sub && <> — {related.sub}</>}
               </p>
             )}
           </div>
