@@ -1,6 +1,6 @@
 /* app/research/immunity-timeline/timeline-loe.css — lawsofexistence.com's skin under the shared timeline module.
    timeline.css and the two components are byte-identical across the sites and speak kirchner.ink's token names
-   (RGB triples --c-paper/--c-rule/--c-muted/--c-accent; utility names text-ink, text-muted, border-rule, bg-well,
+   (RGB triples --c-paper/--c-rule/--c-muted/--c-accent/--c-accent-ink/--c-ink/--c-card; utility names text-ink, text-muted, border-rule, bg-well,
    text-accent-ink, shadow-card, border-accent). This file maps each of those onto this site's palette, scoped to
    .tl-page so nothing outside the timeline changes. The RGB triples are this site's HSL tokens (src/index.css)
    written out, because the shared stylesheet composes them with rgb(). Logic never lives here. */
@@ -10,6 +10,9 @@
   --c-rule: 160 145 115;    /* --border      #A09173 */
   --c-muted: 70 62 50;      /* --muted-foreground #463E32 */
   --c-accent: 184 84 54;    /* --primary     #B85436 */
+  --c-accent-ink: 184 84 54;/* --primary, as text */
+  --c-ink: 28 24 18;        /* --foreground  #1C1812 */
+  --c-card: 236 227 202;    /* --card        #ECE3CA */
   color: hsl(var(--foreground));
 }
 .dark .tl-page {
@@ -17,6 +20,9 @@
   --c-rule: 73 66 59;       /* #49423B */
   --c-muted: 198 189 175;   /* #C6BDAF */
   --c-accent: 222 126 91;   /* #DE7E5B */
+  --c-accent-ink: 222 126 91;
+  --c-ink: 240 234 220;     /* #F0EADC */
+  --c-card: 35 30 26;       /* #231E1A */
 }
 
 /* kirchner.ink's utility names, on this site's tokens */
