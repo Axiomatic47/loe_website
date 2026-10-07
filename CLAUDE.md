@@ -36,6 +36,23 @@ research_library, or the Kirchner Studio (frontend-developer's lane).
 Coordination (registry, /btw, /deliver, board) rides the midesk
 project registry as before.
 
+## The immunity timeline (owner 2026-10-06; shared module, three sites)
+
+`/research/immunity-timeline` is the actual history of immunity beside endqi.org's six
+steps, carried on kirchner.ink, kirchnervjohnson.com and here. The MODULE is byte-identical
+on every site (cmp against ink_site / kirchnervjohnson before any commit touching it):
+`src/lib/immunity-timeline.ts` (shape), `src/lib/immunity-timeline.server.ts` (loader),
+`scripts/validate-timeline.mjs` (build gate, in `build:next`; passes when the file is
+absent), `app/research/immunity-timeline/{TimelineBody,TimelineFilter}.tsx` and
+`timeline.css`. Never fork them — a logic change lands on ink first and syncs out. OURS:
+`page.tsx` (the shell; `bookBase=/books/<slug>`, whose `/text` route prints footnotes as
+`user-content-fn-<note>`), `timeline-loe.css` (ink's token names mapped onto this site's
+palette, scoped to `.tl-page`), `app/_components/Markdown.tsx` (the `Md` the module
+imports). CONTENT is ONE file, `public/research/immunity-timeline.json`, the drafters'
+reviewed work, the same bytes on all three sites; nobody here edits a fact. Absent → the
+route 404s (noindex) and `generate-sitemap.mjs` omits it; a nav link only when it lands.
+Dry run: `IMMUNITY_TIMELINE_JSON=<draft> npm run build:next` (ignored under CI/NETLIFY).
+
 ## Books from the research library, and REVIEW MODE (owner 2026-09-15)
 
 - **Production is the Next App Router** (`netlify.toml` → `npm run build:next`,

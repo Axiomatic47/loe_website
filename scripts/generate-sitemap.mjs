@@ -10,7 +10,7 @@
 // this script does NOT compute positional indices. <lastmod> per section URL comes from
 // the content file's last git commit date (fallback: fs mtime), cached per file.
 // Run manually with `npm run generate-sitemap`; also runs as part of `npm run build`.
-import { writeFileSync, statSync, readdirSync, readFileSync } from 'node:fs';
+import { writeFileSync, statSync, readdirSync, readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { execSync } from 'node:child_process';
 import { ROOT, READING_COLLECTIONS, loadCollection } from './lib/content-model.mjs';
@@ -68,7 +68,11 @@ function lastmodForPath(rel) {
 }
 const lastmodFor = (collection, filename) => lastmodForPath(`content/${collection}/${filename}`);
 
-const urls = STATIC_ROUTES.map(([loc, priority]) => ({ loc: ORIGIN + loc, priority }));
+// /research/immunity-timeline exists only while its reviewed content does (public/research/immunity-timeline.json;
+// the route answers 404 without it) — listed on the same condition, never as a placeholder.
+const hasImmunityTimeline = existsSync(join(ROOT, 'public', 'research', 'immunity-timeline.json'));
+const urls = [...STATIC_ROUTES, ...(hasImmunityTimeline ? [['/research/immunity-timeline', '0.7']] : [])]
+  .map(([loc, priority]) => ({ loc: ORIGIN + loc, priority }));
 
 let sectionTotal = 0;
 for (const collection of READING_COLLECTIONS) {

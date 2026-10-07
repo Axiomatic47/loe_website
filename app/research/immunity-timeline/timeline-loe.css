@@ -1,0 +1,33 @@
+/* app/research/immunity-timeline/timeline-loe.css — lawsofexistence.com's skin under the shared timeline module.
+   timeline.css and the two components are byte-identical across the sites and speak kirchner.ink's token names
+   (RGB triples --c-paper/--c-rule/--c-muted/--c-accent; utility names text-ink, text-muted, border-rule, bg-well,
+   text-accent-ink, shadow-card, border-accent). This file maps each of those onto this site's palette, scoped to
+   .tl-page so nothing outside the timeline changes. The RGB triples are this site's HSL tokens (src/index.css)
+   written out, because the shared stylesheet composes them with rgb(). Logic never lives here. */
+
+.tl-page {
+  --c-paper: 221 208 176;   /* --background  #DDD0B0 */
+  --c-rule: 160 145 115;    /* --border      #A09173 */
+  --c-muted: 70 62 50;      /* --muted-foreground #463E32 */
+  --c-accent: 184 84 54;    /* --primary     #B85436 */
+  color: hsl(var(--foreground));
+}
+.dark .tl-page {
+  --c-paper: 23 19 16;      /* #171310 */
+  --c-rule: 73 66 59;       /* #49423B */
+  --c-muted: 198 189 175;   /* #C6BDAF */
+  --c-accent: 222 126 91;   /* #DE7E5B */
+}
+
+/* kirchner.ink's utility names, on this site's tokens */
+.tl-page .text-ink { color: hsl(var(--foreground)); }
+.tl-page .text-ink\/90 { color: hsl(var(--foreground) / 0.9); }
+.tl-page .text-ink\/80 { color: hsl(var(--foreground) / 0.8); }
+.tl-page .text-muted { color: hsl(var(--muted-foreground)); }
+.tl-page .hover\:text-ink:hover { color: hsl(var(--foreground)); }
+.tl-page .text-accent-ink { color: hsl(var(--primary)); }
+.tl-page .border-rule { border-color: hsl(var(--border)); }
+.tl-page .border-accent { border-color: hsl(var(--primary)); }
+.tl-page .bg-card { background-color: hsl(var(--card)); }
+.tl-page .bg-well { background-color: hsl(var(--secondary)); }
+.tl-page .shadow-card { box-shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 6px 18px rgb(0 0 0 / 0.06); }
