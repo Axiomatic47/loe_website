@@ -77,6 +77,10 @@ const nextConfig: NextConfig = {
       { source: '/kirchner-v-trump/section/:n', destination: '/kirchner-v-johnson/section/:n', permanent: true },
       { source: '/kirchner-v-trump/:docId', destination: '/kirchner-v-johnson/:docId', permanent: true },
       { source: '/copyright', destination: '/composition/copyright', permanent: true },
+      // The reviewed book's review mode is /books/<slug> itself (ink's is /work/<slug>/review); the shared research
+      // modules link a cited passage as `${bookBase}/review#cite=<note>/<seq>` (immunity-timeline bookUnitHref), so the
+      // /review form answers here by redirect — browsers carry the fragment through a Location without one.
+      { source: '/books/:slug/review', destination: '/books/:slug', permanent: true },
       // Removed articles (owner 2026-09-15): the Abrahamic Faith Reconciliation Thesis left the site; its
       // canonical URLs — and, through the frozen positional map below, its two legacy URLs — land on the
       // Articles collection rather than a 404.
