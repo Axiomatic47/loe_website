@@ -39,6 +39,9 @@ const BOTTOM_PAD_PX = 16;
 // wrapping, and the record line under the panes gets a fixed two-line budget (it may run a line long on a long
 // title; the page then scrolls a little, the panes do not shrink).
 const BELOW_PX = 48;
+/** the one line under the record row for a page read from this book (the immunity timeline) — its own constant, so the
+    panes give it room and the line stays in view without a scroll (the same shape as kirchner.ink's `after` slot) */
+const AFTER_PX = 28;
 // a whole case can run to 160 pages (owner rule: a case cited by its first page is served whole):
 // past CHIP_MAX the page strip becomes a scrubber — first page · slider · last page · the page in hand
 const CHIP_MAX = 14;
@@ -184,7 +187,7 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
     const el = rowRef.current;
     if (!el) return;
     // constants only (BELOW_PX, never belowRef's live height): a picked citation must not move the panes' edges
-    setFillHeight(Math.max(480, window.innerHeight - el.getBoundingClientRect().top - BELOW_PX - FIXED_FOOTER_PX - BOTTOM_PAD_PX));
+    setFillHeight(Math.max(480, window.innerHeight - el.getBoundingClientRect().top - BELOW_PX - (related ? AFTER_PX : 0) - FIXED_FOOTER_PX - BOTTOM_PAD_PX));
   }, []);
   useEffect(() => {
     if (!fills) return;
@@ -587,14 +590,6 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
                 {' '}<Link href={`${textHref}#user-content-fnref-${active.note}`} className="underline underline-offset-2 text-primary">The text version carries it</Link>; the next render places it.
               </p>
             )}
-            {/* a page read from this book (owner 2026-10-07: a link to the timeline below the PDF) — a line of the
-                record row, inside its budget, never a block of its own under the fixed footer */}
-            {related && (
-              <p>
-                <Link href={related.href} className="underline underline-offset-2 text-primary" style={{ fontWeight: 500 }}>{related.label}</Link>
-                {related.sub && <> — {related.sub}</>}
-              </p>
-            )}
           </div>
           <div className="ml-auto text-right">
             <p>
@@ -607,6 +602,14 @@ export function ReviewBody({ book, manifest, published, children, loading = fals
             {versions.length > 0 && <VersionMenu versions={versions} align="right" up className="mt-1" />}
           </div>
         </div>
+        {/* a page read from this book (owner 2026-10-07: a link to the timeline below the PDF): one line beneath the
+            record row, counted in the fill budget by AFTER_PX so the panes' edges hold and the line is in view */}
+        {related && (
+          <p className={cn('mt-1 text-xs lg:text-[11px] text-muted-foreground leading-relaxed font-sans truncate', (reading || layout !== 'side') && 'max-w-5xl mx-auto')} style={{ height: AFTER_PX - 4 }}>
+            <Link href={related.href} className="underline underline-offset-2 text-primary" style={{ fontWeight: 500 }}>{related.label}</Link>
+            {related.sub && <> — {related.sub}</>}
+          </p>
+        )}
         {/* the cited work's register record — a SIBLING of the measured block above, never inside the fill budget
             (owner 2026-09-16: the panes must keep their size whatever the data fields show) */}
         {showWork && !reading && page && works.length > 0 && (
