@@ -177,6 +177,7 @@ export function SiteHeader({ className }: { className?: string }) {
                           <MenuRow key={a.id} href={`/research/${a.id}`} label={a.title} sub={`${a.ref} · ${a.detail}`} />
                         ))}
                         <div className="my-1 border-t border-border" role="separator" />
+                        <MenuFooterLink href="/research/immunity-timeline" label="The history of immunity — a timeline beside endqi.org's" />
                         <MenuFooterLink href="/research/open-readings" label="Open readings — disputed transcriptions for review" />
                         <MenuFooterLink href="/research/acknowledgements" label="Acknowledgements" />
                       </div>
@@ -330,6 +331,14 @@ export function SiteHeader({ className }: { className?: string }) {
                       <span className="block text-xs text-muted-foreground/80">{a.ref}</span>
                     </Link>
                   ))}
+                  <Link
+                    href="/research/immunity-timeline"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block px-4 py-2.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+                  >
+                    <span className="block text-sm" style={{ fontWeight: 550 }}>The history of immunity</span>
+                    <span className="block text-xs text-muted-foreground/80">A timeline beside endqi.org&apos;s</span>
+                  </Link>
                   <Link
                     href="/research/open-readings"
                     onClick={() => setIsMobileMenuOpen(false)}
