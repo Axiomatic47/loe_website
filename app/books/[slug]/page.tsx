@@ -10,6 +10,8 @@ import { editionLeaves, publishedBooks, readBookText, readReview, readVersions }
 import { ReviewLoader } from '../_components/ReviewLoader';
 import { BookText } from '../_components/BookText';
 import { ogImages } from '../../_lib/og-server';
+import { loadImmunityTimeline } from '@/lib/immunity-timeline.server';
+import { TIMELINE_PAGE_PATH } from '@/lib/immunity-timeline';
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -38,12 +40,17 @@ export default async function BookReviewPage({ params }: Params) {
   const manifest = b ? readReview(slug) : null;
   const text = b ? readBookText(slug) : null;
   if (!b || !manifest || !text) notFound();
+  // the timeline read from this book (owner 2026-10-07): offered under the panes when its content is published
+  const tl = loadImmunityTimeline();
+  const related = tl && tl.provenance.book_slug === slug && tl.entries.length > 0
+    ? { href: TIMELINE_PAGE_PATH, label: tl.title, sub: `the history of immunity in ${tl.entries.length} entries, every one read from this book or a copy of its source` }
+    : undefined;
   // The page ships only `reviewMeta` inline (counts + the PDF record): the 2.4 MB citation manifest is
   // fetched by ReviewLoader from its hashed static JSON, and the rendered text travels only when there
   // is no PDF pane to show instead (the immunity book's text is 880 KB — as RSC payload it tripled
   // the page; kirchner.ink measured a 4.2 MB page as the owner's "loads very slowly", 2026-09-15).
   return (
-    <ReviewLoader book={{ slug: b.slug, title: b.title, subtitle: b.subtitle, venue: b.venue }} meta={reviewMeta(manifest)} editions={editionLeaves()} versions={readVersions(slug)}>
+    <ReviewLoader book={{ slug: b.slug, title: b.title, subtitle: b.subtitle, venue: b.venue }} meta={reviewMeta(manifest)} editions={editionLeaves()} versions={readVersions(slug)} related={related}>
       {manifest.pdf ? undefined : <BookText bare citeBase="">{text}</BookText>}
     </ReviewLoader>
   );

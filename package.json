@@ -15,7 +15,7 @@
   "scripts": {
     "dev": "vite",
     "build": "npm run validate-content && npm run generate-nav-manifest && npm run generate-sitemap && npm run typecheck && vite build",
-    "build:next": "npm run readings:pull && npm run validate-content && npm run generate-nav-manifest && npm run generate-sitemap && npm run generate-next-redirects && npm run casereview:check && next build",
+    "build:next": "npm run readings:pull && npm run validate-content && npm run generate-nav-manifest && npm run generate-sitemap && npm run generate-next-redirects && npm run casereview:check && npm run validate-timeline && next build",
     "preview": "vite preview",
     "typecheck": "tsc -p tsconfig.app.json --noEmit",
     "lint": "eslint .",
@@ -31,6 +31,7 @@
     "freeze-legacy-urls": "node scripts/freeze-legacy-urls.mjs",
     "generate-next-redirects": "node scripts/generate-next-redirects.mjs",
     "generate-sitemap": "node scripts/generate-sitemap.mjs",
+    "validate-timeline": "node scripts/validate-timeline.mjs",
     "sync-archives": "node scripts/sync-archives.mjs",
     "og:build": "python3 scripts/build_og_images.py",
     "versions:stamp": "node scripts/stamp-published.mjs",
