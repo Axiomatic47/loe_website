@@ -423,7 +423,7 @@ export function createPdfPane(host, opts = {}) {
    *  [{page, rects, span, retry}] one part per page the run crosses (a
    *  middle page whole), or null. The quote's rule is the span rule alone:
    *  the wrap-split (P52b) belongs to the citation locate (locateParts). */
-  pane.locatePassage = async (page, end, quote) => {
+  pane.locatePassage = async (page, end, quote, opts = null) => {
     if (!pane.doc) return null;
     const gen = pane.gen;
     const first = Math.max(1, page | 0);
@@ -435,7 +435,7 @@ export function createPdfPane(host, opts = {}) {
       if (!items) return null;
       list.push(items);
     }
-    const hit = locatePassage(list, last - first + 1, quote);
+    const hit = locatePassage(list, last - first + 1, quote, opts);
     if (!hit) return null;
     const parts = [];
     for (const part of hit.parts) {

@@ -1260,6 +1260,46 @@ export function backIndex(removed, pos) {
   for (const r of removed) { if (r <= pos) pos++; else break; }
   return pos;
 }
+/** P95 — THE DROPPED-LIGATURE RETRY (g) (studio-spec 7d866ecf's ruling of 2026-10-08, both admins' word 23:05 CDT;
+ *  the viewer half, a168bcf6). The Court's PDFs from about 2013/2014 map the ﬁ/ﬂ/ﬃ/ﬄ glyph to ONE letter 'f' and every
+ *  reader reads the map — 'confrmed', 'offcial', 'fnding' on the text layer and the mirror alike (17 lane documents at
+ *  ≥ 5 per 1,000 words; ≤ 0.5 everywhere else). The FOLD DOES NOT CHANGE: a lane-wide fi→f fold would equate 29 real
+ *  pairs of the lane's own words (fed/fled, food/flood, few/flew, four/flour) across the 1,003 documents whose layers
+ *  carry the distinction. The loss is a DOCUMENT FACT the checker measures and serves (docs `ligature_drop`, rows
+ *  `target_ligature_drop` — the P89 shape), and on a flagged document only, after the plain fold and (c)/(d) miss,
+ *  BOTH sides are re-folded through the PDF's own map (ffi→ff, ffl→ff, fi→f, fl→f) so a quote carrying the PRINT's
+ *  spelling verifies; the hit carries 'g' and the words name it (N3). Without the flag the retry would make the label
+ *  a lie on a normal document ('filed' for the print's 'fled' passing as "dropped ligatures"). */
+/** THE MAP, the checker's `ligature_drop_fold` / `ligature_drop_page` constant for constant, at its FIXED POINT (P95a,
+ *  admin 2ee3c4f8's measure of 2026-10-09 00:05 CDT, a168bcf6's harness pin the hour before): the RUN of i/l right after
+ *  an f deleted — ffi→ff, ffl→ff, fi→f, fl→f applied until nothing moves. One pass a side is not enough: the layer's dropped
+ *  form can itself carry a new i/l after the f — the print's 'conflict' reads 'confict', 'file' 'fle', 'filed' 'fled',
+ *  'flight' 'fight' — and a second fold of the page side ('confct', 'fe', 'fed', 'fght') never met the quote folded once.
+ *  At the fixed point both sides read 'confct' / 'fe' / 'fed' / 'fght' and meet; the extra eat ('fled' and 'filed' alike at
+ *  'fed') sits inside the class the label already names — the image decides. The fixture's `ligature_drop` section pins
+ *  both readers to it. */
+const LIGATURE_FORMS = /(?<=f)[il]+/g;
+/** The text through the map, with the index of each dropped letter in the text as it was (ascending; the shape of
+ *  hyphenlessPage, so backIndex maps a hit back). */
+export function ligatureFold(text) {
+  const t = String(text == null ? '' : text);
+  const removed = [];
+  let out = '', last = 0;
+  for (const m of t.matchAll(LIGATURE_FORMS)) { for (let i = m.index; i < m.index + m[0].length; i++) removed.push(i); out += t.slice(last, m.index); last = m.index + m[0].length; }
+  return { text: out + t.slice(last), removed };
+}
+/** A fold {text, owner, lineEnds, pieceJoins} re-folded through the map, with fwd/back between the two index spaces. */
+function ligatureFolded(folded) {
+  const lf = ligatureFold(folded.text);
+  const fwd = (i) => { let d = 0; for (const r of lf.removed) { if (r < i) d++; else break; } return i - d; };
+  return { text: lf.text, owner: folded.owner, lineEnds: new Set([...(folded.lineEnds || [])].map(fwd)), pieceJoins: new Set([...(folded.pieceJoins || [])].map(fwd)), fwd, back: (i) => backIndex(lf.removed, i) };
+}
+/** The flag a row's locate runs under: the served ROW field alone — `target_ligature_drop` true, the checker's measure
+ *  of the row's target (the docs payload's `ligature_drop` is informational: the sites' importer carries row keys and
+ *  allow-lists doc keys, so a window keyed on the doc field would fire in the Studio and not on the sites). Never a guess. */
+export function ligatureDropFor(t) {
+  return !!(t && t.target_ligature_drop === true);
+}
 /** One SIDE of a search over a fold {text, owner}: as it is, or under the
  *  retry the hyphenless text with its map back to the fold's indices. */
 function side(folded, retry) {
@@ -1575,11 +1615,13 @@ function locateFragmentWrapped(folded, list, span, q, cursor, limit) {
  *  a middle page carries its whole body. `retry` names the strongest retry
  *  any fragment needed. Pinned by the shared fixture's `passage` cases,
  *  which the checker runs too. */
-export function locatePassage(pages, spanCount, quote) {
+export function locatePassage(pages, spanCount, quote, opts = null) {
   const list = (pages || []).map(p => p || []);
   const frags = quoteFragments(foldQuery(quote));
   if (!frags.length || !list.length) return null;
   const folded = foldPageList(list);
+  const lig = !!(opts && opts.ligatureDrop);               // P95: the document's served fact arms retry (g)
+  const foldedG = lig ? ligatureFolded(folded) : null;
   const span = Math.max(1, Math.min(spanCount || list.length, list.length));
   let limit = folded.text.length;
   for (let k = span; k < folded.pages.length; k++) if (folded.pages[k].start >= 0) { limit = folded.pages[k].start; break; }
@@ -1589,6 +1631,15 @@ export function locatePassage(pages, spanCount, quote) {
   let wrapped = false, headToTail = false;
   for (const frag of frags) {
     let hit = locateFragment(folded, frag, cursor, limit) || locateFragmentWrapped(folded, list, span, frag, cursor, limit);
+    if (!hit && lig) {
+      // RETRY (g) — P95: on a FLAGGED document only, and only when the fragment carries an i or l after an f (else a
+      // misquote would pass under a label naming a loss the page has); both sides through the PDF's one-letter map,
+      // (c)/(d) inside (the checker's _side composes the two deletion lists; the chain here deletes letters first, and no
+      // deletion can change a hyphen's letter neighbours, so the positions agree); mapped back to the fold's own indices.
+      const qg = ligatureFold(frag).text;
+      const g = qg !== frag ? locateFragment(foldedG, qg, foldedG.fwd(cursor), foldedG.fwd(limit)) : null;
+      if (g) hit = { from: foldedG.back(g.from), to: foldedG.back(g.to - 1) + 1, retry: (g.retry || '') + 'g', wrapped: false };
+    }
     if (!hit && frags.length > 1) {
       // RETRY (f) PER FRAGMENT (the viewer's own; 2026-10-05, the re-OCR'd Floyd v. Barker — admin 2ee3c4f8's read): an ELIDED
       // quote's fragment that misses whole on this layer is boxed from ITS head to ITS tail, in order after the previous
@@ -1631,7 +1682,7 @@ export function locatePassage(pages, spanCount, quote) {
     for (const h of [head, tail]) for (const ch of h.retry || '') letters.add(ch);
     letters.add('f');
   }
-  const retry = ['c', 'd', 'e', 'f'].filter(ch => letters.has(ch)).join('') || null;
+  const retry = ['c', 'd', 'e', 'f', 'g'].filter(ch => letters.has(ch)).join('') || null;   // P95: g, the dropped-ligature retry, last
   const from = found[0].from, to = found[found.length - 1].to;
   const all = spanOf(folded.owner, from, to - from);
   const parts = [];
@@ -1962,7 +2013,7 @@ export function saysFor(u, k, t, doc, resolved = null) {
   if (found) {
     // THE PASSAGE, WHOLE (README l.34): the whole run boxed on every page it crosses; the retries named as the checker names them
     const rt = String(found[0].retry || '');
-    say((found.length > 1 ? ` · boxed across ${found.length} pages` : '') + (rt.includes('d') ? ' · a word joined at a line end' : '') + (rt.includes('e') ? ' · two glued pieces read as two words' : ''));
+    say((found.length > 1 ? ` · boxed across ${found.length} pages` : '') + (rt.includes('d') ? ' · a word joined at a line end' : '') + (rt.includes('e') ? ' · two glued pieces read as two words' : '') + (rt.includes('g') ? " · under the text layer's dropped ligatures (document-level)" : ''));
     if (found[0].headToTail) { say(' · '); warn('boxed from the head to the tail; the middle differs on this layer'); }
     return { kind, opens: true, locate: false, parts };
   }

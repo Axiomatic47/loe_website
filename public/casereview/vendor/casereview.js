@@ -37,7 +37,7 @@
 // <base>/<id>_LINKS.tsv and <base>/<id>.pdf (tests/fixtures/casereview).
 import { $, esc } from './base.js';
 import { createPdfPane, orderByPosition } from './casereview_pdf.js';
-import { buildHash, filterNav, foldText, gapPage, hideRows, navRows, navView, opensWhere, parseHash, parseLinksTsv, pdfPageFor, publishedAway, saysFor, servedColumns, tabsActivate, tabsClose, tabsEmpty, tabsExploring, tabsFind, tabsLock, tabsOpen, tabsRestore, tabsSerialize, tabsSetPage, tabsShown, tabsUnlock, tabsView, targetPages, unitForCite, unitStatus, unitsOf, urlForState } from './casereview_core.js';
+import { buildHash, filterNav, foldText, gapPage, hideRows, ligatureDropFor, navRows, navView, opensWhere, parseHash, parseLinksTsv, pdfPageFor, publishedAway, saysFor, servedColumns, tabsActivate, tabsClose, tabsEmpty, tabsExploring, tabsFind, tabsLock, tabsOpen, tabsRestore, tabsSerialize, tabsSetPage, tabsShown, tabsUnlock, tabsView, targetPages, unitForCite, unitStatus, unitsOf, urlForState } from './casereview_core.js';
 import { showCtx } from '../filing/ctxmenu.js';
 import { openReview } from './reviews.js';
 
@@ -186,6 +186,7 @@ function rowFromJson(j) {
     target_known: j.target_known,
     // P89 (studio-spec 7d866ecf 694d1680): the target pages of this row's span the checker's P83 detector reads as two-column — [] none, null not measured, absent (a served process before the landing) → null
     target_columns: Array.isArray(j.target_columns) ? j.target_columns.map(Number).filter(Number.isFinite) : null,
+    target_ligature_drop: typeof j.target_ligature_drop === 'boolean' ? j.target_ligature_drop : null,   // P95: the checker's document fact, per row
     // P66: how a statute pin resolved through the target's SECTION map, when the registry did ({pdf, by, key, file})
     target_pin_page: j.target_pin_page && typeof j.target_pin_page === 'object' ? j.target_pin_page : null,
   };
@@ -809,7 +810,7 @@ async function openToc(side, u, k, tab = null) {
   const tp = targetPages(t, doc);
   if (!tp.pdfPage) { const r = saysFor(u, k, t, doc, tp); sayTo(side, r); return; }
   let parts = null;
-  try { parts = t.target_quote ? await pane.locatePassage(tp.pdfPage, tp.pdfEnd || tp.pdfPage, t.target_quote) : null; } catch {}
+  try { parts = t.target_quote ? await pane.locatePassage(tp.pdfPage, tp.pdfEnd || tp.pdfPage, t.target_quote, { ligatureDrop: ligatureDropFor(t) }) : null; } catch {}
   if (S.id !== doc.id) return;
   if (parts && parts.length) pane.focus(parts[0].page, (parts[0].rects[0].top / 100) * (pane.vp1.get(parts[0].page) || { height: 792 }).height);
   else pane.focus(tp.pdfPage, 0);
@@ -870,7 +871,7 @@ async function openTarget(u, k, t, doc) {
     // (d) as the checker reads them (core.locatePassage, the fixture's
     // `passage` cases). The citation locate (locateParts) is the LEFT pane's.
     try {
-      const parts = await R.pane.locatePassage(tp.pdfPage, tp.pdfEnd || tp.pdfPage, t.target_quote);
+      const parts = await R.pane.locatePassage(tp.pdfPage, tp.pdfEnd || tp.pdfPage, t.target_quote, { ligatureDrop: ligatureDropFor(t) });   // P95: the flag arms retry (g)
       if (R.id !== t.target_doc) return;   // the exploring tab moved on under the locate
       if (parts) {
         for (const part of parts) setRightPassage(R, part.page, { id: 'q', rects: part.rects, status: 'verified', title: t.target_quote });
