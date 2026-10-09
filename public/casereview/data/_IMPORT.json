@@ -1,15 +1,15 @@
 {
   "case": "kirchner-v-johnson",
-  "imported": "2026-10-09T07:02:25.476Z",
-  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/cr_p95a",
+  "imported": "2026-10-09T07:08:44.893Z",
+  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/cr_p96",
   "export_stamp": {
     "lane_signature": {
-      "sha256": "15fc3f2a32a63d75189c85bf5a78d813e7c9e865d10ec1154c555e1c9c96f1bd",
+      "sha256": "e6f0833dfb2e2279835bf5fc088f12efb72772cffae034561a35cc2850788d29",
       "files": [
         {
           "path": "_admin/case_review/docs.json",
-          "bytes": 1154035,
-          "sha256": "fadeb92bcc33d962ef4166ed824f0ee85f87edb162f38ac0a68d9f19d818edf1"
+          "bytes": 1153576,
+          "sha256": "8d214adc6b72c663ae9ca01d1a111db7553188bee87de23c3d230401788431b3"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-051-13.meta.json",
@@ -348,14 +348,14 @@
         }
       ]
     },
-    "ourstudio_commit": "fc13e4ae",
-    "checker": "P95a",
-    "checker_source_sha256": "68748097cd6fcdb94e9bb1de7b1a0d4835455f6a463eb5aeba7ee40e3321b012",
+    "ourstudio_commit": "4472dc69",
+    "checker": "P96",
+    "checker_source_sha256": "911c3c602d699de5b68aa53e9c394eb0e9f6e4b0c96aceda36d6320f69e669f3",
     "mirrors_sha256": "94f0e1bbd44b2641930e32ea8b37d690f7d904da497b4823d96f0b1beb9fbc1f",
-    "exported": "2026-10-09T06:59:13+00:00",
+    "exported": "2026-10-09T07:07:54+00:00",
     "case_root": "/Users/everest/Git/work_station/1_DCC_1-25-cv-02735-ACR",
     "project_root": "/Users/everest/Git/work_station",
-    "registry_version": "v0.25m",
+    "registry_version": "v0.25n",
     "tables": [
       "DDC-051",
       "DDC-051-13",
@@ -419,7 +419,7 @@
       "manifest": "files.json"
     }
   },
-  "registry_version": "v0.25m",
+  "registry_version": "v0.25n",
   "documents": 1096,
   "tables": 26,
   "rows": 8637,
@@ -430,6 +430,6 @@
   },
   "dev_override": false,
   "default_doc": "DDC-077",
-  "vendored_studio_commit": "fc13e4ae059532ab0a052c576950a42e6ff0bbc3",
+  "vendored_studio_commit": "4472dc695b357cebe29b5f8f133c28666a6c36a8",
   "host_policy": null
 }

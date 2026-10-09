@@ -1778,13 +1778,48 @@ export function gapPage(line) {
  *  as they come and the two shells agree without a pre-step. */
 export function rowPage(v) { return v == null || v === '' ? null : +v; }
 
+/** P96 (studio-spec 7d866ecf; admins 2ee3c4f8 + 69183d38's design 2026-10-09 00:1x CDT): A PAGE MAP'S BASIS. A hand map's
+ *  value is the leaf a folio is ON ('leaf' — today's maps; a constant offset is this basis) or the leaf where the folio
+ *  BEGINS ('begins' — a reprint: Marbury's U.S. Reports cut carries 44 folios on 27 leaves, folio 163 beginning at leaf
+ *  16's foot and running over leaf 17's head). The same numbers, two meanings, so the span rule cannot be read off the
+ *  map's shape (a reprint with one star per leaf has an injective map and still straddles): the registry says the basis
+ *  on the row beside the map (`pagemap_basis`), the export carries it, both readers key on it; a map without the field is
+ *  'leaf', so nothing moves for the offset documents and the existing hand maps. */
+export function pagemapBasis(doc) {
+  return doc && doc.pagemap_basis === 'begins' && isObj(doc.pagemap) && !isSectionMap(doc.pagemap) ? 'begins' : 'leaf';
+}
+/** On a 'begins' map the leaf where folio f ENDS (7d866ecf's rule, both readers): the leaf where f + 1 begins when the
+ *  map has f + 1 (the same leaf allowed); the document's leaf count (`pages`) ONLY when f is the map's LAST key (the last
+ *  folio closes at the end); a GAP in the map (f + 1 absent, a later key present) — or no leaf count — the folio's own leaf:
+ *  one leaf, no widening (the checker reads the span in the document's own numbering, [f, f+1] ∩ the store's keys, and
+ *  cannot say "to the leaf count" for a gap). */
+export function beginsEnd(doc, f, leaf) {
+  const next = mappedPage(doc.pagemap, f + 1);
+  if (next !== undefined && next >= 1) return Math.max(leaf, next);
+  const keys = pagemapFolios(doc.pagemap);
+  const last = keys.length ? keys[keys.length - 1] : null;
+  if (last !== null && f === last) {
+    const n = doc && Number.isFinite(+doc.pages) && +doc.pages >= 1 ? +doc.pages : null;
+    return n !== null && n >= leaf ? n : leaf;
+  }
+  return leaf;
+}
+/** The map's folio keys as numbers, ascending (the checker keys by int(k)). */
+function pagemapFolios(pagemap) {
+  if (!isObj(pagemap)) return [];
+  const pm = isObj(pagemap.pages) ? pagemap.pages : isObj(pagemap.map) ? pagemap.map : pagemap;
+  return Object.keys(pm).filter((k) => /^\d+$/.test(k)).map((k) => parseInt(k, 10)).sort((a, b) => a - b);
+}
 export function targetPages(t, doc) {
   const stamped = rowPage(t.target_page);
   const viaMap = stamped == null && t.target_pdf_page >= 1;
   const pp0 = t.target_pin_page;
   const pdfPage = stamped == null ? (viaMap ? t.target_pdf_page : 1) : (t.target_pdf_page || pdfPageFor(stamped, doc.offset, doc.pagemap));
   const endStamped = rowPage(t.target_page_end);
-  const pdfEnd = endStamped == null
+  const begins = stamped != null && pdfPage && pagemapBasis(doc) === 'begins';   // P96: a reprint's folio spans [begins(f), begins(f+1)]
+  const pdfEnd = begins
+    ? beginsEnd(doc, endStamped == null ? stamped : endStamped, endStamped == null ? pdfPage : (t.target_pdf_page_end || pdfPageFor(endStamped, doc.offset, doc.pagemap) || pdfPage))
+    : endStamped == null
     ? (viaMap && pp0 && (pp0.by === 'section' || pp0.by === 'range head') ? sectionSpanEnd(doc.pagemap, pdfPage) : pdfPage)
     : (t.target_pdf_page_end || pdfPageFor(endStamped, doc.offset, doc.pagemap));
   const marked = [];

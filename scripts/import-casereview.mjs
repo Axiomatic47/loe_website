@@ -97,7 +97,7 @@ function publishOf(doc) {
 const FILER_COPY = /^none \(owner as-filed copy/;
 
 // ---------------------------------------------------------------- the public shapes
-const DOC_KEEP = ['id', 'label', 'title', 'kind', 'parent', 'ecf_no', 'attachment', 'filed', 'filer', 'pages', 'sha256', 'offset', 'pagemap', 'text_layer', 'group', 'inventory_page', 'ligature_drop', 'ligature_drop_density'];
+const DOC_KEEP = ['id', 'label', 'title', 'kind', 'parent', 'ecf_no', 'attachment', 'filed', 'filer', 'pages', 'sha256', 'offset', 'pagemap', 'text_layer', 'group', 'inventory_page', 'ligature_drop', 'ligature_drop_density', 'pagemap_basis'];
 function publicDoc(d, pub) {
   const o = {};
   for (const k of DOC_KEEP) if (d[k] !== undefined) o[k] = d[k];
