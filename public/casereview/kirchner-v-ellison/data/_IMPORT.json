@@ -1,6 +1,6 @@
 {
   "case": "kirchner-v-ellison",
-  "imported": "2026-10-10T03:38:34.328Z",
+  "imported": "2026-10-10T03:39:44.356Z",
   "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/cr_mn_p97b",
   "export_stamp": {
     "lane_signature": {
@@ -101,6 +101,6 @@
   },
   "dev_override": false,
   "default_doc": null,
-  "vendored_studio_commit": "a90e40ec208c84c6d503377ec6b7bc3d19918e0b",
+  "vendored_studio_commit": "e779a953d0e8942e89fc722bfa50a0e0c8b97df0",
   "host_policy": null
 }
