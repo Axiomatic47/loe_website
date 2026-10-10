@@ -94,6 +94,37 @@ mirror paths. The checker's structured answers (violations, warnings, coverage, 
 pages, section-map resolutions) ride unchanged. The five filings the court has not stamped (ECF 11, 12, 12-1, 14, 15)
 carry `filer_copy` and the mark in their title.
 
+## A second case on the same host (2026-10-10; the owner's word of 2026-10-09: the MN case gets the DDC architecture)
+
+The window keys its root itself: `projRootQS()` (casereview.js l.74–77) turns the page URL's `?projroot=<slug>` into
+`?root=<slug>` on all three fetches, and the window's per-case tree store is `ourstudio_cr_tree:<case_root>` where
+`case_root` is docs.json's field — the importer writes the case SLUG there, never a path. So a second case needs no
+window change: a host table, a keyed bundle, keyed rewrites.
+
+- **The host table** — `app/casereview/review-link.ts` `CASE_REVIEW_HOSTS`: slug → `root` (null for the default
+  case), the head row's caption, docket number and court. A case is in review mode ONLY while its bundle is on disk
+  (`caseReviewHost()` tests `_IMPORT.json`): a row with no bundle changes nothing, the landing dossier stays; the day
+  the bundle lands, `/<slug>` flips and its per-document pages get "review with its citations →".
+- **The bundle** — `node scripts/import-casereview.mjs --case <slug> …` writes `public/casereview/<slug>/data/`
+  (docs.json, links/, files.json, _IMPORT.json). The default case (`kirchner-v-johnson`) keeps `public/casereview/data/`
+  and bare rules, byte for byte (proven on the P96 export: before == after == the committed bundle).
+- **The rewrites** — `public/_redirects` gets a second marked block, `# casereview BEGIN <slug> — …` /
+  `# casereview END <slug>`, every rule carrying Netlify's query condition (`/api/casereview/docs  root=<slug>  …  200`;
+  such a rule matches only a request carrying exactly that parameter, and the window's fetches carry only `root`),
+  inserted BEFORE the default block (first match wins; a bare rule matches under any query); each block regenerates
+  alone. `next.config.ts` builds the same from the bundles on disk (`has: [{type:'query', key:'root', value:<slug>}]`,
+  keyed rules first). `public/serve.json` (serve-handler) has no query condition in its grammar — it stays the default
+  case's alone; `next start` serves both.
+- **The mount** — `CaseReviewMount` takes `root` and writes `projroot=<slug>` into the URL by replaceState before the
+  window reads `location.search`, as it writes the default document. When the Studio gives `mountCaseReview` a root
+  option, the host passes it there and the URL stays bare.
+- **The check** — `--check` without `--case` reads the default bundle AND every `public/casereview/<slug>/data/` present,
+  so the build gate covers a second case the day it lands; `--check --case <slug>` reads one.
+- **The MN files** — this site already holds them under `public/uploads/constitutional/pdfs/minnesota/` (three dockets
+  by filename prefix: the closed 00726 as `1.pdf`, the refiled 02594 as `2594-20.pdf`, the appeal as `8cir-brief.pdf`).
+  `--names docket` reads an `ECF N(-M)` label; the MN labels are `Doc. N`, so the MN import takes a name map or a
+  second label pattern — said by name with f28bb754 when the registry's labels exist, byte-identical on both sites.
+
 ## CSP
 
 `netlify.toml`: `worker-src 'self' blob:` (the pdf.js worker) and `data:` in `font-src` (the standard fonts), beside

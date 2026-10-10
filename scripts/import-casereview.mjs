@@ -12,6 +12,8 @@
 //   node scripts/import-casereview.mjs --from <export_dir>    # from the checker's export (studio-spec R1) once it lands
 //   node scripts/import-casereview.mjs --check                # the bundle on disk is whole (runs in every build)
 //   node scripts/import-casereview.mjs --out <dir>            # write the bundle under <dir> instead of public/ (a dry run)
+//   node scripts/import-casereview.mjs --case <slug> …        # a SECOND case on the same host (2026-10-10, the MN lane): its bundle under
+//                                                             # public/casereview/<slug>/data/, its API rules keyed on the window's ?root=<slug>
 //   --uploads-dir <dir under public/> --names id|docket --name-map <json>   # a host's own PDF layout (lawsofexistence.com)
 //   --serve-groups Filings[,…]                                 # a HOST policy: registry serve rows of other groups are not hosted here (link if a url, else hold), stamped
 //   node scripts/import-casereview.mjs --dev-serve-filings    # DEVELOPMENT ONLY — see PUBLICATION below
@@ -40,12 +42,25 @@ const flag = (f) => argv.includes(f);
 const opt = (f, d) => { const i = argv.indexOf(f); return i >= 0 && argv[i + 1] ? argv[i + 1] : d; };
 const PUBLIC = path.resolve(opt('--out', path.join(ROOT, 'public')));   // --out <dir>: write the bundle elsewhere (a dry run, a compare)
 
-const CASE = opt('--case', 'kirchner-v-johnson');
+// TWO CASES ON ONE HOST (agreed by name 55339aa7 ⇄ f28bb754, 2026-10-10): the DEFAULT case keeps the bundle where every
+// reader and URL has read it (public/casereview/data/, bare API rules, unchanged byte for byte); any other `--case <slug>`
+// writes public/casereview/<slug>/data/ (links, files.json and _IMPORT.json under it) and API rules KEYED on the query the
+// vendored window already sends — projRootQS() turns the page URL's ?projroot=<slug> into ?root=<slug> on all three fetches
+// (casereview.js l.74–77) — written BEFORE the bare rules (Netlify: a query-conditioned rule matches only a request carrying
+// exactly that parameter; the most specific rule first). The token is the case SLUG, never a path. docs.json's case_root is
+// the slug too, so the window's per-case tree store (ourstudio_cr_tree:<case_root>) is distinct per case on one origin.
+const DEFAULT_CASE = 'kirchner-v-johnson';
+const CASE = opt('--case', DEFAULT_CASE);
+const KEYED = CASE !== DEFAULT_CASE;
 const FROM = opt('--from', 'http://127.0.0.1:8765');
 const PROJECT_ROOT = opt('--root', '/Users/everest/Git/work_station');
 const CASE_ROOT_OPT = opt('--case-root', null);
-const DATA = path.join(PUBLIC, 'casereview', 'data');
+const dataRel = (c) => c === DEFAULT_CASE ? path.join('casereview', 'data') : path.join('casereview', c, 'data');
+const DATA_REL = dataRel(CASE);
+const DATA = path.join(PUBLIC, DATA_REL);
 const LINKS = path.join(DATA, 'links');
+const DATA_URL = `/${DATA_REL}`;
+const ROOT_QS = KEYED ? `root=${encodeURIComponent(CASE)}` : null;   // the _redirects query condition, as the window sends it
 // the served PDFs' home: public/uploads/<case>/ here; a host that already holds its files elsewhere names the directory
 // (relative to public/) — lawsofexistence.com: --uploads-dir uploads/constitutional/pdfs --names docket --name-map <mo-stay.json>
 const UPLOADS_REL = opt('--uploads-dir', path.join('uploads', CASE)).replace(/^\/+|\/+$/g, '');
@@ -151,9 +166,22 @@ function fromExport(dir) {
 }
 
 // ---------------------------------------------------------------- the check (every build)
+// `--check` reads the bundle of `--case`; without `--case` it reads the default bundle AND every other case's bundle present
+// under public/casereview/<slug>/data/, so the build gate covers a second case the day it lands with no script change.
 function check() {
+  checkOne(CASE);
+  if (argv.includes('--case')) return;
+  const dir = path.join(PUBLIC, 'casereview');
+  if (!fs.existsSync(dir)) return;
+  for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (!e.isDirectory() || e.name === 'data' || e.name === 'vendor') continue;
+    if (fs.existsSync(path.join(dir, e.name, 'data', '_IMPORT.json'))) checkOne(e.name);
+  }
+}
+function checkOne(c) {
+  const DATA = path.join(PUBLIC, dataRel(c)), LINKS = path.join(DATA, 'links');
   const p = path.join(DATA, '_IMPORT.json');
-  if (!fs.existsSync(p)) fail('no bundle: public/casereview/data/_IMPORT.json is missing — run the importer');
+  if (!fs.existsSync(p)) fail(`no bundle: public/${dataRel(c)}/_IMPORT.json is missing — run the importer`);
   const imp = JSON.parse(fs.readFileSync(p, 'utf8'));
   const deploying = !!(process.env.NETLIFY || process.env.CI);
   let bad = 0;
@@ -180,8 +208,8 @@ function check() {
     if (imp.vendored_studio_commit && rec.source && rec.source.commit && imp.vendored_studio_commit !== rec.source.commit) console.warn(`  WARNING  the stamp was imported under Studio ${String(imp.vendored_studio_commit).slice(0, 8)}, the vendor record is at ${String(rec.source.commit).slice(0, 8)} — re-run the importer after a sync to re-stamp (the bundle's bytes do not depend on it)`);
   } catch { /* no record: the vendor check says so */ }
   if (imp.host_policy) console.log(`  host policy: only ${(imp.host_policy.serve_groups || []).join(', ')} hosted here — ${imp.host_policy.not_hosted_here} registry serve row(s) said, not fetched`);
-  if (bad) fail(`${bad} problem(s) in the bundle`);
-  console.log(`bundle ok: ${docs.docs.length} documents (${served} served, ${docs.docs.filter(d => d.publish === 'link').length} linked, ${docs.docs.filter(d => d.publish === 'hold').length} held), ${Object.keys(docs.links || {}).length} link tables; imported ${imp.imported} from ${imp.source}`);
+  if (bad) fail(`${bad} problem(s) in the bundle${c === DEFAULT_CASE ? '' : ` of ${c}`}`);
+  console.log(`bundle ok${c === DEFAULT_CASE ? '' : ` (${c})`}: ${docs.docs.length} documents (${served} served, ${docs.docs.filter(d => d.publish === 'link').length} linked, ${docs.docs.filter(d => d.publish === 'hold').length} held), ${Object.keys(docs.links || {}).length} link tables; imported ${imp.imported} from ${imp.source}`);
 }
 
 // ---------------------------------------------------------------- the import
@@ -284,19 +312,25 @@ async function run() {
   // the rewrites: Netlify's _redirects (the publish dir) and the local static server's serve.json (serve-handler)
   // written as a MARKED BLOCK: a host whose public/_redirects carries other generated rules (lawsofexistence.com's
   // legacy 301 freeze) keeps them — the block is replaced in place when present, appended when not
-  const BEGIN = '# casereview BEGIN — generated by scripts/import-casereview.mjs: the Studio\'s Case Review API routes, served static; do not hand-edit this block';
-  const END = '# casereview END';
+  // a second case's block carries the case name in both markers (`# casereview BEGIN <slug> — …` / `# casereview END <slug>`),
+  // so two blocks coexist and each is regenerated alone; a keyed rule is `from  root=<slug>  to  200` (Netlify's query
+  // condition), and a NEW keyed block is inserted BEFORE the default block when one exists (first match wins; a bare
+  // rule matches under any query)
+  const BEGIN = `# casereview BEGIN ${KEYED ? `${CASE} ` : ''}— generated by scripts/import-casereview.mjs: the Studio\'s Case Review API routes, served static; do not hand-edit this block`;
+  const END = `# casereview END${KEYED ? ` ${CASE}` : ''}`;
+  const DEFAULT_BEGIN = '# casereview BEGIN — generated by scripts/import-casereview.mjs';
+  const q = ROOT_QS ? `  ${ROOT_QS}` : '';
   const redirects = [
     BEGIN,
-    `/api/casereview/docs  /casereview/data/docs.json  200`,
-    `/api/casereview/links/:id  /casereview/data/links/:id.json  200`,
+    `/api/casereview/docs${q}  ${DATA_URL}/docs.json  200`,
+    `/api/casereview/links/:id${q}  ${DATA_URL}/links/:id.json  200`,
     // a served document whose file is not <id>.pdf (an unsafe id, or the docket-slug layout): the request path as the
     // window sends it (encodeURIComponent) and, when it differs, the form a browser normalises to (encodeURI)
     ...decided.filter(x => x.pub.mode === 'serve' && needsRule(x.d)).flatMap(({ d }) => {
       const a = encodeURIComponent(d.id), b = encodeURI(d.id);
-      return [...new Set([a, b])].map(enc => `/api/casereview/file/${enc}  ${UPLOADS_URL}/${hostName(d)}  200`);
+      return [...new Set([a, b])].map(enc => `/api/casereview/file/${enc}${q}  ${UPLOADS_URL}/${hostName(d)}  200`);
     }),
-    `/api/casereview/file/:id  ${UPLOADS_URL}/:id.pdf  200`,
+    `/api/casereview/file/:id${q}  ${UPLOADS_URL}/:id.pdf  200`,
     END,
   ].join('\n');
   const redirectsPath = path.join(PUBLIC, '_redirects');
@@ -304,12 +338,19 @@ async function run() {
   // a file this importer wrote before the markers existed (kirchnervjohnson's first form, one unmarked header line) is
   // the block itself, not a host's other rules — replaced whole, never kept beside the new block
   if (/^# generated by scripts\/import-casereview\.mjs/.test(prior.trimStart())) prior = '';
-  const i0 = prior.indexOf(BEGIN), i1 = prior.indexOf(END);
+  // END is searched from this block's own BEGIN: the default END is a prefix of every keyed END
+  const i0 = prior.indexOf(BEGIN), i1 = i0 >= 0 ? prior.indexOf(END, i0) : -1;
+  const iDefault = KEYED ? prior.indexOf(DEFAULT_BEGIN) : -1;
   const merged = i0 >= 0 && i1 > i0
     ? prior.slice(0, i0) + redirects + prior.slice(i1 + END.length)
-    : (prior.trimEnd() ? `${prior.trimEnd()}\n\n` : '') + redirects + '\n';
+    : iDefault >= 0
+      ? prior.slice(0, iDefault) + redirects + '\n\n' + prior.slice(iDefault)
+      : (prior.trimEnd() ? `${prior.trimEnd()}\n\n` : '') + redirects + '\n';
   fs.writeFileSync(redirectsPath, merged);
-  const serveJson = {
+  // serve.json (serve-handler, the local static server) has no query condition in its rewrite grammar — a second case is
+  // not servable there; its rules are the default case's alone, left untouched by a keyed import. `next start` serves both
+  // through next.config.ts's rewrites (has: query root=<slug>), kvj's `serve out` the default case.
+  const serveJson = KEYED ? null : {
     cleanUrls: true, trailingSlash: false,
     rewrites: [
       { source: '/api/casereview/docs', destination: '/casereview/data/docs.json' },
@@ -324,8 +365,8 @@ async function run() {
       { source: '**/*.mjs', headers: [{ key: 'Content-Type', value: 'text/javascript; charset=utf-8' }] },
     ],
   };
-  fs.writeFileSync(path.join(PUBLIC, 'serve.json'), JSON.stringify(serveJson, null, 2) + '\n');
-  console.log(`bundle written to public/casereview/data (default document ${defaultDoc || 'none — nothing served'}); rewrites in public/_redirects and public/serve.json`);
+  if (serveJson) fs.writeFileSync(path.join(PUBLIC, 'serve.json'), JSON.stringify(serveJson, null, 2) + '\n');
+  console.log(`bundle written to public/${DATA_REL} (default document ${defaultDoc || 'none — nothing served'}); rewrites in public/_redirects${KEYED ? ` (keyed on ?${ROOT_QS}; serve.json untouched)` : ' and public/serve.json'}`);
   if (DEV) console.warn('REMINDER: this bundle carries the development override — rerun without --dev-serve-filings before committing it');
 }
 
