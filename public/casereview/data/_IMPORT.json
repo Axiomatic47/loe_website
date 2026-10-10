@@ -1,25 +1,35 @@
 {
   "case": "kirchner-v-johnson",
-  "imported": "2026-10-06T19:03:19.631Z",
-  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/cr_export_p94",
+  "imported": "2026-10-10T04:10:19.513Z",
+  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/cr_ddc_a4",
   "export_stamp": {
     "lane_signature": {
-      "sha256": "500b721756a7d16515e3d27b15990ab07598195fbbcb955f6496e5c443b0ef55",
+      "sha256": "e1e2088dad50e95d5af89abcb6dd7b62e3d748c3e6cc7924476b3d82616a4557",
       "files": [
         {
           "path": "_admin/case_review/docs.json",
-          "bytes": 1086766,
-          "sha256": "da03861f6ed18cbc05753330e9425b3eb070e69b46f171acf6c725d5374d798e"
+          "bytes": 1154145,
+          "sha256": "9a5566325e9ebc90dc2276841bafbd0e04ed4c2024d6136937561b98ab7ffd45"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-051-13.meta.json",
+          "bytes": 51618,
+          "sha256": "9b7f2dc5a6ceee2cd4bf3c14d0ef1761ab3c016fac2b7922d40f2abd09a77bb8"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-051-13.tsv",
+          "bytes": 379122,
+          "sha256": "9d48ba6afd11011a56cac6f8965ffe09f2e3b5bb770028c2576c42dc6d32a7db"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-051.meta.json",
-          "bytes": 68872,
-          "sha256": "24eb0596e7d804cef785b1026d7e960c2ca9e8649a190d726509325dc7a46c1a"
+          "bytes": 72149,
+          "sha256": "878e4d099c8959ee59513551048f0e1cafbf137c7c3843e1ddd6a86b63222b9a"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-051.tsv",
-          "bytes": 1112087,
-          "sha256": "99d3ceadcbc9325fc021959ee90ef5bb95c51b9a6f03d44059701adc2191f8d8"
+          "bytes": 1114352,
+          "sha256": "0ddece64e5a20cd58e718b8f939cb607b9e6ab09ac02197844dab95daee549e1"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-052.meta.json",
@@ -123,23 +133,23 @@
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-069.meta.json",
-          "bytes": 14452,
-          "sha256": "ce4e3342e1d557e278691615393f897885e15083fa5a20a73e35fd258ec50d11"
+          "bytes": 15281,
+          "sha256": "6e59dcc6486840993273cd5b87ff996d4523aabaa53217f2e3f247353e90fc90"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-069.tsv",
-          "bytes": 249657,
-          "sha256": "54bd146201ef95e85dc177f947fe0ae47f42ffa34448053cf3e90e4075e48c0c"
+          "bytes": 249668,
+          "sha256": "6e6fe5c3ec08fd48aaf795c6cf0a460b0350ac2ebfc9569244528a4b79f06f83"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-070-01.meta.json",
-          "bytes": 13411,
-          "sha256": "7b35c98bb6a960ba1d5b0b87e5254c9c5d98cc65ff9c4e2b2cdb58c5b27775b8"
+          "bytes": 15539,
+          "sha256": "3d3fe83a10a840187c0f9c6fbcf959d1ec3e3b7bd7a644ea0abbc958723a9a05"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-070-01.tsv",
-          "bytes": 337055,
-          "sha256": "2dc60b3ec71fa30715812641c71121b10c208166caeaef908635b52486bf6b91"
+          "bytes": 338935,
+          "sha256": "f1ef1c60236634a52b93d7ab8cd6198988638da20e80772e680462caee4edb16"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-070.meta.json",
@@ -213,23 +223,23 @@
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-073.meta.json",
-          "bytes": 21221,
-          "sha256": "a9c5a1cf04accaa2c5c9e1c6e06013544d0492826d8b833859d6937457538064"
+          "bytes": 22923,
+          "sha256": "d802cd262ffababe4a388384e9a153aa46d0a6011218192d1fd8dd90ec503e80"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-073.tsv",
-          "bytes": 379561,
-          "sha256": "b2d5f219eac407cc27f4f5e1e3e8ef5536d515fa969f219d5c50b9c7b8a32b68"
+          "bytes": 382358,
+          "sha256": "292fd4dad55e2d96badb208d286055bc82734b73c2c6b9e91b4036a8a44c407e"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-074.meta.json",
-          "bytes": 19433,
-          "sha256": "683683fcc4c6dd518f8fa55fceaa9c3cdf087d724100937b11a8d525c4480c6d"
+          "bytes": 20333,
+          "sha256": "e6e1fcc5a368174af7f978ca25ab48dbd3bddae90711c10c670369087e6bfdc3"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-074.tsv",
-          "bytes": 320520,
-          "sha256": "ff64a61ff63ce82ed0ea32866d46f96e005f6d8306bc86b6a8d2a61ffc5ac9cd"
+          "bytes": 321273,
+          "sha256": "75e95e1e6e6329de00dc05478b05ff050b29253fa831460b172723302d3d48b8"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-075.meta.json",
@@ -267,6 +277,11 @@
           "sha256": "625da1870ae53449edae8bdefd56c5de3c623b111e58c3e8232d3b6c248c7df6"
         },
         {
+          "path": "_admin/case_review/_paramaps/usc/usc02@119-111.json",
+          "bytes": 23873,
+          "sha256": "da07f7443a059edee8d4657f9c625732bcff7971e4fca9adea16eb96e56ed761"
+        },
+        {
           "path": "_admin/case_review/_paramaps/usc/usc05@119-111.json",
           "bytes": 18867,
           "sha256": "51b346915c072926ce9943c70ee0b1db38b96ce2a549cb92a161a90878d6481e"
@@ -282,6 +297,11 @@
           "sha256": "5f969434109eec7c05cf37a64589783e7c344523f03b4b08a3e6a92e7394e8fc"
         },
         {
+          "path": "_admin/case_review/_paramaps/usc/usc22@119-111.json",
+          "bytes": 55050,
+          "sha256": "2d54278cdf14e25c5d8831e47ec631542596b8b6ec47b0489dd51f1a58c73d84"
+        },
+        {
           "path": "_admin/case_review/_paramaps/usc/usc26@119-111.json",
           "bytes": 29727,
           "sha256": "040d43594d63a4e3f25bb41fa90ee241746645c63b66b0d70b7ad40249530b67"
@@ -292,9 +312,19 @@
           "sha256": "bfab07965a5c16b95120415b198f7390918b312c179c832afeb3e0f0b0bc2711"
         },
         {
+          "path": "_admin/case_review/_paramaps/usc/usc31@119-111.json",
+          "bytes": 7982,
+          "sha256": "0441361d566aaebec7e11f2d7656573fdd884d6805d9c8c8d8d74899a5fa46be"
+        },
+        {
           "path": "_admin/case_review/_paramaps/usc/usc35@119-111.json",
           "bytes": 3397,
           "sha256": "31f4ef55854589044f705c49b9eac41402298b2e188e2e7d82d41b9ab6f8487f"
+        },
+        {
+          "path": "_admin/case_review/_paramaps/usc/usc42_ch7to7A_Secs301to1400v@119-111.json",
+          "bytes": 11024,
+          "sha256": "1b0014e8ee1d2ad411f05f2ec1d14920dcb0193df3e92323281a4192e4aab7dd"
         },
         {
           "path": "_admin/case_review/_paramaps/usc/usc42_ch8to39_Secs1401to3259@119-111.json",
@@ -310,19 +340,25 @@
           "path": "_admin/case_review/_paramaps/usc/usc47@119-111.json",
           "bytes": 6037,
           "sha256": "496ef16e994456ce38abc9d4c52114b5bf9d274ef09bd8a1b3e9f67045098d73"
+        },
+        {
+          "path": "_admin/case_review/_paramaps/usc/usc50@119-111.json",
+          "bytes": 20344,
+          "sha256": "813ca2f4ab0db4e224d10f8faac1fe53f2f440d604571b5c343cddcaa970b16b"
         }
       ]
     },
-    "ourstudio_commit": "5e9e82fb",
-    "checker": "P93",
-    "checker_source_sha256": "4cd58e452b4107b556308e54907e83185cefa774848f4e87c88dd0b20d067f30",
-    "mirrors_sha256": "e6e7e58cf633e27d7331e2a916b14ec3d7e2cc84566a4b6a8866066480a74e70",
-    "exported": "2026-10-06T19:02:43+00:00",
+    "ourstudio_commit": "a4abcb96",
+    "checker": "P97",
+    "checker_source_sha256": "5554c75985719c7261ff83dca3777170a795c97f273916d668cfa38579383574",
+    "mirrors_sha256": "8590c438290f1c6858de2bd93614ece5c7ae4cced5d13c25e23666ccdf0805f4",
+    "exported": "2026-10-10T04:09:59+00:00",
     "case_root": "/Users/everest/Git/work_station/1_DCC_1-25-cv-02735-ACR",
     "project_root": "/Users/everest/Git/work_station",
-    "registry_version": "v0.25g",
+    "registry_version": "v0.25o",
     "tables": [
       "DDC-051",
+      "DDC-051-13",
       "DDC-052",
       "DDC-053",
       "DDC-054",
@@ -350,7 +386,7 @@
     ],
     "publish_applied": true,
     "publish": {
-      "serve": 985,
+      "serve": 1032,
       "link": 7,
       "hold": 57
     },
@@ -383,17 +419,17 @@
       "manifest": "files.json"
     }
   },
-  "registry_version": "v0.25g",
-  "documents": 1049,
-  "tables": 25,
-  "rows": 7981,
+  "registry_version": "v0.25o",
+  "documents": 1096,
+  "tables": 26,
+  "rows": 8637,
   "publication": {
-    "serve": 985,
+    "serve": 1032,
     "link": 7,
     "hold": 57
   },
   "dev_override": false,
   "default_doc": "DDC-077",
-  "vendored_studio_commit": "5e9e82fb82759bd6752eeedbc97dba2f2e4193bb",
+  "vendored_studio_commit": "a4abcb96cf53dcf7370a83c86b420a98eca5ba6a",
   "host_policy": null
 }

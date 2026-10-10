@@ -1,6 +1,7 @@
 // app/[caseSlug]/page.tsx — bare case URLs.
 //
-// /kirchner-v-johnson → the CASE IN REVIEW MODE (owner 2026-10-01): the Studio's Case Review window, vendored byte for
+// /kirchner-v-johnson → the CASE IN REVIEW MODE (owner 2026-10-01; any case whose bundle is on disk — the host table in
+//   app/casereview/review-link.ts — since 2026-10-10): the Studio's Case Review window, vendored byte for
 //   byte (public/casereview/vendor), under the site's header and a one-row head — the filings listed as the Studio
 //   lists them, the document under review on the left, the cited source at its page on the right. The landing
 //   dossier (summary, status, timeline, key documents) is gone from this case. Deep link = the Studio's exact form,
@@ -21,7 +22,7 @@ import { CASE_SLUGS, sectionUrl, absoluteUrl, isCaseSlug } from '@/utils/urls';
 import { SitePageLayout } from '../_components/SitePageLayout';
 import { DocReaderView } from '../_components/DocReaderView';
 import { CaseReviewMount } from '../casereview/CaseReviewMount';
-import { readImportStamp } from '../casereview/review-link';
+import { caseReviewHost, defaultDocFor, readImportStamp } from '../casereview/review-link';
 import '../casereview/casereview.css';
 
 export const dynamicParams = false;
@@ -90,20 +91,22 @@ export default async function CasePage({ params }: Params) {
   const c = CASES[caseKey];
   if (!c) notFound();
 
-  // the DDC case is the review mode (owner 2026-10-01); the window is the Studio's, this is its host
-  if (caseSlug === 'kirchner-v-johnson') {
-    const stamp = readImportStamp();
+  // a case whose bundle is on disk is the review mode (the DDC case since the owner's word of 2026-10-01; the MN case
+  // the day its bundle lands — review-link.ts's host table); the window is the Studio's, this is its host
+  const host = caseReviewHost(caseSlug);
+  if (host) {
+    const stamp = readImportStamp(caseSlug);
     return (
       <SitePageLayout>
         <main className="cr-host">
           <header className="cr-head">
             <Link href="/composition/constitutional" className="cr-back" aria-label="All cases">All cases</Link>
-            <span className="cr-caption">Kirchner <span className="v">v.</span> Johnson</span>
-            <span className="cr-no">{c.caseNo} · D.D.C.</span>
+            <span className="cr-caption">{host.caption[0]} <span className="v">v.</span> {host.caption[1]}</span>
+            <span className="cr-no">{host.caseNo} · {host.court}</span>
             <span className="cr-mode">Case review</span>
             {stamp.registry_version && <span className="cr-stamp">registry {stamp.registry_version}</span>}
           </header>
-          <CaseReviewMount defaultDoc={stamp.default_doc ?? null} />
+          <CaseReviewMount defaultDoc={defaultDocFor(caseSlug)} root={host.root} />
         </main>
       </SitePageLayout>
     );

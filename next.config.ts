@@ -1,5 +1,5 @@
 import type { NextConfig } from 'next';
-import { readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 // Legacy URL space — real permanent redirects compiled from data. They
@@ -50,25 +50,42 @@ const nextConfig: NextConfig = {
   // the Case Review window (public/casereview/vendor, the Studio's) reads the Studio's three API routes; the site serves
   // them static — public/_redirects carries the same rules for Netlify, these make `next start` answer them too. The
   // file route needs one rule per served document because the host file is the docket slug (74.pdf), not <id>.pdf.
+  // A SECOND CASE (2026-10-10): its bundle sits at public/casereview/<slug>/data/ and its rules are keyed on the query the
+  // window sends when the page URL carries ?projroot=<slug> (`?root=<slug>` on all three fetches) — `has: query root`,
+  // written BEFORE the default case's bare rules, which match under any query. One shape, read from the bundles on disk.
   async rewrites() {
-    const rules = [
-      { source: '/api/casereview/docs', destination: '/casereview/data/docs.json' },
-      { source: '/api/casereview/links/:id', destination: '/casereview/data/links/:id.json' },
-    ];
+    type Files = Record<string, { path: string | null }>;
+    const p2r = (s: string) => s.replace(/[()[\]{}*+?:$|^\\]/g, '\\$&');
+    const rulesFor = (dataUrl: string, filesPath: string, root: string | null) => {
+      const has = root ? { has: [{ type: 'query' as const, key: 'root', value: root }] } : {};
+      const rules = [
+        { source: '/api/casereview/docs', destination: `${dataUrl}/docs.json`, ...has },
+        { source: '/api/casereview/links/:id', destination: `${dataUrl}/links/:id.json`, ...has },
+      ];
+      try {
+        const files = JSON.parse(readFileSync(filesPath, 'utf8')) as Files;
+        // the window requests /api/casereview/file/<encodeURIComponent(id)>; Next matches a rewrite against the request
+        // path AS SENT (the compiled regex is tested on the undecoded pathname — measured 2026-10-01), so a case-law id
+        // with spaces, commas or parentheses gets its rule in the two encoded forms public/_redirects carries for Netlify
+        // (encodeURIComponent, and encodeURI when a browser would normalise to it), path-to-regexp's syntax characters escaped
+        for (const [id, f] of Object.entries(files)) {
+          if (!f.path) continue;
+          const forms = /^[A-Za-z0-9._-]+$/.test(id) ? [id] : [...new Set([encodeURIComponent(id), encodeURI(id)])].map(p2r);
+          for (const src of forms) rules.push({ source: `/api/casereview/file/${src}`, destination: f.path, ...has });
+        }
+      } catch { /* no bundle yet: the two JSON routes alone */ }
+      return rules;
+    };
+    const cr = join(process.cwd(), 'public', 'casereview');
+    const keyed: ReturnType<typeof rulesFor> = [];
     try {
-      const files = JSON.parse(readFileSync(join(process.cwd(), 'public', 'casereview', 'data', 'files.json'), 'utf8')) as Record<string, { path: string | null }>;
-      // the window requests /api/casereview/file/<encodeURIComponent(id)>; Next matches a rewrite against the request
-      // path AS SENT (the compiled regex is tested on the undecoded pathname — measured 2026-10-01), so a case-law id
-      // with spaces, commas or parentheses gets its rule in the two encoded forms public/_redirects carries for Netlify
-      // (encodeURIComponent, and encodeURI when a browser would normalise to it), path-to-regexp's syntax characters escaped
-      const p2r = (s: string) => s.replace(/[()[\]{}*+?:$|^\\]/g, '\\$&');
-      for (const [id, f] of Object.entries(files)) {
-        if (!f.path) continue;
-        const forms = /^[A-Za-z0-9._-]+$/.test(id) ? [id] : [...new Set([encodeURIComponent(id), encodeURI(id)])].map(p2r);
-        for (const src of forms) rules.push({ source: `/api/casereview/file/${src}`, destination: f.path });
+      for (const e of readdirSync(cr, { withFileTypes: true })) {
+        if (!e.isDirectory() || e.name === 'data' || e.name === 'vendor') continue;
+        if (!existsSync(join(cr, e.name, 'data', 'files.json'))) continue;
+        keyed.push(...rulesFor(`/casereview/${e.name}/data`, join(cr, e.name, 'data', 'files.json'), e.name));
       }
-    } catch { /* no bundle yet: the two JSON routes alone */ }
-    return rules;
+    } catch { /* no casereview dir at all */ }
+    return [...keyed, ...rulesFor('/casereview/data', join(cr, 'data', 'files.json'), null)];
   },
   async redirects() {
     return [

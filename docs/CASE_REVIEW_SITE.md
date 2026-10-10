@@ -94,6 +94,81 @@ mirror paths. The checker's structured answers (violations, warnings, coverage, 
 pages, section-map resolutions) ride unchanged. The five filings the court has not stamped (ECF 11, 12, 12-1, 14, 15)
 carry `filer_copy` and the mark in their title.
 
+## A second case on the same host (2026-10-10; the owner's word of 2026-10-09: the MN case gets the DDC architecture)
+
+The window keys its root itself: `projRootQS()` (casereview.js l.74–77) turns the page URL's `?projroot=<slug>` into
+`?root=<slug>` on all three fetches, and the window's per-case tree store is `ourstudio_cr_tree:<case_root>` where
+`case_root` is docs.json's field — the importer writes the case SLUG there, never a path. So a second case needs no
+window change: a host table, a keyed bundle, keyed rewrites.
+
+- **The host table** — `app/casereview/review-link.ts` `CASE_REVIEW_HOSTS`: slug → `root` (null for the default
+  case), the head row's caption, docket number and court. A case is in review mode ONLY while its bundle is on disk
+  (`caseReviewHost()` tests `_IMPORT.json`): a row with no bundle changes nothing, the landing dossier stays; the day
+  the bundle lands, `/<slug>` flips and its per-document pages get "review with its citations →".
+- **The bundle** — `node scripts/import-casereview.mjs --case <slug> …` writes `public/casereview/<slug>/data/`
+  (docs.json, links/, files.json, _IMPORT.json). The default case (`kirchner-v-johnson`) keeps `public/casereview/data/`
+  and bare rules, byte for byte (proven on the P96 export: before == after == the committed bundle).
+- **The rewrites** — `public/_redirects` gets a second marked block, `# casereview BEGIN <slug> — …` /
+  `# casereview END <slug>`, every rule carrying Netlify's query condition (`/api/casereview/docs  root=<slug>  …  200`;
+  such a rule matches only a request carrying exactly that parameter, and the window's fetches carry only `root`),
+  inserted BEFORE the default block (first match wins; a bare rule matches under any query); each block regenerates
+  alone. `next.config.ts` builds the same from the bundles on disk (`has: [{type:'query', key:'root', value:<slug>}]`,
+  keyed rules first). `public/serve.json` (serve-handler) has no query condition in its grammar — it stays the default
+  case's alone; `next start` serves both.
+- **The mount** — `CaseReviewMount` takes `root` and writes `projroot=<slug>` into the URL by replaceState before the
+  window reads `location.search`, as it writes the default document. When the Studio gives `mountCaseReview` a root
+  option, the host passes it there and the URL stays bare.
+- **The check** — `--check` without `--case` reads the default bundle AND every `public/casereview/<slug>/data/` present,
+  so the build gate covers a second case the day it lands; `--check --case <slug>` reads one.
+- **The MN files** — this site already holds them under `public/uploads/constitutional/pdfs/minnesota/` (three dockets
+  by filename prefix: the closed 00726 as `1.pdf`, the refiled 02594 as `2594-20.pdf`, the appeal as `8cir-brief.pdf`).
+  The MN registry v0 (work_station 764e424c) labels its docket `ECF N(-M)` in the DDC form, but `--names docket` must
+  NOT name the MN files here: it would call MN2594-019 `19.pdf`, the closed case's Doc 19 on this site, and the
+  importer overwrites a same-named file whose sha is not the row's. `scripts/casereview-mn-name-map.mjs --from <export>`
+  writes the MN map by SHA instead (a row whose bytes are already under pdfs/ maps to that file — the 52 docket and
+  appeal files and the case law shared with DDC; a new docket row takes `minnesota/2594-NN-MM.pdf`; the rest the
+  default name) and refuses two rows on one file. The MN import is then
+  `--case kirchner-v-ellison --uploads-dir uploads/constitutional/pdfs --names id --name-map scripts/casereview-name-map-mn.json`.
+  The recipe in order: `git -C ~/Git/ourstudio worktree add --detach <scratch>/studio_<sha> <sha>` → from it,
+  `env -u PYTHONPATH python3 -m ourstudio_frontend.filing.case_review export /Users/everest/Git/work_station/2_MN-0-26-cv-02594-LMP-DJF <out>`
+  → `node scripts/casereview-size-guard.mjs --from <out>` (refuses any `serve` row whose file is over 95 MB — GitHub refuses
+  a file over 100 MB on push, this repo carries no LFS, and Netlify would not resolve LFS pointers; the 1920 Biennial Report
+  scan, 197 MB, was refused by GitHub's hook on kirchner.ink 2026-10-10 — the answer is the registry's `link` + publish_url,
+  never a quiet drop here)
+  → `node scripts/casereview-mn-name-map.mjs --from <out> --out scripts/casereview-name-map-mn.json` → the import line
+  with `--from <out>` → `npm run build:next` (the check reads both bundles) → the 3998 sweep with `?root=kirchner-v-ellison`
+  → commit by pathspec (the bundle dir, the map, `public/_redirects`, `public/serve.json`, any copied PDFs) → push →
+  the report to admin 69183d38 and to f28bb754 (through an admin while the direct link is down). A new filing needs
+  a reader row in `content/constitutional/kirchner-v-ellison-case-documents.json` (slug unpadded `2594-N-M`, the PDF
+  `minnesota/2594-NN-MM.pdf`); the bridge registers both spellings.
+
+## The video tab (Studio 451b408b / a4abcb96, 2026-10-10)
+
+A registry row of kind `video` (the MPR debate, publish `link` to YouTube, no file) opens in the right pane as a
+player over its transcript minute: the window's facade — no iframe until "▶ play at m:ss" is pressed, then
+youtube-nocookie at the second — and the minute's words with the quoted sentence marked. Three site facts:
+
+- **The importer keeps `passage` on video rows only** (`ROW_KEEP_ON_VIDEO`, the sites' shared bytes since ink
+  0bd7c3ca): a recording has no PDF, so the minute's words beside the player come from the served row; every other
+  row drops it as before (a PDF target's words the window boxes from the layer). DOC_KEEP carries `embed` and
+  `duration`; `target_pin_page` with `seconds` is a row key and rides.
+- **The skin** — `app/casereview/casereview.css` carries the Studio's twelve `.cr-video*` lines on this site's own
+  tokens (`--bg`, `--ink`, `--dim`, `--sans`, `--mono`, `--cr-right`); the box black and the facade's text white on both
+  themes. A new Studio class is mirrored here by hand, as the tab bar was.
+- **CSP** — `frame-src https://www.youtube-nocookie.com` (netlify.toml already carries it).
+
+Probe: `/kirchner-v-ellison?casereview=doc%3DMN-CORR-OPEN-LETTER-2026-10%26cite%3D2%2F1%26q%3D2%253A49%26page%3D2`
+opens the letter's 2:49 row and the recording's tab (the `q=` text selects the row; a `cite=` alone opens the first
+citation on that page, whichever row it is). Snap it: the facade over a 16:9 box, "transcript minute page N · m:00–m:59",
+the sentence marked.
+
+## Serving a registry version
+
+Every registry version is served, table change or not: a registry's offsets decide where a case-law citation opens in
+the pane (v0g keyed 23 of them from null), and a new row is a new served file. The export runs at the floor window's
+sha from a detached worktree; the bundle commit names the registry version and what moved; a table landing is
+served as it stands — rows shown and marked, never dropped — and the admin's next version replaces it.
+
 ## CSP
 
 `netlify.toml`: `worker-src 'self' blob:` (the pdf.js worker) and `data:` in `font-src` (the standard fonts), beside

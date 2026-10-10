@@ -166,6 +166,20 @@
 .cr-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 .cr-tabwell { position: absolute; inset: 0; overflow: hidden; }
 .cr-tabwell[hidden] { display: none; }
+/* THE VIDEO TAB (Studio 451b408b, § 5.5): the player over the transcript's minute; the pane's scroller sleeps while the
+   tab is a recording. The Studio's twelve lines on this site's tokens (--bg, --ink, --dim, --sans, --mono, --cr-right are
+   this skin's own); the box black and the facade's text white on both themes, as a player's chrome is. */
+.cr-tabwell.is-video .cr-scroll { display: none; }
+.cr-video { position: absolute; inset: 0; display: flex; flex-direction: column; overflow: auto; background: var(--bg); }
+.cr-videobox { position: relative; flex: 0 0 auto; aspect-ratio: 16 / 9; background: #000; }
+.cr-videobox iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.cr-videoplay { position: absolute; inset: 0; margin: auto; width: max-content; height: max-content; padding: 10px 18px; font: 13px/1.2 var(--sans); color: #fff; background: rgba(0, 0, 0, .6); border: 1px solid rgba(255, 255, 255, .55); border-radius: 6px; cursor: pointer; }
+.cr-videoplay:hover { background: rgba(0, 0, 0, .8); }
+.cr-videobox.is-playing .cr-videoplay { display: none; }
+.cr-videotext { flex: 1 1 auto; padding: 8px 14px 14px; font: 13px/1.55 var(--sans); color: var(--ink); }
+.cr-videominutehead { font: 10.5px/1.4 var(--mono); color: var(--dim); margin: 8px 0 4px; }
+.cr-videominutetext { white-space: pre-wrap; }
+.cr-videomark { background: color-mix(in srgb, var(--cr-right) 26%, transparent); color: inherit; border-bottom: 1.5px solid var(--cr-right); }
 .cr-panekey { width: 10px; height: 10px; border-radius: 2px; flex: none; }
 .cr-panekey.is-left { background: var(--cr-left); }
 .cr-panekey.is-right { background: var(--cr-right); }

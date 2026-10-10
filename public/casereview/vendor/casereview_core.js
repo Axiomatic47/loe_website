@@ -170,13 +170,28 @@ export function foldText(s) {
 // bare page-number footer, and a leading line-number column on pleading
 // paper (a text item that is only a 1–2 digit number). Pinned by the shared
 // fixture's `page_chrome` cases.
-const STAMP_LINE = /^Case \d+:\d{2}-[a-z]{2}-\d+(?:-[A-Z]+)?\s+Document \d+(?:-\d+)?\s+Filed \d{2}\/\d{2}\/\d{2,4}\s+Page \d+ of \d+$/;
+// P97 (studio-spec 7d866ecf's spec row § 7.1, the MN lane): the D. Minn. form
+// of the same stamp — "CASE 0:26-cv-02594-LMP-DJF Doc. 37 Filed 10/07/26 Page
+// 1 of 10" (pdf.js hands it as the DDC's four pieces on one baseline, measured
+// on MN2594-037 pp. 1–2 and MN2594-001 p. 1) — so: the court's capitals under
+// the i flag (the checker carried re.I already; a latent two-readers difference
+// closed), up to two judge suffixes, and `Doc.` beside `Document`.
+const STAMP_LINE = /^Case \d+:\d+-[a-z]{2}-\d+(?:-[A-Z0-9]+){0,2}\s+Doc(?:ument|\.) \d+(?:-\d+)?\s+Filed \d{2}\/\d{2}\/\d{2,4}\s+Page \d+ of \d+$/i;
 // R3 (website-developer f28bb754, measured on ECF 74, 77 and 51-54): pdf.js
 // hands the stamp as FOUR items — "Case 1:25-cv-02735-ACR" | "Document 74" |
 // "Filed 08/28/26" | "Page 20 of 60" — so each fragment is chrome when it is
 // a whole item; the checker strips the whole line, and the two readers'
 // page text then agree.
-const STAMP_FRAG = /^(?:Case \d+:\d{2}-[a-z]{2}-\d+(?:-[A-Z0-9]+)?|Document \d+(?:-\d+)?|Filed \d{2}\/\d{2}\/\d{2,4}|Page \d+ of \d+)$/;
+const STAMP_FRAG = /^(?:Case \d+:\d+-[a-z]{2}-\d+(?:-[A-Z0-9]+){0,2}|Doc(?:ument|\.) \d+(?:-\d+)?|Filed \d{2}\/\d{2}\/\d{2,4}|Page \d+ of \d+)$/i;
+// P97: THE EIGHTH CIRCUIT HEADER on every appeal page's layer ("Appellate Case:
+// 26-1615 Page: 1 Date Filed: 05/12/2026 Entry ID: 5639443 RESTRICTED"; absent
+// from the mirrors, so the readers disagreed on 26-1615). pdf.js hands it as
+// THREE items on one baseline — "Appellate Case: 26-1615" | "Page: 1" | "Date
+// Filed: 05/12/2026 Entry ID: 5639443 RESTRICTED" (26-1615_Brief pp. 2–3; the
+// cover carries none) — which the line join rebuilds whole; pdftotext hands two
+// lines with "Page: 1" apart. The whole line and each fragment as a whole line.
+const APPEAL_LINE = /^Appellate Case:\s+\d+-\d+\s+Page:\s+\d+\s+Date Filed:\s+\d{2}\/\d{2}\/\d{4}\s+Entry ID:\s+\d+(?:\s+RESTRICTED)?$/;
+const APPEAL_FRAG = /^(?:Appellate Case:\s+\d+-\d+(?:\s+Page:\s+\d+)?|Page:\s+\d+|Date Filed:\s+\d{2}\/\d{2}\/\d{4}(?:\s+Entry ID:\s+\d+)?(?:\s+RESTRICTED)?|Entry ID:\s+\d+(?:\s+RESTRICTED)?|RESTRICTED)$/;
 const LINE_NUMBER = /^-?\s*\d{1,3}\s*-?$/;              // a bare page number, dashed or not ("- 12 -"); THREE digits since P70 (ECF 51 is 268 pages: '179' survived the fold and sat between a wrap head and the seam)
 const PAGE_MARKER = /^\*\*\[Page \d+\]\*\*/;           // machine_read's page marker (the stamp follows in italics)
 // a leading line-number COLUMN on pleading paper: "12  The record shows…" —
@@ -348,7 +363,7 @@ export function chromeLines(rawLines) {
 export function isPageChrome(text) {
   const f = foldText(text);
   const raw = String(text == null ? '' : text);
-  if (f === '' || STAMP_LINE.test(f) || STAMP_FRAG.test(f) || LINE_NUMBER.test(f) || PAGE_MARKER.test(f) || RULE_LINE.test(raw) || HTML_COMMENT_LINE.test(raw)) return true;
+  if (f === '' || STAMP_LINE.test(f) || STAMP_FRAG.test(f) || APPEAL_LINE.test(f) || APPEAL_FRAG.test(f) || LINE_NUMBER.test(f) || PAGE_MARKER.test(f) || RULE_LINE.test(raw) || HTML_COMMENT_LINE.test(raw)) return true;
   const head = headText(raw);                                        // P81 (1): a U.S. Reports running head, whole line
   return US_HEAD_LINE.test(head) || US_HEAD_MISC.test(head);
 }
@@ -1260,6 +1275,46 @@ export function backIndex(removed, pos) {
   for (const r of removed) { if (r <= pos) pos++; else break; }
   return pos;
 }
+/** P95 — THE DROPPED-LIGATURE RETRY (g) (studio-spec 7d866ecf's ruling of 2026-10-08, both admins' word 23:05 CDT;
+ *  the viewer half, a168bcf6). The Court's PDFs from about 2013/2014 map the ﬁ/ﬂ/ﬃ/ﬄ glyph to ONE letter 'f' and every
+ *  reader reads the map — 'confrmed', 'offcial', 'fnding' on the text layer and the mirror alike (17 lane documents at
+ *  ≥ 5 per 1,000 words; ≤ 0.5 everywhere else). The FOLD DOES NOT CHANGE: a lane-wide fi→f fold would equate 29 real
+ *  pairs of the lane's own words (fed/fled, food/flood, few/flew, four/flour) across the 1,003 documents whose layers
+ *  carry the distinction. The loss is a DOCUMENT FACT the checker measures and serves (docs `ligature_drop`, rows
+ *  `target_ligature_drop` — the P89 shape), and on a flagged document only, after the plain fold and (c)/(d) miss,
+ *  BOTH sides are re-folded through the PDF's own map (ffi→ff, ffl→ff, fi→f, fl→f) so a quote carrying the PRINT's
+ *  spelling verifies; the hit carries 'g' and the words name it (N3). Without the flag the retry would make the label
+ *  a lie on a normal document ('filed' for the print's 'fled' passing as "dropped ligatures"). */
+/** THE MAP, the checker's `ligature_drop_fold` / `ligature_drop_page` constant for constant, at its FIXED POINT (P95a,
+ *  admin 2ee3c4f8's measure of 2026-10-09 00:05 CDT, a168bcf6's harness pin the hour before): the RUN of i/l right after
+ *  an f deleted — ffi→ff, ffl→ff, fi→f, fl→f applied until nothing moves. One pass a side is not enough: the layer's dropped
+ *  form can itself carry a new i/l after the f — the print's 'conflict' reads 'confict', 'file' 'fle', 'filed' 'fled',
+ *  'flight' 'fight' — and a second fold of the page side ('confct', 'fe', 'fed', 'fght') never met the quote folded once.
+ *  At the fixed point both sides read 'confct' / 'fe' / 'fed' / 'fght' and meet; the extra eat ('fled' and 'filed' alike at
+ *  'fed') sits inside the class the label already names — the image decides. The fixture's `ligature_drop` section pins
+ *  both readers to it. */
+const LIGATURE_FORMS = /(?<=f)[il]+/g;
+/** The text through the map, with the index of each dropped letter in the text as it was (ascending; the shape of
+ *  hyphenlessPage, so backIndex maps a hit back). */
+export function ligatureFold(text) {
+  const t = String(text == null ? '' : text);
+  const removed = [];
+  let out = '', last = 0;
+  for (const m of t.matchAll(LIGATURE_FORMS)) { for (let i = m.index; i < m.index + m[0].length; i++) removed.push(i); out += t.slice(last, m.index); last = m.index + m[0].length; }
+  return { text: out + t.slice(last), removed };
+}
+/** A fold {text, owner, lineEnds, pieceJoins} re-folded through the map, with fwd/back between the two index spaces. */
+function ligatureFolded(folded) {
+  const lf = ligatureFold(folded.text);
+  const fwd = (i) => { let d = 0; for (const r of lf.removed) { if (r < i) d++; else break; } return i - d; };
+  return { text: lf.text, owner: folded.owner, lineEnds: new Set([...(folded.lineEnds || [])].map(fwd)), pieceJoins: new Set([...(folded.pieceJoins || [])].map(fwd)), fwd, back: (i) => backIndex(lf.removed, i) };
+}
+/** The flag a row's locate runs under: the served ROW field alone — `target_ligature_drop` true, the checker's measure
+ *  of the row's target (the docs payload's `ligature_drop` is informational: the sites' importer carries row keys and
+ *  allow-lists doc keys, so a window keyed on the doc field would fire in the Studio and not on the sites). Never a guess. */
+export function ligatureDropFor(t) {
+  return !!(t && t.target_ligature_drop === true);
+}
 /** One SIDE of a search over a fold {text, owner}: as it is, or under the
  *  retry the hyphenless text with its map back to the fold's indices. */
 function side(folded, retry) {
@@ -1575,11 +1630,13 @@ function locateFragmentWrapped(folded, list, span, q, cursor, limit) {
  *  a middle page carries its whole body. `retry` names the strongest retry
  *  any fragment needed. Pinned by the shared fixture's `passage` cases,
  *  which the checker runs too. */
-export function locatePassage(pages, spanCount, quote) {
+export function locatePassage(pages, spanCount, quote, opts = null) {
   const list = (pages || []).map(p => p || []);
   const frags = quoteFragments(foldQuery(quote));
   if (!frags.length || !list.length) return null;
   const folded = foldPageList(list);
+  const lig = !!(opts && opts.ligatureDrop);               // P95: the document's served fact arms retry (g)
+  const foldedG = lig ? ligatureFolded(folded) : null;
   const span = Math.max(1, Math.min(spanCount || list.length, list.length));
   let limit = folded.text.length;
   for (let k = span; k < folded.pages.length; k++) if (folded.pages[k].start >= 0) { limit = folded.pages[k].start; break; }
@@ -1589,6 +1646,15 @@ export function locatePassage(pages, spanCount, quote) {
   let wrapped = false, headToTail = false;
   for (const frag of frags) {
     let hit = locateFragment(folded, frag, cursor, limit) || locateFragmentWrapped(folded, list, span, frag, cursor, limit);
+    if (!hit && lig) {
+      // RETRY (g) — P95: on a FLAGGED document only, and only when the fragment carries an i or l after an f (else a
+      // misquote would pass under a label naming a loss the page has); both sides through the PDF's one-letter map,
+      // (c)/(d) inside (the checker's _side composes the two deletion lists; the chain here deletes letters first, and no
+      // deletion can change a hyphen's letter neighbours, so the positions agree); mapped back to the fold's own indices.
+      const qg = ligatureFold(frag).text;
+      const g = qg !== frag ? locateFragment(foldedG, qg, foldedG.fwd(cursor), foldedG.fwd(limit)) : null;
+      if (g) hit = { from: foldedG.back(g.from), to: foldedG.back(g.to - 1) + 1, retry: (g.retry || '') + 'g', wrapped: false };
+    }
     if (!hit && frags.length > 1) {
       // RETRY (f) PER FRAGMENT (the viewer's own; 2026-10-05, the re-OCR'd Floyd v. Barker — admin 2ee3c4f8's read): an ELIDED
       // quote's fragment that misses whole on this layer is boxed from ITS head to ITS tail, in order after the previous
@@ -1631,7 +1697,7 @@ export function locatePassage(pages, spanCount, quote) {
     for (const h of [head, tail]) for (const ch of h.retry || '') letters.add(ch);
     letters.add('f');
   }
-  const retry = ['c', 'd', 'e', 'f'].filter(ch => letters.has(ch)).join('') || null;
+  const retry = ['c', 'd', 'e', 'f', 'g'].filter(ch => letters.has(ch)).join('') || null;   // P95: g, the dropped-ligature retry, last
   const from = found[0].from, to = found[found.length - 1].to;
   const all = spanOf(folded.owner, from, to - from);
   const parts = [];
@@ -1727,13 +1793,48 @@ export function gapPage(line) {
  *  as they come and the two shells agree without a pre-step. */
 export function rowPage(v) { return v == null || v === '' ? null : +v; }
 
+/** P96 (studio-spec 7d866ecf; admins 2ee3c4f8 + 69183d38's design 2026-10-09 00:1x CDT): A PAGE MAP'S BASIS. A hand map's
+ *  value is the leaf a folio is ON ('leaf' — today's maps; a constant offset is this basis) or the leaf where the folio
+ *  BEGINS ('begins' — a reprint: Marbury's U.S. Reports cut carries 44 folios on 27 leaves, folio 163 beginning at leaf
+ *  16's foot and running over leaf 17's head). The same numbers, two meanings, so the span rule cannot be read off the
+ *  map's shape (a reprint with one star per leaf has an injective map and still straddles): the registry says the basis
+ *  on the row beside the map (`pagemap_basis`), the export carries it, both readers key on it; a map without the field is
+ *  'leaf', so nothing moves for the offset documents and the existing hand maps. */
+export function pagemapBasis(doc) {
+  return doc && doc.pagemap_basis === 'begins' && isObj(doc.pagemap) && !isSectionMap(doc.pagemap) ? 'begins' : 'leaf';
+}
+/** On a 'begins' map the leaf where folio f ENDS (7d866ecf's rule, both readers): the leaf where f + 1 begins when the
+ *  map has f + 1 (the same leaf allowed); the document's leaf count (`pages`) ONLY when f is the map's LAST key (the last
+ *  folio closes at the end); a GAP in the map (f + 1 absent, a later key present) — or no leaf count — the folio's own leaf:
+ *  one leaf, no widening (the checker reads the span in the document's own numbering, [f, f+1] ∩ the store's keys, and
+ *  cannot say "to the leaf count" for a gap). */
+export function beginsEnd(doc, f, leaf) {
+  const next = mappedPage(doc.pagemap, f + 1);
+  if (next !== undefined && next >= 1) return Math.max(leaf, next);
+  const keys = pagemapFolios(doc.pagemap);
+  const last = keys.length ? keys[keys.length - 1] : null;
+  if (last !== null && f === last) {
+    const n = doc && Number.isFinite(+doc.pages) && +doc.pages >= 1 ? +doc.pages : null;
+    return n !== null && n >= leaf ? n : leaf;
+  }
+  return leaf;
+}
+/** The map's folio keys as numbers, ascending (the checker keys by int(k)). */
+function pagemapFolios(pagemap) {
+  if (!isObj(pagemap)) return [];
+  const pm = isObj(pagemap.pages) ? pagemap.pages : isObj(pagemap.map) ? pagemap.map : pagemap;
+  return Object.keys(pm).filter((k) => /^\d+$/.test(k)).map((k) => parseInt(k, 10)).sort((a, b) => a - b);
+}
 export function targetPages(t, doc) {
   const stamped = rowPage(t.target_page);
   const viaMap = stamped == null && t.target_pdf_page >= 1;
   const pp0 = t.target_pin_page;
   const pdfPage = stamped == null ? (viaMap ? t.target_pdf_page : 1) : (t.target_pdf_page || pdfPageFor(stamped, doc.offset, doc.pagemap));
   const endStamped = rowPage(t.target_page_end);
-  const pdfEnd = endStamped == null
+  const begins = stamped != null && pdfPage && pagemapBasis(doc) === 'begins';   // P96: a reprint's folio spans [begins(f), begins(f+1)]
+  const pdfEnd = begins
+    ? beginsEnd(doc, endStamped == null ? stamped : endStamped, endStamped == null ? pdfPage : (t.target_pdf_page_end || pdfPageFor(endStamped, doc.offset, doc.pagemap) || pdfPage))
+    : endStamped == null
     ? (viaMap && pp0 && (pp0.by === 'section' || pp0.by === 'range head') ? sectionSpanEnd(doc.pagemap, pdfPage) : pdfPage)
     : (t.target_pdf_page_end || pdfPageFor(endStamped, doc.offset, doc.pagemap));
   const marked = [];
@@ -1867,7 +1968,11 @@ export function publishedAway(doc, side = 'right') {
   if (doc.publish === 'link' && /^https?:\/\//i.test(doc.publish_url || '')) {
     return { kind: 'link', parts: [{ text: `${label}: not hosted on this site; at ` }, { text: doc.publish_url, href: doc.publish_url }, { text: ' (opens in the browser).' }] };
   }
-  return { kind: 'dead', parts: [{ text: `${label}: not published on this site yet. Nothing opened; ${pane} is as it was.` }] };
+  // THE HELD DOCUMENT'S WORD (studio-spec 7d866ecf's ruling 2026-10-10 on 69183d38's point from f28bb754's kirchner.ink landing):
+  // no 'yet' — the owner's hold is a decision, not a pending state; a `publish_note` string on the doc (the host's reason in the
+  // host's words, written by the importer from its host policy, or the lane's registry on a hold of its own) is said in brackets
+  const note = typeof doc.publish_note === 'string' && doc.publish_note.trim() ? ` (${doc.publish_note.trim()})` : '';
+  return { kind: 'dead', parts: [{ text: `${label}: not published on this site${note}. Nothing opened; ${pane} is as it was.` }] };
 }
 
 /** The sentence the right pane says for a unit's k-th target — PURE: the
@@ -1896,6 +2001,72 @@ export function textCarries(text, label) {
   return false;
 }
 
+// ---------------------------------------------------------------- the video kind (studio-spec 7d866ecf's spec row f14b45ce § 5.5;
+// the owner's word 2026-10-09: YouTube, displayed, every debate time a working hyperlink to the second, site and Studio alike)
+/** A recording target: the registry's `embed` ({provider: 'youtube', id}) on the doc and the served row's clock pin
+ *  (`target_pin_page` by "clock" with `seconds`, `end_seconds` for a range, `pdf` the transcript's minute page) → what the
+ *  player and the words need, or null when the row is not a video row. `clock` is the pin as printed without its "at"
+ *  (the hyperlink's text); `pages` the served passage's minute pages (text per page — the transcript mirror is the one
+ *  store; absent on a host whose importer drops the row key). The window never parses a pin: the seconds are the row's. */
+export function videoTarget(t, doc) {
+  const e = doc && doc.embed;
+  if (!e || e.provider !== 'youtube' || typeof e.id !== 'string' || !/^[A-Za-z0-9_-]{6,}$/.test(e.id)) return null;
+  const pp = t && t.target_pin_page;
+  if (!pp || pp.by !== 'clock' || !Number.isFinite(+pp.seconds) || +pp.seconds < 0) return null;
+  const seconds = Math.floor(+pp.seconds);
+  const end = Number.isFinite(+pp.end_seconds) && +pp.end_seconds > seconds ? Math.floor(+pp.end_seconds) : null;
+  const clock = String(pp.key || t.target_pin || clockText(seconds)).replace(/^at\s+/i, '').trim() || clockText(seconds);
+  const pages = t.passage && Array.isArray(t.passage.pages)
+    ? t.passage.pages.filter((x) => x && typeof x.text === 'string').map((x) => ({ page: isPage(+x.page) ? +x.page : (isPage(+x.pdf) ? +x.pdf : null), pdf: isPage(+x.pdf) ? +x.pdf : (isPage(+x.page) ? +x.page : null), text: x.text }))
+    : [];
+  return { provider: 'youtube', id: e.id, seconds, end, clock, pdf: isPage(+pp.pdf) ? +pp.pdf : null, pdfEnd: isPage(+pp.pdf_end) ? +pp.pdf_end : null,
+    pages, quote: String(t.target_quote || ''), watchUrl: `https://www.youtube.com/watch?v=${encodeURIComponent(e.id)}&t=${seconds}s` };
+}
+/** Seconds as a clock: 169 → "2:49", 3453 → "57:33", 3660 → "1:01:00". */
+export function clockText(seconds) {
+  const s = Math.max(0, Math.floor(+seconds || 0));
+  const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), r = s % 60;
+  return h ? `${h}:${String(m).padStart(2, '0')}:${String(r).padStart(2, '0')}` : `${m}:${String(r).padStart(2, '0')}`;
+}
+/** The privacy-enhanced embed (f28bb754's facade protocol, the sites' player): nothing from YouTube loads until the reader
+ *  presses play; then this iframe, with the JS API on so a later citation SEEKS the frame instead of reloading it. */
+export function videoEmbedUrl(v, origin) {
+  const q = [`enablejsapi=1`, `origin=${encodeURIComponent(origin || '')}`, `start=${Math.max(0, Math.floor(+v.seconds || 0))}`, 'autoplay=1', 'rel=0', 'modestbranding=1'];
+  if (Number.isFinite(+v.end) && +v.end > +v.seconds) q.push(`end=${Math.floor(+v.end)}`);
+  return `https://www.youtube-nocookie.com/embed/${encodeURIComponent(v.id)}?${q.join('&')}`;
+}
+/** The quote's span marked in a minute's text — [{text, mark}] in order, the text whole. The quote's fragments (the DDC
+ *  convention: ' … ' between them) are searched in order through core's fold on both sides (so the transcript's curly
+ *  apostrophe meets the row's straight one); a fragment the page does not carry whole — the seam case, a quote running on
+ *  to the next minute — marks its longest head or tail of three words or more; nothing found marks nothing. */
+export function markQuote(text, quote) {
+  const raw = String(text == null ? '' : text);
+  const fm = foldMap(raw, { page: false });
+  const out = [];
+  let cursor = 0, searchFrom = 0;
+  const push = (from, to) => { if (to > from) { if (from > cursor) out.push({ text: raw.slice(cursor, from), mark: false }); out.push({ text: raw.slice(from, to), mark: true }); cursor = to; } };
+  const find = (frag) => {
+    const q = foldMap(frag, { page: false }).text.trim();
+    if (q.length < 3) return null;
+    const i = fm.text.indexOf(q, searchFrom);
+    if (i < 0) return null;
+    const from = fm.map[i], to = fm.map[i + q.length - 1] + 1;
+    return { from, to, foldEnd: i + q.length };
+  };
+  const frags = String(quote == null ? '' : quote).split(/\s*(?:…|\.\s?\.\s?\.)\s*/).map((f) => f.trim()).filter(Boolean);
+  for (const frag of frags) {
+    let hit = find(frag);
+    if (!hit) {
+      const words = frag.split(/\s+/);
+      for (let n = words.length - 1; n >= 3 && !hit; n--) hit = find(words.slice(0, n).join(' '));          // the head (the quote runs on to the next page)
+      if (!hit) { const saved = searchFrom; searchFrom = 0; for (let n = words.length - 1; n >= 3 && !hit; n--) hit = find(words.slice(words.length - n).join(' ')); if (!hit) searchFrom = saved; }   // the tail (the quote began on the page before)
+    }
+    if (hit) { push(hit.from, hit.to); searchFrom = hit.foldEnd; }
+  }
+  if (cursor < raw.length) out.push({ text: raw.slice(cursor), mark: false });
+  return out.length ? out : [{ text: raw, mark: false }];
+}
+
 export function saysFor(u, k, t, doc, resolved = null) {
   const parts = [];
   const say = (text) => { if (text) parts.push({ text }); };
@@ -1916,6 +2087,19 @@ export function saysFor(u, k, t, doc, resolved = null) {
   // R7: only an http(s) URL is ever a live link — a javascript: or data: target is text
   if (t.kind === 'url') { say(`${head} — a url row whose target is not an http(s) address: ${t.target_doc || '(blank)'}. Nothing opened.`); return { kind: 'dead', opens: false, locate: false, parts }; }
   if (!doc) { say(`${head} — target ${t.target_doc || '(blank)'} is not in the registry. Nothing opened.`); return { kind: 'bad', opens: false, locate: false, parts }; }
+  // THE VIDEO KIND (§ 5.5), before publishedAway: a recording is not served as a file on any host (path '', publish link) —
+  // the embed is what opens: the player at the second in the reference pane, the transcript's minute beside it; the
+  // hyperlink text is the clock as printed, the link the watch page at that second (the browser's way, for a host without the frame)
+  const vt = videoTarget(t, doc);
+  if (vt) {
+    say(`${head} — the recording at `); parts.push({ text: vt.clock, href: vt.watchUrl });
+    // the two served facts (7d866ecf's ruling 2026-10-09): the minute page is the CLOCK's (⌊s/60⌋ + 1, one rule, no exception);
+    // the passage carries ITS pages — a turn sits whole under the minute it begins, so the words can be on the page before
+    const turnPage = vt.pages.length && vt.pages[0].pdf != null && vt.pdf != null && vt.pages[0].pdf !== vt.pdf ? vt.pages[0].pdf : null;
+    say(` (transcript minute page ${vt.pdf != null ? vt.pdf : '?'}${vt.pdfEnd != null && vt.pdfEnd !== vt.pdf ? `–${vt.pdfEnd}` : ''}${turnPage !== null ? `; the turn begins on page ${turnPage}` : ''}): the player opens at that second, the minute's words beside it${vt.pages.length ? '' : ' (no transcript text served for this row)'}${u.targets.length > 1 ? ` · target ${k} of ${u.targets.length}` : ''}${t.status === 'mapped' ? ' · mapped, not yet heard at the target' : ''}`);
+    unfound();
+    return { kind: 'video', opens: true, locate: false, parts, video: vt };
+  }
   // a target this host does not serve (publish link | hold): the words, no fetch
   const away = publishedAway(doc);
   if (away) { say(`${head} — `); parts.push(...away.parts); return { kind: away.kind, opens: false, locate: false, parts }; }
@@ -1962,7 +2146,7 @@ export function saysFor(u, k, t, doc, resolved = null) {
   if (found) {
     // THE PASSAGE, WHOLE (README l.34): the whole run boxed on every page it crosses; the retries named as the checker names them
     const rt = String(found[0].retry || '');
-    say((found.length > 1 ? ` · boxed across ${found.length} pages` : '') + (rt.includes('d') ? ' · a word joined at a line end' : '') + (rt.includes('e') ? ' · two glued pieces read as two words' : ''));
+    say((found.length > 1 ? ` · boxed across ${found.length} pages` : '') + (rt.includes('d') ? ' · a word joined at a line end' : '') + (rt.includes('e') ? ' · two glued pieces read as two words' : '') + (rt.includes('g') ? " · under the text layer's dropped ligatures (document-level)" : ''));
     if (found[0].headToTail) { say(' · '); warn('boxed from the head to the tail; the middle differs on this layer'); }
     return { kind, opens: true, locate: false, parts };
   }
@@ -2121,11 +2305,20 @@ export function hideRows(rows, { ids = null, before = null, keep = null, pins = 
   const idset = ids instanceof Set ? ids : new Set(ids || []);
   const pinSet = pins instanceof Set ? pins : new Set(pins || []);
   const keepSet = new Set([...(keep instanceof Set ? keep : (keep || []))].filter(Boolean));
-  const b = Number.isFinite(+before) && +before > 0 ? +before : null;
+  let b = Number.isFinite(+before) && +before > 0 ? +before : null;
   const hide = new Set(), dim = new Set();
   const byId = new Map();
   for (const r of rows || []) if (r.id && !r.group) byId.set(r.id, r);
   const isSeries = (p) => String(p || '').startsWith('series:');
+  // P97v (7d866ecf's ruling on the MN measure): a threshold that would hide EVERY docketed main of Filings is INERT —
+  // nothing hides by number and the caller says so (`inert`) — so a reader never opens a case to an empty list because
+  // another case's number rode in; a threshold some main clears keeps its full effect
+  let inert = false;
+  if (b) {
+    const ns = [];
+    for (const r of rows || []) if (!r.group && !r.series && r.id && r.inGroup === 'Filings' && (!r.parent || isSeries(r.parent))) { const d = docketOf(r.label); if (d) ns.push(d.n); }
+    if (ns.length && ns.every((n) => n < b)) { inert = true; b = null; }
+  }
   const wanted = (r) => {
     if (pinSet.has(r.id)) return false;
     if (idset.has(r.id)) return true;
@@ -2144,7 +2337,7 @@ export function hideRows(rows, { ids = null, before = null, keep = null, pins = 
     const p = byId.get(id) && byId.get(id).parent;
     if (p && !isSeries(p) && hide.has(p)) { hide.delete(p); dim.add(p); }
   }
-  return { hide, dim };
+  return { hide, dim, inert };
 }
 /** THE DRAWN TREE — navRows(...) + the sidebar's state → the items a shell
  *  prints, in order, with every flag decided here (lifted from the Studio
@@ -2182,7 +2375,7 @@ export function navView(rows, nav) {
       const shown = show ? groupsShown.has(r.group) : true;
       groupOpen = show ? shown : nav.groups.has(r.group);
       if (!shown) continue;
-      items.push({ type: 'group', group: r.group, open: groupOpen, shown: r.count - (hiddenIn.get(r.group) || 0), hidden: hiddenIn.get(r.group) || 0 });
+      items.push({ type: 'group', group: r.group, open: groupOpen, shown: r.count - (hiddenIn.get(r.group) || 0), hidden: hiddenIn.get(r.group) || 0, inert: r.group === 'Filings' && !!hiding.inert });
       continue;
     }
     if (!groupOpen) continue;
@@ -2199,9 +2392,34 @@ export function navView(rows, nav) {
     items.push({ type: 'row', row: r, folder, open, hiddenRow, withinLeft: !!w.left, withinRight: !!w.right, meta });
     drawnRows++;
   }
-  return { items, hiddenCount, empty: drawnRows ? null : 'filter' };
+  return { items, hiddenCount, empty: drawnRows ? null : 'filter', inert: !!hiding.inert };
 }
 
+/** P97c — the query the window's API calls carry: the host's root (a site's slug, a project window's projroot) and, in a
+ *  project serving two cases (P97's `case=`), the case the window names; '' when neither. Encoded as the fetches always
+ *  were (encodeURIComponent, a space %20). */
+export function apiQuery({ root = null, caseName = null } = {}) {
+  const parts = [];
+  if (root) parts.push(`root=${encodeURIComponent(root)}`);
+  if (caseName) parts.push(`case=${encodeURIComponent(caseName)}`);
+  return parts.length ? `?${parts.join('&')}` : '';
+}
+/** The case picker's model from GET /api/casereview/cases ({cases: [{name, case_root, case, version, current, error?}]}):
+ *  shown only when two or more lanes answer; `current` = the lane the registry answered (`caseRoot` = the docs payload's
+ *  case_root); `configured` = the process's own case; an entry without a name is dropped, one with an error is kept and
+ *  said. One model, two skins. */
+export function casePicker(cases, caseRoot) {
+  const list = Array.isArray(cases) ? cases.filter((x) => x && typeof x.name === 'string' && x.name) : [];
+  const options = list.map((x) => ({
+    name: x.name,
+    label: x.case ? `${x.name} — ${x.case}` : x.name,
+    title: x.version ? `${x.case_root || x.name} (registry ${x.version})` : String(x.case_root || x.name),
+    configured: !!x.current,
+    current: !!(caseRoot && x.case_root === caseRoot),
+    error: x.error ? String(x.error) : null,
+  }));
+  return { show: options.length >= 2, options };
+}
 export function parentIdOf(id) {
   const m = /^(DDC-\d{3})-\d+$/.exec(String(id || ''));
   return m ? m[1] : null;
