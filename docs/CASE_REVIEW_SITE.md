@@ -122,8 +122,13 @@ window change: a host table, a keyed bundle, keyed rewrites.
   so the build gate covers a second case the day it lands; `--check --case <slug>` reads one.
 - **The MN files** — this site already holds them under `public/uploads/constitutional/pdfs/minnesota/` (three dockets
   by filename prefix: the closed 00726 as `1.pdf`, the refiled 02594 as `2594-20.pdf`, the appeal as `8cir-brief.pdf`).
-  `--names docket` reads an `ECF N(-M)` label; the MN labels are `Doc. N`, so the MN import takes a name map or a
-  second label pattern — said by name with f28bb754 when the registry's labels exist, byte-identical on both sites.
+  The MN registry v0 (work_station 764e424c) labels its docket `ECF N(-M)` in the DDC form, but `--names docket` must
+  NOT name the MN files here: it would call MN2594-019 `19.pdf`, the closed case's Doc 19 on this site, and the
+  importer overwrites a same-named file whose sha is not the row's. `scripts/casereview-mn-name-map.mjs --from <export>`
+  writes the MN map by SHA instead (a row whose bytes are already under pdfs/ maps to that file — the 52 docket and
+  appeal files and the case law shared with DDC; a new docket row takes `minnesota/2594-NN-MM.pdf`; the rest the
+  default name) and refuses two rows on one file. The MN import is then
+  `--case kirchner-v-ellison --uploads-dir uploads/constitutional/pdfs --names id --name-map scripts/casereview-name-map-mn.json`.
 
 ## CSP
 
