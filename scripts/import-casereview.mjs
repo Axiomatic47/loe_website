@@ -112,7 +112,8 @@ function publishOf(doc) {
 const FILER_COPY = /^none \(owner as-filed copy/;
 
 // ---------------------------------------------------------------- the public shapes
-const DOC_KEEP = ['id', 'label', 'title', 'kind', 'parent', 'ecf_no', 'attachment', 'filed', 'filer', 'pages', 'sha256', 'offset', 'pagemap', 'text_layer', 'group', 'inventory_page', 'ligature_drop', 'ligature_drop_density', 'pagemap_basis'];
+const DOC_KEEP = ['id', 'label', 'title', 'kind', 'parent', 'ecf_no', 'attachment', 'filed', 'filer', 'pages', 'sha256', 'offset', 'pagemap', 'text_layer', 'group', 'inventory_page', 'ligature_drop', 'ligature_drop_density', 'pagemap_basis',
+  'embed', 'duration']   // the video row (studio-spec 2026-10-09 § 5.5): the embed {provider, id} and the recording's seconds;
 function publicDoc(d, pub) {
   const o = {};
   for (const k of DOC_KEEP) if (d[k] !== undefined) o[k] = d[k];
@@ -168,15 +169,26 @@ function fromExport(dir) {
 // ---------------------------------------------------------------- the check (every build)
 // `--check` reads the bundle of `--case`; without `--case` it reads the default bundle AND every other case's bundle present
 // under public/casereview/<slug>/data/, so the build gate covers a second case the day it lands with no script change.
+// A host whose only case is a keyed one (kirchner.ink: the MN case) has no default bundle, so without `--case` the default
+// is read when its stamp is present and the check fails only when no bundle of ANY case exists (agreed by name 55339aa7 ⇄
+// f28bb754, 2026-10-10); `--check --case <slug>` reads that one bundle and requires it.
 function check() {
-  checkOne(CASE);
-  if (argv.includes('--case')) return;
+  if (argv.includes('--case')) { checkOne(CASE); return; }
+  const present = bundlesPresent();
+  if (!present.length) fail(`no bundle: public/${dataRel(DEFAULT_CASE)}/_IMPORT.json is missing and no public/casereview/<slug>/data/_IMPORT.json is present — run the importer`);
+  for (const c of present) checkOne(c);
+}
+// the bundles on this host: the default case when its stamp is present, then every keyed case with a stamp
+function bundlesPresent() {
+  const out = [];
+  if (fs.existsSync(path.join(PUBLIC, dataRel(DEFAULT_CASE), '_IMPORT.json'))) out.push(DEFAULT_CASE);
   const dir = path.join(PUBLIC, 'casereview');
-  if (!fs.existsSync(dir)) return;
+  if (!fs.existsSync(dir)) return out;
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
     if (!e.isDirectory() || e.name === 'data' || e.name === 'vendor') continue;
-    if (fs.existsSync(path.join(dir, e.name, 'data', '_IMPORT.json'))) checkOne(e.name);
+    if (fs.existsSync(path.join(dir, e.name, 'data', '_IMPORT.json'))) out.push(e.name);
   }
+  return out;
 }
 function checkOne(c) {
   const DATA = path.join(PUBLIC, dataRel(c)), LINKS = path.join(DATA, 'links');
@@ -251,6 +263,7 @@ async function run() {
     const buf = fs.readFileSync(from);
     const h = sha256(buf);
     if (h !== d.sha256) { console.error(`  SHA      ${d.id}: the file on disk is ${h.slice(0, 12)}…, the registry says ${String(d.sha256).slice(0, 12)}… — not served`); refused++; continue; }
+    fs.mkdirSync(path.dirname(to), { recursive: true });   // a host name with a subdirectory (a name map's value) on a fresh host
     fs.writeFileSync(to, buf);
     copied++; served.add(name);
   }
@@ -258,14 +271,26 @@ async function run() {
   // prune only what THIS import would name for a document no longer served — a host's other files in a shared directory stay
   let pruned = 0;
   const mine = new Set(decided.map(({ d }) => { try { return hostName(d); } catch { return null; } }).filter(Boolean));
-  for (const f of fs.readdirSync(UPLOADS)) if (f.endsWith('.pdf') && mine.has(f) && !served.has(f)) { fs.rmSync(path.join(UPLOADS, f)); pruned++; }
+  // … and never a name ANOTHER bundle on this host serves at the same path (the opinions two registries share map to one file on
+  // lawsofexistence.com; agreed by name 55339aa7 ⇄ f28bb754, 2026-10-10): the union of every other bundle's files.json
+  const servedElsewhere = new Set();
+  for (const c of bundlesPresent()) {
+    if (c === CASE) continue;
+    const fj = path.join(PUBLIC, dataRel(c), 'files.json');
+    if (!fs.existsSync(fj)) continue;
+    for (const v of Object.values(JSON.parse(fs.readFileSync(fj, 'utf8')))) if (v && v.path) servedElsewhere.add(v.path);
+  }
+  for (const f of fs.readdirSync(UPLOADS)) if (f.endsWith('.pdf') && mine.has(f) && !served.has(f) && !servedElsewhere.has(`${UPLOADS_URL}/${f}`)) { fs.rmSync(path.join(UPLOADS, f)); pruned++; }
   console.log(`files: ${copied} copied, ${kept} already in place, ${refused} refused, ${pruned} pruned`);
   if (refused) fail(`${refused} served document(s) could not be gated — nothing is served that is not the registry's`);
 
   // docs.json — the window's /docs answer (case_root is the tree's localStorage key on the client: the case slug, not a path)
   const outDocs = {
     case_root: CASE, lane: '_admin/case_review',
-    registry: { case: docs.registry && docs.registry.case, version: docs.registry && docs.registry.version, built: docs.registry && docs.registry.built },
+    registry: { case: docs.registry && docs.registry.case, version: docs.registry && docs.registry.version, built: docs.registry && docs.registry.built,
+      // the window's defaults ride the registry object by name: nav.hide_before (the hide-before threshold; "nothing hidden until
+      // set" when absent — the viewer's rule of 2026-10-09; a per-case number, never the window's)
+      nav: docs.registry && docs.registry.nav },
     docs: decided.map(({ d, pub }) => publicDoc(d, pub)),
     links: docs.links || {},
   };
@@ -350,11 +375,15 @@ async function run() {
   // serve.json (serve-handler, the local static server) has no query condition in its rewrite grammar — a second case is
   // not servable there; its rules are the default case's alone, left untouched by a keyed import. `next start` serves both
   // through next.config.ts's rewrites (has: query root=<slug>), kvj's `serve out` the default case.
-  const serveJson = KEYED ? null : {
+  // EXCEPT a host whose ONLY bundle is a keyed case (kirchner.ink: the MN case rides the keyed layout, no default bundle exists):
+  // the sole case's routes are written BARE into serve.json so the static pane and `serve out` serve it; _redirects stays keyed
+  // (the host sets projroot, the window sends root on every fetch). Agreed by name 55339aa7 ⇄ f28bb754, 2026-10-10.
+  const soleKeyed = KEYED && !fs.existsSync(path.join(PUBLIC, dataRel(DEFAULT_CASE), '_IMPORT.json'));
+  const serveJson = (KEYED && !soleKeyed) ? null : {
     cleanUrls: true, trailingSlash: false,
     rewrites: [
-      { source: '/api/casereview/docs', destination: '/casereview/data/docs.json' },
-      { source: '/api/casereview/links/:id', destination: '/casereview/data/links/:id.json' },
+      { source: '/api/casereview/docs', destination: `${DATA_URL}/docs.json` },
+      { source: '/api/casereview/links/:id', destination: `${DATA_URL}/links/:id.json` },
       // serve-handler matches the DECODED path against a path-to-regexp source; no parameter, so nothing is re-encoded
       ...decided.filter(x => x.pub.mode === 'serve' && needsRule(x.d)).map(({ d }) => ({ source: `/api/casereview/file/${p2r(d.id)}`, destination: `${UPLOADS_URL}/${hostName(d)}` })),
       { source: '/api/casereview/file/:id', destination: `${UPLOADS_URL}/:id.pdf` },
@@ -366,7 +395,7 @@ async function run() {
     ],
   };
   if (serveJson) fs.writeFileSync(path.join(PUBLIC, 'serve.json'), JSON.stringify(serveJson, null, 2) + '\n');
-  console.log(`bundle written to public/${DATA_REL} (default document ${defaultDoc || 'none — nothing served'}); rewrites in public/_redirects${KEYED ? ` (keyed on ?${ROOT_QS}; serve.json untouched)` : ' and public/serve.json'}`);
+  console.log(`bundle written to public/${DATA_REL} (default document ${defaultDoc || 'none — nothing served'}); rewrites in public/_redirects${KEYED ? ` (keyed on ?${ROOT_QS}; serve.json ${soleKeyed ? 'bare (the host\'s only case)' : 'untouched'})` : ' and public/serve.json'}`);
   if (DEV) console.warn('REMINDER: this bundle carries the development override — rerun without --dev-serve-filings before committing it');
 }
 

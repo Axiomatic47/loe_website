@@ -2207,11 +2207,20 @@ export function hideRows(rows, { ids = null, before = null, keep = null, pins = 
   const idset = ids instanceof Set ? ids : new Set(ids || []);
   const pinSet = pins instanceof Set ? pins : new Set(pins || []);
   const keepSet = new Set([...(keep instanceof Set ? keep : (keep || []))].filter(Boolean));
-  const b = Number.isFinite(+before) && +before > 0 ? +before : null;
+  let b = Number.isFinite(+before) && +before > 0 ? +before : null;
   const hide = new Set(), dim = new Set();
   const byId = new Map();
   for (const r of rows || []) if (r.id && !r.group) byId.set(r.id, r);
   const isSeries = (p) => String(p || '').startsWith('series:');
+  // P97v (7d866ecf's ruling on the MN measure): a threshold that would hide EVERY docketed main of Filings is INERT —
+  // nothing hides by number and the caller says so (`inert`) — so a reader never opens a case to an empty list because
+  // another case's number rode in; a threshold some main clears keeps its full effect
+  let inert = false;
+  if (b) {
+    const ns = [];
+    for (const r of rows || []) if (!r.group && !r.series && r.id && r.inGroup === 'Filings' && (!r.parent || isSeries(r.parent))) { const d = docketOf(r.label); if (d) ns.push(d.n); }
+    if (ns.length && ns.every((n) => n < b)) { inert = true; b = null; }
+  }
   const wanted = (r) => {
     if (pinSet.has(r.id)) return false;
     if (idset.has(r.id)) return true;
@@ -2230,7 +2239,7 @@ export function hideRows(rows, { ids = null, before = null, keep = null, pins = 
     const p = byId.get(id) && byId.get(id).parent;
     if (p && !isSeries(p) && hide.has(p)) { hide.delete(p); dim.add(p); }
   }
-  return { hide, dim };
+  return { hide, dim, inert };
 }
 /** THE DRAWN TREE — navRows(...) + the sidebar's state → the items a shell
  *  prints, in order, with every flag decided here (lifted from the Studio
@@ -2268,7 +2277,7 @@ export function navView(rows, nav) {
       const shown = show ? groupsShown.has(r.group) : true;
       groupOpen = show ? shown : nav.groups.has(r.group);
       if (!shown) continue;
-      items.push({ type: 'group', group: r.group, open: groupOpen, shown: r.count - (hiddenIn.get(r.group) || 0), hidden: hiddenIn.get(r.group) || 0 });
+      items.push({ type: 'group', group: r.group, open: groupOpen, shown: r.count - (hiddenIn.get(r.group) || 0), hidden: hiddenIn.get(r.group) || 0, inert: r.group === 'Filings' && !!hiding.inert });
       continue;
     }
     if (!groupOpen) continue;
@@ -2285,7 +2294,7 @@ export function navView(rows, nav) {
     items.push({ type: 'row', row: r, folder, open, hiddenRow, withinLeft: !!w.left, withinRight: !!w.right, meta });
     drawnRows++;
   }
-  return { items, hiddenCount, empty: drawnRows ? null : 'filter' };
+  return { items, hiddenCount, empty: drawnRows ? null : 'filter', inert: !!hiding.inert };
 }
 
 export function parentIdOf(id) {
