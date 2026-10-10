@@ -131,6 +131,10 @@ window change: a host table, a keyed bundle, keyed rewrites.
   `--case kirchner-v-ellison --uploads-dir uploads/constitutional/pdfs --names id --name-map scripts/casereview-name-map-mn.json`.
   The recipe in order: `git -C ~/Git/ourstudio worktree add --detach <scratch>/studio_<sha> <sha>` → from it,
   `env -u PYTHONPATH python3 -m ourstudio_frontend.filing.case_review export /Users/everest/Git/work_station/2_MN-0-26-cv-02594-LMP-DJF <out>`
+  → `node scripts/casereview-size-guard.mjs --from <out>` (refuses any `serve` row whose file is over 95 MB — GitHub refuses
+  a file over 100 MB on push, this repo carries no LFS, and Netlify would not resolve LFS pointers; the 1920 Biennial Report
+  scan, 197 MB, was refused by GitHub's hook on kirchner.ink 2026-10-10 — the answer is the registry's `link` + publish_url,
+  never a quiet drop here)
   → `node scripts/casereview-mn-name-map.mjs --from <out> --out scripts/casereview-name-map-mn.json` → the import line
   with `--from <out>` → `npm run build:next` (the check reads both bundles) → the 3998 sweep with `?root=kirchner-v-ellison`
   → commit by pathspec (the bundle dir, the map, `public/_redirects`, `public/serve.json`, any copied PDFs) → push →
