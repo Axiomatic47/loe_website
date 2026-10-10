@@ -1,15 +1,15 @@
 {
   "case": "kirchner-v-ellison",
-  "imported": "2026-10-10T03:42:14.367Z",
-  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/cr_mn_v0g",
+  "imported": "2026-10-10T04:01:51.862Z",
+  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/cr_mn_v0h",
   "export_stamp": {
     "lane_signature": {
-      "sha256": "d0efb912df4427b978145836f9c04204dd181d6352457e01a981eb34b089aa20",
+      "sha256": "d016f927c69255e173d44dfb5d30882f68da68df4c6b9f2fa203fdf68d0f3ae0",
       "files": [
         {
           "path": "_admin/case_review/docs.json",
-          "bytes": 237599,
-          "sha256": "8e22a33fc96ccd813ae8d0f23291d69a6b777859d658ebf87c8069b9702e0bd4"
+          "bytes": 241372,
+          "sha256": "f0afdc41f0aab9b213eda1cfecbee7188f23642ff999d3e00b3af791005ba7c9"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN-CORR-OPEN-LETTER-2026-10.meta.json",
@@ -40,6 +40,11 @@
           "path": "_admin/case_review/_paramaps/mn/MN_Chapter_8.json",
           "bytes": 2692,
           "sha256": "d55f28cef1a28a7031306b6906f1899dcfedba4607bcc2272f9c822bb5015f2b"
+        },
+        {
+          "path": "_admin/case_review/_paramaps/usc/usc42_ch8to39_Secs1401to3259@119-111.json",
+          "bytes": 24216,
+          "sha256": "0b9027b57ce498e57e73fc45a2fb21c29cf6f125c54e837a90803b36cb9c2f80"
         }
       ]
     },
@@ -47,17 +52,17 @@
     "checker": "P97",
     "checker_source_sha256": "5554c75985719c7261ff83dca3777170a795c97f273916d668cfa38579383574",
     "mirrors_sha256": "3736aa9dc432e9441207b4964ecf8635f2c041de2e387dc2c13e6dd6963fba5a",
-    "exported": "2026-10-10T03:42:12+00:00",
+    "exported": "2026-10-10T04:01:50+00:00",
     "case_root": "/Users/everest/Git/work_station/2_MN-0-26-cv-02594-LMP-DJF",
     "project_root": "/Users/everest/Git/work_station",
-    "registry_version": "v0g",
+    "registry_version": "v0h",
     "tables": [
       "MN-CORR-OPEN-LETTER-2026-10",
       "MN-CORR-OPEN-LETTER-ENCLOSURE-A-2026-10"
     ],
     "publish_applied": true,
     "publish": {
-      "serve": 194,
+      "serve": 196,
       "link": 1,
       "hold": 0
     },
@@ -90,12 +95,12 @@
       "manifest": "files.json"
     }
   },
-  "registry_version": "v0g",
-  "documents": 195,
+  "registry_version": "v0h",
+  "documents": 197,
   "tables": 2,
   "rows": 90,
   "publication": {
-    "serve": 194,
+    "serve": 196,
     "link": 1,
     "hold": 0
   },
