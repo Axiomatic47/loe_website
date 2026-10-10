@@ -1,10 +1,10 @@
 {
   "case": "kirchner-v-ellison",
-  "imported": "2026-10-10T04:58:03.516Z",
-  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/cr_mn_v0m",
+  "imported": "2026-10-10T05:02:19.037Z",
+  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/cr_mn_015",
   "export_stamp": {
     "lane_signature": {
-      "sha256": "7f08645f4f522564d64a990ec8ce53e5d54f4d297fceb8d128e3acd237377cde",
+      "sha256": "d2bd3dca4f25f6733a7a82274abf5e723b33d0fad1d67d78f63467c334b6b5b7",
       "files": [
         {
           "path": "_admin/case_review/docs.json",
@@ -42,6 +42,16 @@
           "sha256": "86a9634824512b987f8d83e4ed58e83d42220620a34d9b5057cd2dc22315edf7"
         },
         {
+          "path": "_admin/case_review/links/LINKS_MN2594-015.meta.json",
+          "bytes": 2989,
+          "sha256": "4200c81ed697d6536e7cbb017bebbeb9be9ff018216f922e2b25c5c2e607233f"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_MN2594-015.tsv",
+          "bytes": 88118,
+          "sha256": "ab146fa48e9de22d9d0e56681d8e38d2c5966a58c685375f74b85270e8af723c"
+        },
+        {
           "path": "_admin/case_review/_paramaps/mn/MN_626_89.json",
           "bytes": 495,
           "sha256": "185bfd96f5569829985f1ac0f58c839335d89770f4358f4b87beb639eea79166"
@@ -61,15 +71,16 @@
     "ourstudio_commit": "a4abcb96",
     "checker": "P97",
     "checker_source_sha256": "5554c75985719c7261ff83dca3777170a795c97f273916d668cfa38579383574",
-    "mirrors_sha256": "5f2cf5bb0292997e9c93b6298709f205b48dd547bcf556ec466cfaa5560378d4",
-    "exported": "2026-10-10T04:57:39+00:00",
+    "mirrors_sha256": "7795d9c3a3ef49e9eefb8f1bdf9ebdbcdbaffa8bed58b22aa01122e797cd93f3",
+    "exported": "2026-10-10T05:02:03+00:00",
     "case_root": "/Users/everest/Git/work_station/2_MN-0-26-cv-02594-LMP-DJF",
     "project_root": "/Users/everest/Git/work_station",
     "registry_version": "v0m",
     "tables": [
       "MN-CORR-OPEN-LETTER-2026-10",
       "MN-CORR-OPEN-LETTER-ENCLOSURE-A-2026-10",
-      "MN2594-011"
+      "MN2594-011",
+      "MN2594-015"
     ],
     "publish_applied": true,
     "publish": {
@@ -108,15 +119,15 @@
   },
   "registry_version": "v0m",
   "documents": 214,
-  "tables": 3,
-  "rows": 200,
+  "tables": 4,
+  "rows": 489,
   "publication": {
     "serve": 213,
     "link": 1,
     "hold": 0
   },
   "dev_override": false,
-  "default_doc": "MN2594-011",
+  "default_doc": "MN2594-015",
   "vendored_studio_commit": "a4abcb96cf53dcf7370a83c86b420a98eca5ba6a",
   "host_policy": null
 }
