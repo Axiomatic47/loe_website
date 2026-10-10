@@ -969,6 +969,10 @@
 /api/casereview/file/2025%20-%20Ellis%20v.%20Nike,%20158%20F.4th%20932%20(CA8%20slip%2024-2420)  root=kirchner-v-ellison  /uploads/constitutional/pdfs/2025_-_Ellis_v._Nike_158_F.4th_932_CA8_slip_24-2420_.pdf  200
 /api/casereview/file/2025%20-%20MN%20Chapter%20ABC%20v.%20Ellison%2C%20153%20F.4th%20695  root=kirchner-v-ellison  /uploads/constitutional/pdfs/2025_-_MN_Chapter_ABC_v._Ellison_153_F.4th_695.pdf  200
 /api/casereview/file/2025%20-%20MN%20Chapter%20ABC%20v.%20Ellison,%20153%20F.4th%20695  root=kirchner-v-ellison  /uploads/constitutional/pdfs/2025_-_MN_Chapter_ABC_v._Ellison_153_F.4th_695.pdf  200
+/api/casereview/file/Federal%20Rules%20of%20Civil%20Procedure%20(Dec.%201%2C%202025%2C%20uscourts.gov%20official%20pamphlet)  root=kirchner-v-ellison  /uploads/constitutional/pdfs/Federal_Rules_of_Civil_Procedure_Dec._1_2025_uscourts.gov_official_pamphlet_.pdf  200
+/api/casereview/file/Federal%20Rules%20of%20Civil%20Procedure%20(Dec.%201,%202025,%20uscourts.gov%20official%20pamphlet)  root=kirchner-v-ellison  /uploads/constitutional/pdfs/Federal_Rules_of_Civil_Procedure_Dec._1_2025_uscourts.gov_official_pamphlet_.pdf  200
+/api/casereview/file/The%20Constitution%20of%20the%20United%20States%20of%20America%2C%20Literal%20Print%20(text%2C%20spelling%20and%20punctuation%20of%20the%20National%20Archives%20high-resolution%20downloads)%20%5B20%20pp%5D  root=kirchner-v-ellison  /uploads/constitutional/pdfs/The_Constitution_of_the_United_States_of_America_Literal_Print_text_spelling_and_punctuation_of_the_National_Archives_high-resolution_downloads_20_pp_.pdf  200
+/api/casereview/file/The%20Constitution%20of%20the%20United%20States%20of%20America,%20Literal%20Print%20(text,%20spelling%20and%20punctuation%20of%20the%20National%20Archives%20high-resolution%20downloads)%20%5B20%20pp%5D  root=kirchner-v-ellison  /uploads/constitutional/pdfs/The_Constitution_of_the_United_States_of_America_Literal_Print_text_spelling_and_punctuation_of_the_National_Archives_high-resolution_downloads_20_pp_.pdf  200
 /api/casereview/file/:id  root=kirchner-v-ellison  /uploads/constitutional/pdfs/:id.pdf  200
 # casereview END kirchner-v-ellison
 
