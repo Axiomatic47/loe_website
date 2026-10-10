@@ -53,7 +53,12 @@ function slugMap(caseSlug: string): Map<string, string> {
     const files = JSON.parse(fs.readFileSync(path.join(dataDir(caseSlug), 'files.json'), 'utf8')) as FilesManifest;
     for (const [id, f] of Object.entries(files)) {
       const mm = f.path && /\/([^/]+)\.pdf$/.exec(f.path);
-      if (mm) m.set(mm[1], id);
+      if (!mm) continue;
+      m.set(mm[1], id);
+      // this site's Minnesota files are zero-padded (2594-01-01.pdf) while their reader pages are not (/kirchner-v-ellison/2594-1-1):
+      // the stem with every numeric segment unpadded is registered too, so either spelling finds the row
+      const bare = mm[1].split('-').map(seg => /^\d+$/.test(seg) ? String(+seg) : seg).join('-');
+      if (bare !== mm[1] && !m.has(bare)) m.set(bare, id);
     }
   } catch { /* no bundle: no links */ }
   bySlug.set(caseSlug, m);
@@ -65,6 +70,25 @@ export function reviewHref(caseSlug: string, docSlug: string): string | null {
   if (!caseReviewHost(caseSlug)) return null;
   const id = slugMap(caseSlug).get(docSlug);
   return id ? `/${caseSlug}?casereview=doc=${encodeURIComponent(id)}` : null;
+}
+
+/** the document the page opens when the URL names none — the one skin decision the Studio leaves to its host: the
+ *  importer's word first (the newest Filings main with a link table); when it names none (a case whose only tables
+ *  are on unfiled documents — the MN lane opened on the open letter), the newest SERVED document with a link table,
+ *  by filed date then registry order; null when nothing is served with a table (the window then opens nothing, as
+ *  the Studio does). Read from the bundle, never the lane. */
+export function defaultDocFor(caseSlug: string): string | null {
+  const stamp = readImportStamp(caseSlug);
+  if (stamp.default_doc) return stamp.default_doc;
+  try {
+    const docs = JSON.parse(fs.readFileSync(path.join(dataDir(caseSlug), 'docs.json'), 'utf8')) as {
+      docs: { id: string; publish?: string; filed?: string | null }[]; links?: Record<string, { rows?: number }>;
+    };
+    const iso = (f?: string | null) => { const m = /^(\d\d)\/(\d\d)\/(\d\d)$/.exec(f || ''); return m ? `20${m[3]}-${m[1]}-${m[2]}` : (f || ''); };
+    const withTable = docs.docs.map((d, i) => ({ d, i })).filter(({ d }) => d.publish === 'serve' && (docs.links?.[d.id]?.rows ?? 0) > 0);
+    withTable.sort((a, b) => iso(b.d.filed).localeCompare(iso(a.d.filed)) || a.i - b.i);
+    return withTable[0]?.d.id ?? null;
+  } catch { return null; }
 }
 
 /** the importer's stamp for a case (the default document, the registry version, the host policy) */

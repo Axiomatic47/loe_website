@@ -1,0 +1,95 @@
+{
+  "case": "kirchner-v-ellison",
+  "imported": "2026-10-10T03:14:27.938Z",
+  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/cr_mn",
+  "export_stamp": {
+    "lane_signature": {
+      "sha256": "54cb960da855bb1c32eb047f760f3ad177f50bc4a668f61ab553b5b50e7379b4",
+      "files": [
+        {
+          "path": "_admin/case_review/docs.json",
+          "bytes": 226962,
+          "sha256": "d1d6773f23ee0b36ba4a4d9482926bde89236b3b5c1119067de49dc6e6832fc0"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_MN-CORR-OPEN-LETTER-2026-10.meta.json",
+          "bytes": 4210,
+          "sha256": "ede550671501eb487af0e8b9825c6fb6d96feecb552df46ce7d7d573f01dfc6b"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_MN-CORR-OPEN-LETTER-2026-10.tsv",
+          "bytes": 23134,
+          "sha256": "2f6e9b1da9174f097e8f98b71394e0d0b5c89b0c66a3f06f9b425e4e133be563"
+        },
+        {
+          "path": "_admin/case_review/_paramaps/mn/MN_626_89.json",
+          "bytes": 495,
+          "sha256": "185bfd96f5569829985f1ac0f58c839335d89770f4358f4b87beb639eea79166"
+        },
+        {
+          "path": "_admin/case_review/_paramaps/mn/MN_Chapter_8.json",
+          "bytes": 2692,
+          "sha256": "d55f28cef1a28a7031306b6906f1899dcfedba4607bcc2272f9c822bb5015f2b"
+        }
+      ]
+    },
+    "ourstudio_commit": "4472dc69",
+    "checker": "P96",
+    "checker_source_sha256": "911c3c602d699de5b68aa53e9c394eb0e9f6e4b0c96aceda36d6320f69e669f3",
+    "mirrors_sha256": "639a4786b71fc2476ebdf7483f0587cbd2c2377e20c215de3a531152c86935be",
+    "exported": "2026-10-10T03:10:59+00:00",
+    "case_root": "/Users/everest/Git/work_station/2_MN-0-26-cv-02594-LMP-DJF",
+    "project_root": "/Users/everest/Git/work_station",
+    "registry_version": "v0d",
+    "tables": [
+      "MN-CORR-OPEN-LETTER-2026-10"
+    ],
+    "publish_applied": true,
+    "publish": {
+      "serve": 192,
+      "link": 1,
+      "hold": 0
+    },
+    "pdfjs": {
+      "version": "4.10.38",
+      "files": {
+        "pdf.min.mjs": "27fc2a057a00f92a4334ad06e17dbd7259912954e9fb7f76400bcca5fd190a9c",
+        "pdf.worker.min.mjs": "1baa1844c89c80a5b2797c916e75ab29254be46d8e9cb53cb6364d7aad84be36"
+      },
+      "standard_fonts": {
+        "FoxitDingbats.pfb": "845c752392b6c914fb989c75a08b7792b88f542d2499042ef2889f8c814a16ed",
+        "FoxitFixed.pfb": "b6c8fe53f134b8b6d4578cd2d544df4cee9624c4efa8d51a560fb40ea296101b",
+        "FoxitFixedBold.pfb": "f1b7159702973f54fc86254ea38bcf3712b2a736eb3a0995751e9f4bb45ad603",
+        "FoxitFixedBoldItalic.pfb": "8a000945843bd31add06aee63bf9fd41b7578b4f3242a4b7cd46349ad9d24d4d",
+        "FoxitFixedItalic.pfb": "5007faf8320fa1fcc08b8894b356ad976f60b992ba29ee5272578bbdebaf3876",
+        "FoxitSerif.pfb": "4f57d2b9d884af8f907bf22df6019b52d86cbf6214fdbd02b1ae05472a543f35",
+        "FoxitSerifBold.pfb": "0bdf4b04e964139818d51eda03d566ba999fc3ba2421b1c6c51f9dc969022e80",
+        "FoxitSerifBoldItalic.pfb": "a406cac82583bf98175cb62c87ed5e95c45fbb34eece63a10b0a13e793cb2e10",
+        "FoxitSerifItalic.pfb": "610ae0687198045c4db5d1a6650fd5e92536631706382eb8b72e38df578d0ae9",
+        "FoxitSymbol.pfb": "47967d055530e7357088a08403115425643ec2cdfd6201ba8af0fbd7116c1539",
+        "LiberationSans-Bold.ttf": "361c61b82d575c5c35fd9157fda8b0194bcfcd0d88ea8521a4fb5dd53d33dddc",
+        "LiberationSans-BoldItalic.ttf": "a224075ac17495ad0a3af3bc0a419ac0704a8b3fd1095456201fb9b095fc281d",
+        "LiberationSans-Italic.ttf": "832b4406dbef23628800d3aaad21048534ac84d7e3ad955be83b8172ed8ef512",
+        "LiberationSans-Regular.ttf": "f8ace1f892b2bd9dc1792ba7f097fa7588f84fed48321480e04de5390828221f"
+      }
+    },
+    "files": {
+      "docs": "docs.json",
+      "links": "links/<id>.json",
+      "manifest": "files.json"
+    }
+  },
+  "registry_version": "v0d",
+  "documents": 193,
+  "tables": 1,
+  "rows": 31,
+  "publication": {
+    "serve": 192,
+    "link": 1,
+    "hold": 0
+  },
+  "dev_override": false,
+  "default_doc": null,
+  "vendored_studio_commit": "4472dc695b357cebe29b5f8f133c28666a6c36a8",
+  "host_policy": null
+}

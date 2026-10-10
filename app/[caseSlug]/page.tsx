@@ -22,7 +22,7 @@ import { CASE_SLUGS, sectionUrl, absoluteUrl, isCaseSlug } from '@/utils/urls';
 import { SitePageLayout } from '../_components/SitePageLayout';
 import { DocReaderView } from '../_components/DocReaderView';
 import { CaseReviewMount } from '../casereview/CaseReviewMount';
-import { caseReviewHost, readImportStamp } from '../casereview/review-link';
+import { caseReviewHost, defaultDocFor, readImportStamp } from '../casereview/review-link';
 import '../casereview/casereview.css';
 
 export const dynamicParams = false;
@@ -106,7 +106,7 @@ export default async function CasePage({ params }: Params) {
             <span className="cr-mode">Case review</span>
             {stamp.registry_version && <span className="cr-stamp">registry {stamp.registry_version}</span>}
           </header>
-          <CaseReviewMount defaultDoc={stamp.default_doc ?? null} root={host.root} />
+          <CaseReviewMount defaultDoc={defaultDocFor(caseSlug)} root={host.root} />
         </main>
       </SitePageLayout>
     );
