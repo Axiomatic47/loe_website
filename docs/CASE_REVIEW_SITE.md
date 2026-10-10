@@ -129,6 +129,41 @@ window change: a host table, a keyed bundle, keyed rewrites.
   appeal files and the case law shared with DDC; a new docket row takes `minnesota/2594-NN-MM.pdf`; the rest the
   default name) and refuses two rows on one file. The MN import is then
   `--case kirchner-v-ellison --uploads-dir uploads/constitutional/pdfs --names id --name-map scripts/casereview-name-map-mn.json`.
+  The recipe in order: `git -C ~/Git/ourstudio worktree add --detach <scratch>/studio_<sha> <sha>` → from it,
+  `env -u PYTHONPATH python3 -m ourstudio_frontend.filing.case_review export /Users/everest/Git/work_station/2_MN-0-26-cv-02594-LMP-DJF <out>`
+  → `node scripts/casereview-mn-name-map.mjs --from <out> --out scripts/casereview-name-map-mn.json` → the import line
+  with `--from <out>` → `npm run build:next` (the check reads both bundles) → the 3998 sweep with `?root=kirchner-v-ellison`
+  → commit by pathspec (the bundle dir, the map, `public/_redirects`, `public/serve.json`, any copied PDFs) → push →
+  the report to admin 69183d38 and to f28bb754 (through an admin while the direct link is down). A new filing needs
+  a reader row in `content/constitutional/kirchner-v-ellison-case-documents.json` (slug unpadded `2594-N-M`, the PDF
+  `minnesota/2594-NN-MM.pdf`); the bridge registers both spellings.
+
+## The video tab (Studio 451b408b / a4abcb96, 2026-10-10)
+
+A registry row of kind `video` (the MPR debate, publish `link` to YouTube, no file) opens in the right pane as a
+player over its transcript minute: the window's facade — no iframe until "▶ play at m:ss" is pressed, then
+youtube-nocookie at the second — and the minute's words with the quoted sentence marked. Three site facts:
+
+- **The importer keeps `passage` on video rows only** (`ROW_KEEP_ON_VIDEO`, the sites' shared bytes since ink
+  0bd7c3ca): a recording has no PDF, so the minute's words beside the player come from the served row; every other
+  row drops it as before (a PDF target's words the window boxes from the layer). DOC_KEEP carries `embed` and
+  `duration`; `target_pin_page` with `seconds` is a row key and rides.
+- **The skin** — `app/casereview/casereview.css` carries the Studio's twelve `.cr-video*` lines on this site's own
+  tokens (`--bg`, `--ink`, `--dim`, `--sans`, `--mono`, `--cr-right`); the box black and the facade's text white on both
+  themes. A new Studio class is mirrored here by hand, as the tab bar was.
+- **CSP** — `frame-src https://www.youtube-nocookie.com` (netlify.toml already carries it).
+
+Probe: `/kirchner-v-ellison?casereview=doc%3DMN-CORR-OPEN-LETTER-2026-10%26cite%3D2%2F1%26q%3D2%253A49%26page%3D2`
+opens the letter's 2:49 row and the recording's tab (the `q=` text selects the row; a `cite=` alone opens the first
+citation on that page, whichever row it is). Snap it: the facade over a 16:9 box, "transcript minute page N · m:00–m:59",
+the sentence marked.
+
+## Serving a registry version
+
+Every registry version is served, table change or not: a registry's offsets decide where a case-law citation opens in
+the pane (v0g keyed 23 of them from null), and a new row is a new served file. The export runs at the floor window's
+sha from a detached worktree; the bundle commit names the registry version and what moved; a table landing is
+served as it stands — rows shown and marked, never dropped — and the admin's next version replaces it.
 
 ## CSP
 
