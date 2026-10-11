@@ -1,10 +1,10 @@
 {
   "case": "kirchner-v-johnson",
-  "imported": "2026-10-11T20:22:02.699Z",
-  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/ddc_v025s",
+  "imported": "2026-10-11T20:36:42.963Z",
+  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/ddc_68eefc45",
   "export_stamp": {
     "lane_signature": {
-      "sha256": "6bac1c26fd0b0c3c45822679b767a5990d3c1d39936d655577ab4dd0eced5e8c",
+      "sha256": "a72d85f98a6fd56a5906b66219a755631cc5e5ab2c764822fcd07613695082d1",
       "files": [
         {
           "path": "_admin/case_review/docs.json",
@@ -23,13 +23,13 @@
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-006.meta.json",
-          "bytes": 5905,
-          "sha256": "75168db9942d96ec2d62db24e279abc46c6dac51f527580f5d7e25a83b2fc71b"
+          "bytes": 11693,
+          "sha256": "47a722b5f0457a0ef822484f415a186fc3b789daf71684e679f75c47c7c281ff"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-006.tsv",
-          "bytes": 18454,
-          "sha256": "8fdde7ab3306baabeea53799c7bb616e7099b76ccea481b2dcc075a81ab343a4"
+          "bytes": 23530,
+          "sha256": "ae5eca3c358bab333e1cf58f4b713470a2ab379f1b176cb49f3840c7b3870bcb"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-014.meta.json",
@@ -386,8 +386,8 @@
     "ourstudio_commit": "70821ec5",
     "checker": "P97",
     "checker_source_sha256": "5554c75985719c7261ff83dca3777170a795c97f273916d668cfa38579383574",
-    "mirrors_sha256": "da3e9fb75b89a2e49410b17a6c80624d3fa01e963ba64dc14381cf7882a39f62",
-    "exported": "2026-10-11T20:22:00+00:00",
+    "mirrors_sha256": "57d2cb022a171055f3a2e13aa500302ae14b1364924aa065396ac73947c140a2",
+    "exported": "2026-10-11T20:36:40+00:00",
     "case_root": "/Users/everest/Git/work_station/1_DCC_1-25-cv-02735-ACR",
     "project_root": "/Users/everest/Git/work_station",
     "registry_version": "v0.25s",
@@ -460,7 +460,7 @@
   "registry_version": "v0.25s",
   "documents": 1105,
   "tables": 29,
-  "rows": 8965,
+  "rows": 8970,
   "publication": {
     "serve": 1041,
     "link": 7,
