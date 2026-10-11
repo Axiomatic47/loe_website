@@ -1,10 +1,10 @@
 {
   "case": "kirchner-v-johnson",
-  "imported": "2026-10-11T21:44:18.644Z",
-  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/ddc_c270a144",
+  "imported": "2026-10-11T21:55:06.151Z",
+  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/ddc_14508e27",
   "export_stamp": {
     "lane_signature": {
-      "sha256": "8e35411e06f329410c65951bde2880a2432e3201a8b68fdf699830bc313fc5ef",
+      "sha256": "910caa6841790b7f3329f9f80dd6de65e781136b9197da0767bcb657778ab01c",
       "files": [
         {
           "path": "_admin/case_review/docs.json",
@@ -43,13 +43,13 @@
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-012.meta.json",
-          "bytes": 11164,
-          "sha256": "08851ad6a4a39ba4800b518fbfb8c03084a8f0c8f7967c98ddbb7f2229cbe3d8"
+          "bytes": 13014,
+          "sha256": "ba39f63d850b9d2433b2ec6fa5e9204042835edaa0660491b579cf0e597e523c"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-012.tsv",
-          "bytes": 72329,
-          "sha256": "fe61ee55fcfe23a0360f5193848002cb16904acd87a20f980209f7ca568b4185"
+          "bytes": 72601,
+          "sha256": "d292edd1e08ce2fb0d54c7fae055924beded7fb967369fcdcb959a98903db003"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-014.meta.json",
@@ -427,7 +427,7 @@
     "checker": "P97",
     "checker_source_sha256": "5554c75985719c7261ff83dca3777170a795c97f273916d668cfa38579383574",
     "mirrors_sha256": "fa7d458ed4ee72b48ee2333c88ca14781480e0819dc9dc056883e4e742acc939",
-    "exported": "2026-10-11T21:44:16+00:00",
+    "exported": "2026-10-11T21:55:04+00:00",
     "case_root": "/Users/everest/Git/work_station/1_DCC_1-25-cv-02735-ACR",
     "project_root": "/Users/everest/Git/work_station",
     "registry_version": "v0.25t",
