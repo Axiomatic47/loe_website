@@ -3579,6 +3579,14 @@
       "destination": "/uploads/constitutional/pdfs/1971_-_NYTimes_v._US_403_U.S._713.pdf"
     },
     {
+      "source": "/api/casereview/file/2014 - Susan B. Anthony List v. Driehaus, 573 U.S. 149",
+      "destination": "/uploads/constitutional/pdfs/2014_-_Susan_B._Anthony_List_v._Driehaus_573_U.S._149.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2015 - Reed v. Town of Gilbert, 576 U.S. 155",
+      "destination": "/uploads/constitutional/pdfs/2015_-_Reed_v._Town_of_Gilbert_576_U.S._155.pdf"
+    },
+    {
       "source": "/api/casereview/file/:id",
       "destination": "/uploads/constitutional/pdfs/:id.pdf"
     }

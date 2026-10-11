@@ -1,35 +1,45 @@
 {
   "case": "kirchner-v-johnson",
-  "imported": "2026-10-11T19:49:40.787Z",
-  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/ddc_v025q",
+  "imported": "2026-10-11T20:09:54.362Z",
+  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/ddc_v025r",
   "export_stamp": {
     "lane_signature": {
-      "sha256": "ffd10263280c0e632cd06f500d78d6f9d63da41bd8254bb0db692fafb856788b",
+      "sha256": "542d024863b249ac7f61e13fc385970502cb1ef060ee98bb190ad260d07939c1",
       "files": [
         {
           "path": "_admin/case_review/docs.json",
-          "bytes": 1164792,
-          "sha256": "338dac686cca94ffaafc104d05b3b04254cc4c7ccf6180b4870855c2f3cd51e2"
+          "bytes": 1170573,
+          "sha256": "c76e1719b763acfc285b9b1cdf906ecc944e43947ae3c57adb03d62b1499f814"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-002.meta.json",
-          "bytes": 3448,
-          "sha256": "6e3821986c524a85165e0fc61a40d76370cbd487128b84b7b4960e11ef3e0c12"
+          "bytes": 5944,
+          "sha256": "1b2689a7812b6e87423a8373e84a4a047e5aee0720572e85bd08ce6e0f2c6d44"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-002.tsv",
-          "bytes": 15218,
-          "sha256": "0dc1a0881a662e84dc2a68fe2eb6e0aecbaf4376df8e7083a44eeee4e54104c9"
+          "bytes": 15769,
+          "sha256": "7c8ac98ff4c67d29ce2abacbb18cd7461e19352b22238581dc35a32ec9663476"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-006.meta.json",
+          "bytes": 5905,
+          "sha256": "75168db9942d96ec2d62db24e279abc46c6dac51f527580f5d7e25a83b2fc71b"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-006.tsv",
+          "bytes": 18454,
+          "sha256": "8fdde7ab3306baabeea53799c7bb616e7099b76ccea481b2dcc075a81ab343a4"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-014.meta.json",
-          "bytes": 12037,
-          "sha256": "21e976533dbe8631363c16b9da12bd20116d8d20db6cf5a0141ab509a6cd72cf"
+          "bytes": 13134,
+          "sha256": "7de10090a95b7c7aa7bd9a48482770e328190b3da11eadc5b0268c15973fd201"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-014.tsv",
-          "bytes": 93995,
-          "sha256": "5262c773933c623173b61e51c41f9d6573b4f5fc3b913fb1032712617f70f5df"
+          "bytes": 94168,
+          "sha256": "80ce9349e5fb069e26c6503da42a0c8d44cf7ac51f517e90bb027404f8c5ac9c"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-051-13.meta.json",
@@ -342,6 +352,11 @@
           "sha256": "31f4ef55854589044f705c49b9eac41402298b2e188e2e7d82d41b9ab6f8487f"
         },
         {
+          "path": "_admin/case_review/_paramaps/usc/usc42_ch124to164_Secs11901to19404@119-111.json",
+          "bytes": 30102,
+          "sha256": "0ea6bdf71281f4c59777cfbb212594cd93e6903c38eb3fd51c1199275e50b71f"
+        },
+        {
           "path": "_admin/case_review/_paramaps/usc/usc42_ch7to7A_Secs301to1400v@119-111.json",
           "bytes": 11024,
           "sha256": "1b0014e8ee1d2ad411f05f2ec1d14920dcb0193df3e92323281a4192e4aab7dd"
@@ -371,13 +386,14 @@
     "ourstudio_commit": "70821ec5",
     "checker": "P97",
     "checker_source_sha256": "5554c75985719c7261ff83dca3777170a795c97f273916d668cfa38579383574",
-    "mirrors_sha256": "4666b0119c70ab13b7d2c660ae53ba631c50c75b44b38f070cc19f05e6504bbf",
-    "exported": "2026-10-11T19:49:38+00:00",
+    "mirrors_sha256": "da3e9fb75b89a2e49410b17a6c80624d3fa01e963ba64dc14381cf7882a39f62",
+    "exported": "2026-10-11T20:09:52+00:00",
     "case_root": "/Users/everest/Git/work_station/1_DCC_1-25-cv-02735-ACR",
     "project_root": "/Users/everest/Git/work_station",
-    "registry_version": "v0.25q",
+    "registry_version": "v0.25r",
     "tables": [
       "DDC-002",
+      "DDC-006",
       "DDC-014",
       "DDC-051",
       "DDC-051-13",
@@ -408,7 +424,7 @@
     ],
     "publish_applied": true,
     "publish": {
-      "serve": 1037,
+      "serve": 1040,
       "link": 7,
       "hold": 57
     },
@@ -441,12 +457,12 @@
       "manifest": "files.json"
     }
   },
-  "registry_version": "v0.25q",
-  "documents": 1101,
-  "tables": 28,
-  "rows": 8901,
+  "registry_version": "v0.25r",
+  "documents": 1104,
+  "tables": 29,
+  "rows": 8957,
   "publication": {
-    "serve": 1037,
+    "serve": 1040,
     "link": 7,
     "hold": 57
   },
