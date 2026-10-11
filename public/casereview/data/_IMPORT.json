@@ -1,15 +1,35 @@
 {
   "case": "kirchner-v-johnson",
-  "imported": "2026-10-11T19:19:41.824Z",
-  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/ddc_v025p",
+  "imported": "2026-10-11T19:49:40.787Z",
+  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/ddc_v025q",
   "export_stamp": {
     "lane_signature": {
-      "sha256": "78522fec99941717c04706b7b57e2821aa44d40892ffa0e9632f475747710dba",
+      "sha256": "ffd10263280c0e632cd06f500d78d6f9d63da41bd8254bb0db692fafb856788b",
       "files": [
         {
           "path": "_admin/case_review/docs.json",
-          "bytes": 1158301,
-          "sha256": "675062dbbea0c839ed363ba94b71aeefae9add92e9ebd69f79a684135ed03c9b"
+          "bytes": 1164792,
+          "sha256": "338dac686cca94ffaafc104d05b3b04254cc4c7ccf6180b4870855c2f3cd51e2"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-002.meta.json",
+          "bytes": 3448,
+          "sha256": "6e3821986c524a85165e0fc61a40d76370cbd487128b84b7b4960e11ef3e0c12"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-002.tsv",
+          "bytes": 15218,
+          "sha256": "0dc1a0881a662e84dc2a68fe2eb6e0aecbaf4376df8e7083a44eeee4e54104c9"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-014.meta.json",
+          "bytes": 12037,
+          "sha256": "21e976533dbe8631363c16b9da12bd20116d8d20db6cf5a0141ab509a6cd72cf"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-014.tsv",
+          "bytes": 93995,
+          "sha256": "5262c773933c623173b61e51c41f9d6573b4f5fc3b913fb1032712617f70f5df"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-051-13.meta.json",
@@ -351,12 +371,14 @@
     "ourstudio_commit": "70821ec5",
     "checker": "P97",
     "checker_source_sha256": "5554c75985719c7261ff83dca3777170a795c97f273916d668cfa38579383574",
-    "mirrors_sha256": "8590c438290f1c6858de2bd93614ece5c7ae4cced5d13c25e23666ccdf0805f4",
-    "exported": "2026-10-11T19:19:40+00:00",
+    "mirrors_sha256": "4666b0119c70ab13b7d2c660ae53ba631c50c75b44b38f070cc19f05e6504bbf",
+    "exported": "2026-10-11T19:49:38+00:00",
     "case_root": "/Users/everest/Git/work_station/1_DCC_1-25-cv-02735-ACR",
     "project_root": "/Users/everest/Git/work_station",
-    "registry_version": "v0.25p",
+    "registry_version": "v0.25q",
     "tables": [
+      "DDC-002",
+      "DDC-014",
       "DDC-051",
       "DDC-051-13",
       "DDC-052",
@@ -386,7 +408,7 @@
     ],
     "publish_applied": true,
     "publish": {
-      "serve": 1034,
+      "serve": 1037,
       "link": 7,
       "hold": 57
     },
@@ -419,12 +441,12 @@
       "manifest": "files.json"
     }
   },
-  "registry_version": "v0.25p",
-  "documents": 1098,
-  "tables": 26,
-  "rows": 8637,
+  "registry_version": "v0.25q",
+  "documents": 1101,
+  "tables": 28,
+  "rows": 8901,
   "publication": {
-    "serve": 1034,
+    "serve": 1037,
     "link": 7,
     "hold": 57
   },

@@ -2449,5 +2449,11 @@
 /api/casereview/file/1977%20-%20Bounds%20v.%20Smith,%20430%20U.S.%20817  /uploads/constitutional/pdfs/1977_-_Bounds_v._Smith_430_U.S._817.pdf  200
 /api/casereview/file/1947%20-%20Hickman%20v.%20Taylor%2C%20329%20U.S.%20495  /uploads/constitutional/pdfs/1947_-_Hickman_v._Taylor_329_U.S._495.pdf  200
 /api/casereview/file/1947%20-%20Hickman%20v.%20Taylor,%20329%20U.S.%20495  /uploads/constitutional/pdfs/1947_-_Hickman_v._Taylor_329_U.S._495.pdf  200
+/api/casereview/file/1945%20-%20Precision%20Instrument%20Mfg.%20Co.%20v.%20Automotive%20Maintenance%20Machinery%20Co.%2C%20324%20U.S.%20806  /uploads/constitutional/pdfs/1945_-_Precision_Instrument_Mfg._Co._v._Automotive_Maintenance_Machinery_Co._324_U.S._806.pdf  200
+/api/casereview/file/1945%20-%20Precision%20Instrument%20Mfg.%20Co.%20v.%20Automotive%20Maintenance%20Machinery%20Co.,%20324%20U.S.%20806  /uploads/constitutional/pdfs/1945_-_Precision_Instrument_Mfg._Co._v._Automotive_Maintenance_Machinery_Co._324_U.S._806.pdf  200
+/api/casereview/file/1866%20-%20Ex%20parte%20Milligan%2C%2071%20U.S.%20(4%20Wall.)%202%20(LoC%20usrep071002a%2C%20141%20pp)  /uploads/constitutional/pdfs/1866_-_Ex_parte_Milligan_71_U.S._4_Wall._2_LoC_usrep071002a_141_pp_.pdf  200
+/api/casereview/file/1866%20-%20Ex%20parte%20Milligan,%2071%20U.S.%20(4%20Wall.)%202%20(LoC%20usrep071002a,%20141%20pp)  /uploads/constitutional/pdfs/1866_-_Ex_parte_Milligan_71_U.S._4_Wall._2_LoC_usrep071002a_141_pp_.pdf  200
+/api/casereview/file/1971%20-%20NYTimes%20v.%20US%2C%20403%20U.S.%20713  /uploads/constitutional/pdfs/1971_-_NYTimes_v._US_403_U.S._713.pdf  200
+/api/casereview/file/1971%20-%20NYTimes%20v.%20US,%20403%20U.S.%20713  /uploads/constitutional/pdfs/1971_-_NYTimes_v._US_403_U.S._713.pdf  200
 /api/casereview/file/:id  /uploads/constitutional/pdfs/:id.pdf  200
 # casereview END

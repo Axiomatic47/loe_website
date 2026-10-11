@@ -3567,6 +3567,18 @@
       "destination": "/uploads/constitutional/pdfs/1947_-_Hickman_v._Taylor_329_U.S._495.pdf"
     },
     {
+      "source": "/api/casereview/file/1945 - Precision Instrument Mfg. Co. v. Automotive Maintenance Machinery Co., 324 U.S. 806",
+      "destination": "/uploads/constitutional/pdfs/1945_-_Precision_Instrument_Mfg._Co._v._Automotive_Maintenance_Machinery_Co._324_U.S._806.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1866 - Ex parte Milligan, 71 U.S. \\(4 Wall.\\) 2 \\(LoC usrep071002a, 141 pp\\)",
+      "destination": "/uploads/constitutional/pdfs/1866_-_Ex_parte_Milligan_71_U.S._4_Wall._2_LoC_usrep071002a_141_pp_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1971 - NYTimes v. US, 403 U.S. 713",
+      "destination": "/uploads/constitutional/pdfs/1971_-_NYTimes_v._US_403_U.S._713.pdf"
+    },
+    {
       "source": "/api/casereview/file/:id",
       "destination": "/uploads/constitutional/pdfs/:id.pdf"
     }
