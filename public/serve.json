@@ -3587,6 +3587,10 @@
       "destination": "/uploads/constitutional/pdfs/2015_-_Reed_v._Town_of_Gilbert_576_U.S._155.pdf"
     },
     {
+      "source": "/api/casereview/file/1984 - Strickland v. Washington, 466 U.S. 668",
+      "destination": "/uploads/constitutional/pdfs/1984_-_Strickland_v._Washington_466_U.S._668.pdf"
+    },
+    {
       "source": "/api/casereview/file/:id",
       "destination": "/uploads/constitutional/pdfs/:id.pdf"
     }
