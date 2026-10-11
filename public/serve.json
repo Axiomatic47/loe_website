@@ -3559,6 +3559,14 @@
       "destination": "/uploads/constitutional/pdfs/1803_-_Marbury_v._Madison_5_U.S._1_Cranch_137_US_Reports_cut_.pdf"
     },
     {
+      "source": "/api/casereview/file/1977 - Bounds v. Smith, 430 U.S. 817",
+      "destination": "/uploads/constitutional/pdfs/1977_-_Bounds_v._Smith_430_U.S._817.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1947 - Hickman v. Taylor, 329 U.S. 495",
+      "destination": "/uploads/constitutional/pdfs/1947_-_Hickman_v._Taylor_329_U.S._495.pdf"
+    },
+    {
       "source": "/api/casereview/file/:id",
       "destination": "/uploads/constitutional/pdfs/:id.pdf"
     }

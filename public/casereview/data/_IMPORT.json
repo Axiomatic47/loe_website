@@ -1,15 +1,15 @@
 {
   "case": "kirchner-v-johnson",
-  "imported": "2026-10-10T04:10:19.513Z",
-  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/cr_ddc_a4",
+  "imported": "2026-10-11T19:19:41.824Z",
+  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/ddc_v025p",
   "export_stamp": {
     "lane_signature": {
-      "sha256": "e1e2088dad50e95d5af89abcb6dd7b62e3d748c3e6cc7924476b3d82616a4557",
+      "sha256": "78522fec99941717c04706b7b57e2821aa44d40892ffa0e9632f475747710dba",
       "files": [
         {
           "path": "_admin/case_review/docs.json",
-          "bytes": 1154145,
-          "sha256": "9a5566325e9ebc90dc2276841bafbd0e04ed4c2024d6136937561b98ab7ffd45"
+          "bytes": 1158301,
+          "sha256": "675062dbbea0c839ed363ba94b71aeefae9add92e9ebd69f79a684135ed03c9b"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-051-13.meta.json",
@@ -348,14 +348,14 @@
         }
       ]
     },
-    "ourstudio_commit": "a4abcb96",
+    "ourstudio_commit": "70821ec5",
     "checker": "P97",
     "checker_source_sha256": "5554c75985719c7261ff83dca3777170a795c97f273916d668cfa38579383574",
     "mirrors_sha256": "8590c438290f1c6858de2bd93614ece5c7ae4cced5d13c25e23666ccdf0805f4",
-    "exported": "2026-10-10T04:09:59+00:00",
+    "exported": "2026-10-11T19:19:40+00:00",
     "case_root": "/Users/everest/Git/work_station/1_DCC_1-25-cv-02735-ACR",
     "project_root": "/Users/everest/Git/work_station",
-    "registry_version": "v0.25o",
+    "registry_version": "v0.25p",
     "tables": [
       "DDC-051",
       "DDC-051-13",
@@ -386,7 +386,7 @@
     ],
     "publish_applied": true,
     "publish": {
-      "serve": 1032,
+      "serve": 1034,
       "link": 7,
       "hold": 57
     },
@@ -419,17 +419,18 @@
       "manifest": "files.json"
     }
   },
-  "registry_version": "v0.25o",
-  "documents": 1096,
+  "registry_version": "v0.25p",
+  "documents": 1098,
   "tables": 26,
   "rows": 8637,
   "publication": {
-    "serve": 1032,
+    "serve": 1034,
     "link": 7,
     "hold": 57
   },
   "dev_override": false,
   "default_doc": "DDC-077",
-  "vendored_studio_commit": "a4abcb96cf53dcf7370a83c86b420a98eca5ba6a",
-  "host_policy": null
+  "vendored_studio_commit": "70821ec556e1ab82d22ac509dd22ac59afbe6d50",
+  "host_policy": null,
+  "tables_withheld": []
 }

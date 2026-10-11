@@ -2445,5 +2445,9 @@
 /api/casereview/file/2014%20-%20NLRB%20v.%20Noel%20Canning,%20573%20U.S.%20513%20%5BUS%20Reports%20cut%5D  /uploads/constitutional/pdfs/2014_-_NLRB_v._Noel_Canning_573_U.S._513_US_Reports_cut_.pdf  200
 /api/casereview/file/1803%20-%20Marbury%20v.%20Madison%2C%205%20U.S.%20(1%20Cranch)%20137%20%5BUS%20Reports%20cut%5D  /uploads/constitutional/pdfs/1803_-_Marbury_v._Madison_5_U.S._1_Cranch_137_US_Reports_cut_.pdf  200
 /api/casereview/file/1803%20-%20Marbury%20v.%20Madison,%205%20U.S.%20(1%20Cranch)%20137%20%5BUS%20Reports%20cut%5D  /uploads/constitutional/pdfs/1803_-_Marbury_v._Madison_5_U.S._1_Cranch_137_US_Reports_cut_.pdf  200
+/api/casereview/file/1977%20-%20Bounds%20v.%20Smith%2C%20430%20U.S.%20817  /uploads/constitutional/pdfs/1977_-_Bounds_v._Smith_430_U.S._817.pdf  200
+/api/casereview/file/1977%20-%20Bounds%20v.%20Smith,%20430%20U.S.%20817  /uploads/constitutional/pdfs/1977_-_Bounds_v._Smith_430_U.S._817.pdf  200
+/api/casereview/file/1947%20-%20Hickman%20v.%20Taylor%2C%20329%20U.S.%20495  /uploads/constitutional/pdfs/1947_-_Hickman_v._Taylor_329_U.S._495.pdf  200
+/api/casereview/file/1947%20-%20Hickman%20v.%20Taylor,%20329%20U.S.%20495  /uploads/constitutional/pdfs/1947_-_Hickman_v._Taylor_329_U.S._495.pdf  200
 /api/casereview/file/:id  /uploads/constitutional/pdfs/:id.pdf  200
 # casereview END
