@@ -3655,6 +3655,22 @@
       "destination": "/uploads/constitutional/pdfs/2018_-_Trump_v._Hawaii_585_U.S._667_US_Reports_cut_.pdf"
     },
     {
+      "source": "/api/casereview/file/1994 - US Bancorp v. Bonner Mall, 513 U.S. 18",
+      "destination": "/uploads/constitutional/pdfs/1994_-_US_Bancorp_v._Bonner_Mall_513_U.S._18.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2013 - Capitol Records v. ReDigi, 934 F. Supp. 2d 640",
+      "destination": "/uploads/constitutional/pdfs/2013_-_Capitol_Records_v._ReDigi_934_F._Supp._2d_640.pdf"
+    },
+    {
+      "source": "/api/casereview/file/Rules of the Supreme Court of the United States \\(adopted Dec. 5, 2022, effective Jan. 1, 2023, supremecourt.gov official pamphlet\\)",
+      "destination": "/uploads/constitutional/pdfs/Rules_of_the_Supreme_Court_of_the_United_States_adopted_Dec._5_2022_effective_Jan._1_2023_supremecourt.gov_official_pamphlet_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/Rules of the Supreme Court of the United States \\(adopted Feb. 17, 2026, effective Mar. 16, 2026, supremecourt.gov official pamphlet\\)",
+      "destination": "/uploads/constitutional/pdfs/Rules_of_the_Supreme_Court_of_the_United_States_adopted_Feb._17_2026_effective_Mar._16_2026_supremecourt.gov_official_pamphlet_.pdf"
+    },
+    {
       "source": "/api/casereview/file/:id",
       "destination": "/uploads/constitutional/pdfs/:id.pdf"
     }
