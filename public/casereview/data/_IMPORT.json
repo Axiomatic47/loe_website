@@ -1,15 +1,15 @@
 {
   "case": "kirchner-v-johnson",
-  "imported": "2026-10-11T21:55:06.151Z",
-  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/ddc_14508e27",
+  "imported": "2026-10-13T21:16:06.050Z",
+  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/ddc_v025v",
   "export_stamp": {
     "lane_signature": {
-      "sha256": "910caa6841790b7f3329f9f80dd6de65e781136b9197da0767bcb657778ab01c",
+      "sha256": "18ce7d56bb55dd10edbdb2deff35bd2c79d20f9a35b8d9192f6bd7533cd9e416",
       "files": [
         {
           "path": "_admin/case_review/docs.json",
-          "bytes": 1175640,
-          "sha256": "aa6c1d69daa288683bcee6b89af535be1eb650fd4956eba6b373eb0ca9d57f76"
+          "bytes": 1201469,
+          "sha256": "5da2182106e5109089987b651beb5c84535d117b3cdf708aa3ffb97d219972e3"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-002.meta.json",
@@ -427,10 +427,10 @@
     "checker": "P97",
     "checker_source_sha256": "5554c75985719c7261ff83dca3777170a795c97f273916d668cfa38579383574",
     "mirrors_sha256": "fa7d458ed4ee72b48ee2333c88ca14781480e0819dc9dc056883e4e742acc939",
-    "exported": "2026-10-11T21:55:04+00:00",
+    "exported": "2026-10-13T21:16:04+00:00",
     "case_root": "/Users/everest/Git/work_station/1_DCC_1-25-cv-02735-ACR",
     "project_root": "/Users/everest/Git/work_station",
-    "registry_version": "v0.25t",
+    "registry_version": "v0.25v",
     "tables": [
       "DDC-002",
       "DDC-006",
@@ -468,7 +468,7 @@
     ],
     "publish_applied": true,
     "publish": {
-      "serve": 1042,
+      "serve": 1058,
       "link": 7,
       "hold": 57
     },
@@ -501,12 +501,12 @@
       "manifest": "files.json"
     }
   },
-  "registry_version": "v0.25t",
-  "documents": 1106,
+  "registry_version": "v0.25v",
+  "documents": 1122,
   "tables": 33,
   "rows": 9228,
   "publication": {
-    "serve": 1042,
+    "serve": 1058,
     "link": 7,
     "hold": 57
   },

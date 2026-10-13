@@ -3591,6 +3591,70 @@
       "destination": "/uploads/constitutional/pdfs/1984_-_Strickland_v._Washington_466_U.S._668.pdf"
     },
     {
+      "source": "/api/casereview/file/1967 - Keyishian v. Board of Regents, 385 U.S. 589",
+      "destination": "/uploads/constitutional/pdfs/1967_-_Keyishian_v._Board_of_Regents_385_U.S._589.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1958 - NAACP v. Alabama ex rel. Patterson, 357 U.S. 449",
+      "destination": "/uploads/constitutional/pdfs/1958_-_NAACP_v._Alabama_ex_rel._Patterson_357_U.S._449.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2002 - Random House v. Rosetta Books, 283 F.3d 490",
+      "destination": "/uploads/constitutional/pdfs/2002_-_Random_House_v._Rosetta_Books_283_F.3d_490.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1993 - MAI Systems v. Peak Computer, 991 F.2d 511",
+      "destination": "/uploads/constitutional/pdfs/1993_-_MAI_Systems_v._Peak_Computer_991_F.2d_511.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1983 - Apple Computer v. Franklin Computer, 714 F.2d 1240",
+      "destination": "/uploads/constitutional/pdfs/1983_-_Apple_Computer_v._Franklin_Computer_714_F.2d_1240.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1994 - Campbell v. Acuff Rose Music, 510 U.S. 569",
+      "destination": "/uploads/constitutional/pdfs/1994_-_Campbell_v._Acuff_Rose_Music_510_U.S._569.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2018 - Trump v. Hawaii, 585 U.S. 667",
+      "destination": "/uploads/constitutional/pdfs/2018_-_Trump_v._Hawaii_585_U.S._667.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1944 - Korematsu v. United States, 323 U.S. 214",
+      "destination": "/uploads/constitutional/pdfs/1944_-_Korematsu_v._United_States_323_U.S._214.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1994 - Kokkonen v. Guardian Life, 511 U.S. 375",
+      "destination": "/uploads/constitutional/pdfs/1994_-_Kokkonen_v._Guardian_Life_511_U.S._375.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2017 - Trump v. International Refugee Assistance Project, 582 U.S. 571",
+      "destination": "/uploads/constitutional/pdfs/2017_-_Trump_v._International_Refugee_Assistance_Project_582_U.S._571.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1950 - United States v. Munsingwear, Inc., 340 U.S. 36",
+      "destination": "/uploads/constitutional/pdfs/1950_-_United_States_v._Munsingwear_Inc._340_U.S._36.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1985 - PA Bureau Correction v. Marshals, 474 U.S. 34",
+      "destination": "/uploads/constitutional/pdfs/1985_-_PA_Bureau_Correction_v._Marshals_474_U.S._34.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1977 - Castaneda v. Partida, 430 U.S. 482",
+      "destination": "/uploads/constitutional/pdfs/1977_-_Castaneda_v._Partida_430_U.S._482.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1975 - Train v. City of New York, 420 U.S. 35",
+      "destination": "/uploads/constitutional/pdfs/1975_-_Train_v._City_of_New_York_420_U.S._35.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1987 - Meese v. Keene, 481 U.S. 465",
+      "destination": "/uploads/constitutional/pdfs/1987_-_Meese_v._Keene_481_U.S._465.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2018 - Trump v. Hawaii, 585 U.S. 667 \\[US Reports cut\\]",
+      "destination": "/uploads/constitutional/pdfs/2018_-_Trump_v._Hawaii_585_U.S._667_US_Reports_cut_.pdf"
+    },
+    {
       "source": "/api/casereview/file/:id",
       "destination": "/uploads/constitutional/pdfs/:id.pdf"
     }
