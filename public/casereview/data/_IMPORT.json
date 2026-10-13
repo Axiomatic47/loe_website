@@ -1,10 +1,10 @@
 {
   "case": "kirchner-v-johnson",
-  "imported": "2026-10-13T22:50:13.709Z",
-  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/ddc_013b",
+  "imported": "2026-10-13T23:19:49.899Z",
+  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/ddc_013c",
   "export_stamp": {
     "lane_signature": {
-      "sha256": "d81bbbee04ed3fea4a21a61abe168047034986f09c74c4eaab3753a124b14d70",
+      "sha256": "92402768c4f3d71e6bf7cada3d9f996db71abc9da98ec0daff8850b86ba0f4ea",
       "files": [
         {
           "path": "_admin/case_review/docs.json",
@@ -53,13 +53,13 @@
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-013.meta.json",
-          "bytes": 50331,
-          "sha256": "9c7823f0c9310b5a416c7c75856b58b591783367f7c11657e5dcb68b9df6ac34"
+          "bytes": 99239,
+          "sha256": "91ea74dfed5fc4e418e54fed6e4b2349d7aa7a3a0a36daa549ca29a3076c6212"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-013.tsv",
-          "bytes": 548487,
-          "sha256": "eeb5ea76af787ccb20f1df9503e19ceef690240c26985ddc08775efba780b2c4"
+          "bytes": 572074,
+          "sha256": "282e31d273df02c2e051af5b00e57daca5427fbc5b3f930a8fe670e2d330dcb4"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-014.meta.json",
@@ -437,7 +437,7 @@
     "checker": "P97",
     "checker_source_sha256": "5554c75985719c7261ff83dca3777170a795c97f273916d668cfa38579383574",
     "mirrors_sha256": "4a745a60b7d91ef86f87501de979111b3458f30a88c6de354dfe1cb0b54ff144",
-    "exported": "2026-10-13T22:50:12+00:00",
+    "exported": "2026-10-13T23:19:48+00:00",
     "case_root": "/Users/everest/Git/work_station/1_DCC_1-25-cv-02735-ACR",
     "project_root": "/Users/everest/Git/work_station",
     "registry_version": "v0.25w",
@@ -515,7 +515,7 @@
   "registry_version": "v0.25w",
   "documents": 1126,
   "tables": 34,
-  "rows": 10472,
+  "rows": 10481,
   "publication": {
     "serve": 1062,
     "link": 7,
