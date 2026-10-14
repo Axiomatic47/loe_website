@@ -1,10 +1,10 @@
 {
   "case": "kirchner-v-johnson",
-  "imported": "2026-10-14T19:41:19.514Z",
-  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/ddc_v027",
+  "imported": "2026-10-14T22:32:16.083Z",
+  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/b5e822fa-aee1-4a1d-8721-fd7052f9be64/scratchpad/ddc_005v01",
   "export_stamp": {
     "lane_signature": {
-      "sha256": "c89cee50d8cc6fd3b210f45b2bd9cd2e7a2206f3fa44ec6f69e82a8e6db2089e",
+      "sha256": "223689e8f926a76c4a56fe555edcd553ee6b0e9d106a0364d618b29232d66039",
       "files": [
         {
           "path": "_admin/case_review/docs.json",
@@ -20,6 +20,16 @@
           "path": "_admin/case_review/links/LINKS_DDC-002.tsv",
           "bytes": 15769,
           "sha256": "7c8ac98ff4c67d29ce2abacbb18cd7461e19352b22238581dc35a32ec9663476"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-005.meta.json",
+          "bytes": 17066,
+          "sha256": "4f7296c20a3debcba18d58b72bda4061fce57ce45c0faec935319b5a2401d60e"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-005.tsv",
+          "bytes": 757990,
+          "sha256": "4ce3af5b4ddee34ae38cf421242fa0b3036f34625964d1b62188cdbe742a4911"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-006.meta.json",
@@ -441,13 +451,14 @@
     "ourstudio_commit": "c036ecb1",
     "checker": "P99",
     "checker_source_sha256": "47b5e5dc4b21588493a2d552d069cf741a090d4d375a14f6640a7d3b51ebf17e",
-    "mirrors_sha256": "8e8752361f00f4d845a2363a0ccec8b43257f9eb152f1f4e1f198eff00da4abb",
-    "exported": "2026-10-14T19:41:18+00:00",
+    "mirrors_sha256": "effcece00d92564e836cdc53dee399db7b0410e8c5f7bd8a66dacddfe082a8cd",
+    "exported": "2026-10-14T22:21:19+00:00",
     "case_root": "/Users/everest/Git/work_station/1_DCC_1-25-cv-02735-ACR",
     "project_root": "/Users/everest/Git/work_station",
     "registry_version": "v0.27",
     "tables": [
       "DDC-002",
+      "DDC-005",
       "DDC-006",
       "DDC-008",
       "DDC-012",
@@ -519,8 +530,8 @@
   },
   "registry_version": "v0.27",
   "documents": 1143,
-  "tables": 34,
-  "rows": 10929,
+  "tables": 35,
+  "rows": 12146,
   "publication": {
     "serve": 1079,
     "link": 7,
