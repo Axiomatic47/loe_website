@@ -1,10 +1,10 @@
 {
   "case": "kirchner-v-johnson",
-  "imported": "2026-10-14T19:13:46.141Z",
-  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/ddc_013i",
+  "imported": "2026-10-14T19:33:15.867Z",
+  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/ddc_p99",
   "export_stamp": {
     "lane_signature": {
-      "sha256": "b32a10d39b86c9618f4f40fdee1f6c7ebe98f9d7adebc5b2b84dede0968c68b1",
+      "sha256": "b98b966854c2a9a69df6aef3483330589a258b5c1d5b4cf10fa342d1fb81c61a",
       "files": [
         {
           "path": "_admin/case_review/docs.json",
@@ -53,13 +53,13 @@
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-013.meta.json",
-          "bytes": 184505,
-          "sha256": "7d7ea48526356c68b0f4b14c196e12a10e2788cc84bd6f9791883c285639421b"
+          "bytes": 188518,
+          "sha256": "bc06774164d320e8159855dcb1453b088daab47296b7bc4cbd4f78982b63da6e"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-013.tsv",
-          "bytes": 832839,
-          "sha256": "be4d5288a2722f3fd78fe39d0f0ab95ed898cbccabf1d075476ea78cc470ed2c"
+          "bytes": 833390,
+          "sha256": "a830c073c244a0b2ab329e08e461d8f1bba3954c17221c77640d67b9f1bbaacf"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-014.meta.json",
@@ -438,11 +438,11 @@
         }
       ]
     },
-    "ourstudio_commit": "f200b0d5",
-    "checker": "P98",
-    "checker_source_sha256": "68b62969622ac0787319c84228cf2c64d3e6cf82aec4bca370f75ab7d97c2594",
+    "ourstudio_commit": "c036ecb1",
+    "checker": "P99",
+    "checker_source_sha256": "47b5e5dc4b21588493a2d552d069cf741a090d4d375a14f6640a7d3b51ebf17e",
     "mirrors_sha256": "8e8752361f00f4d845a2363a0ccec8b43257f9eb152f1f4e1f198eff00da4abb",
-    "exported": "2026-10-14T19:13:44+00:00",
+    "exported": "2026-10-14T19:31:54+00:00",
     "case_root": "/Users/everest/Git/work_station/1_DCC_1-25-cv-02735-ACR",
     "project_root": "/Users/everest/Git/work_station",
     "registry_version": "v0.26",
@@ -528,7 +528,7 @@
   },
   "dev_override": false,
   "default_doc": "DDC-077",
-  "vendored_studio_commit": "f200b0d53f74e6af28feb83bd63ca9cd0cfd74f9",
+  "vendored_studio_commit": "c036ecb1dc8655c0abeb3f255ea118484b48963f",
   "host_policy": null,
   "tables_withheld": []
 }
