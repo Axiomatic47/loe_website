@@ -2509,5 +2509,7 @@
 /api/casereview/file/2017%20-%20Trump%20v.%20International%20Refugee%20Assistance%20Project,%20583%20U.S.%20912  /uploads/constitutional/pdfs/2017_-_Trump_v._International_Refugee_Assistance_Project_583_U.S._912.pdf  200
 /api/casereview/file/2017%20-%20Trump%20v.%20Hawaii%2C%20583%20U.S.%20941  /uploads/constitutional/pdfs/2017_-_Trump_v._Hawaii_583_U.S._941.pdf  200
 /api/casereview/file/2017%20-%20Trump%20v.%20Hawaii,%20583%20U.S.%20941  /uploads/constitutional/pdfs/2017_-_Trump_v._Hawaii_583_U.S._941.pdf  200
+/api/casereview/file/1984%20-%20Heckler%20v.%20Mathews%2C%20465%20U.S.%20728  /uploads/constitutional/pdfs/1984_-_Heckler_v._Mathews_465_U.S._728.pdf  200
+/api/casereview/file/1984%20-%20Heckler%20v.%20Mathews,%20465%20U.S.%20728  /uploads/constitutional/pdfs/1984_-_Heckler_v._Mathews_465_U.S._728.pdf  200
 /api/casereview/file/:id  /uploads/constitutional/pdfs/:id.pdf  200
 # casereview END

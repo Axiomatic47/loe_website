@@ -3687,6 +3687,10 @@
       "destination": "/uploads/constitutional/pdfs/2017_-_Trump_v._Hawaii_583_U.S._941.pdf"
     },
     {
+      "source": "/api/casereview/file/1984 - Heckler v. Mathews, 465 U.S. 728",
+      "destination": "/uploads/constitutional/pdfs/1984_-_Heckler_v._Mathews_465_U.S._728.pdf"
+    },
+    {
       "source": "/api/casereview/file/:id",
       "destination": "/uploads/constitutional/pdfs/:id.pdf"
     }
