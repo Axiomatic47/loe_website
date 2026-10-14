@@ -3671,6 +3671,14 @@
       "destination": "/uploads/constitutional/pdfs/Rules_of_the_Supreme_Court_of_the_United_States_adopted_Feb._17_2026_effective_Mar._16_2026_supremecourt.gov_official_pamphlet_.pdf"
     },
     {
+      "source": "/api/casereview/file/1969 - Brandenburg v. Ohio, 395 U.S. 444",
+      "destination": "/uploads/constitutional/pdfs/1969_-_Brandenburg_v._Ohio_395_U.S._444.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2010 - Citizens United v. FEC, 558 U.S. 310",
+      "destination": "/uploads/constitutional/pdfs/2010_-_Citizens_United_v._FEC_558_U.S._310.pdf"
+    },
+    {
       "source": "/api/casereview/file/:id",
       "destination": "/uploads/constitutional/pdfs/:id.pdf"
     }
