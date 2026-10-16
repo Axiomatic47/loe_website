@@ -16,7 +16,18 @@ export const metadata: Metadata = {
   alternates: { canonical: "/for-journalists" },
 };
 
-const MATTERS = [
+type Matter = {
+  caption: string;
+  court: string;
+  caseNo: string;
+  status: string;
+  operative: { label: string; href: string };
+  landing: string;
+  /** public correspondence published with the case (the open letter of Oct. 10, 2026 — owner 2026-10-16) */
+  correspondence?: { label: string; href: string; pdf: string };
+};
+
+const MATTERS: Matter[] = [
   {
     caption: "Kirchner v. Johnson, et al.",
     court: "U.S. District Court, D.D.C. (Hon. Ana C. Reyes)",
@@ -32,6 +43,11 @@ const MATTERS = [
     status: "Refiled action in motion-to-dismiss briefing; appeal summarily affirmed June 25, 2026",
     operative: { label: "Petition (Doc. 1)", href: "/kirchner-v-ellison/1" },
     landing: "/kirchner-v-ellison",
+    correspondence: {
+      label: "Open Letter to the Candidates for Minnesota Attorney General (Oct. 10, 2026)",
+      href: "/kirchner-v-ellison/open-letter-ag-candidates-2026-10-10",
+      pdf: "/uploads/constitutional/pdfs/MN-CORR-OPEN-LETTER-2026-10.pdf",
+    },
   },
   {
     caption: "Kirchner v. Acosta",
@@ -105,6 +121,22 @@ const ForJournalists = () => {
                           {m.court} · {m.caseNo}
                         </p>
                         <p className="text-sm text-foreground/85 mt-2 font-sans">{m.status}</p>
+                        {m.correspondence && (
+                          <p className="text-sm text-foreground/85 mt-2 font-sans">
+                            Public correspondence:{" "}
+                            <Link
+                              href={m.correspondence.href}
+                              className="text-primary hover:text-primary/80 transition-colors"
+                              style={{ fontWeight: 550 }}
+                            >
+                              {m.correspondence.label}
+                            </Link>{" "}
+                            ·{" "}
+                            <a href={m.correspondence.pdf} className="text-primary hover:text-primary/80 transition-colors">
+                              PDF
+                            </a>
+                          </p>
+                        )}
                       </div>
                       <Link
                         href={m.operative.href}

@@ -28,6 +28,8 @@ const CASE_GROUP_LABELS: Record<string, string> = {
   'cv-00726': 'Trial Court',
   'cv-02594': 'Refiled Action',
   '26-1615': '8th Cir. Appeal',
+  // public correspondence published with the case (the open letter of Oct. 10, 2026 — owner 2026-10-16)
+  'correspondence': 'Correspondence',
   // Kirchner v. Johnson — by complaint era
   'original': 'Original Complaint',
   'fac': 'First Amended Complaint',

@@ -1216,6 +1216,18 @@
     "destination": "/kirchner-v-ellison/2594-37-1"
   },
   {
+    "source": "/kirchner-v-ellison/section/101",
+    "destination": "/kirchner-v-ellison/open-letter-ag-candidates-2026-10-10"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/102",
+    "destination": "/kirchner-v-ellison/open-letter-enclosure-a-2026-10-10"
+  },
+  {
+    "source": "/kirchner-v-ellison/section/103",
+    "destination": "/kirchner-v-ellison/open-letter-enclosure-b-2026-10-10"
+  },
+  {
     "source": "/kirchner-v-johnson/section/1",
     "destination": "/kirchner-v-johnson/51"
   },
