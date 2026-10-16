@@ -1,15 +1,105 @@
 {
   "case": "kirchner-v-johnson",
-  "imported": "2026-10-10T04:10:19.513Z",
-  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/55339aa7-a052-4253-afc5-0d9bf792e261/scratchpad/cr_ddc_a4",
+  "imported": "2026-10-15T00:08:53.834Z",
+  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/b5e822fa-aee1-4a1d-8721-fd7052f9be64/scratchpad/ddc_p100",
   "export_stamp": {
     "lane_signature": {
-      "sha256": "e1e2088dad50e95d5af89abcb6dd7b62e3d748c3e6cc7924476b3d82616a4557",
+      "sha256": "223689e8f926a76c4a56fe555edcd553ee6b0e9d106a0364d618b29232d66039",
       "files": [
         {
           "path": "_admin/case_review/docs.json",
-          "bytes": 1154145,
-          "sha256": "9a5566325e9ebc90dc2276841bafbd0e04ed4c2024d6136937561b98ab7ffd45"
+          "bytes": 1243225,
+          "sha256": "678e3543f9c7c183838d726a70a32b61c0ea3d10760148632319079c61c9d9e6"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-002.meta.json",
+          "bytes": 5944,
+          "sha256": "1b2689a7812b6e87423a8373e84a4a047e5aee0720572e85bd08ce6e0f2c6d44"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-002.tsv",
+          "bytes": 15769,
+          "sha256": "7c8ac98ff4c67d29ce2abacbb18cd7461e19352b22238581dc35a32ec9663476"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-005.meta.json",
+          "bytes": 17066,
+          "sha256": "4f7296c20a3debcba18d58b72bda4061fce57ce45c0faec935319b5a2401d60e"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-005.tsv",
+          "bytes": 757990,
+          "sha256": "4ce3af5b4ddee34ae38cf421242fa0b3036f34625964d1b62188cdbe742a4911"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-006.meta.json",
+          "bytes": 11693,
+          "sha256": "47a722b5f0457a0ef822484f415a186fc3b789daf71684e679f75c47c7c281ff"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-006.tsv",
+          "bytes": 23530,
+          "sha256": "ae5eca3c358bab333e1cf58f4b713470a2ab379f1b176cb49f3840c7b3870bcb"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-008.meta.json",
+          "bytes": 4039,
+          "sha256": "cb8d7836184f3f454d819e7b91f741619e6c6da48fd55bd8b461a78f936ecb89"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-008.tsv",
+          "bytes": 2654,
+          "sha256": "8deae3dc11cadff93de56f7b7eee719352a4f653c8b6ef4ed6b5cae13a02fed8"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-012.meta.json",
+          "bytes": 13014,
+          "sha256": "ba39f63d850b9d2433b2ec6fa5e9204042835edaa0660491b579cf0e597e523c"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-012.tsv",
+          "bytes": 72601,
+          "sha256": "d292edd1e08ce2fb0d54c7fae055924beded7fb967369fcdcb959a98903db003"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-013.meta.json",
+          "bytes": 188518,
+          "sha256": "bc06774164d320e8159855dcb1453b088daab47296b7bc4cbd4f78982b63da6e"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-013.tsv",
+          "bytes": 833390,
+          "sha256": "a830c073c244a0b2ab329e08e461d8f1bba3954c17221c77640d67b9f1bbaacf"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-014.meta.json",
+          "bytes": 16527,
+          "sha256": "fc310880677b8b3f28d07daef9be7cab36ea8af1907cb33afc59c3ab6324f6b1"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-014.tsv",
+          "bytes": 101030,
+          "sha256": "a25ee3378f8de9aa22309b331556fa7a26c60ea337e3d1192d3eb0eacae3a43c"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-015.meta.json",
+          "bytes": 18695,
+          "sha256": "acb1e05a927f3c582fbe9eb454713ec25c4a4274c5b12a064d418eb55827b0f5"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-015.tsv",
+          "bytes": 51076,
+          "sha256": "ef09bbfba858871c7327ced68c4fb8aaff67a75ec99cfcd5d05b4a75ee2140bb"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-039.meta.json",
+          "bytes": 5278,
+          "sha256": "26262fd8013d1a17d1e0e0b293ee521b8dcfdc9f288799834f322968290ab501"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_DDC-039.tsv",
+          "bytes": 22222,
+          "sha256": "91ae26b4aca7c0e89a35e32111690a9d23803b82d4c414e7aff5d79999298c3a"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-051-13.meta.json",
@@ -287,6 +377,11 @@
           "sha256": "51b346915c072926ce9943c70ee0b1db38b96ce2a549cb92a161a90878d6481e"
         },
         {
+          "path": "_admin/case_review/_paramaps/usc/usc15@119-111.json",
+          "bytes": 45850,
+          "sha256": "e7fe8b530f5cf8d8c4ec6c1fedcd5af852fc7ee411cc2b69f1da3ca8a80881d4"
+        },
+        {
           "path": "_admin/case_review/_paramaps/usc/usc17@119-111.json",
           "bytes": 2897,
           "sha256": "ca8e8d7bb369d254df04e06b7cd926accc5b0a9c685cb7dd606f593782a0ef95"
@@ -322,6 +417,11 @@
           "sha256": "31f4ef55854589044f705c49b9eac41402298b2e188e2e7d82d41b9ab6f8487f"
         },
         {
+          "path": "_admin/case_review/_paramaps/usc/usc42_ch124to164_Secs11901to19404@119-111.json",
+          "bytes": 30102,
+          "sha256": "0ea6bdf71281f4c59777cfbb212594cd93e6903c38eb3fd51c1199275e50b71f"
+        },
+        {
           "path": "_admin/case_review/_paramaps/usc/usc42_ch7to7A_Secs301to1400v@119-111.json",
           "bytes": 11024,
           "sha256": "1b0014e8ee1d2ad411f05f2ec1d14920dcb0193df3e92323281a4192e4aab7dd"
@@ -348,15 +448,24 @@
         }
       ]
     },
-    "ourstudio_commit": "a4abcb96",
-    "checker": "P97",
-    "checker_source_sha256": "5554c75985719c7261ff83dca3777170a795c97f273916d668cfa38579383574",
-    "mirrors_sha256": "8590c438290f1c6858de2bd93614ece5c7ae4cced5d13c25e23666ccdf0805f4",
-    "exported": "2026-10-10T04:09:59+00:00",
+    "ourstudio_commit": "6f6dd67d",
+    "checker": "P100",
+    "checker_source_sha256": "9cb36ae7a97a36ec4b6af70a56bf404614def94beab84de1e563eb5acebe74d6",
+    "mirrors_sha256": "effcece00d92564e836cdc53dee399db7b0410e8c5f7bd8a66dacddfe082a8cd",
+    "exported": "2026-10-15T00:05:35+00:00",
     "case_root": "/Users/everest/Git/work_station/1_DCC_1-25-cv-02735-ACR",
     "project_root": "/Users/everest/Git/work_station",
-    "registry_version": "v0.25o",
+    "registry_version": "v0.27",
     "tables": [
+      "DDC-002",
+      "DDC-005",
+      "DDC-006",
+      "DDC-008",
+      "DDC-012",
+      "DDC-013",
+      "DDC-014",
+      "DDC-015",
+      "DDC-039",
       "DDC-051",
       "DDC-051-13",
       "DDC-052",
@@ -386,7 +495,7 @@
     ],
     "publish_applied": true,
     "publish": {
-      "serve": 1032,
+      "serve": 1079,
       "link": 7,
       "hold": 57
     },
@@ -419,17 +528,18 @@
       "manifest": "files.json"
     }
   },
-  "registry_version": "v0.25o",
-  "documents": 1096,
-  "tables": 26,
-  "rows": 8637,
+  "registry_version": "v0.27",
+  "documents": 1143,
+  "tables": 35,
+  "rows": 12146,
   "publication": {
-    "serve": 1032,
+    "serve": 1079,
     "link": 7,
     "hold": 57
   },
   "dev_override": false,
   "default_doc": "DDC-077",
-  "vendored_studio_commit": "a4abcb96cf53dcf7370a83c86b420a98eca5ba6a",
-  "host_policy": null
+  "vendored_studio_commit": "6f6dd67dafbf8611ca4ca157feaa546ea8675135",
+  "host_policy": null,
+  "tables_withheld": []
 }

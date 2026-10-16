@@ -1304,6 +1304,48 @@
       "description": "Attachment #1 to the response memorandum (Doc 37): word count certificate. 2 pages, filed October 7, 2026.",
       "case_group": "cv-02594",
       "slug": "2594-37-1"
+    },
+    {
+      "pdf_file": "/uploads/constitutional/pdfs/MN-CORR-OPEN-LETTER-2026-10.pdf",
+      "featured": true,
+      "date": "2026-10-10",
+      "content_level_1": "",
+      "content_level_3": "",
+      "content_level_5": "",
+      "title": "Open Letter to the Candidates for Minnesota Attorney General (Oct. 10, 2026)",
+      "images": [],
+      "description": "Minn. Stat. § 8.31, subd. 1: the office's public position, its position in federal court, and three questions for each candidate — sent to Keith Ellison and Ron Schutz on the same day, in the same words, by certified mail, by email, and public release; written answers asked for by October 21, 2026. Published copy (letterhead: name and email only). 4 pp.",
+      "featured_order": 0,
+      "case_group": "correspondence",
+      "slug": "open-letter-ag-candidates-2026-10-10"
+    },
+    {
+      "pdf_file": "/uploads/constitutional/pdfs/MN-CORR-OPEN-LETTER-ENCLOSURE-A-2026-10.pdf",
+      "featured": false,
+      "date": "2026-10-10",
+      "content_level_1": "",
+      "content_level_3": "",
+      "content_level_5": "",
+      "title": "Enclosure A: What the Office Said and What the Candidates Said, Point by Point (Oct. 10, 2026)",
+      "images": [],
+      "description": "To the open letter of October 10, 2026. Seven points, each with the office's words in the record and the candidates' words in public, every quotation given with its source. 3 pp.",
+      "featured_order": 999,
+      "case_group": "correspondence",
+      "slug": "open-letter-enclosure-a-2026-10-10"
+    },
+    {
+      "pdf_file": "/uploads/constitutional/pdfs/minnesota/correspondence-open-letter-enclosure-b-2026-10-10.pdf",
+      "featured": false,
+      "date": "2026-10-10",
+      "content_level_1": "",
+      "content_level_3": "",
+      "content_level_5": "",
+      "title": "Enclosure B: Reply Form (Oct. 10, 2026)",
+      "images": [],
+      "description": "To the open letter of October 10, 2026. The three questions, each answerable yes or no, with lines for any explanation; return asked by October 21, 2026, when the answers, or their absence, are published with the letter. 1 p.",
+      "featured_order": 999,
+      "case_group": "correspondence",
+      "slug": "open-letter-enclosure-b-2026-10-10"
     }
   ],
   "slug": "kirchner-v-ellison"

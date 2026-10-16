@@ -169,6 +169,21 @@ the pane (v0g keyed 23 of them from null), and a new row is a new served file. T
 sha from a detached worktree; the bundle commit names the registry version and what moved; a table landing is
 served as it stands — rows shown and marked, never dropped — and the admin's next version replaces it.
 
+**The landing practice as settled with the admins (2026-10-10/11).** A signal is the record of what landed, not a gate:
+each site exports the lane's committed head at its own time, and when the lane has moved past the signal (a flip, the
+next cut) the head is served with both shas named in the commit; when signals stack, one export at the head covers
+them all. The export refuses itself if the lane moves while it reads ("signed … before the first read, … after the
+last; nothing written") — run it again. A registry re-key of a document whose table was cut against the OLD render
+is held until the mirror → re-cut → read chain lands, because the importer sha-gates the file and serving the version
+alone would swap the render under a stale table (the open letter, 2026-10-10). A row whose target is a document the
+host holds or links takes the window's "not published on this site" sentence (with the host's `publish_note` in
+brackets); which groups a host serves is `--serve-groups`, the owner's per-site word — on this site every group serves
+(the owner, 2026-10-10: "Kirchner I can stay at laws of existence"). Each bundle's `_IMPORT.json` stamps the Studio sha
+it was exported under; the check warns until the bundle is re-exported at the vendor record, and that re-stamp rides
+the lane's next landing. Click proof: pick a row whose target is served, has a text layer (`text_layer` not false; when
+unrecorded, `pdftotext -f N -l N` the served file — ECF 6 and the exhibit cover sheets are scans) and is not the
+document itself; an image-only source draws no boxes, and the served census is the proof there.
+
 ## CSP
 
 `netlify.toml`: `worker-src 'self' blob:` (the pdf.js worker) and `data:` in `font-src` (the standard fonts), beside
