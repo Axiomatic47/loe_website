@@ -1,0 +1,20 @@
+# Binary assets are stored byte for byte. Without this, git's text heuristic
+# (no NUL in the first 8 KB) read a PDF as text and core.autocrlf=input
+# stripped its carriage returns on commit — the deploy's copy then failed the
+# Case Review's sha check (Netlify build of main@e52c250, 2026-10-16) while
+# the working tree looked clean. Pin the kinds this site serves.
+*.pdf   binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.webp  binary
+*.ico   binary
+*.mp4   binary
+*.mov   binary
+*.mp3   binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.otf   binary
+*.zip   binary
