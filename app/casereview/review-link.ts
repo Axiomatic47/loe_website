@@ -30,7 +30,10 @@ export const CASE_REVIEW_HOSTS: Record<string, CaseReviewHost> = {
 
 /** the bundle directory of a case, as the importer lays it out */
 export function dataDir(caseSlug: string): string {
-  return path.join(process.cwd(), 'public', ...(caseSlug === DEFAULT_CASE ? ['casereview', 'data'] : ['casereview', caseSlug, 'data']));
+  // statically scoped to public/casereview: with 'public' as the last literal segment the tracer's pattern matched
+  // every file under public/ (16,284 at 2026-10-16); the bundles are build-time inputs and public/** is excluded
+  // from the handler's trace in next.config.ts, so the narrower pattern changes nothing but the sweep
+  return path.join(process.cwd(), 'public', 'casereview', ...(caseSlug === DEFAULT_CASE ? ['data'] : [caseSlug, 'data']));
 }
 
 /** the host entry of a case, or null when the case is not hosted in review mode or its bundle is not on disk */

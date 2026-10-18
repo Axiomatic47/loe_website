@@ -11,17 +11,21 @@ const FILE = path.join(process.cwd(), 'public', 'research', 'immunity-timeline.j
 
 export function timelinePath(): string {
   const override = process.env.IMMUNITY_TIMELINE_JSON;
-  if (override && !process.env.NETLIFY && !process.env.CI) return path.resolve(override);
+  // the tracer cannot see the guard above: a bare path.resolve(override) made Next's output tracing sweep the WHOLE
+  // project into the Netlify server handler (1.7 GB — testimonies/, testimony_queue/, every root file; the deploy of
+  // main@49564cc died uploading it, 2026-10-16). The hints here and on the fs calls below keep the loader out of the
+  // trace altogether: the page is prerendered and the JSON sits under public/, which the handler never reads.
+  if (override && !process.env.NETLIFY && !process.env.CI) return path.resolve(/* turbopackIgnore: true */ override);
   return FILE;
 }
 
 export function hasImmunityTimeline(): boolean {
-  return fs.existsSync(timelinePath());
+  return fs.existsSync(/* turbopackIgnore: true */ timelinePath());
 }
 
 export function loadImmunityTimeline(): ImmunityTimeline | null {
   const p = timelinePath();
-  if (!fs.existsSync(p)) return null;
-  const raw = JSON.parse(fs.readFileSync(p, 'utf-8')) as ImmunityTimeline;
+  if (!fs.existsSync(/* turbopackIgnore: true */ p)) return null;
+  const raw = JSON.parse(fs.readFileSync(/* turbopackIgnore: true */ p, 'utf-8')) as ImmunityTimeline;
   return { ...raw, entries: sortEntries(raw.entries ?? []) };
 }
