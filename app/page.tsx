@@ -2,12 +2,15 @@
 //
 // Structure (owner direction 2026-08-22/23 — the articles carry the page;
 // no featured case, no case strip):
-//   0. The open letter — the Open Letter to the Candidates for Minnesota
-//      Attorney General (Oct. 10, 2026), at the top of the page (owner
-//      2026-10-16: "publish … at the home page — top of the page"); the
-//      published copy, whose letterhead carries the name and email only
 //   1. Hero — plain-English statement of what this site is, two CTAs
 //      (primary: the academic articles)
+//   1b. The open letter — the Open Letter to the Candidates for Minnesota
+//      Attorney General (Oct. 10, 2026) as the FIRST featured work, under
+//      the hero and above the book: the PDF itself in the review-mode viewer,
+//      no summary (owner 2026-10-19: "not above the site header, just the
+//      first featured work. Show the pdf, not an explanation"; first placed
+//      above the hero 2026-10-16). The published copy, whose letterhead
+//      carries the name and email only.
 //   2. The book — The Subject's Unanswered Plea in the review-mode PDF viewer,
 //      read here under the hero buttons (owner 2026-09-18), with the link
 //      into review mode
@@ -49,16 +52,20 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
 };
 
-// The open letter at the top of the page (owner 2026-10-16). The reader page is the
-// Kirchner v. Ellison composition's section; the PDFs are the ones the Case Review
-// serves for this case (the PUBLISHED copy — letterhead: name and email only) and
-// the reply form beside the Minnesota filings.
+// The open letter, the first featured work under the hero (owner 2026-10-16 / 2026-10-19). The
+// reader page is the Kirchner v. Ellison composition's section; the PDFs are the ones the Case
+// Review serves for this case (the PUBLISHED copy — letterhead: name and email only) and the
+// reply form beside the Minnesota filings. sha256/bytes: the served file's, for the viewer's
+// cache-busting query and its size line (registry 768a…-style check: public/casereview/kirchner-v-ellison/data/files.json).
 const OPEN_LETTER = {
   date: 'October 10, 2026',
   title: 'Open Letter to the Candidates for Minnesota Attorney General',
   // the case-slug reader form (/<caseSlug>/<docId> — utils/urls sectionUrl for a constitutional case composition)
   href: '/kirchner-v-ellison/open-letter-ag-candidates-2026-10-10',
   pdf: '/uploads/constitutional/pdfs/MN-CORR-OPEN-LETTER-2026-10.pdf',
+  sha256: 'a731121edc9e',
+  bytes: 176276,
+  pages: 4,
   enclosureA: '/kirchner-v-ellison/open-letter-enclosure-a-2026-10-10',
   enclosureB: '/kirchner-v-ellison/open-letter-enclosure-b-2026-10-10',
 };
@@ -104,49 +111,6 @@ export default function Home() {
   return (
     <SitePageLayout>
       <main className="container mx-auto px-4 py-12">
-        {/* ------------------------------- 0. The open letter (owner 2026-10-16: top of the page) */}
-        <section className="max-w-4xl mx-auto mb-10">
-          <Reveal>
-            <div className="rounded-xl border border-border border-l-2 border-l-primary bg-card shadow-sm px-6 py-5 sm:px-8 sm:py-6">
-              <Eyebrow>Open letter · {OPEN_LETTER.date}</Eyebrow>
-              <h2
-                className="font-serif text-foreground"
-                style={{ fontSize: 'clamp(21px, 2.5vw, 27px)', fontWeight: 580, letterSpacing: '-0.016em', lineHeight: 1.22 }}
-              >
-                <Link href={OPEN_LETTER.href} className="no-underline hover:underline underline-offset-4">
-                  {OPEN_LETTER.title}
-                </Link>
-              </h2>
-              <p className="font-serif text-foreground/85 mt-3" style={{ fontSize: '1.0625rem', lineHeight: 1.62 }}>
-                Minn. Stat. § 8.31, subd. 1: the office&rsquo;s public position, its position in federal court,
-                and three questions for each candidate &mdash; sent to Keith Ellison and Ron Schutz on the same
-                day, in the same words, by certified mail, by email, and public release. Written answers are
-                asked for by October 21, 2026; what each candidate answered, or did not, is published that day.
-              </p>
-              <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-sans">
-                <Link
-                  href={OPEN_LETTER.href}
-                  className="text-primary inline-flex items-center hover:text-primary/80 transition-colors"
-                  style={{ fontWeight: 550 }}
-                >
-                  <FileText className="h-4 w-4 mr-1.5" />
-                  Read the letter
-                  <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
-                </Link>
-                <a href={OPEN_LETTER.pdf} className="text-primary hover:text-primary/80 transition-colors" style={{ fontWeight: 500 }}>
-                  PDF (4 pp.)
-                </a>
-                <Link href={OPEN_LETTER.enclosureA} className="text-primary hover:text-primary/80 transition-colors" style={{ fontWeight: 500 }}>
-                  Enclosure A: the record and the debate
-                </Link>
-                <Link href={OPEN_LETTER.enclosureB} className="text-primary hover:text-primary/80 transition-colors" style={{ fontWeight: 500 }}>
-                  Enclosure B: reply form
-                </Link>
-              </div>
-            </div>
-          </Reveal>
-        </section>
-
         {/* ------------------------------------------------ 1. Hero */}
         <section className="max-w-4xl mx-auto text-center pt-8 pb-16">
           <Reveal>
@@ -202,6 +166,52 @@ export default function Home() {
                 <Link href="/composition/constitutional">The litigation record</Link>
               </Button>
             </div>
+          </Reveal>
+        </section>
+
+        {/* ------------------------------ 1b. The open letter — the PDF itself, the first featured work (owner 2026-10-19) */}
+        <section className="max-w-4xl mx-auto mb-16 -mt-4">
+          <Reveal>
+            <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-2 mb-4">
+              <div className="min-w-0">
+                <Eyebrow>Open letter · {OPEN_LETTER.date}</Eyebrow>
+                <h2
+                  className="font-serif text-foreground"
+                  style={{ fontSize: 'clamp(22px, 2.6vw, 28px)', fontWeight: 580, letterSpacing: '-0.018em', lineHeight: 1.2 }}
+                >
+                  <Link href={OPEN_LETTER.href} className="no-underline hover:underline underline-offset-4">
+                    {OPEN_LETTER.title}
+                  </Link>
+                </h2>
+                <p className="text-sm text-muted-foreground mt-1 font-sans">
+                  <Link href={OPEN_LETTER.enclosureA} className="hover:text-foreground transition-colors">
+                    Enclosure A: the record and the debate
+                  </Link>
+                  {' · '}
+                  <Link href={OPEN_LETTER.enclosureB} className="hover:text-foreground transition-colors">
+                    Enclosure B: reply form
+                  </Link>
+                </p>
+              </div>
+              <Link
+                href={OPEN_LETTER.href}
+                className="text-sm text-primary font-sans inline-flex items-center hover:text-primary/80 transition-colors"
+                style={{ fontWeight: 500 }}
+              >
+                <FileText className="h-4 w-4 mr-1.5" />
+                Open in the case record
+                <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <BookPdfViewer
+              src={versioned(OPEN_LETTER.pdf, OPEN_LETTER.sha256)}
+              bytes={OPEN_LETTER.bytes}
+              downloadName="open-letter-ag-candidates-2026-10-10.pdf"
+              title={`${OPEN_LETTER.title} — ${OPEN_LETTER.date}; ${OPEN_LETTER.pages} pages`}
+              height="page"
+            />
           </Reveal>
         </section>
 
