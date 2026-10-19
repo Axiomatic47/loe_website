@@ -44,8 +44,12 @@ const nextConfig: NextConfig = {
   // limit. Every route is fully prerendered (dynamicParams=false, no
   // revalidation), so the handler never re-renders and never needs public/ —
   // the CDN serves it. Keep content/** traced (small) as render-input safety.
+  // 2026-10-18: a dynamic path.resolve in src/lib/immunity-timeline.server.ts made the trace sweep the project ROOT
+  // (public/ stayed out by the rule below) and the handler reached 1.7 GB — testimonies/ 1.0 GB and testimony_queue/
+  // 131 MB, both build-time inputs of prerendered pages (the composition pages, /for-journalists, /timeline). The
+  // source is fixed (a tracer hint); these rules keep the two corpora out of the handler whatever a future path does.
   outputFileTracingExcludes: {
-    '*': ['./public/**', 'public/**'],
+    '*': ['./public/**', 'public/**', './testimonies/**', 'testimonies/**', './testimony_queue/**', 'testimony_queue/**'],
   },
   // the Case Review window (public/casereview/vendor, the Studio's) reads the Studio's three API routes; the site serves
   // them static — public/_redirects carries the same rules for Netlify, these make `next start` answer them too. The
