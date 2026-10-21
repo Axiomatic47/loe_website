@@ -1,7 +1,7 @@
 // app/[caseSlug]/page.tsx — bare case URLs.
 //
-// /kirchner-v-johnson → the CASE IN REVIEW MODE (owner 2026-10-01; any case whose bundle is on disk — the host table in
-//   app/casereview/review-link.ts — since 2026-10-10): the Studio's Case Review window, vendored byte for
+// /kirchner-v-johnson → the CASE IN REVIEW MODE (owner 2026-10-01; any case whose bundle is on disk — the host table
+//   public/casereview/hosts.json, read by app/casereview/review-link.ts — since 2026-10-10; data since 2026-10-21): the Studio's Case Review window, vendored byte for
 //   byte (public/casereview/vendor), under the site's header and a one-row head — the filings listed as the Studio
 //   lists them, the document under review on the left, the cited source at its page on the right. The landing
 //   dossier (summary, status, timeline, key documents) is gone from this case. Deep link = the Studio's exact form,
@@ -10,6 +10,8 @@
 //   via src/data/caseLanding.ts) — until a review lane exists for them.
 // /scotus-amicus → renders part 1 directly (published URL — no redirect),
 // exactly like the vite ScotusAmicusIndex.
+// /<lane> → a hosts.json row with a bundle and no composition: THE LANE PAGE (the review-mode standard's D5,
+//   2026-10-21) — the head row from the row's words and the window, nothing else.
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -22,13 +24,32 @@ import { CASE_SLUGS, sectionUrl, absoluteUrl, isCaseSlug } from '@/utils/urls';
 import { SitePageLayout } from '../_components/SitePageLayout';
 import { DocReaderView } from '../_components/DocReaderView';
 import { CaseReviewMount } from '../casereview/CaseReviewMount';
-import { caseReviewHost, defaultDocFor, readImportStamp } from '../casereview/review-link';
+import { caseReviewHost, defaultDocFor, hostedLanes, readImportStamp, type CaseReviewHost } from '../casereview/review-link';
 import '../casereview/casereview.css';
 
 export const dynamicParams = false;
 
+// the four constitutional compositions, and every hosted lane whose row has no composition (the LANE PAGE — the
+// review-mode standard's D5, 2026-10-21: an articles lane is one hosts.json row and a bundle; its page is this route)
 export function generateStaticParams() {
-  return CASE_SLUGS.map(caseSlug => ({ caseSlug }));
+  const slugs = new Set<string>(CASE_SLUGS);
+  for (const r of hostedLanes()) if (!r.composition) slugs.add(r.name);
+  return [...slugs].map(caseSlug => ({ caseSlug }));
+}
+
+/** a hosted lane that is not a constitutional composition: its page is the window alone */
+function laneRow(slug: string): CaseReviewHost | null {
+  if (isCaseSlug(slug)) return null;
+  const r = caseReviewHost(slug);
+  return r && !r.composition ? r : null;
+}
+
+/** the head row's words for a row: a case prints caption v. caption; a lane prints its title, else the registry's sentence */
+function headWords(h: CaseReviewHost): { caption: React.ReactNode; line: string | null } {
+  if (h.kind === 'case' && h.caption) {
+    return { caption: <>{h.caption[0]} <span className="v">v.</span> {h.caption[1]}</>, line: [h.docket, h.court].filter(Boolean).join(' · ') || null };
+  }
+  return { caption: h.title ?? h.case ?? h.name, line: h.title && h.case ? h.case : null };
 }
 
 type Params = { params: Promise<{ caseSlug: string }> };
@@ -48,6 +69,12 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
         type: 'article',
       },
     };
+  }
+
+  const lane = laneRow(caseSlug);
+  if (lane) {
+    const title = lane.title ?? lane.case ?? lane.name;
+    return { title: `${title} — in review`, alternates: { canonical: lane.route }, openGraph: { title, url: absoluteUrl(lane.route), type: 'website' } };
   }
 
   const caseKey = caseSlug.replace('kirchner-v-', '');
@@ -75,8 +102,31 @@ const Eyebrow = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
+/** the head row + the window: a case whose bundle is on disk, or a lane page (the same chrome; the words from the row) */
+function ReviewHost({ h }: { h: CaseReviewHost }) {
+  const stamp = readImportStamp(h.name);
+  const w = headWords(h);
+  const back = h.back ?? { href: '/composition/constitutional', label: 'All cases' };
+  return (
+    <SitePageLayout>
+      <main className="cr-host">
+        <header className="cr-head">
+          <Link href={back.href} className="cr-back" aria-label={back.label}>{back.label}</Link>
+          <span className="cr-caption">{w.caption}</span>
+          {w.line && <span className="cr-no">{w.line}</span>}
+          <span className="cr-mode">{h.kind === 'case' ? 'Case review' : 'Review'}</span>
+          {(h.version || stamp.registry_version) && <span className="cr-stamp">registry {h.version || stamp.registry_version}</span>}
+        </header>
+        <CaseReviewMount defaultDoc={defaultDocFor(h.name)} root={h.root} />
+      </main>
+    </SitePageLayout>
+  );
+}
+
 export default async function CasePage({ params }: Params) {
   const { caseSlug } = await params;
+  const lane = laneRow(caseSlug);
+  if (lane) return <ReviewHost h={lane} />;
   if (!isCaseSlug(caseSlug)) notFound();
 
   // scotus-amicus has no landing page — its canonical entry is part 1.
@@ -94,23 +144,7 @@ export default async function CasePage({ params }: Params) {
   // a case whose bundle is on disk is the review mode (the DDC case since the owner's word of 2026-10-01; the MN case
   // the day its bundle lands — review-link.ts's host table); the window is the Studio's, this is its host
   const host = caseReviewHost(caseSlug);
-  if (host) {
-    const stamp = readImportStamp(caseSlug);
-    return (
-      <SitePageLayout>
-        <main className="cr-host">
-          <header className="cr-head">
-            <Link href="/composition/constitutional" className="cr-back" aria-label="All cases">All cases</Link>
-            <span className="cr-caption">{host.caption[0]} <span className="v">v.</span> {host.caption[1]}</span>
-            <span className="cr-no">{host.caseNo} · {host.court}</span>
-            <span className="cr-mode">Case review</span>
-            {stamp.registry_version && <span className="cr-stamp">registry {stamp.registry_version}</span>}
-          </header>
-          <CaseReviewMount defaultDoc={defaultDocFor(caseSlug)} root={host.root} />
-        </main>
-      </SitePageLayout>
-    );
-  }
+  if (host) return <ReviewHost h={host} />;
 
   const composition = getCaseComposition(caseSlug);
   const docCount = composition?.sections?.length || null;

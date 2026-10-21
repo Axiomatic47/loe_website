@@ -12,6 +12,9 @@
 //   node scripts/import-casereview.mjs --from <export_dir>    # from the checker's export (studio-spec R1) once it lands
 //   node scripts/import-casereview.mjs --check                # the bundle on disk is whole (runs in every build)
 //   node scripts/import-casereview.mjs --out <dir>            # write the bundle under <dir> instead of public/ (a dry run)
+//   node scripts/import-casereview.mjs --hosts                # refresh public/casereview/hosts.json (THE HOST TABLE, the review-mode
+//                                                            #   standard R4, 2026-10-21) from every bundle on disk, and the /api/casereview/cases
+//                                                            #   rewrite in _redirects + serve.json — no import; idempotent
 //   node scripts/import-casereview.mjs --case <slug> …        # a SECOND case on the same host (2026-10-10, the MN lane): its bundle under
 //                                                             # public/casereview/<slug>/data/, its API rules keyed on the window's ?root=<slug>
 //   --uploads-dir <dir under public/> --names id|docket --name-map <json>   # a host's own PDF layout (lawsofexistence.com)
@@ -51,6 +54,7 @@ const PUBLIC = path.resolve(opt('--out', path.join(ROOT, 'public')));   // --out
 // the slug too, so the window's per-case tree store (ourstudio_cr_tree:<case_root>) is distinct per case on one origin.
 const DEFAULT_CASE = 'kirchner-v-johnson';
 const CASE = opt('--case', DEFAULT_CASE);
+const HOSTS = flag('--hosts');   // the host-table refresh alone (hosts.json + the /cases rewrite), from the bundles on disk
 const KEYED = CASE !== DEFAULT_CASE;
 const FROM = opt('--from', 'http://127.0.0.1:8765');
 const PROJECT_ROOT = opt('--root', '/Users/everest/Git/work_station');
@@ -180,10 +184,11 @@ function fromExport(dir) {
 // is read when its stamp is present and the check fails only when no bundle of ANY case exists (agreed by name 55339aa7 ⇄
 // f28bb754, 2026-10-10); `--check --case <slug>` reads that one bundle and requires it.
 function check() {
-  if (argv.includes('--case')) { checkOne(CASE); return; }
+  if (argv.includes('--case')) { checkOne(CASE); if (checkHosts([CASE])) fail('the host table is behind the bundle'); return; }
   const present = bundlesPresent();
   if (!present.length) fail(`no bundle: public/${dataRel(DEFAULT_CASE)}/_IMPORT.json is missing and no public/casereview/<slug>/data/_IMPORT.json is present — run the importer`);
   for (const c of present) checkOne(c);
+  if (checkHosts(present)) fail('the host table is behind the bundles');
 }
 // the bundles on this host: the default case when its stamp is present, then every keyed case with a stamp
 function bundlesPresent() {
@@ -231,6 +236,114 @@ function checkOne(c) {
   for (const id of imp.tables_withheld || []) if (fs.existsSync(path.join(LINKS, `${id}.json`)) || (docs.links || {})[id]) { console.error(`  served   links/${id}.json or its docs.links entry is present for a document not served here`); bad++; }
   if (bad) fail(`${bad} problem(s) in the bundle${c === DEFAULT_CASE ? '' : ` of ${c}`}`);
   console.log(`bundle ok${c === DEFAULT_CASE ? '' : ` (${c})`}: ${docs.docs.length} documents (${served} served, ${docs.docs.filter(d => d.publish === 'link').length} linked, ${docs.docs.filter(d => d.publish === 'hold').length} held), ${Object.keys(docs.links || {}).length} link tables; imported ${imp.imported} from ${imp.source}`);
+}
+
+// ---------------------------------------------------------------- the host table (hosts.json)
+// public/casereview/hosts.json — THE HOST TABLE as data (the review-mode standard R4, studio-spec 699a9f2a's frame and
+// the owner's § 6, 2026-10-21): the EXACT shape of the Studio's GET /api/casereview/cases answer — {project_root, cases:
+// [{name, case_root, case, version, current}]} as api/deck/casereview.py lane_cases() writes it — with the site's fields
+// added per row and nothing renamed: root (null for the default bundle, else the slug), route, kind (case | lane),
+// composition (the constitutional composition hosting the window, or null → the LANE PAGE), caption/docket/court or
+// title, back, default_doc, imported. This importer UPSERTS the registry half of a row at every import (name, case_root,
+// case, version, built, current, root, imported) and never touches the site's hand-set words; `--hosts` refreshes every
+// row from the bundles on disk without importing. The same file is served at /api/casereview/cases by rewrite (the
+// marked block below and next.config.ts), so the window's head row and lane picker read one shape on both hosts.
+// A new lane is one JSON row and its bundle; the site has no host code per lane.
+const HOSTS_PATH = path.join(PUBLIC, 'casereview', 'hosts.json');
+const HOST_HAND_SET = ['route', 'kind', 'composition', 'caption', 'docket', 'court', 'title', 'back', 'default_doc'];
+const CASES_RULE = '/api/casereview/cases  /casereview/hosts.json  200';
+function readHosts() {
+  try { return JSON.parse(fs.readFileSync(HOSTS_PATH, 'utf8')); } catch { return null; }
+}
+function siteName() {
+  try { return JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8')).name || 'site'; } catch { return 'site'; }
+}
+/** the registry half of a row, read from a bundle on disk (docs.json + _IMPORT.json) */
+function hostRowFromBundle(c) {
+  const dir = path.join(PUBLIC, dataRel(c));
+  const docs = JSON.parse(fs.readFileSync(path.join(dir, 'docs.json'), 'utf8'));
+  let imp = {}; try { imp = JSON.parse(fs.readFileSync(path.join(dir, '_IMPORT.json'), 'utf8')); } catch {}
+  const reg = docs.registry || {};
+  return {
+    name: c, case_root: c, case: reg.case ?? null, version: reg.version ?? null, built: reg.built ?? null,
+    current: c === DEFAULT_CASE, root: c === DEFAULT_CASE ? null : c,
+    imported: { at: imp.imported || null, documents: imp.documents ?? docs.docs?.length ?? null, tables: imp.tables ?? null, rows: imp.rows ?? null,
+                publication: imp.publication || null, vendored_studio_commit: imp.vendored_studio_commit || null },
+  };
+}
+/** upsert the registry half of `row` into hosts.json, keeping the site's hand-set words; a new row gets route /<name> and a kind */
+function upsertHost(row) {
+  const prior = readHosts() || {};
+  const cases = Array.isArray(prior.cases) ? prior.cases.filter(r => r && r.name) : [];
+  const have = cases.find(r => r.name === row.name);
+  const hand = {};
+  for (const k of HOST_HAND_SET) if (have && have[k] !== undefined) hand[k] = have[k];
+  if (hand.route === undefined) hand.route = `/${row.name}`;
+  if (hand.kind === undefined) hand.kind = /\bv\.\s/.test(String(row.case || '')) ? 'case' : 'lane';
+  if (hand.composition === undefined) hand.composition = null;
+  const next = { ...row, ...hand };
+  const rows = [...cases.filter(r => r.name !== row.name), next].sort((a, b) => (a.root === null ? -1 : b.root === null ? 1 : a.name.localeCompare(b.name)));
+  const doc = {
+    $comment: 'THE HOST TABLE of the Case Review window on this site (the review-mode standard R4, 2026-10-21): the Studio\'s /api/casereview/cases shape with the site\'s fields per row. The importer writes name, case_root, case, version, built, current, root and imported at every import (or `--hosts` from the bundles on disk) and never touches route, kind, composition, caption, docket, court, title, back or default_doc — those are the site\'s words; set them here. A row with no bundle on disk hosts nothing. Served at /api/casereview/cases.',
+    project_root: prior.project_root || siteName(),
+    cases: rows,
+  };
+  fs.writeFileSync(HOSTS_PATH, JSON.stringify(doc, null, 2) + '\n');
+  return { created: !have, row: next };
+}
+/** the /api/casereview/cases rewrite: into the DEFAULT block of _redirects (bare, matches under any query) — or the sole keyed
+ *  block on a host with no default bundle — and into serve.json; idempotent */
+function ensureCasesRule() {
+  const out = [];
+  const rp = path.join(PUBLIC, '_redirects');
+  if (fs.existsSync(rp)) {
+    let txt = fs.readFileSync(rp, 'utf8');
+    if (!txt.includes(CASES_RULE)) {
+      const lines = txt.split('\n');
+      const defaultIdx = lines.findIndex(l => l.startsWith('# casereview BEGIN — '));
+      const keyedIdx = lines.findIndex(l => l.startsWith('# casereview BEGIN '));
+      const at = defaultIdx >= 0 ? defaultIdx : keyedIdx;
+      if (at >= 0) { lines.splice(at + 1, 0, CASES_RULE); txt = lines.join('\n'); fs.writeFileSync(rp, txt); out.push('_redirects'); }
+      else out.push('_redirects: no casereview block — run an import first');
+    }
+  }
+  const sp = path.join(PUBLIC, 'serve.json');
+  if (fs.existsSync(sp)) {
+    const j = JSON.parse(fs.readFileSync(sp, 'utf8'));
+    j.rewrites = Array.isArray(j.rewrites) ? j.rewrites : [];
+    if (!j.rewrites.some(r => r.source === '/api/casereview/cases')) {
+      j.rewrites.unshift({ source: '/api/casereview/cases', destination: '/casereview/hosts.json' });
+      fs.writeFileSync(sp, JSON.stringify(j, null, 2) + '\n'); out.push('serve.json');
+    }
+  }
+  return out;
+}
+function refreshHosts() {
+  const present = bundlesPresent();
+  if (!present.length) fail('no bundle on disk — nothing to put in hosts.json');
+  for (const c of present) {
+    const { created, row } = upsertHost(hostRowFromBundle(c));
+    console.log(`  ${created ? 'added  ' : 'updated'} ${c}: ${row.case || '(no case sentence)'} — registry ${row.version || '?'}, route ${row.route}, kind ${row.kind}${row.composition ? `, composition ${row.composition}` : ' (lane page)'}`);
+  }
+  const touched = ensureCasesRule();
+  console.log(`hosts.json: ${present.length} row(s) at public/casereview/hosts.json${touched.length ? `; the /api/casereview/cases rewrite added to ${touched.join(' + ')}` : '; the /api/casereview/cases rewrite already present'}`);
+}
+/** the check's half: every bundle on disk has a row; the /cases rewrite is in place */
+function checkHosts(present) {
+  let bad = 0;
+  const h = readHosts();
+  const rows = h && Array.isArray(h.cases) ? h.cases : [];
+  for (const c of present) {
+    const r = rows.find(x => x && x.name === c);
+    if (!r) { console.error(`  missing  hosts.json row for ${c} — run: node scripts/import-casereview.mjs --hosts`); bad++; continue; }
+    const wantRoot = c === DEFAULT_CASE ? null : c;
+    if ((r.root ?? null) !== wantRoot) { console.error(`  wrong    hosts.json ${c}: root ${JSON.stringify(r.root)}, the bundle's layout says ${JSON.stringify(wantRoot)}`); bad++; }
+    if (r.kind === 'case' && !(Array.isArray(r.caption) && r.caption.length === 2)) { console.error(`  wrong    hosts.json ${c}: kind case needs caption [a, b]`); bad++; }
+  }
+  const rp = path.join(PUBLIC, '_redirects');
+  if (fs.existsSync(rp) && !fs.readFileSync(rp, 'utf8').includes(CASES_RULE)) { console.error('  missing  the /api/casereview/cases rewrite in public/_redirects — run: node scripts/import-casereview.mjs --hosts'); bad++; }
+  if (!bad) console.log(`hosts ok: ${present.length} row(s) in hosts.json, the /api/casereview/cases rewrite in place`);
+  return bad;
 }
 
 // ---------------------------------------------------------------- the import
@@ -372,8 +485,11 @@ async function run() {
   const END = `# casereview END${KEYED ? ` ${CASE}` : ''}`;
   const DEFAULT_BEGIN = '# casereview BEGIN — generated by scripts/import-casereview.mjs';
   const q = ROOT_QS ? `  ${ROOT_QS}` : '';
+  const soleKeyedBlock = KEYED && !fs.existsSync(path.join(PUBLIC, dataRel(DEFAULT_CASE), '_IMPORT.json'));
   const redirects = [
     BEGIN,
+    // the host table where the Studio serves its lane list: bare (any query) in the default block, or in the sole keyed block
+    ...(!KEYED || soleKeyedBlock ? [CASES_RULE] : []),
     `/api/casereview/docs${q}  ${DATA_URL}/docs.json  200`,
     `/api/casereview/links/:id${q}  ${DATA_URL}/links/:id.json  200`,
     // a served document whose file is not <id>.pdf (an unsafe id, or the docket-slug layout): the request path as the
@@ -409,6 +525,7 @@ async function run() {
   const serveJson = (KEYED && !soleKeyed) ? null : {
     cleanUrls: true, trailingSlash: false,
     rewrites: [
+      { source: '/api/casereview/cases', destination: '/casereview/hosts.json' },
       { source: '/api/casereview/docs', destination: `${DATA_URL}/docs.json` },
       { source: '/api/casereview/links/:id', destination: `${DATA_URL}/links/:id.json` },
       // serve-handler matches the DECODED path against a path-to-regexp source; no parameter, so nothing is re-encoded
@@ -422,8 +539,16 @@ async function run() {
     ],
   };
   if (serveJson) fs.writeFileSync(path.join(PUBLIC, 'serve.json'), JSON.stringify(serveJson, null, 2) + '\n');
+  // THE HOST TABLE: the registry half of this lane's row, the site's words kept; the /cases rewrite beside the three routes
+  const host = upsertHost({
+    name: CASE, case_root: CASE, case: outDocs.registry.case ?? null, version: outDocs.registry.version ?? null, built: outDocs.registry.built ?? null,
+    current: !KEYED, root: KEYED ? CASE : null,
+    imported: { at: stamp.imported, documents: stamp.documents, tables: stamp.tables, rows: stamp.rows, publication: stamp.publication, vendored_studio_commit: studioCommit },
+  });
+  const ruleTouched = ensureCasesRule();
+  console.log(`hosts.json: ${host.created ? 'row added for' : 'row updated for'} ${CASE} (route ${host.row.route}, kind ${host.row.kind}${host.row.composition ? `, composition ${host.row.composition}` : ', lane page'})${ruleTouched.length ? `; /cases rewrite added to ${ruleTouched.join(' + ')}` : ''}`);
   console.log(`bundle written to public/${DATA_REL} (default document ${defaultDoc || 'none — nothing served'}); rewrites in public/_redirects${KEYED ? ` (keyed on ?${ROOT_QS}; serve.json ${soleKeyed ? 'bare (the host\'s only case)' : 'untouched'})` : ' and public/serve.json'}`);
   if (DEV) console.warn('REMINDER: this bundle carries the development override — rerun without --dev-serve-filings before committing it');
 }
 
-if (CHECK) check(); else await run();
+if (CHECK) check(); else if (HOSTS) refreshHosts(); else await run();

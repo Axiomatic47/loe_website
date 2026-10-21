@@ -1,0 +1,66 @@
+{
+  "$comment": "THE HOST TABLE of the Case Review window on this site (the review-mode standard R4, 2026-10-21): the Studio's /api/casereview/cases shape with the site's fields per row. The importer writes name, case_root, case, version, built, current, root and imported at every import (or `--hosts` from the bundles on disk) and never touches route, kind, composition, caption, docket, court, title, back or default_doc \u2014 those are the site's words; set them here. A row with no bundle on disk hosts nothing. Served at /api/casereview/cases.",
+  "project_root": "laws-of-existence",
+  "cases": [
+    {
+      "name": "kirchner-v-johnson",
+      "case_root": "kirchner-v-johnson",
+      "case": "Kirchner v. Johnson, No. 1:25-cv-02735-ACR (D.D.C.)",
+      "version": "v0.27",
+      "built": "2026-10-09",
+      "current": true,
+      "root": null,
+      "imported": {
+        "at": "2026-10-15T00:08:53.834Z",
+        "documents": 1143,
+        "tables": 35,
+        "rows": 12146,
+        "publication": {
+          "serve": 1079,
+          "link": 7,
+          "hold": 57
+        },
+        "vendored_studio_commit": "6f6dd67dafbf8611ca4ca157feaa546ea8675135"
+      },
+      "route": "/kirchner-v-johnson",
+      "kind": "case",
+      "composition": "kirchner-v-johnson",
+      "caption": [
+        "Kirchner",
+        "Johnson"
+      ],
+      "docket": "No. 1:25-cv-02735-ACR",
+      "court": "D.D.C."
+    },
+    {
+      "name": "kirchner-v-ellison",
+      "case_root": "kirchner-v-ellison",
+      "case": "Kirchner v. Ellison, No. 0:26-cv-02594-LMP-DJF (D. Minn.); appeal No. 26-1615 (8th Cir.)",
+      "version": "v1d",
+      "built": "2026-10-09",
+      "current": false,
+      "root": "kirchner-v-ellison",
+      "imported": {
+        "at": "2026-10-15T00:09:32.641Z",
+        "documents": 288,
+        "tables": 64,
+        "rows": 2230,
+        "publication": {
+          "serve": 286,
+          "link": 2,
+          "hold": 0
+        },
+        "vendored_studio_commit": "6f6dd67dafbf8611ca4ca157feaa546ea8675135"
+      },
+      "route": "/kirchner-v-ellison",
+      "kind": "case",
+      "composition": "kirchner-v-ellison",
+      "caption": [
+        "Kirchner",
+        "Ellison"
+      ],
+      "docket": "No. 0:26-cv-02594-LMP-DJF",
+      "court": "D. Minn. \u00b7 8th Cir. No. 26-1615"
+    }
+  ]
+}

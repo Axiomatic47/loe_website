@@ -81,6 +81,9 @@ const nextConfig: NextConfig = {
       return rules;
     };
     const cr = join(process.cwd(), 'public', 'casereview');
+    // the host table, served where the Studio serves its lane list (the review-mode standard R3/R4, 2026-10-21):
+    // the window's head row and lane picker read one shape on both hosts
+    const hosts = [{ source: '/api/casereview/cases', destination: '/casereview/hosts.json' }];
     const keyed: ReturnType<typeof rulesFor> = [];
     try {
       for (const e of readdirSync(cr, { withFileTypes: true })) {
@@ -89,7 +92,7 @@ const nextConfig: NextConfig = {
         keyed.push(...rulesFor(`/casereview/${e.name}/data`, join(cr, e.name, 'data', 'files.json'), e.name));
       }
     } catch { /* no casereview dir at all */ }
-    return [...keyed, ...rulesFor('/casereview/data', join(cr, 'data', 'files.json'), null)];
+    return [...hosts, ...keyed, ...rulesFor('/casereview/data', join(cr, 'data', 'files.json'), null)];
   },
   async redirects() {
     return [
