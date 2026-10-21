@@ -2,7 +2,7 @@
 //
 // /kirchner-v-johnson → the CASE IN REVIEW MODE (owner 2026-10-01; any case whose bundle is on disk — the host table
 //   public/casereview/hosts.json, read by app/casereview/review-link.ts — since 2026-10-10; data since 2026-10-21): the Studio's Case Review window, vendored byte for
-//   byte (public/casereview/vendor), under the site's header and a one-row head — the filings listed as the Studio
+//   byte (public/casereview/vendor), under the site's header — the window's own head row (R3, 2026-10-21) — the filings listed as the Studio
 //   lists them, the document under review on the left, the cited source at its page on the right. The landing
 //   dossier (summary, status, timeline, key documents) is gone from this case. Deep link = the Studio's exact form,
 //   ?casereview=doc=<id>&cite=…&page=…&right=…; a URL without one opens the newest filing with a link table.
@@ -23,7 +23,7 @@ import { getCaseComposition, getLatestSection } from '@/lib/content-manifest';
 import { CASE_SLUGS, sectionUrl, absoluteUrl, isCaseSlug } from '@/utils/urls';
 import { SitePageLayout } from '../_components/SitePageLayout';
 import { DocReaderView } from '../_components/DocReaderView';
-import { CaseReviewMount } from '../casereview/CaseReviewMount';
+import { CaseReviewMount, type CaseReviewHead } from '../casereview/CaseReviewMount';
 import { caseReviewHost, defaultDocFor, hostedLanes, readImportStamp, type CaseReviewHost } from '../casereview/review-link';
 import '../casereview/casereview.css';
 
@@ -44,12 +44,14 @@ function laneRow(slug: string): CaseReviewHost | null {
   return r && !r.composition ? r : null;
 }
 
-/** the head row's words for a row: a case prints caption v. caption; a lane prints its title, else the registry's sentence */
-function headWords(h: CaseReviewHost): { caption: React.ReactNode; line: string | null } {
+/** the head row's words for a row, handed to the window at mount (R3: the window draws the row; a host's words win):
+ *  a case prints "Caption v. Caption" with the docket · court line; a lane prints its title, the registry's sentence beneath */
+function headWords(h: CaseReviewHost, version: string | null): CaseReviewHead {
+  const back = h.back ?? { href: '/composition/constitutional', label: 'All cases' };
   if (h.kind === 'case' && h.caption) {
-    return { caption: <>{h.caption[0]} <span className="v">v.</span> {h.caption[1]}</>, line: [h.docket, h.court].filter(Boolean).join(' · ') || null };
+    return { caption: `${h.caption[0]} v. ${h.caption[1]}`, line: [h.docket, h.court].filter(Boolean).join(' · ') || null, mode: 'Case review', version, back };
   }
-  return { caption: h.title ?? h.case ?? h.name, line: h.title && h.case ? h.case : null };
+  return { caption: h.title ?? h.case ?? h.name, line: h.title && h.case ? h.case : null, mode: 'Review', version, back };
 }
 
 type Params = { params: Promise<{ caseSlug: string }> };
@@ -102,22 +104,17 @@ const Eyebrow = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
-/** the head row + the window: a case whose bundle is on disk, or a lane page (the same chrome; the words from the row) */
+/** the window, under the site's header: a case whose bundle is on disk, or a lane page — the head row is the WINDOW'S
+ *  (R3), drawn from the row's words handed over at mount; the site links the window's vendored stylesheet and supplies
+ *  its token sheet (app/casereview/casereview.css) */
 function ReviewHost({ h }: { h: CaseReviewHost }) {
   const stamp = readImportStamp(h.name);
-  const w = headWords(h);
-  const back = h.back ?? { href: '/composition/constitutional', label: 'All cases' };
+  const head = headWords(h, h.version || stamp.registry_version || null);
   return (
     <SitePageLayout>
+      <link rel="stylesheet" href="/casereview/vendor/casereview.css" precedence="default" />
       <main className="cr-host">
-        <header className="cr-head">
-          <Link href={back.href} className="cr-back" aria-label={back.label}>{back.label}</Link>
-          <span className="cr-caption">{w.caption}</span>
-          {w.line && <span className="cr-no">{w.line}</span>}
-          <span className="cr-mode">{h.kind === 'case' ? 'Case review' : 'Review'}</span>
-          {(h.version || stamp.registry_version) && <span className="cr-stamp">registry {h.version || stamp.registry_version}</span>}
-        </header>
-        <CaseReviewMount defaultDoc={defaultDocFor(h.name)} root={h.root} />
+        <CaseReviewMount defaultDoc={defaultDocFor(h.name)} root={h.root} head={head} />
       </main>
     </SitePageLayout>
   );
