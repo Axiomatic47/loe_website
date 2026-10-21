@@ -1,46 +1,113 @@
 // app/casereview/review-link.ts — THE HOST TABLE of the Case Review window on this site, and the bridge between the
-// site's per-document reader pages (/<caseSlug>/<docket slug>) and the window: which cases are hosted in review mode,
+// site's per-document reader pages (/<caseSlug>/<docket slug>) and the window: which lanes are hosted in review mode,
 // how each is keyed, which registry id a docket slug is, and the deep link that opens the window on it.
 // Server only (node:fs): reads the bundle the importer wrote (public/casereview/…/data), never the lane.
 //
-// Two cases on one host (agreed by name 55339aa7 ⇄ f28bb754, 2026-10-10; the owner's word of 2026-10-09: the MN case
-// gets the same architecture as the DDC one): the DEFAULT case keeps its bundle at public/casereview/data/ and bare API
-// rules; any other case's bundle sits at public/casereview/<slug>/data/ and its API rules are keyed on the query the
-// window sends when the page URL carries ?projroot=<slug> — the `root` below, the case SLUG, never a path. A case is
-// hosted in review mode ONLY while its bundle exists on disk: a row here with no bundle changes nothing (the landing
-// dossier stays), and the day the importer lands the bundle the page flips. Nothing here is a fact about a case.
+// THE TABLE IS DATA (the review-mode standard R4, 2026-10-21; studio-spec 699a9f2a's frame, the owner's § 6): public/
+// casereview/hosts.json, in the EXACT shape of the Studio's GET /api/casereview/cases answer ({project_root, cases:
+// [{name, case_root, case, version, current}]} — api/deck/casereview.py lane_cases) with the site's fields added per
+// row and nothing renamed. The importer UPSERTS the registry half of a row at every import (name, case_root, case,
+// version, built, imported) and never touches the site's hand-set words (route, kind, composition, caption, docket,
+// court, title, back, default_doc); the same file is served at /api/casereview/cases by rewrite, so the window's head
+// row and lane picker read one shape on both hosts. A new lane is one JSON row; no code.
+//
+// Two bundles on one host (agreed by name 55339aa7 ⇄ f28bb754, 2026-10-10): the DEFAULT bundle (the row whose `root`
+// is null) keeps public/casereview/data/ and bare API rules; any other row's bundle sits at public/casereview/<name>/
+// data/ and its API rules are keyed on the query the window sends when the host passes `root` — the row's NAME (the
+// slug), never a path. A lane is hosted in review mode ONLY while its bundle exists on disk: a row with no bundle
+// changes nothing (the landing dossier stays), and the day the importer lands the bundle the page flips. A row whose
+// `composition` is null and whose bundle is on disk is a LANE PAGE (app/[caseSlug]/page.tsx): the head row and the
+// window, nothing else — the owner's D5 (the lane page first; per-article pages when an article is published).
 import fs from 'node:fs';
 import path from 'node:path';
 
+export type CaseReviewHost = {
+  /** the slug: the route segment, the keyed root token and the bundle directory (public/casereview/<name>/data) */
+  name: string;
+  /** the Studio's fields, written by the importer from the bundle: the registry's case sentence and version */
+  case_root: string;
+  case: string | null;
+  version: string | null;
+  built?: string | null;
+  current?: boolean;
+  /** the window's root token for this lane (null for the default bundle: bare rules, no query) */
+  root: string | null;
+  /** the site's route to the lane ("/kirchner-v-johnson"); hand-set, defaults to /<name> */
+  route: string;
+  /** case: a constitutional case (the head row prints caption v. caption); lane: any other reviewed set (articles, books) */
+  kind: 'case' | 'lane';
+  /** the constitutional composition whose case page hosts the window, or null → the lane page */
+  composition: string | null;
+  /** the head row's words as this site prints them (until R3 moves the head row into the window) */
+  caption?: readonly [string, string];
+  docket?: string;
+  court?: string;
+  title?: string;
+  back?: { href: string; label: string };
+  /** the document the page opens when the URL names none; null → the importer's word, then the newest served table */
+  default_doc?: string | null;
+  /** the importer's stamp for the row: when, how many, what publishes */
+  imported?: { at: string; documents?: number; tables?: number; rows?: number; publication?: Record<string, number>; vendored_studio_commit?: string | null } | null;
+};
+
+type HostsFile = { project_root?: string; cases?: CaseReviewHost[] };
+
+const HOSTS_FILE = path.join(process.cwd(), 'public', 'casereview', 'hosts.json');
+
+let tableCache: CaseReviewHost[] | null = null;
+/** the host table as hosts.json carries it ([] when the file is absent); route and kind filled from the name when a row lacks them */
+export function hostTable(): CaseReviewHost[] {
+  if (tableCache) return tableCache;
+  let rows: CaseReviewHost[] = [];
+  try {
+    const f = JSON.parse(fs.readFileSync(HOSTS_FILE, 'utf8')) as HostsFile;
+    rows = (f.cases ?? []).filter((r) => r && typeof r.name === 'string' && r.name).map((r) => ({
+      ...r,
+      case_root: r.case_root ?? r.name,
+      root: r.root === undefined ? r.name : r.root,
+      route: r.route ?? `/${r.name}`,
+      kind: r.kind === 'case' ? 'case' : 'lane',
+      composition: r.composition ?? null,
+    }));
+  } catch { /* no table: nothing is hosted in review mode */ }
+  tableCache = rows;
+  return rows;
+}
+
+/** the row whose bundle is the default one (bare rules), or null */
+export function defaultHost(): CaseReviewHost | null {
+  return hostTable().find((r) => r.root === null) ?? null;
+}
+
+/** the slug of the default bundle — the row with root null; the DDC case on this site, kept as a constant for callers */
 export const DEFAULT_CASE = 'kirchner-v-johnson';
 
-export type CaseReviewHost = {
-  /** the window's root token for this case (null for the default case: bare rules, no query) */
-  root: string | null;
-  /** the head row: caption halves, the docket number and the court, as this site prints them */
-  caption: readonly [string, string];
-  caseNo: string;
-  court: string;
-};
-
-export const CASE_REVIEW_HOSTS: Record<string, CaseReviewHost> = {
-  'kirchner-v-johnson': { root: null, caption: ['Kirchner', 'Johnson'], caseNo: 'No. 1:25-cv-02735-ACR', court: 'D.D.C.' },
-  'kirchner-v-ellison': { root: 'kirchner-v-ellison', caption: ['Kirchner', 'Ellison'], caseNo: 'No. 0:26-cv-02594-LMP-DJF', court: 'D. Minn. · 8th Cir. No. 26-1615' },
-};
+/** the rows by slug, as the former code table read */
+export function hostsBySlug(): Record<string, CaseReviewHost> {
+  return Object.fromEntries(hostTable().map((r) => [r.name, r]));
+}
 
 /** the bundle directory of a case, as the importer lays it out */
 export function dataDir(caseSlug: string): string {
   // statically scoped to public/casereview: with 'public' as the last literal segment the tracer's pattern matched
   // every file under public/ (16,284 at 2026-10-16); the bundles are build-time inputs and public/** is excluded
-  // from the handler's trace in next.config.ts, so the narrower pattern changes nothing but the sweep
-  return path.join(process.cwd(), 'public', 'casereview', ...(caseSlug === DEFAULT_CASE ? ['data'] : [caseSlug, 'data']));
+  // from the handler's trace in next.config.ts, so the narrower pattern changes nothing but the sweep.
+  // The default bundle is the row whose root is null (the DDC case on this site); every other row's is keyed by name.
+  const row = hostsBySlug()[caseSlug];
+  const bare = row ? row.root === null : caseSlug === DEFAULT_CASE;   // a row with root null IS the default bundle; no table → the constant
+  return path.join(process.cwd(), 'public', 'casereview', ...(bare ? ['data'] : [caseSlug, 'data']));
 }
 
-/** the host entry of a case, or null when the case is not hosted in review mode or its bundle is not on disk */
+/** the host row of a lane, or null when the lane is not in the table or its bundle is not on disk */
 export function caseReviewHost(caseSlug: string): CaseReviewHost | null {
-  const h = CASE_REVIEW_HOSTS[caseSlug];
+  const h = hostsBySlug()[caseSlug];
   if (!h) return null;
   return fs.existsSync(path.join(dataDir(caseSlug), '_IMPORT.json')) ? h : null;
+}
+
+/** every row whose bundle is on disk — the lanes this build hosts in review mode */
+export function hostedLanes(): CaseReviewHost[] {
+  return hostTable().filter((r) => fs.existsSync(path.join(dataDir(r.name), '_IMPORT.json')));
 }
 
 type FilesManifest = Record<string, { path: string | null }>;
@@ -81,6 +148,8 @@ export function reviewHref(caseSlug: string, docSlug: string): string | null {
  *  by filed date then registry order; null when nothing is served with a table (the window then opens nothing, as
  *  the Studio does). Read from the bundle, never the lane. */
 export function defaultDocFor(caseSlug: string): string | null {
+  const row = hostsBySlug()[caseSlug];
+  if (row?.default_doc) return row.default_doc;
   const stamp = readImportStamp(caseSlug);
   if (stamp.default_doc) return stamp.default_doc;
   try {
