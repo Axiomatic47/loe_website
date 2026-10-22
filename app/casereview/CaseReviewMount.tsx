@@ -1,5 +1,5 @@
 'use client';
-// app/review/CaseReviewMount.tsx — the HOST of the Studio's Case Review window on the site.
+// app/casereview/CaseReviewMount.tsx — the HOST of the Studio's Case Review window on the site.
 //
 // The window is the Studio's own module, vendored byte for byte under public/casereview/vendor/ and run as a native
 // ES module (never bundled: a rule change lands in the Studio and syncs out; scripts/sync-casereview.mjs). This
@@ -13,13 +13,20 @@
 // a path — as mountCaseReview({ root }); the window's projRootQS() prefers it over the page URL's ?projroot= and sends
 // ?root=<slug> on all three fetches, which the site's keyed rewrites answer. The URL stays the Studio's bare
 // ?casereview= form. The default case passes null: bare rules.
+// R3 (the one skin, 2026-10-21; the owner's § 6): the window draws its own head row — the way back, the caption, the docket
+// line, the mode, the registry stamp — from the words the host hands it in the mount option `head` (a site's words win;
+// the Studio's come from /api/casereview/cases). The host's own header is gone; the host supplies a TOKEN SHEET
+// (app/casereview/casereview.css) and links the window's vendored stylesheet (public/casereview/vendor/casereview.css).
 import { useEffect } from 'react';
 
 const WINDOW_URL = '/casereview/vendor/casereview.js';
 
-type CaseReviewModule = { mountCaseReview: (opts?: { root?: string | null } | null) => void };
+/** the head row's words, as the window's core headWords() reads them (casereview_core.js): caption required */
+export type CaseReviewHead = { caption: string; line?: string | null; mode?: string | null; version?: string | null; back?: { href: string; label: string } | null };
 
-export function CaseReviewMount({ defaultDoc, root = null }: { defaultDoc: string | null; root?: string | null }) {
+type CaseReviewModule = { mountCaseReview: (opts?: { root?: string | null; head?: CaseReviewHead | null } | null) => void };
+
+export function CaseReviewMount({ defaultDoc, root = null, head = null }: { defaultDoc: string | null; root?: string | null; head?: CaseReviewHead | null }) {
   useEffect(() => {
     let cancelled = false;
     document.body.dataset.mode = 'casereview';
@@ -33,12 +40,12 @@ export function CaseReviewMount({ defaultDoc, root = null }: { defaultDoc: strin
     }
     const url = `${location.origin}${WINDOW_URL}`;
     import(/* webpackIgnore: true */ /* turbopackIgnore: true */ url)
-      .then((mod: CaseReviewModule) => { if (!cancelled) mod.mountCaseReview(root ? { root } : null); })
+      .then((mod: CaseReviewModule) => { if (!cancelled) mod.mountCaseReview(root || head ? { root, head } : null); })
       .catch((e: unknown) => {
         const root = document.getElementById('casereviewRoot');
         if (root) root.textContent = `The review window could not load — ${e instanceof Error ? e.message : String(e)}`;
       });
     return () => { cancelled = true; delete document.body.dataset.mode; };
-  }, [defaultDoc, root]);
+  }, [defaultDoc, root, head]);
   return <div id="casereviewRoot" aria-label="Case review" />;
 }
