@@ -3695,6 +3695,46 @@
       "destination": "/uploads/constitutional/pdfs/1984_-_Heckler_v._Mathews_465_U.S._728.pdf"
     },
     {
+      "source": "/api/casereview/file/1980 - Marshall v. Jerrico, 446 U.S. 238",
+      "destination": "/uploads/constitutional/pdfs/1980_-_Marshall_v._Jerrico_446_U.S._238.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1987 - Young v. United States ex rel. Vuitton et Fils, 481 U.S. 787",
+      "destination": "/uploads/constitutional/pdfs/1987_-_Young_v._United_States_ex_rel._Vuitton_et_Fils_481_U.S._787.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1988 - Morrison v. Olson, 487 U.S. 654",
+      "destination": "/uploads/constitutional/pdfs/1988_-_Morrison_v._Olson_487_U.S._654.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2015 - United States v. Apple, 791 F.3d 290",
+      "destination": "/uploads/constitutional/pdfs/2015_-_United_States_v._Apple_791_F.3d_290.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1966 - United States v. Forlano, 355 F.2d 934",
+      "destination": "/uploads/constitutional/pdfs/1966_-_United_States_v._Forlano_355_F.2d_934.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2007 - United States v. Rosen, 487 F. Supp. 2d 703",
+      "destination": "/uploads/constitutional/pdfs/2007_-_United_States_v._Rosen_487_F._Supp._2d_703.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2011 - United States v. Stevens, 771 F. Supp. 2d 556",
+      "destination": "/uploads/constitutional/pdfs/2011_-_United_States_v._Stevens_771_F._Supp._2d_556.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1954 - Lucy v. Zehmer, 196 Va. 493",
+      "destination": "/uploads/constitutional/pdfs/1954_-_Lucy_v._Zehmer_196_Va._493.pdf"
+    },
+    {
+      "source": "/api/casereview/file/Federal Rules of Criminal Procedure \\(Dec. 1, 2025, uscourts.gov official pamphlet\\)",
+      "destination": "/uploads/constitutional/pdfs/Federal_Rules_of_Criminal_Procedure_Dec._1_2025_uscourts.gov_official_pamphlet_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/28 CFR 600.1 - Grounds for appointing a Special Counsel \\(govinfo official print, 2025 ed.\\)",
+      "destination": "/uploads/constitutional/pdfs/28_CFR_600.1_-_Grounds_for_appointing_a_Special_Counsel_govinfo_official_print_2025_ed._.pdf"
+    },
+    {
       "source": "/api/casereview/file/:id",
       "destination": "/uploads/constitutional/pdfs/:id.pdf"
     }

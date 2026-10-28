@@ -6,22 +6,26 @@
       "name": "kirchner-v-johnson",
       "case_root": "kirchner-v-johnson",
       "case": "Kirchner v. Johnson, No. 1:25-cv-02735-ACR (D.D.C.)",
-      "version": "v0.27",
-      "built": "2026-10-09",
+      "version": "v0.28a",
+      "built": "2026-10-23",
       "current": true,
       "root": null,
       "imported": {
-        "at": "2026-10-15T00:08:53.834Z",
-        "documents": 1143,
+        "at": "2026-10-28T14:55:51.598Z",
+        "documents": 1153,
         "tables": 35,
-        "rows": 12146,
+        "rows": 12512,
         "publication": {
-          "serve": 1079,
+          "serve": 1089,
           "link": 7,
-          "hold": 57
+          "hold": 57,
+          "pages": 0
         },
-        "extracts": null,
-        "vendored_studio_commit": "6f6dd67dafbf8611ca4ca157feaa546ea8675135"
+        "extracts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "vendored_studio_commit": "70e661ae2425015d6c596974e031e6b4dc52eaf5"
       },
       "route": "/kirchner-v-johnson",
       "kind": "case",
