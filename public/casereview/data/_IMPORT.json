@@ -453,9 +453,9 @@
     "checker_source_sha256": "09357864dcea776453cd09bfcf9668f86e1662a37e5d8591ec5ab741ead97481",
     "mirrors_sha256": "adf2064a48fd682622fb032136a8d6a199ede71efd2d9ea69697c366b2596113",
     "exported": "2026-10-28T14:51:25+00:00",
-    "filing_root": "/Users/everest/Git/work_station/1_DCC_1-25-cv-02735-ACR",
-    "case_root": "/Users/everest/Git/work_station/1_DCC_1-25-cv-02735-ACR",
-    "project_root": "/Users/everest/Git/work_station",
+    "filing_root": "1_DCC_1-25-cv-02735-ACR",
+    "case_root": "1_DCC_1-25-cv-02735-ACR",
+    "project_root": "work_station",
     "registry_version": "v0.28a",
     "tables": [
       "DDC-002",
