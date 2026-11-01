@@ -1,15 +1,15 @@
 {
   "case": "kirchner-v-johnson",
-  "imported": "2026-10-15T00:08:53.834Z",
-  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/b5e822fa-aee1-4a1d-8721-fd7052f9be64/scratchpad/ddc_p100",
+  "imported": "2026-10-28T14:55:51.598Z",
+  "source": "the checker's export ddc_v028a of the lane at 05f37cc0 (v0.28a, P103)",
   "export_stamp": {
     "lane_signature": {
-      "sha256": "223689e8f926a76c4a56fe555edcd553ee6b0e9d106a0364d618b29232d66039",
+      "sha256": "05f37cc0dc51db61ed627dd0aedd4878fde95cec3e7ab02da7ed1c8df07223b7",
       "files": [
         {
           "path": "_admin/case_review/docs.json",
-          "bytes": 1243225,
-          "sha256": "678e3543f9c7c183838d726a70a32b61c0ea3d10760148632319079c61c9d9e6"
+          "bytes": 1343788,
+          "sha256": "038ed82f12deb96e7c788680e2982b6d90e6d73382b063862e17c97968be3ce4"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-002.meta.json",
@@ -23,13 +23,13 @@
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-005.meta.json",
-          "bytes": 17066,
-          "sha256": "4f7296c20a3debcba18d58b72bda4061fce57ce45c0faec935319b5a2401d60e"
+          "bytes": 138132,
+          "sha256": "d8f938f8ddb9a4658b12a075db9877081695371463984f0a4adc134fe465b70d"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-005.tsv",
-          "bytes": 757990,
-          "sha256": "4ce3af5b4ddee34ae38cf421242fa0b3036f34625964d1b62188cdbe742a4911"
+          "bytes": 1092096,
+          "sha256": "9130d0838b028ce6990a5fe1da33d6297d10f58080ccc06cbca74c6f0a1a4829"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-006.meta.json",
@@ -113,13 +113,13 @@
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-051.meta.json",
-          "bytes": 72149,
-          "sha256": "878e4d099c8959ee59513551048f0e1cafbf137c7c3843e1ddd6a86b63222b9a"
+          "bytes": 78326,
+          "sha256": "bb0cf6602b9738b86e901194b8668300074363b93d449c792e063d40944ef8ec"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-051.tsv",
-          "bytes": 1114352,
-          "sha256": "0ddece64e5a20cd58e718b8f939cb607b9e6ab09ac02197844dab95daee549e1"
+          "bytes": 1113887,
+          "sha256": "3450a6798b9bba1ae44ee56d1406e5d9047dcc53ff49ee7563a1a57a19bbf61e"
         },
         {
           "path": "_admin/case_review/links/LINKS_DDC-052.meta.json",
@@ -448,14 +448,15 @@
         }
       ]
     },
-    "ourstudio_commit": "6f6dd67d",
-    "checker": "P100",
-    "checker_source_sha256": "9cb36ae7a97a36ec4b6af70a56bf404614def94beab84de1e563eb5acebe74d6",
-    "mirrors_sha256": "effcece00d92564e836cdc53dee399db7b0410e8c5f7bd8a66dacddfe082a8cd",
-    "exported": "2026-10-15T00:05:35+00:00",
-    "case_root": "/Users/everest/Git/work_station/1_DCC_1-25-cv-02735-ACR",
-    "project_root": "/Users/everest/Git/work_station",
-    "registry_version": "v0.27",
+    "ourstudio_commit": "a3f47671",
+    "checker": "P103",
+    "checker_source_sha256": "09357864dcea776453cd09bfcf9668f86e1662a37e5d8591ec5ab741ead97481",
+    "mirrors_sha256": "adf2064a48fd682622fb032136a8d6a199ede71efd2d9ea69697c366b2596113",
+    "exported": "2026-10-28T14:51:25+00:00",
+    "filing_root": "1_DCC_1-25-cv-02735-ACR",
+    "case_root": "1_DCC_1-25-cv-02735-ACR",
+    "project_root": "work_station",
+    "registry_version": "v0.28a",
     "tables": [
       "DDC-002",
       "DDC-005",
@@ -495,10 +496,15 @@
     ],
     "publish_applied": true,
     "publish": {
-      "serve": 1079,
+      "serve": 1089,
       "link": 7,
-      "hold": 57
+      "hold": 57,
+      "pages": 0
     },
+    "serve_max_mb": 95,
+    "extracts": [],
+    "extract_rows_moved": 0,
+    "pages_without_cites": [],
     "pdfjs": {
       "version": "4.10.38",
       "files": {
@@ -525,21 +531,29 @@
     "files": {
       "docs": "docs.json",
       "links": "links/<id>.json",
-      "manifest": "files.json"
+      "manifest": "files.json",
+      "extracts": "extracts/<safe id>.pdf"
     }
   },
-  "registry_version": "v0.27",
-  "documents": 1143,
+  "registry_version": "v0.28a",
+  "documents": 1153,
   "tables": 35,
-  "rows": 12146,
+  "rows": 12512,
   "publication": {
-    "serve": 1079,
+    "serve": 1089,
     "link": 7,
-    "hold": 57
+    "hold": 57,
+    "pages": 0
   },
+  "extracts": {
+    "count": 0,
+    "bytes": 0,
+    "ids": []
+  },
+  "serve_max_mb": 95,
   "dev_override": false,
   "default_doc": "DDC-077",
-  "vendored_studio_commit": "6f6dd67dafbf8611ca4ca157feaa546ea8675135",
+  "vendored_studio_commit": "70e661ae2425015d6c596974e031e6b4dc52eaf5",
   "host_policy": null,
   "tables_withheld": []
 }

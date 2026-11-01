@@ -11,7 +11,7 @@
 //   node scripts/import-casereview.mjs                        # from the running Studio (http://127.0.0.1:8765), work_station
 //   node scripts/import-casereview.mjs --from <export_dir>    # from the checker's export (studio-spec R1) — REQUIRED for a lane with
 //                                                            #   `pages` rows: the extracts are the export's (the review-mode standard § 2c)
-//   node scripts/import-casereview.mjs --check                # the bundle on disk is whole (runs in every build)
+//   node scripts/import-casereview.mjs --check                # the bundle on disk is whole (runs in every build); it carries no device path
 //   node scripts/import-casereview.mjs --out <dir>            # write the bundle under <dir> instead of public/ (a dry run)
 //   node scripts/import-casereview.mjs --hosts                # refresh public/casereview/hosts.json (THE HOST TABLE, the review-mode
 //                                                            #   standard R4, 2026-10-21) from every bundle on disk, and the /api/casereview/cases
@@ -48,6 +48,13 @@
 // checker's passage texts (the window boxes passages from the PDF's own text layer — the field is 60 % of the bytes
 // and read by nothing on the client), filesystem paths, mirror paths, shelf aliases. The checker's structured answers
 // (violations, warnings, coverage, stale_render, k, unit_id, pdf pages, section-map resolutions) ride unchanged.
+//
+// A DOCUMENT ROW'S KEYS ARE KEPT BY NAME (DOC_KEEP below; a key the Studio adds reaches a site only when named here), a LINK
+// ROW'S by exception (ROW_DROP). `has_links` (the review-mode standard § 3, the nav word, app d2b39b36 2026-10-22: the
+// Studio's docs answer says per row whether a links table exists, so the window's nav lists the reviewed documents before the
+// counts arrive) is SET HERE, MASKED BY THE HOST: true only when the document's table is SERVED on this site — the export's
+// word (or the counts map, when an older export carries none) AND the id in the served set — so a table withheld under the
+// host policy or a held document reads false and the window never lists a reviewed group it cannot open here.
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
@@ -135,9 +142,10 @@ const FILER_COPY = /^none \(owner as-filed copy/;
 // ---------------------------------------------------------------- the public shapes
 const DOC_KEEP = ['id', 'label', 'title', 'kind', 'parent', 'ecf_no', 'attachment', 'filed', 'filer', 'pages', 'sha256', 'offset', 'pagemap', 'text_layer', 'group', 'inventory_page', 'ligature_drop', 'ligature_drop_density', 'publish_note', 'pagemap_basis',
   'embed', 'duration']   // the video row (studio-spec 2026-10-09 § 5.5): the embed {provider, id} and the recording's seconds;
-function publicDoc(d, pub, extract = null) {
+function publicDoc(d, pub, extract = null, hasLinksHere = false) {
   const o = {};
   for (const k of DOC_KEEP) if (d[k] !== undefined) o[k] = d[k];
+  o.has_links = !!hasLinksHere;   // the host's word (above): the table exists AND is served here
   if (d.pagemap_error) o.pagemap = null;   // the loader could not read the map: the window falls to the offset, as the Studio does
   if (FILER_COPY.test(String(d.stamp || ''))) { o.filer_copy = true; o.title = `${o.title || ''} · filer's copy, not the court's stamped copy`.trim(); }
   o.publish = pub.mode;
@@ -189,13 +197,52 @@ async function fromApi(base) {
   process.stdout.write('\n');
   return { docs, tables, caseRoot: docs.case_root, kind: `the Studio API at ${base}` };
 }
+// ---------------------------------------------------------------- no device path in a served bundle
+// The Studio's export stamp names its roots absolutely (filing_root, case_root, project_root — the checker reads them);
+// the served copy names each relative to the project root (the lane's folder name) or by the root's own name, the
+// stamp's source names the export by its folder name and the lane's signature, and `--check` refuses any string under
+// a device root in a bundle or the host table — so no import carries a machine's path again (admin 93e0ddad #29482,
+// 2026-10-28: a served stamp had carried a scratchpad path with a session id in it since the 15 Oct import).
+const DEVICE_ROOT = /^\/(Users|private|home|Volumes)\//;
+const DEVICE_PATH_IN_JSON = /(?:^|[\s"(=])(\/(?:Users|private|home|Volumes)\/[^"]*)/m;   // a device root anywhere in a string value — after the string's start, a space, a quote, a paren or an equals, never after a letter, a digit or a dot (a URL's /home/ or /private/ is not a machine; admin 93e0ddad #29538)
+function withoutDevicePaths(stamp) {
+  const proj = typeof stamp.project_root === 'string' ? stamp.project_root.replace(/\/+$/, '') : null;
+  const rel = (v) => {
+    const w = v.replace(/\/+$/, '');
+    if (proj && w === proj) return path.basename(proj);
+    if (proj && w.startsWith(proj + '/')) return path.relative(proj, w);
+    return path.basename(w);
+  };
+  const walk = (x) => Array.isArray(x) ? x.map(walk)
+    : x && typeof x === 'object' ? Object.fromEntries(Object.entries(x).map(([k, v]) => [k, walk(v)]))
+    : typeof x === 'string' && DEVICE_ROOT.test(x) ? rel(x) : x;
+  return walk(stamp);
+}
+/** the check's half: no string under a device root in the bundle's JSON (the stamp, docs.json, files.json, every table) */
+function checkNoDevicePaths(DATA, LINKS) {
+  let bad = 0;
+  const files = ['_IMPORT.json', 'docs.json', 'files.json'];
+  if (fs.existsSync(LINKS)) for (const n of fs.readdirSync(LINKS)) if (n.endsWith('.json')) files.push(path.join('links', n));
+  for (const f of files) {
+    const fp = path.join(DATA, f);
+    if (!fs.existsSync(fp)) continue;
+    const m = fs.readFileSync(fp, 'utf8').match(DEVICE_PATH_IN_JSON);
+    if (m) { console.error(`  REFUSED  ${f} carries a device path (${m[1].slice(0, 60)}…) — a served bundle names no machine; re-import with this importer, or set the line by hand`); bad++; }
+  }
+  return bad;
+}
+
 function fromExport(dir) {
   const docs = JSON.parse(fs.readFileSync(path.join(dir, 'docs.json'), 'utf8'));
   const tables = {};
   for (const f of fs.readdirSync(path.join(dir, 'links'))) if (f.endsWith('.json')) tables[f.slice(0, -5)] = JSON.parse(fs.readFileSync(path.join(dir, 'links', f), 'utf8'));
   let stamp = null; try { stamp = JSON.parse(fs.readFileSync(path.join(dir, '_EXPORT.json'), 'utf8')); } catch {}
   let files = null; try { files = JSON.parse(fs.readFileSync(path.join(dir, 'files.json'), 'utf8')); } catch {}
-  return { docs, tables, caseRoot: CASE_ROOT_OPT || (stamp && stamp.case_root) || docs.case_root, kind: `the checker's export at ${dir}`, stamp, files };
+  const name = path.basename(path.resolve(dir));
+  const kind = stamp && stamp.lane_signature && stamp.lane_signature.sha256
+    ? `the checker's export ${name} of the lane at ${String(stamp.lane_signature.sha256).slice(0, 8)} (${stamp.registry_version || '?'}, ${stamp.checker || '?'})`
+    : `the checker's export ${name}`;
+  return { docs, tables, caseRoot: CASE_ROOT_OPT || (stamp && stamp.case_root) || docs.case_root, kind, stamp, files };
 }
 
 // ---------------------------------------------------------------- the check (every build)
@@ -230,6 +277,7 @@ function checkOne(c) {
   const imp = JSON.parse(fs.readFileSync(p, 'utf8'));
   const deploying = !!(process.env.NETLIFY || process.env.CI);
   let bad = 0;
+  bad += checkNoDevicePaths(DATA, LINKS);
   if (imp.dev_override) {
     const line = `the bundle was written under --dev-serve-filings (${imp.imported}) — a development proof, not the registry's word`;
     if (deploying) { console.error(`  REFUSED  ${line}`); bad++; } else console.warn(`  WARNING  ${line}; rerun the importer without the flag before committing the bundle`);
@@ -254,6 +302,12 @@ function checkOne(c) {
   if (missing) console.error(`  ${missing} served document(s) have no file under public/ — the hosting decision (the files are gitignored until the owner's word)`);
   bad += missing + wrong;
   for (const id of Object.keys(docs.links || {})) if (!fs.existsSync(path.join(LINKS, `${id}.json`))) { console.error(`  missing  links/${id}.json`); bad++; }
+  // has_links agrees with the tables served here (a bundle imported before the key carries none: nothing to check)
+  for (const d of docs.docs) {
+    if (d.has_links === undefined) continue;
+    const servedTable = (docs.links || {})[d.id] != null;
+    if (!!d.has_links !== servedTable) { console.error(`  has_links  ${d.id} says ${JSON.stringify(d.has_links)} but its table is ${servedTable ? '' : 'not '}served here`); bad++; }
+  }
   for (const f of ['_redirects', 'serve.json']) if (!fs.existsSync(path.join(PUBLIC, f))) { console.error(`  missing  public/${f} (the API rewrites)`); bad++; }
   // the stamp names the vendored Studio commit it was imported under; a sync after the import leaves it stale — a warning, the bundle itself is unaffected
   try {
@@ -363,6 +417,7 @@ function checkHosts(present) {
   let bad = 0;
   const h = readHosts();
   const rows = h && Array.isArray(h.cases) ? h.cases : [];
+  if (h) { const m = JSON.stringify(h).match(DEVICE_PATH_IN_JSON); if (m) { console.error(`  REFUSED  hosts.json carries a device path (${m[1].slice(0, 60)}…) — a served host table names no machine`); bad++; } }
   for (const c of present) {
     const r = rows.find(x => x && x.name === c);
     if (!r) { console.error(`  missing  hosts.json row for ${c} — run: node scripts/import-casereview.mjs --hosts`); bad++; continue; }
@@ -464,6 +519,10 @@ async function run() {
   // 11:03 CDT: Kirchner I's appeal group off kirchner.ink — documents, files and tables; agreed by name 55339aa7 ⇄ f28bb754).
   const servedIds = new Set(decided.filter(({ pub }) => SERVED(pub.mode)).map(({ d }) => d.id));
   const tablesWithheld = Object.keys(tables).filter((id) => !servedIds.has(id)).sort();
+  // has_links on the served row: the export's word per row (the Studio's docs answer since d2b39b36), else the counts map an
+  // older export carries; masked to the tables this host serves
+  const hasLinksHere = (d) => servedIds.has(d.id) && (d.has_links !== undefined && d.has_links !== null ? !!d.has_links : (docs.links || {})[d.id] != null);
+  const maskedLinks = decided.filter(({ d }) => (d.has_links || (docs.links || {})[d.id] != null) && !hasLinksHere(d)).length;
 
   // docs.json — the window's /docs answer (case_root is the tree's localStorage key on the client: the case slug, not a path)
   const outDocs = {
@@ -472,10 +531,11 @@ async function run() {
       // the window's defaults ride the registry object by name: nav.hide_before (the hide-before threshold; "nothing hidden until
       // set" when absent — the viewer's rule of 2026-10-09; a per-case number, never the window's)
       nav: docs.registry && docs.registry.nav },
-    docs: decided.map(({ d, pub }) => publicDoc(d, pub, pub.mode === 'pages' ? extractOf(d) : null)),
+    docs: decided.map(({ d, pub }) => publicDoc(d, pub, pub.mode === 'pages' ? extractOf(d) : null, hasLinksHere(d))),
     links: Object.fromEntries(Object.entries(docs.links || {}).filter(([id]) => servedIds.has(id))),
   };
   fs.writeFileSync(path.join(DATA, 'docs.json'), JSON.stringify(outDocs));
+  console.log(`has_links: ${outDocs.docs.filter((d) => d.has_links).length} row(s) say a table is served here${maskedLinks ? `; ${maskedLinks} with a table in the lane read false — not served on this host` : ''}`);
 
   // links/<id>.json — the window's /links answer per table
   let rows = 0, droppedAnswers = 0;
@@ -512,7 +572,7 @@ async function run() {
   let studioCommit = null;
   try { studioCommit = fs.readFileSync(path.join(PUBLIC, 'casereview', 'vendor', 'VENDOR.json'), 'utf8').match(/"commit":\s*"([0-9a-f]+)"/)[1]; } catch {}
   const stamp = {
-    case: CASE, imported: new Date().toISOString(), source: src.kind, export_stamp: src.stamp || null,
+    case: CASE, imported: new Date().toISOString(), source: src.kind, export_stamp: src.stamp ? withoutDevicePaths(src.stamp) : null,
     registry_version: outDocs.registry.version, documents: docs.docs.length, tables: written.size, rows,
     publication: byMode,
     // the pages word's trace (the review-mode standard § 2c): the extracts this host serves, their bytes, the export's host bound
