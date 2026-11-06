@@ -74,8 +74,8 @@ export const BOOKS: BookRecord[] = [
   {
     // the fifth title in review mode (owner 2026-11-05): article 16, on kirchner.ink at the same slug since
     // 5 Nov; renders only once its lane has been imported (publishedBooks reads content/review)
-    slug: 'the-rule-not-the-creature',
-    id: 'rule-not-the-creature',
+    slug: 'a-rule-of-the-people',
+    id: 'rule-of-the-people',
     title: 'A Rule of the People',
     subtitle: 'Why a Corporation Holds No Constitutional Right of Its Own',
     date: '2026-11-05',

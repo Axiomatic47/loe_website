@@ -112,9 +112,9 @@ const REVIEWS = [
   {
     // the fifth title (owner 2026-11-05, in this seat's pane: the article goes on this site too, "published to my
     // website in the same manner"): ARTICLE 16, its lane beside it (no BOOK/ folder); slug = kirchner.ink's
-    // address (/work/the-rule-not-the-creature), one slug across both sites, as the fourth title's rule
-    slug: 'the-rule-not-the-creature',
-    id: 'rule-not-the-creature',
+    // address (/work/a-rule-of-the-people), one slug across both sites, as the fourth title's rule
+    slug: 'a-rule-of-the-people',
+    id: 'rule-of-the-people',
     book: join(LIB, '16_The Rule Not the Creature', 'THE_RULE_NOT_THE_CREATURE.md'),
     lane: join(LIB, '16_The Rule Not the Creature', 'Pinned Citation Extracts'),
   },
