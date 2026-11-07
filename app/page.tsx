@@ -4,9 +4,16 @@
 // no featured case, no case strip):
 //   1. Hero — plain-English statement of what this site is, two CTAs
 //      (primary: the academic articles)
+//   1a. The article — A Rule of the People (article 16, review mode) as the
+//      FIRST featured work, under the hero and above the open letter: the
+//      review-mode PDF in the viewer, with the link into review mode (owner
+//      2026-11-06, in the website seat's pane: "place The A Rule of The People
+//      article above the Open Letter to the Candidates for Minnesota Attorney
+//      General letter on the lawsofexistence.com homepage")
 //   1b. The open letter — the Open Letter to the Candidates for Minnesota
-//      Attorney General (Oct. 10, 2026) as the FIRST featured work, under
-//      the hero and above the book: the PDF itself in the review-mode viewer,
+//      Attorney General (Oct. 10, 2026) as the first featured work from
+//      2026-10-19 to 2026-11-06, now under the article and above the book:
+//      the PDF itself in the review-mode viewer,
 //      no summary (owner 2026-10-19: "not above the site header, just the
 //      first featured work. Show the pdf, not an explanation"; first placed
 //      above the hero 2026-10-16). The published copy, whose letterhead
@@ -91,6 +98,10 @@ export default function Home() {
   // in the same viewer as /books/<slug>, one page tall at fit width, under the hero buttons
   const plea = books.find((b) => b.slug === 'the-subjects-unanswered-plea') ?? null;
   const pleaReview = plea ? readReview(plea.slug) : null;
+  // A Rule of the People read on the home page above the open letter (owner 2026-11-06): the
+  // review-mode PDF in the same viewer, one page tall at fit width, the first featured work
+  const article = books.find((b) => b.slug === 'a-rule-of-the-people') ?? null;
+  const articleReview = article ? readReview(article.slug) : null;
   // the timeline read from the book (owner 2026-10-07: "a section below the Subject's Unanswered Plea PDF pane"):
   // its title, standfirst and a spread of its entries, when its content is published and names this book
   const tl = loadImmunityTimeline();
@@ -169,7 +180,47 @@ export default function Home() {
           </Reveal>
         </section>
 
-        {/* ------------------------------ 1b. The open letter — the PDF itself, the first featured work (owner 2026-10-19) */}
+        {/* ------------------------------ 1a. The article — the PDF itself, the first featured work (owner 2026-11-06) */}
+        {article && articleReview && (
+          <section className="max-w-4xl mx-auto mb-16 -mt-4">
+            <Reveal>
+              <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-2 mb-4">
+                <div className="min-w-0">
+                  <Eyebrow>The article</Eyebrow>
+                  <h2
+                    className="font-serif text-foreground"
+                    style={{ fontSize: 'clamp(22px, 2.6vw, 28px)', fontWeight: 580, letterSpacing: '-0.018em', lineHeight: 1.2 }}
+                  >
+                    <Link href={`/books/${article.slug}`} className="no-underline hover:underline underline-offset-4">
+                      {article.title}
+                    </Link>
+                  </h2>
+                  {article.subtitle && <p className="text-sm text-muted-foreground mt-1 font-sans">{article.subtitle} · {article.venue}</p>}
+                </div>
+                <Link
+                  href={`/books/${article.slug}`}
+                  className="text-sm text-primary font-sans inline-flex items-center hover:text-primary/80 transition-colors"
+                  style={{ fontWeight: 500 }}
+                >
+                  Open in review mode — the article beside the pages it cites
+                  <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+                </Link>
+              </div>
+            </Reveal>
+            <Reveal delay={80}>
+              <BookPdfViewer
+                src={versioned(articleReview.pdf.file, articleReview.pdf.served ?? articleReview.pdf.sha256)}
+                bytes={articleReview.pdf.bytes}
+                downloadSrc={articleReview.pdf.linked ? versioned(articleReview.pdf.linked.file, articleReview.pdf.linked.served ?? articleReview.pdf.linked.sha256) : undefined}
+                downloadName={`${article.slug}.pdf`}
+                title={`${article.title}${article.subtitle ? `: ${article.subtitle}` : ''} — ${article.venue ?? 'working draft'}; ${articleReview.pdf.pages} pages`}
+                height="page"
+              />
+            </Reveal>
+          </section>
+        )}
+
+        {/* ------------------------------ 1b. The open letter — the PDF itself, the second featured work since 2026-11-06 (first placed 2026-10-19) */}
         <section className="max-w-4xl mx-auto mb-16 -mt-4">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-2 mb-4">
