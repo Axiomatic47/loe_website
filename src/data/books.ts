@@ -71,6 +71,20 @@ export const BOOKS: BookRecord[] = [
       'For 239 years the United States has lacked an objective legal definition of a separation-of-powers violation. This Article recovers what Madison actually wrote: he used “distribution”, not “separation”; “balance” and “check” are sequential operations, not synonyms; and non-delegation is not a separate doctrine. From that framework it derives a six-step compliance test any court can apply without policy judgment, validates it against 36 Supreme Court decisions across 154 years, and recovers the equity standing needed to enforce it.',
     collection: 'Constitutional structure',
   },
+  {
+    // the fifth title in review mode (owner 2026-11-05): article 16, on kirchner.ink at the same slug since
+    // 5 Nov; renders only once its lane has been imported (publishedBooks reads content/review)
+    slug: 'a-rule-of-the-people',
+    id: 'rule-of-the-people',
+    title: 'A Rule of the People',
+    subtitle: 'Why a Corporation Holds No Constitutional Right of Its Own',
+    date: '2026-11-05',
+    venue: 'Article · working draft',
+    // the article's own words (its Abstract, first two sentences)
+    blurb:
+      "A corporation is not a being the law made but a rule the people made: a sovereign's permission that a set of natural persons may act under one name, with two incidents no private agreement can create because each binds strangers, the separation of the body's debts from its members' and the body's survival through every change of them. A name in a rule holds no right against the rule's makers.",
+    collection: 'The Corporation',
+  },
 ];
 
 export const bookBySlug = (slug: string) => BOOKS.find((b) => b.slug === slug) ?? null;
